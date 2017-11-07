@@ -1,0 +1,16 @@
+Program "Unknown" (length 11) by "Anonymous"
+
+       ORG      START
+START  DJN.B  $     0, <     7     
+       JMN.B  $    -1, $     9     
+       MOV.I  $     7, @     6     
+       DJN.B  $    -1, $     5     
+       MOV.AB #    -5, $     4     
+       MOV.I  $     3, @     3     
+       DJN.B  $    -1, $     2     
+       JMN.B  $    -3, #    -7     
+       DAT.F  #     0, #    -7     
+       SPL.B  $     0, $     0     
+       DAT.F  #     0, #     1     
+
+Unknown by Anonymous scores 0

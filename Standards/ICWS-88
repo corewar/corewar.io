@@ -1,0 +1,389 @@
+
+
+
+
+
+
+[Note:  This  text  is  reproduced  from  the article "Core War '88 - A Proposed
+Standard" by Thomas Gettys which appeared in the Summer 1988 edition of The Core
+War Newsletter,  Copyright (c) 1988 by AMRAN.  It appears here by the permission
+of AMRAN and the International  Core  War  Society,  both  of  which  retain the
+aforementioned copyright.   Although  the original  appears in several different
+proportional fonts, every effort has been made to  maintain pagination, columns,
+and paragraphs  as in  the original  document.   Therefore, references to either
+document should be the same.  Additional information is available  by contacting
+the ICWS  at 5712 Kern Drive, Huntington Beach, CA 92649-4535.  A $1.00 donation
+for this document is requested.]
+
+                                                The Text of the Proposal
+
+                                          MARS Functional Units.
+
+                                          From the Redcode programmer's point of
+                                          view, MARS is composed of four primary
+                                          functional units:  a read/write memory
+                                          (RAM),  a  computing  unit  (ALU), two
+                                          process  queues   (FIFO's),   and  the
+                                          control  unit  (CU).    There  are  no
+                                          registers visible  to  the programmer;
+                                          that  is,  memory  is the only storage
+                                          available  for  both  instructions and
+                                          data.
+
+                                          RAM:  All  Redcode instructions occupy
+                                          exactly    one     memory    location.
+                                          Addressing in  Redcode is relative, so
+                                          it is best to think of memory as being
+                                          organised  as   a  circular  list;  an
+                                          instruction  that   references  memory
+                                          location zero  is referring to itself.
+                                          Every RAM location  is  initialised to
+                                          the data  pattern which corresponds to
+                                          the instruct DAT  0  0  before loading
+                                          any  Core   War  programs,  (elsewhere
+                                          refered to as "warriors").
+
+                                          FIFO: A game of Core War  is played by
+                                          pitting  two  Redcode programs against
+                                          each other.   Each  attempts  to force
+                                          the  other  to  fail  by causing it to
+                                          execute  a  "halt"  instruction,  (the
+                                          DAT).   During each  machine cycle one
+                                          instruction  from   each   program  is
+                                          executed,  always  in  the same order.
+                                          it is  thus  necessary  to  maintain a
+                                          program counter  for each  side.  This
+                                          is the purpose of  the process queues.
+                                          As  will   be  seen,   each  side  may
+                                          consist  of  more  than  one  process.
+                                          This is  why a  FIFO and  not a single
+                                          register is necessary  for  each side.
+                                          There are  no upper or lower limits to
+                                          the  size  of  the  FIFO's,  save  the
+                                          minimum of one each, as battles cannot
+                                          occur  with  less  than  two  Core War
+                                          programs.
+
+                                          ALU:  The  computing unit performs all
+                                          the arithmetic  and logical operations
+                                          required  by  the  Redcode instruction
+                                          set, and  the  Control  Unit,  such as
+                                          adding tow  operands or incrementing a
+                                          program counter.
+                                    Page 4
+
+
+
+
+
+
+CU: As in  any  processor,  the control   Addressing Modes
+unit   has    the   responsibility   of
+fetching,   decoding    and   executing   There  are  currently  four addressing
+instructions. Details  about  the fetch   modes   defined:   immediate,  direct,
+and decode phase will  be delayed until   indirect, and predecrement-indirect.
+the instruction set has been introduced
+and  defined,  (see   the   section  on   The  default  mode  is  direct.  If no
+Effective  Address   Calculation).  The   modifier  symbol  precedes an operand,
+control  unit  must  also   provide  an   the value of the operand is used as an
+interface   to   the   MARS  supervisor   offset from  the memory locations from
+function  (ZEUS).  The  supervisor  may   which  it  was  fetched. The resulting
+provide various  support functions such   memory  location  is the source and/or
+as   a   Redcode   debugger,   graphics   destination of  the data to be used by
+display, parameter control, etc. and is   the   instruction,   or  else  is  the
+highly implementation specific.           destination        for       branching
+                                          instructions.
+Instruction Format
+                                          An octothorpe (#) is used to introduce
+A Redcode instruction has three fields:   an immediate operand. The value of the
+the  opcode  field   and   two  operand   operand is  not an  address but rather
+field, denoted as A and B. The contents   the   data   to   be   used   by   the
+of  the   opcode   field   specify  the   instruction; the data is "immediately"
+operation  to  be  performed,  and  the   available.
+addressing   modes   to   be   used  in
+evaluating the  operands. For pragmatic   The commercial  at sign (@) is used to
+purposes it  is  useful  to  divide the   introduce  an  indirect  operand.  The
+opcode  into   three   sub-fields:  the   value  of  the  operand  is used as an
+operation   and    the    two   operand   offset,   as   it   is   with   direct
+modifiers,  but  this  is  not strictly   addressing.  The   B  operand  of  the
+necessary.  The   operand   fields  may   resulting memory location is then used
+contain any  number  from  zero  to the   as an  offset from the memory location
+memory  size   minus   one.  Currently,   from   which   it   was  fetched.  The
+eleven    Redcode    instructions   are   resulting   memory   location  is  the
+defined. They are  listed  in  figure 1   source and/or  destination of the data
+below,  with  a   mnemonic   and  short   to be used by the instruction, of else
+operational description for each.         is  the   destination   for  branching
+                                          instructions.
+     DAT  A B: remove executing process
+               from process queue         The less  than  sign  (<)  is  used to
+                                          introduce   a  pre-decrement  indirect
+     MOV  A B: move A to B                operand. The  value of  the operand is
+                                          used  as  an  offset,  as  it  is with
+     ADD  A B: add A to B                 direct addressing.  The  B  operand of
+                                          the   resulting   memory  location  is
+     SUB  A B: subtract A from B          fetched,    decremented,    and   then
+                                          restored. It is then used as an offset
+     JMP  A B: jump to A                  from the memory location from which it
+                                          was  fetched.   The  resulting  memory
+     JMZ  A B: jump to A if B is zero     location   is    the   source   and/or
+                                          destination for the data to be used by
+     JMN  A B: jump to A  if  B  is not   the   instruction,   or  else  is  the
+               zero                       destination        for       branching
+                                          instructions.
+     CMP  A B: if A equals B, then skip
+               the next instruction       The Redcode Instruction Set
+
+     SLT  A B: if A is less than B then   For   the   most   part,  the  Redcode
+               skip next instruction      instruction  set  presents  no unusual
+                                          problems,  and  the  implementation is
+     DJN  A B: decrement B; if B is not   straight-forward.    Some   additional
+               zero then jump to A        definition   and    clarification   is
+                                          required however  to insure that it is
+     SPL  A B: place A  in  the process   implemented correctly.
+               queue
+                                          DAT  A  B  : This instruction actually
+    Figure 1. Instruction set ofthe       serves two functions, one utilitarian,
+  proposed Core War Standard of 1988.     and  the  other  quite destructive. On
+                                          the  one  hand,  it  is  used  for the
+                                          storage  of  data  to  be  used  as  a
+                                          counter,  pointer,  etc.  If  executed
+                                          however, the  process is halted! This,
+                                          then, is the  mechanism  by  which one
+                                          obtains victory  in a  Core War: cause
+                                          every  process   associated  with  the
+                                          opponent's  program  to  execute a DAT
+                                          instruction.
+
+                                                  Continued on page 8c.
+                                    Page 5
+
+
+
+
+
+
+                                          MOV  A  B  :  If  the   A  operand  is
+                                          immediate it  is placed in the B-field
+                                          of the  memory  location  specified by
+                                          the B  operand, otherwise the contents
+                                          of   the    entire   memory   location
+                                          specified by the A operand is moved to
+                                          the memory location specified by the B
+                                          operand.
+
+                                          ADD  A   B  :  If  the  A  operand  is
+                                          immediate it  is added  to the B-field
+                                          of the B operand.  If the A operand is
+                                          not immediate both the  A-field and B-
+                                          field  of  the  A  operand  are  added
+                                          respectively  to  the  A-field  and B-
+                                          field of the B operand.
+
+                                          SUB  A   B  :  If  the  A  operand  is
+                                          immediate it is subtracted from the B-
+                                          field  of  the  B  operand.  If  the A
+                                          operand is  not immediate  both the A-
+                                          field and B-field of the A operand are
+                                          subtracted  respectively  from  the A-
+                                          field and B-field of the B operand.
+
+                                          JMP A  B :  The address  of the memory
+                                          location specified by the A operand is
+                                          placed  at  the  back  of  the process
+                                          queue  associated  with  the executing
+                                          program.   The   B  operand  does  not
+                                          necessarily    participate    in   the
+                                          execution of the instruction.
+
+                                          JMZ  A  B  :  If  the B-field of the B
+                                          operand is zero  then  the  address of
+                                          the memory location specified by the A
+                                          operand is placed at  the back  of the
+                                          process  queue   associated  with  the
+                                          executing program.
+
+                                          JMN A B :  If  the  B-field  of  the B
+                                          operand is  not zero  then the address
+                                          of the  memory  location  specifiec by
+                                          the A operand is placed at the back of
+                                          the process queue associated  with the
+                                          executing program.
+
+                                          CMP  A   B  :  If  the  A  operand  is
+                                          immediate it  is  compared  to  the B-
+                                          field of the memory location specified
+                                          by  the  B   operand,   otherwise  the
+                                          contents of the entire memory location
+                                          specified by the A operand is compared
+                                          to the contents of the memory location
+                                          specified by  the  B  operand.  If the
+                                          compared  values  are  equal, the next
+                                          instruction  is  skipped  (the program
+                                          counter is incremented).
+
+                                          SLT  A  B  :  If  the A operand is not
+                                          immediate, the B-field  ot  the memory
+                                          location specified by the A operand is
+                                          compared  to  the  B-field  of  the  B
+                                          operand,   otherwise   the  A  operand
+                                          itself is  used in  the comparison. If
+                                          the A  value is less than the B value,
+                                          the next instruction  is  skipped (the
+                                          program counter is incremented).
+
+                                          DJN  A  B  :  If  the B operand is not
+                                          immediate, the B-field  of  the memory
+                                          location specified by the B operand is
+                                          fetched,    decremented,    and   then
+                                          restored, otherwise the B-field of the
+                                          current instruction  is  used.  If the
+                                          value is  not zero, the address of the
+                                          memory
+
+                                    Page 8
+
+
+
+
+
+
+location specified by the  A operand is   Blank   lines   are  used  solely  for
+placed at the back of the process queue   cosmetic  purposes  in  the source and
+associated with the executing program.    listing  files.  Blank  lines  enhance
+                                          readability  by   allowing  groups  of
+SPL A B : After a process has caused an   related  instructions   to  be  easily
+SPL  instruction  to  be  fetched,  the   separated.
+program  counter   is  incremented  and
+placed  at  the  back  of  its  process   All  comments   are  introduced  by  a
+queue.  The  address  ot   the  spawned   semicolon, (;). Comments may be placed
+process is then placed  at the  back of   anywhere  within  the source file. All
+the same queue, providing  the queue is   characters following the semicolon are
+not  full.  The  B   operand  does  not   ignored.
+necessarily    participate    in    the
+execution of this instruction.            A Redcode instruction consists of five
+                                          components  (fields)   :  an  optional
+Effective Address Calculations.           label, the  instruction  mnemonic, the
+                                          A  and  B  operands,  and  an optional
+The  fetch-decode   phase   of  Redcode   comment.  Fields  are separated by one
+instruction  execution  is  complicated   or more space and/or tab characters.
+somewhat  by  the predecrement-indirect
+addressing mode.  After the instruction   Labels begin  in the  first column and
+to be executed  has  been  fetched, the   are    composed    of    alpha-numeric
+operands  must  be  "normalised" before   characters.   Only   the  first  eight
+the opcode  is processed.  That is, the   characters of a label are significant.
+operands are processed so  as to remove   If  a  label  is present, it will take
+any  indirection.   Because   this  may   the  current   value  of  the  program
+involve the modification of memory, the   counter.
+order  of  evaluation must be specified
+exactly.                                  An operand consists of  the addressing
+                                          mode symbol  followed by an expression
+First   the   A   addressing   mode  is   that  is  composed  of labels, number,
+examined. If  immediate,  we  are done.   and   operator   symbols.   The  valid
+Otherwise, the program counter is added   operators     are     addition    (+),
+to the  value in  the A-field, yielding   subtraction  (-),  multiplication (*),
+an absolute address. If  direct, we are   and integer division (/).
+done.  Otherwise,  the  B-field of this
+direct memory location is read into the   A pseudo-instruction is  adirective to
+A-field. If  predecrement is indicated,   the  assembler;  object  code  is  not
+the value just read  is decremented and   generated by a pseudo instruction. The
+written  back  to  the  memory location   mnemonic and definition of each pseudo
+from  whence  it  came.   Finally,  the   instruction follows.
+program counter  is added  to the value
+in the A-field.                           EQU : The EQU  pseudo-instruction must
+                                          be preceded  by a  label, and foloowed
+At  this  point   the   A-field  either   by  an  expression which is consistent
+contains  immediate  data  or  else  it   with   the   rules  governing  operand
+contains the absolute address  of the A   expressions.   The    value   of   the
+operand.  The  same  procedure  is  now   expression  is  the  value  associated
+performed to normalise  the  B operand.   with  the  label.  The  expression may
+With  bother  operands  now normalised,   contain such other labels as a priorly
+the operation code is  examined and the   defined.
+specified operation performed.
+                                          END   :   The  END  pseudo-instruction
+One   final   aspect   of   instruction   follows the last line to be assembled.
+execution  remains   to   be  resolved.   All lines  following the END statement
+Because  of  the  process  queue FIFO's   are   ignored.   Additionally,  if  an
+implied  by  the  SPL  instruction, the   operand is  provided, it  will be used
+updating   of   the   program   counter   as  the  program  entry  point.  If no
+associated  with  the  current  process   operand  appears,  the  entry point is
+must be  delayed  until  the  opcode is   assumed  to  be  the first instruction
+processed. If the instruction  does not   line in the file.
+require  a  branch  to be taken and the
+instruction is  not a  DAT, the program   Appendix A
+counter  is  incremented  and placed at
+the   back   ot   the   process   queue   The  following  is  a complete list of
+associated with  the  executing program   all  legal  Redcode instructions under
+before the instruction is executed.       this proposed standard.
+
+Source Code Syntax                          Appendix A continued on page 13a.
+
+The source code file  consists of lines
+as generated by a typical ASCII editor.
+A line may be  classified  as  either a
+blank line,  a comment  line, a Redcode
+instruction,    or    as    a   pseudo-
+instruction.
+
+                                    Page 9
+
+
+
+
+
+
+MOV  # A    B       SLT  # A    B       DJN    A  # B       SPL    A  # B
+MOV  # A  @ B       SLT  # A  @ B       DJN    A    B       SPL    A    B
+MOV  # A  < B       SLT  # A  < B       DJN    A  @ B       SPL    A  @ B
+MOV    A    B       SLT    A    B       DJN    A  < B       SPL    A  < B
+MOV    A  @ B       SLT    A  @ B       DJN  @ A  # B       SPL  @ A  # B
+MOV    A  < B       SLT    A  < B       DJN  @ A    B       SPL  @ A    B
+MOV  @ A    B       SLT  @ A    B       DJN  @ A  @ B       SPL  @ A  @ B
+MOV  @ A  @ B       SLT  @ A  @ B       DJN  @ A  < B       SPL  @ A  < B
+MOV  @ A  < B       SLT  @ A  < B       DJN  < A  # B       SPL  < A  # B
+MOV  < A    B       SLT  < A    B       DJN  < A    B       SPL  < A    B
+MOV  < A  @ B       SLT  < A  @ B       DJN  < A  @ B       SPL  < A  @ B
+MOV  < A  < B       SLT  < A  < B       DJN  < A  < B       SPL  < A  < B
+
+ADD  # A    B       JMP    A  # B
+ADD  # A  @ B       JMP    A    B                           DAT  # A  # B
+ADD  # A  < B       JMP    A  @ B                           DAT  # A  < B
+ADD    A    B       JMP    A  < B                           DAT  < A  # B
+ADD    A  @ B       JMP  @ A  # B                           DAT  < A  < B
+ADD    A  < B       JMP  @ A    B
+ADD  @ A    B       JMP  @ A  @ B
+ADD  @ A  @ B       JMP  @ A  < B
+ADD  @ A  < B       JMP  < A  # B
+ADD  < A    B       JMP  < A    B
+ADD  < A  @ B       JMP  < A  @ B
+ADD  < A  < B       JMP  < A  < B
+
+SUB  # A    B       JMZ    A  # B
+SUB  # A  @ B       JMZ    A    B
+SUB  # A  < B       JMZ    A  @ B
+SUB    A    B       JMZ    A  < B
+SUB    A  @ B       JMZ  @ A  # B
+SUB    A  < B       JMZ  @ A    B
+SUB  @ A    B       JMZ  @ A  @ B
+SUB  @ A  @ B       JMZ  @ A  < B
+SUB  @ A  < B       JMZ  < A  # B
+SUB  < A    B       JMZ  < A    B
+SUB  < A  @ B       JMZ  < A  @ B
+SUB  < A  < B       JMZ  < A  < B
+
+CMP  # A    B       JMN    A  # B
+CMP  # A  @ B       JMN    A    B
+CMP  # A  < B       JMN    A  @ B
+CMP    A    B       JMN    A  < B
+CMP    A  @ B       JMN  @ A  # B
+CMP    A  < B       JMN  @ A    B
+CMP  @ A    B       JMN  @ A  @ B
+CMP  @ A  @ B       JMN  @ A  < B
+CMP  @ A  < B       JMN  < A  # B
+CMP  < A    B       JMN  < A    B
+CMP  < A  @ B       JMN  < A  @ B
+CMP  < A  < B       JMN  < A  < B
+
+
+                                    Page 13
+
+

@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Corewar</title>
+
+    <link rel="stylesheet" href="app.css" type="text/css" />
+
+    <script type="text/javascript" src="lib/underscore-min.js"></script>
+    <script type="text/javascript" src="lib/ajax.js"></script>
+    <script src="lib/require.js" data-main="js/app.js"></script>
+    <!--<script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="corewar.js"></script>-->
+</head>
+<body>
+    <h1>Corewar</h1>
+
+    <p>
+        Standard:
+        <select id="standard">
+            <option value="0">ICWS'86</option>
+            <option value="1">ICWS'88</option>
+            <option value="2" selected="selected">ICWS'94-draft</option>
+        </select>
+        <input id="parseButton" type="button" value="Parse" />
+        <input id="runButton" type="button" value="Run"/>
+        <input id="stepButton" type="button" value="Step" />
+    </p>
+    <textarea id="redcode"></textarea>
+    <textarea id="loadfile"></textarea>
+    <div style="float: right">
+        <canvas id="canvas" width="320" height="320" style="border: black solid 1px; background-color: #aaa"></canvas>
+        <p id="instructionLabel"></p>
+    </div>
+    <ul id="console"></ul>
+    
+</body>
+</html>

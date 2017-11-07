@@ -1,0 +1,12 @@
+﻿body {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+span {
+    font-style: italic;
+}
+
+textarea {
+    width: 500px;
+    height: 500px;
+}
