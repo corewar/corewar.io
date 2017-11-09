@@ -1,5 +1,17 @@
 ﻿/// <reference path="../references.ts" />
 
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../../../corewar/Corewar/Simulator/Interface/ICore";
+import { ILiteEvent, LiteEvent } from "../../../corewar/Corewar/modules/LiteEvent";
+import { IOptions } from "../../../corewar/Corewar/Simulator/Interface/IOptions";
+import { ITask } from "../../../corewar/Corewar/Simulator/Interface/ITask";
+import { IInstruction } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
+import { OpcodeType, ModifierType } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
+import { ModeType } from "../../../corewar/Corewar/Simulator/Interface/IOperand";
+import { IParseResult } from "../../../corewar/Corewar/Parser/Interface/IParseResult";
+import { IToken, TokenCategory } from "../../../corewar/Corewar/Parser//Interface/IToken";
+import { WarriorLoader } from "../../../corewar/Corewar/Simulator/WarriorLoader";
+import DataHelper from "./DataHelper";
+
 "use strict";
 
 describe("WarriorLoader",() => {
@@ -313,4 +325,4 @@ describe("WarriorLoader",() => {
 
         expect(actual.startAddress).toBe(3);
     });
-}); 
+});

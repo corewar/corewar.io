@@ -1,4 +1,14 @@
 ﻿/// <reference path="../references.ts" />
+import { IState } from "../../../corewar/Corewar/Simulator/Interface/IState";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../../../corewar/Corewar/Simulator/Interface/ICore";
+import { OpcodeType, ModifierType } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
+import { ModeType } from "../../../corewar/Corewar/Simulator/Interface/IOperand";
+import Defaults from "../../../corewar/Corewar/Simulator/Defaults";
+import { IOptions } from "../../../corewar/Corewar/Simulator/Interface/IOptions";
+import { ILiteEvent, LiteEvent } from "../../../corewar/Corewar/modules/LiteEvent";
+import { ITask } from "../../../corewar/Corewar/Simulator/Interface/ITask";
+import { Fetcher } from "../../../corewar/Corewar/Simulator/Fetcher";
+import DataHelper from "./DataHelper";
 
 "use strict";
 
@@ -155,4 +165,4 @@ describe("Fetcher",() => {
         expect(expectedTask.instructionPointer).toBe(0);
     });
 
-}); 
+});

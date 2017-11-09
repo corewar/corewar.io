@@ -1,14 +1,26 @@
 ﻿/// <reference path="../references.ts" />
+import { OpcodeType, ModifierType } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
+import { IInstruction } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../../../corewar/Corewar/Simulator/Interface/ICore";
+import Defaults from "../../../corewar/Corewar/Simulator/Defaults";
+import { IOptions } from "../../../corewar/Corewar/Simulator/Interface/IOptions";
+import { IState } from "../../../corewar/Corewar/Simulator/Interface/IState";
+import { ILiteEvent, LiteEvent } from "../../../corewar/Corewar/modules/LiteEvent";
+import { ModeType } from "../../../corewar/Corewar/Simulator/Interface/IOperand";
+import { Executive } from "../../../corewar/Corewar/Simulator/Executive";
+import { IExecutionContext } from "../../../corewar/Corewar/Simulator/Interface/IExecutionContext";
+import { ITask } from "../../../corewar/Corewar/Simulator/Interface/ITask";
+
+import { MatchersUtil, CustomEqualityTester } from "jasmine";
 
 "use strict";
 
-/* tslint:disable */
-declare module jasmine {
-    interface Matchers {
+
+declare namespace jasmine {
+    interface Matchers<T> {
         toEqualInstruction(expected: IInstruction): boolean;
     }
-} 
-/* tslint:enable */
+}
 
 describe("Executive",() => {
 
@@ -62,26 +74,26 @@ describe("Executive",() => {
         };
 
         jasmine.addMatchers({
-            toEqualInstruction: (util: jasmine.MatchersUtil, customEqualityTesters: Array<jasmine.CustomEqualityTester>) => {
+            toEqualInstruction: (util: MatchersUtil, customEqualityTesters: Array<CustomEqualityTester>) => {
                 return {
                     compare: (actual: IInstruction, expected: IInstruction) => {
 
                         if (actual.opcode !== expected.opcode) {
                             return {
                                 pass: false,
-                                message: "Expected opcode '" + actual.opcode + 
+                                message: "Expected opcode '" + actual.opcode +
                                         "' to equal opcode '" + expected.opcode + "'"
                             };
                         } else if (actual.modifier !== expected.modifier) {
                             return {
                                 pass: false,
-                                message: "Expected modifier '" + actual.modifier + 
+                                message: "Expected modifier '" + actual.modifier +
                                         "' to equal modifier '" + expected.modifier + "'"
                             };
                         } else if (actual.aOperand.mode !== expected.aOperand.mode) {
                             return {
                                 pass: false,
-                                message: "Expected A mode '" + actual.aOperand.mode + 
+                                message: "Expected A mode '" + actual.aOperand.mode +
                                         "' to equal A mode '" + expected.aOperand.mode + "'"
                             };
                         } else if (actual.aOperand.address !== expected.aOperand.address) {
@@ -93,13 +105,13 @@ describe("Executive",() => {
                         } else if (actual.bOperand.mode !== expected.bOperand.mode) {
                             return {
                                 pass: false,
-                                message: "Expected B mode '" + actual.bOperand.mode + 
+                                message: "Expected B mode '" + actual.bOperand.mode +
                                         "' to equal B mode '" + expected.bOperand.mode + "'"
                             };
                         } else if (actual.bOperand.address !== expected.bOperand.address) {
                             return {
                                 pass: false,
-                                message: "Expected B address '" + actual.bOperand.address + 
+                                message: "Expected B address '" + actual.bOperand.address +
                                         "' to equal B address '" + expected.bOperand.address + "'"
                             };
                         }
@@ -1101,7 +1113,7 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.B)].apply(exec, [context]);
-        
+
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 2, ModeType.Direct, 7));
 
@@ -1126,7 +1138,7 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.AB)].apply(exec, [context]);
-        
+
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 3, ModeType.Direct, 16));
 
@@ -1151,7 +1163,7 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.BA)].apply(exec, [context]);
-        
+
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 9, ModeType.Direct, 2));
 
@@ -1997,7 +2009,7 @@ describe("Executive",() => {
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
-    
+
     it("JMZ.I sets the current task's instruction pointer to the A pointer if the A and B values pointed to by the B \
         pointer are zero",() => {
 
@@ -3689,7 +3701,7 @@ describe("Executive",() => {
 
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
-        
+
     });
 
     it("SNE.F adds one to the instruction pointer if the B values pointed to by the A & B pointers are not equal",() => {
@@ -4420,4 +4432,4 @@ describe("Executive",() => {
         expect(context.warrior.taskIndex).toBe(2);
         expect(context.warrior.tasks[1].instructionPointer).toBe(3);
     });
-}); 
+});

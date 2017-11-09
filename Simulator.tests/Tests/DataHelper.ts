@@ -1,8 +1,15 @@
 ﻿/// <reference path="../references.ts" />
+import { IToken, TokenCategory } from "../../../corewar/Corewar/Parser//Interface/IToken";
+import { IParseResult } from "../../../corewar/Corewar/Parser/Interface/IParseResult";
+import { IWarrior } from "../../../corewar/Corewar/Simulator/Interface/IWarrior";
+import { ITask } from "../../../corewar/Corewar/Simulator/Interface/ITask";
+import { OpcodeType, ModifierType } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
+import { ModeType } from "../../../corewar/Corewar/Simulator/Interface/IOperand";
+import { IInstruction } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
 
 "use strict";
 
-class DataHelper {
+export default class DataHelper {
 
     public static position = {
         line: 1,
@@ -91,4 +98,4 @@ class DataHelper {
             }
         };
     }
-} 
+}

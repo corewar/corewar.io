@@ -23,6 +23,8 @@
     "ts-loader": "^3.1.1"
   },
   "dependencies": {
+    "@types/jasmine": "^2.6.3",
+    "@types/jasmine-matchers": "^0.2.30",
     "typescript": "^2.6.1",
     "underscore": "^1.8.3"
   }

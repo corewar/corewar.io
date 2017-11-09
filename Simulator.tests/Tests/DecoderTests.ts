@@ -1,5 +1,19 @@
 ﻿/// <reference path="../references.ts" />
 
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../../../corewar/Corewar/Simulator/Interface/ICore";
+import { IInstruction } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
+import { OpcodeType, ModifierType } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
+import { IExecutive } from "../../../corewar/Corewar/Simulator/Interface/IExecutive";
+import { IExecutionContext } from "../../../corewar/Corewar/Simulator/Interface/IExecutionContext";
+import { ILiteEvent, LiteEvent } from "../../../corewar/Corewar/modules/LiteEvent";
+import { ITask } from "../../../corewar/Corewar/Simulator/Interface/ITask";
+import Defaults from "../../../corewar/Corewar/Simulator/Defaults";
+import { IOptions } from "../../../corewar/Corewar/Simulator/Interface/IOptions";
+import { ModeType } from "../../../corewar/Corewar/Simulator/Interface/IOperand";
+import { Decoder } from "../../../corewar/Corewar/Simulator/Decoder";
+import DataHelper from "./DataHelper";
+import * as _ from "underscore";
+
 "use strict";
 
 describe("Decoder",() => {
@@ -19,7 +33,7 @@ describe("Decoder",() => {
         };
 
         for (var i = 0; i < OpcodeType.Count * ModifierType.Count; i++) {
-            executive.commandTable[i] = (c: IExecutionContext) => { 
+            executive.commandTable[i] = (c: IExecutionContext) => {
                 //
             };
         }
@@ -396,4 +410,4 @@ describe("Decoder",() => {
         // 1*7 + 3 = 10
         expect(context.command).toBe(executive.commandTable[10]);
     });
-}); 
+});

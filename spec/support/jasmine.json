@@ -1,10 +1,10 @@
 {
   "spec_dir": "Simulator.tests",
   "spec_files": [
-    "**/*Core[tT]ests.ts"
+    "**/*[tT]ests.ts"
   ],
   "helpers": [
-    "helpers/**/*.js"
+    "**/*Helper.ts"
   ],
   "stopSpecOnExpectationFailure": false,
   "random": false

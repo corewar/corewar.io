@@ -9,6 +9,7 @@ import { ICore } from "./Interface/ICore";
 import { IOptions } from "./Interface/IOptions";
 import { IParseResult } from "../Parser/Interface/IParseResult";
 import Defaults from "./Defaults";
+import * as _ from "underscore";
 
 export class Simulator implements ISimulator {
 
