@@ -1,4 +1,12 @@
 ﻿/// <reference path="../references.ts" />
+import { IInstruction } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
+import { ITask } from "../../../corewar/Corewar/Simulator/Interface/ITask";
+import { OpcodeType, ModifierType } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
+import { ModeType } from "../../../corewar/Corewar/Simulator/Interface/IOperand";
+import { Core } from "../../../corewar/Corewar/Simulator/Core";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../../../corewar/Corewar/Simulator/Interface/ICore";
+import Defaults from "../../../corewar/Corewar/Simulator/Defaults";
+import * as _ from "underscore";
 
 "use strict";
 
@@ -145,7 +153,7 @@ describe("Core",() => {
         for (var i = 0; i < 3; i++) {
 
             var instruction = core.readAt(null, i);
-            
+
             expect(instruction.opcode).toBe(OpcodeType.DIV);
             expect(instruction.modifier).toBe(ModifierType.BA);
             expect(instruction.aOperand.mode).toBe(ModeType.AIndirect);
@@ -229,7 +237,7 @@ describe("Core",() => {
     });
 
     it(".getSize returns the size of the core", () => {
-        
+
         var core = new Core();
         core.initialise(_.defaults({ coresize: 23 }, Defaults));
 
@@ -237,4 +245,4 @@ describe("Core",() => {
 
         expect(actual).toBe(23);
     });
-}); 
+});
