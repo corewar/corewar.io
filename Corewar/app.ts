@@ -110,7 +110,7 @@ runButton.addEventListener("click",() => {
         <HTMLParagraphElement>instructionLabel,
         core,
         new InstructionSerialiser());
-s    prez.run();
+    prez.run();
     coreRenderer.initialise();
 });
 
