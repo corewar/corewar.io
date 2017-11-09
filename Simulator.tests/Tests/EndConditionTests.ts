@@ -1,11 +1,18 @@
 ﻿/// <reference path="../references.ts" />
+import { ITask } from "../../../corewar/Corewar/Simulator/Interface/ITask";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../../../corewar/Corewar/Simulator/Interface/ICore";
+import { ILiteEvent, LiteEvent } from "../../../corewar/Corewar/modules/LiteEvent";
+import { IWarrior } from "../../../corewar/Corewar/Simulator/Interface/IWarrior";
+import { IState } from "../../../corewar/Corewar/Simulator/Interface/IState";
+import Defaults from "../../../corewar/Corewar/Simulator/Defaults";
+import { EndCondition } from "../../../corewar/Corewar/Simulator/EndCondition";
 
 "use strict";
 
 describe("EndCondition",() => {
 
     function buildTask(warrior: IWarrior): ITask {
-        
+
         return {
             instructionPointer: 0,
             warrior: warrior
@@ -116,4 +123,4 @@ describe("EndCondition",() => {
 
         expect(actual).toBe(true);
     });
-}); 
+});
