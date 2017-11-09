@@ -2,7 +2,7 @@
 import { IInstruction, OpcodeType, ModifierType } from "./Interface/IInstruction";
 import { ModeType } from "./Interface/IOperand";
 
-export class Defaults implements IOptions {
+export default class Defaults implements IOptions {
 
     public static coresize: number = 8000;
     public static cyclesBeforeTie: number = 80000;
@@ -22,4 +22,4 @@ export class Defaults implements IOptions {
     public static instructionLimit: number = 100;
     public static maxTasks: number = 8000;
     public static minSeparation: number = 100;
-} 
+}

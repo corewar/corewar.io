@@ -61,7 +61,7 @@ export class CoreRenderer {
         }
 
         this.previousExecutions = _(this.queue).where((q: ICoreAccessEventArgs) => q.accessType === CoreAccessType.execute);
-        
+
         while (this.queue.length !== 0) {
             event = this.queue.shift();
             this.renderCell(event, "#fff");
@@ -108,7 +108,7 @@ export class CoreRenderer {
                 this.renderWrite(coordinate);
                 break;
             default:
-                throw Error("Cannot render unknown CoreAccessType: " + event.accessType.toString());
+                throw Error("Cannot render unknown CoreAccessType: " + event.accessType);
         }
     }
 
@@ -240,7 +240,7 @@ export class CoreRenderer {
     }
 
     private renderVerticalLines() {
-        
+
         var gridWidth = this.cellsWide * this.cellSize;
         var gridHeight = this.cellsHigh * this.cellSize;
 
@@ -268,7 +268,7 @@ export class CoreRenderer {
     }
 
     private isValidCellSize(cellSize: number): boolean {
-        
+
         var cellsWide = Math.floor(this.canvas.width / cellSize);
         var cellsHigh = Math.floor(this.canvas.height / cellSize);
 

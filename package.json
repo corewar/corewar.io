@@ -1,0 +1,27 @@
+{
+  "name": "corewar",
+  "version": "1.0.0",
+  "description": "HTML5 & javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --progress --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gareththegeek/corewar.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gareththegeek/corewar/issues"
+  },
+  "homepage": "https://github.com/gareththegeek/corewar#readme",
+  "devDependencies": {
+    "jasmine": "^2.8.0",
+    "ts-loader": "^3.1.1"
+  },
+  "dependencies": {
+    "typescript": "^2.6.1"
+  }
+}

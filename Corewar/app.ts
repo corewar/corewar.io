@@ -1,44 +1,44 @@
-﻿import { IParser } from "Parser/Interface/IParser";
-import { IParseResult } from "Parser/Interface/IParseResult";
-import { ISerialiser } from "Parser/Interface/ISerialiser";
-import { IMessage, MessageType } from "Parser/Interface/IMessage";
+﻿import { IParser } from "./Parser/Interface/IParser";
+import { IParseResult } from "./Parser/Interface/IParseResult";
+import { ISerialiser } from "./Parser/Interface/ISerialiser";
+import { IMessage, MessageType } from "./Parser/Interface/IMessage";
 
-import { ISimulator } from "Simulator/Interface/ISimulator";
-import { ICore } from "Simulator/Interface/ICore";
-import { IExecutive } from "Simulator/Interface/IExecutive";
-import { OpcodeType, ModifierType } from "Simulator/Interface/IInstruction";
-import { Defaults } from "Simulator/Defaults";
+import { ISimulator } from "./Simulator/Interface/ISimulator";
+import { ICore } from "./Simulator/Interface/ICore";
+import { IExecutive } from "./Simulator/Interface/IExecutive";
+import { OpcodeType, ModifierType } from "./Simulator/Interface/IInstruction";
+import Defaults from "Simulator/Defaults";
 
-import { Parser } from "Parser/Parser";
-import { Scanner } from "Parser/Scanner";
-import { ForPass } from "Parser/ForPass";
-import { PreprocessCollector } from "Parser/PreprocessCollector";
-import { PreprocessAnalyser } from "Parser/PreprocessAnalyser";
-import { PreprocessEmitter } from "Parser/PreprocessEmitter";
-import { LabelCollector } from "Parser/LabelCollector";
-import { LabelEmitter } from "Parser/LabelEmitter";
-import { MathsProcessor } from "Parser/MathsProcessor";
-import { Expression } from "Parser/Expression";
-import { Filter } from "Parser/Filter";
-import { DefaultPass } from "Parser/DefaultPass";
-import { OrgPass } from "Parser/OrgPass";
-import { SyntaxCheck } from "Parser/SyntaxCheck";
-import { LoadFileSerialiser } from "Parser/LoadFileSerialiser";
-import { IllegalCommandCheck } from "Parser/IllegalCommandCheck";
+import { Parser } from "./Parser/Parser";
+import { Scanner } from "./Parser/Scanner";
+import { ForPass } from "./Parser/ForPass";
+import { PreprocessCollector } from "./Parser/PreprocessCollector";
+import { PreprocessAnalyser } from "./Parser/PreprocessAnalyser";
+import { PreprocessEmitter } from "./Parser/PreprocessEmitter";
+import { LabelCollector } from "./Parser/LabelCollector";
+import { LabelEmitter } from "./Parser/LabelEmitter";
+import { MathsProcessor } from "./Parser/MathsProcessor";
+import { Expression } from "./Parser/Expression";
+import { Filter } from "./Parser/Filter";
+import { DefaultPass } from "./Parser/DefaultPass";
+import { OrgPass } from "./Parser/OrgPass";
+import { SyntaxCheck } from "./Parser/SyntaxCheck";
+import { LoadFileSerialiser } from "./Parser/LoadFileSerialiser";
+import { IllegalCommandCheck } from "./Parser/IllegalCommandCheck";
 
-import { Random } from "Simulator/Random";
-import { Executive } from "Simulator/Executive";
-import { Decoder } from "Simulator/Decoder";
-import { Core } from "Simulator/Core";
-import { Loader } from "Simulator/Loader";
-import { WarriorLoader } from "Simulator/WarriorLoader";
-import { Fetcher } from "Simulator/Fetcher";
-import { Simulator } from "Simulator/Simulator";
-import { EndCondition } from "Simulator/EndCondition";
+import { Random } from "./Simulator/Random";
+import { Executive } from "./Simulator/Executive";
+import { Decoder } from "./Simulator/Decoder";
+import { Core } from "./Simulator/Core";
+import { Loader } from "./Simulator/Loader";
+import { WarriorLoader } from "./Simulator/WarriorLoader";
+import { Fetcher } from "./Simulator/Fetcher";
+import { Simulator } from "./Simulator/Simulator";
+import { EndCondition } from "./Simulator/EndCondition";
 
-import { InstructionSerialiser } from "Presentation/InstructionSerialiser";
-import { CoreRenderer } from "Presentation/CoreRenderer";
-import { Presenter } from "Presentation/Presenter";
+import { InstructionSerialiser } from "./Presentation/InstructionSerialiser";
+import { CoreRenderer } from "./Presentation/CoreRenderer";
+import { Presenter } from "./Presentation/Presenter";
 
 var redcode = document.getElementById("redcode");
 var loadfile = document.getElementById("loadfile");
@@ -68,7 +68,7 @@ var parser = new Parser(
     new IllegalCommandCheck());
 
 var core = new Core();
-    
+
 var loader = new Loader(
     new Random(),
     core,

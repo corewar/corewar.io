@@ -5,7 +5,7 @@ import { IMessage, MessageType } from "../Parser/Interface/IMessage";
 import { ISimulator } from "../Simulator/Interface/ISimulator";
 import { ICore } from "../Simulator/Interface/ICore";
 import { IExecutive } from "../Simulator/Interface/IExecutive";
-import Defaults1 = require("../Simulator/Defaults");
+import Defaults1 from "../Simulator/Defaults";
 
 export class Presenter {
     private redcode: HTMLTextAreaElement;
@@ -76,7 +76,7 @@ export class Presenter {
         var options = _.defaults({
             coresize: 64,
             standard: selectedStandard
-        }, Defaults1.Defaults);
+        }, Defaults1);
 
         this.core.initialise(options);
         this.executive.initialise(options);
