@@ -1,4 +1,12 @@
 ﻿/// <reference path="../references.ts" />
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../../../corewar/Corewar/Simulator/Interface/ICore";
+import { ILiteEvent, LiteEvent } from "../../../corewar/Corewar/modules/LiteEvent";
+import { IRandom } from "../../../corewar/Corewar/Simulator/Interface/IRandom";
+import { IWarriorLoader } from "../../../corewar/Corewar/Simulator/Interface/IWarriorLoader";
+import { IParseResult } from "../../../corewar/Corewar/Parser/Interface/IParseResult";
+import { Warrior } from "../../../corewar/Corewar/Simulator/Warrior";
+import { Loader } from "../../../corewar/Corewar/Simulator/Loader";
+import Defaults from "../../../corewar/Corewar/Simulator/Defaults";
 
 "use strict";
 
