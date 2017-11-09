@@ -1,7 +1,6 @@
 /// <reference path="modules/underscore.d.ts" />
 /// <reference path="parser/interface/icontext.ts" />
 /// <reference path="parser/interface/imessage.ts" />
-/// <reference path="parser/interface/ioptions.ts" />
 /// <reference path="parser/interface/iparser.ts" />
 /// <reference path="parser/interface/iparseresult.ts" />
 /// <reference path="parser/interface/ipass.ts" />
@@ -27,4 +26,4 @@
 /// <reference path="parser/syntaxcheck.ts" />
 /// <reference path="parser/tokenhelper.ts" />
 /// <reference path="parser/tokenstream.ts" />
- 
+
