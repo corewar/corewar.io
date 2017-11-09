@@ -8,7 +8,7 @@ import { IEndCondition } from "./Interface/IEndCondition";
 import { ICore } from "./Interface/ICore";
 import { IOptions } from "./Interface/IOptions";
 import { IParseResult } from "../Parser/Interface/IParseResult";
-import { Defaults } from "./Defaults";
+import Defaults from "./Defaults";
 
 export class Simulator implements ISimulator {
 
@@ -19,7 +19,7 @@ export class Simulator implements ISimulator {
     private decoder: IDecoder;
     private executive: IExecutive;
     private endCondition: IEndCondition;
-        
+
     constructor(
         core: ICore,
         loader: ILoader,
@@ -74,4 +74,4 @@ export class Simulator implements ISimulator {
 
         return this.endCondition.check(this.state);
     }
-} 
+}
