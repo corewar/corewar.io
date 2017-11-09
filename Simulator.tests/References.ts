@@ -1,4 +1,5 @@
-﻿/// <reference path="../corewar/references.ts" />
+﻿
+/// <reference path="../corewar/references.ts" />
 /// <reference path="modules/jasmine.d.ts" />
 /// <reference path="tests/datahelper.ts" />
 /// <reference path="tests/warriorloadertests.ts" />

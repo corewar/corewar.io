@@ -1,7 +1,7 @@
 ﻿/// <reference path="../references.ts" />
 
 "use strict";
- 
+
 describe("AddressModPass",() => {
 
     it("Does not modify existing instructions with address which are within range",() => {
@@ -17,7 +17,7 @@ describe("AddressModPass",() => {
 
         expect(actual.messages.length).toBe(0);
         expect(actual.tokens.length).toBe(tokens.length);
-        
+
         for (var i = 0; i < actual.tokens.length; i++) {
 
             expect(actual.tokens[i].category).toBe(tokens[i].category);
@@ -40,7 +40,7 @@ describe("AddressModPass",() => {
         var actual = pass.process(context, _.defaults({ coresize: 10 }, Parser.DefaultOptions));
 
         expect(actual.messages.length).toBe(0);
-        
+
         var addresses = _(actual.tokens).where({ category: TokenCategory.Number });
 
         expect(addresses[0].lexeme).toBe("0");

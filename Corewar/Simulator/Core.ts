@@ -3,6 +3,7 @@ import { ICore, ICoreAccessEventArgs, CoreAccessType } from "./Interface/ICore";
 import { IOptions } from "./Interface/IOptions";
 import { IInstruction } from "./Interface/IInstruction";
 import { ITask } from "./Interface/ITask";
+import * as _ from "underscore";
 
 export class Core implements ICore {
 
@@ -10,7 +11,7 @@ export class Core implements ICore {
     public get coreAccess(): ILiteEvent<ICoreAccessEventArgs> {
         return this._coreAccess;
     }
-            
+
     private options: IOptions;
     private instructions: IInstruction[] = null;
 
@@ -20,7 +21,7 @@ export class Core implements ICore {
 
         this._coreAccess = new LiteEvent<ICoreAccessEventArgs>();
     }
-    
+
     public initialise(options: IOptions) {
 
         this.options = options;
@@ -51,7 +52,7 @@ export class Core implements ICore {
     }
 
     public executeAt(task: ITask, address: number): IInstruction {
-        
+
         address = this.wrap(address);
 
         this.triggerEvent(task, address, CoreAccessType.execute);
@@ -85,7 +86,7 @@ export class Core implements ICore {
     }
 
     private allocateMemory() {
-        
+
         this.instructions = [];
         for (var i = 0; i < this.cs; i++) {
             this.instructions.push(this.buildDefaultInstruction(i));
