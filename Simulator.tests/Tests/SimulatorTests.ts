@@ -1,5 +1,20 @@
 ﻿/// <reference path="../references.ts" />
 
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../../../corewar/Corewar/Simulator/Interface/ICore";
+import { ILiteEvent, LiteEvent } from "../../../corewar/Corewar/modules/LiteEvent";
+import { ITask } from "../../../corewar/Corewar/Simulator/Interface/ITask";
+import { IOptions } from "../../../corewar/Corewar/Simulator/Interface/IOptions";
+import { IState } from "../../../corewar/Corewar/Simulator/Interface/IState";
+import { Simulator } from "../../../corewar/Corewar/Simulator/Simulator";
+import { IExecutive } from "../../../corewar/Corewar/Simulator/Interface/IExecutive";
+import { ILoader } from "../../../corewar/Corewar/Simulator/Interface/ILoader";
+import { IFetcher } from "../../../corewar/Corewar/Simulator/Interface/IFetcher";
+import { IDecoder } from "../../../corewar/Corewar/Simulator/Interface/IDecoder";
+import { IEndCondition } from "../../../corewar/Corewar/Simulator/Interface/IEndCondition";
+import Defaults from "../../../corewar/Corewar/Simulator/Defaults";
+import { OpcodeType, ModifierType } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
+import { ModeType } from "../../../corewar/Corewar/Simulator/Interface/IOperand";
+
 "use strict";
 
 describe("Simulator",() => {
@@ -228,7 +243,7 @@ describe("Simulator",() => {
         simulator.step();
 
         expect(loader.load).toHaveBeenCalledWith(warriors, Defaults);
-        
+
         var state = _((<jasmine.Spy>fetcher.fetch).calls.mostRecent().args).first();
 
         expect(state.warriors).toBe(loadedWarriors);
