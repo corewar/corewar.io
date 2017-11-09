@@ -7,6 +7,8 @@ import { IParseResult } from "../../../corewar/Corewar/Parser/Interface/IParseRe
 import { Warrior } from "../../../corewar/Corewar/Simulator/Warrior";
 import { Loader } from "../../../corewar/Corewar/Simulator/Loader";
 import Defaults from "../../../corewar/Corewar/Simulator/Defaults";
+import DataHelper from "./DataHelper";
+import * as _ from "underscore";
 
 "use strict";
 

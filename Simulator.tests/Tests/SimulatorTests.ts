@@ -14,6 +14,8 @@ import { IEndCondition } from "../../../corewar/Corewar/Simulator/Interface/IEnd
 import Defaults from "../../../corewar/Corewar/Simulator/Defaults";
 import { OpcodeType, ModifierType } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
 import { ModeType } from "../../../corewar/Corewar/Simulator/Interface/IOperand";
+import DataHelper from "./DataHelper";
+import * as _ from "underscore";
 
 "use strict";
 

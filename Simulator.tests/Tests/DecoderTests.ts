@@ -11,6 +11,8 @@ import Defaults from "../../../corewar/Corewar/Simulator/Defaults";
 import { IOptions } from "../../../corewar/Corewar/Simulator/Interface/IOptions";
 import { ModeType } from "../../../corewar/Corewar/Simulator/Interface/IOperand";
 import { Decoder } from "../../../corewar/Corewar/Simulator/Decoder";
+import DataHelper from "./DataHelper";
+import * as _ from "underscore";
 
 "use strict";
 

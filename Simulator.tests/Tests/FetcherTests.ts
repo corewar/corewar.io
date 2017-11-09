@@ -8,6 +8,7 @@ import { IOptions } from "../../../corewar/Corewar/Simulator/Interface/IOptions"
 import { ILiteEvent, LiteEvent } from "../../../corewar/Corewar/modules/LiteEvent";
 import { ITask } from "../../../corewar/Corewar/Simulator/Interface/ITask";
 import { Fetcher } from "../../../corewar/Corewar/Simulator/Fetcher";
+import DataHelper from "./DataHelper";
 
 "use strict";
 

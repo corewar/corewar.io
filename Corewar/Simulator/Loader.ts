@@ -5,6 +5,7 @@ import { IWarriorLoader } from "./Interface/IWarriorLoader";
 import { IParseResult } from "../Parser/Interface/IParseResult";
 import { IWarrior } from "./Interface/IWarrior";
 import { IOptions } from "./Interface/IOptions";
+import * as _ from "underscore";
 
 export class Loader implements ILoader {
 
@@ -67,7 +68,7 @@ export class Loader implements ILoader {
             f1 = core.wrap(f1);
 
             if (s0 <= f0) {
-                
+
                 if (s1 <= f1) {
 
                     if (s0 <= f1 && s1 <= f0) {
@@ -88,4 +89,4 @@ export class Loader implements ILoader {
 
         return valid;
     }
-} 
+}

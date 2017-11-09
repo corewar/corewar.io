@@ -6,6 +6,8 @@ import { IWarrior } from "../../../corewar/Corewar/Simulator/Interface/IWarrior"
 import { IState } from "../../../corewar/Corewar/Simulator/Interface/IState";
 import Defaults from "../../../corewar/Corewar/Simulator/Defaults";
 import { EndCondition } from "../../../corewar/Corewar/Simulator/EndCondition";
+import DataHelper from "./DataHelper";
+import * as _ from "underscore";
 
 "use strict";
 
