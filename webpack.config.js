@@ -1,4 +1,7 @@
+var FlowtypePlugin = require('flowtype-loader/plugin');
+
 module.exports = {
+  devtool: 'inline-source-map',
   entry: "./corewar/app.ts",
   output: {
       path: __dirname,
