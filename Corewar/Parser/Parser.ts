@@ -5,6 +5,7 @@ import { IContext } from "./Interface/IContext";
 import { IMessage, MessageType } from "./Interface/IMessage";
 import { IParseOptions, Standard } from "./Interface/IParseOptions";
 import { IParseResult } from "./Interface/IParseResult";
+import * as _ from "underscore";
 
 export class Parser implements IParser {
 
@@ -116,4 +117,4 @@ export class Parser implements IParser {
             messages: context.messages
         };
     }
-} 
+}

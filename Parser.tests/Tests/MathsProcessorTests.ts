@@ -1,6 +1,11 @@
 ﻿/// <reference path="../references.ts" />
 
-"use strict";
+import { Context } from "./../../Corewar/Parser/Context";
+import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
+import { Parser } from "./../../Corewar/Parser/Parser";
+import { MathsProcessor } from "./../../Corewar/Parser/MathsProcessor";
+import { Expression } from "./../../Corewar/Parser/Expression";
+import { MessageType } from "./../../Corewar/Parser/Interface/IMessage";
 
 describe("MathsProcessor",() => {
 

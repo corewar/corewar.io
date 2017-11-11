@@ -1,5 +1,12 @@
 ﻿/// <reference path="../references.ts" />
-/* tslint:disable */
+import { TestHelper } from "./TestHelper";
+import { Context } from "./../../Corewar/Parser/Context";
+import { OrgPass } from "./../../Corewar/Parser/OrgPass";
+import { Parser } from "./../../Corewar/Parser/Parser";
+import { MessageType } from "./../../Corewar/Parser/Interface/IMessage";
+import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
+import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
+import * as _ from "underscore";
 
 "use strict";
 
@@ -15,7 +22,7 @@ describe("OrgPass",() => {
 
         var context = new Context();
         context.tokens = tokens.slice();
-           
+
         var pass = new OrgPass();
         var actual = pass.process(context, Parser.DefaultOptions);
 
@@ -256,4 +263,4 @@ describe("OrgPass",() => {
         expect(actual.tokens[0].lexeme).toBe("ORG");
         expect(actual.tokens[1].lexeme).toBe("1");
     });
-}); 
+});

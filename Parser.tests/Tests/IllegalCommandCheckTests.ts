@@ -5,7 +5,7 @@ import { IllegalCommandCheck } from "./../../Corewar/Parser/IllegalCommandCheck"
 import { Parser } from "./../../Corewar/Parser/Parser";
 import { MessageType } from "./../../Corewar/Parser/Interface/IMessage";
 import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
-
+import * as _ from "underscore";
 "use strict";
 
 describe("IllegalCommandCheck",() => {

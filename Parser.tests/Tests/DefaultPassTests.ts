@@ -5,7 +5,7 @@ import { Parser } from "./../../Corewar/Parser/Parser";
 import { Context } from "./../../Corewar/Parser/Context";
 import { TestHelper } from "./TestHelper";
 import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
-
+import * as _ from "underscore";
 "use strict";
 
 describe("DefaultPass",() => {

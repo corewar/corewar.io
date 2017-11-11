@@ -8,6 +8,8 @@ import { Context } from "./../../Corewar/Parser/Context";
 import { IMessage, MessageType } from "./../../Corewar/Parser/Interface/IMessage";
 import { Parser } from "./../../Corewar/Parser/Parser";
 import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
+import * as _ from "underscore";
+
 "use strict";
 
 describe("LoadParser",() => {

@@ -2,6 +2,7 @@
 import { IToken, TokenCategory } from "./Interface/IToken";
 import { IParseOptions, Standard } from "./Interface/IParseOptions";
 import { IContext } from "./Interface/IContext";
+import * as _ from "underscore";
 
 import { PassBase } from "./PassBase";
 
@@ -73,7 +74,7 @@ export class LabelEmitter extends PassBase {
         if (name in this.context.labels) {
 
             var labelLine = this.context.labels[name];
-            
+
             var diff = labelLine;
             if (isOpcode) {
                 diff -= this.line;
@@ -92,4 +93,3 @@ export class LabelEmitter extends PassBase {
         }
     }
 }
- 

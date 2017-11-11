@@ -2,6 +2,7 @@
 import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
 import { LoadFileSerialiser } from "./../../Corewar/Parser/LoadFileSerialiser";
 import { TestHelper } from "./TestHelper";
+import * as _ from "underscore";
 "use strict";
 
 describe("LoadFileSerialiser", () => {

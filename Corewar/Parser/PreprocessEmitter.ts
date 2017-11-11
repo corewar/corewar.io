@@ -1,4 +1,5 @@
 ﻿import { IToken, TokenCategory } from "./Interface/IToken";
+import * as _ from "underscore";
 
 import { PassBase } from "./PassBase";
 

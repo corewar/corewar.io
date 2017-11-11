@@ -5,7 +5,7 @@ import { TestHelper } from "./TestHelper";
 import { LabelEmitter } from "./../../Corewar/Parser/LabelEmitter";
 import { MessageType } from "./../../Corewar/Parser/Interface/IMessage";
 import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
-
+import * as _ from "underscore";
 "use strict";
 
 describe("LabelEmitter",() => {

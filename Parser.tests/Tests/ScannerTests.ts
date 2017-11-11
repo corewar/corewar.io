@@ -1,5 +1,11 @@
 ﻿/// <reference path="../references.ts" />
-
+import { Context } from "./../../Corewar/Parser/Context";
+import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
+import { Parser } from "./../../Corewar/Parser/Parser";
+import { Scanner } from "./../../Corewar/Parser/Scanner";
+import { PreprocessEmitter } from "./../../Corewar/Parser/PreprocessEmitter";
+import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
+import * as _ from "underscore";
 "use strict";
 
 describe("Scanner",() => {

@@ -5,6 +5,7 @@ import { LabelCollector } from "./../../Corewar/Parser/LabelCollector";
 import { MessageType } from "./../../Corewar/Parser/Interface/IMessage";
 import { TestHelper } from "./TestHelper";
 import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
+import * as _ from "underscore";
 "use strict";
 
 describe("LabelCollector", () => {
