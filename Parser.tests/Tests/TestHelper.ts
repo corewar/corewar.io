@@ -1,5 +1,7 @@
 ﻿/// <reference path="../references.ts" />
 
+import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
+
 "use strict";
 
 class TestHelper {
@@ -154,7 +156,7 @@ class TestHelper {
                 position: { line: line, char: 1 }
             });
         }
-        
+
         result.push({
             category: TokenCategory.EOL,
             lexeme: "\n",
