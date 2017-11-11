@@ -1,4 +1,9 @@
 ﻿/// <reference path="../references.ts" />
+import { TestHelper } from "./TestHelper";
+import { Context } from "../../Corewar/Parser/Context";
+import { AddressModPass } from "../../Corewar/Parser/AddressModPass";
+import { Parser } from "../../Corewar/Parser/Parser";
+import { TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
 
 "use strict";
 

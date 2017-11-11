@@ -4,7 +4,7 @@ import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
 
 "use strict";
 
-class TestHelper {
+export class TestHelper {
 
     public static instruction(
         line: number,
