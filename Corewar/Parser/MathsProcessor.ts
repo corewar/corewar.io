@@ -1,6 +1,6 @@
 ﻿import { IExpression } from "./Interface/IExpression";
 import { TokenCategory } from "./Interface/IToken";
-
+import * as _ from "underscore";
 import { PassBase } from "./PassBase";
 
 export class MathsProcessor extends PassBase {
@@ -16,7 +16,7 @@ export class MathsProcessor extends PassBase {
 
         // Maths Processor
         // Locate and resolve mathematical expressions to resulting address
-        
+
         var next = this.stream.peek();
 
         if (next.category === TokenCategory.Number ||

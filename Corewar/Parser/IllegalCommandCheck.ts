@@ -1,6 +1,6 @@
 ﻿import { IParseInstruction } from "./Interface/IParseInstruction";
 import { IToken, TokenCategory } from "./Interface/IToken";
-
+import * as _ from "underscore";
 import { PassBase } from "./PassBase";
 
 export class IllegalCommandCheck extends PassBase {
@@ -75,4 +75,4 @@ export class IllegalCommandCheck extends PassBase {
         this.context.emitInstruction(instruction);
         this.context.emit(this.stream.readToEOL());
     }
-} 
+}

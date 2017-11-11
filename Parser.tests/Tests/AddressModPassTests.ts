@@ -4,6 +4,7 @@ import { Context } from "../../Corewar/Parser/Context";
 import { AddressModPass } from "../../Corewar/Parser/AddressModPass";
 import { Parser } from "../../Corewar/Parser/Parser";
 import { TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
+import * as _ from "underscore";
 
 "use strict";
 

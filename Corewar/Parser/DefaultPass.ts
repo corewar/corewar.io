@@ -1,7 +1,7 @@
 ﻿import { Standard } from "./Interface/IParseOptions";
 import { IToken, TokenCategory } from "./Interface/IToken";
 import { IParseInstruction } from "./Interface/IParseInstruction";
-
+import * as _ from "underscore";
 import { PassBase } from "./PassBase";
 
 export class DefaultPass extends PassBase {
@@ -36,7 +36,7 @@ export class DefaultPass extends PassBase {
             this.context.emit(this.stream.readToEOL());
             return;
         }
-        
+
         this.defaultBOperand(instruction);
 
         this.defaultModifier(instruction);
