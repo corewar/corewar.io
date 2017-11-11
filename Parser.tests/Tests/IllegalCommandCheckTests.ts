@@ -1,7 +1,13 @@
 ﻿/// <reference path="../references.ts" />
+import { TestHelper } from "./TestHelper";
+import { Context } from "./../../Corewar/Parser/Context";
+import { IllegalCommandCheck } from "./../../Corewar/Parser/IllegalCommandCheck";
+import { Parser } from "./../../Corewar/Parser/Parser";
+import { MessageType } from "./../../Corewar/Parser/Interface/IMessage";
+import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
 
 "use strict";
- 
+
 describe("IllegalCommandCheck",() => {
 
     it("Does not raise errors for legal addressing modes under the ICWS'88 standard",() => {

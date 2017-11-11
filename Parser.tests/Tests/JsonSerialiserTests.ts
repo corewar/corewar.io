@@ -1,7 +1,9 @@
 ﻿/// <reference path="../references.ts" />
-
+import { IToken } from "./../../Corewar/Parser/Interface/IToken";
+import { JsonSerialiser } from "./../../Corewar/Parser/JsonSerialiser";
+import { TestHelper } from "./TestHelper";
 "use strict";
- 
+
 describe("JsonSerialiser", () => {
 
     it("json serialises tokens in the order emitted", () => {

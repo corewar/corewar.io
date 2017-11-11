@@ -1,7 +1,12 @@
 ﻿/// <reference path="../references.ts" />
+import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
+import { Context } from "./../../Corewar/Parser/Context";
+import { Parser } from "./../../Corewar/Parser/Parser";
+import { Filter } from "./../../Corewar/Parser/Filter";
+import { TestHelper } from "./TestHelper";
 
 "use strict";
- 
+
 describe("Filter", () => {
 
     it("Does not modify tokens if no empty lines or END found", () => {
@@ -110,4 +115,4 @@ describe("Filter", () => {
             expect(actual.tokens[i]).toEqual(expected[i]);
         }
     });
-}); 
+});

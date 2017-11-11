@@ -1,8 +1,13 @@
 ﻿/// <reference path="../references.ts" />
-/* tslint:disable */
-
+import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
+import { Context } from "./../../Corewar/Parser/Context";
+import { Parser } from "./../../Corewar/Parser/Parser";
+import { LabelCollector } from "./../../Corewar/Parser/LabelCollector";
+import { MessageType } from "./../../Corewar/Parser/Interface/IMessage";
+import { TestHelper } from "./TestHelper";
+import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
 "use strict";
- 
+
 describe("LabelCollector", () => {
 
     it("Does not modify tokens if no lines begin with a label", () => {

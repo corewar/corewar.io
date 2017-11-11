@@ -1,7 +1,13 @@
 ﻿/// <reference path="../references.ts" />
-
+import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
+import { Context } from "./../../Corewar/Parser/Context";
+import { Parser } from "./../../Corewar/Parser/Parser";
+import { ForPass } from "./../../Corewar/Parser/ForPass";
+import { Expression } from "./../../Corewar/Parser/Expression";
+import { MessageType } from "./../../Corewar/Parser/Interface/IMessage";
+import { TestHelper } from "./TestHelper";
 "use strict";
- 
+
 describe("ForPass",() => {
 
     it("Inserts for instruction into token stream the requested number of times",() => {
