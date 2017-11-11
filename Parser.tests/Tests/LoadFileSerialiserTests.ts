@@ -1,5 +1,7 @@
 ﻿/// <reference path="../references.ts" />
-
+import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
+import { LoadFileSerialiser } from "./../../Corewar/Parser/LoadFileSerialiser";
+import { TestHelper } from "./TestHelper";
 "use strict";
 
 describe("LoadFileSerialiser", () => {

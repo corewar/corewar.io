@@ -1,5 +1,10 @@
-﻿/// <reference path="../references.ts" />
-/* tslint:disable */
+﻿import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
+import { Context } from "./../../Corewar/Parser/Context";
+import { Parser } from "./../../Corewar/Parser/Parser";
+import { TestHelper } from "./TestHelper";
+import { LabelEmitter } from "./../../Corewar/Parser/LabelEmitter";
+import { MessageType } from "./../../Corewar/Parser/Interface/IMessage";
+import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
 
 "use strict";
 
@@ -61,7 +66,7 @@ describe("LabelEmitter",() => {
 
         expect(actual.messages.length).toBe(0);
         expect(actual.tokens.length).toBe(10);
-        
+
         for (var i = 0; i < tokens.length; i++) {
             expect(actual.tokens[i]).toEqual(tokens[i]);
         }

@@ -1,5 +1,13 @@
 ﻿/// <reference path="../references.ts" />
-
+import { IContext } from "./../../Corewar/Parser/Interface/IContext";
+import { IScanner } from "./../../Corewar/Parser/Interface/IScanner";
+import { IPass } from "./../../Corewar/Parser/Interface/IPass";
+import { IOptions } from "./../../Corewar/Simulator/Interface/IOptions";
+import { LoadParser } from "./../../Corewar/Parser/LoadParser";
+import { Context } from "./../../Corewar/Parser/Context";
+import { IMessage, MessageType } from "./../../Corewar/Parser/Interface/IMessage";
+import { Parser } from "./../../Corewar/Parser/Parser";
+import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
 "use strict";
 
 describe("LoadParser",() => {
@@ -236,4 +244,4 @@ describe("LoadParser",() => {
 
         expect((<jasmine.Spy>scanner.scan).calls.mostRecent().args[1].coresize).toBe(8192);
     });
-});  
+});

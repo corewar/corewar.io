@@ -1,5 +1,4 @@
-﻿/// <reference path="../references.ts" />
-import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
+﻿import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
 import { Context } from "./../../Corewar/Parser/Context";
 import { Parser } from "./../../Corewar/Parser/Parser";
 import { LabelCollector } from "./../../Corewar/Parser/LabelCollector";
