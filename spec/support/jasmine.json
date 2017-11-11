@@ -1,5 +1,5 @@
 {
-  "spec_dir": "Simulator.tests",
+  "spec_dir": "",
   "spec_files": [
     "**/*[tT]ests.ts"
   ],
