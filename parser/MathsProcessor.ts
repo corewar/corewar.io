@@ -1,5 +1,5 @@
-﻿import { IExpression } from "./Interface/IExpression";
-import { TokenCategory } from "./Interface/IToken";
+﻿import { IExpression } from "./interface/IExpression";
+import { TokenCategory } from "./interface/IToken";
 import * as _ from "underscore";
 import { PassBase } from "./PassBase";
 

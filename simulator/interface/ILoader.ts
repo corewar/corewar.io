@@ -1,4 +1,4 @@
-﻿import { IParseResult } from "../../Parser/Interface/IParseResult";
+﻿import { IParseResult } from "../../parser/interface/IParseResult";
 import { IOptions } from "./IOptions";
 import { IWarrior } from "./IWarrior";
 

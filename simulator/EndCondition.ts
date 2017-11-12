@@ -1,6 +1,6 @@
-﻿import { IEndCondition } from "./Interface/IEndCondition";
-import { IState } from "./Interface/IState";
-import { IWarrior } from "./Interface/IWarrior";
+﻿import { IEndCondition } from "./interface/IEndCondition";
+import { IState } from "./interface/IState";
+import { IWarrior } from "./interface/IWarrior";
 import * as _ from "underscore";
 
 export class EndCondition implements IEndCondition {

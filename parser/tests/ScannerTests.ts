@@ -1,10 +1,10 @@
 ﻿/// <reference path="references.ts" />
 import { Context } from "../Context";
-import { IToken, TokenCategory } from "../Interface/IToken";
+import { IToken, TokenCategory } from "../interface/IToken";
 import { Parser } from "../Parser";
 import { Scanner } from "../Scanner";
 import { PreprocessEmitter } from "../PreprocessEmitter";
-import { Standard } from "../Interface/IParseOptions";
+import { Standard } from "../interface/IParseOptions";
 import * as _ from "underscore";
 "use strict";
 

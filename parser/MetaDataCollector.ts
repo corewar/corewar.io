@@ -1,8 +1,8 @@
-﻿import { IPass } from "./Interface/IPass";
-import { ITokenStream } from "./Interface/ITokenStream";
-import { IContext } from "./Interface/IContext";
-import { IParseOptions } from "./Interface/IParseOptions";
-import { IToken, TokenCategory } from "./Interface/IToken";
+﻿import { IPass } from "./interface/IPass";
+import { ITokenStream } from "./interface/ITokenStream";
+import { IContext } from "./interface/IContext";
+import { IParseOptions } from "./interface/IParseOptions";
+import { IToken, TokenCategory } from "./interface/IToken";
 
 import { TokenStream } from "./TokenStream";
 
@@ -15,12 +15,12 @@ export class MetaDataCollector implements IPass {
 
         // Read meta data from comments
         // ;name                   name of warrior follows
-        // ;author                 name of author follows 
+        // ;author                 name of author follows
         // ;strategy               strategy for warrior e.g. stone/imp
 
         this.context = context;
         this.stream = new TokenStream(context.tokens, context.messages);
-        
+
         this.context.metaData = {
             name: "",
             author: "",

@@ -1,11 +1,11 @@
 ﻿/// <reference path="references.ts" />
 import { Context } from "../Context";
-import { IToken, TokenCategory } from "../Interface/IToken";
+import { IToken, TokenCategory } from "../interface/IToken";
 import { Parser } from "../Parser";
 import { PreprocessCollector } from "../PreprocessCollector";
-import { MessageType } from "../Interface/IMessage";
+import { MessageType } from "../interface/IMessage";
 import { TestHelper } from "./TestHelper";
-import { Standard } from "../Interface/IParseOptions";
+import { Standard } from "../interface/IParseOptions";
 import * as _ from "underscore";
 "use strict";
 

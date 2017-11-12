@@ -1,9 +1,9 @@
 ﻿/// <reference path="references.ts" />
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../Interface/ICore";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
-import { IRandom } from "../Interface/IRandom";
-import { IWarriorLoader } from "../Interface/IWarriorLoader";
-import { IParseResult } from "../../Parser/Interface/IParseResult";
+import { IRandom } from "../interface/IRandom";
+import { IWarriorLoader } from "../interface/IWarriorLoader";
+import { IParseResult } from "../../Parser/interface/IParseResult";
 import { Warrior } from "../Warrior";
 import { Loader } from "../Loader";
 import Defaults from "../Defaults";

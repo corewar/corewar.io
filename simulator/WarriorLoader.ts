@@ -1,16 +1,16 @@
-﻿import { IWarriorLoader } from "./Interface/IWarriorLoader";
-import { IWarrior } from "./Interface/IWarrior";
-import { ICore } from "./Interface/ICore";
-import { IInstruction, OpcodeType, ModifierType } from "./Interface/IInstruction";
-import { IOperand, ModeType } from "./Interface/IOperand";
+﻿import { IWarriorLoader } from "./interface/IWarriorLoader";
+import { IWarrior } from "./interface/IWarrior";
+import { ICore } from "./interface/ICore";
+import { IInstruction, OpcodeType, ModifierType } from "./interface/IInstruction";
+import { IOperand, ModeType } from "./interface/IOperand";
 
-import { ITokenStream } from "../Parser/Interface/ITokenStream";
-import { IParseResult } from "../Parser/Interface/IParseResult";
-import { TokenCategory } from "../Parser/Interface/IToken";
-import { IParseInstruction } from "../Parser/Interface/IParseInstruction";
-import { IParseOperand } from "../Parser/Interface/IParseOperand";
+import { ITokenStream } from "../parser/interface/ITokenStream";
+import { IParseResult } from "../parser/interface/IParseResult";
+import { TokenCategory } from "../parser/interface/IToken";
+import { IParseInstruction } from "../parser/interface/IParseInstruction";
+import { IParseOperand } from "../parser/interface/IParseOperand";
 
-import { TokenStream } from "../Parser/TokenStream";
+import { TokenStream } from "../parser/TokenStream";
 import { Warrior } from "./Warrior";
 
 export class WarriorLoader implements IWarriorLoader {
@@ -22,7 +22,7 @@ export class WarriorLoader implements IWarriorLoader {
     private core: ICore;
 
     private startAddress: number;
-    
+
     constructor(core: ICore) {
 
         this.core = core;
@@ -217,4 +217,4 @@ export class WarriorLoader implements IWarriorLoader {
         });
         this.warrior.taskIndex = 0;
     }
-} 
+}

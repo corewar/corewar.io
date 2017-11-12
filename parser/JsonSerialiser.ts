@@ -1,5 +1,5 @@
-﻿import { ISerialiser } from "./Interface/ISerialiser";
-import { IToken } from "./Interface/IToken";
+﻿import { ISerialiser } from "./interface/ISerialiser";
+import { IToken } from "./interface/IToken";
 
 export class JsonSerialiser implements ISerialiser {
 

@@ -1,11 +1,11 @@
 ﻿/// <reference path="references.ts" />
-import { IToken, TokenCategory } from "../../Parser//Interface/IToken";
-import { IParseResult } from "../../Parser/Interface/IParseResult";
-import { IWarrior } from "../Interface/IWarrior";
-import { ITask } from "../Interface/ITask";
-import { OpcodeType, ModifierType } from "../Interface/IInstruction";
-import { ModeType } from "../Interface/IOperand";
-import { IInstruction } from "../Interface/IInstruction";
+import { IToken, TokenCategory } from "../../Parser/interface/IToken";
+import { IParseResult } from "../../Parser/interface/IParseResult";
+import { IWarrior } from "../interface/IWarrior";
+import { ITask } from "../interface/ITask";
+import { OpcodeType, ModifierType } from "../interface/IInstruction";
+import { ModeType } from "../interface/IOperand";
+import { IInstruction } from "../interface/IInstruction";
 
 "use strict";
 

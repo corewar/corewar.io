@@ -1,11 +1,11 @@
-﻿import { IParser } from "../Parser/Interface/IParser";
-import { ISerialiser } from "../Parser/Interface/ISerialiser";
-import { IParseResult } from "../Parser/Interface/IParseResult";
-import { IMessage, MessageType } from "../Parser/Interface/IMessage";
-import { ISimulator } from "../Simulator/Interface/ISimulator";
-import { ICore } from "../Simulator/Interface/ICore";
-import { IExecutive } from "../Simulator/Interface/IExecutive";
-import Defaults1 from "../Simulator/Defaults";
+﻿import { IParser } from "../../parser/interface/IParser";
+import { ISerialiser } from "../../parser/interface/ISerialiser";
+import { IParseResult } from "../../parser/interface/IParseResult";
+import { IMessage, MessageType } from "../../parser/interface/IMessage";
+import { ISimulator } from "../../simulator/interface/ISimulator";
+import { ICore } from "../../simulator/interface/ICore";
+import { IExecutive } from "../../simulator/interface/IExecutive";
+import Defaults1 from "../../simulator/Defaults";
 
 export class Presenter {
     private redcode: HTMLTextAreaElement;

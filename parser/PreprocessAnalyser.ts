@@ -1,8 +1,8 @@
-﻿import { IPass } from "./Interface/IPass";
-import { IContext } from "./Interface/IContext";
-import { IParseOptions } from "./Interface/IParseOptions";
-import { IToken, TokenCategory } from "./Interface/IToken";
-import { MessageType } from "./Interface/IMessage";
+﻿import { IPass } from "./interface/IPass";
+import { IContext } from "./interface/IContext";
+import { IParseOptions } from "./interface/IParseOptions";
+import { IToken, TokenCategory } from "./interface/IToken";
+import { MessageType } from "./interface/IMessage";
 import * as _ from "underscore";
 
 export class PreprocessAnalyser implements IPass {

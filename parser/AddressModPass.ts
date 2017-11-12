@@ -1,6 +1,6 @@
-﻿import { IToken, TokenCategory } from "./Interface/IToken";
-import { IParseInstruction } from "./Interface/IParseInstruction";
-import { IParseOperand } from "./Interface/IParseOperand";
+﻿import { IToken, TokenCategory } from "./interface/IToken";
+import { IParseInstruction } from "./interface/IParseInstruction";
+import { IParseOperand } from "./interface/IParseOperand";
 
 import { PassBase } from "./PassBase";
 

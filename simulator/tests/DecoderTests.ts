@@ -1,15 +1,15 @@
 ﻿/// <reference path="references.ts" />
 
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../Interface/ICore";
-import { IInstruction } from "../Interface/IInstruction";
-import { OpcodeType, ModifierType } from "../Interface/IInstruction";
-import { IExecutive } from "../Interface/IExecutive";
-import { IExecutionContext } from "../Interface/IExecutionContext";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
+import { IInstruction } from "../interface/IInstruction";
+import { OpcodeType, ModifierType } from "../interface/IInstruction";
+import { IExecutive } from "../interface/IExecutive";
+import { IExecutionContext } from "../interface/IExecutionContext";
 import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
-import { ITask } from "../Interface/ITask";
+import { ITask } from "../interface/ITask";
 import Defaults from "../Defaults";
-import { IOptions } from "../Interface/IOptions";
-import { ModeType } from "../Interface/IOperand";
+import { IOptions } from "../interface/IOptions";
+import { ModeType } from "../interface/IOperand";
 import { Decoder } from "../Decoder";
 import DataHelper from "./DataHelper";
 import * as _ from "underscore";

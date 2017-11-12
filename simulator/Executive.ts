@@ -1,7 +1,7 @@
-﻿import { IExecutive } from "./Interface/IExecutive";
-import { IExecutionContext } from "./Interface/IExecutionContext";
-import { IInstruction } from "./Interface/IInstruction";
-import { IOptions } from "./Interface/IOptions";
+﻿import { IExecutive } from "./interface/IExecutive";
+import { IExecutionContext } from "./interface/IExecutionContext";
+import { IInstruction } from "./interface/IInstruction";
+import { IOptions } from "./interface/IOptions";
 
 export class Executive implements IExecutive {
 
@@ -146,7 +146,7 @@ export class Executive implements IExecutive {
     private instructionLimit: number;
 
     public initialise(options: IOptions) {
-        
+
         this.instructionLimit = options.instructionLimit;
     }
 
@@ -593,7 +593,7 @@ export class Executive implements IExecutive {
     }
 
     private jmp(context: IExecutionContext) {
-        
+
         context.task.instructionPointer = context.core.wrap(context.aPointer);
     }
 
@@ -957,11 +957,11 @@ export class Executive implements IExecutive {
                 warrior: context.warrior
             });
             context.warrior.taskIndex = (context.warrior.taskIndex + 1) % context.warrior.tasks.length;
-        
+
         }
     }
 
     private nop(context: IExecutionContext) {
         // DO NOWT
     }
-} 
+}

@@ -1,4 +1,4 @@
-﻿import { IToken, TokenCategory } from "./Interface/IToken";
+﻿import { IToken, TokenCategory } from "./interface/IToken";
 
 import { PassBase } from "./PassBase";
 

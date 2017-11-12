@@ -1,13 +1,13 @@
-﻿import { ISimulator } from "./Interface/ISimulator";
-import { IState } from "./Interface/IState";
-import { ILoader } from "./Interface/ILoader";
-import { IFetcher } from "./Interface/IFetcher";
-import { IDecoder } from "./Interface/IDecoder";
-import { IExecutive } from "./Interface/IExecutive";
-import { IEndCondition } from "./Interface/IEndCondition";
-import { ICore } from "./Interface/ICore";
-import { IOptions } from "./Interface/IOptions";
-import { IParseResult } from "../Parser/Interface/IParseResult";
+﻿import { ISimulator } from "./interface/ISimulator";
+import { IState } from "./interface/IState";
+import { ILoader } from "./interface/ILoader";
+import { IFetcher } from "./interface/IFetcher";
+import { IDecoder } from "./interface/IDecoder";
+import { IExecutive } from "./interface/IExecutive";
+import { IEndCondition } from "./interface/IEndCondition";
+import { ICore } from "./interface/ICore";
+import { IOptions } from "./interface/IOptions";
+import { IParseResult } from "../parser/interface/IParseResult";
 import Defaults from "./Defaults";
 import * as _ from "underscore";
 

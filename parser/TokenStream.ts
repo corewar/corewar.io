@@ -1,6 +1,6 @@
-﻿import { IToken, TokenCategory } from "./Interface/IToken";
-import { IMessage, MessageType } from "./Interface/IMessage";
-import { ITokenStream } from "./Interface/ITokenStream";
+﻿import { IToken, TokenCategory } from "./interface/IToken";
+import { IMessage, MessageType } from "./interface/IMessage";
+import { ITokenStream } from "./interface/ITokenStream";
 
 import { TokenHelper } from "./TokenHelper";
 
@@ -9,7 +9,7 @@ export class TokenStream implements ITokenStream {
     public position: number;
     public tokens: IToken[];
     private messages: IMessage[];
-    
+
     constructor(tokens: IToken[], messages: IMessage[]) {
         this.position = 0;
         this.tokens = tokens;
@@ -41,7 +41,7 @@ export class TokenStream implements ITokenStream {
 
         return result;
     }
-    
+
     public warn(token: IToken, message: string) {
 
         this.messages.push({

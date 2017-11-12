@@ -1,10 +1,10 @@
 ﻿/// <reference path="references.ts" />
-import { IInstruction } from "../Interface/IInstruction";
-import { ITask } from "../Interface/ITask";
-import { OpcodeType, ModifierType } from "../Interface/IInstruction";
-import { ModeType } from "../Interface/IOperand";
+import { IInstruction } from "../interface/IInstruction";
+import { ITask } from "../interface/ITask";
+import { OpcodeType, ModifierType } from "../interface/IInstruction";
+import { ModeType } from "../interface/IOperand";
 import { Core } from "../Core";
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../Interface/ICore";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import Defaults from "../Defaults";
 import * as _ from "underscore";
 

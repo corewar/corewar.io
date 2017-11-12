@@ -1,7 +1,7 @@
-﻿import { IParseOptions, Standard } from "./Interface/IParseOptions";
-import { IContext } from "./Interface/IContext";
-import { IToken, TokenCategory } from "./Interface/IToken";
-import { MessageType } from "./Interface/IMessage";
+﻿import { IParseOptions, Standard } from "./interface/IParseOptions";
+import { IContext } from "./interface/IContext";
+import { IToken, TokenCategory } from "./interface/IToken";
+import { MessageType } from "./interface/IMessage";
 import * as _ from "underscore";
 
 import { PassBase } from "./PassBase";

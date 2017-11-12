@@ -1,10 +1,10 @@
-﻿import { ILoader } from "./Interface/ILoader";
-import { IRandom } from "./Interface/IRandom";
-import { ICore } from "./Interface/ICore";
-import { IWarriorLoader } from "./Interface/IWarriorLoader";
-import { IParseResult } from "../Parser/Interface/IParseResult";
-import { IWarrior } from "./Interface/IWarrior";
-import { IOptions } from "./Interface/IOptions";
+﻿import { ILoader } from "./interface/ILoader";
+import { IRandom } from "./interface/IRandom";
+import { ICore } from "./interface/ICore";
+import { IWarriorLoader } from "./interface/IWarriorLoader";
+import { IParseResult } from "../parser/interface/IParseResult";
+import { IWarrior } from "./interface/IWarrior";
+import { IOptions } from "./interface/IOptions";
 import * as _ from "underscore";
 
 export class Loader implements ILoader {

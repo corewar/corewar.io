@@ -1,10 +1,10 @@
-﻿import { IParser } from "./Interface/IParser";
-import { IPass } from "./Interface/IPass";
-import { IScanner } from "./Interface/IScanner";
-import { IContext } from "./Interface/IContext";
-import { IMessage, MessageType } from "./Interface/IMessage";
-import { IParseOptions, Standard } from "./Interface/IParseOptions";
-import { IParseResult } from "./Interface/IParseResult";
+﻿import { IParser } from "./interface/IParser";
+import { IPass } from "./interface/IPass";
+import { IScanner } from "./interface/IScanner";
+import { IContext } from "./interface/IContext";
+import { IMessage, MessageType } from "./interface/IMessage";
+import { IParseOptions, Standard } from "./interface/IParseOptions";
+import { IParseResult } from "./interface/IParseResult";
 import * as _ from "underscore";
 
 export class Parser implements IParser {

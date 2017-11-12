@@ -1,4 +1,4 @@
-﻿import { IRandom } from "./Interface/IRandom";
+﻿import { IRandom } from "./interface/IRandom";
 
 export class Random implements IRandom {
 
@@ -6,4 +6,4 @@ export class Random implements IRandom {
 
         return Math.floor(Math.random() * max);
     }
-} 
+}

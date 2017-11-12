@@ -1,6 +1,6 @@
-﻿import { IToken, TokenCategory } from "./Interface/IToken";
-import { IParseOptions, Standard } from "./Interface/IParseOptions";
-import { IContext } from "./Interface/IContext";
+﻿import { IToken, TokenCategory } from "./interface/IToken";
+import { IParseOptions, Standard } from "./interface/IParseOptions";
+import { IContext } from "./interface/IContext";
 
 import { PassBase } from "./PassBase";
 
@@ -75,4 +75,3 @@ export class LabelCollector extends PassBase {
         this.context.emitSingle(opcode);
     }
 }
- 

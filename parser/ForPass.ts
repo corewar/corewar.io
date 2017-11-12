@@ -1,17 +1,17 @@
-﻿import { IExpression } from "./Interface/IExpression";
-import { IToken, TokenCategory } from "./Interface/IToken";
+﻿import { IExpression } from "./interface/IExpression";
+import { IToken, TokenCategory } from "./interface/IToken";
 
 import { PassBase } from "./PassBase";
 
 export class ForPass extends PassBase {
 
     private expression: IExpression;
-    
+
     constructor(expression: IExpression) {
         super();
         this.expression = expression;
     }
-    
+
     /// <summary>
     /// Records EQU substitutions and removes statements from token stream
     /// Performs a duplicate label check
@@ -47,7 +47,7 @@ export class ForPass extends PassBase {
     private processLabel() {
 
         var label: IToken = this.stream.read();
-        
+
         var pre = this.stream.read();
 
         if (this.isFor(pre)) {
@@ -101,4 +101,3 @@ export class ForPass extends PassBase {
         this.stream.readToEOL();
     }
 }
- 

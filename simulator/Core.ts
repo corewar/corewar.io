@@ -1,8 +1,8 @@
 ﻿import { ILiteEvent, LiteEvent } from "../modules/LiteEvent";
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "./Interface/ICore";
-import { IOptions } from "./Interface/IOptions";
-import { IInstruction } from "./Interface/IInstruction";
-import { ITask } from "./Interface/ITask";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "./interface/ICore";
+import { IOptions } from "./interface/IOptions";
+import { IInstruction } from "./interface/IInstruction";
+import { ITask } from "./interface/ITask";
 import * as _ from "underscore";
 
 export class Core implements ICore {

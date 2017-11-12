@@ -1,13 +1,13 @@
 ﻿/// <reference path="references.ts" />
 
-import { IContext } from "../Interface/IContext";
+import { IContext } from "../interface/IContext";
 import { Context } from "../Context";
-import { IScanner } from "../Interface/IScanner";
-import { IPass } from "../Interface/IPass";
+import { IScanner } from "../interface/IScanner";
+import { IPass } from "../interface/IPass";
 import { Parser } from "../Parser";
-import { IOptions } from "../../Simulator/Interface/IOptions";
-import { IMessage, MessageType } from "../Interface/IMessage";
-import { Standard } from "../Interface/IParseOptions";
+import { IOptions } from "../../Simulator/interface/IOptions";
+import { IMessage, MessageType } from "../interface/IMessage";
+import { Standard } from "../interface/IParseOptions";
 import * as _ from "underscore";
 
 "use strict";

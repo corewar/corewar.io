@@ -1,5 +1,5 @@
-﻿import { IParseInstruction } from "./Interface/IParseInstruction";
-import { IToken, TokenCategory } from "./Interface/IToken";
+﻿import { IParseInstruction } from "./interface/IParseInstruction";
+import { IToken, TokenCategory } from "./interface/IToken";
 import * as _ from "underscore";
 import { PassBase } from "./PassBase";
 

@@ -1,5 +1,5 @@
-﻿import { IToken, TokenCategory } from "./Interface/IToken";
-import { ISerialiser } from "./Interface/ISerialiser";
+﻿import { IToken, TokenCategory } from "./interface/IToken";
+import { ISerialiser } from "./interface/ISerialiser";
 import * as _ from "underscore";
 
 export class LoadFileSerialiser implements ISerialiser {

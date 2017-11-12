@@ -1,10 +1,10 @@
-﻿import { IInstructionSerialiser } from "./Interface/IInstructionSerialiser";
+﻿import { IInstructionSerialiser } from "./interface/IInstructionSerialiser";
 
-import { IInstruction, OpcodeType, ModifierType } from "../Simulator/Interface/IInstruction";
-import { IOperand, ModeType } from "../Simulator/Interface/IOperand";
+import { IInstruction, OpcodeType, ModifierType } from "../../simulator/interface/IInstruction";
+import { IOperand, ModeType } from "../../simulator/interface/IOperand";
 
 export class InstructionSerialiser implements IInstructionSerialiser {
-    
+
     public serialise(instruction: IInstruction): string {
 
         return this.serialiseOpcode(instruction) + "." +
@@ -14,7 +14,7 @@ export class InstructionSerialiser implements IInstructionSerialiser {
     }
 
     private serialiseOpcode(instruction: IInstruction): string {
-        
+
         switch (instruction.opcode) {
             case OpcodeType.ADD:
                 return "ADD";
@@ -56,7 +56,7 @@ export class InstructionSerialiser implements IInstructionSerialiser {
     }
 
     private serialiseModifier(instruction: IInstruction): string {
-        
+
         switch (instruction.modifier) {
             case ModifierType.A:
                 return "A";
@@ -84,7 +84,7 @@ export class InstructionSerialiser implements IInstructionSerialiser {
     }
 
     private serialiseMode(mode: ModeType): string {
-        
+
         switch (mode) {
             case ModeType.AIndirect:
                 return "*";

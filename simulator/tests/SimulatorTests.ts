@@ -1,19 +1,19 @@
 ﻿/// <reference path="references.ts" />
 
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../Interface/ICore";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
-import { ITask } from "../Interface/ITask";
-import { IOptions } from "../Interface/IOptions";
-import { IState } from "../Interface/IState";
+import { ITask } from "../interface/ITask";
+import { IOptions } from "../interface/IOptions";
+import { IState } from "../interface/IState";
 import { Simulator } from "../Simulator";
-import { IExecutive } from "../Interface/IExecutive";
-import { ILoader } from "../Interface/ILoader";
-import { IFetcher } from "../Interface/IFetcher";
-import { IDecoder } from "../Interface/IDecoder";
-import { IEndCondition } from "../Interface/IEndCondition";
+import { IExecutive } from "../interface/IExecutive";
+import { ILoader } from "../interface/ILoader";
+import { IFetcher } from "../interface/IFetcher";
+import { IDecoder } from "../interface/IDecoder";
+import { IEndCondition } from "../interface/IEndCondition";
 import Defaults from "../Defaults";
-import { OpcodeType, ModifierType } from "../Interface/IInstruction";
-import { ModeType } from "../Interface/IOperand";
+import { OpcodeType, ModifierType } from "../interface/IInstruction";
+import { ModeType } from "../interface/IOperand";
 import DataHelper from "./DataHelper";
 import * as _ from "underscore";
 

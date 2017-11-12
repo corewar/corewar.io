@@ -1,7 +1,7 @@
-﻿import { IPass } from "./Interface/IPass";
-import { IContext } from "./Interface/IContext";
-import { ITokenStream } from "./Interface/ITokenStream";
-import { IParseOptions } from "./Interface/IParseOptions";
+﻿import { IPass } from "./interface/IPass";
+import { IContext } from "./interface/IContext";
+import { ITokenStream } from "./interface/ITokenStream";
+import { IParseOptions } from "./interface/IParseOptions";
 
 import { TokenStream } from "./TokenStream";
 
@@ -10,7 +10,7 @@ export class PassBase implements IPass {
     protected context: IContext;
     protected stream: ITokenStream;
     protected options: IParseOptions;
-    
+
     public process(context: IContext, options: IParseOptions): IContext {
 
         // TODO CONSTANTS - need to define core settings at compile time
@@ -45,4 +45,4 @@ export class PassBase implements IPass {
 
         throw new Error("PassBase.processLine is an Abstract Method");
     }
-} 
+}

@@ -1,9 +1,9 @@
 ﻿/// <reference path="references.ts" />
-import { ITask } from "../Interface/ITask";
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../Interface/ICore";
+import { ITask } from "../interface/ITask";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
-import { IWarrior } from "../Interface/IWarrior";
-import { IState } from "../Interface/IState";
+import { IWarrior } from "../interface/IWarrior";
+import { IState } from "../interface/IState";
 import Defaults from "../Defaults";
 import { EndCondition } from "../EndCondition";
 import DataHelper from "./DataHelper";

@@ -1,6 +1,6 @@
-﻿import { IOptions } from "./Interface/IOptions";
-import { IInstruction, OpcodeType, ModifierType } from "./Interface/IInstruction";
-import { ModeType } from "./Interface/IOperand";
+﻿import { IOptions } from "./interface/IOptions";
+import { IInstruction, OpcodeType, ModifierType } from "./interface/IInstruction";
+import { ModeType } from "./interface/IOperand";
 
 export default class Defaults implements IOptions {
 

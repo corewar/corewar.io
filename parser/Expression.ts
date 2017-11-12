@@ -1,6 +1,6 @@
-﻿import { IExpression } from "./Interface/IExpression";
-import { IToken, TokenCategory } from "./Interface/IToken";
-import { ITokenStream } from "./Interface/ITokenStream";
+﻿import { IExpression } from "./interface/IExpression";
+import { IToken, TokenCategory } from "./interface/IToken";
+import { ITokenStream } from "./interface/ITokenStream";
 
 export class Expression implements IExpression {
 

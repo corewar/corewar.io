@@ -1,6 +1,6 @@
-﻿import { IFetcher } from "./Interface/IFetcher";
-import { IState } from "./Interface/IState";
-import { IExecutionContext } from "./Interface/IExecutionContext";
+﻿import { IFetcher } from "./interface/IFetcher";
+import { IState } from "./interface/IState";
+import { IExecutionContext } from "./interface/IExecutionContext";
 
 export class Fetcher implements IFetcher {
 
@@ -31,4 +31,3 @@ export class Fetcher implements IFetcher {
         };
     }
 }
- 

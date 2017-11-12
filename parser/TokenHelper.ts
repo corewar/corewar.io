@@ -1,4 +1,4 @@
-﻿import { IToken, TokenCategory } from "./Interface/IToken";
+﻿import { IToken, TokenCategory } from "./interface/IToken";
 
 export class TokenHelper {
 
@@ -34,4 +34,4 @@ export class TokenHelper {
                 return "'" + token.lexeme + "'";
         }
     }
-} 
+}

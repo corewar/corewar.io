@@ -1,5 +1,5 @@
 ﻿import { PassBase } from "./PassBase";
-import { TokenCategory } from "./Interface/IToken";
+import { TokenCategory } from "./interface/IToken";
 
 export class SyntaxCheck extends PassBase {
 

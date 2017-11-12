@@ -1,12 +1,12 @@
 ﻿/// <reference path="references.ts" />
-import { IState } from "../Interface/IState";
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../Interface/ICore";
-import { OpcodeType, ModifierType } from "../Interface/IInstruction";
-import { ModeType } from "../Interface/IOperand";
+import { IState } from "../interface/IState";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
+import { OpcodeType, ModifierType } from "../interface/IInstruction";
+import { ModeType } from "../interface/IOperand";
 import Defaults from "../Defaults";
-import { IOptions } from "../Interface/IOptions";
+import { IOptions } from "../interface/IOptions";
 import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
-import { ITask } from "../Interface/ITask";
+import { ITask } from "../interface/ITask";
 import { Fetcher } from "../Fetcher";
 import DataHelper from "./DataHelper";
 

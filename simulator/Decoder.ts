@@ -1,10 +1,10 @@
-﻿import { IDecoder } from "./Interface/IDecoder";
-import { IExecutive } from "./Interface/IExecutive";
-import { IOperand } from "./Interface/IOperand";
-import { ITask } from "./Interface/ITask";
-import { ICore } from "./Interface/ICore";
-import { IExecutionContext } from "./Interface/IExecutionContext";
-import { ModifierType } from "./Interface/IInstruction";
+﻿import { IDecoder } from "./interface/IDecoder";
+import { IExecutive } from "./interface/IExecutive";
+import { IOperand } from "./interface/IOperand";
+import { ITask } from "./interface/ITask";
+import { ICore } from "./interface/ICore";
+import { IExecutionContext } from "./interface/IExecutionContext";
+import { ModifierType } from "./interface/IInstruction";
 
 export class Decoder implements IDecoder {
 

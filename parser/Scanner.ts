@@ -1,7 +1,7 @@
-﻿import { IScanner } from "./Interface/IScanner";
-import { IContext } from "./Interface/IContext";
-import { IToken, IPosition, TokenCategory } from "./Interface/IToken";
-import { IParseOptions, Standard } from "./Interface/IParseOptions";
+﻿import { IScanner } from "./interface/IScanner";
+import { IContext } from "./interface/IContext";
+import { IToken, IPosition, TokenCategory } from "./interface/IToken";
+import { IParseOptions, Standard } from "./interface/IParseOptions";
 
 import { Context } from "./Context";
 

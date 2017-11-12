@@ -1,6 +1,6 @@
-﻿import { IToken, TokenCategory } from "./Interface/IToken";
-import { IContext } from "./Interface/IContext";
-import { IParseOptions, Standard } from "./Interface/IParseOptions";
+﻿import { IToken, TokenCategory } from "./interface/IToken";
+import { IContext } from "./interface/IContext";
+import { IParseOptions, Standard } from "./interface/IParseOptions";
 import * as _ from "underscore";
 
 import { PassBase } from "./PassBase";
