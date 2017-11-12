@@ -1,19 +1,19 @@
-﻿/// <reference path="../references.ts" />
+﻿/// <reference path="references.ts" />
 
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../../../corewar/Corewar/Simulator/Interface/ICore";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../Interface/ICore";
 import { ILiteEvent, LiteEvent } from "../../../corewar/Corewar/modules/LiteEvent";
-import { ITask } from "../../../corewar/Corewar/Simulator/Interface/ITask";
-import { IOptions } from "../../../corewar/Corewar/Simulator/Interface/IOptions";
-import { IState } from "../../../corewar/Corewar/Simulator/Interface/IState";
-import { Simulator } from "../../../corewar/Corewar/Simulator/Simulator";
-import { IExecutive } from "../../../corewar/Corewar/Simulator/Interface/IExecutive";
-import { ILoader } from "../../../corewar/Corewar/Simulator/Interface/ILoader";
-import { IFetcher } from "../../../corewar/Corewar/Simulator/Interface/IFetcher";
-import { IDecoder } from "../../../corewar/Corewar/Simulator/Interface/IDecoder";
-import { IEndCondition } from "../../../corewar/Corewar/Simulator/Interface/IEndCondition";
-import Defaults from "../../../corewar/Corewar/Simulator/Defaults";
-import { OpcodeType, ModifierType } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
-import { ModeType } from "../../../corewar/Corewar/Simulator/Interface/IOperand";
+import { ITask } from "../Interface/ITask";
+import { IOptions } from "../Interface/IOptions";
+import { IState } from "../Interface/IState";
+import { Simulator } from "../Simulator";
+import { IExecutive } from "../Interface/IExecutive";
+import { ILoader } from "../Interface/ILoader";
+import { IFetcher } from "../Interface/IFetcher";
+import { IDecoder } from "../Interface/IDecoder";
+import { IEndCondition } from "../Interface/IEndCondition";
+import Defaults from "../Defaults";
+import { OpcodeType, ModifierType } from "../Interface/IInstruction";
+import { ModeType } from "../Interface/IOperand";
 import DataHelper from "./DataHelper";
 import * as _ from "underscore";
 

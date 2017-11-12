@@ -1,16 +1,16 @@
-﻿/// <reference path="../references.ts" />
+﻿/// <reference path="references.ts" />
 
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../../../corewar/Corewar/Simulator/Interface/ICore";
-import { IInstruction } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
-import { OpcodeType, ModifierType } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
-import { IExecutive } from "../../../corewar/Corewar/Simulator/Interface/IExecutive";
-import { IExecutionContext } from "../../../corewar/Corewar/Simulator/Interface/IExecutionContext";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../Interface/ICore";
+import { IInstruction } from "../Interface/IInstruction";
+import { OpcodeType, ModifierType } from "../Interface/IInstruction";
+import { IExecutive } from "../Interface/IExecutive";
+import { IExecutionContext } from "../Interface/IExecutionContext";
 import { ILiteEvent, LiteEvent } from "../../../corewar/Corewar/modules/LiteEvent";
-import { ITask } from "../../../corewar/Corewar/Simulator/Interface/ITask";
-import Defaults from "../../../corewar/Corewar/Simulator/Defaults";
-import { IOptions } from "../../../corewar/Corewar/Simulator/Interface/IOptions";
-import { ModeType } from "../../../corewar/Corewar/Simulator/Interface/IOperand";
-import { Decoder } from "../../../corewar/Corewar/Simulator/Decoder";
+import { ITask } from "../Interface/ITask";
+import Defaults from "../Defaults";
+import { IOptions } from "../Interface/IOptions";
+import { ModeType } from "../Interface/IOperand";
+import { Decoder } from "../Decoder";
 import DataHelper from "./DataHelper";
 import * as _ from "underscore";
 

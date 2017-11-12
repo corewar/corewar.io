@@ -1,11 +1,11 @@
-﻿/// <reference path="../references.ts" />
-import { ITask } from "../../../corewar/Corewar/Simulator/Interface/ITask";
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../../../corewar/Corewar/Simulator/Interface/ICore";
+﻿/// <reference path="references.ts" />
+import { ITask } from "../Interface/ITask";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../Interface/ICore";
 import { ILiteEvent, LiteEvent } from "../../../corewar/Corewar/modules/LiteEvent";
-import { IWarrior } from "../../../corewar/Corewar/Simulator/Interface/IWarrior";
-import { IState } from "../../../corewar/Corewar/Simulator/Interface/IState";
-import Defaults from "../../../corewar/Corewar/Simulator/Defaults";
-import { EndCondition } from "../../../corewar/Corewar/Simulator/EndCondition";
+import { IWarrior } from "../Interface/IWarrior";
+import { IState } from "../Interface/IState";
+import Defaults from "../Defaults";
+import { EndCondition } from "../EndCondition";
 import DataHelper from "./DataHelper";
 import * as _ from "underscore";
 

@@ -1,13 +1,13 @@
-﻿/// <reference path="../references.ts" />
-import { IState } from "../../../corewar/Corewar/Simulator/Interface/IState";
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../../../corewar/Corewar/Simulator/Interface/ICore";
-import { OpcodeType, ModifierType } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
-import { ModeType } from "../../../corewar/Corewar/Simulator/Interface/IOperand";
-import Defaults from "../../../corewar/Corewar/Simulator/Defaults";
-import { IOptions } from "../../../corewar/Corewar/Simulator/Interface/IOptions";
+﻿/// <reference path="references.ts" />
+import { IState } from "../Interface/IState";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../Interface/ICore";
+import { OpcodeType, ModifierType } from "../Interface/IInstruction";
+import { ModeType } from "../Interface/IOperand";
+import Defaults from "../Defaults";
+import { IOptions } from "../Interface/IOptions";
 import { ILiteEvent, LiteEvent } from "../../../corewar/Corewar/modules/LiteEvent";
-import { ITask } from "../../../corewar/Corewar/Simulator/Interface/ITask";
-import { Fetcher } from "../../../corewar/Corewar/Simulator/Fetcher";
+import { ITask } from "../Interface/ITask";
+import { Fetcher } from "../Fetcher";
 import DataHelper from "./DataHelper";
 
 "use strict";

@@ -1,11 +1,11 @@
 ﻿
-/// <reference path="../corewar/references.ts" />
-/// <reference path="tests/datahelper.ts" />
-/// <reference path="tests/warriorloadertests.ts" />
-/// <reference path="tests/coretests.ts" />
-/// <reference path="tests/loadertests.ts" />
-// /// <reference path="tests/executivetests.ts" />
-/// <reference path="tests/fetchertests.ts" />
-/// <reference path="tests/decodertests.ts" />
-/// <reference path="tests/simulatortests.ts" />
-/// <reference path="tests/endconditiontests.ts" />
+/// <reference path="../../corewar/references.ts" />
+/// <reference path="datahelper.ts" />
+/// <reference path="warriorloadertests.ts" />
+/// <reference path="coretests.ts" />
+/// <reference path="loadertests.ts" />
+// /// <reference path="executivetests.ts" />
+/// <reference path="fetchertests.ts" />
+/// <reference path="decodertests.ts" />
+/// <reference path="simulatortests.ts" />
+/// <reference path="endconditiontests.ts" />

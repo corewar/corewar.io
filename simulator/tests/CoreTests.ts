@@ -1,11 +1,11 @@
-﻿/// <reference path="../references.ts" />
-import { IInstruction } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
-import { ITask } from "../../../corewar/Corewar/Simulator/Interface/ITask";
-import { OpcodeType, ModifierType } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
-import { ModeType } from "../../../corewar/Corewar/Simulator/Interface/IOperand";
-import { Core } from "../../../corewar/Corewar/Simulator/Core";
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../../../corewar/Corewar/Simulator/Interface/ICore";
-import Defaults from "../../../corewar/Corewar/Simulator/Defaults";
+﻿/// <reference path="references.ts" />
+import { IInstruction } from "../Interface/IInstruction";
+import { ITask } from "../Interface/ITask";
+import { OpcodeType, ModifierType } from "../Interface/IInstruction";
+import { ModeType } from "../Interface/IOperand";
+import { Core } from "../Core";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../Interface/ICore";
+import Defaults from "../Defaults";
 import * as _ from "underscore";
 
 "use strict";

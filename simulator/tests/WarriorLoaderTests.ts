@@ -1,15 +1,15 @@
-﻿/// <reference path="../references.ts" />
+﻿/// <reference path="references.ts" />
 
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../../../corewar/Corewar/Simulator/Interface/ICore";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../Interface/ICore";
 import { ILiteEvent, LiteEvent } from "../../../corewar/Corewar/modules/LiteEvent";
-import { IOptions } from "../../../corewar/Corewar/Simulator/Interface/IOptions";
-import { ITask } from "../../../corewar/Corewar/Simulator/Interface/ITask";
-import { IInstruction } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
-import { OpcodeType, ModifierType } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
-import { ModeType } from "../../../corewar/Corewar/Simulator/Interface/IOperand";
-import { IParseResult } from "../../../corewar/Corewar/Parser/Interface/IParseResult";
-import { IToken, TokenCategory } from "../../../corewar/Corewar/Parser//Interface/IToken";
-import { WarriorLoader } from "../../../corewar/Corewar/Simulator/WarriorLoader";
+import { IOptions } from "../Interface/IOptions";
+import { ITask } from "../Interface/ITask";
+import { IInstruction } from "../Interface/IInstruction";
+import { OpcodeType, ModifierType } from "../Interface/IInstruction";
+import { ModeType } from "../Interface/IOperand";
+import { IParseResult } from "../../Parser/Interface/IParseResult";
+import { IToken, TokenCategory } from "../../Parser//Interface/IToken";
+import { WarriorLoader } from "../WarriorLoader";
 import DataHelper from "./DataHelper";
 
 "use strict";
