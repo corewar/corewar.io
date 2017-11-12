@@ -1,6 +1,6 @@
 ﻿/// <reference path="../references.ts" />
 import { TestHelper } from  "./TestHelper";
-import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
+import { Standard } from "./../Interface/IParseOptions";
 "use strict";
 
 describe("ICWS'86",() => {
