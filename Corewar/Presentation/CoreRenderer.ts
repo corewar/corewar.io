@@ -1,5 +1,5 @@
-﻿import { IInstructionSerialiser } from "Interface/IInstructionSerialiser";
-import { IPoint } from "Interface/IPoint";
+﻿import { IInstructionSerialiser } from "./Interface/IInstructionSerialiser";
+import { IPoint } from "./Interface/IPoint";
 
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../Simulator/Interface/ICore";
 

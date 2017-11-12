@@ -2,13 +2,13 @@
 
 "use strict";
 
-class TestLoader {
+export class TestLoader {
 
     public getWarriors(path: string, names: string[]): P.Promise<ITestWarrior[]> {
         var result = P.defer<ITestWarrior[]>();
 
         var files: { [filename: string]: string } = {};
-        
+
         var filenames = _(names).map((name) => {
             return path + name + ".red";
         }).concat(_(names).map((name) => {
@@ -21,7 +21,7 @@ class TestLoader {
             ajax.get(filename, undefined, (file) => {
 
                 files[filename] = file;
-                
+
                 if (--fileCount === 0) {
 
                     this.return(result, path, names, files);

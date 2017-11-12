@@ -4,7 +4,7 @@
   "description": "HTML5 & javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine-ts",
+    "test": "nyc -e .ts -x \"*.[tT]ests.ts\" jasmine-ts",
     "start": "webpack-dev-server --progress --colors"
   },
   "repository": {
@@ -18,12 +18,26 @@
   },
   "homepage": "https://github.com/gareththegeek/corewar#readme",
   "devDependencies": {
+    "@types/jasmine": "^2.6.3",
     "jasmine": "^2.8.0",
+    "jasmine-core": "^2.8.0",
     "jasmine-ts": "^0.2.1",
-    "ts-loader": "^3.1.1"
+    "karma": "^1.7.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-cli": "^1.0.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-typescript": "^3.0.8",
+    "nyc": "^11.3.0",
+    "ts-loader": "^3.1.1",
+    "typescript": "^2.6.1"
   },
   "dependencies": {
-    "typescript": "^2.6.1",
+    "@types/es6-promise": "0.0.33",
+    "@types/isomorphic-fetch": "0.0.34",
+    "es6-promise": "^4.1.1",
+    "fs": "0.0.1-security",
+    "isomorphic-fetch": "^2.2.1",
+    "karma-coverage": "^1.1.1",
     "underscore": "^1.8.3"
   }
 }

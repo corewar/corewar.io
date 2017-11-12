@@ -7,7 +7,7 @@ import { ISimulator } from "./Simulator/Interface/ISimulator";
 import { ICore } from "./Simulator/Interface/ICore";
 import { IExecutive } from "./Simulator/Interface/IExecutive";
 import { OpcodeType, ModifierType } from "./Simulator/Interface/IInstruction";
-import Defaults from "Simulator/Defaults";
+import Defaults from "./Simulator/Defaults";
 
 import { Parser } from "./Parser/Parser";
 import { Scanner } from "./Parser/Scanner";

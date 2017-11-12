@@ -1,5 +1,6 @@
 ﻿/// <reference path="../references.ts" />
-
+import { TestHelper } from  "./TestHelper";
+import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
 "use strict";
 
 describe("ICWS'86",() => {
@@ -23,7 +24,7 @@ describe("ICWS'86",() => {
                 "gemini",
                 "hoser",
                 "imp",
-                "impgun", 
+                "impgun",
                 "impstomp"
             ], Standard.ICWS86);
     });

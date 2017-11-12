@@ -16,11 +16,11 @@ import { OrgPass } from "./../../Corewar/Parser/OrgPass";
 import { SyntaxCheck } from "./../../Corewar/Parser/SyntaxCheck";
 import { IllegalCommandCheck } from "./../../Corewar/Parser/IllegalcommandCheck";
 import { LoadFileSerialiser } from "./../../Corewar/Parser/LoadFileSerialiser";
+import { TestLoader } from "./TestLoader";
 
 "use strict";
 
-class TestHelper {
-
+export class TestHelper {
     private static failedIndex(name: string, a: string, b: string) {
 
         for (var i = 0; i < a.length; i++) {
@@ -55,7 +55,7 @@ class TestHelper {
     public static testWarriorList(path: string, names: string[], standard: Standard, allowMessages: boolean = false) {
 
         var loader = new TestLoader();
-        loader.getWarriors(path, names).done((warriors) => {
+        loader.getWarriors(path, names).then((warriors) => {
 
             _(warriors).forEach((warrior) => {
 
