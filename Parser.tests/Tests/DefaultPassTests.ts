@@ -1,7 +1,13 @@
 ﻿/// <reference path="../references.ts" />
-
+import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
+import { DefaultPass } from "./../../Corewar/Parser/DefaultPass";
+import { Parser } from "./../../Corewar/Parser/Parser";
+import { Context } from "./../../Corewar/Parser/Context";
+import { TestHelper } from "./TestHelper";
+import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
+import * as _ from "underscore";
 "use strict";
- 
+
 describe("DefaultPass",() => {
 
     it("Does not modify comments and fully qualified instructions",() => {
@@ -281,7 +287,7 @@ describe("DefaultPass",() => {
         expect(actual.tokens[1].lexeme).toBe(".F");
         expect(actual.tokens[1].position).toEqual({ line: 1, char: 1 });
     });
-    
+
     it("Defaults the modifier to AB for MOV instructions with an A mode of #",() => {
 
         var context = new Context();

@@ -1,5 +1,9 @@
 ﻿/// <reference path="../references.ts" />
-/* tslint:disable */
+import { Context } from "./../../Corewar/Parser/Context";
+import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
+import { Parser } from "./../../Corewar/Parser/Parser";
+import { PreprocessEmitter } from "./../../Corewar/Parser/PreprocessEmitter";
+import { MessageType } from "./../../Corewar/Parser/Interface/IMessage";
 
 "use strict";
 

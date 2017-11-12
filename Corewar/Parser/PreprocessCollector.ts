@@ -2,6 +2,7 @@
 import { IContext } from "./Interface/IContext";
 import { IToken, TokenCategory } from "./Interface/IToken";
 import { MessageType } from "./Interface/IMessage";
+import * as _ from "underscore";
 
 import { PassBase } from "./PassBase";
 
@@ -18,7 +19,7 @@ export class PreprocessCollector extends PassBase {
         // Record EQU label tokens
         // Remove EQU token labels from token stream
         // Duplicate label check
-        
+
         this.previous = [];
 
         return super.process(context, options);

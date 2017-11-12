@@ -1,6 +1,7 @@
 ﻿import { IToken, TokenCategory } from "./Interface/IToken";
 import { IContext } from "./Interface/IContext";
 import { IParseOptions, Standard } from "./Interface/IParseOptions";
+import * as _ from "underscore";
 
 import { PassBase } from "./PassBase";
 
@@ -10,19 +11,19 @@ export class OrgPass extends PassBase {
     private orgAddress: number;
     private orgComment: IToken;
     private org: IToken;
-    
+
     public process(context: IContext, options: IParseOptions): IContext {
 
         // Replace END ### with ORG ###
         // Emit ORG as first instruction
         // Raise warning for duplicate ORGs / END ###
         // Under ICWS'86 - if no END ### found, if start label defined, emit ORG start
-        
+
         this.firstInstruction = null;
         this.org = null;
         this.orgAddress = null;
         this.orgComment = null;
-        
+
         var result = super.process(context, options);
 
         this.emitOrg();
@@ -65,9 +66,9 @@ export class OrgPass extends PassBase {
         }
 
         var address = this.stream.expect(TokenCategory.Number);
-        
+
         this.orgAddress = parseInt(address.lexeme, 10);
-        
+
         if (this.stream.peek().category === TokenCategory.Comment) {
             this.orgComment = this.stream.read();
         }
@@ -118,7 +119,7 @@ export class OrgPass extends PassBase {
             } else {
                 this.orgAddress = 0;
             }
-            
+
             this.org = {
                 category: TokenCategory.Preprocessor,
                 lexeme: "ORG",

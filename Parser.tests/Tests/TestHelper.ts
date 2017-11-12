@@ -1,8 +1,11 @@
 ﻿/// <reference path="../references.ts" />
 
+import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
+import * as _ from "underscore";
+
 "use strict";
 
-class TestHelper {
+export class TestHelper {
 
     public static instruction(
         line: number,
@@ -154,7 +157,7 @@ class TestHelper {
                 position: { line: line, char: 1 }
             });
         }
-        
+
         result.push({
             category: TokenCategory.EOL,
             lexeme: "\n",

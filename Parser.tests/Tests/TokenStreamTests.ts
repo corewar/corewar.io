@@ -1,5 +1,6 @@
 ﻿/// <reference path="../references.ts" />
-
+import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
+import { TokenStream } from "./../../Corewar/Parser/TokenStream";
 "use strict";
 
 describe("TokenStream", () => {

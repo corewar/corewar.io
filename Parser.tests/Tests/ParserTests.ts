@@ -1,5 +1,15 @@
 ﻿/// <reference path="../references.ts" />
 
+import { IContext } from "./../../Corewar/Parser/Interface/IContext";
+import { Context } from "./../../Corewar/Parser/Context";
+import { IScanner } from "./../../Corewar/Parser/Interface/IScanner";
+import { IPass } from "./../../Corewar/Parser/Interface/IPass";
+import { Parser } from "./../../Corewar/Parser/Parser";
+import { IOptions } from "./../../Corewar/Simulator/Interface/IOptions";
+import { IMessage, MessageType } from "./../../Corewar/Parser/Interface/IMessage";
+import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
+import * as _ from "underscore";
+
 "use strict";
 
 describe("Parser",() => {
@@ -398,4 +408,4 @@ describe("Parser",() => {
 
         expect((<jasmine.Spy>scanner.scan).calls.mostRecent().args[1].standard).toBe(Standard.ICWS94draft);
     });
-}); 
+});

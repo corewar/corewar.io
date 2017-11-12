@@ -5,8 +5,9 @@ import { IContext } from "./Interface/IContext";
 import { IMessage, MessageType } from "./Interface/IMessage";
 import { IParseOptions, Standard } from "./Interface/IParseOptions";
 import { IParseResult } from "./Interface/IParseResult";
+import * as _ from "underscore";
 
-import { Parser } from "Parser";
+import { Parser } from "./Parser";
 
 export class LoadParser implements IParser {
 
@@ -63,4 +64,4 @@ export class LoadParser implements IParser {
             messages: context.messages
         };
     }
-} 
+}

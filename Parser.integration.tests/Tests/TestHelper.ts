@@ -1,11 +1,28 @@
 ﻿/// <reference path="../references.ts" />
+import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
+import { Expression } from "./../../Corewar/Parser/Expression";
+import { Parser } from "./../../Corewar/Parser/Parser";
+import { Scanner } from "./../../Corewar/Parser/Scanner";
+import { Filter } from "./../../Corewar/Parser/Filter";
+import { ForPass } from "./../../Corewar/Parser/ForPass";
+import { PreprocessCollector } from "./../../Corewar/Parser/PreprocessCollector";
+import { PreprocessAnalyser } from "./../../Corewar/Parser/PreprocessAnalyser";
+import { PreprocessEmitter } from "./../../Corewar/Parser/PreprocessEmitter";
+import { LabelCollector } from "./../../Corewar/Parser/LabelCollector";
+import { LabelEmitter } from "./../../Corewar/Parser/LabelEmitter";
+import { MathsProcessor } from "./../../Corewar/Parser/MathsProcessor";
+import { DefaultPass } from "./../../Corewar/Parser/DefaultPass";
+import { OrgPass } from "./../../Corewar/Parser/OrgPass";
+import { SyntaxCheck } from "./../../Corewar/Parser/SyntaxCheck";
+import { IllegalCommandCheck } from "./../../Corewar/Parser/IllegalcommandCheck";
+import { LoadFileSerialiser } from "./../../Corewar/Parser/LoadFileSerialiser";
 
 "use strict";
 
 class TestHelper {
 
     private static failedIndex(name: string, a: string, b: string) {
-        
+
         for (var i = 0; i < a.length; i++) {
 
             var ac = a[i];
@@ -82,4 +99,4 @@ class TestHelper {
             });
         });
     }
-} 
+}
