@@ -1,7 +1,7 @@
 ﻿/// <reference path="references.ts" />
 import { ITask } from "../Interface/ITask";
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../Interface/ICore";
-import { ILiteEvent, LiteEvent } from "../../../corewar/Corewar/modules/LiteEvent";
+import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { IWarrior } from "../Interface/IWarrior";
 import { IState } from "../Interface/IState";
 import Defaults from "../Defaults";

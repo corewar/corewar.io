@@ -5,7 +5,7 @@ import { OpcodeType, ModifierType } from "../Interface/IInstruction";
 import { ModeType } from "../Interface/IOperand";
 import Defaults from "../Defaults";
 import { IOptions } from "../Interface/IOptions";
-import { ILiteEvent, LiteEvent } from "../../../corewar/Corewar/modules/LiteEvent";
+import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { ITask } from "../Interface/ITask";
 import { Fetcher } from "../Fetcher";
 import DataHelper from "./DataHelper";

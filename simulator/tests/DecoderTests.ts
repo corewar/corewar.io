@@ -5,7 +5,7 @@ import { IInstruction } from "../Interface/IInstruction";
 import { OpcodeType, ModifierType } from "../Interface/IInstruction";
 import { IExecutive } from "../Interface/IExecutive";
 import { IExecutionContext } from "../Interface/IExecutionContext";
-import { ILiteEvent, LiteEvent } from "../../../corewar/Corewar/modules/LiteEvent";
+import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { ITask } from "../Interface/ITask";
 import Defaults from "../Defaults";
 import { IOptions } from "../Interface/IOptions";
