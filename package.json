@@ -22,11 +22,6 @@
     "jasmine": "^2.8.0",
     "jasmine-core": "^2.8.0",
     "jasmine-ts": "^0.2.1",
-    "karma": "^1.7.1",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-cli": "^1.0.1",
-    "karma-jasmine": "^1.1.0",
-    "karma-typescript": "^3.0.8",
     "nyc": "^11.3.0",
     "ts-loader": "^3.1.1",
     "typescript": "^2.6.1"
@@ -37,7 +32,6 @@
     "es6-promise": "^4.1.1",
     "fs": "0.0.1-security",
     "isomorphic-fetch": "^2.2.1",
-    "karma-coverage": "^1.1.1",
     "underscore": "^1.8.3"
   }
 }
