@@ -1,7 +1,7 @@
-﻿import { IInstructionSerialiser } from "./Interface/IInstructionSerialiser";
-import { IPoint } from "./Interface/IPoint";
+﻿import { IInstructionSerialiser } from "./interface/IInstructionSerialiser";
+import { IPoint } from "./interface/IPoint";
 
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../Simulator/Interface/ICore";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../../simulator/interface/ICore";
 
 export class CoreRenderer {
 
