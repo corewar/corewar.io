@@ -1,13 +1,13 @@
-﻿/// <reference path="../references.ts" />
+﻿/// <reference path="references.ts" />
 
-import { IContext } from "./../../Corewar/Parser/Interface/IContext";
-import { Context } from "./../../Corewar/Parser/Context";
-import { IScanner } from "./../../Corewar/Parser/Interface/IScanner";
-import { IPass } from "./../../Corewar/Parser/Interface/IPass";
-import { Parser } from "./../../Corewar/Parser/Parser";
-import { IOptions } from "./../../Corewar/Simulator/Interface/IOptions";
-import { IMessage, MessageType } from "./../../Corewar/Parser/Interface/IMessage";
-import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
+import { IContext } from "../Interface/IContext";
+import { Context } from "../Context";
+import { IScanner } from "../Interface/IScanner";
+import { IPass } from "../Interface/IPass";
+import { Parser } from "../Parser";
+import { IOptions } from "../../Simulator/Interface/IOptions";
+import { IMessage, MessageType } from "../Interface/IMessage";
+import { Standard } from "../Interface/IParseOptions";
 import * as _ from "underscore";
 
 "use strict";

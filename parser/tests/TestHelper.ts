@@ -1,6 +1,6 @@
-﻿/// <reference path="../references.ts" />
+﻿/// <reference path="references.ts" />
 
-import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
+import { IToken, TokenCategory } from "../Interface/IToken";
 import * as _ from "underscore";
 
 "use strict";

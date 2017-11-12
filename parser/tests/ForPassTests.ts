@@ -1,10 +1,10 @@
-﻿/// <reference path="../references.ts" />
-import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
-import { Context } from "./../../Corewar/Parser/Context";
-import { Parser } from "./../../Corewar/Parser/Parser";
-import { ForPass } from "./../../Corewar/Parser/ForPass";
-import { Expression } from "./../../Corewar/Parser/Expression";
-import { MessageType } from "./../../Corewar/Parser/Interface/IMessage";
+﻿/// <reference path="references.ts" />
+import { IToken, TokenCategory } from "../Interface/IToken";
+import { Context } from "../Context";
+import { Parser } from "../Parser";
+import { ForPass } from "../ForPass";
+import { Expression } from "../Expression";
+import { MessageType } from "../Interface/IMessage";
 import { TestHelper } from "./TestHelper";
 "use strict";
 

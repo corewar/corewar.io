@@ -1,9 +1,9 @@
-﻿/// <reference path="../references.ts" />
-import { Context } from "./../../Corewar/Parser/Context";
-import { MetaDataCollector } from "./../../Corewar/Parser/MetaDataCollector";
-import { Parser } from "./../../Corewar/Parser/Parser";
+﻿/// <reference path="references.ts" />
+import { Context } from "../Context";
+import { MetaDataCollector } from "../MetaDataCollector";
+import { Parser } from "../Parser";
 import { TestHelper } from "./TestHelper";
-import { MessageType } from "./../../Corewar/Parser/Interface/IMessage";
+import { MessageType } from "../Interface/IMessage";
 "use strict";
 
 describe("MetaDataCollector",() => {

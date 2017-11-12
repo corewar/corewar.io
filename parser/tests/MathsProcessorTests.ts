@@ -1,11 +1,11 @@
-﻿/// <reference path="../references.ts" />
+﻿/// <reference path="references.ts" />
 
-import { Context } from "./../../Corewar/Parser/Context";
-import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
-import { Parser } from "./../../Corewar/Parser/Parser";
-import { MathsProcessor } from "./../../Corewar/Parser/MathsProcessor";
-import { Expression } from "./../../Corewar/Parser/Expression";
-import { MessageType } from "./../../Corewar/Parser/Interface/IMessage";
+import { Context } from "../Context";
+import { IToken, TokenCategory } from "../Interface/IToken";
+import { Parser } from "../Parser";
+import { MathsProcessor } from "../MathsProcessor";
+import { Expression } from "../Expression";
+import { MessageType } from "../Interface/IMessage";
 
 describe("MathsProcessor",() => {
 

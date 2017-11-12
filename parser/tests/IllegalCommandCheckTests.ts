@@ -1,10 +1,10 @@
-﻿/// <reference path="../references.ts" />
+﻿/// <reference path="references.ts" />
 import { TestHelper } from "./TestHelper";
-import { Context } from "./../../Corewar/Parser/Context";
-import { IllegalCommandCheck } from "./../../Corewar/Parser/IllegalCommandCheck";
-import { Parser } from "./../../Corewar/Parser/Parser";
-import { MessageType } from "./../../Corewar/Parser/Interface/IMessage";
-import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
+import { Context } from "../Context";
+import { IllegalCommandCheck } from "../IllegalCommandCheck";
+import { Parser } from "../Parser";
+import { MessageType } from "../Interface/IMessage";
+import { Standard } from "../Interface/IParseOptions";
 import * as _ from "underscore";
 "use strict";
 

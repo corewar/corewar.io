@@ -1,11 +1,11 @@
-﻿/// <reference path="../references.ts" />
+﻿/// <reference path="references.ts" />
 import { TestHelper } from "./TestHelper";
-import { Context } from "./../../Corewar/Parser/Context";
-import { OrgPass } from "./../../Corewar/Parser/OrgPass";
-import { Parser } from "./../../Corewar/Parser/Parser";
-import { MessageType } from "./../../Corewar/Parser/Interface/IMessage";
-import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
-import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
+import { Context } from "..//Context";
+import { OrgPass } from "../OrgPass";
+import { Parser } from "../Parser";
+import { MessageType } from "../Interface/IMessage";
+import { IToken, TokenCategory } from "../Interface/IToken";
+import { Standard } from "../Interface/IParseOptions";
 import * as _ from "underscore";
 
 "use strict";

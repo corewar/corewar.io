@@ -1,9 +1,9 @@
-﻿/// <reference path="../references.ts" />
-import { Context } from "./../../Corewar/Parser/Context";
-import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
-import { Parser } from "./../../Corewar/Parser/Parser";
-import { PreprocessAnalyser } from "./../../Corewar/Parser/PreprocessAnalyser";
-import { MessageType } from "./../../Corewar/Parser/Interface/IMessage";
+﻿/// <reference path="references.ts" />
+import { Context } from "../Context";
+import { IToken, TokenCategory } from "../Interface/IToken";
+import { Parser } from "../Parser";
+import { PreprocessAnalyser } from "../PreprocessAnalyser";
+import { MessageType } from "../Interface/IMessage";
 
 "use strict";
 

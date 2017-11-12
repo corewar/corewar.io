@@ -1,8 +1,8 @@
-﻿/// <reference path="../references.ts" />
-import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
-import { Context } from "./../../Corewar/Parser/Context";
-import { Parser } from "./../../Corewar/Parser/Parser";
-import { Filter } from "./../../Corewar/Parser/Filter";
+﻿/// <reference path="references.ts" />
+import { IToken, TokenCategory } from "../Interface/IToken";
+import { Context } from "../Context";
+import { Parser } from "../Parser";
+import { Filter } from "../Filter";
 import { TestHelper } from "./TestHelper";
 
 "use strict";

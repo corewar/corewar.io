@@ -1,10 +1,10 @@
-﻿/// <reference path="../references.ts" />
-import { Context } from "./../../Corewar/Parser/Context";
-import { IToken, TokenCategory } from "./../../Corewar/Parser/Interface/IToken";
-import { Parser } from "./../../Corewar/Parser/Parser";
-import { Scanner } from "./../../Corewar/Parser/Scanner";
-import { PreprocessEmitter } from "./../../Corewar/Parser/PreprocessEmitter";
-import { Standard } from "./../../Corewar/Parser/Interface/IParseOptions";
+﻿/// <reference path="references.ts" />
+import { Context } from "../Context";
+import { IToken, TokenCategory } from "../Interface/IToken";
+import { Parser } from "../Parser";
+import { Scanner } from "../Scanner";
+import { PreprocessEmitter } from "../PreprocessEmitter";
+import { Standard } from "../Interface/IParseOptions";
 import * as _ from "underscore";
 "use strict";
 
