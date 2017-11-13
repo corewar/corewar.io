@@ -4,8 +4,18 @@
   "description": "HTML5 & javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)",
   "main": "index.js",
   "scripts": {
-    "test": "nyc -e .ts -x \"*.[tT]ests.ts\" jasmine-ts",
+    "test": "nyc jasmine-ts",
     "start": "webpack-dev-server --progress --colors"
+  },
+  "nyc": {
+    "exclude": [
+      "**/TestLoader.ts",
+      "**/*[tT]ests.ts",
+      "**/*[hH]elper.ts"
+    ],
+    "extension": [
+      ".ts"
+    ]
   },
   "repository": {
     "type": "git",
@@ -29,8 +39,8 @@
   "dependencies": {
     "@types/es6-promise": "0.0.33",
     "@types/isomorphic-fetch": "0.0.34",
+    "@types/node": "^8.0.51",
     "es6-promise": "^4.1.1",
-    "fs": "0.0.1-security",
     "isomorphic-fetch": "^2.2.1",
     "underscore": "^1.8.3"
   }

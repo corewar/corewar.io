@@ -1,8 +1,0 @@
-Program "Unknown" (length 3) by "Anonymous"
-
-       ORG      START
-START  SPL.B  $     2, $     0     
-       JMP.B  $    -1, $     0     
-       MOV.I  $     0, $     1     
-
-Unknown by Anonymous scores 0
