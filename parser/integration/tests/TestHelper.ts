@@ -86,7 +86,6 @@ export class TestHelper {
                 var loadfile = serialiser.serialise(result.tokens);
 
                 var actual = loadfile.trim();
-                expect(warrior.loadfile).toBeNull() === false;
                 var expected = warrior.loadfile.replace(/[\r]/g, "").trim();
 
                 if (actual !== expected) {
