@@ -1,8 +1,0 @@
-Program "Unknown" (length 3) by "Anonymous"
-
-       ORG      START
-START  JMZ.B  $     0, <    -1     
-       SPL.B  @    -2, $     0     
-       JMP.B  $    -2, $     0     
-
-Unknown by Anonymous scores 0
