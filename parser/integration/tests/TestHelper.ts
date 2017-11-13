@@ -56,7 +56,7 @@ export class TestHelper {
     public static testWarriorList(path: string, names: string[], standard: Standard, allowMessages: boolean = false) {
 
         var loader = new TestLoader();
-        loader.getWar(path, names).then((warriors) => {
+        loader.getWarriors(path, names).then((warriors) => {
 
             _(warriors).forEach((warrior) => {
 
