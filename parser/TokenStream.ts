@@ -1,7 +1,7 @@
 ﻿import { IToken, TokenCategory } from "./interface/IToken";
 import { IMessage, MessageType } from "./interface/IMessage";
 import { ITokenStream } from "./interface/ITokenStream";
-
+import * as _ from "underscore";
 import { TokenHelper } from "./TokenHelper";
 
 export class TokenStream implements ITokenStream {
