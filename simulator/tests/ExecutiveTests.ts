@@ -1,23 +1,21 @@
-﻿/// <reference path="../references.ts" />
-import { OpcodeType, ModifierType } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
-import { IInstruction } from "../../../corewar/Corewar/Simulator/Interface/IInstruction";
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../../../corewar/Corewar/Simulator/Interface/ICore";
-import Defaults from "../../../corewar/Corewar/Simulator/Defaults";
-import { IOptions } from "../../../corewar/Corewar/Simulator/Interface/IOptions";
-import { IState } from "../../../corewar/Corewar/Simulator/Interface/IState";
-import { ILiteEvent, LiteEvent } from "../../../corewar/Corewar/modules/LiteEvent";
-import { ModeType } from "../../../corewar/Corewar/Simulator/Interface/IOperand";
-import { Executive } from "../../../corewar/Corewar/Simulator/Executive";
-import { IExecutionContext } from "../../../corewar/Corewar/Simulator/Interface/IExecutionContext";
-import { ITask } from "../../../corewar/Corewar/Simulator/Interface/ITask";
-
-import { MatchersUtil, CustomEqualityTester } from "jasmine";
+﻿/// <reference path="references.ts" />
+import { OpcodeType, ModifierType } from "../interface/IInstruction";
+import { IInstruction } from "../interface/IInstruction";
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
+import Defaults from "../Defaults";
+import { IOptions } from "../interface/IOptions";
+import { IState } from "../interface/IState";
+import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
+import { ModeType } from "../Interface/IOperand";
+import { Executive } from "../Executive";
+import { IExecutionContext } from "../interface/IExecutionContext";
+import { ITask } from "../interface/ITask";
+import DataHelper from "./DataHelper";
 
 "use strict";
 
-
 declare namespace jasmine {
-    interface Matchers<T> {
+    export interface Matchers<T> {
         toEqualInstruction(expected: IInstruction): boolean;
     }
 }
@@ -74,7 +72,7 @@ describe("Executive",() => {
         };
 
         jasmine.addMatchers({
-            toEqualInstruction: (util: MatchersUtil, customEqualityTesters: Array<CustomEqualityTester>) => {
+            toEqualInstruction: () => {
                 return {
                     compare: (actual: IInstruction, expected: IInstruction) => {
 
