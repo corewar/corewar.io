@@ -9,4 +9,3 @@
 /// <reference path="decodertests.ts" />
 /// <reference path="simulatortests.ts" />
 /// <reference path="endconditiontests.ts" />
-/// <reference path="jasmine.Matchers.d.ts" />
