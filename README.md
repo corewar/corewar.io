@@ -22,5 +22,5 @@ You may need `jasmine-cli` installed globally if you don't have it already
 
 ## Getting involved
 
-We'd love you feedback, input and PR's. We're a friendly bunch, please contact us through GitHub with questions, suggestions and issues.
+We'd love your feedback, input and PR's. We're a friendly bunch, please contact us through GitHub with questions, suggestions and issues.
 
