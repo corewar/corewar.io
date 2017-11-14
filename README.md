@@ -4,7 +4,7 @@ HTML5 & javascript implementation of the classic game [corewar](https://en.wikip
 
 Currently this project contains a redcode parser and core simulator
 
-In future I hope to include a corewar IDE with debugger, an interactive core simulation and a number of hills
+In future we hope to include a corewar IDE with debugger, an interactive core simulation and a number of hills
 
 ## Getting Started
 
