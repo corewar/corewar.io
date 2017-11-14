@@ -3,6 +3,7 @@ import { IMetaData } from "./interface/IMetaData";
 import { IToken } from "./interface/IToken";
 import { IMessage } from "./interface/IMessage";
 import { IParseInstruction } from "./interface/IParseInstruction";
+import * as _ from "underscore";
 
 export class Context implements IContext {
 
