@@ -104,16 +104,11 @@ export class Startup {
 
         var coreRenderer: CoreRenderer;
 
-        window.console.log('test');
-        window.console.log(parseButton);
-
         parseButton.addEventListener("click", () => {
-            window.console.log('parse');
             prez.parse();
         });
 
         runButton.addEventListener("click",() => {
-            window.console.log('run');
             coreRenderer = new CoreRenderer(
                 canvas,
                 <HTMLParagraphElement>instructionLabel,
@@ -124,7 +119,6 @@ export class Startup {
         });
 
         stepButton.addEventListener("click", () => {
-            window.console.log('step');
             prez.step();
             coreRenderer.render();
         });
