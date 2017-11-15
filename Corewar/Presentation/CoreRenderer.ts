@@ -1,7 +1,7 @@
 ﻿import { IInstructionSerialiser } from "./interface/IInstructionSerialiser";
 import { IPoint } from "./interface/IPoint";
-
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../../simulator/interface/ICore";
+import * as _ from "underscore";
 
 export class CoreRenderer {
 

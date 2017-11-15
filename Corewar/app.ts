@@ -36,86 +36,94 @@ import { Fetcher } from "../simulator/Fetcher";
 import { Simulator } from "../simulator/Simulator";
 import { EndCondition } from "../simulator/EndCondition";
 
-import { InstructionSerialiser } from "./Presentation/InstructionSerialiser";
-import { CoreRenderer } from "./Presentation/CoreRenderer";
-import { Presenter } from "./Presentation/Presenter";
+import { InstructionSerialiser } from "./presentation/InstructionSerialiser";
+import { CoreRenderer } from "./presentation/CoreRenderer";
+import { Presenter } from "./presentation/Presenter";
 
-var redcode = document.getElementById("redcode");
-var loadfile = document.getElementById("loadfile");
-var console = document.getElementById("console");
-var standard = document.getElementById("standard");
-var parseButton = document.getElementById("parseButton");
-var runButton = document.getElementById("runButton");
-var stepButton = document.getElementById("stepButton");
-var canvas = <HTMLCanvasElement>document.getElementById("canvas");
-var instructionLabel = document.getElementById("instructionLabel");
 
-var expression = new Expression();
 
-var parser = new Parser(
-    new Scanner(),
-    new Filter(),
-    new ForPass(expression),
-    new PreprocessCollector(),
-    new PreprocessAnalyser(),
-    new PreprocessEmitter(),
-    new LabelCollector(),
-    new LabelEmitter(),
-    new MathsProcessor(expression),
-    new DefaultPass(),
-    new OrgPass(),
-    new SyntaxCheck(),
-    new IllegalCommandCheck());
+export class Startup {
+    constructor() {
 
-var core = new Core();
+        var redcode = document.getElementById("redcode");
+        var loadfile = document.getElementById("loadfile");
+        var console = document.getElementById("console");
+        var standard = document.getElementById("standard");
+        var parseButton = document.getElementById("parseButton");
+        var runButton = document.getElementById("runButton");
+        var stepButton = document.getElementById("stepButton");
+        var canvas = <HTMLCanvasElement>document.getElementById("canvas");
+        var instructionLabel = document.getElementById("instructionLabel");
 
-var loader = new Loader(
-    new Random(),
-    core,
-    new WarriorLoader(core));
+        var expression = new Expression();
 
-var fetcher = new Fetcher();
-var executive = new Executive();
-var decoder = new Decoder(executive);
+        var parser = new Parser(
+            new Scanner(),
+            new Filter(),
+            new ForPass(expression),
+            new PreprocessCollector(),
+            new PreprocessAnalyser(),
+            new PreprocessEmitter(),
+            new LabelCollector(),
+            new LabelEmitter(),
+            new MathsProcessor(expression),
+            new DefaultPass(),
+            new OrgPass(),
+            new SyntaxCheck(),
+            new IllegalCommandCheck());
 
-var simulator = new Simulator(
-    core,
-    loader,
-    fetcher,
-    decoder,
-    executive,
-    new EndCondition());
+        var core = new Core();
 
-var prez = new Presenter(
-    <HTMLTextAreaElement>redcode,
-    <HTMLTextAreaElement>loadfile,
-    <HTMLUListElement>console,
-    <HTMLSelectElement>standard,
-    parser,
-    new LoadFileSerialiser(),
-    simulator,
-    core,
-    executive);
+        var loader = new Loader(
+            new Random(),
+            core,
+            new WarriorLoader(core));
 
-var coreRenderer: CoreRenderer;
+        var fetcher = new Fetcher();
+        var executive = new Executive();
+        var decoder = new Decoder(executive);
 
-parseButton.addEventListener("click", () => {
-    prez.parse();
-});
+        var simulator = new Simulator(
+            core,
+            loader,
+            fetcher,
+            decoder,
+            executive,
+            new EndCondition());
 
-runButton.addEventListener("click",() => {
+        var prez = new Presenter(
+            <HTMLTextAreaElement>redcode,
+            <HTMLTextAreaElement>loadfile,
+            <HTMLUListElement>console,
+            <HTMLSelectElement>standard,
+            parser,
+            new LoadFileSerialiser(),
+            simulator,
+            core,
+            executive);
 
-    coreRenderer = new CoreRenderer(
-        canvas,
-        <HTMLParagraphElement>instructionLabel,
-        core,
-        new InstructionSerialiser());
-    prez.run();
-    coreRenderer.initialise();
-});
+        var coreRenderer: CoreRenderer;
 
-stepButton.addEventListener("click", () => {
-    prez.step();
+        parseButton.addEventListener("click", () => {
+            prez.parse();
+        });
 
-    coreRenderer.render();
-});
+        runButton.addEventListener("click",() => {
+            coreRenderer = new CoreRenderer(
+                canvas,
+                <HTMLParagraphElement>instructionLabel,
+                core,
+                new InstructionSerialiser());
+            prez.run();
+            coreRenderer.initialise();
+        });
+
+        stepButton.addEventListener("click", () => {
+            prez.step();
+            coreRenderer.render();
+        });
+
+    }
+}
+
+new Startup();
