@@ -6,6 +6,7 @@ import { ISimulator } from "../../simulator/interface/ISimulator";
 import { ICore } from "../../simulator/interface/ICore";
 import { IExecutive } from "../../simulator/interface/IExecutive";
 import Defaults1 from "../../simulator/Defaults";
+import * as _ from "underscore";
 
 export class Presenter {
     private redcode: HTMLTextAreaElement;

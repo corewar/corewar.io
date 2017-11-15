@@ -1,13 +1,14 @@
+var path = require('path');
+
 module.exports = {
   devtool: 'inline-source-map',
   entry: "./corewar/app.ts",
   output: {
-      path: __dirname,
+      path: path.join(__dirname, 'corewar'),
       filename: "bundle.js"
   },
   resolve: {
-    // Add `.ts` and `.tsx` as a resolvable extension.
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.js']
   },
   module: {
       loaders: [
