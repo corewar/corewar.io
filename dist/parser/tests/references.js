@@ -1,4 +1,4 @@
-﻿/// <reference path="../../corewar/references.ts" />
+/// <reference path="../../corewar/references.ts" />
 /// <reference path="defaultpasstests.ts" />
 /// <reference path="filtertests.ts" />
 /// <reference path="forpasstests.ts" />

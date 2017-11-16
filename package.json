@@ -1,11 +1,13 @@
 {
   "name": "corewar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "HTML5 & javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)",
-  "main": "index.js",
+  "main": "./dist/app.js",
+  "types": "./dist/app.d.ts",
   "scripts": {
     "test": "nyc jasmine-ts",
-    "start": "webpack-dev-server --progress --colors"
+    "start": "webpack-dev-server --progress --colors",
+    "prepublishOnly": "tsc -p ./ --outDir dist/"
   },
   "nyc": {
     "exclude": [

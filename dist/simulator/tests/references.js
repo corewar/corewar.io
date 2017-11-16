@@ -1,4 +1,3 @@
-﻿
 /// <reference path="../../corewar/references.ts" />
 /// <reference path="datahelper.ts" />
 /// <reference path="warriorloadertests.ts" />
