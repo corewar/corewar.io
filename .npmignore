@@ -1,5 +1,4 @@
 .nyc_output
-corewar
 coverage
 modules
 parser
