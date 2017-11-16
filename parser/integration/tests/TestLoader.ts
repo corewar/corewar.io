@@ -1,6 +1,5 @@
 ﻿/// <reference path="../references.ts" />
 import { ITestWarrior } from "./ITestWarrior";
-import * as fetch from 'isomorphic-fetch';
 import * as fs from "fs";
 import * as _ from "underscore";
 "use strict";
