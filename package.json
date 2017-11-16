@@ -1,9 +1,9 @@
 {
   "name": "corewar",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "HTML5 & javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)",
-  "main": "./dist/app.js",
-  "types": "./dist/app.d.ts",
+  "main": "./dist/corewar/app.js",
+  "types": "./corewar/app.d.ts",
   "scripts": {
     "test": "nyc jasmine-ts",
     "start": "webpack-dev-server --progress --colors",
