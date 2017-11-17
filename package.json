@@ -6,7 +6,7 @@
   "scripts": {
     "test": "nyc jasmine-ts",
     "start": "webpack-dev-server --progress --colors",
-    "prepublishOnly": "tsc -p ./ --outDir dist/"
+    "prepublishOnly": "webpack"
   },
   "files": [
     "**/dist/index.js",
