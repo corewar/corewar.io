@@ -9,7 +9,8 @@
     "prepublishOnly": "tsc -p ./ --outDir dist/"
   },
   "files": [
-    "**/dist/index.js"
+    "**/dist/index.js",
+    "**/dist/"
   ],
   "types": [
     "**/dist/index.d.ts"
