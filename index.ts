@@ -1,12 +1,13 @@
-﻿import { IParser } from "./parser/Interface/IParser";
-import { IParseResult } from "./parser/Interface/IParseResult";
-import { ISerialiser } from "./parser/Interface/ISerialiser";
-import { IMessage, MessageType } from "./parser/Interface/IMessage";
+﻿import { IParser } from "./parser/interface/IParser";
+import { IParseOptions } from "./parser/interface/IParseOptions";
+import { IParseResult } from "./parser/interface/IParseResult";
+import { ISerialiser } from "./parser/interface/ISerialiser";
+import { IMessage, MessageType } from "./parser/interface/IMessage";
 
-import { ISimulator } from "./simulator/Interface/ISimulator";
-import { ICore } from "./simulator/Interface/ICore";
-import { IExecutive } from "./simulator/Interface/IExecutive";
-import { OpcodeType, ModifierType } from "./simulator/Interface/IInstruction";
+import { ISimulator } from "./simulator/interface/ISimulator";
+import { ICore } from "./simulator/interface/ICore";
+import { IExecutive } from "./simulator/interface/IExecutive";
+import { OpcodeType, ModifierType } from "./simulator/interface/IInstruction";
 import Defaults from "./simulator/Defaults";
 
 import { Parser } from "./parser/Parser";
@@ -170,6 +171,10 @@ export class Api {
         //     decoder,
         //     executive,
         //     new EndCondition());
+    }
+
+    public parse(document: string, options?: IParseOptions): IParseResult {
+        return this.parser.parse(document, options);
     }
 
 }
