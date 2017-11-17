@@ -2,10 +2,13 @@ var path = require('path');
 
 module.exports = {
   devtool: 'inline-source-map',
-  entry: "./corewar/app.ts",
+  entry: "./index.ts",
   output: {
-      path: path.join(__dirname, 'corewar'),
-      filename: "bundle.js"
+      path: path.join(__dirname, 'dist'),
+      filename: "index.js",
+      library: "corewar",
+      libraryTarget: 'umd',
+      umdNamedDefine: true
   },
   resolve: {
     extensions: ['.ts', '.js']

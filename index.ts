@@ -1,12 +1,13 @@
-﻿import { IParser } from "./parser/Interface/IParser";
-import { IParseResult } from "./parser/Interface/IParseResult";
-import { ISerialiser } from "./parser/Interface/ISerialiser";
-import { IMessage, MessageType } from "./parser/Interface/IMessage";
+﻿import { IParser } from "./parser/interface/IParser";
+import { IParseOptions } from "./parser/interface/IParseOptions";
+import { IParseResult } from "./parser/interface/IParseResult";
+import { ISerialiser } from "./parser/interface/ISerialiser";
+import { IMessage, MessageType } from "./parser/interface/IMessage";
 
-import { ISimulator } from "./simulator/Interface/ISimulator";
-import { ICore } from "./simulator/Interface/ICore";
-import { IExecutive } from "./simulator/Interface/IExecutive";
-import { OpcodeType, ModifierType } from "./simulator/Interface/IInstruction";
+import { ISimulator } from "./simulator/interface/ISimulator";
+import { ICore } from "./simulator/interface/ICore";
+import { IExecutive } from "./simulator/interface/IExecutive";
+import { OpcodeType, ModifierType } from "./simulator/interface/IInstruction";
 import Defaults from "./simulator/Defaults";
 
 import { Parser } from "./parser/Parser";
@@ -130,7 +131,7 @@ import { Presenter } from "./corewar/presentation/Presenter";
 
 export class Api {
 
-    parser: IParser;
+    parser: Parser;
 
     constructor() {
         // any setup needed for the NPM package to work properly
@@ -172,6 +173,12 @@ export class Api {
         //     new EndCondition());
     }
 
+    public parse(document: string, options?: IParseOptions): IParseResult {
+        return this.parser.parse(document, options);
+    }
+
 }
 
 // exports for use in npm package
+
+export var corewar = new Api();

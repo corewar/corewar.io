@@ -1,12 +1,12 @@
 {
   "name": "corewar",
-  "version": "1.0.8",
+  "version": "0.0.14",
   "description": "HTML5 & javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)",
   "main": "./dist/index.js",
   "scripts": {
     "test": "nyc jasmine-ts",
     "start": "webpack-dev-server --progress --colors",
-    "prepublishOnly": "tsc -p ./ --outDir dist/"
+    "prepublishOnly": "webpack"
   },
   "files": [
     "**/dist/index.js",
