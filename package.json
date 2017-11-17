@@ -1,6 +1,6 @@
 {
   "name": "corewar",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "HTML5 & javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)",
   "main": "./dist/index.js",
   "scripts": {
