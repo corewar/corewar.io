@@ -1,1 +1,0 @@
-{"version":3,"file":"IOperand.js","sourceRoot":"","sources":["../../../Simulator/Interface/IOperand.ts"],"names":["ModeType"],"mappings":";IACA,WAAY,QAAQ;QAChBA,iDAASA,CAAAA;QACTA,2CAAMA,CAAAA;QACNA,iDAASA,CAAAA;QACTA,iDAASA,CAAAA;QACTA,yDAAaA,CAAAA;QACbA,yDAAaA,CAAAA;QACbA,2DAAcA,CAAAA;QACdA,2DAAcA,CAAAA;IAClBA,CAACA,EATW,gBAAQ,KAAR,gBAAQ,QASnB;IATD,IAAY,QAAQ,GAAR,gBASX,CAAA"}

@@ -130,7 +130,7 @@ import { Presenter } from "./corewar/presentation/Presenter";
 
 export class Api {
 
-    parser: IParser;
+    parser: Parser;
 
     constructor() {
         // any setup needed for the NPM package to work properly
