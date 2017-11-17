@@ -176,4 +176,4 @@ export class Api {
 
 // exports for use in npm package
 
-exports.default = Api;
+export var corewar = new Api();
