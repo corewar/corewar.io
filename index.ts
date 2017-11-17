@@ -175,3 +175,5 @@ export class Api {
 }
 
 // exports for use in npm package
+
+exports.default = Api;
