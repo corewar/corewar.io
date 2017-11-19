@@ -41,6 +41,7 @@ import { EndCondition } from "./simulator/EndCondition";
 import { InstructionSerialiser } from "./corewar/presentation/InstructionSerialiser";
 import { CoreRenderer } from "./corewar/presentation/CoreRenderer";
 import { Presenter } from "./corewar/presentation/Presenter";
+import { ILoader } from "./simulator/interface/ILoader";
 
 
 
@@ -134,6 +135,10 @@ export class Api {
 
     private parser: IParser;
     private serialiser: ISerialiser;
+    private simulator: ISimulator;
+
+    private core: ICore;
+    private executive: IExecutive;
 
     constructor() {
         // any setup needed for the NPM package to work properly
@@ -157,33 +162,51 @@ export class Api {
             new SyntaxCheck(),
             new IllegalCommandCheck());
 
-        // var core = new Core();
+        this.core = new Core();
 
-        // var loader = new Loader(
-        //     new Random(),
-        //     core,
-        //     new WarriorLoader(core));
+        var loader = new Loader(
+            new Random(),
+            this.core,
+            new WarriorLoader(this.core));
 
-        // var fetcher = new Fetcher();
-        // var executive = new Executive();
-        // var decoder = new Decoder(executive);
+        var fetcher = new Fetcher();
+        this.executive = new Executive();
+        var decoder = new Decoder(this.executive);
 
-        // var simulator = new Simulator(
-        //     core,
-        //     loader,
-        //     fetcher,
-        //     decoder,
-        //     executive,
-        //     new EndCondition());
+        this.simulator = new Simulator(
+            this.core,
+            loader,
+            fetcher,
+            decoder,
+            this.executive,
+            new EndCondition());
     }
 
-    public parse(document: string, options?: IParseOptions): IParseResult {
-        return this.parser.parse(document, options);
+    public initialiseSimulator(standardId: number, parseResult: IParseResult) {
+
+        var options = _.defaults({
+            coresize: 64,
+            standard: standardId
+        }, Defaults);
+
+        this.core.initialise(options);
+        this.executive.initialise(options);
+
+        this.simulator.initialise(options, [parseResult]);
     }
 
-    public serialise(tokens: IToken[]) : string {
-        return this.serialiser.serialise(tokens);
+    public step() : void {
+        this.simulator.step(); // change the internal state
+        // render
     }
+
+    // public parse(document: string, options?: IParseOptions): IParseResult {
+    //     return this.parser.parse(document, options);
+    // }
+
+    // public serialise(tokens: IToken[]) : string {
+    //     return this.serialiser.serialise(tokens);
+    // }
 
 }
 
