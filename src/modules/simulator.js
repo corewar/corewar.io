@@ -1,4 +1,4 @@
-//import { corewar } from "corewar";
+import { corewar } from "corewar";
 
 export const STEP = 'simulator/STEP'
 export const INIT = 'simulator/INIT'
@@ -117,7 +117,8 @@ export default (state = initialState, action) => {
 
     case INIT:
       return {
-        ...state
+        ...state,
+        core: [action.coreSize]
       }
 
     case STEP:
@@ -131,7 +132,10 @@ export default (state = initialState, action) => {
 }
 
 // actions
-export const init = () => {
+export const init = (coreSize = 100) => {
+
+  debugger;
+  corewar.simulator.init();
 
   return dispatch => {
     dispatch({
@@ -139,7 +143,8 @@ export const init = () => {
     })
 
     dispatch({
-      type: INIT
+      type: INIT,
+      coreSize
     })
   }
 }

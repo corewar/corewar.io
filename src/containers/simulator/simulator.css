@@ -13,8 +13,9 @@ textarea {
 .cell {
   display: inline-block;
   width: 49px;
-  height: 49px;
+  height: 34px;
   border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   text-align: center;
+  padding-top: 15px;
 }

@@ -11,6 +11,7 @@ import Core from './core';
 const Simulator = props => (
   <div>
     <h1>Core simulator</h1>
+    <button onClick={() => props.init(100)}>GO</button>
     <div>
       <textarea value={props.redcode} />
       <Core core={props.core} />

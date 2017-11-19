@@ -15,8 +15,9 @@ const messageTypeToString = (messageType) => {
           return 'WARNING: ';
       case 2: // MessageType.Info
           return '';
+      default:
+          return '';
   }
-  return "";
 }
 
 const Parser = props => (
