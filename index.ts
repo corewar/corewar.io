@@ -140,6 +140,8 @@ export class Api {
         // like creating the simulator and parser
         var expression = new Expression();
 
+        this.serialiser = new LoadFileSerialiser();
+
         this.parser = new Parser(
             new Scanner(),
             new Filter(),
