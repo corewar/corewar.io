@@ -1,0 +1,86 @@
+import { corewar } from "corewar";
+
+export const PARSE_REQUESTED = 'parser/INCREMENT_REQUESTED'
+export const PARSE = 'parser/INCREMENT'
+export const SET_STANDARD = 'parser/SET_STANDARD'
+
+// state
+const initialState = {
+  isParsing: false,
+  parseResult: {},
+  warrior: '',
+  standardId: 2
+}
+
+
+// reducer
+export default (state = initialState, action) => {
+  switch (action.type) {
+
+    case SET_STANDARD:
+      return {
+        ...state,
+        standardId: action.standardId
+      }
+
+    case PARSE_REQUESTED:
+      return {
+        ...state,
+        isParsing: true
+      }
+
+    case PARSE:
+      return {
+        ...state,
+        parseResult: action.result,
+        isParsing: false
+      }
+
+    default:
+      return state
+  }
+}
+
+// actions
+export const parse = (redcode) => {
+
+  let result = corewar.parser.parse(redcode);
+  const warrior = corewar.serialiser.serialise(result.tokens);
+  result.warrior = warrior;
+
+  console.log(result);
+
+  return dispatch => {
+    dispatch({
+      type: PARSE_REQUESTED
+    })
+
+    dispatch({
+      type: PARSE,
+      result
+    })
+  }
+}
+
+// export const parseAsync = () => {
+//   return dispatch => {
+//     dispatch({
+//       type: PARSE_REQUESTED
+//     })
+
+//     return setTimeout(() => {
+//       dispatch({
+//         type: PARSE
+//       })
+//     }, 3000)
+//   }
+// }
+
+export const setStandard = (standardId) => {
+  return dispatch => {
+    dispatch({
+      type: SET_STANDARD,
+      standardId
+    })
+  }
+}

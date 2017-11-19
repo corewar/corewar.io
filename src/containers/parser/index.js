@@ -1,8 +1,50 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import {
+  parse,
+  setStandard
+} from '../../modules/parser'
 
-export default () => (
+const Parser = props => (
   <div>
     <h1>Corewar - Redcode Parser</h1>
-    <p>Hello Medium!</p>
+    <div className="parser">
+      {props.isParsing && <h2>Parsing...</h2>}
+      <p>
+        <button onClick={props.parse} disabled={props.isParsing}>Parse</button>
+      </p>
+      <select defaultValue={props.standardId} onChange={e => props.setStandard(e.target.value)}>
+        <option value="0">ICWS'86</option>
+        <option value="1">ICWS'88</option>
+        <option value="2">ICWS'94-draft</option>
+      </select>
+      <textarea onChange={e => props.parse(e.target.value)}></textarea>
+      <textarea value={props.parseResult && props.parseResult.warrior}></textarea>
+      <div>
+        <ul>
+          {/* {
+            this.state.parsedRedcode &&
+            this.state.parsedRedcode.messages.map((msg) => <li key={msg}>{msg.text}</li>)
+        } */}
+        </ul>
+      </div>
+    </div>
   </div>
 )
+
+const mapStateToProps = state => ({
+  parseResult: state.parser.parseResult,
+  isParsing: state.parser.isParsing,
+  standardId: state.parser.standardId
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  parse,
+  setStandard
+}, dispatch)
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Parser)

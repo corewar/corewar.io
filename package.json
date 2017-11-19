@@ -11,7 +11,8 @@
     "react-router-redux": "next",
     "react-scripts": "1.0.17",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "typeface-roboto-slab": "0.0.44"
   },
   "scripts": {
     "start": "react-scripts start",

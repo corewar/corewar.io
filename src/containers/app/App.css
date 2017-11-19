@@ -1,26 +1,71 @@
-.App {
+
+header {
+  width: 100%;
+  height: 60px;
+  background-color: #B5F44A;
+  position: fixed;
+  top: 0;
+  padding: 0 15px;
+  font-family: 'Roboto slab';
+}
+
+header > span.logo {
+  display: inline-block;
+  width: 215px;
+  color: #fff;
+  height: 60px;
+}
+
+.logo img {
+  float: left;
+  height: 60px;
+  width: 60px;
+}
+
+nav > a {
+  color: rgba(255,255,255,1);
+  text-decoration: none;
+  font-weight: bold;
+  width: 212px;
+  padding-top: 20px;
+  height: 40px;
   text-align: center;
+  display: inline-block;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+nav > a:hover {
+  background-color: #fff;
+  color: #424a5d;
+  border-right: 3px solid #B5F44A;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.logo > h1 {
+  display: inline-block;
+  height: 100%;
+  padding-top: 5px;
+  margin: 0;
 }
 
-.App-title {
-  font-size: 1.5em;
+#sidebar {
+  background-color: #424a5d;
+  position: fixed;
+  height: 100%;
+  width: 215px;
+  top: 60px;
 }
 
-.App-intro {
-  font-size: large;
+#sidebar > nav {
+  margin-top: 100px;
 }
+
+main {
+  margin-top: 60px;
+  margin-left: 215px;
+  background: rgba(240,240,240,1);
+  min-height: 600px;
+  padding: 40px;
+}
+
 
 textarea {
   width: 500px;
