@@ -11,9 +11,10 @@ import Core from './core';
 const Simulator = props => (
   <div>
     <h1>Core simulator</h1>
-    <button onClick={() => props.init(100)}>GO</button>
+    {props.redcode && <button onClick={() => props.init(props.standardId, props.parseResult)}>Initialise Simulator</button>}
+    {props.isInitialised && <button onClick={() => props.step()}>Step</button>}
     <div>
-      <textarea value={props.redcode} />
+      <textarea value={props.redcode} readOnly="readOnly" />
       <Core core={props.core} />
     </div>
   </div>
@@ -21,7 +22,10 @@ const Simulator = props => (
 
 const mapStateToProps = state => ({
   redcode: state.parser.redcode,
-  core: state.simulator.core
+  parseResult: state.parser.parseResult,
+  standardId: state.parser.standardId,
+  core: state.simulator.core,
+  isInitialised: state.simulator.isInitialised
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

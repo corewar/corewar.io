@@ -6,108 +6,8 @@ export const INIT_REQUESTED = 'simulator/INIT_REQUESTED'
 
 // state
 const initialState = {
-  core: [
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } },
-    { addressInfo: { cmd: 'dat' } }
-  ]
+  core: {},
+  isInitialised: false
 }
 
 
@@ -118,12 +18,14 @@ export default (state = initialState, action) => {
     case INIT:
       return {
         ...state,
-        core: [action.coreSize]
+        core: action.core,
+        isInitialised: true
       }
 
     case STEP:
       return {
-        ...state
+        ...state,
+        core: action.core
       }
 
     default:
@@ -132,10 +34,9 @@ export default (state = initialState, action) => {
 }
 
 // actions
-export const init = (coreSize = 100) => {
+export const init = (standardId, parseResult) => {
 
-  debugger;
-  corewar.simulator.init();
+  corewar.initialiseSimulator(standardId, parseResult);
 
   return dispatch => {
     dispatch({
@@ -144,16 +45,19 @@ export const init = (coreSize = 100) => {
 
     dispatch({
       type: INIT,
-      coreSize
+      core: corewar.core
     })
   }
 }
 
 export const step = () => {
 
-    return dispatch => {
-      dispatch({
-        type: STEP
-      })
-    }
+  corewar.simulator.step();
+
+  return dispatch => {
+    dispatch({
+      type: STEP,
+      core: corewar.core
+    })
   }
+}

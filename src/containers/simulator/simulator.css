@@ -3,8 +3,8 @@ textarea {
 }
 
 .core {
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
   border-top: 1px solid #ccc;
   border-left: 1px solid #ccc;
   float: right;
@@ -18,4 +18,21 @@ textarea {
   border-bottom: 1px solid #ccc;
   text-align: center;
   padding-top: 15px;
+  font-size: 0.8em;
+}
+
+button {
+  border: 1px solid #ccc;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  padding: 1em;
+  font-family: 'Roboto slab';
+  min-width: 100px;
+  background-color: #fff;
+  color: #424a5d;
+}
+
+button:hover {
+  cursor: pointer;
+  border-color: #B5F44A;
 }
