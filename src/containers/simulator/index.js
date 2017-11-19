@@ -6,22 +6,21 @@ import {
   init,
   step
 } from '../../modules/simulator'
+import Core from './core';
 
 const Simulator = props => (
   <div>
     <h1>Core simulator</h1>
     <div>
-      <p>
-        <textarea value={props.redcode} />
-      </p>
-      <div>
-      </div>
+      <textarea value={props.redcode} />
+      <Core core={props.core} />
     </div>
   </div>
 )
 
 const mapStateToProps = state => ({
-  redcode: state.parser.redcode
+  redcode: state.parser.redcode,
+  core: state.simulator.core
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
