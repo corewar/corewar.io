@@ -22,7 +22,7 @@ const messageTypeToString = (messageType) => {
 const Parser = props => (
   <div>
     <h1>Redcode Parser</h1>
-    <div className="parser">
+    <div>
       {props.isParsing && <h2>Parsing...</h2>}
       <p>
         <select defaultValue={props.standardId} onChange={e => props.setStandard(e.target.value)}>

@@ -10,7 +10,7 @@ import {
 const Simulator = props => (
   <div>
     <h1>Core simulator</h1>
-    <div className="simulator">
+    <div>
       <p>
         <textarea value={props.redcode} />
       </p>
@@ -21,6 +21,7 @@ const Simulator = props => (
 )
 
 const mapStateToProps = state => ({
+  redcode: state.parser.redcode
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

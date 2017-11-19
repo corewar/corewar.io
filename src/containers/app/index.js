@@ -16,9 +16,9 @@ const App = () => (
     </header>
     <aside id="sidebar">
       <nav>
-        <NavLink to="/" exact={true} activeClassName="active">Home</NavLink>
-        <NavLink to="/parser" activeClassName="active">Parser</NavLink>
-        <NavLink to="/simulator" activeClassName="active">Simulator</NavLink>
+        <NavLink to="/" exact={true} activeClassName="home-active" className="home">Home</NavLink>
+        <NavLink to="/parser" activeClassName="parser-active" className="parser">Parser</NavLink>
+        <NavLink to="/simulator" activeClassName="simulator-active" className="simulator">Simulator</NavLink>
       </nav>
     </aside>
     <main>

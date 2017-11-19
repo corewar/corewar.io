@@ -42,7 +42,7 @@ nav > a {
   font-family: 'Roboto slab';
 }
 
-nav > a:hover, nav > .active {
+nav > a:hover {
   background-color: #fff;
   color: #424a5d;
   border-right: 3px solid #B5F44A;
@@ -81,3 +81,35 @@ main > p {
   font-size: 2em;
   line-height: 2em;
 }
+
+.home {
+  background: url('../../img/home_icon.png') no-repeat 0 7px;
+}
+
+.parser {
+  background: url('../../img/parser_icon.png') no-repeat 0 7px;
+}
+
+.simulator {
+  background: url('../../img/simulator_icon.png') no-repeat 0 7px;
+}
+
+
+.home-active, .home:hover, .home-active:hover {
+  color: #424a5d;
+  border-right: 3px solid #B5F44A;
+  background: url('../../img/home_icon_active.png') no-repeat 0 7px #fff;
+}
+
+.parser-active, .parser:hover, .parser-active:hover {
+  color: #424a5d;
+  border-right: 3px solid #B5F44A;
+  background: url('../../img/parser_icon_active.png') no-repeat 0 7px #fff;
+}
+
+.simulator-active, .simulator:hover, .simulator-active:hover {
+  color: #424a5d;
+  border-right: 3px solid #B5F44A;
+  background: url('../../img/simulator_icon_active.png') no-repeat 0 7px #fff;
+}
+
