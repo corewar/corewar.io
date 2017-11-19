@@ -1,4 +1,5 @@
 ﻿import { IParser } from "./parser/interface/IParser";
+import { IToken } from "./parser/interface/IToken";
 import { IParseOptions } from "./parser/interface/IParseOptions";
 import { IParseResult } from "./parser/interface/IParseResult";
 import { ISerialiser } from "./parser/interface/ISerialiser";
@@ -131,12 +132,15 @@ import { Presenter } from "./corewar/presentation/Presenter";
 
 export class Api {
 
-    parser: Parser;
+    private parser: IParser;
+    private serialiser: ISerialiser;
 
     constructor() {
         // any setup needed for the NPM package to work properly
         // like creating the simulator and parser
         var expression = new Expression();
+
+        this.serialiser = new LoadFileSerialiser();
 
         this.parser = new Parser(
             new Scanner(),
@@ -177,8 +181,11 @@ export class Api {
         return this.parser.parse(document, options);
     }
 
+    public serialise(tokens: IToken[]) : string {
+        return this.serialiser.serialise(tokens);
+    }
+
 }
 
 // exports for use in npm package
-
 export var corewar = new Api();
