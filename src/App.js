@@ -11,14 +11,26 @@ class App extends Component {
     super()
     this.corewar = new core.Api()
     this.state = {
-      parsedRedcode: ''
+      parsedRedcode: '',
+      warrior: '',
+      selectedStandard: 2
     };
   }
 
-  handleChange(e) {
-    const result = this.corewar.parse(e.target.value.trim());
+  handleRedcodeChange(e) {
+    const result = this.corewar.parse(e.target.value, { standard: this.state.selectedStandard});
+    const warrior = this.corewar.serialise(result.tokens);
     console.log(result);
-    this.setState({ parsedRedcode: result })
+    this.setState({
+      parsedRedcode: result,
+      warrior: warrior
+    });
+  }
+
+  handleStandardChange(e) {
+    this.setState({
+      selectedStandard: e.target.value
+    });
   }
 
   render() {
@@ -29,10 +41,14 @@ class App extends Component {
           <h1 className="App-title">Welcome to Corewar</h1>
         </header>
         <div className="parser">
-          <textarea onChange={(e) => this.handleChange(e)}></textarea>
+          <select defaultValue={2} onChange={(e) => this.handleStandardChange(e)}>
+            <option value="0">ICWS'86</option>
+            <option value="1">ICWS'88</option>
+            <option value="2">ICWS'94-draft</option>
+          </select>
+          <textarea onChange={(e) => this.handleRedcodeChange(e)}></textarea>
           <textarea value={
-              this.state.parsedRedcode &&
-              this.state.parsedRedcode.tokens.map((token) => token.lexeme)
+              this.state.warrior
             }></textarea>
           <div>
             <ul>
