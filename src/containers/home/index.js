@@ -5,9 +5,15 @@ import { connect } from 'react-redux'
 
 const Home = props => (
   <div>
-    <h1>Corewar - home</h1>
-    <p>Welcome to corewar</p>
-    <button onClick={() => props.changePage()}>Go to parser page via redux</button>
+    <h1>Home</h1>
+    <p>Welcome to corewar.js</p>
+    <p>Here would go some intro text falling into the following categories:</p>
+    <ul>
+      <li>What is corewar?</li>
+      <li>How do you play it? (on this site)</li>
+      <li>Tutorials</li>
+      <li>Hills</li>
+    </ul>
   </div>
 )
 

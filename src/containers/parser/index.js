@@ -1,6 +1,7 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import './parser.css';
 import {
   parse,
   setStandard
@@ -8,17 +9,16 @@ import {
 
 const Parser = props => (
   <div>
-    <h1>Corewar - Redcode Parser</h1>
+    <h1>Redcode Parser</h1>
     <div className="parser">
       {props.isParsing && <h2>Parsing...</h2>}
       <p>
-        <button onClick={props.parse} disabled={props.isParsing}>Parse</button>
+        <select defaultValue={props.standardId} onChange={e => props.setStandard(e.target.value)}>
+          <option value="0">ICWS'86</option>
+          <option value="1">ICWS'88</option>
+          <option value="2">ICWS'94-draft</option>
+        </select>
       </p>
-      <select defaultValue={props.standardId} onChange={e => props.setStandard(e.target.value)}>
-        <option value="0">ICWS'86</option>
-        <option value="1">ICWS'88</option>
-        <option value="2">ICWS'94-draft</option>
-      </select>
       <textarea onChange={e => props.parse(e.target.value)}></textarea>
       <textarea value={props.parseResult && props.parseResult.warrior}></textarea>
       <div>

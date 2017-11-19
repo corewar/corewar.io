@@ -1,0 +1,15 @@
+
+textarea {
+  width: 300px;
+  height: 400px;
+  border: 1px solid #ccc;
+  margin-right: 2em;
+  padding: 1em;
+}
+
+select {
+  padding: 1em;
+  border: 1px solid #ccc;
+  font-family: 'roboto slab';
+  color: #424a5d;
+}

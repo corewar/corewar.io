@@ -6,7 +6,15 @@ header {
   position: fixed;
   top: 0;
   padding: 0 15px;
+}
+
+.logo h1 {
+  color: #fff;
+}
+
+h1 {
   font-family: 'Roboto slab';
+  color: #79AEA3;
 }
 
 header > span.logo {
@@ -31,9 +39,10 @@ nav > a {
   height: 40px;
   text-align: center;
   display: inline-block;
+  font-family: 'Roboto slab';
 }
 
-nav > a:hover {
+nav > a:hover, nav > .active {
   background-color: #fff;
   color: #424a5d;
   border-right: 3px solid #B5F44A;
@@ -55,26 +64,20 @@ nav > a:hover {
 }
 
 #sidebar > nav {
-  margin-top: 100px;
+  margin-top: 80px;
 }
 
 main {
   margin-top: 60px;
   margin-left: 215px;
   background: rgba(240,240,240,1);
-  min-height: 600px;
+  min-height: 665px;
   padding: 40px;
+  color: #424a5d;
+  font-size: 16px;
 }
 
-
-textarea {
-  width: 500px;
-  height: 200px;
-  border: 1px solid #333;
-  margin: 1em;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+main > p {
+  font-size: 2em;
+  line-height: 2em;
 }

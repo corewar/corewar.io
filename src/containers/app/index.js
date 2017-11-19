@@ -1,6 +1,6 @@
 import logo from '../../logo.png';
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Route, NavLink } from 'react-router-dom'
 import './App.css';
 import Home from '../home'
 import Parser from '../parser'
@@ -15,8 +15,8 @@ const App = () => (
     </header>
     <aside id="sidebar">
       <nav>
-        <Link to="/">Home</Link>
-        <Link to="/parser">Parser</Link>
+        <NavLink to="/" exact={true} activeClassName="active">Home</NavLink>
+        <NavLink to="/parser" activeClassName="active">Parser</NavLink>
       </nav>
     </aside>
     <main>
