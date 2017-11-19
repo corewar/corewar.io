@@ -1,0 +1,21 @@
+textarea {
+  display: inline-block;
+}
+
+.core {
+  width: 500px;
+  height: 500px;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  float: right;
+}
+
+.cell {
+  display: inline-block;
+  width: 49px;
+  height: 34px;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  padding-top: 15px;
+}
