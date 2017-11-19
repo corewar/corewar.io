@@ -43,6 +43,7 @@ import { CoreRenderer } from "./corewar/presentation/CoreRenderer";
 import { Presenter } from "./corewar/presentation/Presenter";
 import { ILoader } from "./simulator/interface/ILoader";
 
+import * as _ from "underscore";
 
 
 // export class Startup {
