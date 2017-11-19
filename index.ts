@@ -133,9 +133,9 @@ import { ILoader } from "./simulator/interface/ILoader";
 
 export class Api {
 
-    private parser: IParser;
-    private serialiser: ISerialiser;
-    private simulator: ISimulator;
+    parser: IParser;
+    serialiser: ISerialiser;
+    simulator: ISimulator;
 
     private core: ICore;
     private executive: IExecutive;
