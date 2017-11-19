@@ -7,9 +7,13 @@ export const SET_STANDARD = 'parser/SET_STANDARD'
 // state
 const initialState = {
   isParsing: false,
-  parseResult: {},
+  parseResult: {
+    messages: [],
+    tokens: []
+  },
   warrior: '',
-  standardId: 2
+  standardId: 2,
+  redcode: ''
 }
 
 
@@ -33,6 +37,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         parseResult: action.result,
+        redcode: action.redcode,
         isParsing: false
       }
 
@@ -57,7 +62,8 @@ export const parse = (redcode) => {
 
     dispatch({
       type: PARSE,
-      result
+      result,
+      redcode
     })
   }
 }

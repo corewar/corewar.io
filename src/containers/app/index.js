@@ -4,6 +4,7 @@ import { Route, NavLink } from 'react-router-dom'
 import './App.css';
 import Home from '../home'
 import Parser from '../parser'
+import Simulator from '../simulator'
 
 const App = () => (
   <div>
@@ -17,11 +18,13 @@ const App = () => (
       <nav>
         <NavLink to="/" exact={true} activeClassName="active">Home</NavLink>
         <NavLink to="/parser" activeClassName="active">Parser</NavLink>
+        <NavLink to="/simulator" activeClassName="active">Simulator</NavLink>
       </nav>
     </aside>
     <main>
       <Route exact path="/" component={Home} />
       <Route exact path="/parser" component={Parser} />
+      <Route exact path="/simulator" component={Simulator} />
     </main>
   </div>
 )

@@ -13,3 +13,18 @@ select {
   font-family: 'roboto slab';
   color: #424a5d;
 }
+
+.errors {
+  display: inline-block;
+  height: 400px;
+  padding: 1em;
+}
+
+.errors ul {
+  float: right;
+  margin-right: 2em;
+}
+
+.errors ul > li {
+  list-style: none;
+}

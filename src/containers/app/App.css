@@ -34,10 +34,10 @@ nav > a {
   color: rgba(255,255,255,1);
   text-decoration: none;
   font-weight: bold;
-  width: 212px;
+  width: 162px;
   padding-top: 20px;
   height: 40px;
-  text-align: center;
+  padding-left: 50px;
   display: inline-block;
   font-family: 'Roboto slab';
 }
