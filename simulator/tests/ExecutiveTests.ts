@@ -14,12 +14,6 @@ import DataHelper from "./DataHelper";
 
 "use strict";
 
-declare namespace jasmine {
-    export interface Matchers<T> {
-        toEqualInstruction(expected: IInstruction): boolean;
-    }
-}
-
 describe("Executive",() => {
 
     var state: IState;
