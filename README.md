@@ -1,18 +1,44 @@
-# Coreware
+# Corewar
 
-HTML5 & javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)
+Typescript / Javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)
 
-Currently this project contains a redcode parser and core simulator
+Currently this project contains a redcode parser and core simulator.
 
-In future we hope to include a corewar IDE with debugger, an interactive core simulation and a number of hills
+In future we hope to include a corewar IDE with debugger, an interactive core simulation and a number of hills. The UI will be provided from this project https://github.com/gareththegeek/corewar-ui
 
 ## Getting Started
 
-Clone the repo, `npm install` to get the dependencies.
+This project is published to NPM where it is intended to be used as a dependency for UI based projects who wish to use the corewar parser and simulator functionality.
 
-You may need `webpack-dev-server` installed globally if you don't have it already.
+To add it to your UI project, `npm install corewar` and then consume it via an import / require:
 
-Run `npm start` to fire up the dev server and navigate to `http://localhost:8080/corewar`
+`import { corewar } from 'corewar';`
+
+The corewar variable will initialise a new instance of the Api class ready for use.
+
+## API
+
+At the moment, the API exposed is still in flux, we anticipate the following endpoints.
+
+### parse(document: string, options?: IParseOptions): IParseResult
+
+Parse a redcode document and return an IParse result which consists of the tokenised program and any associated messages.
+
+### initialiseSimulator(standardId: number, parseResult: IParseResult)
+
+Setup the simulator for a specific standard and parseResult (parsed redcode)
+
+### step()
+
+Step the simulator forward one cycle
+
+### run()
+
+Run the simulator to the end of the match
+
+## Events
+
+Beyond the main API, we envisage access to the Core object being provided via event subscription. These events have not yet been decided upon or setup.
 
 ## Testing
 
