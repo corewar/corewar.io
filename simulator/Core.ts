@@ -4,7 +4,7 @@ import { IOptions } from "./interface/IOptions";
 import { IInstruction } from "./interface/IInstruction";
 import { ITask } from "./interface/ITask";
 import * as _ from "underscore";
-import PubSub from 'pubsub-js';
+import * as PubSub from 'pubsub-js';
 
 export class Core implements ICore {
 
