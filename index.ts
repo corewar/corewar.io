@@ -185,7 +185,7 @@ export class Api {
         this.instructionSerialiser = new InstructionSerialiser();
     }
 
-    public initialiseSimulator(standardId: number, parseResult: IParseResult) {
+    public initialiseSimulator(standardId: number, parseResult: IParseResult, messageProvider: any) {
 
         var options = _.defaults({
             coresize: 64,
@@ -193,6 +193,9 @@ export class Api {
         }, Defaults);
 
         this.core.initialise(options);
+
+        this.core.setMessageProvider(messageProvider);
+
         this.executive.initialise(options);
 
         this.simulator.initialise(options, [parseResult]);

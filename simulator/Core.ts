@@ -18,8 +18,7 @@ export class Core implements ICore {
 
     private cs: number;
 
-    constructor(pubSubProvider: any) {
-        this.pubSubProvider = pubSubProvider;
+    constructor() {
         this._coreAccess = new LiteEvent<ICoreAccessEventArgs>();
     }
 
@@ -29,6 +28,10 @@ export class Core implements ICore {
         this.cs = this.options.coresize;
 
         this.allocateMemory();
+    }
+
+    public setMessageProvider(pubSubProvider: any) {
+        this.pubSubProvider = pubSubProvider;
     }
 
     public getSize(): number {
@@ -51,11 +54,13 @@ export class Core implements ICore {
             address: address
         });
 
-        this.pubSubProvider.publish('CORE_ACCESS', {
-            task: task,
-            accessType: accessType,
-            address: address
-        });
+        if(this.pubSubProvider) {
+            this.pubSubProvider.publish('CORE_ACCESS', {
+                task: task,
+                accessType: accessType,
+                address: address
+            });
+        }
 
         this._coreAccess.trigger({
             task: task,
