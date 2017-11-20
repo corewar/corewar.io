@@ -4,11 +4,11 @@ import { IOptions } from "./interface/IOptions";
 import { IInstruction } from "./interface/IInstruction";
 import { ITask } from "./interface/ITask";
 import * as _ from "underscore";
-import * as PubSub from 'pubsub-js';
 
 export class Core implements ICore {
 
     private _coreAccess: LiteEvent<ICoreAccessEventArgs>;
+    private pubSubProvider: any;
     public get coreAccess(): ILiteEvent<ICoreAccessEventArgs> {
         return this._coreAccess;
     }
@@ -18,8 +18,8 @@ export class Core implements ICore {
 
     private cs: number;
 
-    constructor() {
-
+    constructor(pubSubProvider: any) {
+        this.pubSubProvider = pubSubProvider;
         this._coreAccess = new LiteEvent<ICoreAccessEventArgs>();
     }
 
@@ -45,7 +45,13 @@ export class Core implements ICore {
 
     private triggerEvent(task: ITask, address: number, accessType: CoreAccessType) {
 
-        PubSub.publish('CORE_ACCESS', {
+        console.log('publish', {
+            task: task,
+            accessType: accessType,
+            address: address
+        });
+
+        this.pubSubProvider.publish('CORE_ACCESS', {
             task: task,
             accessType: accessType,
             address: address
