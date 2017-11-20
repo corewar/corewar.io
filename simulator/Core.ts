@@ -4,6 +4,7 @@ import { IOptions } from "./interface/IOptions";
 import { IInstruction } from "./interface/IInstruction";
 import { ITask } from "./interface/ITask";
 import * as _ from "underscore";
+import PubSub from 'pubsub-js';
 
 export class Core implements ICore {
 
@@ -43,6 +44,12 @@ export class Core implements ICore {
     }
 
     private triggerEvent(task: ITask, address: number, accessType: CoreAccessType) {
+
+        PubSub.publish('CORE_ACCESS', {
+            task: task,
+            accessType: accessType,
+            address: address
+        });
 
         this._coreAccess.trigger({
             task: task,
