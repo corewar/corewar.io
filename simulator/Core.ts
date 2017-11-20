@@ -48,12 +48,6 @@ export class Core implements ICore {
 
     private triggerEvent(task: ITask, address: number, accessType: CoreAccessType) {
 
-        console.log('publish', {
-            task: task,
-            accessType: accessType,
-            address: address
-        });
-
         if(this.pubSubProvider) {
             this.pubSubProvider.publish('CORE_ACCESS', {
                 task: task,
