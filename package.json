@@ -31,8 +31,10 @@
   },
   "author": "Gareth Williams",
   "contributors": [
-    "name": "Doug McDonald"
-  ],  
+    {
+      "name": "Doug McDonald"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/gareththegeek/corewar/issues"
