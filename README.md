@@ -1,3 +1,5 @@
+![Corwar](https://github.com/gareththegeek/corewar/blob/master/corewarg.png)
+
 # Corewar
 
 Typescript / Javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)
