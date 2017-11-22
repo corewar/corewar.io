@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "author": "Gareth Williams",
+  "contributors": [
+    "name": "Doug McDonald"
+  ]
   "license": "MIT",    
   "dependencies": {
     "chai": "^4.1.2",
