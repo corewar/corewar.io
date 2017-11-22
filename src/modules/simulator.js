@@ -9,8 +9,9 @@ export const RENDER_CORE = 'simulator/RENDER_CORE'
 
 // state
 const initialState = {
-  core: {},
-  visualCore: [],
+  core: [],
+  coreAccess: [],
+  taskExcution: [],
   isInitialised: false,
   queue: []
 }
@@ -24,6 +25,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         core: action.core,
+        coreAccess: action.coreAccess,
+        taskExcution: action.taskExcution,
         isInitialised: true
       }
 
@@ -57,10 +60,20 @@ const insertItem = (array, action) => {
   return newArray;
 }
 
+const mapStateToExecution = (state) => {
+
+
+
+
+};
+
 // actions
 export const init = (standardId, parseResult) => {
 
-  corewar.initialiseSimulator(standardId, parseResult, PubSub);
+  const simulatorState = corewar.initialiseSimulator(standardId, parseResult, PubSub);
+
+  const coreAccess = new Array(simulatorState.core.instructions.length);
+  const taskExecution = new Array(simulatorState.core.instructions.length);
 
   return dispatch => {
 
@@ -77,7 +90,9 @@ export const init = (standardId, parseResult) => {
 
     dispatch({
       type: INIT,
-      core: corewar.core
+      core: simulatorState.core,
+      coreAccess: coreAccess,
+      taskExcution: taskExecution
     })
   }
 }
@@ -86,10 +101,14 @@ export const step = () => {
 
   corewar.simulator.step();
 
+  const state = corewar.simulator.getState();
+
+  const taskExcution = mapStateToExecution(state);
+
   return dispatch => {
     dispatch({
       type: STEP,
-      core: corewar.core
+      taskExcution: taskExcution
     })
   }
 }
