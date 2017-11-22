@@ -9,7 +9,6 @@ import {
 import Core from './core';
 
 const Simulator = props => {
-  console.log(props);
   return <div>
     <h1>Core simulator</h1>
     {props.redcode && <button onClick={() => props.init(props.standardId, props.parseResult)}>Initialise Simulator</button>}
