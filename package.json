@@ -4,7 +4,9 @@
   "private": true,
   "author": "Gareth Williams",
   "contributors": [
-    "name": "Doug McDonald"
+    {
+      "name": "Doug McDonald"
+    }
   ]
   "license": "MIT",    
   "dependencies": {
