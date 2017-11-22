@@ -8,8 +8,6 @@ export class Warrior implements IWarrior {
     public author: string;
     public strategy: string;
 
-    public instructions: IInstruction[];
-
     public taskIndex: number;
     public tasks: ITask[];
 
@@ -19,7 +17,6 @@ export class Warrior implements IWarrior {
         this.name = "";
         this.author = "";
         this.strategy = "";
-        this.instructions = [];
         this.taskIndex = 0;
         this.tasks = [];
         this.startAddress = 0;
