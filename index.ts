@@ -112,6 +112,7 @@ class Api {
 
         this.executive.initialise(options);
 
+        //TODO: This only handles one warrior
         this.simulator.initialise(options, [parseResult]);
 
         return this.simulator.getState();
