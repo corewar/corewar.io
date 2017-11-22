@@ -15,7 +15,7 @@ const Simulator = props => (
     {props.isInitialised && <button onClick={() => props.step()}>Step</button>}
     <div>
       <textarea value={props.redcode} readOnly="readOnly" />
-      <Core core={props.core} />
+      <Core queue={props.queue} />
     </div>
   </div>
 )
@@ -25,6 +25,7 @@ const mapStateToProps = state => ({
   parseResult: state.parser.parseResult,
   standardId: state.parser.standardId,
   core: state.simulator.core,
+  queue: state.simulator.queue,
   isInitialised: state.simulator.isInitialised
 })
 
