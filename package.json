@@ -7,7 +7,7 @@
     {
       "name": "Doug McDonald"
     }
-  ]
+  ],
   "license": "MIT",    
   "dependencies": {
     "chai": "^4.1.2",
