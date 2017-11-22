@@ -75,4 +75,8 @@ export class Simulator implements ISimulator {
 
         return this.endCondition.check(this.state);
     }
+
+    public getState() : IState {
+        return this.state;
+    }
 }

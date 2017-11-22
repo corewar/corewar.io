@@ -44,6 +44,7 @@ import { Presenter } from "./corewar/presentation/Presenter";
 import { ILoader } from "./simulator/interface/ILoader";
 
 import * as _ from "underscore";
+import { IState } from "./simulator/interface/IState";
 
 class Api {
 
@@ -98,7 +99,7 @@ class Api {
         this.instructionSerialiser = new InstructionSerialiser();
     }
 
-    public initialiseSimulator(standardId: number, parseResult: IParseResult, messageProvider: any) {
+    public initialiseSimulator(standardId: number, parseResult: IParseResult, messageProvider: any) : IState {
 
         var options = _.defaults({
             coresize: 64,
@@ -112,6 +113,8 @@ class Api {
         this.executive.initialise(options);
 
         this.simulator.initialise(options, [parseResult]);
+
+        return this.simulator.getState();
     }
 
     public step() : void {
