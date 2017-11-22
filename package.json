@@ -29,8 +29,8 @@
     "type": "git",
     "url": "git+https://github.com/gareththegeek/corewar.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Gareth Williams",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/gareththegeek/corewar/issues"
   },
