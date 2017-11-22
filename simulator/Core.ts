@@ -8,6 +8,7 @@ import * as _ from "underscore";
 export class Core implements ICore {
 
     private _coreAccess: LiteEvent<ICoreAccessEventArgs>;
+    private pubSubProvider: any;
     public get coreAccess(): ILiteEvent<ICoreAccessEventArgs> {
         return this._coreAccess;
     }
@@ -18,7 +19,6 @@ export class Core implements ICore {
     private cs: number;
 
     constructor() {
-
         this._coreAccess = new LiteEvent<ICoreAccessEventArgs>();
     }
 
@@ -28,6 +28,10 @@ export class Core implements ICore {
         this.cs = this.options.coresize;
 
         this.allocateMemory();
+    }
+
+    public setMessageProvider(pubSubProvider: any) {
+        this.pubSubProvider = pubSubProvider;
     }
 
     public getSize(): number {
@@ -43,6 +47,14 @@ export class Core implements ICore {
     }
 
     private triggerEvent(task: ITask, address: number, accessType: CoreAccessType) {
+
+        if(this.pubSubProvider) {
+            this.pubSubProvider.publish('CORE_ACCESS', {
+                task: task,
+                accessType: accessType,
+                address: address
+            });
+        }
 
         this._coreAccess.trigger({
             task: task,

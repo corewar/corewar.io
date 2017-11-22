@@ -1,6 +1,6 @@
 {
   "name": "corewar",
-  "version": "0.0.19",
+  "version": "0.0.24",
   "description": "HTML5 & javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)",
   "main": "./dist/index.js",
   "scripts": {
@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "@types/node": "^8.0.51",
+    "pubsub-js": "^1.5.7",
     "underscore": "^1.8.3"
   }
 }
