@@ -27,7 +27,7 @@ const mapStateToProps = state => ({
   standardId: state.parser.standardId,
   core: state.simulator.core,
   coreAccess: state.simulator.coreAccess,
-  taskExcution: state.simulator.taskExcution,
+  taskExecution: state.simulator.taskExecution,
   isInitialised: state.simulator.isInitialised
 })
 

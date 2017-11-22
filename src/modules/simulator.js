@@ -11,9 +11,8 @@ export const RENDER_CORE = 'simulator/RENDER_CORE'
 const initialState = {
   core: [],
   coreAccess: [],
-  taskExcution: [],
+  taskExecution: [],
   isInitialised: false,
-  queue: []
 }
 
 
@@ -33,38 +32,40 @@ export default (state = initialState, action) => {
     case STEP:
       return {
         ...state,
-        core: action.core
+        taskExecution: action.taskExecution
       }
 
     case CORE_ACCESS:
-      console.log(action.data);
-      state.queue.push(action.data); // TODO: immutable
-      insertItem
       return {
         ...state,
-        queue: insertItem(state.queue, action)
+        coreAccess: updateItem(action.data.address, state.coreAccess, action.data)
       }
-
-      //   //state.queue.push(action.data);
-
-      // console.log(state.visualCore);
 
     default:
       return state
   }
 }
 
-const insertItem = (array, action) => {
+const updateItem = (index, array, item) => {
+  const newArray = array.slice();
+  newArray[index] = item;
+  return newArray;
+}
+
+const insertItem = (index, array, item) => {
   let newArray = array.slice();
-  newArray.splice(0, 0, action.data);
+  newArray.splice(index, 0, item);
   return newArray;
 }
 
 const mapStateToExecution = (state) => {
-
-
-
-
+  //TODO: Decide whether this is mapped here or in components
+  state.map((state) => {
+    return {
+      warriorIndex: state.warriorIndex,
+      warriors: state.warriors,
+    }
+  });
 };
 
 // actions
@@ -92,7 +93,7 @@ export const init = (standardId, parseResult) => {
       type: INIT,
       core: simulatorState.core,
       coreAccess: coreAccess,
-      taskExcution: taskExecution
+      taskExecution: taskExecution
     })
   }
 }
@@ -103,12 +104,12 @@ export const step = () => {
 
   const state = corewar.simulator.getState();
 
-  const taskExcution = mapStateToExecution(state);
+  //const taskExecution = mapStateToExecution(state);
 
   return dispatch => {
     dispatch({
       type: STEP,
-      taskExcution: taskExcution
+      taskExecution: state
     })
   }
 }
