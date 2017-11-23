@@ -44,95 +44,9 @@ import { Presenter } from "./corewar/presentation/Presenter";
 import { ILoader } from "./simulator/interface/ILoader";
 
 import * as _ from "underscore";
+import { IState } from "./simulator/interface/IState";
 
-
-// export class Startup {
-//     constructor() {
-
-//         var redcode = document.getElementById("redcode");
-//         var loadfile = document.getElementById("loadfile");
-//         var console = document.getElementById("console");
-//         var standard = document.getElementById("standard");
-//         var parseButton = document.getElementById("parseButton");
-//         var runButton = document.getElementById("runButton");
-//         var stepButton = document.getElementById("stepButton");
-//         var canvas = <HTMLCanvasElement>document.getElementById("canvas");
-//         var instructionLabel = document.getElementById("instructionLabel");
-
-//         var expression = new Expression();
-
-//         var parser = new Parser(
-//             new Scanner(),
-//             new Filter(),
-//             new ForPass(expression),
-//             new PreprocessCollector(),
-//             new PreprocessAnalyser(),
-//             new PreprocessEmitter(),
-//             new LabelCollector(),
-//             new LabelEmitter(),
-//             new MathsProcessor(expression),
-//             new DefaultPass(),
-//             new OrgPass(),
-//             new SyntaxCheck(),
-//             new IllegalCommandCheck());
-
-//         var core = new Core();
-
-//         var loader = new Loader(
-//             new Random(),
-//             core,
-//             new WarriorLoader(core));
-
-//         var fetcher = new Fetcher();
-//         var executive = new Executive();
-//         var decoder = new Decoder(executive);
-
-//         var simulator = new Simulator(
-//             core,
-//             loader,
-//             fetcher,
-//             decoder,
-//             executive,
-//             new EndCondition());
-
-//         var prez = new Presenter(
-//             <HTMLTextAreaElement>redcode,
-//             <HTMLTextAreaElement>loadfile,
-//             <HTMLUListElement>console,
-//             <HTMLSelectElement>standard,
-//             parser,
-//             new LoadFileSerialiser(),
-//             simulator,
-//             core,
-//             executive);
-
-//         var coreRenderer: CoreRenderer;
-
-//         parseButton.addEventListener("click", () => {
-//             prez.parse();
-//         });
-
-//         runButton.addEventListener("click",() => {
-//             coreRenderer = new CoreRenderer(
-//                 canvas,
-//                 <HTMLParagraphElement>instructionLabel,
-//                 core,
-//                 new InstructionSerialiser());
-//             prez.run();
-//             coreRenderer.initialise();
-//         });
-
-//         stepButton.addEventListener("click", () => {
-//             prez.step();
-//             coreRenderer.render();
-//         });
-
-//     }
-// }
-
-// new Startup();
-
-export class Api {
+class Api {
 
     parser: IParser;
     serialiser: ISerialiser;
@@ -185,7 +99,7 @@ export class Api {
         this.instructionSerialiser = new InstructionSerialiser();
     }
 
-    public initialiseSimulator(standardId: number, parseResult: IParseResult, messageProvider: any) {
+    public initialiseSimulator(standardId: number, parseResult: IParseResult, messageProvider: any) : IState {
 
         var options = _.defaults({
             coresize: 64,
@@ -198,7 +112,10 @@ export class Api {
 
         this.executive.initialise(options);
 
+        //TODO: This only handles one warrior
         this.simulator.initialise(options, [parseResult]);
+
+        return this.simulator.getState();
     }
 
     public step() : void {
