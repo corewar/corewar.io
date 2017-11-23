@@ -8,24 +8,26 @@ import {
 } from '../../modules/simulator'
 import Core from './core';
 
-const Simulator = props => (
-  <div>
+const Simulator = props => {
+  console.log(props);
+  return <div>
     <h1>Core simulator</h1>
     {props.redcode && <button onClick={() => props.init(props.standardId, props.parseResult)}>Initialise Simulator</button>}
     {props.isInitialised && <button onClick={() => props.step()}>Step</button>}
     <div>
       <textarea value={props.redcode} readOnly="readOnly" />
-      <Core queue={props.queue} />
+      <Core data={props.core.instructions} />
     </div>
   </div>
-)
+}
 
 const mapStateToProps = state => ({
   redcode: state.parser.redcode,
   parseResult: state.parser.parseResult,
   standardId: state.parser.standardId,
   core: state.simulator.core,
-  queue: state.simulator.queue,
+  coreAccess: state.simulator.coreAccess,
+  taskExecution: state.simulator.taskExecution,
   isInitialised: state.simulator.isInitialised
 })
 
