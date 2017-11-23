@@ -48,7 +48,7 @@ export default (state = initialState, action) => {
 
 const updateItem = (index, array, item) => {
   const newArray = array.slice();
-  newArray[index] = item;
+  newArray[index] = coreAccessToCell(item);
   return newArray;
 }
 
@@ -58,7 +58,47 @@ const insertItem = (index, array, item) => {
   return newArray;
 }
 
+const accessTypeToIcon = (accessType) => {
+  switch(accessType) {
+    case 0:
+     return {
+       name: 'R',
+       path: ''
+     }
+    case 1:
+     return {
+       name: 'W',
+       path: ''
+     }
+    default:
+     return {
+       name: '&#9785;',
+       path: ''
+     }
+  }
+}
+
+const coreAccessToCell = (coreAccess) => {
+  const icon = accessTypeToIcon(coreAccess.accessType);
+  return {
+    address: coreAccess.address,
+    label: icon.name,
+    icon: icon.icon,
+    colour: ''
+  };
+};
+
+const defaultCell = {
+	  address: 0,
+	  label: '-',
+	  colour: 'default',
+    icon: ''
+};
+
 const mapStateToExecution = (state) => {
+
+
+  debugger;
   //TODO: Decide whether this is mapped here or in components
   state.map((state) => {
     return {
@@ -68,18 +108,31 @@ const mapStateToExecution = (state) => {
   });
 };
 
+const mapCoreToUi = (instructions) => {
+
+  return instructions.map(cell => (
+    {
+      address: cell.address,
+      label: corewar.instructionSerialiser.serialise(cell),
+      color: 'default',
+      icon: 'none'
+    }
+  ));
+
+};
+
 // actions
 export const init = (standardId, parseResult) => {
 
   const simulatorState = corewar.initialiseSimulator(standardId, parseResult, PubSub);
 
   const coreAccess = new Array(simulatorState.core.instructions.length);
+  coreAccess.fill(defaultCell, 0, coreAccess.length)
   const taskExecution = new Array(simulatorState.core.instructions.length);
 
   return dispatch => {
 
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
-      console.log("test" + data)
       dispatch({
           type: CORE_ACCESS,
           data
@@ -92,7 +145,7 @@ export const init = (standardId, parseResult) => {
 
     dispatch({
       type: INIT,
-      core: simulatorState.core,
+      core: mapCoreToUi(simulatorState.core.instructions),
       coreAccess: coreAccess,
       taskExecution: taskExecution
     })
