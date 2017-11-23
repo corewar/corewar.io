@@ -159,40 +159,40 @@ export class Executive implements IExecutive {
 
     private mov_a(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.aOperand.address = aInstruction.aOperand.address;
     }
 
     private mov_b(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.bOperand.address = aInstruction.bOperand.address;
     }
 
     private mov_ab(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.bOperand.address = aInstruction.aOperand.address;
     }
 
     private mov_ba(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.aOperand.address = aInstruction.bOperand.address;
     }
 
     private mov_f(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.aOperand.address = aInstruction.aOperand.address;
         bInstruction.bOperand.address = aInstruction.bOperand.address;
@@ -200,8 +200,8 @@ export class Executive implements IExecutive {
 
     private mov_x(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.aOperand.address = aInstruction.bOperand.address;
         bInstruction.bOperand.address = aInstruction.aOperand.address;
@@ -209,7 +209,7 @@ export class Executive implements IExecutive {
 
     private mov_i(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
         var bInstruction: IInstruction = {
             address: context.bPointer,
             opcode: aInstruction.opcode,
@@ -228,8 +228,8 @@ export class Executive implements IExecutive {
 
     private add_a(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.aOperand.address = context.core.wrap(
                 aInstruction.aOperand.address + bInstruction.aOperand.address
@@ -238,8 +238,8 @@ export class Executive implements IExecutive {
 
     private add_b(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.bOperand.address = context.core.wrap(
                 aInstruction.bOperand.address + bInstruction.bOperand.address
@@ -248,8 +248,8 @@ export class Executive implements IExecutive {
 
     private add_ab(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.bOperand.address = context.core.wrap(
                 aInstruction.aOperand.address + bInstruction.bOperand.address
@@ -258,8 +258,8 @@ export class Executive implements IExecutive {
 
     private add_ba(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.aOperand.address = context.core.wrap(
                 aInstruction.bOperand.address + bInstruction.aOperand.address
@@ -268,8 +268,8 @@ export class Executive implements IExecutive {
 
     private add_f(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.aOperand.address = context.core.wrap(
                 aInstruction.aOperand.address + bInstruction.aOperand.address
@@ -281,8 +281,8 @@ export class Executive implements IExecutive {
 
     private add_x(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.aOperand.address = context.core.wrap(
                 aInstruction.bOperand.address + bInstruction.aOperand.address
@@ -294,8 +294,8 @@ export class Executive implements IExecutive {
 
     private sub_a(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.aOperand.address = context.core.wrap(
                 bInstruction.aOperand.address - aInstruction.aOperand.address
@@ -304,8 +304,8 @@ export class Executive implements IExecutive {
 
     private sub_b(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.bOperand.address = context.core.wrap(
                 bInstruction.bOperand.address - aInstruction.bOperand.address
@@ -314,8 +314,8 @@ export class Executive implements IExecutive {
 
     private sub_ab(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.bOperand.address = context.core.wrap(
                 bInstruction.bOperand.address - aInstruction.aOperand.address
@@ -324,8 +324,8 @@ export class Executive implements IExecutive {
 
     private sub_ba(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.aOperand.address = context.core.wrap(
                 bInstruction.aOperand.address - aInstruction.bOperand.address
@@ -334,8 +334,8 @@ export class Executive implements IExecutive {
 
     private sub_f(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.aOperand.address = context.core.wrap(
                 bInstruction.aOperand.address - aInstruction.aOperand.address
@@ -347,8 +347,8 @@ export class Executive implements IExecutive {
 
     private sub_x(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.aOperand.address = context.core.wrap(
                 bInstruction.aOperand.address - aInstruction.bOperand.address
@@ -360,8 +360,8 @@ export class Executive implements IExecutive {
 
     private mul_a(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.aOperand.address = context.core.wrap(
                 aInstruction.aOperand.address * bInstruction.aOperand.address
@@ -370,8 +370,8 @@ export class Executive implements IExecutive {
 
     private mul_b(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.bOperand.address = context.core.wrap(
                 aInstruction.bOperand.address * bInstruction.bOperand.address
@@ -380,8 +380,8 @@ export class Executive implements IExecutive {
 
     private mul_ab(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.bOperand.address = context.core.wrap(
                 aInstruction.aOperand.address * bInstruction.bOperand.address
@@ -390,8 +390,8 @@ export class Executive implements IExecutive {
 
     private mul_ba(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.aOperand.address = context.core.wrap(
                 aInstruction.bOperand.address * bInstruction.aOperand.address
@@ -400,8 +400,8 @@ export class Executive implements IExecutive {
 
     private mul_f(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.aOperand.address = context.core.wrap(
                 aInstruction.aOperand.address * bInstruction.aOperand.address
@@ -413,8 +413,8 @@ export class Executive implements IExecutive {
 
     private mul_x(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         bInstruction.aOperand.address = context.core.wrap(
                 aInstruction.bOperand.address * bInstruction.aOperand.address
@@ -426,8 +426,8 @@ export class Executive implements IExecutive {
 
     private div_a(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         if (aInstruction.aOperand.address !== 0) {
             bInstruction.aOperand.address = (bInstruction.aOperand.address / aInstruction.aOperand.address) >> 0;
@@ -438,8 +438,8 @@ export class Executive implements IExecutive {
 
     private div_b(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         if (aInstruction.bOperand.address !== 0) {
             bInstruction.bOperand.address = (bInstruction.bOperand.address / aInstruction.bOperand.address) >> 0;
@@ -450,8 +450,8 @@ export class Executive implements IExecutive {
 
     private div_ab(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         if (aInstruction.aOperand.address !== 0) {
             bInstruction.bOperand.address = (bInstruction.bOperand.address / aInstruction.aOperand.address) >> 0;
@@ -462,8 +462,8 @@ export class Executive implements IExecutive {
 
     private div_ba(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         if (aInstruction.bOperand.address !== 0) {
             bInstruction.aOperand.address = (bInstruction.aOperand.address / aInstruction.bOperand.address) >> 0;
@@ -474,8 +474,8 @@ export class Executive implements IExecutive {
 
     private div_f(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         if (aInstruction.aOperand.address !== 0) {
             bInstruction.aOperand.address = (bInstruction.aOperand.address / aInstruction.aOperand.address) >> 0;
@@ -492,8 +492,8 @@ export class Executive implements IExecutive {
 
     private div_x(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         if (aInstruction.bOperand.address !== 0) {
             bInstruction.aOperand.address = (bInstruction.aOperand.address / aInstruction.bOperand.address) >> 0;
@@ -510,8 +510,8 @@ export class Executive implements IExecutive {
 
     private mod_a(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         if (aInstruction.aOperand.address !== 0) {
             bInstruction.aOperand.address = bInstruction.aOperand.address % aInstruction.aOperand.address;
@@ -522,8 +522,8 @@ export class Executive implements IExecutive {
 
     private mod_b(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         if (aInstruction.bOperand.address !== 0) {
             bInstruction.bOperand.address = bInstruction.bOperand.address % aInstruction.bOperand.address;
@@ -534,8 +534,8 @@ export class Executive implements IExecutive {
 
     private mod_ab(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         if (aInstruction.aOperand.address !== 0) {
             bInstruction.bOperand.address = bInstruction.bOperand.address % aInstruction.aOperand.address;
@@ -546,8 +546,8 @@ export class Executive implements IExecutive {
 
     private mod_ba(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         if (aInstruction.bOperand.address !== 0) {
             bInstruction.aOperand.address = bInstruction.aOperand.address % aInstruction.bOperand.address;
@@ -558,8 +558,8 @@ export class Executive implements IExecutive {
 
     private mod_f(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         if (aInstruction.aOperand.address !== 0) {
             bInstruction.aOperand.address = bInstruction.aOperand.address % aInstruction.aOperand.address;
@@ -576,8 +576,8 @@ export class Executive implements IExecutive {
 
     private mod_x(context: IExecutionContext) {
 
-        var aInstruction = context.core.readAt(context.task, context.aPointer);
-        var bInstruction = context.core.readAt(context.task, context.bPointer);
+        var aInstruction = context.core.getAt(context.aPointer);
+        var bInstruction = context.core.getAt(context.bPointer);
 
         if (aInstruction.bOperand.address !== 0) {
             bInstruction.aOperand.address = bInstruction.aOperand.address % aInstruction.bOperand.address;
