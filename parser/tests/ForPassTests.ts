@@ -1,10 +1,10 @@
 ﻿
-import { IToken, TokenCategory } from "../Interface/IToken";
+import { IToken, TokenCategory } from "../interface/IToken";
 import { Context } from "../Context";
 import { Parser } from "../Parser";
 import { ForPass } from "../ForPass";
 import { Expression } from "../Expression";
-import { MessageType } from "../Interface/IMessage";
+import { MessageType } from "../interface/IMessage";
 import { TestHelper } from "./TestHelper";
 "use strict";
 

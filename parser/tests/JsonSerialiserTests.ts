@@ -1,5 +1,5 @@
 ﻿
-import { IToken } from "../Interface/IToken";
+import { IToken } from "../interface/IToken";
 import { JsonSerialiser } from "../JsonSerialiser";
 import { TestHelper } from "./TestHelper";
 "use strict";

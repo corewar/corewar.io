@@ -1,4 +1,4 @@
-﻿import { Standard } from "../../Interface/IParseOptions";
+﻿import { Standard } from "../../interface/IParseOptions";
 import { Expression } from "../../Expression";
 import { Parser } from "../../Parser";
 import { Scanner } from "../../Scanner";

@@ -3,7 +3,7 @@ import { Context } from "../Context";
 import { MetaDataCollector } from "../MetaDataCollector";
 import { Parser } from "../Parser";
 import { TestHelper } from "./TestHelper";
-import { MessageType } from "../Interface/IMessage";
+import { MessageType } from "../interface/IMessage";
 "use strict";
 
 describe("MetaDataCollector",() => {

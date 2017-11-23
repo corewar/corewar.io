@@ -1,5 +1,5 @@
 ﻿
-import { IToken, TokenCategory } from "../Interface/IToken";
+import { IToken, TokenCategory } from "../interface/IToken";
 import { LoadFileSerialiser } from "../LoadFileSerialiser";
 import { TestHelper } from "./TestHelper";
 import * as _ from "underscore";

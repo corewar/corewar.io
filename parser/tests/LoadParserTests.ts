@@ -1,13 +1,13 @@
 ﻿
-import { IContext } from "../Interface/IContext";
-import { IScanner } from "../Interface/IScanner";
-import { IPass } from "../Interface/IPass";
-import { IOptions } from "../../Simulator/Interface/IOptions";
+import { IContext } from "../interface/IContext";
+import { IScanner } from "../interface/IScanner";
+import { IPass } from "../interface/IPass";
+import { IOptions } from "../../simulator/interface/IOptions";
 import { LoadParser } from "../LoadParser";
 import { Context } from "../Context";
-import { IMessage, MessageType } from "../Interface/IMessage";
+import { IMessage, MessageType } from "../interface/IMessage";
 import { Parser } from "../Parser";
-import { Standard } from "../Interface/IParseOptions";
+import { Standard } from "../interface/IParseOptions";
 import * as _ from "underscore";
 
 "use strict";

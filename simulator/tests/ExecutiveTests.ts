@@ -6,7 +6,7 @@ import Defaults from "../Defaults";
 import { IOptions } from "../interface/IOptions";
 import { IState } from "../interface/IState";
 import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
-import { ModeType } from "../Interface/IOperand";
+import { ModeType } from "../interface/IOperand";
 import { Executive } from "../Executive";
 import { IExecutionContext } from "../interface/IExecutionContext";
 import { ITask } from "../interface/ITask";

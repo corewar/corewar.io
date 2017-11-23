@@ -3,9 +3,9 @@ import { TestHelper } from "./TestHelper";
 import { Context } from "..//Context";
 import { OrgPass } from "../OrgPass";
 import { Parser } from "../Parser";
-import { MessageType } from "../Interface/IMessage";
-import { IToken, TokenCategory } from "../Interface/IToken";
-import { Standard } from "../Interface/IParseOptions";
+import { MessageType } from "../interface/IMessage";
+import { IToken, TokenCategory } from "../interface/IToken";
+import { Standard } from "../interface/IParseOptions";
 import * as _ from "underscore";
 
 "use strict";
