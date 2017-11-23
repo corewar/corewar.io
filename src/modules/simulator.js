@@ -9,10 +9,10 @@ export const RENDER_CORE = 'simulator/RENDER_CORE'
 
 // state
 const initialState = {
-  core: {},
-  visualCore: [],
+  core: [],
+  coreAccess: [],
+  taskExecution: [],
   isInitialised: false,
-  queue: []
 }
 
 
@@ -24,43 +24,57 @@ export default (state = initialState, action) => {
       return {
         ...state,
         core: action.core,
+        coreAccess: action.coreAccess,
+        taskExcution: action.taskExcution,
         isInitialised: true
       }
 
     case STEP:
       return {
         ...state,
-        core: action.core
+        taskExecution: action.taskExecution
       }
 
     case CORE_ACCESS:
-      console.log(action.data);
-      state.queue.push(action.data); // TODO: immutable
-      insertItem
       return {
         ...state,
-        queue: insertItem(state.queue, action)
+        coreAccess: updateItem(action.data.address, state.coreAccess, action.data)
       }
-
-      //   //state.queue.push(action.data);
-
-      // console.log(state.visualCore);
 
     default:
       return state
   }
 }
 
-const insertItem = (array, action) => {
-  let newArray = array.slice();
-  newArray.splice(0, 0, action.data);
+const updateItem = (index, array, item) => {
+  const newArray = array.slice();
+  newArray[index] = item;
   return newArray;
 }
+
+const insertItem = (index, array, item) => {
+  let newArray = array.slice();
+  newArray.splice(index, 0, item);
+  return newArray;
+}
+
+const mapStateToExecution = (state) => {
+  //TODO: Decide whether this is mapped here or in components
+  state.map((state) => {
+    return {
+      warriorIndex: state.warriorIndex,
+      warriors: state.warriors,
+    }
+  });
+};
 
 // actions
 export const init = (standardId, parseResult) => {
 
-  corewar.initialiseSimulator(standardId, parseResult, PubSub);
+  const simulatorState = corewar.initialiseSimulator(standardId, parseResult, PubSub);
+
+  const coreAccess = new Array(simulatorState.core.instructions.length);
+  const taskExecution = new Array(simulatorState.core.instructions.length);
 
   return dispatch => {
 
@@ -78,7 +92,9 @@ export const init = (standardId, parseResult) => {
 
     dispatch({
       type: INIT,
-      core: corewar.core
+      core: simulatorState.core,
+      coreAccess: coreAccess,
+      taskExecution: taskExecution
     })
   }
 }
@@ -87,10 +103,14 @@ export const step = () => {
 
   corewar.simulator.step();
 
+  const state = corewar.simulator.getState();
+
+  //const taskExecution = mapStateToExecution(state);
+
   return dispatch => {
     dispatch({
       type: STEP,
-      core: corewar.core
+      taskExecution: state
     })
   }
 }

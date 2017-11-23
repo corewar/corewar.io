@@ -53,8 +53,6 @@ export const parse = (redcode) => {
   const warrior = corewar.serialiser.serialise(result.tokens);
   result.warrior = warrior;
 
-  console.log(result);
-
   return dispatch => {
     dispatch({
       type: PARSE_REQUESTED
@@ -67,20 +65,6 @@ export const parse = (redcode) => {
     })
   }
 }
-
-// export const parseAsync = () => {
-//   return dispatch => {
-//     dispatch({
-//       type: PARSE_REQUESTED
-//     })
-
-//     return setTimeout(() => {
-//       dispatch({
-//         type: PARSE
-//       })
-//     }, 3000)
-//   }
-// }
 
 export const setStandard = (standardId) => {
   return dispatch => {
