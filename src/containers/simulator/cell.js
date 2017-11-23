@@ -8,7 +8,7 @@ const Cell = props => {
   let icon = props.data ? props.data.icon : '';
   let address = props.data ? props.data.address : '';
 
-  return <div className={`cell ${css}`}>
+  return <div className={`cell`}>
     {label ? label : icon}
   </div>
 }
