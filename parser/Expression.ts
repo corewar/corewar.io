@@ -1,111 +1,111 @@
-﻿// import { IExpression } from "./interface/IExpression";
-// import { IToken, TokenCategory } from "./interface/IToken";
-// import { ITokenStream } from "./interface/ITokenStream";
+﻿import { IExpression } from "./interface/IExpression";
+import { IToken, TokenCategory } from "./interface/IToken";
+import { ITokenStream } from "./interface/ITokenStream";
 
-export class Expression  {
+export class Expression implements IExpression {
 
-    // private stream: ITokenStream;
+    private stream: ITokenStream;
 
-    // public parse(stream: ITokenStream): number {
+    public parse(stream: ITokenStream): number {
 
-    //     this.stream = stream;
+        this.stream = stream;
 
-    //     this.stream.peek();
+        this.stream.peek();
 
-    //     return this.expression();
-    // }
+        return this.expression();
+    }
 
-    // private expression(): number {
+    private expression(): number {
 
-    //     var result = this.term();
+        var result = this.term();
 
-    //     while (!this.stream.eof()) {
+        while (!this.stream.eof()) {
 
-    //         var next = this.stream.peek();
+            var next = this.stream.peek();
 
-    //         if (next.lexeme === "+") {
-    //             this.stream.read();
-    //             result += this.term();
-    //         } else if (next.lexeme === "-") {
-    //             this.stream.read();
-    //             result -= this.term();
-    //         } else {
-    //             break;
-    //         }
-    //     }
+            if (next.lexeme === "+") {
+                this.stream.read();
+                result += this.term();
+            } else if (next.lexeme === "-") {
+                this.stream.read();
+                result -= this.term();
+            } else {
+                break;
+            }
+        }
 
-    //     return result;
-    // }
+        return result;
+    }
 
-    // private term(): number {
+    private term(): number {
 
-    //     var result = this.factor();
+        var result = this.factor();
 
-    //     while (!this.stream.eof()) {
+        while (!this.stream.eof()) {
 
-    //         var next = this.stream.peek();
+            var next = this.stream.peek();
 
-    //         if (next.lexeme === "*") {
-    //             this.stream.read();
-    //             result *= this.factor();
-    //         } else if (next.lexeme === "/") {
-    //             this.stream.read();
-    //             var divisor = this.factor();
-    //             result = this.division(next, result, divisor);
-    //         } else if (next.lexeme === "%") {
-    //             this.stream.read();
-    //             result %= this.factor();
-    //         } else {
-    //             break;
-    //         }
-    //     }
+            if (next.lexeme === "*") {
+                this.stream.read();
+                result *= this.factor();
+            } else if (next.lexeme === "/") {
+                this.stream.read();
+                var divisor = this.factor();
+                result = this.division(next, result, divisor);
+            } else if (next.lexeme === "%") {
+                this.stream.read();
+                result %= this.factor();
+            } else {
+                break;
+            }
+        }
 
-    //     return result;
-    // }
+        return result;
+    }
 
-    // private division(token: IToken, numerator: number, denominator: number): number {
+    private division(token: IToken, numerator: number, denominator: number): number {
 
-    //     if (denominator === 0) {
-    //         this.stream.error(token, "Divide by zero is not permitted");
-    //     }
+        if (denominator === 0) {
+            this.stream.error(token, "Divide by zero is not permitted");
+        }
 
-    //     var quotient = numerator / denominator;
-    //     var rounded = this.integerRound(quotient);
+        var quotient = numerator / denominator;
+        var rounded = this.integerRound(quotient);
 
-    //     if (rounded !== quotient) {
-    //         this.stream.warn(token, "Rounded non-integer division truncated to integer value");
-    //     }
+        if (rounded !== quotient) {
+            this.stream.warn(token, "Rounded non-integer division truncated to integer value");
+        }
 
-    //     return rounded;
-    // }
+        return rounded;
+    }
 
-    // // http://stackoverflow.com/questions/4228356/integer-division-in-javascript
-    // private integerRound(value: number): number {
-    //     /* tslint:disable */
-    //     return value >> 0;
-    //     /* tslint:enable */
-    // }
+    // http://stackoverflow.com/questions/4228356/integer-division-in-javascript
+    private integerRound(value: number): number {
+        /* tslint:disable */
+        return value >> 0;
+        /* tslint:enable */
+    }
 
-    // private factor(): number {
+    private factor(): number {
 
-    //     var next = this.stream.peek();
+        var next = this.stream.peek();
 
-    //     if (next.lexeme === "+" ||
-    //         next.lexeme === "-") {
+        if (next.lexeme === "+" ||
+            next.lexeme === "-") {
 
-    //         // Place a zero in front of a - or + to allow e.g. -7 to be entered
-    //         return 0;
-    //     } else if (next.lexeme === "(") {
+            // Place a zero in front of a - or + to allow e.g. -7 to be entered
+            return 0;
+        } else if (next.lexeme === "(") {
 
-    //         this.stream.expectOnly("(");
-    //         var result = this.expression();
-    //         this.stream.expectOnly(")");
-    //         return result;
+            this.stream.expectOnly("(");
+            var result = this.expression();
+            this.stream.expectOnly(")");
+            return result;
 
-    //     } else {
+        } else {
 
-    //         this.stream.expect(TokenCategory.Number);
-    //         return parseInt(next.lexeme, 10);
-    //     }
-    // }
+            this.stream.expect(TokenCategory.Number);
+            return parseInt(next.lexeme, 10);
+        }
+    }
 }
