@@ -1,4 +1,4 @@
-﻿/// <reference path="../references.ts" />
+﻿
 import { TestHelper } from  "./TestHelper";
 import { Standard } from "../../interface/IParseOptions";
 "use strict";

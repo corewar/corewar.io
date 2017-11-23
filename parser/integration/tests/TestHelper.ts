@@ -1,5 +1,4 @@
-﻿/// <reference path="../references.ts" />
-import { Standard } from "../../Interface/IParseOptions";
+﻿import { Standard } from "../../interface/IParseOptions";
 import { Expression } from "../../Expression";
 import { Parser } from "../../Parser";
 import { Scanner } from "../../Scanner";
@@ -14,7 +13,7 @@ import { MathsProcessor } from "../../MathsProcessor";
 import { DefaultPass } from "../../DefaultPass";
 import { OrgPass } from "../../OrgPass";
 import { SyntaxCheck } from "../../SyntaxCheck";
-import { IllegalCommandCheck } from "../../IllegalcommandCheck";
+import { IllegalCommandCheck } from "../../IllegalCommandCheck";
 import { LoadFileSerialiser } from "../../LoadFileSerialiser";
 import { TestLoader } from "./TestLoader";
 import * as _ from "underscore";

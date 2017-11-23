@@ -1,5 +1,5 @@
-﻿/// <reference path="references.ts" />
-import { IToken, TokenCategory } from "../Interface/IToken";
+﻿
+import { IToken, TokenCategory } from "../interface/IToken";
 import { Context } from "../Context";
 import { Parser } from "../Parser";
 import { Filter } from "../Filter";

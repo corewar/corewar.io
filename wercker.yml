@@ -3,7 +3,7 @@
 # If you want Nodesource's container you would reference nodesource/node
 # Read more about containers on our dev center
 # http://devcenter.wercker.com/docs/containers/index.html
-box: node
+box: node:latest
 # This is the build pipeline. Pipelines are the core of wercker
 # Read more about pipelines on our dev center
 # http://devcenter.wercker.com/docs/pipelines/index.html
@@ -23,9 +23,12 @@ build:
   # http://devcenter.wercker.com/docs/steps/index.html
   steps:
     # A step that executes `npm install` command
-    - npm-install
-    # A step that executes `npm test` command
-    - npm-test
+    - script:
+      name: global dependency install
+      code: |
+        npm i -g typescript
+        npm i -g ts-node
+
 
     # A custom script step, name value is used in the UI
     # and the code value contains the command that get executed
@@ -34,3 +37,7 @@ build:
         code: |
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
+
+    - npm-install
+    # A step that executes `npm test` command
+    - npm-test
