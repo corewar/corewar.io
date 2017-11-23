@@ -62,17 +62,17 @@ const accessTypeToIcon = (accessType) => {
   switch(accessType) {
     case 0:
      return {
-       name: 'read',
+       name: 'R',
        path: ''
      }
     case 1:
      return {
-       name: 'write',
+       name: 'W',
        path: ''
      }
     default:
      return {
-       name: '',
+       name: '&#9785;',
        path: ''
      }
   }
@@ -90,9 +90,9 @@ const coreAccessToCell = (coreAccess) => {
 
 const defaultCell = {
 	  address: 0,
-	  label: '',
+	  label: '-',
 	  colour: 'default',
-    icon: 'none'
+    icon: ''
 };
 
 const mapStateToExecution = (state) => {

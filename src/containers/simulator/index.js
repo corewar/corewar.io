@@ -7,7 +7,6 @@ import {
   step
 } from '../../modules/simulator'
 import Core from './core';
-import CoreAccess from './coreAccess';
 
 const Simulator = props => {
   console.log(props);
@@ -18,7 +17,7 @@ const Simulator = props => {
     <div>
       <textarea value={props.redcode} readOnly="readOnly" />
       <Core data={props.core} />
-      <CoreAccess data={props.coreAccess} />
+      <Core data={props.coreAccess} />
     </div>
   </div>
 }
