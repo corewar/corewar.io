@@ -3,7 +3,6 @@
   "version": "0.0.26",
   "description": "HTML5 & javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)",
   "main": "./dist/index.js",
-  "defaultExtension" : "ts",
   "scripts": {
     "test": "nyc jasmine-ts",
     "start": "webpack-dev-server --progress --colors",
@@ -48,8 +47,7 @@
     "jasmine-ts": "^0.2.1",
     "nyc": "^11.3.0",
     "ts-loader": "^3.1.1",
-    "typescript": "^2.6.1",
-    "webpack-dev-server": "^2.9.4"
+    "typescript": "^2.6.1"
   },
   "dependencies": {
     "@types/node": "^8.0.51",
