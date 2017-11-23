@@ -150,10 +150,13 @@ describe("WarriorLoader",() => {
 
         for (var i = 0; i < 30; i++) {
 
+            var instr = core.readAt(null, i);
+            expect(instr.address).toBe(i);
+
             if (i === 21) {
-                expect(core.readAt(null, i).opcode).toBe(OpcodeType.MOV);
+                expect(instr.opcode).toBe(OpcodeType.MOV);
             } else {
-                expect(core.readAt(null, i).opcode).toBe(OpcodeType.DAT);
+                expect(instr.opcode).toBe(OpcodeType.DAT);
             }
         }
     });
