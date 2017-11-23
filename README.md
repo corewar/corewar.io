@@ -1,4 +1,6 @@
-![Corwar](https://github.com/gareththegeek/corewar/blob/master/corewarg.png)
+![Corewar](https://github.com/gareththegeek/corewar/blob/master/corewarg.png)
+
+[![Wercker](https://img.shields.io/wercker/ci/wercker/docs.svg)]()
 
 # Corewar
 
