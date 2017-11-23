@@ -29,7 +29,7 @@ build:
         npm i -g typescript
         npm i -g ts-node
 
-    - npm-install --verbose
+    - npm-install
     # A step that executes `npm test` command
     - npm-test
 
