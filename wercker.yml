@@ -27,8 +27,9 @@ build:
       name: global dependency install
       code: |
         npm i -g typescript
+        npm i -g ts-node
 
-    - npm-install
+    - npm-install --verbose
     # A step that executes `npm test` command
     - npm-test
 
