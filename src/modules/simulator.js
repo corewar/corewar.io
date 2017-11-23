@@ -68,6 +68,19 @@ const mapStateToExecution = (state) => {
   });
 };
 
+const mapCoreToUi = (instructions) => {
+
+  return instructions.map(cell => (
+    {
+      address: cell.address,
+      label: corewar.instructionSerialiser.serialise(cell),
+      color: 'default',
+      icon: 'none'
+    }
+  ));
+
+};
+
 // actions
 export const init = (standardId, parseResult) => {
 
@@ -79,7 +92,6 @@ export const init = (standardId, parseResult) => {
   return dispatch => {
 
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
-      console.log("test" + data)
       dispatch({
           type: CORE_ACCESS,
           data
@@ -92,7 +104,7 @@ export const init = (standardId, parseResult) => {
 
     dispatch({
       type: INIT,
-      core: simulatorState.core,
+      core: mapCoreToUi(simulatorState.core.instructions),
       coreAccess: coreAccess,
       taskExecution: taskExecution
     })
