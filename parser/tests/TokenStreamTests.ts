@@ -1,4 +1,4 @@
-﻿/// <reference path="references.ts" />
+﻿
 import { IToken, TokenCategory } from "../interface/IToken";
 import { TokenStream } from "./../TokenStream";
 "use strict";

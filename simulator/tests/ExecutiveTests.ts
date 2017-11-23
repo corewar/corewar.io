@@ -1,4 +1,4 @@
-﻿/// <reference path="references.ts" />
+﻿
 import { OpcodeType, ModifierType } from "../interface/IInstruction";
 import { IInstruction } from "../interface/IInstruction";
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
@@ -6,7 +6,7 @@ import Defaults from "../Defaults";
 import { IOptions } from "../interface/IOptions";
 import { IState } from "../interface/IState";
 import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
-import { ModeType } from "../Interface/IOperand";
+import { ModeType } from "../interface/IOperand";
 import { Executive } from "../Executive";
 import { IExecutionContext } from "../interface/IExecutionContext";
 import { ITask } from "../interface/ITask";
@@ -32,7 +32,7 @@ describe("Executive",() => {
         readAtSpy.and.returnValue(options.initialInstruction);
 
         var getAtSpy = jasmine.createSpy("ICore.getAt() Spy");
-        readAtSpy.and.returnValue(options.initialInstruction);
+        getAtSpy.and.returnValue(options.initialInstruction);
 
         var executeAtSpy = jasmine.createSpy("ICore.executeAt() Spy");
         executeAtSpy.and.returnValue(options.initialInstruction);
@@ -136,15 +136,18 @@ describe("Executive",() => {
             }
         }
 
-        core.executeAt = (task: ITask, address: number) => {
+        (<jasmine.Spy>core.executeAt).and.callFake((task: ITask, address: number) => {
             return coreData[address % size];
-        };
-        core.readAt = (task: ITask, address: number) => {
+        });
+        (<jasmine.Spy>core.readAt).and.callFake((task: ITask, address: number) => {
             return coreData[address % size];
-        };
-        core.setAt = (task: ITask, address: number, value: IInstruction) => {
+        });
+        (<jasmine.Spy>core.getAt).and.callFake((address: number) => {
+            return coreData[address % size];
+        });
+        (<jasmine.Spy>core.setAt).and.callFake((task: ITask, address: number, value: IInstruction) => {
             coreData[address % size] = value;
-        };
+        });
     }
 
     function buildContext(instructionPointer: number, aPointer: number, bPointer: number): IExecutionContext {
@@ -167,7 +170,7 @@ describe("Executive",() => {
             aPointer: aPointer,
             bPointer: bPointer,
             core: core,
-            instruction: core.readAt(null, instructionPointer),
+            instruction: core.getAt(instructionPointer),
             instructionPointer: instructionPointer,
             task: taskB,
             taskIndex: 1,// Task which is actually executing
@@ -218,6 +221,8 @@ describe("Executive",() => {
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOV, ModifierType.A)].apply(exec, [context]);
 
+        expect(core.readAt).not.toHaveBeenCalled();
+
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 1, ModeType.Immediate, 2));
 
@@ -240,6 +245,8 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOV, ModifierType.B)].apply(exec, [context]);
+
+        expect(core.readAt).not.toHaveBeenCalled();
 
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 1, ModeType.Immediate, 2));
@@ -264,6 +271,8 @@ describe("Executive",() => {
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOV, ModifierType.AB)].apply(exec, [context]);
 
+        expect(core.readAt).not.toHaveBeenCalled();
+
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 1, ModeType.Immediate, 2));
 
@@ -286,6 +295,8 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOV, ModifierType.BA)].apply(exec, [context]);
+        
+        expect(core.readAt).not.toHaveBeenCalled();
 
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 1, ModeType.Immediate, 2));
@@ -309,6 +320,8 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOV, ModifierType.F)].apply(exec, [context]);
+        
+        expect(core.readAt).not.toHaveBeenCalled();
 
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 1, ModeType.Immediate, 2));
@@ -332,6 +345,8 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOV, ModifierType.X)].apply(exec, [context]);
+        
+        expect(core.readAt).not.toHaveBeenCalled();
 
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 1, ModeType.Immediate, 2));
@@ -354,7 +369,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOV, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 1, ModeType.Immediate, 2));
 
@@ -379,7 +396,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.ADD, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -404,7 +423,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.ADD, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -429,7 +450,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.ADD, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -454,7 +477,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.ADD, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -479,7 +504,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.ADD, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -505,7 +532,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.ADD, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -531,7 +560,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.ADD, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -559,7 +590,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SUB, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -584,7 +617,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SUB, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -609,7 +644,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SUB, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -634,7 +671,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SUB, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -659,7 +698,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SUB, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -685,7 +726,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SUB, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -711,7 +754,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SUB, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -739,7 +784,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MUL, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -764,7 +811,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MUL, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -789,7 +838,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MUL, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -814,7 +865,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MUL, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -839,7 +892,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MUL, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -865,7 +920,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MUL, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -891,7 +948,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MUL, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -919,7 +978,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 7));
 
@@ -942,7 +1003,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 5, ModeType.Immediate, 2));
 
@@ -965,7 +1028,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 3, ModeType.Immediate, 5));
 
@@ -988,7 +1053,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 7, ModeType.Immediate, 4));
 
@@ -1011,7 +1078,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -1034,7 +1103,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 3, ModeType.Immediate, 2));
 
@@ -1057,7 +1128,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -1080,7 +1153,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 11, ModeType.Direct, 3));
 
@@ -1105,7 +1180,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 2, ModeType.Direct, 7));
 
@@ -1130,7 +1207,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 3, ModeType.Direct, 16));
 
@@ -1155,7 +1234,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 9, ModeType.Direct, 2));
 
@@ -1180,7 +1261,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 11, ModeType.Direct, 3));
 
@@ -1205,7 +1288,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 5, ModeType.Direct, 10));
 
@@ -1230,7 +1315,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 11, ModeType.Direct, 3));
 
@@ -1255,7 +1342,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 5, ModeType.Direct, 10));
 
@@ -1280,7 +1369,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 11, ModeType.Direct, 3));
 
@@ -1305,7 +1396,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DIV, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 5, ModeType.Direct, 10));
 
@@ -1332,7 +1425,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOD, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 7));
 
@@ -1355,7 +1450,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOD, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 5, ModeType.Immediate, 2));
 
@@ -1378,7 +1475,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOD, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 3, ModeType.Immediate, 5));
 
@@ -1401,7 +1500,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOD, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 7, ModeType.Immediate, 4));
 
@@ -1424,7 +1525,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOD, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -1447,7 +1550,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOD, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 3, ModeType.Immediate, 2));
 
@@ -1470,7 +1575,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOD, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 2)).toEqualInstruction(
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 2, ModeType.Immediate, 3));
 
@@ -1493,7 +1600,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOD, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 11, ModeType.Direct, 3));
 
@@ -1518,7 +1627,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOD, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 2, ModeType.Direct, 7));
 
@@ -1543,7 +1654,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOD, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 3, ModeType.Direct, 16));
 
@@ -1568,7 +1681,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOD, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 9, ModeType.Direct, 2));
 
@@ -1593,7 +1708,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOD, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 11, ModeType.Direct, 1));
 
@@ -1618,7 +1735,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOD, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 1, ModeType.Direct, 10));
 
@@ -1643,7 +1762,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOD, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 11, ModeType.Direct, 1));
 
@@ -1668,7 +1789,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOD, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 1, ModeType.Direct, 10));
 
@@ -1693,7 +1816,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOD, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 11, ModeType.Direct, 1));
 
@@ -1718,7 +1843,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOD, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(core.readAt(null, 4)).toEqualInstruction(
             DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.X, ModeType.Direct, 1, ModeType.Direct, 10));
 
@@ -1741,7 +1868,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMP, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -1761,7 +1890,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
     });
@@ -1779,7 +1910,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -1797,7 +1930,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
     });
@@ -1815,7 +1950,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -1833,7 +1970,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
     });
@@ -1851,7 +1990,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -1869,7 +2010,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
     });
@@ -1887,7 +2030,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -1906,7 +2051,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
     });
@@ -1924,7 +2071,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -1942,7 +2091,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -1961,7 +2112,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
     });
@@ -1979,7 +2132,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -1997,7 +2152,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -2016,7 +2173,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
     });
@@ -2034,7 +2193,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -2052,7 +2213,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -2072,7 +2235,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
     });
@@ -2090,7 +2255,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -2108,7 +2275,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
     });
@@ -2126,7 +2295,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -2144,7 +2315,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
     });
@@ -2162,7 +2335,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -2180,7 +2355,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
     });
@@ -2198,7 +2375,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -2216,7 +2395,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -2234,7 +2415,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
     });
@@ -2252,7 +2435,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
     });
@@ -2270,7 +2455,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -2288,7 +2475,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
     });
@@ -2306,7 +2495,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
     });
@@ -2324,7 +2515,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -2342,7 +2535,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
     });
@@ -2360,7 +2555,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
     });
@@ -2381,7 +2578,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DJN, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
         expect(context.core.wrap).toHaveBeenCalledWith(1);
@@ -2401,7 +2600,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DJN, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).toHaveBeenCalledWith(0);
     });
@@ -2420,7 +2621,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DJN, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
         expect(context.core.wrap).toHaveBeenCalledWith(1);
@@ -2440,7 +2643,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DJN, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).toHaveBeenCalledWith(0);
     });
@@ -2459,7 +2664,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DJN, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
         expect(context.core.wrap).toHaveBeenCalledWith(1);
@@ -2479,7 +2686,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DJN, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).toHaveBeenCalledWith(0);
     });
@@ -2498,7 +2707,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DJN, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
         expect(context.core.wrap).toHaveBeenCalledWith(1);
@@ -2518,7 +2729,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DJN, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).toHaveBeenCalledWith(0);
     });
@@ -2537,7 +2750,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DJN, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).toHaveBeenCalledWith(0);
     });
@@ -2556,7 +2771,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DJN, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
         expect(context.core.wrap).toHaveBeenCalledWith(1);
@@ -2577,7 +2794,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DJN, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
         expect(context.core.wrap).toHaveBeenCalledWith(1);
@@ -2598,7 +2817,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DJN, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).toHaveBeenCalledWith(0);
     });
@@ -2617,7 +2838,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DJN, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
         expect(context.core.wrap).toHaveBeenCalledWith(1);
@@ -2638,7 +2861,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DJN, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
         expect(context.core.wrap).toHaveBeenCalledWith(1);
@@ -2659,7 +2884,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DJN, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).toHaveBeenCalledWith(0);
     });
@@ -2678,7 +2905,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DJN, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
         expect(context.core.wrap).toHaveBeenCalledWith(1);
@@ -2699,7 +2928,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.DJN, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
         expect(context.core.wrap).toHaveBeenCalledWith(1);
@@ -2722,7 +2953,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -2741,7 +2974,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -2760,7 +2995,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -2779,7 +3016,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -2799,7 +3038,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -2818,7 +3059,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -2838,7 +3081,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -2857,7 +3102,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -2876,7 +3123,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -2895,7 +3144,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -2915,7 +3166,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -2935,7 +3188,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -2955,7 +3210,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -2975,7 +3232,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -2994,7 +3253,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3013,7 +3274,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3032,7 +3295,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3051,7 +3316,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3070,7 +3337,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3089,7 +3358,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3109,7 +3380,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3130,7 +3403,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3149,7 +3424,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3168,7 +3445,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3187,7 +3466,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3207,7 +3488,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3226,7 +3509,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3246,7 +3531,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3265,7 +3552,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3284,7 +3573,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3303,7 +3594,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3323,7 +3616,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3343,7 +3638,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3363,7 +3660,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3383,7 +3682,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3402,7 +3703,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3421,7 +3724,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3440,7 +3745,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3459,7 +3766,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3478,7 +3787,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3497,7 +3808,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3517,7 +3830,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3538,7 +3853,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3557,7 +3874,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3576,7 +3895,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3595,7 +3916,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3614,7 +3937,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3633,7 +3958,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3652,7 +3979,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3671,7 +4000,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3690,7 +4021,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
 
@@ -3710,7 +4043,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3730,7 +4065,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3750,7 +4087,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3770,7 +4109,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3790,7 +4131,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3809,7 +4152,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3828,7 +4173,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3847,7 +4194,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3866,7 +4215,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3885,7 +4236,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3904,7 +4257,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3924,7 +4279,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3946,7 +4303,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SLT, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -3966,7 +4325,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SLT, ModifierType.A)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -3986,7 +4347,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SLT, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -4006,7 +4369,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SLT, ModifierType.B)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -4026,7 +4391,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SLT, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -4046,7 +4413,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SLT, ModifierType.AB)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -4066,7 +4435,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SLT, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -4086,7 +4457,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SLT, ModifierType.BA)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
     });
@@ -4106,7 +4479,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SLT, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
 
@@ -4127,7 +4502,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SLT, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -4147,7 +4524,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SLT, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -4167,7 +4546,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SLT, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
 
@@ -4188,7 +4569,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SLT, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -4208,7 +4591,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SLT, ModifierType.X)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -4228,7 +4613,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SLT, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(4);
         expect(context.core.wrap).toHaveBeenCalledWith(4);
 
@@ -4249,7 +4636,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SLT, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -4269,7 +4658,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SLT, ModifierType.I)].apply(exec, [context]);
-
+        
+        expect(core.readAt).toHaveBeenCalled();
+        
         expect(context.task.instructionPointer).toBe(3);
         expect(context.core.wrap).not.toHaveBeenCalled();
     });
@@ -4290,7 +4681,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SPL, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(context.warrior.tasks.length).toBe(4);
     });
 
@@ -4308,7 +4701,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SPL, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(context.warrior.tasks[2].instructionPointer).toBe(2);
         expect(context.core.wrap).toHaveBeenCalledWith(2);
     });
@@ -4327,7 +4722,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SPL, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(context.warrior.taskIndex).toBe(3);
     });
 
@@ -4347,7 +4744,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SPL, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(context.warrior.taskIndex).toBe(0);
     });
 
@@ -4367,7 +4766,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SPL, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(context.warrior.tasks.length).toBe(3);
     });
 
@@ -4388,7 +4789,9 @@ describe("Executive",() => {
         var exec = new Executive();
 		exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SPL, ModifierType.F)].apply(exec, [context]);
-
+        
+        expect(core.readAt).not.toHaveBeenCalled();
+        
         expect(context.warrior.taskIndex).toBe(2);
     });
 

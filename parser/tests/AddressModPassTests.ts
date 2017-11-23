@@ -1,9 +1,9 @@
-﻿/// <reference path="references.ts" />
+﻿
 import { TestHelper } from "./TestHelper";
 import { Context } from "../Context";
 import { AddressModPass } from "../AddressModPass";
 import { Parser } from "../Parser";
-import { TokenCategory } from "../Interface/IToken";
+import { TokenCategory } from "../interface/IToken";
 import * as _ from "underscore";
 
 "use strict";

@@ -1,4 +1,4 @@
-﻿/// <reference path="references.ts" />
+﻿
 import { ITask } from "../interface/ITask";
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";

@@ -1,4 +1,4 @@
-﻿/// <reference path="references.ts" />
+﻿
 import { IInstruction } from "../interface/IInstruction";
 import { ITask } from "../interface/ITask";
 import { OpcodeType, ModifierType } from "../interface/IInstruction";

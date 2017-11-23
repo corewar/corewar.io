@@ -1,9 +1,9 @@
-﻿/// <reference path="references.ts" />
+﻿
 import { Context } from "../Context";
-import { IToken, TokenCategory } from "../Interface/IToken";
+import { IToken, TokenCategory } from "../interface/IToken";
 import { Parser } from "../Parser";
 import { PreprocessAnalyser } from "../PreprocessAnalyser";
-import { MessageType } from "../Interface/IMessage";
+import { MessageType } from "../interface/IMessage";
 
 "use strict";
 
