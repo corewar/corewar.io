@@ -1,10 +1,10 @@
-﻿/// <reference path="./references.ts" />
-import { IToken, TokenCategory } from "../Interface/IToken";
+﻿
+import { IToken, TokenCategory } from "../interface/IToken";
 import { DefaultPass } from "../DefaultPass";
 import { Parser } from "../Parser";
 import { Context } from "../Context";
 import { TestHelper } from "./TestHelper";
-import { Standard } from "../Interface/IParseOptions";
+import { Standard } from "../interface/IParseOptions";
 import * as _ from "underscore";
 "use strict";
 

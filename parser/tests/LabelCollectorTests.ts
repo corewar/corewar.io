@@ -1,10 +1,10 @@
-﻿import { IToken, TokenCategory } from "../Interface/IToken";
+﻿import { IToken, TokenCategory } from "../interface/IToken";
 import { Context } from "../Context";
 import { Parser } from "../Parser";
 import { LabelCollector } from "../LabelCollector";
-import { MessageType } from "../Interface/IMessage";
+import { MessageType } from "../interface/IMessage";
 import { TestHelper } from "./TestHelper";
-import { Standard } from "../Interface/IParseOptions";
+import { Standard } from "../interface/IParseOptions";
 import * as _ from "underscore";
 "use strict";
 

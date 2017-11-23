@@ -1,4 +1,4 @@
-﻿/// <reference path="references.ts" />
+﻿
 import { IToken, TokenCategory } from "../interface/IToken";
 import { IContext } from "../interface/IContext";
 import { Context } from "../Context";
