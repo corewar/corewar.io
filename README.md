@@ -1,6 +1,6 @@
-![Corewar](https://github.com/gareththegeek/corewar/blob/master/corewarg.png)
-
 [![wercker status](https://app.wercker.com/status/d6b4d4035c2ccc4e92f9ed40ae3f727d/s/master "wercker status")](https://app.wercker.com/project/byKey/d6b4d4035c2ccc4e92f9ed40ae3f727d)
+
+![Corewar](https://github.com/gareththegeek/corewar/blob/master/corewarg.png)
 
 # Corewar
 
@@ -45,6 +45,8 @@ Run the simulator to the end of the match
 Beyond the main API, we envisage access to the Core object being provided via event subscription. These events have not yet been decided upon or setup.
 
 ## Testing
+
+[![wercker status](https://app.wercker.com/status/d6b4d4035c2ccc4e92f9ed40ae3f727d/m/master "wercker status")](https://app.wercker.com/project/byKey/d6b4d4035c2ccc4e92f9ed40ae3f727d)
 
 Corewar is extensively unit tested, run `npm test` to execute the tests and see the coverage.
 
