@@ -1,4 +1,4 @@
-﻿/// <reference path="references.ts" />
+﻿
 import { IInstruction } from "../interface/IInstruction";
 import { ITask } from "../interface/ITask";
 import { OpcodeType, ModifierType } from "../interface/IInstruction";
@@ -227,13 +227,7 @@ describe("Core",() => {
 
         core.executeAt(task, 2);
 
-        expect(handler).toHaveBeenCalled();
-
-        var eventArg = <ICoreAccessEventArgs>_(handler.calls.mostRecent().args).first();
-
-        expect(eventArg.accessType).toBe(CoreAccessType.execute);
-        expect(eventArg.address).toBe(2);
-        expect(eventArg.task).toBe(task);
+        expect(handler).not.toHaveBeenCalled();
     });
 
     it(".getSize returns the size of the core", () => {

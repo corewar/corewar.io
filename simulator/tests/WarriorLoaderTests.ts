@@ -1,4 +1,4 @@
-﻿/// <reference path="references.ts" />
+﻿
 
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
@@ -7,8 +7,8 @@ import { ITask } from "../interface/ITask";
 import { IInstruction } from "../interface/IInstruction";
 import { OpcodeType, ModifierType } from "../interface/IInstruction";
 import { ModeType } from "../interface/IOperand";
-import { IParseResult } from "../../Parser/interface/IParseResult";
-import { IToken, TokenCategory } from "../../Parser//interface/IToken";
+import { IParseResult } from "../../parser/interface/IParseResult";
+import { IToken, TokenCategory } from "../../parser/interface/IToken";
 import { WarriorLoader } from "../WarriorLoader";
 import DataHelper from "./DataHelper";
 

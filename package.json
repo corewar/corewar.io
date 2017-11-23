@@ -52,6 +52,7 @@
   "dependencies": {
     "@types/node": "^8.0.51",
     "pubsub-js": "^1.5.7",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "webpack": "^3.8.1"
   }
 }

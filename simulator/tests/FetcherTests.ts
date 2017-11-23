@@ -1,4 +1,4 @@
-﻿/// <reference path="references.ts" />
+﻿
 import { IState } from "../interface/IState";
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import { OpcodeType, ModifierType } from "../interface/IInstruction";
