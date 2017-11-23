@@ -79,6 +79,7 @@ export const init = (standardId, parseResult) => {
   return dispatch => {
 
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
+      console.log("test" + data)
       dispatch({
           type: CORE_ACCESS,
           data
