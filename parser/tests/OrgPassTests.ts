@@ -1,4 +1,4 @@
-﻿/// <reference path="references.ts" />
+﻿
 import { TestHelper } from "./TestHelper";
 import { Context } from "..//Context";
 import { OrgPass } from "../OrgPass";

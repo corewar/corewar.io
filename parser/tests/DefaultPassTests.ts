@@ -1,4 +1,4 @@
-﻿/// <reference path="./references.ts" />
+﻿
 import { IToken, TokenCategory } from "../Interface/IToken";
 import { DefaultPass } from "../DefaultPass";
 import { Parser } from "../Parser";

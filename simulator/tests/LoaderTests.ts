@@ -1,4 +1,4 @@
-﻿/// <reference path="references.ts" />
+﻿
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { IRandom } from "../interface/IRandom";

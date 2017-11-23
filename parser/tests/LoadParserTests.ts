@@ -1,4 +1,4 @@
-﻿/// <reference path="references.ts" />
+﻿
 import { IContext } from "../Interface/IContext";
 import { IScanner } from "../Interface/IScanner";
 import { IPass } from "../Interface/IPass";

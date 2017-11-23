@@ -1,4 +1,4 @@
-﻿/// <reference path="references.ts" />
+﻿
 import { IToken } from "../Interface/IToken";
 import { JsonSerialiser } from "../JsonSerialiser";
 import { TestHelper } from "./TestHelper";

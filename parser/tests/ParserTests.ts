@@ -1,4 +1,4 @@
-﻿/// <reference path="references.ts" />
+﻿
 
 import { IContext } from "../interface/IContext";
 import { Context } from "../Context";

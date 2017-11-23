@@ -1,4 +1,4 @@
-﻿/// <reference path="../references.ts" />
+﻿
 import { ITestWarrior } from "./ITestWarrior";
 import * as fs from "fs";
 import * as _ from "underscore";

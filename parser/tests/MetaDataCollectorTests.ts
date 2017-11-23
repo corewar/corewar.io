@@ -1,4 +1,4 @@
-﻿/// <reference path="references.ts" />
+﻿
 import { Context } from "../Context";
 import { MetaDataCollector } from "../MetaDataCollector";
 import { Parser } from "../Parser";
