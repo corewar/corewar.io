@@ -1,6 +1,6 @@
 ![Corewar](https://github.com/gareththegeek/corewar/blob/master/corewarg.png)
 
-[![Wercker](https://img.shields.io/wercker/ci/wercker/docs.svg)]()
+[![wercker status](https://app.wercker.com/status/d6b4d4035c2ccc4e92f9ed40ae3f727d/s/master "wercker status")](https://app.wercker.com/project/byKey/d6b4d4035c2ccc4e92f9ed40ae3f727d)
 
 # Corewar
 
