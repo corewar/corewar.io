@@ -1,4 +1,6 @@
-﻿
+﻿import { expect } from "chai";
+import * as sinon from "sinon";
+
 import { IToken, TokenCategory } from "../interface/IToken";
 import { Context } from "../Context";
 import { Parser } from "../Parser";
@@ -8,14 +10,14 @@ import { MessageType } from "../interface/IMessage";
 import { TestHelper } from "./TestHelper";
 "use strict";
 
-describe("ForPass",() => {
+describe("ForPass", () => {
 
-    it("Inserts for instruction into token stream the requested number of times",() => {
+    it("Inserts for instruction into token stream the requested number of times", () => {
 
         var instruction = TestHelper.instruction(2, "label", "MOV", ".AB", "#", "0", ",", "$", "1", "; comment");
 
         var expression = new Expression();
-        spyOn(expression, "parse").and.returnValue(3);
+        sinon.stub(expression, "parse").returns(3);
 
         var tokens: IToken[] = TestHelper.forStatement(1, instruction);
 
@@ -25,14 +27,14 @@ describe("ForPass",() => {
         var pass = new ForPass(expression);
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(instruction.length * 3);
+        expect(actual.tokens.length).to.be.equal(instruction.length * 3);
 
         for (var i = 0; i < instruction.length * 3; i++) {
-            expect(actual.tokens[i].lexeme).toBe(instruction[i % instruction.length].lexeme);
+            expect(actual.tokens[i].lexeme).to.be.equal(instruction[i % instruction.length].lexeme);
         }
     });
 
-    it("Inserts multiple instructions",() => {
+    it("Inserts multiple instructions", () => {
 
         var instruction1 = TestHelper.instruction(2, "label", "MOV", ".AB", "#", "0", ",", "$", "1", "; comment");
         var instruction2 = TestHelper.instruction(3, "", "ADD", ".X", "@", "1", ",", "", "2", "");
@@ -40,7 +42,7 @@ describe("ForPass",() => {
         var expected = instruction1.concat(instruction2);
 
         var expression = new Expression();
-        spyOn(expression, "parse").and.returnValue(1);
+        sinon.stub(expression, "parse").returns(1);
 
         var tokens: IToken[] = TestHelper.forStatement(1, expected);
 
@@ -50,19 +52,19 @@ describe("ForPass",() => {
         var pass = new ForPass(expression);
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(expected.length);
+        expect(actual.tokens.length).to.be.equal(expected.length);
 
         for (var i = 0; i < expected.length; i++) {
-            expect(actual.tokens[i].lexeme).toBe(expected[i].lexeme);
+            expect(actual.tokens[i].lexeme).to.be.equal(expected[i].lexeme);
         }
     });
 
-    it("Raises a syntax error if the FOR loop is not terminated by a ROF preprocessor command",() => {
+    it("Raises a syntax error if the FOR loop is not terminated by a ROF preprocessor command", () => {
 
         var instruction = TestHelper.instruction(2, "label", "MOV", ".AB", "#", "0", ",", "$", "1", "; comment");
 
         var expression = new Expression();
-        spyOn(expression, "parse").and.returnValue(3);
+        sinon.stub(expression, "parse").returns(3);
 
         var tokens: IToken[] = TestHelper.forStatement(1, instruction);
         tokens.pop();// Remove EOL
@@ -74,13 +76,13 @@ describe("ForPass",() => {
         var pass = new ForPass(expression);
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(1);
-        expect(actual.messages[0].text).toBe("Expected 'ROF', got end of file");
-        expect(actual.messages[0].type).toBe(MessageType.Error);
-        expect(actual.messages[0].position).toEqual({ line: 2, char: 9});
+        expect(actual.messages.length).to.be.equal(1);
+        expect(actual.messages[0].text).to.be.equal("Expected 'ROF', got end of file");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
+        expect(actual.messages[0].position).to.deep.equal({ line: 2, char: 9 });
     });
 
-    it("Allows a comment to follow the for and rof lines",() => {
+    it("Allows a comment to follow the for and rof lines", () => {
 
         var tokens = [
             {
@@ -144,6 +146,6 @@ describe("ForPass",() => {
         var pass = new ForPass(new Expression());
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
+        expect(actual.messages.length).to.be.equal(0);
     });
 });
