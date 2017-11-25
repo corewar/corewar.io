@@ -72,6 +72,7 @@ main {
   margin-left: 215px;
   background: rgba(240,240,240,1);
   min-height: 665px;
+  height: 100%;
   padding: 40px;
   color: #424a5d;
   font-size: 16px;

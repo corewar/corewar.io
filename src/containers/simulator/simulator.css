@@ -13,12 +13,12 @@ textarea {
 .cell {
   display: inline-block;
   width: 49px;
-  height: 34px;
+  height: 49px;
   border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   text-align: center;
-  padding-top: 15px;
   font-size: 0.8em;
+  position: relative;
 }
 
 button {
@@ -36,3 +36,22 @@ button:hover {
   cursor: pointer;
   border-color: #B5F44A;
 }
+
+.cell-read {
+  color: red;
+  font-size: 2em;
+}
+
+.cell-write {
+  color: red;
+  font-size: 2em;
+}
+
+.cell-white {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  transition: background-color 2000ms linear;
+}
+

@@ -18,6 +18,7 @@ const Simulator = props => {
       <textarea value={props.redcode} readOnly="readOnly" />
       <Core data={props.core} />
       <Core data={props.coreAccess} />
+      <Core data={props.taskExecution} />
     </div>
   </div>
 }

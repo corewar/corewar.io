@@ -3,7 +3,7 @@ import Cell from './cell';
 
 const Core = props => {
   return <div className="core">
-    {props.data && props.data.map((data, i) =>
+    {props.data  && props.data.map((data, i) =>
       {
       return <Cell key={i} data={data} />
     })}
