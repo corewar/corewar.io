@@ -1,4 +1,6 @@
-﻿
+﻿import { expect } from "chai";
+import * as sinon from "sinon";
+
 import { ITask } from "../interface/ITask";
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
@@ -44,12 +46,12 @@ describe("EndCondition",() => {
             core: {
                 getSize: () => { return 0; },
                 coreAccess: new LiteEvent<ICoreAccessEventArgs>(),
-                executeAt: jasmine.createSpy("executeAt"),
-                readAt: jasmine.createSpy("readAt"),
-                getAt: jasmine.createSpy("getAt"),
-                setAt: jasmine.createSpy("setAt"),
-                wrap: jasmine.createSpy("wrap"),
-                initialise: jasmine.createSpy("initialise")
+                executeAt: sinon.stub(),
+                readAt: sinon.stub(),
+                getAt: sinon.stub(),
+                setAt: sinon.stub(),
+                wrap: sinon.stub(),
+                initialise: sinon.stub()
             },
             cycle: 0,
             options: _.clone(Defaults),
@@ -69,7 +71,7 @@ describe("EndCondition",() => {
 
         var actual = endCondition.check(state);
 
-        expect(actual).toBe(false);
+        expect(actual).to.be.equal(false);
     });
 
     it("returns true if the maximum number of cylces have elapsed",() => {
@@ -83,7 +85,7 @@ describe("EndCondition",() => {
 
         var actual = endCondition.check(state);
 
-        expect(actual).toBe(true);
+        expect(actual).to.be.equal(true);
     });
 
     it("returns true if there are multiple warriors and only one with active tasks",() => {
@@ -96,7 +98,7 @@ describe("EndCondition",() => {
 
         var actual = endCondition.check(state);
 
-        expect(actual).toBe(true);
+        expect(actual).to.be.equal(true);
     });
 
     it("returns false if there is only one warrior and it has active tasks",() => {
@@ -109,7 +111,7 @@ describe("EndCondition",() => {
 
         var actual = endCondition.check(state);
 
-        expect(actual).toBe(false);
+        expect(actual).to.be.equal(false);
     });
 
     it("returns true if there is only one warrior and it has no active tasks",() => {
@@ -123,6 +125,6 @@ describe("EndCondition",() => {
 
         var actual = endCondition.check(state);
 
-        expect(actual).toBe(true);
+        expect(actual).to.be.equal(true);
     });
 });

@@ -1,4 +1,8 @@
-﻿
+﻿import * as chai from "chai";
+import * as sinon from "sinon";
+import * as sinonChai from "sinon-chai";
+var expect = chai.expect;
+chai.use(sinonChai);
 
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import { IInstruction } from "../interface/IInstruction";
@@ -38,18 +42,13 @@ describe("Decoder",() => {
             };
         }
 
-        var executeAtSpy = jasmine.createSpy("ICore.executeAt");
-        var readAtSpy = jasmine.createSpy("ICore.readAt");
-        var getAtSpy = jasmine.createSpy("ICore.getAt");
-        var setAtSpy = jasmine.createSpy("ICore.setAt");
-
         core = {
             getSize: () => { return 0; },
             coreAccess: new LiteEvent<ICoreAccessEventArgs>(),
-            executeAt: executeAtSpy,
-            readAt: readAtSpy,
-            getAt: getAtSpy,
-            setAt: setAtSpy,
+            executeAt: sinon.stub(),
+            readAt: sinon.stub(),
+            getAt: sinon.stub(),
+            setAt: sinon.stub(),
             wrap(address: number) {
                 return address;
             },
@@ -115,7 +114,7 @@ describe("Decoder",() => {
         var decoder = new Decoder(executive);
         decoder.decode(context);
 
-        expect(context.aPointer).toBe(3);
+        expect(context.aPointer).to.be.equal(3);
     });
 
     it("sets the B pointer to equal instruction pointer if the B addressing mode is immediate",() => {
@@ -129,7 +128,7 @@ describe("Decoder",() => {
         var decoder = new Decoder(executive);
         decoder.decode(context);
 
-        expect(context.bPointer).toBe(3);
+        expect(context.bPointer).to.be.equal(3);
     });
 
     it("sets the A pointer to the relative position of the A field value if the A addressing mode is direct",() => {
@@ -143,7 +142,7 @@ describe("Decoder",() => {
         var decoder = new Decoder(executive);
         decoder.decode(context);
 
-        expect(context.aPointer).toBe(4);
+        expect(context.aPointer).to.be.equal(4);
     });
 
     it("sets the B pointer to the relative position of the B field value if the B addressing mode is direct",() => {
@@ -157,7 +156,7 @@ describe("Decoder",() => {
         var decoder = new Decoder(executive);
         decoder.decode(context);
 
-        expect(context.bPointer).toBe(4);
+        expect(context.bPointer).to.be.equal(4);
     });
 
     it("sets the A pointer to the relative position of the A field value of the instruction pointed to by the current instruction A field \
@@ -173,7 +172,7 @@ describe("Decoder",() => {
         var decoder = new Decoder(executive);
         decoder.decode(context);
 
-        expect(context.aPointer).toBe(3);
+        expect(context.aPointer).to.be.equal(3);
     });
 
     it("sets the B pointer to the relative position of the A field value of the instruction pointed to by the current instruction B field \
@@ -189,7 +188,7 @@ describe("Decoder",() => {
         var decoder = new Decoder(executive);
         decoder.decode(context);
 
-        expect(context.bPointer).toBe(3);
+        expect(context.bPointer).to.be.equal(3);
     });
 
     it("sets the A pointer to the relative position of the B field value of the instruction pointed to by the current instruction A field \
@@ -205,7 +204,7 @@ describe("Decoder",() => {
         var decoder = new Decoder(executive);
         decoder.decode(context);
 
-        expect(context.aPointer).toBe(3);
+        expect(context.aPointer).to.be.equal(3);
     });
 
     it("sets the B pointer to the relative position of the B field value of the instruction pointed to by the current instruction B field \
@@ -221,7 +220,7 @@ describe("Decoder",() => {
         var decoder = new Decoder(executive);
         decoder.decode(context);
 
-        expect(context.bPointer).toBe(3);
+        expect(context.bPointer).to.be.equal(3);
     });
 
     it("sets the A pointer to the relative position of the pre-deremented A field value of the instruction pointed to by the current \
@@ -240,9 +239,9 @@ describe("Decoder",() => {
         var decoder = new Decoder(executive);
         decoder.decode(context);
 
-        expect(context.aPointer).toBe(3);
-        expect(core.setAt).toHaveBeenCalledWith(jasmine.any(Object), 4, expectedInstruction);
-        expect(expectedInstruction.aOperand.address).toBe(-1);
+        expect(context.aPointer).to.be.equal(3);
+        expect(core.setAt).to.have.been.calledWith(sinon.match.any, 4, expectedInstruction);
+        expect(expectedInstruction.aOperand.address).to.be.equal(-1);
     });
 
     it("sets the B pointer to the relative position of the pre-deremented A field value of the instruction pointed to by the current \
@@ -261,9 +260,9 @@ describe("Decoder",() => {
         var decoder = new Decoder(executive);
         decoder.decode(context);
 
-        expect(context.bPointer).toBe(3);
-        expect(core.setAt).toHaveBeenCalledWith(jasmine.any(Object), 4, expectedInstruction);
-        expect(expectedInstruction.aOperand.address).toBe(-1);
+        expect(context.bPointer).to.be.equal(3);
+        expect(core.setAt).to.have.been.calledWith(sinon.match.any, 4, expectedInstruction);
+        expect(expectedInstruction.aOperand.address).to.be.equal(-1);
     });
 
     it("sets the A pointer to the relative position of the pre-deremented B field value of the instruction pointed to by the current \
@@ -282,9 +281,9 @@ describe("Decoder",() => {
         var decoder = new Decoder(executive);
         decoder.decode(context);
 
-        expect(context.aPointer).toBe(3);
-        expect(core.setAt).toHaveBeenCalledWith(jasmine.any(Object),4, expectedInstruction);
-        expect(expectedInstruction.bOperand.address).toBe(-1);
+        expect(context.aPointer).to.be.equal(3);
+        expect(core.setAt).to.have.been.calledWith(sinon.match.any,4, expectedInstruction);
+        expect(expectedInstruction.bOperand.address).to.be.equal(-1);
     });
 
     it("sets the B pointer to the relative position of the pre-deremented B field value of the instruction pointed to by the current \
@@ -303,9 +302,9 @@ describe("Decoder",() => {
         var decoder = new Decoder(executive);
         decoder.decode(context);
 
-        expect(context.bPointer).toBe(3);
-        expect(core.setAt).toHaveBeenCalledWith(jasmine.any(Object),4, expectedInstruction);
-        expect(expectedInstruction.bOperand.address).toBe(-1);
+        expect(context.bPointer).to.be.equal(3);
+        expect(core.setAt).to.have.been.calledWith(sinon.match.any,4, expectedInstruction);
+        expect(expectedInstruction.bOperand.address).to.be.equal(-1);
     });
 
     it("sets the A pointer to the relative position of the post-incremented A field value of the instruction pointed to by the current \
@@ -324,9 +323,9 @@ describe("Decoder",() => {
         var decoder = new Decoder(executive);
         decoder.decode(context);
 
-        expect(context.aPointer).toBe(3);
-        expect(core.setAt).toHaveBeenCalledWith(jasmine.any(Object),4, expectedInstruction);
-        expect(expectedInstruction.aOperand.address).toBe(0);
+        expect(context.aPointer).to.be.equal(3);
+        expect(core.setAt).to.have.been.calledWith(sinon.match.any,4, expectedInstruction);
+        expect(expectedInstruction.aOperand.address).to.be.equal(0);
     });
 
     it("sets the B pointer to the relative position of the post-incremented A field value of the instruction pointed to by the current \
@@ -345,9 +344,9 @@ describe("Decoder",() => {
         var decoder = new Decoder(executive);
         decoder.decode(context);
 
-        expect(context.bPointer).toBe(3);
-        expect(core.setAt).toHaveBeenCalledWith(jasmine.any(Object),4, expectedInstruction);
-        expect(expectedInstruction.aOperand.address).toBe(0);
+        expect(context.bPointer).to.be.equal(3);
+        expect(core.setAt).to.have.been.calledWith(sinon.match.any,4, expectedInstruction);
+        expect(expectedInstruction.aOperand.address).to.be.equal(0);
     });
 
     it("sets the A pointer to the relative position of the post-incremented B field value of the instruction pointed to by the current \
@@ -366,9 +365,9 @@ describe("Decoder",() => {
         var decoder = new Decoder(executive);
         decoder.decode(context);
 
-        expect(context.aPointer).toBe(3);
-        expect(core.setAt).toHaveBeenCalledWith(jasmine.any(Object),4, expectedInstruction);
-        expect(expectedInstruction.bOperand.address).toBe(0);
+        expect(context.aPointer).to.be.equal(3);
+        expect(core.setAt).to.have.been.calledWith(sinon.match.any,4, expectedInstruction);
+        expect(expectedInstruction.bOperand.address).to.be.equal(0);
     });
 
     it("sets the B pointer to the relative position of the post-incremented B field value of the instruction pointed to by the current \
@@ -387,9 +386,9 @@ describe("Decoder",() => {
         var decoder = new Decoder(executive);
         decoder.decode(context);
 
-        expect(context.bPointer).toBe(3);
-        expect(core.setAt).toHaveBeenCalledWith(jasmine.any(Object),4, expectedInstruction);
-        expect(expectedInstruction.bOperand.address).toBe(0);
+        expect(context.bPointer).to.be.equal(3);
+        expect(core.setAt).to.have.been.calledWith(sinon.match.any,4, expectedInstruction);
+        expect(expectedInstruction.bOperand.address).to.be.equal(0);
     });
 
     it("returns the command from the command table which corresponds with the combination of the current instruction's \
@@ -408,6 +407,6 @@ describe("Decoder",() => {
         // ModifierType.Count = 7
         // ModifierType.BA = 3
         // 1*7 + 3 = 10
-        expect(context.command).toBe(executive.commandTable[10]);
+        expect(context.command).to.be.equal(executive.commandTable[10]);
     });
 });

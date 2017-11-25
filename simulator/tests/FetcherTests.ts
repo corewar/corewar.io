@@ -1,4 +1,6 @@
-﻿
+﻿import { expect } from "chai";
+import * as sinon from "sinon";
+
 import { IState } from "../interface/IState";
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import { OpcodeType, ModifierType } from "../interface/IInstruction";
@@ -25,18 +27,13 @@ describe("Fetcher",() => {
         var options = Defaults;
         options.coresize = 5;
 
-        var executeAtSpy = jasmine.createSpy("ICore.executeAt() Spy");
-        var readAtSpy = jasmine.createSpy("ICore.readAt() Spy");
-        var getAtSpy = jasmine.createSpy("ICore.getAt() Spy");
-        var setAtSpy = jasmine.createSpy("ICore.setAt() Spy");
-
         core = {
             getSize: () => { return 0; },
             coreAccess: new LiteEvent<ICoreAccessEventArgs>(),
-            executeAt: executeAtSpy,
-            readAt: readAtSpy,
-            getAt: getAtSpy,
-            setAt: setAtSpy,
+            executeAt: sinon.stub(),
+            readAt: sinon.stub(),
+            getAt: sinon.stub(),
+            setAt: sinon.stub(),
             wrap(address: number) {
                 return address;
             },
@@ -88,13 +85,13 @@ describe("Fetcher",() => {
         var fetcher = new Fetcher();
         var context = fetcher.fetch(state);
 
-        expect(context.warrior).toBe(expectedWarrior);
-        expect(context.task).toBe(expectedTask);
-        expect(context.instruction).toBe(expectedInstruction);
+        expect(context.warrior).to.be.equal(expectedWarrior);
+        expect(context.task).to.be.equal(expectedTask);
+        expect(context.instruction).to.be.equal(expectedInstruction);
 
-        expect(context.warriorIndex).toBe(1);
-        expect(context.taskIndex).toBe(1);
-        expect(context.instructionPointer).toBe(3);
+        expect(context.warriorIndex).to.be.equal(1);
+        expect(context.taskIndex).to.be.equal(1);
+        expect(context.instructionPointer).to.be.equal(3);
     });
 
     it("advances the correct warrior index, task index and instruction pointer",() => {
@@ -126,9 +123,9 @@ describe("Fetcher",() => {
         var fetcher = new Fetcher();
         fetcher.fetch(state);
 
-        expect(state.warriorIndex).toBe(2);
-        expect(expectedWarrior.taskIndex).toBe(2);
-        expect(expectedTask.instructionPointer).toBe(4);
+        expect(state.warriorIndex).to.be.equal(2);
+        expect(expectedWarrior.taskIndex).to.be.equal(2);
+        expect(expectedTask.instructionPointer).to.be.equal(4);
     });
 
     it("wraps the warrior index, task index and instruction pointer",() => {
@@ -160,9 +157,9 @@ describe("Fetcher",() => {
         var fetcher = new Fetcher();
         fetcher.fetch(state);
 
-        expect(state.warriorIndex).toBe(0);
-        expect(expectedWarrior.taskIndex).toBe(0);
-        expect(expectedTask.instructionPointer).toBe(0);
+        expect(state.warriorIndex).to.be.equal(0);
+        expect(expectedWarrior.taskIndex).to.be.equal(0);
+        expect(expectedTask.instructionPointer).to.be.equal(0);
     });
 
 });

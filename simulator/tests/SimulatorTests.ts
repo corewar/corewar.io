@@ -1,4 +1,8 @@
-﻿
+﻿import * as chai from "chai";
+import * as sinon from "sinon";
+import * as sinonChai from "sinon-chai";
+var expect = chai.expect;
+chai.use(sinonChai);
 
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
@@ -30,37 +34,37 @@ describe("Simulator",() => {
     var executive: IExecutive;
     var endCondition: IEndCondition;
 
-    var commandSpy: jasmine.Spy;
+    var commandSpy: sinon.stub;
 
     beforeEach(() => {
 
         core = {
             getSize: () => { return 0; },
             coreAccess: new LiteEvent<ICoreAccessEventArgs>(),
-            executeAt: jasmine.createSpy("ICore.executeAt() Spy"),
-            readAt: jasmine.createSpy("ICore.readAt() Spy"),
-            getAt: jasmine.createSpy("ICore.getAt() Spy"),
-            setAt: jasmine.createSpy("ICore.setAt() Spy"),
-            wrap: jasmine.createSpy("ICore.wrap() Spy"),
-            initialise: jasmine.createSpy("ICore.initialise() Spy")
+            executeAt: sinon.stub(),
+            readAt: sinon.stub(),
+            getAt: sinon.stub(),
+            setAt: sinon.stub(),
+            wrap: sinon.stub(),
+            initialise: sinon.stub()
         };
 
         loader = {
-            load: jasmine.createSpy("ILoader.load() Spy")
+            load: sinon.stub()
         };
 
         fetcher = {
-            fetch: jasmine.createSpy("IFetcher.fetch() Spy")
+            fetch: sinon.stub()
         };
 
-        (<jasmine.Spy>fetcher.fetch).and.returnValue({});
+        (<sinon.stub>fetcher.fetch).returns({});
 
         decoder = {
-            decode: jasmine.createSpy("IDecoder.decode() Spy")
+            decode: sinon.stub()
         };
 
-        commandSpy = jasmine.createSpy("Command Spy");
-        (<jasmine.Spy>decoder.decode).and.returnValue({
+        commandSpy = sinon.stub();
+        (<sinon.stub>decoder.decode).returns({
             command: commandSpy
         });
 
@@ -72,7 +76,7 @@ describe("Simulator",() => {
         };
 
         endCondition = {
-            check: jasmine.createSpy("IEndCondition.check() Spy")
+            check: sinon.stub()
         };
 
         simulator = new Simulator(
@@ -90,18 +94,18 @@ describe("Simulator",() => {
         var decodeCalled = false;
         var executeCalled = false;
 
-        (<jasmine.Spy>fetcher.fetch).and.callFake(() => {
-            expect(fetchCalled).not.toBe(true);
-            expect(decodeCalled).not.toBe(true);
-            expect(executeCalled).not.toBe(true);
+        (<sinon.stub>fetcher.fetch).callsFake(() => {
+            expect(fetchCalled).not.to.be.equal(true);
+            expect(decodeCalled).not.to.be.equal(true);
+            expect(executeCalled).not.to.be.equal(true);
 
             fetchCalled = true;
         });
 
-        (<jasmine.Spy>decoder.decode).and.callFake(() => {
-            expect(fetchCalled).toBe(true);
-            expect(decodeCalled).not.toBe(true);
-            expect(executeCalled).not.toBe(true);
+        (<sinon.stub>decoder.decode).callsFake(() => {
+            expect(fetchCalled).to.be.equal(true);
+            expect(decodeCalled).not.to.be.equal(true);
+            expect(executeCalled).not.to.be.equal(true);
 
             decodeCalled = true;
 
@@ -110,80 +114,80 @@ describe("Simulator",() => {
             };
         });
 
-        commandSpy.and.callFake(() => {
-            expect(fetchCalled).toBe(true);
-            expect(decodeCalled).toBe(true);
-            expect(executeCalled).not.toBe(true);
+        commandSpy.callsFake(() => {
+            expect(fetchCalled).to.be.equal(true);
+            expect(decodeCalled).to.be.equal(true);
+            expect(executeCalled).not.to.be.equal(true);
 
             executeCalled = true;
         });
 
         simulator.step();
 
-        expect(fetchCalled).toBe(true);
-        expect(decodeCalled).toBe(true);
-        expect(executeCalled).toBe(true);
+        expect(fetchCalled).to.be.equal(true);
+        expect(decodeCalled).to.be.equal(true);
+        expect(executeCalled).to.be.equal(true);
     });
 
     it("returns true if the end condition check returns true",() => {
 
-        (<jasmine.Spy>endCondition.check).and.returnValue(true);
+        (<sinon.stub>endCondition.check).returns(true);
 
         var actual = simulator.step();
 
-        expect(actual).toBe(true);
+        expect(actual).to.be.equal(true);
     });
 
     it("returns false if the end condition check returns false",() => {
 
-        (<jasmine.Spy>endCondition.check).and.returnValue(false);
+        (<sinon.stub>endCondition.check).returns(false);
 
         var actual = simulator.step();
 
-        expect(actual).toBe(false);
+        expect(actual).to.be.equal(false);
     });
 
     it("increments the cycle number",() => {
 
-        var checkSpy = <jasmine.Spy>endCondition.check;
+        var checkSpy = <sinon.stub>endCondition.check;
         var state: IState;
 
         simulator.step();
 
-        state = _(checkSpy.calls.mostRecent().args).first();
-        expect(state.cycle).toBe(1);
+        state = _(checkSpy.lastCall.args).first();
+        expect(state.cycle).to.be.equal(1);
 
         simulator.step();
 
-        state = _(checkSpy.calls.mostRecent().args).first();
-        expect(state.cycle).toBe(2);
+        state = _(checkSpy.lastCall.args).first();
+        expect(state.cycle).to.be.equal(2);
 
         simulator.step();
 
-        state = _(checkSpy.calls.mostRecent().args).first();
-        expect(state.cycle).toBe(3);
+        state = _(checkSpy.lastCall.args).first();
+        expect(state.cycle).to.be.equal(3);
     });
 
     it("passes the context retrieved from fetch to decode",() => {
 
         var fetchContext = {};
 
-        (<jasmine.Spy>fetcher.fetch).and.returnValue(fetchContext);
+        (<sinon.stub>fetcher.fetch).returns(fetchContext);
 
         simulator.step();
 
-        expect(<jasmine.Spy>decoder.decode).toHaveBeenCalledWith(fetchContext);
+        expect(<sinon.stub>decoder.decode).to.have.been.calledWith(fetchContext);
     });
 
     it("passes the context retrieved from decode to execute",() => {
 
         var decodeContext = { command: commandSpy };
 
-        (<jasmine.Spy>decoder.decode).and.returnValue(decodeContext);
+        (<sinon.stub>decoder.decode).returns(decodeContext);
 
         simulator.step();
 
-        expect(commandSpy).toHaveBeenCalledWith(decodeContext);
+        expect(commandSpy).to.have.been.calledWith(decodeContext);
     });
 
     it("sets state options to value passed to initialise",() => {
@@ -212,9 +216,9 @@ describe("Simulator",() => {
         simulator.initialise(expected, []);
         simulator.step();
 
-        var actual: IState = _((<jasmine.Spy>endCondition.check).calls.mostRecent().args).first();
+        var actual: IState = _((<sinon.stub>endCondition.check).lastCall.args).first();
 
-        expect(actual.options).toEqual(expected);
+        expect(actual.options).to.deep.equal(expected);
     });
 
     it("uses default options if none supplied to initialise",() => {
@@ -222,16 +226,16 @@ describe("Simulator",() => {
         simulator.initialise({ coresize: 123 }, []);
         simulator.step();
 
-        var actual: IState = _((<jasmine.Spy>endCondition.check).calls.mostRecent().args).first();
+        var actual: IState = _((<sinon.stub>endCondition.check).lastCall.args).first();
 
-        expect(actual.options).toEqual(_.defaults({ coresize: 123 }, Defaults));
+        expect(actual.options).to.deep.equal(_.defaults({ coresize: 123 }, Defaults));
     });
 
     it("initialises core using the supplied options",() => {
 
         simulator.initialise(Defaults, []);
 
-        expect(core.initialise).toHaveBeenCalledWith(Defaults);
+        expect(core.initialise).to.have.been.calledWith(Defaults);
     });
 
     it("stores warriors returned from the loader in the state passed to the fetch method",() => {
@@ -239,15 +243,15 @@ describe("Simulator",() => {
         var warriors = [];
         var loadedWarriors = [];
 
-        (<jasmine.Spy>loader.load).and.returnValue(loadedWarriors);
+        (<sinon.stub>loader.load).returns(loadedWarriors);
 
         simulator.initialise(Defaults, warriors);
         simulator.step();
 
-        expect(loader.load).toHaveBeenCalledWith(warriors, Defaults);
+        expect(loader.load).to.have.been.calledWith(warriors, Defaults);
 
-        var state = _((<jasmine.Spy>fetcher.fetch).calls.mostRecent().args).first();
+        var state = _((<sinon.stub>fetcher.fetch).lastCall.args).first();
 
-        expect(state.warriors).toBe(loadedWarriors);
+        expect(state.warriors).to.be.equal(loadedWarriors);
     });
 });

@@ -1,5 +1,4 @@
-﻿
-import { IToken, TokenCategory } from "../../parser/interface/IToken";
+﻿import { IToken, TokenCategory } from "../../parser/interface/IToken";
 import { IParseResult } from "../../parser/interface/IParseResult";
 import { IWarrior } from "../interface/IWarrior";
 import { ITask } from "../interface/ITask";

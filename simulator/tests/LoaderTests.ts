@@ -1,4 +1,9 @@
-﻿
+﻿import * as chai from "chai";
+import * as sinon from "sinon";
+import * as sinonChai from "sinon-chai";
+var expect = chai.expect;
+chai.use(sinonChai);
+
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { IRandom } from "../interface/IRandom";
@@ -43,12 +48,12 @@ describe("Loader",() => {
         core = {
             getSize: () => { return 0; },
             coreAccess: new LiteEvent<ICoreAccessEventArgs>(),
-            executeAt: jasmine.createSpy("ICore.executeAt"),
-            readAt: jasmine.createSpy("ICore.readAt"),
-            getAt: jasmine.createSpy("ICore.getAt"),
-            setAt: jasmine.createSpy("ICore.setAt"),
-            initialise: jasmine.createSpy("ICore.initialise"),
-            wrap: jasmine.createSpy("ICore.wrap")
+            executeAt: sinon.stub(),
+            readAt: sinon.stub(),
+            getAt: sinon.stub(),
+            setAt: sinon.stub(),
+            initialise: sinon.stub(),
+            wrap: sinon.stub()
         };
     });
 
@@ -60,8 +65,8 @@ describe("Loader",() => {
             DataHelper.buildParseResult([])
         ];
 
-        var loadSpy = jasmine.createSpy("IWarriorLoader.load");
-        loadSpy.and.returnValue(new Warrior());
+        var loadSpy = sinon.stub();
+        loadSpy.returns(new Warrior());
 
         warriorLoader = {
             load: loadSpy
@@ -71,9 +76,9 @@ describe("Loader",() => {
 
         loader.load(warriors, Defaults);
 
-        expect(warriorLoader.load).toHaveBeenCalledWith(jasmine.any(Number), warriors[0]);
-        expect(warriorLoader.load).toHaveBeenCalledWith(jasmine.any(Number), warriors[1]);
-        expect(warriorLoader.load).toHaveBeenCalledWith(jasmine.any(Number), warriors[2]);
+        expect(warriorLoader.load).to.have.been.calledWith(sinon.match.number, warriors[0]);
+        expect(warriorLoader.load).to.have.been.calledWith(sinon.match.number, warriors[1]);
+        expect(warriorLoader.load).to.have.been.calledWith(sinon.match.number, warriors[2]);
     });
 
     it("Returns the warriors which have been loaded into core",() => {
@@ -98,9 +103,9 @@ describe("Loader",() => {
 
         var actual = loader.load(warriorsIn, Defaults);
 
-        expect(actual[0]).toBe(warriorsOut[0]);
-        expect(actual[1]).toBe(warriorsOut[1]);
-        expect(actual[2]).toBe(warriorsOut[2]);
+        expect(actual[0]).to.be.equal(warriorsOut[0]);
+        expect(actual[1]).to.be.equal(warriorsOut[1]);
+        expect(actual[2]).to.be.equal(warriorsOut[2]);
     });
 
     function wrapTo(max: number): (address: number) => number {
@@ -134,8 +139,8 @@ describe("Loader",() => {
 
         var actual = loader.load(warriors, options);
 
-        expect(actual[0].startAddress).toBe(10);
-        expect(actual[1].startAddress).toBe(20);
+        expect(actual[0].startAddress).to.be.equal(10);
+        expect(actual[1].startAddress).to.be.equal(20);
     });
 
     it("Does not place warriors so they overlap",() => {
@@ -160,9 +165,9 @@ describe("Loader",() => {
 
         var actual = loader.load(warriors, options);
 
-        expect(actual[0].startAddress).toBe(10);
-        expect(actual[1].startAddress).toBe(15);
-        expect(actual[2].startAddress).toBe(5);
+        expect(actual[0].startAddress).to.be.equal(10);
+        expect(actual[1].startAddress).to.be.equal(15);
+        expect(actual[2].startAddress).to.be.equal(5);
     });
 
     it("Does not place warriors so they are within the minimum separation distance",() => {
@@ -187,9 +192,9 @@ describe("Loader",() => {
 
         var actual = loader.load(warriors, options);
 
-        expect(actual[0].startAddress).toBe(10);
-        expect(actual[1].startAddress).toBe(19);
-        expect(actual[2].startAddress).toBe(1);
+        expect(actual[0].startAddress).to.be.equal(10);
+        expect(actual[1].startAddress).to.be.equal(19);
+        expect(actual[2].startAddress).to.be.equal(1);
     });
 
     it("Correctly accounts for edge case where first warrior wraps round from high address to low address",() => {
@@ -214,9 +219,9 @@ describe("Loader",() => {
 
         var actual = loader.load(warriors, options);
 
-        expect(actual[0].startAddress).toBe(28);
-        expect(actual[1].startAddress).toBe(19);
-        expect(actual[2].startAddress).toBe(7);
+        expect(actual[0].startAddress).to.be.equal(28);
+        expect(actual[1].startAddress).to.be.equal(19);
+        expect(actual[2].startAddress).to.be.equal(7);
     });
 
     it("Correctly accounts for edge case where second warrior wraps round from high address to low address",() => {
@@ -241,8 +246,8 @@ describe("Loader",() => {
 
         var actual = loader.load(warriors, options);
 
-        expect(actual[0].startAddress).toBe(19);
-        expect(actual[1].startAddress).toBe(28);
-        expect(actual[2].startAddress).toBe(7);
+        expect(actual[0].startAddress).to.be.equal(19);
+        expect(actual[1].startAddress).to.be.equal(28);
+        expect(actual[2].startAddress).to.be.equal(7);
     });
 });
