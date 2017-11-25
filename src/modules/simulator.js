@@ -13,6 +13,7 @@ const initialState = {
   coreAccess: [],
   taskExecution: [],
   isInitialised: false,
+  currentExecutionAddress: null
 }
 
 
@@ -32,7 +33,8 @@ export default (state = initialState, action) => {
     case STEP:
       return {
         ...state,
-        taskExecution: updateTasks(action.taskExecution, state.taskExecution)
+        taskExecution: tasksToExecutionState(action.taskExecution, state, action.currentExecutionAddress),
+        currentExecutionAddress: action.currentExecutionAddress
       }
 
     case CORE_ACCESS:
@@ -46,14 +48,6 @@ export default (state = initialState, action) => {
   }
 }
 
-const updateTasks= (tasks, taskExecution) => {
-  let adjustedArray;
-  tasks.forEach(task => {
-    adjustedArray = updateTask(task.address, taskExecution, task)
-  });
-  return adjustedArray;
-}
-
 const updateItem = (index, array, item) => {
   const newArray = array.slice();
   newArray[index] = coreAccessToCell(item);
@@ -65,8 +59,6 @@ const updateTask = (index, array, item) => {
   newArray[index] = taskToCell(item);
   return newArray;
 }
-
-
 
 const insertItem = (index, array, item) => {
   let newArray = array.slice();
@@ -107,41 +99,30 @@ const coreAccessToCell = (coreAccess) => {
 };
 
 const taskToCell = (task) => {
-
   return {
     address: task.address,
-    label: '',
+    label: '.',
     icon: task.icon,
-    colour: task.colour
+    colour: task.colour,
+    warriorNumber: task.warriorNumber
   }
-
 };
 
 const defaultCell = {
 	  address: 0,
-	  label: '-',
+	  label: '.',
 	  colour: 'default',
     icon: ''
 };
 
-const warriorToCellColour = (warriorNumber, warriorIndex) => {
-
-  if(warriorIndex == warriorNumber) {
-    return 'white';
-  } else {
-    return 'red';
-  }
-
-}
-
-const mapStateToExecution = (state) => {
+const stateToTasks = (state) => {
 
   return state.warriors.map((w, i) =>
       w.tasks.map(t => {
         return {
           address: t.instructionPointer,
-          warrior: i,
-          colour: warriorToCellColour(i, state.warriorIndex)
+          warriorNumber: i,
+          colour: ''
         }
       })).reduce((a, c) => a.concat(c));
 
@@ -196,14 +177,58 @@ export const step = () => {
 
   const state = corewar.simulator.getState();
 
-  const taskExecution = mapStateToExecution(state);
+  const tasks = stateToTasks(state);
+
+  const currentExecutionAddress = getCurrentExecutionAddress(state);
 
   corewar.simulator.step();
 
   return dispatch => {
     dispatch({
       type: STEP,
-      taskExecution: taskExecution
+      taskExecution: tasks,
+      currentExecutionAddress: currentExecutionAddress
     })
+  }
+}
+
+const tasksToExecutionState = (tasks, state, currentExecutionAddress) => {
+
+  let coreExecutionState;
+
+  tasks.forEach(task => {
+    coreExecutionState = updateTask(task.address, state.taskExecution, task);
+  });
+
+  return colourExecutionState(state, coreExecutionState, currentExecutionAddress);
+}
+
+const getCurrentExecutionAddress = (state) => {
+  const currentWarrior = state.warriors[state.warriorIndex];
+  return currentWarrior.tasks[currentWarrior.taskIndex].instructionPointer;
+}
+
+const colourExecutionState = (state, taskExecution, currentExecutionAddress) => {
+
+    taskExecution.forEach((coreAddress) => {
+      coreAddress.colour = getColour(coreAddress, currentExecutionAddress);
+    });
+
+    return taskExecution;
+  };
+
+const getColour = (coreAddress, currentExecution) => {
+
+  if(coreAddress.address === currentExecution) {
+    return 'white';
+  }
+
+  switch (coreAddress.warriorNumber) {
+    case 0:
+      return 'red'
+    case 1:
+      return 'green';
+    default:
+      return 'default';
   }
 }

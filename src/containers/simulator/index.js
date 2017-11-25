@@ -16,9 +16,9 @@ const Simulator = props => {
     {props.isInitialised && <button onClick={() => props.step()}>Step</button>}
     <div>
       <textarea value={props.redcode} readOnly="readOnly" />
-      <Core data={props.core} />
-      <Core data={props.coreAccess} />
-      <Core data={props.taskExecution} />
+      {/* <Core type='core' data={props.core} /> */}
+      <Core type='coreAccess' data={props.coreAccess} />
+      <Core type='tasks' data={props.taskExecution} />
     </div>
   </div>
 }

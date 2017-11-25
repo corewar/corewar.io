@@ -13,7 +13,7 @@ const initialState = {
   },
   warrior: '',
   standardId: 2,
-  redcode: ''
+  redcode: 'MOV 0, 1'
 }
 
 

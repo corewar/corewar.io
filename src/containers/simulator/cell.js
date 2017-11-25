@@ -1,6 +1,8 @@
 import React from 'react'
 import { corewar } from 'corewar';
 
+import './cell.css';
+
 const Cell = props => {
 
   let css = `cell-${props.data ? props.data.colour : 'default'}`;
