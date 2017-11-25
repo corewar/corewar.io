@@ -1,4 +1,4 @@
-﻿
+﻿import { expect } from "chai";
 
 import { Context } from "../Context";
 import { IToken, TokenCategory } from "../interface/IToken";
@@ -54,11 +54,11 @@ describe("MathsProcessor",() => {
         var pass = new MathsProcessor(new Expression());
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(8);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(8);
+        expect(actual.messages.length).to.be.equal(0);
 
         for (var i = 0; i < tokens.length; i++) {
-            expect(tokens[i]).toEqual(actual.tokens[i]);
+            expect(tokens[i]).to.deep.equal(actual.tokens[i]);
         }
     });
 
@@ -83,14 +83,14 @@ describe("MathsProcessor",() => {
         var pass = new MathsProcessor(new Expression());
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(2);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(2);
+        expect(actual.messages.length).to.be.equal(0);
 
-        expect(actual.tokens[0].category).toBe(TokenCategory.Number);
-        expect(actual.tokens[0].lexeme).toBe("87");
-        expect(actual.tokens[0].position).toEqual({ line: 1, char: 1 });
+        expect(actual.tokens[0].category).to.be.equal(TokenCategory.Number);
+        expect(actual.tokens[0].lexeme).to.be.equal("87");
+        expect(actual.tokens[0].position).to.deep.equal({ line: 1, char: 1 });
 
-        expect(actual.tokens[1].lexeme).toBe("\n");
+        expect(actual.tokens[1].lexeme).to.be.equal("\n");
     });
 
     it("Parses literal positive numbers with a superfluous, leading +",() => {
@@ -118,14 +118,14 @@ describe("MathsProcessor",() => {
         var pass = new MathsProcessor(new Expression());
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(2);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(2);
+        expect(actual.messages.length).to.be.equal(0);
 
-        expect(actual.tokens[0].category).toBe(TokenCategory.Number);
-        expect(actual.tokens[0].lexeme).toBe("87");
-        expect(actual.tokens[0].position).toEqual({ line: 1, char: 1 });
+        expect(actual.tokens[0].category).to.be.equal(TokenCategory.Number);
+        expect(actual.tokens[0].lexeme).to.be.equal("87");
+        expect(actual.tokens[0].position).to.deep.equal({ line: 1, char: 1 });
 
-        expect(actual.tokens[1].lexeme).toBe("\n");
+        expect(actual.tokens[1].lexeme).to.be.equal("\n");
     });
 
     it("Parses literal negative numbers",() => {
@@ -153,14 +153,14 @@ describe("MathsProcessor",() => {
         var pass = new MathsProcessor(new Expression());
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(2);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(2);
+        expect(actual.messages.length).to.be.equal(0);
 
-        expect(actual.tokens[0].category).toBe(TokenCategory.Number);
-        expect(actual.tokens[0].lexeme).toBe("-23");
-        expect(actual.tokens[0].position).toEqual({ line: 1, char: 1 });
+        expect(actual.tokens[0].category).to.be.equal(TokenCategory.Number);
+        expect(actual.tokens[0].lexeme).to.be.equal("-23");
+        expect(actual.tokens[0].position).to.deep.equal({ line: 1, char: 1 });
 
-        expect(actual.tokens[1].lexeme).toBe("\n");
+        expect(actual.tokens[1].lexeme).to.be.equal("\n");
     });
 
     it("Calculates the sum of three addresses",() => {
@@ -200,14 +200,14 @@ describe("MathsProcessor",() => {
         var pass = new MathsProcessor(new Expression());
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(2);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(2);
+        expect(actual.messages.length).to.be.equal(0);
 
-        expect(actual.tokens[0].category).toBe(TokenCategory.Number);
-        expect(actual.tokens[0].lexeme).toBe("9");
-        expect(actual.tokens[0].position).toEqual({ line: 1, char: 1 });
+        expect(actual.tokens[0].category).to.be.equal(TokenCategory.Number);
+        expect(actual.tokens[0].lexeme).to.be.equal("9");
+        expect(actual.tokens[0].position).to.deep.equal({ line: 1, char: 1 });
 
-        expect(actual.tokens[1].lexeme).toBe("\n");
+        expect(actual.tokens[1].lexeme).to.be.equal("\n");
     });
 
     it("Calculates the difference of three addresses",() => {
@@ -247,14 +247,14 @@ describe("MathsProcessor",() => {
         var pass = new MathsProcessor(new Expression());
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(2);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(2);
+        expect(actual.messages.length).to.be.equal(0);
 
-        expect(actual.tokens[0].category).toBe(TokenCategory.Number);
-        expect(actual.tokens[0].lexeme).toBe("-1");
-        expect(actual.tokens[0].position).toEqual({ line: 1, char: 1 });
+        expect(actual.tokens[0].category).to.be.equal(TokenCategory.Number);
+        expect(actual.tokens[0].lexeme).to.be.equal("-1");
+        expect(actual.tokens[0].position).to.deep.equal({ line: 1, char: 1 });
 
-        expect(actual.tokens[1].lexeme).toBe("\n");
+        expect(actual.tokens[1].lexeme).to.be.equal("\n");
     });
 
     it("Calculates the product of three addresses",() => {
@@ -294,14 +294,14 @@ describe("MathsProcessor",() => {
         var pass = new MathsProcessor(new Expression());
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(2);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(2);
+        expect(actual.messages.length).to.be.equal(0);
 
-        expect(actual.tokens[0].category).toBe(TokenCategory.Number);
-        expect(actual.tokens[0].lexeme).toBe("24");
-        expect(actual.tokens[0].position).toEqual({ line: 1, char: 1 });
+        expect(actual.tokens[0].category).to.be.equal(TokenCategory.Number);
+        expect(actual.tokens[0].lexeme).to.be.equal("24");
+        expect(actual.tokens[0].position).to.deep.equal({ line: 1, char: 1 });
 
-        expect(actual.tokens[1].lexeme).toBe("\n");
+        expect(actual.tokens[1].lexeme).to.be.equal("\n");
     });
 
     it("Calculates the quotient of three addresses",() => {
@@ -341,14 +341,14 @@ describe("MathsProcessor",() => {
         var pass = new MathsProcessor(new Expression());
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(2);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(2);
+        expect(actual.messages.length).to.be.equal(0);
 
-        expect(actual.tokens[0].category).toBe(TokenCategory.Number);
-        expect(actual.tokens[0].lexeme).toBe("4");
-        expect(actual.tokens[0].position).toEqual({ line: 1, char: 1 });
+        expect(actual.tokens[0].category).to.be.equal(TokenCategory.Number);
+        expect(actual.tokens[0].lexeme).to.be.equal("4");
+        expect(actual.tokens[0].position).to.deep.equal({ line: 1, char: 1 });
 
-        expect(actual.tokens[1].lexeme).toBe("\n");
+        expect(actual.tokens[1].lexeme).to.be.equal("\n");
     });
 
     it("Calculates the quotient of three addresses",() => {
@@ -388,14 +388,14 @@ describe("MathsProcessor",() => {
         var pass = new MathsProcessor(new Expression());
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(2);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(2);
+        expect(actual.messages.length).to.be.equal(0);
 
-        expect(actual.tokens[0].category).toBe(TokenCategory.Number);
-        expect(actual.tokens[0].lexeme).toBe("2");
-        expect(actual.tokens[0].position).toEqual({ line: 1, char: 1 });
+        expect(actual.tokens[0].category).to.be.equal(TokenCategory.Number);
+        expect(actual.tokens[0].lexeme).to.be.equal("2");
+        expect(actual.tokens[0].position).to.deep.equal({ line: 1, char: 1 });
 
-        expect(actual.tokens[1].lexeme).toBe("\n");
+        expect(actual.tokens[1].lexeme).to.be.equal("\n");
     });
 
     it("Applies correct operator precedence to operators",() => {
@@ -451,14 +451,14 @@ describe("MathsProcessor",() => {
         var pass = new MathsProcessor(new Expression());
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(2);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(2);
+        expect(actual.messages.length).to.be.equal(0);
 
-        expect(actual.tokens[0].category).toBe(TokenCategory.Number);
-        expect(actual.tokens[0].lexeme).toBe("6");
-        expect(actual.tokens[0].position).toEqual({ line: 1, char: 1 });
+        expect(actual.tokens[0].category).to.be.equal(TokenCategory.Number);
+        expect(actual.tokens[0].lexeme).to.be.equal("6");
+        expect(actual.tokens[0].position).to.deep.equal({ line: 1, char: 1 });
 
-        expect(actual.tokens[1].lexeme).toBe("\n");
+        expect(actual.tokens[1].lexeme).to.be.equal("\n");
     });
 
     it("Correctly applies brackets to override operator precedence",() => {
@@ -506,14 +506,14 @@ describe("MathsProcessor",() => {
         var pass = new MathsProcessor(new Expression());
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(2);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(2);
+        expect(actual.messages.length).to.be.equal(0);
 
-        expect(actual.tokens[0].category).toBe(TokenCategory.Number);
-        expect(actual.tokens[0].lexeme).toBe("9");
-        expect(actual.tokens[0].position).toEqual({ line: 1, char: 1 });
+        expect(actual.tokens[0].category).to.be.equal(TokenCategory.Number);
+        expect(actual.tokens[0].lexeme).to.be.equal("9");
+        expect(actual.tokens[0].position).to.deep.equal({ line: 1, char: 1 });
 
-        expect(actual.tokens[1].lexeme).toBe("\n");
+        expect(actual.tokens[1].lexeme).to.be.equal("\n");
     });
 
     it("Correctly handles multiple nested brackets",() => {
@@ -611,14 +611,14 @@ describe("MathsProcessor",() => {
         var pass = new MathsProcessor(new Expression());
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(2);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(2);
+        expect(actual.messages.length).to.be.equal(0);
 
-        expect(actual.tokens[0].category).toBe(TokenCategory.Number);
-        expect(actual.tokens[0].lexeme).toBe("-1");
-        expect(actual.tokens[0].position).toEqual({ line: 1, char: 1 });
+        expect(actual.tokens[0].category).to.be.equal(TokenCategory.Number);
+        expect(actual.tokens[0].lexeme).to.be.equal("-1");
+        expect(actual.tokens[0].position).to.deep.equal({ line: 1, char: 1 });
 
-        expect(actual.tokens[1].lexeme).toBe("\n");
+        expect(actual.tokens[1].lexeme).to.be.equal("\n");
     });
 
     it("Raises a syntax error if an expression does not contain a closing bracket",() => {
@@ -654,12 +654,12 @@ describe("MathsProcessor",() => {
         var pass = new MathsProcessor(new Expression());
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(0);
-        expect(actual.messages.length).toBe(1);
+        expect(actual.tokens.length).to.be.equal(0);
+        expect(actual.messages.length).to.be.equal(1);
 
-        expect(actual.messages[0].position).toEqual({ line: 1, char: 8 });
-        expect(actual.messages[0].text).toBe("Expected ')', got end of line");
-        expect(actual.messages[0].type).toBe(MessageType.Error);
+        expect(actual.messages[0].position).to.deep.equal({ line: 1, char: 8 });
+        expect(actual.messages[0].text).to.be.equal("Expected ')', got end of line");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
     });
 
     it("Raises a syntax error if a mathematical operator is not followed by an address",() => {
@@ -687,12 +687,12 @@ describe("MathsProcessor",() => {
         var pass = new MathsProcessor(new Expression());
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(0);
-        expect(actual.messages.length).toBe(1);
+        expect(actual.tokens.length).to.be.equal(0);
+        expect(actual.messages.length).to.be.equal(1);
 
-        expect(actual.messages[0].position).toEqual({ line: 1, char: 3 });
-        expect(actual.messages[0].text).toBe("Expected number, got end of line");
-        expect(actual.messages[0].type).toBe(MessageType.Error);
+        expect(actual.messages[0].position).to.deep.equal({ line: 1, char: 3 });
+        expect(actual.messages[0].text).to.be.equal("Expected number, got end of line");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
     });
 
     it("Raises a warning for non-integer division and produces integer division result",() => {
@@ -747,20 +747,20 @@ describe("MathsProcessor",() => {
         var pass = new MathsProcessor(new Expression());
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(2);
+        expect(actual.messages.length).to.be.equal(2);
 
-        expect(actual.messages[0].text).toBe("Rounded non-integer division truncated to integer value");
-        expect(actual.messages[0].position).toEqual({ line: 1, char: 3 });
-        expect(actual.messages[0].type).toBe(MessageType.Warning);
+        expect(actual.messages[0].text).to.be.equal("Rounded non-integer division truncated to integer value");
+        expect(actual.messages[0].position).to.deep.equal({ line: 1, char: 3 });
+        expect(actual.messages[0].type).to.be.equal(MessageType.Warning);
 
-        expect(actual.messages[1].text).toBe("Rounded non-integer division truncated to integer value");
-        expect(actual.messages[1].position).toEqual({ line: 2, char: 3 });
-        expect(actual.messages[1].type).toBe(MessageType.Warning);
+        expect(actual.messages[1].text).to.be.equal("Rounded non-integer division truncated to integer value");
+        expect(actual.messages[1].position).to.deep.equal({ line: 2, char: 3 });
+        expect(actual.messages[1].type).to.be.equal(MessageType.Warning);
 
-        expect(actual.tokens.length).toBe(6);
+        expect(actual.tokens.length).to.be.equal(6);
 
-        expect(actual.tokens[1].lexeme).toBe("1");
-        expect(actual.tokens[4].lexeme).toBe("-1");
+        expect(actual.tokens[1].lexeme).to.be.equal("1");
+        expect(actual.tokens[4].lexeme).to.be.equal("-1");
     });
 
     it("Raises an error if a divide by zero is encountered",() => {
@@ -795,11 +795,11 @@ describe("MathsProcessor",() => {
         var pass = new MathsProcessor(new Expression());
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(1);
+        expect(actual.messages.length).to.be.equal(1);
 
-        expect(actual.messages[0].text).toBe("Divide by zero is not permitted");
-        expect(actual.messages[0].position).toEqual({ line: 1, char: 3 });
-        expect(actual.messages[0].type).toBe(MessageType.Error);
+        expect(actual.messages[0].text).to.be.equal("Divide by zero is not permitted");
+        expect(actual.messages[0].position).to.deep.equal({ line: 1, char: 3 });
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
     });
 
     it("Rounds the quotient rather than the final result of the expression",() => {
@@ -842,6 +842,6 @@ describe("MathsProcessor",() => {
         var pass = new MathsProcessor(new Expression());
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens[1].lexeme).toBe("726");
+        expect(actual.tokens[1].lexeme).to.be.equal("726");
     });
 });

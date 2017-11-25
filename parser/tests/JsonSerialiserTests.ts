@@ -1,4 +1,5 @@
-﻿
+﻿import { expect } from "chai";
+
 import { IToken } from "../interface/IToken";
 import { JsonSerialiser } from "../JsonSerialiser";
 import { TestHelper } from "./TestHelper";
@@ -14,6 +15,6 @@ describe("JsonSerialiser", () => {
 
         var actual = serialiser.serialise(tokens);
 
-        expect(actual).toBe(JSON.stringify(tokens));
+        expect(actual).to.be.equal(JSON.stringify(tokens));
     });
 });

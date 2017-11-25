@@ -1,4 +1,6 @@
-﻿import { IToken, TokenCategory } from "../interface/IToken";
+﻿import { expect } from "chai";
+
+import { IToken, TokenCategory } from "../interface/IToken";
 import { Context } from "../Context";
 import { Parser } from "../Parser";
 import { TestHelper } from "./TestHelper";
@@ -64,11 +66,11 @@ describe("LabelEmitter",() => {
         var pass = new LabelEmitter();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
-        expect(actual.tokens.length).toBe(10);
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.tokens.length).to.be.equal(10);
 
         for (var i = 0; i < tokens.length; i++) {
-            expect(actual.tokens[i]).toEqual(tokens[i]);
+            expect(actual.tokens[i]).to.deep.equal(tokens[i]);
         }
     });
 
@@ -88,25 +90,25 @@ describe("LabelEmitter",() => {
         var pass = new LabelEmitter();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
-        expect(actual.tokens.length).toBe(10);
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.tokens.length).to.be.equal(10);
 
-        expect(actual.tokens[0]).toEqual(tokens[0]);
-        expect(actual.tokens[1]).toEqual(tokens[1]);
-        expect(actual.tokens[2]).toEqual(tokens[2]);
-        expect(actual.tokens[3]).toEqual(tokens[3]);
-        expect(actual.tokens[4]).toEqual(tokens[4]);
-        expect(actual.tokens[5]).toEqual(tokens[5]);
-        expect(actual.tokens[7]).toEqual(tokens[7]);
-        expect(actual.tokens[9]).toEqual(tokens[9]);
+        expect(actual.tokens[0]).to.deep.equal(tokens[0]);
+        expect(actual.tokens[1]).to.deep.equal(tokens[1]);
+        expect(actual.tokens[2]).to.deep.equal(tokens[2]);
+        expect(actual.tokens[3]).to.deep.equal(tokens[3]);
+        expect(actual.tokens[4]).to.deep.equal(tokens[4]);
+        expect(actual.tokens[5]).to.deep.equal(tokens[5]);
+        expect(actual.tokens[7]).to.deep.equal(tokens[7]);
+        expect(actual.tokens[9]).to.deep.equal(tokens[9]);
 
-        expect(actual.tokens[6].category).toBe(TokenCategory.Number);
-        expect(actual.tokens[6].lexeme).toBe("-1");
-        expect(actual.tokens[6].position).toEqual({ line: 3, char: 4 });
+        expect(actual.tokens[6].category).to.be.equal(TokenCategory.Number);
+        expect(actual.tokens[6].lexeme).to.be.equal("-1");
+        expect(actual.tokens[6].position).to.deep.equal({ line: 3, char: 4 });
 
-        expect(actual.tokens[8].category).toBe(TokenCategory.Number);
-        expect(actual.tokens[8].lexeme).toBe("4");
-        expect(actual.tokens[8].position).toEqual({ line: 3, char: 7 });
+        expect(actual.tokens[8].category).to.be.equal(TokenCategory.Number);
+        expect(actual.tokens[8].lexeme).to.be.equal("4");
+        expect(actual.tokens[8].position).to.deep.equal({ line: 3, char: 7 });
     });
 
     it("Raises a syntax error if an undeclared label is encountered",() => {
@@ -129,10 +131,10 @@ describe("LabelEmitter",() => {
         var pass = new LabelEmitter();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(1);
-        expect(actual.messages[0].text).toBe("Unrecognised label 'label1'");
-        expect(actual.messages[0].type).toBe(MessageType.Error);
-        expect(actual.messages[0].position).toEqual({ line: 2, char: 3 });
+        expect(actual.messages.length).to.be.equal(1);
+        expect(actual.messages[0].text).to.be.equal("Unrecognised label 'label1'");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
+        expect(actual.messages[0].position).to.deep.equal({ line: 2, char: 3 });
     });
 
     it("Replaces labels on END and ORG statements",() => {
@@ -150,16 +152,16 @@ describe("LabelEmitter",() => {
         var pass = new LabelEmitter();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
-        expect(actual.tokens.length).toBe(6);
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.tokens.length).to.be.equal(6);
 
-        expect(actual.tokens[0].lexeme).toBe("ORG");
-        expect(actual.tokens[1].lexeme).toBe("3");
-        expect(actual.tokens[2].lexeme).toBe("\n");
+        expect(actual.tokens[0].lexeme).to.be.equal("ORG");
+        expect(actual.tokens[1].lexeme).to.be.equal("3");
+        expect(actual.tokens[2].lexeme).to.be.equal("\n");
 
-        expect(actual.tokens[3].lexeme).toBe("END");
-        expect(actual.tokens[4].lexeme).toBe("5");
-        expect(actual.tokens[5].lexeme).toBe("\n");
+        expect(actual.tokens[3].lexeme).to.be.equal("END");
+        expect(actual.tokens[4].lexeme).to.be.equal("5");
+        expect(actual.tokens[5].lexeme).to.be.equal("\n");
     });
 
     it("Uses a maximum of eight characters when substituting labels in ICWS'88 standard mode",() => {
@@ -176,15 +178,15 @@ describe("LabelEmitter",() => {
         var pass = new LabelEmitter();
         var actual = pass.process(context, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions));
 
-        expect(actual.messages.length).toBe(0);
-        expect(actual.tokens.length).toBe(6);
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.tokens.length).to.be.equal(6);
 
-        expect(actual.tokens[2].category).toBe(TokenCategory.Number);
-        expect(actual.tokens[2].lexeme).toBe("0");
-        expect(actual.tokens[2].position).toEqual({ line: 3, char: 4 });
+        expect(actual.tokens[2].category).to.be.equal(TokenCategory.Number);
+        expect(actual.tokens[2].lexeme).to.be.equal("0");
+        expect(actual.tokens[2].position).to.deep.equal({ line: 3, char: 4 });
 
-        expect(actual.tokens[4].category).toBe(TokenCategory.Number);
-        expect(actual.tokens[4].lexeme).toBe("5");
-        expect(actual.tokens[4].position).toEqual({ line: 3, char: 7 });
+        expect(actual.tokens[4].category).to.be.equal(TokenCategory.Number);
+        expect(actual.tokens[4].lexeme).to.be.equal("5");
+        expect(actual.tokens[4].position).to.deep.equal({ line: 3, char: 7 });
     });
 });

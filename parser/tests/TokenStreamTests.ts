@@ -1,4 +1,5 @@
-﻿
+﻿import { expect } from "chai";
+
 import { IToken, TokenCategory } from "../interface/IToken";
 import { TokenStream } from "./../TokenStream";
 "use strict";
@@ -39,9 +40,9 @@ describe("TokenStream", () => {
         var stream = new TokenStream(tokens, []);
         stream.position = 3;
 
-        expect(stream.peek().position.char).toBe(4);
-        expect(stream.peek().position.char).toBe(4);
-        expect(stream.peek().position.char).toBe(4);
+        expect(stream.peek().position.char).to.be.equal(4);
+        expect(stream.peek().position.char).to.be.equal(4);
+        expect(stream.peek().position.char).to.be.equal(4);
     });
 
     it(".read() returns the next token in the stream and does advance the current position", () => {
@@ -49,9 +50,9 @@ describe("TokenStream", () => {
         var stream = new TokenStream(tokens, []);
         stream.position = 1;
 
-        expect(stream.read().position.char).toBe(2);
-        expect(stream.read().position.char).toBe(3);
-        expect(stream.read().position.char).toBe(4);
+        expect(stream.read().position.char).to.be.equal(2);
+        expect(stream.read().position.char).to.be.equal(3);
+        expect(stream.read().position.char).to.be.equal(4);
     });
 
     it(".eof() returns false if the position has not reached the end of the token array", () => {
@@ -59,7 +60,7 @@ describe("TokenStream", () => {
         var stream = new TokenStream(tokens, []);
         stream.position = 1;
 
-        expect(stream.eof()).toBe(false);
+        expect(stream.eof()).to.be.equal(false);
     });
 
     it(".eof() returns true if the position has reached the end of the token array", () => {
@@ -67,7 +68,7 @@ describe("TokenStream", () => {
         var stream = new TokenStream(tokens, []);
         stream.position = 5;
 
-        expect(stream.eof()).toBe(true);
+        expect(stream.eof()).to.be.equal(true);
     });
 
     it(".readToEOL() moves the position ahead to the character after the next end of line token", () => {
@@ -77,7 +78,7 @@ describe("TokenStream", () => {
 
         stream.readToEOL();
 
-        expect(stream.position).toBe(3);
+        expect(stream.position).to.be.equal(3);
     });
 
     it(".readToEOL() returns all tokens read", () => {
@@ -87,9 +88,9 @@ describe("TokenStream", () => {
 
         var actual = stream.readToEOL();
 
-        expect(actual.length).toBe(3);
-        expect(actual[0]).toEqual(tokens[0]);
-        expect(actual[1]).toEqual(tokens[1]);
-        expect(actual[2]).toEqual(tokens[2]);
+        expect(actual.length).to.be.equal(3);
+        expect(actual[0]).to.deep.equal(tokens[0]);
+        expect(actual[1]).to.deep.equal(tokens[1]);
+        expect(actual[2]).to.deep.equal(tokens[2]);
     });
 });

@@ -1,4 +1,5 @@
-﻿
+﻿import { expect } from "chai";
+
 import { Context } from "../Context";
 import { IToken, TokenCategory } from "../interface/IToken";
 import { Parser } from "../Parser";
@@ -62,11 +63,11 @@ describe("PreprocessorAnalyser",() => {
         var pass = new PreprocessAnalyser();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(10);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(10);
+        expect(actual.messages.length).to.be.equal(0);
 
         for (var i = 0; i < tokens.length; i++) {
-            expect(tokens[i]).toEqual(actual.tokens[i]);
+            expect(tokens[i]).to.deep.equal(actual.tokens[i]);
         }
     });
 
@@ -98,12 +99,12 @@ describe("PreprocessorAnalyser",() => {
         var label1 = actual.equs["label1"];
         var label2 = actual.equs["label2"];
 
-        expect(label1.length).toBe(2);
-        expect(label1[0].lexeme).toBe("MOV");
-        expect(label1[1].lexeme).toBe("86");
+        expect(label1.length).to.be.equal(2);
+        expect(label1[0].lexeme).to.be.equal("MOV");
+        expect(label1[1].lexeme).to.be.equal("86");
 
-        expect(label2.length).toBe(1);
-        expect(label2[0].lexeme).toBe("86");
+        expect(label2.length).to.be.equal(1);
+        expect(label2[0].lexeme).to.be.equal("86");
     });
 
     it("Raises an error if a circular reference is detected",() => {
@@ -134,16 +135,16 @@ describe("PreprocessorAnalyser",() => {
         var pass = new PreprocessAnalyser();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(3);
+        expect(actual.messages.length).to.be.equal(3);
 
-        expect(actual.messages[0].text).toBe("Circular reference detected in 'label1' EQU statement");
-        expect(actual.messages[0].type).toBe(MessageType.Error);
+        expect(actual.messages[0].text).to.be.equal("Circular reference detected in 'label1' EQU statement");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
 
-        expect(actual.messages[1].text).toBe("Circular reference detected in 'label2' EQU statement");
-        expect(actual.messages[1].type).toBe(MessageType.Error);
+        expect(actual.messages[1].text).to.be.equal("Circular reference detected in 'label2' EQU statement");
+        expect(actual.messages[1].type).to.be.equal(MessageType.Error);
 
-        expect(actual.messages[2].text).toBe("Circular reference detected in 'label3' EQU statement");
-        expect(actual.messages[2].type).toBe(MessageType.Error);
+        expect(actual.messages[2].text).to.be.equal("Circular reference detected in 'label3' EQU statement");
+        expect(actual.messages[2].type).to.be.equal(MessageType.Error);
     });
 
     it("Ignores undeclared labels",() => {
@@ -160,7 +161,7 @@ describe("PreprocessorAnalyser",() => {
         var pass = new PreprocessAnalyser();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
+        expect(actual.messages.length).to.be.equal(0);
     });
 
     it("Does not identify a circular references when an equ refers to another via two paths",() => {
@@ -202,6 +203,6 @@ describe("PreprocessorAnalyser",() => {
         var pass = new PreprocessAnalyser();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
+        expect(actual.messages.length).to.be.equal(0);
     });
 });

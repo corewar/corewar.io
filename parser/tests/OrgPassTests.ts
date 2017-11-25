@@ -1,4 +1,5 @@
-﻿
+﻿import { expect } from "chai";
+
 import { TestHelper } from "./TestHelper";
 import { Context } from "..//Context";
 import { OrgPass } from "../OrgPass";
@@ -26,23 +27,23 @@ describe("OrgPass",() => {
         var pass = new OrgPass();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
-        expect(actual.tokens.length).toBe(11);
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.tokens.length).to.be.equal(11);
 
-        expect(actual.tokens[0].lexeme).toBe(";redcode");
-        expect(actual.tokens[1].lexeme).toBe("\n");
+        expect(actual.tokens[0].lexeme).to.be.equal(";redcode");
+        expect(actual.tokens[1].lexeme).to.be.equal("\n");
 
-        expect(actual.tokens[2].lexeme).toBe(";author gareththegeek");
-        expect(actual.tokens[3].lexeme).toBe("\n");
+        expect(actual.tokens[2].lexeme).to.be.equal(";author gareththegeek");
+        expect(actual.tokens[3].lexeme).to.be.equal("\n");
 
-        expect(actual.tokens[4].lexeme).toBe("ORG");
-        expect(actual.tokens[5].lexeme).toBe("3");
-        expect(actual.tokens[6].lexeme).toBe("\n");
+        expect(actual.tokens[4].lexeme).to.be.equal("ORG");
+        expect(actual.tokens[5].lexeme).to.be.equal("3");
+        expect(actual.tokens[6].lexeme).to.be.equal("\n");
 
-        expect(actual.tokens[7].lexeme).toBe("MOV");
-        expect(actual.tokens[8].lexeme).toBe("$");
-        expect(actual.tokens[9].lexeme).toBe("0");
-        expect(actual.tokens[10].lexeme).toBe("\n");
+        expect(actual.tokens[7].lexeme).to.be.equal("MOV");
+        expect(actual.tokens[8].lexeme).to.be.equal("$");
+        expect(actual.tokens[9].lexeme).to.be.equal("0");
+        expect(actual.tokens[10].lexeme).to.be.equal("\n");
     });
 
     it("Inserts ORG 0 if no ORG statement found",() => {
@@ -57,26 +58,26 @@ describe("OrgPass",() => {
         var pass = new OrgPass();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
-        expect(actual.tokens.length).toBe(15);
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.tokens.length).to.be.equal(15);
 
-        expect(actual.tokens[0].lexeme).toBe("ORG");
-        expect(actual.tokens[1].lexeme).toBe("0");
-        expect(actual.tokens[2].lexeme).toBe("\n");
+        expect(actual.tokens[0].lexeme).to.be.equal("ORG");
+        expect(actual.tokens[1].lexeme).to.be.equal("0");
+        expect(actual.tokens[2].lexeme).to.be.equal("\n");
 
-        expect(actual.tokens[3].lexeme).toBe("MOV");
-        expect(actual.tokens[4].lexeme).toBe("1");
-        expect(actual.tokens[5].lexeme).toBe(",");
-        expect(actual.tokens[6].lexeme).toBe("2");
-        expect(actual.tokens[7].lexeme).toBe("\n");
+        expect(actual.tokens[3].lexeme).to.be.equal("MOV");
+        expect(actual.tokens[4].lexeme).to.be.equal("1");
+        expect(actual.tokens[5].lexeme).to.be.equal(",");
+        expect(actual.tokens[6].lexeme).to.be.equal("2");
+        expect(actual.tokens[7].lexeme).to.be.equal("\n");
 
-        expect(actual.tokens[8].lexeme).toBe("ADD");
-        expect(actual.tokens[9].lexeme).toBe(".F");
-        expect(actual.tokens[10].lexeme).toBe("@");
-        expect(actual.tokens[11].lexeme).toBe("2");
-        expect(actual.tokens[12].lexeme).toBe(",");
-        expect(actual.tokens[13].lexeme).toBe("3");
-        expect(actual.tokens[14].lexeme).toBe("\n");
+        expect(actual.tokens[8].lexeme).to.be.equal("ADD");
+        expect(actual.tokens[9].lexeme).to.be.equal(".F");
+        expect(actual.tokens[10].lexeme).to.be.equal("@");
+        expect(actual.tokens[11].lexeme).to.be.equal("2");
+        expect(actual.tokens[12].lexeme).to.be.equal(",");
+        expect(actual.tokens[13].lexeme).to.be.equal("3");
+        expect(actual.tokens[14].lexeme).to.be.equal("\n");
     });
 
     it("Uses END address for ORG statement",() => {
@@ -90,18 +91,18 @@ describe("OrgPass",() => {
         var pass = new OrgPass();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
-        expect(actual.tokens.length).toBe(8);
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.tokens.length).to.be.equal(8);
 
-        expect(actual.tokens[0].lexeme).toBe("ORG");
-        expect(actual.tokens[1].lexeme).toBe("2");
-        expect(actual.tokens[2].lexeme).toBe("\n");
+        expect(actual.tokens[0].lexeme).to.be.equal("ORG");
+        expect(actual.tokens[1].lexeme).to.be.equal("2");
+        expect(actual.tokens[2].lexeme).to.be.equal("\n");
 
-        expect(actual.tokens[3].lexeme).toBe("MOV");
-        expect(actual.tokens[4].lexeme).toBe("0");
-        expect(actual.tokens[5].lexeme).toBe(",");
-        expect(actual.tokens[6].lexeme).toBe("1");
-        expect(actual.tokens[7].lexeme).toBe("\n");
+        expect(actual.tokens[3].lexeme).to.be.equal("MOV");
+        expect(actual.tokens[4].lexeme).to.be.equal("0");
+        expect(actual.tokens[5].lexeme).to.be.equal(",");
+        expect(actual.tokens[6].lexeme).to.be.equal("1");
+        expect(actual.tokens[7].lexeme).to.be.equal("\n");
     });
 
     it("Raises a warning if multiple ORG instructions are found and uses latest definition",() => {
@@ -116,21 +117,21 @@ describe("OrgPass",() => {
         var pass = new OrgPass();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(2);
+        expect(actual.messages.length).to.be.equal(2);
 
-        expect(actual.messages[0].text).toBe("Redefinition of ORG encountered, this later definition will take effect");
-        expect(actual.messages[0].type).toBe(MessageType.Warning);
-        expect(actual.messages[0].position).toEqual({ line: 2, char: 1 });
+        expect(actual.messages[0].text).to.be.equal("Redefinition of ORG encountered, this later definition will take effect");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Warning);
+        expect(actual.messages[0].position).to.deep.equal({ line: 2, char: 1 });
 
-        expect(actual.messages[1].text).toBe("Redefinition of ORG encountered, this later definition will take effect");
-        expect(actual.messages[1].type).toBe(MessageType.Warning);
-        expect(actual.messages[1].position).toEqual({ line: 3, char: 1 });
+        expect(actual.messages[1].text).to.be.equal("Redefinition of ORG encountered, this later definition will take effect");
+        expect(actual.messages[1].type).to.be.equal(MessageType.Warning);
+        expect(actual.messages[1].position).to.deep.equal({ line: 3, char: 1 });
 
-        expect(actual.tokens.length).toBe(3);
+        expect(actual.tokens.length).to.be.equal(3);
 
-        expect(actual.tokens[0].lexeme).toBe("ORG");
-        expect(actual.tokens[1].lexeme).toBe("3");
-        expect(actual.tokens[2].lexeme).toBe("\n");
+        expect(actual.tokens[0].lexeme).to.be.equal("ORG");
+        expect(actual.tokens[1].lexeme).to.be.equal("3");
+        expect(actual.tokens[2].lexeme).to.be.equal("\n");
     });
 
     it("Raises a warning if both an ORG and END ### instruction are declared and uses the ORG definition",() => {
@@ -144,17 +145,17 @@ describe("OrgPass",() => {
         var pass = new OrgPass();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(1);
+        expect(actual.messages.length).to.be.equal(1);
 
-        expect(actual.messages[0].text).toBe("Encountered both ORG and END address, the ORG definition will take effect");
-        expect(actual.messages[0].type).toBe(MessageType.Warning);
-        expect(actual.messages[0].position).toEqual({ line: 2, char: 1 });
+        expect(actual.messages[0].text).to.be.equal("Encountered both ORG and END address, the ORG definition will take effect");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Warning);
+        expect(actual.messages[0].position).to.deep.equal({ line: 2, char: 1 });
 
-        expect(actual.tokens.length).toBe(3);
+        expect(actual.tokens.length).to.be.equal(3);
 
-        expect(actual.tokens[0].lexeme).toBe("ORG");
-        expect(actual.tokens[1].lexeme).toBe("1");
-        expect(actual.tokens[2].lexeme).toBe("\n");
+        expect(actual.tokens[0].lexeme).to.be.equal("ORG");
+        expect(actual.tokens[1].lexeme).to.be.equal("1");
+        expect(actual.tokens[2].lexeme).to.be.equal("\n");
     });
 
     it("Raises a syntax error if ORG statement does not contain an address",() => {
@@ -177,11 +178,11 @@ describe("OrgPass",() => {
         var pass = new OrgPass();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(1);
+        expect(actual.messages.length).to.be.equal(1);
 
-        expect(actual.messages[0].text).toBe("Expected number, got end of line");
-        expect(actual.messages[0].type).toBe(MessageType.Error);
-        expect(actual.messages[0].position).toEqual({ line: 4, char: 6 });
+        expect(actual.messages[0].text).to.be.equal("Expected number, got end of line");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
+        expect(actual.messages[0].position).to.deep.equal({ line: 4, char: 6 });
     });
 
     it("Raises a syntax error if ORG statement contains additional tokens before the end of line",() => {
@@ -212,11 +213,11 @@ describe("OrgPass",() => {
         var pass = new OrgPass();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(1);
+        expect(actual.messages.length).to.be.equal(1);
 
-        expect(actual.messages[0].text).toBe("Expected end of line, got 'MOV'");
-        expect(actual.messages[0].type).toBe(MessageType.Error);
-        expect(actual.messages[0].position).toEqual({ line: 4, char: 8 });
+        expect(actual.messages[0].text).to.be.equal("Expected end of line, got 'MOV'");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
+        expect(actual.messages[0].position).to.deep.equal({ line: 4, char: 8 });
     });
 
     it("Raises a syntax error if END statement contains additional tokens before the end of line",() => {
@@ -239,11 +240,11 @@ describe("OrgPass",() => {
         var pass = new OrgPass();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(1);
+        expect(actual.messages.length).to.be.equal(1);
 
-        expect(actual.messages[0].text).toBe("Expected end of line, got 'MOV'");
-        expect(actual.messages[0].type).toBe(MessageType.Error);
-        expect(actual.messages[0].position).toEqual({ line: 4, char: 8 });
+        expect(actual.messages[0].text).to.be.equal("Expected end of line, got 'MOV'");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
+        expect(actual.messages[0].position).to.deep.equal({ line: 4, char: 8 });
     });
 
     it("Uses start label as default END address under ICWS'86 standard",() => {
@@ -260,7 +261,7 @@ describe("OrgPass",() => {
         var pass = new OrgPass();
         var actual = pass.process(context, _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions));
 
-        expect(actual.tokens[0].lexeme).toBe("ORG");
-        expect(actual.tokens[1].lexeme).toBe("1");
+        expect(actual.tokens[0].lexeme).to.be.equal("ORG");
+        expect(actual.tokens[1].lexeme).to.be.equal("1");
     });
 });

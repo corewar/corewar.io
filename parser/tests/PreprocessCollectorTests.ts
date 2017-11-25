@@ -1,4 +1,5 @@
-﻿
+﻿import { expect } from "chai";
+
 import { Context } from "../Context";
 import { IToken, TokenCategory } from "../interface/IToken";
 import { Parser } from "../Parser";
@@ -64,11 +65,11 @@ describe("PreprocessCollector", () => {
         var pass = new PreprocessCollector();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(10);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(10);
+        expect(actual.messages.length).to.be.equal(0);
 
         for (var i = 0; i < tokens.length; i++) {
-            expect(tokens[i]).toEqual(actual.tokens[i]);
+            expect(tokens[i]).to.deep.equal(actual.tokens[i]);
         }
     });
 
@@ -97,12 +98,12 @@ describe("PreprocessCollector", () => {
         var pass = new PreprocessCollector();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(expected.length);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(expected.length);
+        expect(actual.messages.length).to.be.equal(0);
 
         for (var i = 0; i < expected.length; i++) {
 
-            expect(actual.tokens[i]).toEqual(expected[i]);
+            expect(actual.tokens[i]).to.deep.equal(expected[i]);
         }
     });
 
@@ -176,20 +177,20 @@ describe("PreprocessCollector", () => {
         var pass = new PreprocessCollector();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
+        expect(actual.messages.length).to.be.equal(0);
 
         var label1Tokens = actual.equs["label1"];
         var label2Tokens = actual.equs["label2"];
         var label3Tokens = actual.equs["label3"];
 
-        expect(label1Tokens.length).toBe(equReplacement.length - 1);
-        expect(label2Tokens.length).toBe(equReplacement.length - 1);
-        expect(label3Tokens.length).toBe(equReplacement.length - 1);
+        expect(label1Tokens.length).to.be.equal(equReplacement.length - 1);
+        expect(label2Tokens.length).to.be.equal(equReplacement.length - 1);
+        expect(label3Tokens.length).to.be.equal(equReplacement.length - 1);
 
         for (var i = 0; i < equReplacement.length - 1; i++) {
-            expect(label1Tokens[i]).toEqual(equReplacement[i]);
-            expect(label2Tokens[i]).toEqual(equReplacement[i]);
-            expect(label3Tokens[i]).toEqual(equReplacement[i]);
+            expect(label1Tokens[i]).to.deep.equal(equReplacement[i]);
+            expect(label2Tokens[i]).to.deep.equal(equReplacement[i]);
+            expect(label3Tokens[i]).to.deep.equal(equReplacement[i]);
         }
     });
 
@@ -225,11 +226,11 @@ describe("PreprocessCollector", () => {
         var pass = new PreprocessCollector();
         pass.process(context, Parser.DefaultOptions);
 
-        expect(context.messages.length).toBe(1);
+        expect(context.messages.length).to.be.equal(1);
 
-        expect(context.messages[0].position).toEqual({ line: 3, char: 1 });
-        expect(context.messages[0].text).toBe("Redefinition of label 'label1', original definition will be used");
-        expect(context.messages[0].type).toBe(MessageType.Warning);
+        expect(context.messages[0].position).to.deep.equal({ line: 3, char: 1 });
+        expect(context.messages[0].text).to.be.equal("Redefinition of label 'label1', original definition will be used");
+        expect(context.messages[0].type).to.be.equal(MessageType.Warning);
     });
 
     it("Takes the original EQU definition if a duplicate is found", () => {
@@ -257,8 +258,8 @@ describe("PreprocessCollector", () => {
 
         var expression = context.equs["label1"];
 
-        expect(expression.length).toBe(1);
-        expect(expression[0]).toEqual(movOpcode);
+        expect(expression.length).to.be.equal(1);
+        expect(expression[0]).to.deep.equal(movOpcode);
     });
 
     it("Does not register labels in output", () => {
@@ -314,7 +315,7 @@ describe("PreprocessCollector", () => {
         var pass = new PreprocessCollector();
         pass.process(context, Parser.DefaultOptions);
 
-        expect(context.labels).toEqual({});
+        expect(context.labels).to.deep.equal({});
     });
 
     it("Does not include comments in EQU substitution",() => {
@@ -331,11 +332,11 @@ describe("PreprocessCollector", () => {
 
         var actual = result.equs["label1"];
 
-        expect(actual.length).toBe(4);
-        expect(actual[0].lexeme).toBe("MOV");
-        expect(actual[1].lexeme).toBe("0");
-        expect(actual[2].lexeme).toBe(",");
-        expect(actual[3].lexeme).toBe("1");
+        expect(actual.length).to.be.equal(4);
+        expect(actual[0].lexeme).to.be.equal("MOV");
+        expect(actual[1].lexeme).to.be.equal("0");
+        expect(actual[2].lexeme).to.be.equal(",");
+        expect(actual[3].lexeme).to.be.equal("1");
     });
 
     it("Collects multi-line EQU statements in ICWS-94draft",() => {
@@ -365,24 +366,24 @@ describe("PreprocessCollector", () => {
         var label1 = result.equs["label1"];
         var label2 = result.equs["label2"];
 
-        expect(label1.length).toBe(9);
-        expect(label2.length).toBe(label1.length);
+        expect(label1.length).to.be.equal(9);
+        expect(label2.length).to.be.equal(label1.length);
 
         for (var i = 0; i < label1.length; i++) {
-            expect(label1[i].category).toBe(label2[i].category);
-            expect(label1[i].lexeme).toBe(label2[i].lexeme);
-            expect(label1[i].position).toEqual(label2[i].position);
+            expect(label1[i].category).to.be.equal(label2[i].category);
+            expect(label1[i].lexeme).to.be.equal(label2[i].lexeme);
+            expect(label1[i].position).to.deep.equal(label2[i].position);
         }
 
-        expect(label1[0].lexeme).toBe("MOV");
-        expect(label1[1].lexeme).toBe("0");
-        expect(label1[2].lexeme).toBe(",");
-        expect(label1[3].lexeme).toBe("1");
-        expect(label1[4].lexeme).toBe("\n");
-        expect(label1[5].lexeme).toBe("ADD");
-        expect(label1[6].lexeme).toBe("1");
-        expect(label1[7].lexeme).toBe(",");
-        expect(label1[8].lexeme).toBe("2");
+        expect(label1[0].lexeme).to.be.equal("MOV");
+        expect(label1[1].lexeme).to.be.equal("0");
+        expect(label1[2].lexeme).to.be.equal(",");
+        expect(label1[3].lexeme).to.be.equal("1");
+        expect(label1[4].lexeme).to.be.equal("\n");
+        expect(label1[5].lexeme).to.be.equal("ADD");
+        expect(label1[6].lexeme).to.be.equal("1");
+        expect(label1[7].lexeme).to.be.equal(",");
+        expect(label1[8].lexeme).to.be.equal("2");
     });
 
     it("Doesn't collect multi-line EQU statements in ICWS-88",() => {
@@ -412,18 +413,18 @@ describe("PreprocessCollector", () => {
         var label1 = result.equs["label1"];
         var label2 = result.equs["label2"];
 
-        expect(label1.length).toBe(4);
-        expect(label2.length).toBe(label1.length);
+        expect(label1.length).to.be.equal(4);
+        expect(label2.length).to.be.equal(label1.length);
 
         for (var i = 0; i < label1.length; i++) {
-            expect(label1[i].category).toBe(label2[i].category);
-            expect(label1[i].lexeme).toBe(label2[i].lexeme);
-            expect(label1[i].position).toEqual(label2[i].position);
+            expect(label1[i].category).to.be.equal(label2[i].category);
+            expect(label1[i].lexeme).to.be.equal(label2[i].lexeme);
+            expect(label1[i].position).to.deep.equal(label2[i].position);
         }
 
-        expect(label1[0].lexeme).toBe("MOV");
-        expect(label1[1].lexeme).toBe("0");
-        expect(label1[2].lexeme).toBe(",");
-        expect(label1[3].lexeme).toBe("1");
+        expect(label1[0].lexeme).to.be.equal("MOV");
+        expect(label1[1].lexeme).to.be.equal("0");
+        expect(label1[2].lexeme).to.be.equal(",");
+        expect(label1[3].lexeme).to.be.equal("1");
     });
 });

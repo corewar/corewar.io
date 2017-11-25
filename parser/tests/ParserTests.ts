@@ -1,4 +1,8 @@
-﻿
+﻿import * as chai from "chai";
+import * as sinon from "sinon";
+import * as sinonChai from "sinon-chai";
+var expect = chai.expect;
+chai.use(sinonChai);
 
 import { IContext } from "../interface/IContext";
 import { Context } from "../Context";
@@ -77,8 +81,7 @@ describe("Parser",() => {
 
     function fakeScanner(name: string): IScanner {
         return {
-            scan: jasmine.createSpy("Scanner.scan")
-                .and.callFake((s: string, options: IOptions): IContext => {
+            scan: sinon.stub().callsFake((s: string, options: IOptions): IContext => {
                 calls.push(name);
                 return context;
             })
@@ -88,8 +91,7 @@ describe("Parser",() => {
     function fakePass(name: string): IPass {
 
         return {
-            process: jasmine.createSpy("Pass.process")
-                .and.callFake((context: IContext, options: IOptions): IContext => {
+            process: sinon.stub().callsFake((context: IContext, options: IOptions): IContext => {
                 calls.push(name);
                 return context;
             })
@@ -114,7 +116,7 @@ describe("Parser",() => {
 
     function errorIn(pass: IPass, name: string): void {
 
-        (<jasmine.Spy>pass.process).and.callFake((): IContext => {
+        (<sinon.stub>pass.process).callsFake((): IContext => {
             context.messages.push(fakeError());
             calls.push(name);
             return context;
@@ -123,7 +125,7 @@ describe("Parser",() => {
 
     function warningIn(pass: IPass, name: string): void {
 
-        (<jasmine.Spy>pass.process).and.callFake((): IContext => {
+        (<sinon.stub>pass.process).callsFake((): IContext => {
             context.messages.push(fakeWarning());
             calls.push(name);
             return context;
@@ -136,9 +138,9 @@ describe("Parser",() => {
 
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(12);
+        expect(calls.length).to.be.equal(12);
 
-        expect(calls).toEqual(expected94Calls);
+        expect(calls).to.deep.equal(expected94Calls);
     });
 
     it("Calls passes in correct order under ICWS'88",() => {
@@ -147,20 +149,20 @@ describe("Parser",() => {
 
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(12);
+        expect(calls.length).to.be.equal(12);
 
-        expect(calls[0]).toBe("scan");
-        expect(calls[1]).toBe("filter");
-        expect(calls[2]).toBe("equCollector");
-        expect(calls[3]).toBe("equAnalyser");
-        expect(calls[4]).toBe("equEmitter");
-        expect(calls[5]).toBe("labelCollector");
-        expect(calls[6]).toBe("labelEmitter");
-        expect(calls[7]).toBe("maths");
-        expect(calls[8]).toBe("org");
-        expect(calls[9]).toBe("default");
-        expect(calls[10]).toBe("syntax");
-        expect(calls[11]).toBe("illegal");
+        expect(calls[0]).to.be.equal("scan");
+        expect(calls[1]).to.be.equal("filter");
+        expect(calls[2]).to.be.equal("equCollector");
+        expect(calls[3]).to.be.equal("equAnalyser");
+        expect(calls[4]).to.be.equal("equEmitter");
+        expect(calls[5]).to.be.equal("labelCollector");
+        expect(calls[6]).to.be.equal("labelEmitter");
+        expect(calls[7]).to.be.equal("maths");
+        expect(calls[8]).to.be.equal("org");
+        expect(calls[9]).to.be.equal("default");
+        expect(calls[10]).to.be.equal("syntax");
+        expect(calls[11]).to.be.equal("illegal");
     });
 
     it("Calls passes in correct order under ICWS'86",() => {
@@ -169,20 +171,20 @@ describe("Parser",() => {
 
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(12);
+        expect(calls.length).to.be.equal(12);
 
-        expect(calls[0]).toBe("scan");
-        expect(calls[1]).toBe("filter");
-        expect(calls[2]).toBe("equCollector");
-        expect(calls[3]).toBe("equAnalyser");
-        expect(calls[4]).toBe("equEmitter");
-        expect(calls[5]).toBe("labelCollector");
-        expect(calls[6]).toBe("labelEmitter");
-        expect(calls[7]).toBe("maths");
-        expect(calls[8]).toBe("org");
-        expect(calls[9]).toBe("default");
-        expect(calls[10]).toBe("syntax");
-        expect(calls[11]).toBe("illegal");
+        expect(calls[0]).to.be.equal("scan");
+        expect(calls[1]).to.be.equal("filter");
+        expect(calls[2]).to.be.equal("equCollector");
+        expect(calls[3]).to.be.equal("equAnalyser");
+        expect(calls[4]).to.be.equal("equEmitter");
+        expect(calls[5]).to.be.equal("labelCollector");
+        expect(calls[6]).to.be.equal("labelEmitter");
+        expect(calls[7]).to.be.equal("maths");
+        expect(calls[8]).to.be.equal("org");
+        expect(calls[9]).to.be.equal("default");
+        expect(calls[10]).to.be.equal("syntax");
+        expect(calls[11]).to.be.equal("illegal");
     });
 
     it("Does not call syntax check if default pass fails",() => {
@@ -195,8 +197,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(11);
-        expect(calls).toEqual(expected94Calls.slice(0, 11));
+        expect(calls.length).to.be.equal(11);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 11));
     });
 
     it("Does not call default pass check if org pass fails",() => {
@@ -209,8 +211,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(10);
-        expect(calls).toEqual(expected94Calls.slice(0, 10));
+        expect(calls.length).to.be.equal(10);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 10));
     });
 
     it("Does not call org pass if maths pass fails",() => {
@@ -223,8 +225,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(9);
-        expect(calls).toEqual(expected94Calls.slice(0, 9));
+        expect(calls.length).to.be.equal(9);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 9));
     });
 
     it("Does not call maths pass if label emitter fails",() => {
@@ -237,8 +239,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(8);
-        expect(calls).toEqual(expected94Calls.slice(0, 8));
+        expect(calls.length).to.be.equal(8);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 8));
     });
 
     it("Does not call label emitter if label collector fails",() => {
@@ -251,8 +253,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(7);
-        expect(calls).toEqual(expected94Calls.slice(0, 7));
+        expect(calls.length).to.be.equal(7);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 7));
     });
 
     it("Does not call label collector if equ emitter fails",() => {
@@ -265,8 +267,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(6);
-        expect(calls).toEqual(expected94Calls.slice(0, 6));
+        expect(calls.length).to.be.equal(6);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 6));
     });
 
     it("Does not call equ emitter if equ analyser fails",() => {
@@ -279,8 +281,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(5);
-        expect(calls).toEqual(expected94Calls.slice(0, 5));
+        expect(calls.length).to.be.equal(5);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 5));
     });
 
     it("Does not call equ analyser if equ collector fails",() => {
@@ -293,8 +295,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(4);
-        expect(calls).toEqual(expected94Calls.slice(0, 4));
+        expect(calls.length).to.be.equal(4);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 4));
     });
 
     it("Does not call equ collector if for pass fails",() => {
@@ -307,8 +309,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(3);
-        expect(calls).toEqual(expected94Calls.slice(0, 3));
+        expect(calls.length).to.be.equal(3);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 3));
     });
 
     it("Does not call for pass if filter pass fails",() => {
@@ -321,15 +323,15 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(2);
-        expect(calls).toEqual(expected94Calls.slice(0, 2));
+        expect(calls.length).to.be.equal(2);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 2));
     });
 
     it("Does not call filter pass if scan fails",() => {
 
         var options = Parser.DefaultOptions;
 
-        (<jasmine.Spy>scanner.scan).and.callFake((): IContext => {
+        (<sinon.stub>scanner.scan).callsFake((): IContext => {
             context.messages.push(fakeError());
             calls.push("scan");
             return context;
@@ -339,15 +341,15 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(1);
-        expect(calls).toEqual(expected94Calls.slice(0, 1));
+        expect(calls.length).to.be.equal(1);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 1));
     });
 
     it("Does call all passes regardless of raised warnings",() => {
 
         var options = Parser.DefaultOptions;
 
-        (<jasmine.Spy>scanner.scan).and.callFake((): IContext => {
+        (<sinon.stub>scanner.scan).callsFake((): IContext => {
             context.messages.push(fakeWarning());
             calls.push("scan");
             return context;
@@ -368,8 +370,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(12);
-        expect(calls).toEqual(expected94Calls.slice(0, 12));
+        expect(calls.length).to.be.equal(12);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 12));
     });
 
     it("Passes supplied options to each pass",() => {
@@ -379,33 +381,33 @@ describe("Parser",() => {
 
         parser.parse(document, options);
 
-        expect(scanner.scan).toHaveBeenCalledWith(document, options);
-        expect(filter.process).toHaveBeenCalledWith(context, options);
-        expect(forPass.process).toHaveBeenCalledWith(context, options);
-        expect(preprocessCollector.process).toHaveBeenCalledWith(context, options);
-        expect(preprocessAnalyser.process).toHaveBeenCalledWith(context, options);
-        expect(preprocessEmitter.process).toHaveBeenCalledWith(context, options);
-        expect(labelCollector.process).toHaveBeenCalledWith(context, options);
-        expect(labelEmitter.process).toHaveBeenCalledWith(context, options);
-        expect(mathsProcessor.process).toHaveBeenCalledWith(context, options);
-        expect(orgPass.process).toHaveBeenCalledWith(context, options);
-        expect(defaultPass.process).toHaveBeenCalledWith(context, options);
-        expect(syntaxCheck.process).toHaveBeenCalledWith(context, options);
+        expect(scanner.scan).to.have.been.calledWith(document, options);
+        expect(filter.process).to.have.been.calledWith(context, options);
+        expect(forPass.process).to.have.been.calledWith(context, options);
+        expect(preprocessCollector.process).to.have.been.calledWith(context, options);
+        expect(preprocessAnalyser.process).to.have.been.calledWith(context, options);
+        expect(preprocessEmitter.process).to.have.been.calledWith(context, options);
+        expect(labelCollector.process).to.have.been.calledWith(context, options);
+        expect(labelEmitter.process).to.have.been.calledWith(context, options);
+        expect(mathsProcessor.process).to.have.been.calledWith(context, options);
+        expect(orgPass.process).to.have.been.calledWith(context, options);
+        expect(defaultPass.process).to.have.been.calledWith(context, options);
+        expect(syntaxCheck.process).to.have.been.calledWith(context, options);
     });
 
     it("Returns context tokens, messages and metaData in ParserResult",() => {
 
         var actual = parser.parse("MOV 0, 1", {});
 
-        expect(actual.metaData).toBe(context.metaData);
-        expect(actual.tokens).toBe(context.tokens);
-        expect(actual.messages).toBe(context.messages);
+        expect(actual.metaData).to.be.equal(context.metaData);
+        expect(actual.tokens).to.be.equal(context.tokens);
+        expect(actual.messages).to.be.equal(context.messages);
     });
 
     it("Defaults the standard to ICWS'94-draft if not specified",() => {
 
         parser.parse("MOV 0, 1");
 
-        expect((<jasmine.Spy>scanner.scan).calls.mostRecent().args[1].standard).toBe(Standard.ICWS94draft);
+        expect((<sinon.stub>scanner.scan).lastCall.args[1].standard).to.be.equal(Standard.ICWS94draft);
     });
 });
