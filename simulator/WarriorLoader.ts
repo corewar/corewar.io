@@ -54,7 +54,8 @@ export class WarriorLoader implements IWarriorLoader {
 
             if (next.category === TokenCategory.Opcode) {
 
-                this.core.setAt(this.warrior.tasks[0], this.address++, this.readInstruction());
+                this.core.setAt(this.warrior.tasks[0], this.address, this.readInstruction());
+                this.address += 1;
 
             } else if (next.category === TokenCategory.Preprocessor) {
 
