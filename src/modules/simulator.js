@@ -60,12 +60,6 @@ const updateTask = (index, array, item) => {
   return newArray;
 }
 
-const insertItem = (index, array, item) => {
-  let newArray = array.slice();
-  newArray.splice(index, 0, item);
-  return newArray;
-}
-
 const accessTypeToIcon = (accessType) => {
   switch(accessType) {
     case 0:

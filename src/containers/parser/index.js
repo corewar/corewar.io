@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import './parser.css';
 import {
   parse,
-  setStandard
+  setStandard,
+  save
 } from '../../modules/parser'
 
 const messageTypeToString = (messageType) => {
@@ -21,6 +22,7 @@ const messageTypeToString = (messageType) => {
 }
 
 const Parser = props => (
+
   <div>
     <h1>Redcode Parser</h1>
     <div>
@@ -31,13 +33,14 @@ const Parser = props => (
           <option value="1">ICWS'88</option>
           <option value="2">ICWS'94-draft</option>
         </select>
+        {props.currentParseResult && <button onClick={() => props.save()}>Save Warrior</button>}
       </p>
       <textarea onChange={e => props.parse(e.target.value)} value={props.redcode}></textarea>
-      <textarea value={props.parseResult && props.parseResult.warrior}></textarea>
+      <textarea value={props.currentParseResult && props.currentParseResult.warrior}></textarea>
       <div className="errors">
         <ul>
           {
-            props.parseResult.messages.map((item) => {
+             props.currentParseResult.messages && props.currentParseResult.messages.map((item) => {
                 return <li key={item} >{`[${item.position.line} , ${item.position.char}] ${messageTypeToString(item.type)} ${item.text}`}</li>
             })
           }
@@ -48,7 +51,8 @@ const Parser = props => (
 )
 
 const mapStateToProps = state => ({
-  parseResult: state.parser.parseResult,
+  currentParseResult: state.parser.currentParseResult,
+  parseResults: state.parser.parseResults,
   isParsing: state.parser.isParsing,
   standardId: state.parser.standardId,
   redcode: state.parser.redcode
@@ -56,7 +60,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   parse,
-  setStandard
+  setStandard,
+  save
 }, dispatch)
 
 export default connect(
