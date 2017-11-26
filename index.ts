@@ -99,7 +99,7 @@ class Api {
         this.instructionSerialiser = new InstructionSerialiser();
     }
 
-    public initialiseSimulator(standardId: number, parseResult: IParseResult, messageProvider: any) : IState {
+    public initialiseSimulator(standardId: number, parseResults: IParseResult[], messageProvider: any) : IState {
 
         var options = _.defaults({
             coresize: 64,
@@ -112,8 +112,7 @@ class Api {
 
         this.executive.initialise(options);
 
-        //TODO: This only handles one warrior
-        this.simulator.initialise(options, [parseResult]);
+        this.simulator.initialise(options, parseResults);
 
         return this.simulator.getState();
     }
