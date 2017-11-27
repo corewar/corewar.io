@@ -30,8 +30,8 @@ export class Core implements ICore {
         this.allocateMemory();
     }
 
-    public setMessageProvider(pubSubProvider: any) {
-        this.pubSubProvider = pubSubProvider;
+    public setMessageProvider(provider: any) {
+        this.pubSubProvider = provider;
     }
 
     public getSize(): number {

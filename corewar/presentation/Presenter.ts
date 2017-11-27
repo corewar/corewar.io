@@ -70,8 +70,6 @@ export class Presenter {
 
     public run() {
 
-        //TODO check successful parse
-
         var selectedStandard = parseInt(this.standard.value);
 
         var options = _.defaults({

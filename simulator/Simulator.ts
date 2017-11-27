@@ -21,6 +21,8 @@ export class Simulator implements ISimulator {
     private executive: IExecutive;
     private endCondition: IEndCondition;
 
+    private pubSubProvider: any;
+
     constructor(
         core: ICore,
         loader: ILoader,
@@ -53,6 +55,10 @@ export class Simulator implements ISimulator {
         this.state.warriors = this.loader.load(warriors, options);
     }
 
+    public setMessageProvider(provider: any) {
+        this.pubSubProvider = provider;
+    }
+
     public run() {
 
         while (this.step()) {
@@ -61,6 +67,10 @@ export class Simulator implements ISimulator {
                 //
             }, 0);
         }
+
+        this.pubSubProvider.publish('GAME_END', {
+            winner: 'get something from the state to find out who?'
+        });
     }
 
     public step(): boolean {
