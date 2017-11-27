@@ -5,43 +5,43 @@ import { mount, shallow } from 'enzyme';
 
 import { PureParser } from './../../containers/parser/index';
 
-it('renders without crashing', () => {
+describe('when rendering the parser', () => {
 
-  const props = {
-    standardId: 1,
-    isParsing: false,
-    redcode: '',
-    currentParseResult: {
-      messages: [],
-      warrior: {}
-    },
-    parse: () => {}
-  };
-  // parseResult: state.parser.parseResult,
-  // isParsing: state.parser.isParsing,
-  // standardId: state.parser.standardId,
-  // redcode: state.parser.redcode
+  it('renders without crashing', () => {
 
-  const wrapper = mount(<PureParser {...props} />);
+      const props = {
+        standardId: 1,
+        isParsing: false,
+        redcode: '',
+        currentParseResult: {
+          messages: [],
+          warrior: {}
+        },
+        parse: () => {}
+      };
 
-});
+      const wrapper = mount(<PureParser {...props} />);
 
-it('renders parser textareas', () => {
+    });
 
-  const props = {
-    standardId: 1,
-    isParsing: false,
-    redcode: '',
-    currentParseResult: {
-      messages: [],
-      warrior: {}
-    },
-    parse: () => {}
-  };
+    it('renders parser textareas', () => {
 
-  const wrapper = shallow(<PureParser {...props} />);
+      const props = {
+        standardId: 1,
+        isParsing: false,
+        redcode: '',
+        currentParseResult: {
+          messages: [],
+          warrior: {}
+        },
+        parse: () => {}
+      };
 
-  expect(wrapper.find('textarea')).to.have.length(2);
+      const wrapper = shallow(<PureParser {...props} />);
+
+      expect(wrapper.find('textarea')).to.have.length(2);
+
+    });
 
 });
 
