@@ -1,9 +1,9 @@
 import React from 'react';
 import { expect } from 'chai';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 //import sinon from 'sinon';
 
-import { Parser } from './../../containers/parser/index';
+import { PureParser } from './../../containers/parser/index';
 
 it('renders without crashing', () => {
 
@@ -11,7 +11,7 @@ it('renders without crashing', () => {
     standardId: 1,
     isParsing: false,
     redcode: '',
-    parseResult: {
+    currentParseResult: {
       messages: [],
       warrior: {}
     },
@@ -22,13 +22,24 @@ it('renders without crashing', () => {
   // standardId: state.parser.standardId,
   // redcode: state.parser.redcode
 
-  shallow(<Parser.WrappedComponent props={props} />);
+  const wrapper = mount(<PureParser {...props} />);
 
 });
 
 it('renders parser textareas', () => {
 
-  const wrapper = shallow(<Parser.WrappedComponent />);
+  const props = {
+    standardId: 1,
+    isParsing: false,
+    redcode: '',
+    currentParseResult: {
+      messages: [],
+      warrior: {}
+    },
+    parse: () => {}
+  };
+
+  const wrapper = shallow(<PureParser {...props} />);
 
   expect(wrapper.find('textarea')).to.have.length(2);
 

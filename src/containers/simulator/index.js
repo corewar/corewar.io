@@ -42,3 +42,5 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Simulator)
+
+export { Simulator as PureSimulator }
