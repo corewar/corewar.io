@@ -60,6 +60,7 @@ export class Simulator implements ISimulator {
     }
 
     public run() {
+        debugger;
         console.log('run');
         while (this.step()) {
             console.log('step');
