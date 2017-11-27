@@ -110,6 +110,8 @@ class Api {
 
         this.core.setMessageProvider(messageProvider);
 
+        this.simulator.setMessageProvider(messageProvider);
+
         this.executive.initialise(options);
 
         this.simulator.initialise(options, parseResults);
