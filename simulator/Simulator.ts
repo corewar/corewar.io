@@ -60,7 +60,7 @@ export class Simulator implements ISimulator {
     }
 
     public run() {
-
+        console.log('run');
         while (this.step()) {
             console.log('step');
             this.pubSubProvider.publish('STEP', {
