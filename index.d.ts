@@ -13,6 +13,8 @@ declare namespace corewar {
 
     serialise(tokens: IToken[]) : string;
 
+    run() : void;
+
   }
 
 }

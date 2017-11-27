@@ -118,8 +118,11 @@ class Api {
     }
 
     public step() : void {
-        this.simulator.step(); // change the internal state
-        // render
+        this.simulator.step();
+    }
+
+    public run(): void {
+        this.simulator.run();
     }
 
     // public parse(document: string, options?: IParseOptions): IParseResult {
