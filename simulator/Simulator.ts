@@ -62,13 +62,15 @@ export class Simulator implements ISimulator {
     public run() {
 
         while (this.step()) {
+            this.pubSubProvider.publish('STEP', {
+            });
             // TODO setTimeout?
             window.setTimeout(() => {
                 //
             }, 0);
         }
 
-        this.pubSubProvider.publish('GAME_END', {
+        this.pubSubProvider.publish('RUN_END', {
             winner: 'get something from the state to find out who?'
         });
     }
