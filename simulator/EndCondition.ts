@@ -7,7 +7,6 @@ export class EndCondition implements IEndCondition {
 
     public check(state: IState): boolean {
 
-        debugger;
         if (state.cycle === state.options.cyclesBeforeTie) {
             return true;
         }
