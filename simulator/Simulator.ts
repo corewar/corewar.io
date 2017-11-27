@@ -62,11 +62,13 @@ export class Simulator implements ISimulator {
     public run() {
 
         while (this.step()) {
+            console.log('step');
             this.pubSubProvider.publish('STEP', {
             });
             // TODO setTimeout?
             window.setTimeout(() => {
                 //
+                console.log('st - step');
             }, 0);
         }
 
