@@ -39,6 +39,7 @@
   background-color: #fff;
   color: #fff;
   transition: background-color 2000ms linear;
+  transition: color 2000ms linear;
 }
 
 .cell-red {
@@ -48,6 +49,7 @@
   background-color: red;
   color: red;
   transition: background-color 2000ms linear;
+  transition: color 2000ms linear;
 }
 
 .cell-green {
@@ -57,4 +59,5 @@
   background-color: green;
   color: green;
   transition: background-color 2000ms linear;
+  transition: color 2000ms linear;
 }
