@@ -60,21 +60,17 @@ export class Simulator implements ISimulator {
     }
 
     public run() {
-        console.log('run');
-        while (this.step() === false) {
-            console.log('step');
-            this.pubSubProvider.publish('STEP', {
-            });
-            // TODO setTimeout?
-            // window.setTimeout(() => {
-            //     //
-            //     console.log('st - step');
-            // }, 0);
 
-            this.pubSubProvider.publish('RUN_END', {
-                winner: 'get something from the state to find out who?'
-            });
+        while (this.step() === false) {
+            // TODO setTimeout?
+            // I think we could spawn a web worker here ...futuristic!
+            window.setTimeout(() => {
+            }, 0);
         }
+
+        this.pubSubProvider.publish('RUN_END', {
+            winner: 'get something from the state to find out who?'
+        });
     }
 
     public step(): boolean {
