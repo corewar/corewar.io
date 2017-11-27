@@ -64,18 +64,19 @@ export class Simulator implements ISimulator {
         console.log('run');
         while (this.step()) {
             console.log('step');
+            this.step()
             this.pubSubProvider.publish('STEP', {
             });
             // TODO setTimeout?
-            window.setTimeout(() => {
-                //
-                console.log('st - step');
-            }, 0);
-        }
+            // window.setTimeout(() => {
+            //     //
+            //     console.log('st - step');
+            // }, 0);
 
-        this.pubSubProvider.publish('RUN_END', {
-            winner: 'get something from the state to find out who?'
-        });
+            this.pubSubProvider.publish('RUN_END', {
+                winner: 'get something from the state to find out who?'
+            });
+        }
     }
 
     public step(): boolean {
