@@ -6,7 +6,7 @@ export interface ISimulator {
 
     initialise(options: IOptions, warriors: IParseResult[]): void;
     setMessageProvider?(provider: any): void;
-    run(): void;
+    run(): Promise<IState>;
     step(): boolean;
     getState(): IState;
 }

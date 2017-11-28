@@ -60,18 +60,16 @@ export class Simulator implements ISimulator {
         this.endCondition.setMessageProvider(provider);
     }
 
-    public run() {
+    public run(): Promise<IState> {
 
-        while (this.step() === false) {
-            // TODO setTimeout?
-            // I think we could spawn a web worker here ...futuristic!
-            window.setTimeout(() => {
-            }, 0);
-        }
+        return new Promise((resolve, reject) => {
 
-        this.pubSubProvider.publish('RUN_END', {
-            state: this.state
+            while (this.step() === false) {
+            }
+
+            resolve(this.state);
         });
+
     }
 
     public step(): boolean {
