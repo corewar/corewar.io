@@ -57,6 +57,7 @@ export class Simulator implements ISimulator {
 
     public setMessageProvider(provider: any) {
         this.pubSubProvider = provider;
+        this.endCondition.setMessageProvider(provider);
     }
 
     public run() {
@@ -69,7 +70,7 @@ export class Simulator implements ISimulator {
         }
 
         this.pubSubProvider.publish('RUN_END', {
-            winner: 'get something from the state to find out who?'
+            state: this.state
         });
     }
 
