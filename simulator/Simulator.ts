@@ -64,6 +64,7 @@ export class Simulator implements ISimulator {
 
         return new Promise((resolve, reject) => {
 
+            // TODO: progress updates based on core cycles
             while (this.step() === false) {
             }
 

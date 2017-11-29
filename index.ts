@@ -126,15 +126,6 @@ class Api {
     public run(): void {
         this.simulator.run();
     }
-
-    // public parse(document: string, options?: IParseOptions): IParseResult {
-    //     return this.parser.parse(document, options);
-    // }
-
-    // public serialise(tokens: IToken[]) : string {
-    //     return this.serialiser.serialise(tokens);
-    // }
-
 }
 
 // exports for use in npm package
