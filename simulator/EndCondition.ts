@@ -18,10 +18,12 @@ export class EndCondition implements IEndCondition {
         }
 
         if(state.cycle === state.options.cyclesBeforeTie % 100) {
-            // TODO: progress report 1%
-            this.pubSubProvider.publish('RUN_PROGRESS', {
-                runCompletion: state.cycle
-            });
+            if(this.pubSubProvider) {
+                // TODO: progress report 1%
+                this.pubSubProvider.publish('RUN_PROGRESS', {
+                    runCompletion: state.cycle
+                });
+            }
         }
 
         var liveWarriors = _(state.warriors).filter((warrior: IWarrior) => warrior.tasks.length > 0);
