@@ -22,6 +22,7 @@ import { LabelEmitter } from "./parser/LabelEmitter";
 import { MathsProcessor } from "./parser/MathsProcessor";
 import { Expression } from "./parser/Expression";
 import { Filter } from "./parser/Filter";
+import { MetaDataCollector } from "./parser/MetaDataCollector";
 import { DefaultPass } from "./parser/DefaultPass";
 import { OrgPass } from "./parser/OrgPass";
 import { SyntaxCheck } from "./parser/SyntaxCheck";
@@ -65,6 +66,7 @@ class Api {
         this.parser = new Parser(
             new Scanner(),
             new Filter(),
+            new MetaDataCollector(),
             new ForPass(expression),
             new PreprocessCollector(),
             new PreprocessAnalyser(),

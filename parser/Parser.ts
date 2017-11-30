@@ -6,11 +6,13 @@ import { IMessage, MessageType } from "./interface/IMessage";
 import { IParseOptions, Standard } from "./interface/IParseOptions";
 import { IParseResult } from "./interface/IParseResult";
 import * as _ from "underscore";
+import { MetaDataCollector } from "./MetaDataCollector";
 
 export class Parser implements IParser {
 
     private scanner: IScanner;
     private filter: IPass;
+    private metaDataCollector: IPass;
     private forPass: IPass;
     private preprocessCollector: IPass;
     private preprocessAnalyser: IPass;
@@ -31,6 +33,7 @@ export class Parser implements IParser {
     constructor(
         scanner: IScanner,
         filter: IPass,
+        metaDataCollector: IPass,
         forPass: IPass,
         preprocessCollector: IPass,
         preprocessAnalyser: IPass,
@@ -45,6 +48,7 @@ export class Parser implements IParser {
 
         this.scanner = scanner;
         this.filter = filter;
+        this.metaDataCollector = metaDataCollector;
         this.forPass = forPass;
         this.preprocessCollector = preprocessCollector;
         this.preprocessAnalyser = preprocessAnalyser;
@@ -72,6 +76,9 @@ export class Parser implements IParser {
 
         if (this.noErrors(context)) {
             context = this.filter.process(context, options);
+        }
+        if (this.noErrors(context)) {
+            context = this.metaDataCollector.process(context, options);
         }
         if (options.standard === Standard.ICWS94draft) {
             if (this.noErrors(context)) {

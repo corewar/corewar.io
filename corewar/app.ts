@@ -39,6 +39,7 @@ import { EndCondition } from "../simulator/EndCondition";
 import { InstructionSerialiser } from "./presentation/InstructionSerialiser";
 import { CoreRenderer } from "./presentation/CoreRenderer";
 import { Presenter } from "./presentation/Presenter";
+import { MetaDataCollector } from "../parser/MetaDataCollector";
 
 
 
@@ -140,6 +141,7 @@ export class Api {
         this.parser = new Parser(
             new Scanner(),
             new Filter(),
+            new MetaDataCollector(),
             new ForPass(expression),
             new PreprocessCollector(),
             new PreprocessAnalyser(),
