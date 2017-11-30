@@ -10,8 +10,10 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "bulma": "^0.6.1",
     "chai": "^4.1.2",
-    "corewar": "^0.0.29",
+    "corewar": "file:/../corewar",
+    "font-awesome": "^4.7.0",
     "jest-cli": "^21.2.1",
     "pubsub-js": "^1.5.7",
     "react": "^16.1.1",

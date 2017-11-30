@@ -33,10 +33,32 @@ const Parser = props => (
           <option value="1">ICWS'88</option>
           <option value="2">ICWS'94-draft</option>
         </select>
+      </p>
+      <p>
         {props.currentParseResult && <button onClick={() => props.save()}>Save Warrior</button>}
       </p>
-      <textarea onChange={e => props.parse(e.target.value)} value={props.redcode}></textarea>
-      <textarea value={props.currentParseResult && props.currentParseResult.warrior} readOnly></textarea>
+
+      <div className="columns">
+        <div className="column">
+          <textarea onChange={e => props.parse(e.target.value)} value={props.redcode}></textarea>
+        </div>
+        <div className="column">
+          <pre>
+            {props.currentParseResult && props.currentParseResult.warrior}
+          </pre>
+        </div>
+        <div className="column">
+          <div className="warriorList">
+            <ul>
+              {
+                props.parseResults && props.parseResults.map((parseResult, i) => {
+                    return <li key={parseResult + i} >{`Warrior ${i}: ${parseResult.metaData.name}`}</li>
+                })
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
       <div className="errors">
         <ul>
           {

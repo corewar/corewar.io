@@ -4,6 +4,9 @@ import * as PubSub from 'pubsub-js';
 export const STEP = 'simulator/STEP'
 export const INIT = 'simulator/INIT'
 export const INIT_REQUESTED = 'simulator/INIT_REQUESTED'
+export const RUN_REQUESTED = 'simulator/RUN_REQUESTED'
+export const RUN_ENDED = 'simulator/RUN_ENDED'
+export const RUN_PROGRESS = 'simulator/RUN_PROGRESS'
 export const CORE_ACCESS = 'simulator/CORE_ACCESS'
 export const RENDER_CORE = 'simulator/RENDER_CORE'
 
@@ -13,9 +16,11 @@ const initialState = {
   coreAccess: [],
   taskExecution: [],
   isInitialised: false,
-  currentExecutionAddress: null
+  currentExecutionAddress: null,
+  isRunning: false,
+  runProgress: 0,
+  result: {}
 }
-
 
 // reducer
 export default (state = initialState, action) => {
@@ -37,9 +42,29 @@ export default (state = initialState, action) => {
         currentExecutionAddress: action.currentExecutionAddress
       }
 
+    case RUN_REQUESTED:
+      return {
+        ...state,
+        isRunning: true
+      }
+
+    case RUN_PROGRESS:
+      return {
+        ...state,
+        runProgress: action.data
+      }
+
+    case RUN_ENDED:
+      return {
+        ...state,
+        isRunning: false,
+        result: console.log(action.result)
+      }
+
     case CORE_ACCESS:
       return {
         ...state,
+        crap: console.log(action.data),
         coreAccess: updateItem(action.data.address, state.coreAccess, action.data)
       }
 
@@ -54,9 +79,9 @@ const updateItem = (index, array, item) => {
   return newArray;
 }
 
-const updateTask = (index, array, item) => {
+const updateTask = (index, array, item, currentExecutionAddress) => {
   const newArray = array.slice();
-  newArray[index] = taskToCell(item);
+  newArray[index] = taskToCell(item, currentExecutionAddress);
   return newArray;
 }
 
@@ -92,12 +117,12 @@ const coreAccessToCell = (coreAccess) => {
   };
 };
 
-const taskToCell = (task) => {
+const taskToCell = (task, currentExecutionAddress) => {
   return {
     address: task.address,
     label: '.',
     icon: task.icon,
-    colour: task.colour,
+    colour: getColour(task.warriorNumber, task.address, currentExecutionAddress),
     warriorNumber: task.warriorNumber
   }
 };
@@ -110,7 +135,7 @@ const defaultCell = {
 };
 
 const stateToTasks = (state) => {
-
+  debugger;
   return state.warriors.map((w, i) =>
       w.tasks.map(t => {
         return {
@@ -138,11 +163,10 @@ const mapCoreToUi = (instructions) => {
 // actions
 export const init = (standardId, parseResults) => {
 
-  const simulatorState = corewar.initialiseSimulator(standardId, parseResults, PubSub);
-
-  const coreAccess = new Array(simulatorState.core.instructions.length);
+  const cs = 64;
+  const coreAccess = new Array(cs);
   coreAccess.fill(defaultCell, 0, coreAccess.length)
-  const taskExecution = new Array(simulatorState.core.instructions.length);
+  const taskExecution = new Array(cs);
   taskExecution.fill(defaultCell, 0, taskExecution.length)
 
   return dispatch => {
@@ -156,14 +180,58 @@ export const init = (standardId, parseResults) => {
 
     dispatch({
       type: INIT_REQUESTED
-    })
+    });
+
+    const simulatorState = corewar.initialiseSimulator({
+      standardId,
+      parseResults,
+      coresize: cs,
+      minSeparation: 1,
+      messageProvider: PubSub
+     });
 
     dispatch({
       type: INIT,
       core: mapCoreToUi(simulatorState.core.instructions),
       coreAccess: coreAccess,
       taskExecution: taskExecution
+    });
+
+    const tasks = stateToTasks(simulatorState);
+
+    const currentExecutionAddress = getCurrentExecutionAddress(simulatorState);
+
+      dispatch({
+        type: STEP,
+        taskExecution: tasks,
+        currentExecutionAddress: currentExecutionAddress
+      })
+
+  }
+}
+
+export const run = () => {
+
+  return dispatch => {
+
+    dispatch({
+      type: RUN_REQUESTED
     })
+
+    PubSub.subscribe('RUN_PROGRESS', (msg, data) => {
+      dispatch({
+        type: RUN_PROGRESS,
+        data
+      })
+    });
+
+    corewar.simulator.run().then((result) => {
+      dispatch({
+        type: RUN_ENDED,
+        result
+      })
+    });
+
   }
 }
 
@@ -188,13 +256,14 @@ export const step = () => {
 
 const tasksToExecutionState = (tasks, state, currentExecutionAddress) => {
 
-  let coreExecutionState = state.taskExecution;
+  let coreExecutionState = new Array(state.core.length);
+  coreExecutionState.fill(defaultCell, 0, coreExecutionState.length);
 
   tasks.forEach(task => {
-    coreExecutionState = updateTask(task.address, coreExecutionState, task);
+    coreExecutionState = updateTask(task.address, coreExecutionState, task, currentExecutionAddress);
   });
 
-  return colourExecutionState(state, coreExecutionState, currentExecutionAddress);
+  return coreExecutionState;
 }
 
 const getCurrentExecutionAddress = (state) => {
@@ -202,21 +271,22 @@ const getCurrentExecutionAddress = (state) => {
   return currentWarrior.tasks[currentWarrior.taskIndex].instructionPointer;
 }
 
-const colourExecutionState = (state, taskExecution, currentExecutionAddress) => {
-    taskExecution.forEach((coreAddress) => {
-      coreAddress.colour = getColour(coreAddress, currentExecutionAddress);
-    });
+// const colourExecutionState = (state, taskExecution, currentExecutionAddress) => {
+//     taskExecution.forEach((coreAddress) => {
+//       coreAddress.colour = getColour(coreAddress, currentExecutionAddress);
+//     });
 
-    return taskExecution;
-  };
+//     return taskExecution;
+//   };
 
-const getColour = (coreAddress, currentExecution) => {
 
-  if(coreAddress.address === currentExecution) {
+const getColour = (warriorNumber, coreAddress, currentExecution) => {
+
+  if(coreAddress === currentExecution) {
     return 'white';
   }
 
-  switch (coreAddress.warriorNumber) {
+  switch (warriorNumber) {
     case 0:
       return 'red';
     case 1:

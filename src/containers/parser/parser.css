@@ -14,6 +14,12 @@ select {
   color: #424a5d;
 }
 
+.warriorList {
+  display: inline-block;
+  height: 400px;
+  padding: 1em;
+}
+
 .errors {
   display: inline-block;
   height: 400px;

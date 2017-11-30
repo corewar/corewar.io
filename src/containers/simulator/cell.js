@@ -1,5 +1,4 @@
 import React from 'react'
-import { corewar } from 'corewar';
 
 import './cell.css';
 
