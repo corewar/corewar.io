@@ -4,7 +4,7 @@
   "description": "HTML5 & javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)",
   "main": "./dist/index.js",
   "scripts": {
-    "test": "nyc jasmine-ts",
+    "test": "nyc mocha",
     "start": "webpack-dev-server --progress --colors",
     "prepublishOnly": "webpack"
   },
@@ -16,11 +16,6 @@
     "**/dist/index.d.ts"
   ],
   "nyc": {
-    "exclude": [
-      "**/TestLoader.ts",
-      "**/*[tT]ests.ts",
-      "**/*[hH]elper.ts"
-    ],
     "extension": [
       ".ts"
     ]
@@ -41,17 +36,15 @@
   },
   "homepage": "https://github.com/gareththegeek/corewar#readme",
   "devDependencies": {
-    "@types/jasmine": "^2.6.3",
+    "@types/mocha": "^2.2.44",
     "chai": "^4.1.2",
-    "jasmine": "^2.8.0",
-    "jasmine-core": "^2.8.0",
-    "jasmine-ts": "^0.2.1",
     "mocha": "^4.0.1",
     "nyc": "^11.3.0",
     "sinon": "^4.1.2",
     "sinon-chai": "^2.14.0",
     "ts-loader": "^3.1.1",
     "ts-mocha": "^1.0.3",
+    "ts-node": "^3.3.0",
     "typescript": "^2.6.1"
   },
   "dependencies": {

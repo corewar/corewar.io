@@ -2,7 +2,7 @@
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 var expect = chai.expect;
-chai.use(sinonChai); // Yeah, this is way better than jasmine(!)
+chai.use(sinonChai);
 
 import { IContext } from "../interface/IContext";
 import { IScanner } from "../interface/IScanner";
