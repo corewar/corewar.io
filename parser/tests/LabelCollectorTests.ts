@@ -1,4 +1,6 @@
-﻿import { IToken, TokenCategory } from "../interface/IToken";
+﻿import { expect } from "chai";
+
+import { IToken, TokenCategory } from "../interface/IToken";
 import { Context } from "../Context";
 import { Parser } from "../Parser";
 import { LabelCollector } from "../LabelCollector";
@@ -70,12 +72,12 @@ describe("LabelCollector", () => {
         var pass = new LabelCollector();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
-        expect(actual.tokens.length).toBe(11);
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.tokens.length).to.be.equal(11);
 
         for (var i = 0; i < tokens.length; i++) {
 
-            expect(actual.tokens[i]).toEqual(tokens[i]);
+            expect(actual.tokens[i]).to.deep.equal(tokens[i]);
         }
     });
 
@@ -139,19 +141,19 @@ describe("LabelCollector", () => {
         var pass = new LabelCollector();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
-        expect(actual.tokens.length).toBe(10);
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.tokens.length).to.be.equal(10);
 
-        expect(actual.tokens[0]).toEqual(tokens[0]);
-        expect(actual.tokens[1]).toEqual(tokens[1]);
-        expect(actual.tokens[2]).toEqual(tokens[2]);
-        expect(actual.tokens[3]).toEqual(tokens[3]);
-        expect(actual.tokens[4]).toEqual(tokens[4]);
-        expect(actual.tokens[5]).toEqual(tokens[5]);
-        expect(actual.tokens[6]).toEqual(tokens[6]);
-        expect(actual.tokens[7]).toEqual(tokens[8]);
-        expect(actual.tokens[8]).toEqual(tokens[9]);
-        expect(actual.tokens[9]).toEqual(tokens[10]);
+        expect(actual.tokens[0]).to.deep.equal(tokens[0]);
+        expect(actual.tokens[1]).to.deep.equal(tokens[1]);
+        expect(actual.tokens[2]).to.deep.equal(tokens[2]);
+        expect(actual.tokens[3]).to.deep.equal(tokens[3]);
+        expect(actual.tokens[4]).to.deep.equal(tokens[4]);
+        expect(actual.tokens[5]).to.deep.equal(tokens[5]);
+        expect(actual.tokens[6]).to.deep.equal(tokens[6]);
+        expect(actual.tokens[7]).to.deep.equal(tokens[8]);
+        expect(actual.tokens[8]).to.deep.equal(tokens[9]);
+        expect(actual.tokens[9]).to.deep.equal(tokens[10]);
     });
 
     it("Records labels in context with the corresponding instruction number", () => {
@@ -210,10 +212,10 @@ describe("LabelCollector", () => {
         var pass = new LabelCollector();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
-        expect(actual.labels["label1"]).toBe(0);
-        expect(actual.labels["label2"]).toBe(2);
-        expect(actual.labels["label3"]).toBe(2);
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.labels["label1"]).to.be.equal(0);
+        expect(actual.labels["label2"]).to.be.equal(2);
+        expect(actual.labels["label3"]).to.be.equal(2);
     });
 
     it("Does not include lines which do not begin with an opcode or label in the instruction number", () => {
@@ -280,9 +282,9 @@ describe("LabelCollector", () => {
         var pass = new LabelCollector();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
-        expect(actual.labels["Label1"]).toBe(1);
-        expect(actual.labels["label2"]).toBe(2);
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.labels["Label1"]).to.be.equal(1);
+        expect(actual.labels["label2"]).to.be.equal(2);
     });
 
     it("Raises a warning if a label is declared more than once and uses first definition", () => {
@@ -323,11 +325,11 @@ describe("LabelCollector", () => {
         var pass = new LabelCollector();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(1);
-        expect(actual.messages[0].text).toBe("Redefinition of label 'label1', original definition will be used");
-        expect(actual.messages[0].type).toBe(MessageType.Warning);
-        expect(actual.messages[0].position).toEqual({ line: 2, char: 1 });
-        expect(actual.labels["label1"]).toBe(0);
+        expect(actual.messages.length).to.be.equal(1);
+        expect(actual.messages[0].text).to.be.equal("Redefinition of label 'label1', original definition will be used");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Warning);
+        expect(actual.messages[0].position).to.deep.equal({ line: 2, char: 1 });
+        expect(actual.labels["label1"]).to.be.equal(0);
     });
 
     it("Raises a warning if a label is declared with the same name as an EQU label and uses the EQU label",() => {
@@ -355,11 +357,11 @@ describe("LabelCollector", () => {
         var pass = new LabelCollector();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(1);
-        expect(actual.messages[0].text).toBe("Redefinition of label 'label2', original definition will be used");
-        expect(actual.messages[0].type).toBe(MessageType.Warning);
-        expect(actual.messages[0].position).toEqual({ line: 4, char: 5 });
-        expect("label2" in actual.labels).toBe(false);
+        expect(actual.messages.length).to.be.equal(1);
+        expect(actual.messages[0].text).to.be.equal("Redefinition of label 'label2', original definition will be used");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Warning);
+        expect(actual.messages[0].position).to.deep.equal({ line: 4, char: 5 });
+        expect("label2" in actual.labels).to.be.equal(false);
     });
 
     it("Raises an error if an opcode does not directly follow a label definition", () => {
@@ -396,12 +398,12 @@ describe("LabelCollector", () => {
         var pass = new LabelCollector();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(1);
-        expect(actual.messages[0].text).toBe("Expected opcode, got '123'");
-        expect(actual.messages[0].type).toBe(MessageType.Error);
-        expect(actual.messages[0].position).toEqual({ line: 1, char: 2 });
+        expect(actual.messages.length).to.be.equal(1);
+        expect(actual.messages[0].text).to.be.equal("Expected opcode, got '123'");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
+        expect(actual.messages[0].position).to.deep.equal({ line: 1, char: 2 });
 
-        expect(actual.labels["label2"]).toBe(1);
+        expect(actual.labels["label2"]).to.be.equal(1);
     });
 
     it("only records the first eight characters of a label in ICWS'88 standards mode",() => {
@@ -432,10 +434,10 @@ describe("LabelCollector", () => {
         var pass = new LabelCollector();
         var actual = pass.process(context, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions));
 
-        expect(actual.messages.length).toBe(0);
-        expect(actual.labels["longlabe"]).toBe(0);
-        expect(actual.labels["short1"]).toBe(0);
-        expect(actual.labels["longlabelwhichexceedseightchars"]).toBeUndefined();
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.labels["longlabe"]).to.be.equal(0);
+        expect(actual.labels["short1"]).to.be.equal(0);
+        expect(actual.labels["longlabelwhichexceedseightchars"]).to.be.undefined;
     });
 
     it("recognises labels on end statements",() => {
@@ -453,10 +455,10 @@ describe("LabelCollector", () => {
         var pass = new LabelCollector();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
+        expect(actual.messages.length).to.be.equal(0);
 
-        expect(actual.tokens.length).toBe(7);
+        expect(actual.tokens.length).to.be.equal(7);
 
-        expect(actual.labels["label1"]).toBe(1);
+        expect(actual.labels["label1"]).to.be.equal(1);
     });
 });

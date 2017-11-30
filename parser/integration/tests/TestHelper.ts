@@ -1,4 +1,6 @@
-﻿import { Standard } from "../../interface/IParseOptions";
+﻿import { expect } from "chai";
+
+import { Standard } from "../../interface/IParseOptions";
 import { Expression } from "../../Expression";
 import { Parser } from "../../Parser";
 import { Scanner } from "../../Scanner";
@@ -91,10 +93,10 @@ export class TestHelper {
                     this.failedIndex(warrior.name, actual, expected);
                 }
 
-                expect(actual).toBe(expected);
+                expect(actual).to.be.equal(expected);
 
                 if (!allowMessages) {
-                    expect(result.messages.length).toBe(0);
+                    expect(result.messages.length).to.be.equal(0);
                 }
             });
         });

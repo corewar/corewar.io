@@ -1,4 +1,5 @@
-﻿
+﻿import { expect } from "chai";
+
 import { IToken, TokenCategory } from "../interface/IToken";
 import { Context } from "../Context";
 import { Parser } from "../Parser";
@@ -62,11 +63,11 @@ describe("Filter", () => {
         var pass = new Filter();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(10);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(10);
+        expect(actual.messages.length).to.be.equal(0);
 
         for (var i = 0; i < tokens.length; i++) {
-            expect(tokens[i]).toEqual(actual.tokens[i]);
+            expect(tokens[i]).to.deep.equal(actual.tokens[i]);
         }
     });
 
@@ -84,12 +85,12 @@ describe("Filter", () => {
         var pass = new Filter();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(expected.length);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(expected.length);
+        expect(actual.messages.length).to.be.equal(0);
 
         for (var i = 0; i < expected.length; i++) {
 
-            expect(actual.tokens[i]).toEqual(expected[i]);
+            expect(actual.tokens[i]).to.deep.equal(expected[i]);
         }
     });
 
@@ -107,12 +108,12 @@ describe("Filter", () => {
         var pass = new Filter();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(expected.length);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(expected.length);
+        expect(actual.messages.length).to.be.equal(0);
 
         for (var i = 0; i < expected.length; i++) {
 
-            expect(actual.tokens[i]).toEqual(expected[i]);
+            expect(actual.tokens[i]).to.deep.equal(expected[i]);
         }
     });
 });

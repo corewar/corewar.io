@@ -1,4 +1,9 @@
-﻿
+﻿import * as chai from "chai";
+import * as sinon from "sinon";
+import * as sinonChai from "sinon-chai";
+var expect = chai.expect;
+chai.use(sinonChai);
+
 import { IContext } from "../interface/IContext";
 import { IScanner } from "../interface/IScanner";
 import { IPass } from "../interface/IPass";
@@ -51,8 +56,7 @@ describe("LoadParser",() => {
 
     function fakeScanner(name: string): IScanner {
         return {
-            scan: jasmine.createSpy("Scanner.scan")
-                .and.callFake((s: string, options: IOptions): IContext => {
+            scan: sinon.stub().callsFake((s: string, options: IOptions): IContext => {
                 calls.push(name);
                 return context;
             })
@@ -62,8 +66,7 @@ describe("LoadParser",() => {
     function fakePass(name: string): IPass {
 
         return {
-            process: jasmine.createSpy("Pass.process")
-                .and.callFake((context: IContext, options: IOptions): IContext => {
+            process: sinon.stub().callsFake((context: IContext, options: IOptions): IContext => {
                 calls.push(name);
                 return context;
             })
@@ -88,7 +91,7 @@ describe("LoadParser",() => {
 
     function errorIn(pass: IPass, name: string): void {
 
-        (<jasmine.Spy>pass.process).and.callFake((): IContext => {
+        (<sinon.stub>pass.process).callsFake((): IContext => {
             context.messages.push(fakeError());
             calls.push(name);
             return context;
@@ -97,7 +100,7 @@ describe("LoadParser",() => {
 
     function warningIn(pass: IPass, name: string): void {
 
-        (<jasmine.Spy>pass.process).and.callFake((): IContext => {
+        (<sinon.stub>pass.process).callsFake((): IContext => {
             context.messages.push(fakeWarning());
             calls.push(name);
             return context;
@@ -110,9 +113,9 @@ describe("LoadParser",() => {
 
         loadParser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(4);
+        expect(calls.length).to.be.equal(4);
 
-        expect(calls).toEqual(expected94Calls);
+        expect(calls).to.deep.equal(expected94Calls);
     });
 
     it("Calls passes in correct order under ICWS'88",() => {
@@ -121,13 +124,13 @@ describe("LoadParser",() => {
 
         loadParser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(5);
+        expect(calls.length).to.be.equal(5);
 
-        expect(calls[0]).toBe("scan");
-        expect(calls[1]).toBe("filter");
-        expect(calls[2]).toBe("syntax");
-        expect(calls[3]).toBe("illegal");
-        expect(calls[4]).toBe("mod");
+        expect(calls[0]).to.be.equal("scan");
+        expect(calls[1]).to.be.equal("filter");
+        expect(calls[2]).to.be.equal("syntax");
+        expect(calls[3]).to.be.equal("illegal");
+        expect(calls[4]).to.be.equal("mod");
     });
 
     it("Calls passes in correct order under ICWS'86",() => {
@@ -136,13 +139,13 @@ describe("LoadParser",() => {
 
         loadParser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(5);
+        expect(calls.length).to.be.equal(5);
 
-        expect(calls[0]).toBe("scan");
-        expect(calls[1]).toBe("filter");
-        expect(calls[2]).toBe("syntax");
-        expect(calls[3]).toBe("illegal");
-        expect(calls[4]).toBe("mod");
+        expect(calls[0]).to.be.equal("scan");
+        expect(calls[1]).to.be.equal("filter");
+        expect(calls[2]).to.be.equal("syntax");
+        expect(calls[3]).to.be.equal("illegal");
+        expect(calls[4]).to.be.equal("mod");
     });
 
     it("Does not call mod pass if syntax check fails",() => {
@@ -155,8 +158,8 @@ describe("LoadParser",() => {
         calls = [];
         loadParser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(3);
-        expect(calls).toEqual(expected94Calls.slice(0, 3));
+        expect(calls.length).to.be.equal(3);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 3));
     });
 
     it("Does not call syntax check if filter pass fails",() => {
@@ -169,15 +172,15 @@ describe("LoadParser",() => {
         calls = [];
         loadParser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(2);
-        expect(calls).toEqual(expected94Calls.slice(0, 2));
+        expect(calls.length).to.be.equal(2);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 2));
     });
 
     it("Does not call filter pass if scan fails",() => {
 
         var options = Parser.DefaultOptions;
 
-        (<jasmine.Spy>scanner.scan).and.callFake((): IContext => {
+        (<sinon.stub>scanner.scan).callsFake((): IContext => {
             context.messages.push(fakeError());
             calls.push("scan");
             return context;
@@ -187,15 +190,15 @@ describe("LoadParser",() => {
         calls = [];
         loadParser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(1);
-        expect(calls).toEqual(expected94Calls.slice(0, 1));
+        expect(calls.length).to.be.equal(1);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 1));
     });
 
     it("Does call all passes regardless of raised warnings",() => {
 
         var options = Parser.DefaultOptions;
 
-        (<jasmine.Spy>scanner.scan).and.callFake((): IContext => {
+        (<sinon.stub>scanner.scan).callsFake((): IContext => {
             context.messages.push(fakeWarning());
             calls.push("scan");
             return context;
@@ -207,8 +210,8 @@ describe("LoadParser",() => {
         calls = [];
         loadParser.parse("MOV 0, 1", options);
 
-        expect(calls.length).toBe(4);
-        expect(calls).toEqual(expected94Calls.slice(0, 4));
+        expect(calls.length).to.be.equal(4);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 4));
     });
 
     it("Passes supplied options to each pass",() => {
@@ -218,32 +221,32 @@ describe("LoadParser",() => {
 
         loadParser.parse(document, options);
 
-        expect(scanner.scan).toHaveBeenCalledWith(document, options);
-        expect(filter.process).toHaveBeenCalledWith(context, options);
-        expect(syntaxCheck.process).toHaveBeenCalledWith(context, options);
-        expect(modPass.process).toHaveBeenCalledWith(context, options);
+        expect(scanner.scan).to.have.been.calledWith(document, options);
+        expect(filter.process).to.have.been.calledWith(context, options);
+        expect(syntaxCheck.process).to.have.been.calledWith(context, options);
+        expect(modPass.process).to.have.been.calledWith(context, options);
     });
 
     it("Returns context tokens, messages and metaData in ParserResult",() => {
 
         var actual = loadParser.parse("MOV 0, 1", {});
 
-        expect(actual.metaData).toBe(context.metaData);
-        expect(actual.tokens).toBe(context.tokens);
-        expect(actual.messages).toBe(context.messages);
+        expect(actual.metaData).to.be.equal(context.metaData);
+        expect(actual.tokens).to.be.equal(context.tokens);
+        expect(actual.messages).to.be.equal(context.messages);
     });
 
     it("Defaults the standard to ICWS'94-draft if not specified",() => {
 
         loadParser.parse("MOV 0, 1");
 
-        expect((<jasmine.Spy>scanner.scan).calls.mostRecent().args[1].standard).toBe(Standard.ICWS94draft);
+        expect((<sinon.stub>scanner.scan).lastCall.args[1].standard).to.be.equal(Standard.ICWS94draft);
     });
 
     it("Defaults the coresize to 8192 if not specified",() => {
 
         loadParser.parse("MOV 0, 1");
 
-        expect((<jasmine.Spy>scanner.scan).calls.mostRecent().args[1].coresize).toBe(8192);
+        expect((<sinon.stub>scanner.scan).lastCall.args[1].coresize).to.be.equal(8192);
     });
 });

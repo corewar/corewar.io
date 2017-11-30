@@ -1,4 +1,4 @@
-﻿
+﻿import { expect } from "chai";
 
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
@@ -95,9 +95,9 @@ describe("WarriorLoader",() => {
         var loader = new WarriorLoader(core);
         var actual = loader.load(0, parseResult);
 
-        expect(actual.name).toBe("johnSmith");
-        expect(actual.author).toBe("Joe Bloggs");
-        expect(actual.strategy).toBe("This is a strategy\nit has two lines");
+        expect(actual.name).to.be.equal("johnSmith");
+        expect(actual.author).to.be.equal("Joe Bloggs");
+        expect(actual.strategy).to.be.equal("This is a strategy\nit has two lines");
     });
 
     it("Creates a single process for the warrior",() => {
@@ -108,9 +108,9 @@ describe("WarriorLoader",() => {
         var loader = new WarriorLoader(core);
         var actual = loader.load(0, parseResult);
 
-        expect(actual.taskIndex).toBe(0);
-        expect(actual.tasks.length).toBe(1);
-        expect(actual.tasks[0].warrior).toBe(actual);
+        expect(actual.taskIndex).to.be.equal(0);
+        expect(actual.tasks.length).to.be.equal(1);
+        expect(actual.tasks[0].warrior).to.be.equal(actual);
     });
 
     it("Sets the starting instruction pointer to the load address offset by the value indicated by the ORG instruction",() => {
@@ -137,7 +137,7 @@ describe("WarriorLoader",() => {
         var loader = new WarriorLoader(core);
         var actual = loader.load(3, parseResult);
 
-        expect(actual.tasks[0].instructionPointer).toBe(7);
+        expect(actual.tasks[0].instructionPointer).to.be.equal(7);
     });
 
     it("Loads the warrior into the core at the specified address",() => {
@@ -151,12 +151,12 @@ describe("WarriorLoader",() => {
         for (var i = 0; i < 30; i++) {
 
             var instr = core.readAt(null, i);
-            expect(instr.address).toBe(i);
+            expect(instr.address).to.be.equal(i);
 
             if (i === 21) {
-                expect(instr.opcode).toBe(OpcodeType.MOV);
+                expect(instr.opcode).to.be.equal(OpcodeType.MOV);
             } else {
-                expect(instr.opcode).toBe(OpcodeType.DAT);
+                expect(instr.opcode).to.be.equal(OpcodeType.DAT);
             }
         }
     });
@@ -168,23 +168,23 @@ describe("WarriorLoader",() => {
         var loader = new WarriorLoader(core);
         loader.load(0, DataHelper.buildParseResult(testTokens));
 
-        expect(core.readAt(null, 0).opcode).toBe(OpcodeType.DAT);
-        expect(core.readAt(null, 1).opcode).toBe(OpcodeType.MOV);
-        expect(core.readAt(null, 2).opcode).toBe(OpcodeType.ADD);
-        expect(core.readAt(null, 3).opcode).toBe(OpcodeType.SUB);
-        expect(core.readAt(null, 4).opcode).toBe(OpcodeType.MUL);
-        expect(core.readAt(null, 5).opcode).toBe(OpcodeType.DIV);
-        expect(core.readAt(null, 6).opcode).toBe(OpcodeType.MOD);
-        expect(core.readAt(null, 7).opcode).toBe(OpcodeType.JMP);
-        expect(core.readAt(null, 8).opcode).toBe(OpcodeType.JMZ);
-        expect(core.readAt(null, 9).opcode).toBe(OpcodeType.JMN);
-        expect(core.readAt(null, 10).opcode).toBe(OpcodeType.DJN);
-        expect(core.readAt(null, 11).opcode).toBe(OpcodeType.CMP);
-        expect(core.readAt(null, 12).opcode).toBe(OpcodeType.SEQ);
-        expect(core.readAt(null, 13).opcode).toBe(OpcodeType.SNE);
-        expect(core.readAt(null, 14).opcode).toBe(OpcodeType.SLT);
-        expect(core.readAt(null, 15).opcode).toBe(OpcodeType.SPL);
-        expect(core.readAt(null, 16).opcode).toBe(OpcodeType.NOP);
+        expect(core.readAt(null, 0).opcode).to.be.equal(OpcodeType.DAT);
+        expect(core.readAt(null, 1).opcode).to.be.equal(OpcodeType.MOV);
+        expect(core.readAt(null, 2).opcode).to.be.equal(OpcodeType.ADD);
+        expect(core.readAt(null, 3).opcode).to.be.equal(OpcodeType.SUB);
+        expect(core.readAt(null, 4).opcode).to.be.equal(OpcodeType.MUL);
+        expect(core.readAt(null, 5).opcode).to.be.equal(OpcodeType.DIV);
+        expect(core.readAt(null, 6).opcode).to.be.equal(OpcodeType.MOD);
+        expect(core.readAt(null, 7).opcode).to.be.equal(OpcodeType.JMP);
+        expect(core.readAt(null, 8).opcode).to.be.equal(OpcodeType.JMZ);
+        expect(core.readAt(null, 9).opcode).to.be.equal(OpcodeType.JMN);
+        expect(core.readAt(null, 10).opcode).to.be.equal(OpcodeType.DJN);
+        expect(core.readAt(null, 11).opcode).to.be.equal(OpcodeType.CMP);
+        expect(core.readAt(null, 12).opcode).to.be.equal(OpcodeType.SEQ);
+        expect(core.readAt(null, 13).opcode).to.be.equal(OpcodeType.SNE);
+        expect(core.readAt(null, 14).opcode).to.be.equal(OpcodeType.SLT);
+        expect(core.readAt(null, 15).opcode).to.be.equal(OpcodeType.SPL);
+        expect(core.readAt(null, 16).opcode).to.be.equal(OpcodeType.NOP);
     });
 
     it("Correctly interprets token modifiers into simulator instructions",() => {
@@ -194,23 +194,23 @@ describe("WarriorLoader",() => {
         var loader = new WarriorLoader(core);
         loader.load(0, DataHelper.buildParseResult(testTokens));
 
-        expect(core.readAt(null, 0).modifier).toBe(ModifierType.A);
-        expect(core.readAt(null, 1).modifier).toBe(ModifierType.B);
-        expect(core.readAt(null, 2).modifier).toBe(ModifierType.AB);
-        expect(core.readAt(null, 3).modifier).toBe(ModifierType.BA);
-        expect(core.readAt(null, 4).modifier).toBe(ModifierType.F);
-        expect(core.readAt(null, 5).modifier).toBe(ModifierType.I);
-        expect(core.readAt(null, 6).modifier).toBe(ModifierType.X);
-        expect(core.readAt(null, 7).modifier).toBe(ModifierType.A);
-        expect(core.readAt(null, 8).modifier).toBe(ModifierType.B);
-        expect(core.readAt(null, 9).modifier).toBe(ModifierType.AB);
-        expect(core.readAt(null, 10).modifier).toBe(ModifierType.BA);
-        expect(core.readAt(null, 11).modifier).toBe(ModifierType.F);
-        expect(core.readAt(null, 12).modifier).toBe(ModifierType.I);
-        expect(core.readAt(null, 13).modifier).toBe(ModifierType.F);
-        expect(core.readAt(null, 14).modifier).toBe(ModifierType.X);
-        expect(core.readAt(null, 15).modifier).toBe(ModifierType.A);
-        expect(core.readAt(null, 16).modifier).toBe(ModifierType.B);
+        expect(core.readAt(null, 0).modifier).to.be.equal(ModifierType.A);
+        expect(core.readAt(null, 1).modifier).to.be.equal(ModifierType.B);
+        expect(core.readAt(null, 2).modifier).to.be.equal(ModifierType.AB);
+        expect(core.readAt(null, 3).modifier).to.be.equal(ModifierType.BA);
+        expect(core.readAt(null, 4).modifier).to.be.equal(ModifierType.F);
+        expect(core.readAt(null, 5).modifier).to.be.equal(ModifierType.I);
+        expect(core.readAt(null, 6).modifier).to.be.equal(ModifierType.X);
+        expect(core.readAt(null, 7).modifier).to.be.equal(ModifierType.A);
+        expect(core.readAt(null, 8).modifier).to.be.equal(ModifierType.B);
+        expect(core.readAt(null, 9).modifier).to.be.equal(ModifierType.AB);
+        expect(core.readAt(null, 10).modifier).to.be.equal(ModifierType.BA);
+        expect(core.readAt(null, 11).modifier).to.be.equal(ModifierType.F);
+        expect(core.readAt(null, 12).modifier).to.be.equal(ModifierType.I);
+        expect(core.readAt(null, 13).modifier).to.be.equal(ModifierType.F);
+        expect(core.readAt(null, 14).modifier).to.be.equal(ModifierType.X);
+        expect(core.readAt(null, 15).modifier).to.be.equal(ModifierType.A);
+        expect(core.readAt(null, 16).modifier).to.be.equal(ModifierType.B);
     });
 
     it("Correctly interprets token a mode into simulator instructions",() => {
@@ -220,23 +220,23 @@ describe("WarriorLoader",() => {
         var loader = new WarriorLoader(core);
         loader.load(0, DataHelper.buildParseResult(testTokens));
 
-        expect(core.readAt(null, 0).aOperand.mode).toBe(ModeType.Direct);
-        expect(core.readAt(null, 1).aOperand.mode).toBe(ModeType.Immediate);
-        expect(core.readAt(null, 2).aOperand.mode).toBe(ModeType.AIndirect);
-        expect(core.readAt(null, 3).aOperand.mode).toBe(ModeType.BIndirect);
-        expect(core.readAt(null, 4).aOperand.mode).toBe(ModeType.APreDecrement);
-        expect(core.readAt(null, 5).aOperand.mode).toBe(ModeType.BPreDecrement);
-        expect(core.readAt(null, 6).aOperand.mode).toBe(ModeType.APostIncrement);
-        expect(core.readAt(null, 7).aOperand.mode).toBe(ModeType.BPostIncrement);
-        expect(core.readAt(null, 8).aOperand.mode).toBe(ModeType.Direct);
-        expect(core.readAt(null, 9).aOperand.mode).toBe(ModeType.Immediate);
-        expect(core.readAt(null, 10).aOperand.mode).toBe(ModeType.AIndirect);
-        expect(core.readAt(null, 11).aOperand.mode).toBe(ModeType.BIndirect);
-        expect(core.readAt(null, 12).aOperand.mode).toBe(ModeType.APreDecrement);
-        expect(core.readAt(null, 13).aOperand.mode).toBe(ModeType.BPreDecrement);
-        expect(core.readAt(null, 14).aOperand.mode).toBe(ModeType.APostIncrement);
-        expect(core.readAt(null, 15).aOperand.mode).toBe(ModeType.Direct);
-        expect(core.readAt(null, 16).aOperand.mode).toBe(ModeType.Immediate);
+        expect(core.readAt(null, 0).aOperand.mode).to.be.equal(ModeType.Direct);
+        expect(core.readAt(null, 1).aOperand.mode).to.be.equal(ModeType.Immediate);
+        expect(core.readAt(null, 2).aOperand.mode).to.be.equal(ModeType.AIndirect);
+        expect(core.readAt(null, 3).aOperand.mode).to.be.equal(ModeType.BIndirect);
+        expect(core.readAt(null, 4).aOperand.mode).to.be.equal(ModeType.APreDecrement);
+        expect(core.readAt(null, 5).aOperand.mode).to.be.equal(ModeType.BPreDecrement);
+        expect(core.readAt(null, 6).aOperand.mode).to.be.equal(ModeType.APostIncrement);
+        expect(core.readAt(null, 7).aOperand.mode).to.be.equal(ModeType.BPostIncrement);
+        expect(core.readAt(null, 8).aOperand.mode).to.be.equal(ModeType.Direct);
+        expect(core.readAt(null, 9).aOperand.mode).to.be.equal(ModeType.Immediate);
+        expect(core.readAt(null, 10).aOperand.mode).to.be.equal(ModeType.AIndirect);
+        expect(core.readAt(null, 11).aOperand.mode).to.be.equal(ModeType.BIndirect);
+        expect(core.readAt(null, 12).aOperand.mode).to.be.equal(ModeType.APreDecrement);
+        expect(core.readAt(null, 13).aOperand.mode).to.be.equal(ModeType.BPreDecrement);
+        expect(core.readAt(null, 14).aOperand.mode).to.be.equal(ModeType.APostIncrement);
+        expect(core.readAt(null, 15).aOperand.mode).to.be.equal(ModeType.Direct);
+        expect(core.readAt(null, 16).aOperand.mode).to.be.equal(ModeType.Immediate);
     });
 
     it("Correctly interprets token a number into simulator instructions",() => {
@@ -246,23 +246,23 @@ describe("WarriorLoader",() => {
         var loader = new WarriorLoader(core);
         loader.load(0, DataHelper.buildParseResult(testTokens));
 
-        expect(core.readAt(null, 0).aOperand.address).toBe(0);
-        expect(core.readAt(null, 1).aOperand.address).toBe(2);
-        expect(core.readAt(null, 2).aOperand.address).toBe(4);
-        expect(core.readAt(null, 3).aOperand.address).toBe(6);
-        expect(core.readAt(null, 4).aOperand.address).toBe(8);
-        expect(core.readAt(null, 5).aOperand.address).toBe(10);
-        expect(core.readAt(null, 6).aOperand.address).toBe(12);
-        expect(core.readAt(null, 7).aOperand.address).toBe(14);
-        expect(core.readAt(null, 8).aOperand.address).toBe(-1);
-        expect(core.readAt(null, 9).aOperand.address).toBe(-3);
-        expect(core.readAt(null, 10).aOperand.address).toBe(-5);
-        expect(core.readAt(null, 11).aOperand.address).toBe(-7);
-        expect(core.readAt(null, 12).aOperand.address).toBe(-9);
-        expect(core.readAt(null, 13).aOperand.address).toBe(-11);
-        expect(core.readAt(null, 14).aOperand.address).toBe(-13);
-        expect(core.readAt(null, 15).aOperand.address).toBe(-15);
-        expect(core.readAt(null, 16).aOperand.address).toBe(0);
+        expect(core.readAt(null, 0).aOperand.address).to.be.equal(0);
+        expect(core.readAt(null, 1).aOperand.address).to.be.equal(2);
+        expect(core.readAt(null, 2).aOperand.address).to.be.equal(4);
+        expect(core.readAt(null, 3).aOperand.address).to.be.equal(6);
+        expect(core.readAt(null, 4).aOperand.address).to.be.equal(8);
+        expect(core.readAt(null, 5).aOperand.address).to.be.equal(10);
+        expect(core.readAt(null, 6).aOperand.address).to.be.equal(12);
+        expect(core.readAt(null, 7).aOperand.address).to.be.equal(14);
+        expect(core.readAt(null, 8).aOperand.address).to.be.equal(-1);
+        expect(core.readAt(null, 9).aOperand.address).to.be.equal(-3);
+        expect(core.readAt(null, 10).aOperand.address).to.be.equal(-5);
+        expect(core.readAt(null, 11).aOperand.address).to.be.equal(-7);
+        expect(core.readAt(null, 12).aOperand.address).to.be.equal(-9);
+        expect(core.readAt(null, 13).aOperand.address).to.be.equal(-11);
+        expect(core.readAt(null, 14).aOperand.address).to.be.equal(-13);
+        expect(core.readAt(null, 15).aOperand.address).to.be.equal(-15);
+        expect(core.readAt(null, 16).aOperand.address).to.be.equal(0);
     });
 
     it("Correctly interprets token b mode into simulator instructions",() => {
@@ -272,23 +272,23 @@ describe("WarriorLoader",() => {
         var loader = new WarriorLoader(core);
         loader.load(0, DataHelper.buildParseResult(testTokens));
 
-        expect(core.readAt(null, 0).bOperand.mode).toBe(ModeType.Direct);
-        expect(core.readAt(null, 1).bOperand.mode).toBe(ModeType.Immediate);
-        expect(core.readAt(null, 2).bOperand.mode).toBe(ModeType.AIndirect);
-        expect(core.readAt(null, 3).bOperand.mode).toBe(ModeType.BIndirect);
-        expect(core.readAt(null, 4).bOperand.mode).toBe(ModeType.APreDecrement);
-        expect(core.readAt(null, 5).bOperand.mode).toBe(ModeType.BPreDecrement);
-        expect(core.readAt(null, 6).bOperand.mode).toBe(ModeType.APostIncrement);
-        expect(core.readAt(null, 7).bOperand.mode).toBe(ModeType.BPostIncrement);
-        expect(core.readAt(null, 8).bOperand.mode).toBe(ModeType.Immediate);
-        expect(core.readAt(null, 9).bOperand.mode).toBe(ModeType.AIndirect);
-        expect(core.readAt(null, 10).bOperand.mode).toBe(ModeType.BIndirect);
-        expect(core.readAt(null, 11).bOperand.mode).toBe(ModeType.APreDecrement);
-        expect(core.readAt(null, 12).bOperand.mode).toBe(ModeType.BPreDecrement);
-        expect(core.readAt(null, 13).bOperand.mode).toBe(ModeType.APostIncrement);
-        expect(core.readAt(null, 14).bOperand.mode).toBe(ModeType.BPostIncrement);
-        expect(core.readAt(null, 15).bOperand.mode).toBe(ModeType.Immediate);
-        expect(core.readAt(null, 16).bOperand.mode).toBe(ModeType.Immediate);
+        expect(core.readAt(null, 0).bOperand.mode).to.be.equal(ModeType.Direct);
+        expect(core.readAt(null, 1).bOperand.mode).to.be.equal(ModeType.Immediate);
+        expect(core.readAt(null, 2).bOperand.mode).to.be.equal(ModeType.AIndirect);
+        expect(core.readAt(null, 3).bOperand.mode).to.be.equal(ModeType.BIndirect);
+        expect(core.readAt(null, 4).bOperand.mode).to.be.equal(ModeType.APreDecrement);
+        expect(core.readAt(null, 5).bOperand.mode).to.be.equal(ModeType.BPreDecrement);
+        expect(core.readAt(null, 6).bOperand.mode).to.be.equal(ModeType.APostIncrement);
+        expect(core.readAt(null, 7).bOperand.mode).to.be.equal(ModeType.BPostIncrement);
+        expect(core.readAt(null, 8).bOperand.mode).to.be.equal(ModeType.Immediate);
+        expect(core.readAt(null, 9).bOperand.mode).to.be.equal(ModeType.AIndirect);
+        expect(core.readAt(null, 10).bOperand.mode).to.be.equal(ModeType.BIndirect);
+        expect(core.readAt(null, 11).bOperand.mode).to.be.equal(ModeType.APreDecrement);
+        expect(core.readAt(null, 12).bOperand.mode).to.be.equal(ModeType.BPreDecrement);
+        expect(core.readAt(null, 13).bOperand.mode).to.be.equal(ModeType.APostIncrement);
+        expect(core.readAt(null, 14).bOperand.mode).to.be.equal(ModeType.BPostIncrement);
+        expect(core.readAt(null, 15).bOperand.mode).to.be.equal(ModeType.Immediate);
+        expect(core.readAt(null, 16).bOperand.mode).to.be.equal(ModeType.Immediate);
     });
 
     it("Correctly interprets token b number into simulator instructions",() => {
@@ -298,23 +298,23 @@ describe("WarriorLoader",() => {
         var loader = new WarriorLoader(core);
         loader.load(0, DataHelper.buildParseResult(testTokens));
 
-        expect(core.readAt(null, 0).bOperand.address).toBe(1);
-        expect(core.readAt(null, 1).bOperand.address).toBe(3);
-        expect(core.readAt(null, 2).bOperand.address).toBe(5);
-        expect(core.readAt(null, 3).bOperand.address).toBe(7);
-        expect(core.readAt(null, 4).bOperand.address).toBe(9);
-        expect(core.readAt(null, 5).bOperand.address).toBe(11);
-        expect(core.readAt(null, 6).bOperand.address).toBe(13);
-        expect(core.readAt(null, 7).bOperand.address).toBe(15);
-        expect(core.readAt(null, 8).bOperand.address).toBe(-2);
-        expect(core.readAt(null, 9).bOperand.address).toBe(-4);
-        expect(core.readAt(null, 10).bOperand.address).toBe(-6);
-        expect(core.readAt(null, 11).bOperand.address).toBe(-8);
-        expect(core.readAt(null, 12).bOperand.address).toBe(-10);
-        expect(core.readAt(null, 13).bOperand.address).toBe(-12);
-        expect(core.readAt(null, 14).bOperand.address).toBe(-14);
-        expect(core.readAt(null, 15).bOperand.address).toBe(-16);
-        expect(core.readAt(null, 16).bOperand.address).toBe(0);
+        expect(core.readAt(null, 0).bOperand.address).to.be.equal(1);
+        expect(core.readAt(null, 1).bOperand.address).to.be.equal(3);
+        expect(core.readAt(null, 2).bOperand.address).to.be.equal(5);
+        expect(core.readAt(null, 3).bOperand.address).to.be.equal(7);
+        expect(core.readAt(null, 4).bOperand.address).to.be.equal(9);
+        expect(core.readAt(null, 5).bOperand.address).to.be.equal(11);
+        expect(core.readAt(null, 6).bOperand.address).to.be.equal(13);
+        expect(core.readAt(null, 7).bOperand.address).to.be.equal(15);
+        expect(core.readAt(null, 8).bOperand.address).to.be.equal(-2);
+        expect(core.readAt(null, 9).bOperand.address).to.be.equal(-4);
+        expect(core.readAt(null, 10).bOperand.address).to.be.equal(-6);
+        expect(core.readAt(null, 11).bOperand.address).to.be.equal(-8);
+        expect(core.readAt(null, 12).bOperand.address).to.be.equal(-10);
+        expect(core.readAt(null, 13).bOperand.address).to.be.equal(-12);
+        expect(core.readAt(null, 14).bOperand.address).to.be.equal(-14);
+        expect(core.readAt(null, 15).bOperand.address).to.be.equal(-16);
+        expect(core.readAt(null, 16).bOperand.address).to.be.equal(0);
     });
 
     it("Correctly sets the startAddress property of the warrior",() => {
@@ -326,6 +326,6 @@ describe("WarriorLoader",() => {
         var loader = new WarriorLoader(core);
         var actual = loader.load(3, tokens);
 
-        expect(actual.startAddress).toBe(3);
+        expect(actual.startAddress).to.be.equal(3);
     });
 });

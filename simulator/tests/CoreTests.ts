@@ -1,4 +1,9 @@
-﻿
+﻿import * as chai from "chai";
+import * as sinon from "sinon";
+import * as sinonChai from "sinon-chai";
+var expect = chai.expect;
+chai.use(sinonChai);
+
 import { IInstruction } from "../interface/IInstruction";
 import { ITask } from "../interface/ITask";
 import { OpcodeType, ModifierType } from "../interface/IInstruction";
@@ -59,7 +64,7 @@ describe("Core",() => {
         for (i = 0; i < 4; i++) {
 
             instruction = core.readAt(null, i);
-            expect(instruction.aOperand.address).toBe(i);
+            expect(instruction.aOperand.address).to.be.equal(i);
         }
     });
 
@@ -80,7 +85,7 @@ describe("Core",() => {
         for (i = 0; i < 4; i++) {
 
             instruction = core.readAt(null, i);
-            expect(instruction.aOperand.address).toBe(i + 4);
+            expect(instruction.aOperand.address).to.be.equal(i + 4);
         }
     });
 
@@ -101,7 +106,7 @@ describe("Core",() => {
         for (i = 0; i < 4; i++) {
 
             instruction = core.readAt(null, i);
-            expect(instruction.aOperand.address).toBe(i - 4);
+            expect(instruction.aOperand.address).to.be.equal(i - 4);
         }
     });
 
@@ -110,14 +115,14 @@ describe("Core",() => {
         var core = new Core();
         core.initialise({ coresize: 4, initialInstruction: Defaults.initialInstruction });
 
-        expect(core.wrap(0)).toBe(0);
-        expect(core.wrap(1)).toBe(1);
-        expect(core.wrap(2)).toBe(2);
-        expect(core.wrap(3)).toBe(3);
-        expect(core.wrap(4)).toBe(0);
-        expect(core.wrap(5)).toBe(1);
-        expect(core.wrap(6)).toBe(2);
-        expect(core.wrap(7)).toBe(3);
+        expect(core.wrap(0)).to.be.equal(0);
+        expect(core.wrap(1)).to.be.equal(1);
+        expect(core.wrap(2)).to.be.equal(2);
+        expect(core.wrap(3)).to.be.equal(3);
+        expect(core.wrap(4)).to.be.equal(0);
+        expect(core.wrap(5)).to.be.equal(1);
+        expect(core.wrap(6)).to.be.equal(2);
+        expect(core.wrap(7)).to.be.equal(3);
     });
 
     it(".wrap wraps negative addresses using mod maths",() => {
@@ -125,10 +130,10 @@ describe("Core",() => {
         var core = new Core();
         core.initialise({ coresize: 4, initialInstruction: Defaults.initialInstruction });
 
-        expect(core.wrap(-4)).toBe(0);
-        expect(core.wrap(-3)).toBe(1);
-        expect(core.wrap(-2)).toBe(2);
-        expect(core.wrap(-1)).toBe(3);
+        expect(core.wrap(-4)).to.be.equal(0);
+        expect(core.wrap(-3)).to.be.equal(1);
+        expect(core.wrap(-2)).to.be.equal(2);
+        expect(core.wrap(-1)).to.be.equal(3);
     });
 
     it("Initialises core using the specified default instruction",() => {
@@ -154,12 +159,12 @@ describe("Core",() => {
 
             var instruction = core.readAt(null, i);
 
-            expect(instruction.opcode).toBe(OpcodeType.DIV);
-            expect(instruction.modifier).toBe(ModifierType.BA);
-            expect(instruction.aOperand.mode).toBe(ModeType.AIndirect);
-            expect(instruction.aOperand.address).toBe(5);
-            expect(instruction.bOperand.mode).toBe(ModeType.BPostIncrement);
-            expect(instruction.bOperand.address).toBe(-77);
+            expect(instruction.opcode).to.be.equal(OpcodeType.DIV);
+            expect(instruction.modifier).to.be.equal(ModifierType.BA);
+            expect(instruction.aOperand.mode).to.be.equal(ModeType.AIndirect);
+            expect(instruction.aOperand.address).to.be.equal(5);
+            expect(instruction.bOperand.mode).to.be.equal(ModeType.BPostIncrement);
+            expect(instruction.bOperand.address).to.be.equal(-77);
         }
     });
 
@@ -172,14 +177,14 @@ describe("Core",() => {
 
             var instruction = core.readAt(null, i);
 
-            expect(instruction.address).toBe(i);
+            expect(instruction.address).to.be.equal(i);
         }
     });
 
     it("Triggers a read core access event for the specified Task when getAt is called",() => {
 
         var task = buildTask();
-        var handler = jasmine.createSpy("CoreAccessHandler Spy");
+        var handler = sinon.stub();
 
         var core = new Core();
         core.initialise(_.defaults({ coresize: 4 }, Defaults));
@@ -187,19 +192,19 @@ describe("Core",() => {
 
         core.readAt(task, 2);
 
-        expect(handler).toHaveBeenCalled();
+        expect(handler).to.have.been.called;
 
-        var eventArg = <ICoreAccessEventArgs>_(handler.calls.mostRecent().args).first();
+        var eventArg = <ICoreAccessEventArgs>_(handler.lastCall.args).first();
 
-        expect(eventArg.accessType).toBe(CoreAccessType.read);
-        expect(eventArg.address).toBe(2);
-        expect(eventArg.task).toBe(task);
+        expect(eventArg.accessType).to.be.equal(CoreAccessType.read);
+        expect(eventArg.address).to.be.equal(2);
+        expect(eventArg.task).to.be.equal(task);
     });
 
     it("Triggers a write core access event for the specified Task when setAt is called",() => {
 
         var task = buildTask();
-        var handler = jasmine.createSpy("CoreAccessHandler Spy");
+        var handler = sinon.stub();
 
         var core = new Core();
         core.initialise(_.defaults({ coresize: 4 }, Defaults));
@@ -207,19 +212,19 @@ describe("Core",() => {
 
         core.setAt(task, 2, buildInstruction());
 
-        expect(handler).toHaveBeenCalled();
+        expect(handler).to.have.been.called;
 
-        var eventArg = <ICoreAccessEventArgs>_(handler.calls.mostRecent().args).first();
+        var eventArg = <ICoreAccessEventArgs>_(handler.lastCall.args).first();
 
-        expect(eventArg.accessType).toBe(CoreAccessType.write);
-        expect(eventArg.address).toBe(2);
-        expect(eventArg.task).toBe(task);
+        expect(eventArg.accessType).to.be.equal(CoreAccessType.write);
+        expect(eventArg.address).to.be.equal(2);
+        expect(eventArg.task).to.be.equal(task);
     });
 
     it("Triggers an execute core access event for the specified Task when executeAt is called",() => {
 
         var task = buildTask();
-        var handler = jasmine.createSpy("CoreAccessHandler Spy");
+        var handler = sinon.stub();
 
         var core = new Core();
         core.initialise(_.defaults({ coresize: 4 }, Defaults));
@@ -227,7 +232,7 @@ describe("Core",() => {
 
         core.executeAt(task, 2);
 
-        expect(handler).not.toHaveBeenCalled();
+        expect(handler).not.to.have.been.called;
     });
 
     it(".getSize returns the size of the core", () => {
@@ -237,6 +242,6 @@ describe("Core",() => {
 
         var actual = core.getSize();
 
-        expect(actual).toBe(23);
+        expect(actual).to.be.equal(23);
     });
 });

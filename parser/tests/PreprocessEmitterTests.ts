@@ -1,4 +1,5 @@
-﻿
+﻿import { expect } from "chai";
+
 import { Context } from "../Context";
 import { IToken, TokenCategory } from "../interface/IToken";
 import { Parser } from "..//Parser";
@@ -69,11 +70,11 @@ describe("PreprocessEmitter", () => {
         var pass = new PreprocessEmitter();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(10);
-        expect(actual.messages.length).toBe(0);
+        expect(actual.tokens.length).to.be.equal(10);
+        expect(actual.messages.length).to.be.equal(0);
 
         for (var i = 0; i < tokens.length; i++) {
-            expect(tokens[i]).toEqual(actual.tokens[i]);
+            expect(tokens[i]).to.deep.equal(actual.tokens[i]);
         }
     });
 
@@ -118,13 +119,13 @@ describe("PreprocessEmitter", () => {
         var pass = new PreprocessEmitter();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(5);
+        expect(actual.tokens.length).to.be.equal(5);
 
-        expect(actual.tokens[0]).toEqual(tokens[0]);
-        expect(actual.tokens[1]).toEqual(label1expression[0]);
-        expect(actual.tokens[2]).toEqual(label1expression[1]);
-        expect(actual.tokens[3]).toEqual(label1expression[2]);
-        expect(actual.tokens[4]).toEqual(tokens[2]);
+        expect(actual.tokens[0]).to.deep.equal(tokens[0]);
+        expect(actual.tokens[1]).to.deep.equal(label1expression[0]);
+        expect(actual.tokens[2]).to.deep.equal(label1expression[1]);
+        expect(actual.tokens[3]).to.deep.equal(label1expression[2]);
+        expect(actual.tokens[4]).to.deep.equal(tokens[2]);
     });
 
     it("Is capable of making multiple substitutions", () => {
@@ -169,11 +170,11 @@ describe("PreprocessEmitter", () => {
         var pass = new PreprocessEmitter();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(3);
+        expect(actual.tokens.length).to.be.equal(3);
 
-        expect(actual.tokens[0]).toEqual(label2expression[0]);
-        expect(actual.tokens[1]).toEqual(label1expression[0]);
-        expect(actual.tokens[2]).toEqual(label1expression[0]);
+        expect(actual.tokens[0]).to.deep.equal(label2expression[0]);
+        expect(actual.tokens[1]).to.deep.equal(label1expression[0]);
+        expect(actual.tokens[2]).to.deep.equal(label1expression[0]);
     });
 
     it("Updates the position of substituted tokens to match position of label that was replaced", () => {
@@ -222,14 +223,14 @@ describe("PreprocessEmitter", () => {
         var pass = new PreprocessEmitter();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).toBe(5);
+        expect(actual.tokens.length).to.be.equal(5);
 
-        expect(actual.tokens[0].position).toEqual({ line: 3, char: 4 });
+        expect(actual.tokens[0].position).to.deep.equal({ line: 3, char: 4 });
 
-        expect(actual.tokens[1].position).toEqual({ line: 5, char: 5 });
-        expect(actual.tokens[2].position).toEqual({ line: 5, char: 5 });
+        expect(actual.tokens[1].position).to.deep.equal({ line: 5, char: 5 });
+        expect(actual.tokens[2].position).to.deep.equal({ line: 5, char: 5 });
 
-        expect(actual.tokens[3].position).toEqual({ line: 6, char: 4 });
-        expect(actual.tokens[4].position).toEqual({ line: 6, char: 4 });
+        expect(actual.tokens[3].position).to.deep.equal({ line: 6, char: 4 });
+        expect(actual.tokens[4].position).to.deep.equal({ line: 6, char: 4 });
     });
 });

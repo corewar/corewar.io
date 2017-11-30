@@ -1,4 +1,5 @@
-﻿
+﻿import { expect } from "chai";
+
 import { Context } from "../Context";
 import { MetaDataCollector } from "../MetaDataCollector";
 import { Parser } from "../Parser";
@@ -15,7 +16,7 @@ describe("MetaDataCollector",() => {
         var pass = new MetaDataCollector();
         pass.process(context, Parser.DefaultOptions);
 
-        expect(context.metaData.name).toBe("Nameless");
+        expect(context.metaData.name).to.be.equal("Nameless");
     });
 
     it("Defaults the author name to 'Blameless'",() => {
@@ -25,7 +26,7 @@ describe("MetaDataCollector",() => {
         var pass = new MetaDataCollector();
         pass.process(context, Parser.DefaultOptions);
 
-        expect(context.metaData.author).toBe("Blameless");
+        expect(context.metaData.author).to.be.equal("Blameless");
     });
 
     it("Can handle non-relevant comments",() => {
@@ -39,7 +40,7 @@ describe("MetaDataCollector",() => {
         var pass = new MetaDataCollector();
         pass.process(context, Parser.DefaultOptions);
 
-        expect(context.messages.length).toBe(0);
+        expect(context.messages.length).to.be.equal(0);
     });
 
     it("Reads the warrior name from the ;name comment",() => {
@@ -50,7 +51,7 @@ describe("MetaDataCollector",() => {
         var pass = new MetaDataCollector();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.metaData.name).toBe("this is the name");
+        expect(actual.metaData.name).to.be.equal("this is the name");
     });
 
     it("Reads the author name from the ;author comment",() => {
@@ -61,7 +62,7 @@ describe("MetaDataCollector",() => {
         var pass = new MetaDataCollector();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.metaData.author).toBe("gareththegeek");
+        expect(actual.metaData.author).to.be.equal("gareththegeek");
     });
 
     it("Reads the strategy from the ;strategy comment",() => {
@@ -72,7 +73,7 @@ describe("MetaDataCollector",() => {
         var pass = new MetaDataCollector();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.metaData.strategy).toBe("  this is a description of the strategy  \n");
+        expect(actual.metaData.strategy).to.be.equal("  this is a description of the strategy  \n");
     });
 
     it("Reads multiline strategies from successive ;strategy comments",() => {
@@ -85,7 +86,7 @@ describe("MetaDataCollector",() => {
         var pass = new MetaDataCollector();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.metaData.strategy).toBe(
+        expect(actual.metaData.strategy).to.be.equal(
             "this is line 1 of the strategy\nthis is line 2 of the strategy\nthis is line 3 of the strategy\n");
     });
 
@@ -98,11 +99,11 @@ describe("MetaDataCollector",() => {
         var pass = new MetaDataCollector();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.metaData.name).toBe("imp");
-        expect(actual.messages.length).toBe(1);
-        expect(actual.messages[0].text).toBe("Redefinition of name, latest definition will be used ('imp')");
-        expect(actual.messages[0].type).toBe(MessageType.Warning);
-        expect(actual.messages[0].position).toEqual({ line: 2, char: 1 });
+        expect(actual.metaData.name).to.be.equal("imp");
+        expect(actual.messages.length).to.be.equal(1);
+        expect(actual.messages[0].text).to.be.equal("Redefinition of name, latest definition will be used ('imp')");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Warning);
+        expect(actual.messages[0].position).to.deep.equal({ line: 2, char: 1 });
     });
 
     it("Raises a warning if author is defined more than once and uses latest definition",() => {
@@ -114,10 +115,10 @@ describe("MetaDataCollector",() => {
         var pass = new MetaDataCollector();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.metaData.author).toBe("gareththegeek");
-        expect(actual.messages.length).toBe(1);
-        expect(actual.messages[0].text).toBe("Redefinition of author, latest definition will be used ('gareththegeek')");
-        expect(actual.messages[0].type).toBe(MessageType.Warning);
-        expect(actual.messages[0].position).toEqual({ line: 2, char: 1 });
+        expect(actual.metaData.author).to.be.equal("gareththegeek");
+        expect(actual.messages.length).to.be.equal(1);
+        expect(actual.messages[0].text).to.be.equal("Redefinition of author, latest definition will be used ('gareththegeek')");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Warning);
+        expect(actual.messages[0].position).to.deep.equal({ line: 2, char: 1 });
     });
 });

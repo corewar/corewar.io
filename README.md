@@ -50,9 +50,7 @@ Beyond the main API, we envisage access to the Core object being provided via ev
 
 Corewar is extensively unit tested, run `npm test` to execute the tests and see the coverage.
 
-The tests run via `jasmine-ts` which uses `ts-node` under the hood, so as a result aren't easy to debug (by easy, read 'possible') :(
-
-You may need `jasmine-cli` installed globally if you don't have it already
+The tests run via `ts-mocha` which uses `ts-node` under the hood, so as a result aren't easy to debug (by easy, read 'possible') :(
 
 ## Getting involved
 

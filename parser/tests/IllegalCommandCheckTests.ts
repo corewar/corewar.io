@@ -1,4 +1,5 @@
-﻿
+﻿import { expect } from "chai";
+
 import { TestHelper } from "./TestHelper";
 import { Context } from "../Context";
 import { IllegalCommandCheck } from "../IllegalCommandCheck";
@@ -41,7 +42,7 @@ describe("IllegalCommandCheck",() => {
         var pass = new IllegalCommandCheck();
         var actual = pass.process(context, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions));
 
-        expect(actual.messages.length).toBe(0);
+        expect(actual.messages.length).to.be.equal(0);
     });
 
     it("Raises an error for each illegal addressing mode under the ICWS'88 standard",() => {
@@ -64,15 +65,15 @@ describe("IllegalCommandCheck",() => {
         var pass = new IllegalCommandCheck();
         var actual = pass.process(context, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions));
 
-        expect(actual.messages.length).toBe(11);
+        expect(actual.messages.length).to.be.equal(11);
 
         expect(_(actual.messages).where({
             type: MessageType.Error,
             text: "Illegal addressing mode under selected Corewar standard"
-        }).length).toBe(11);
+        }).length).to.be.equal(11);
 
         for (var i = 0; i < actual.messages.length; i++) {
-            expect(actual.messages[i].position).toEqual(tokens[i * 8].position);
+            expect(actual.messages[i].position).to.deep.equal(tokens[i * 8].position);
         }
     });
 });

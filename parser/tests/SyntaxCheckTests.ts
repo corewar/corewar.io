@@ -1,4 +1,5 @@
-﻿
+﻿import { expect } from "chai";
+
 import { IToken, TokenCategory } from "../interface/IToken";
 import { IContext } from "../interface/IContext";
 import { Context } from "../Context";
@@ -33,17 +34,17 @@ describe("SyntaxCheck", () => {
         var parser = new SyntaxCheck();
         var actual = parser.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(4);
-        expect(actual.tokens.length).toBe(0);
+        expect(actual.messages.length).to.be.equal(4);
+        expect(actual.tokens.length).to.be.equal(0);
 
-        expect(actual.messages[0].position).toEqual(tokens[0].position);
-        expect(actual.messages[1].position).toEqual(tokens[1].position);
-        expect(actual.messages[2].position).toEqual(tokens[2].position);
-        expect(actual.messages[3].position).toEqual(tokens[3].position);
+        expect(actual.messages[0].position).to.deep.equal(tokens[0].position);
+        expect(actual.messages[1].position).to.deep.equal(tokens[1].position);
+        expect(actual.messages[2].position).to.deep.equal(tokens[2].position);
+        expect(actual.messages[3].position).to.deep.equal(tokens[3].position);
 
         _.forEach(actual.messages, (message: IMessage) => {
-            expect(message.type).toBe(MessageType.Error);
-            expect(message.text).toBe("Expected instruction or comment, got end of line");
+            expect(message.type).to.be.equal(MessageType.Error);
+            expect(message.text).to.be.equal("Expected instruction or comment, got end of line");
         });
     });
 
@@ -58,10 +59,10 @@ describe("SyntaxCheck", () => {
 
         var actual = parser.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
-        expect(actual.tokens.length).toBe(4);
-        expect(actual.tokens[0]).toEqual(tokens[0]);
-        expect(actual.tokens[2]).toEqual(tokens[2]);
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.tokens.length).to.be.equal(4);
+        expect(actual.tokens[0]).to.deep.equal(tokens[0]);
+        expect(actual.tokens[2]).to.deep.equal(tokens[2]);
     });
 
     it("parses instructions", () => {
@@ -73,10 +74,10 @@ describe("SyntaxCheck", () => {
         var parser = new SyntaxCheck();
         var actual = parser.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
+        expect(actual.messages.length).to.be.equal(0);
 
         for (var i = 0; i < context.tokens.length; i++) {
-            expect(tokens[i]).toEqual(actual.tokens[i]);
+            expect(tokens[i]).to.deep.equal(actual.tokens[i]);
         }
     });
 
@@ -96,10 +97,10 @@ describe("SyntaxCheck", () => {
         var parser = new SyntaxCheck();
         var actual = parser.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
+        expect(actual.messages.length).to.be.equal(0);
 
         for (var i = 0; i < context.tokens.length; i++) {
-            expect(tokens[i]).toEqual(actual.tokens[i]);
+            expect(tokens[i]).to.deep.equal(actual.tokens[i]);
         }
     });
 
@@ -115,11 +116,11 @@ describe("SyntaxCheck", () => {
         var parser = new SyntaxCheck();
         var actual = parser.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(1);
+        expect(actual.messages.length).to.be.equal(1);
 
-        expect(actual.messages[0].type).toBe(MessageType.Error);
-        expect(actual.messages[0].position).toEqual({ line: 1, char: 1 });
-        expect(actual.messages[0].text).toBe("Expected instruction or comment, got ','");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
+        expect(actual.messages[0].position).to.deep.equal({ line: 1, char: 1 });
+        expect(actual.messages[0].text).to.be.equal("Expected instruction or comment, got ','");
     });
 
     it("returns a syntax error if an opcode does not have a modifier", () => {
@@ -134,11 +135,11 @@ describe("SyntaxCheck", () => {
         var parser = new SyntaxCheck();
         var actual = parser.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(1);
+        expect(actual.messages.length).to.be.equal(1);
 
-        expect(actual.messages[0].type).toBe(MessageType.Error);
-        expect(actual.messages[0].position).toEqual({ line: 1, char: 2 });
-        expect(actual.messages[0].text).toBe("Expected modifier, got '@'");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
+        expect(actual.messages[0].position).to.deep.equal({ line: 1, char: 2 });
+        expect(actual.messages[0].text).to.be.equal("Expected modifier, got '@'");
     });
 
     it("returns a syntax error if an A field does not have a mode", () => {
@@ -153,11 +154,11 @@ describe("SyntaxCheck", () => {
         var parser = new SyntaxCheck();
         var actual = parser.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(1);
+        expect(actual.messages.length).to.be.equal(1);
 
-        expect(actual.messages[0].type).toBe(MessageType.Error);
-        expect(actual.messages[0].position).toEqual({ line: 1, char: 3 });
-        expect(actual.messages[0].text).toBe("Expected mode, got '-4'");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
+        expect(actual.messages[0].position).to.deep.equal({ line: 1, char: 3 });
+        expect(actual.messages[0].text).to.be.equal("Expected mode, got '-4'");
     });
 
     it("returns a syntax error if an A field does not have a number", () => {
@@ -172,11 +173,11 @@ describe("SyntaxCheck", () => {
         var parser = new SyntaxCheck();
         var actual = parser.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(1);
+        expect(actual.messages.length).to.be.equal(1);
 
-        expect(actual.messages[0].type).toBe(MessageType.Error);
-        expect(actual.messages[0].position).toEqual({ line: 1, char: 4 });
-        expect(actual.messages[0].text).toBe("Expected number, got ','");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
+        expect(actual.messages[0].position).to.deep.equal({ line: 1, char: 4 });
+        expect(actual.messages[0].text).to.be.equal("Expected number, got ','");
     });
 
     it("returns a syntax error if there is no comma between the A and B field", () => {
@@ -191,11 +192,11 @@ describe("SyntaxCheck", () => {
         var parser = new SyntaxCheck();
         var actual = parser.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(1);
+        expect(actual.messages.length).to.be.equal(1);
 
-        expect(actual.messages[0].type).toBe(MessageType.Error);
-        expect(actual.messages[0].position).toEqual({ line: 1, char: 5 });
-        expect(actual.messages[0].text).toBe("Expected ',', got '<'");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
+        expect(actual.messages[0].position).to.deep.equal({ line: 1, char: 5 });
+        expect(actual.messages[0].text).to.be.equal("Expected ',', got '<'");
     });
 
     it("returns a syntax error if a B field does not have a mode", () => {
@@ -210,11 +211,11 @@ describe("SyntaxCheck", () => {
         var parser = new SyntaxCheck();
         var actual = parser.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(1);
+        expect(actual.messages.length).to.be.equal(1);
 
-        expect(actual.messages[0].type).toBe(MessageType.Error);
-        expect(actual.messages[0].position).toEqual({ line: 1, char: 6 });
-        expect(actual.messages[0].text).toBe("Expected mode, got ';'");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
+        expect(actual.messages[0].position).to.deep.equal({ line: 1, char: 6 });
+        expect(actual.messages[0].text).to.be.equal("Expected mode, got ';'");
     });
 
     it("returns a syntax error if a B field does not have a number", () => {
@@ -229,11 +230,11 @@ describe("SyntaxCheck", () => {
         var parser = new SyntaxCheck();
         var actual = parser.process(context, Parser.DefaultOptions);
 
-        expect(context.messages.length).toBe(1);
+        expect(context.messages.length).to.be.equal(1);
 
-        expect(actual.messages[0].type).toBe(MessageType.Error);
-        expect(actual.messages[0].position).toEqual({ line: 1, char: 7 });
-        expect(actual.messages[0].text).toBe("Expected number, got ';'");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
+        expect(actual.messages[0].position).to.deep.equal({ line: 1, char: 7 });
+        expect(actual.messages[0].text).to.be.equal("Expected number, got ';'");
     });
 
     it("returns a syntax error if an instruction is not followed by a new line or comment", () => {
@@ -248,11 +249,11 @@ describe("SyntaxCheck", () => {
         var parser = new SyntaxCheck();
         var actual = parser.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(1);
+        expect(actual.messages.length).to.be.equal(1);
 
-        expect(actual.messages[0].type).toBe(MessageType.Error);
-        expect(actual.messages[0].position).toEqual({ line: 1, char: 9 });
-        expect(actual.messages[0].text).toBe("Expected end of line, got 'ADD'");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
+        expect(actual.messages[0].position).to.deep.equal({ line: 1, char: 9 });
+        expect(actual.messages[0].text).to.be.equal("Expected end of line, got 'ADD'");
     });
 
     it("returns multiple syntax errors if multiple lines are incorrect", () => {
@@ -267,15 +268,15 @@ describe("SyntaxCheck", () => {
         var parser = new SyntaxCheck();
         var actual = parser.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(2);
+        expect(actual.messages.length).to.be.equal(2);
 
-        expect(actual.messages[0].type).toBe(MessageType.Error);
-        expect(actual.messages[0].position).toEqual({ line: 2, char: 4 });
-        expect(actual.messages[0].text).toBe("Expected modifier, got '23'");
+        expect(actual.messages[0].type).to.be.equal(MessageType.Error);
+        expect(actual.messages[0].position).to.deep.equal({ line: 2, char: 4 });
+        expect(actual.messages[0].text).to.be.equal("Expected modifier, got '23'");
 
-        expect(actual.messages[1].type).toBe(MessageType.Error);
-        expect(actual.messages[1].position).toEqual({ line: 4, char: 1 });
-        expect(actual.messages[1].text).toBe("Expected instruction or comment, got end of line");
+        expect(actual.messages[1].type).to.be.equal(MessageType.Error);
+        expect(actual.messages[1].position).to.deep.equal({ line: 4, char: 1 });
+        expect(actual.messages[1].text).to.be.equal("Expected instruction or comment, got end of line");
     });
 
     it("Does not modify or raise errors regarding ORG instructions",() => {
@@ -287,12 +288,12 @@ describe("SyntaxCheck", () => {
         var parser = new SyntaxCheck();
         var actual = parser.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
-        expect(actual.tokens.length).toBe(3);
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.tokens.length).to.be.equal(3);
 
-        expect(actual.tokens[0].lexeme).toBe("ORG");
-        expect(actual.tokens[1].lexeme).toBe("3");
-        expect(actual.tokens[2].lexeme).toBe("\n");
+        expect(actual.tokens[0].lexeme).to.be.equal("ORG");
+        expect(actual.tokens[1].lexeme).to.be.equal("3");
+        expect(actual.tokens[2].lexeme).to.be.equal("\n");
     });
 
     it("Does not modify or raise errors regarding END instructions",() => {
@@ -304,10 +305,10 @@ describe("SyntaxCheck", () => {
         var parser = new SyntaxCheck();
         var actual = parser.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
-        expect(actual.tokens.length).toBe(2);
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.tokens.length).to.be.equal(2);
 
-        expect(actual.tokens[0].lexeme).toBe("END");
-        expect(actual.tokens[1].lexeme).toBe("\n");
+        expect(actual.tokens[0].lexeme).to.be.equal("END");
+        expect(actual.tokens[1].lexeme).to.be.equal("\n");
     });
 });

@@ -1,4 +1,5 @@
-﻿
+﻿import { expect } from "chai";
+
 import { TestHelper } from "./TestHelper";
 import { Context } from "../Context";
 import { AddressModPass } from "../AddressModPass";
@@ -21,14 +22,14 @@ describe("AddressModPass",() => {
         var pass = new AddressModPass();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.messages.length).toBe(0);
-        expect(actual.tokens.length).toBe(tokens.length);
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.tokens.length).to.be.equal(tokens.length);
 
         for (var i = 0; i < actual.tokens.length; i++) {
 
-            expect(actual.tokens[i].category).toBe(tokens[i].category);
-            expect(actual.tokens[i].lexeme).toBe(tokens[i].lexeme);
-            expect(actual.tokens[i].position).toEqual(tokens[i].position);
+            expect(actual.tokens[i].category).to.be.equal(tokens[i].category);
+            expect(actual.tokens[i].lexeme).to.be.equal(tokens[i].lexeme);
+            expect(actual.tokens[i].position).to.deep.equal(tokens[i].position);
         }
     });
 
@@ -45,17 +46,17 @@ describe("AddressModPass",() => {
         var pass = new AddressModPass();
         var actual = pass.process(context, _.defaults({ coresize: 10 }, Parser.DefaultOptions));
 
-        expect(actual.messages.length).toBe(0);
+        expect(actual.messages.length).to.be.equal(0);
 
         var addresses = _(actual.tokens).where({ category: TokenCategory.Number });
 
-        expect(addresses[0].lexeme).toBe("0");
-        expect(addresses[1].lexeme).toBe("1");
-        expect(addresses[2].lexeme).toBe("5");
-        expect(addresses[3].lexeme).toBe("-4");
-        expect(addresses[4].lexeme).toBe("-4");
-        expect(addresses[5].lexeme).toBe("5");
-        expect(addresses[6].lexeme).toBe("0");
-        expect(addresses[7].lexeme).toBe("1");
+        expect(addresses[0].lexeme).to.be.equal("0");
+        expect(addresses[1].lexeme).to.be.equal("1");
+        expect(addresses[2].lexeme).to.be.equal("5");
+        expect(addresses[3].lexeme).to.be.equal("-4");
+        expect(addresses[4].lexeme).to.be.equal("-4");
+        expect(addresses[5].lexeme).to.be.equal("5");
+        expect(addresses[6].lexeme).to.be.equal("0");
+        expect(addresses[7].lexeme).to.be.equal("1");
     });
 });
