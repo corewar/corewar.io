@@ -19,6 +19,7 @@ import { IllegalCommandCheck } from "../../IllegalCommandCheck";
 import { LoadFileSerialiser } from "../../LoadFileSerialiser";
 import { TestLoader } from "./TestLoader";
 import * as _ from "underscore";
+import { MetaDataCollector } from "../../MetaDataCollector";
 
 "use strict";
 
@@ -66,6 +67,7 @@ export class TestHelper {
                 var parser = new Parser(
                     new Scanner(),
                     new Filter(),
+                    new MetaDataCollector(),
                     new ForPass(expression),
                     new PreprocessCollector(),
                     new PreprocessAnalyser(),

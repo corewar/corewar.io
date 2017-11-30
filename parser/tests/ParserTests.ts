@@ -22,6 +22,7 @@ describe("Parser",() => {
 
     var scanner: IScanner;
     var filter: IPass;
+    var metaDataCollector: IPass;
     var forPass: IPass;
     var preprocessCollector: IPass;
     var preprocessAnalyser: IPass;
@@ -39,7 +40,7 @@ describe("Parser",() => {
     var calls: string[];
 
     var expected94Calls = [
-        "scan", "filter", "for", "equCollector",
+        "scan", "filter", "metaDataCollector", "for", "equCollector",
         "equAnalyser", "equEmitter", "labelCollector", "labelEmitter",
         "maths", "org", "default", "syntax"
     ];
@@ -51,6 +52,7 @@ describe("Parser",() => {
 
         scanner = fakeScanner("scan");
         filter = fakePass("filter");
+        metaDataCollector = fakePass("metaDataCollector");
         forPass = fakePass("for");
         preprocessCollector = fakePass("equCollector");
         preprocessAnalyser = fakePass("equAnalyser");
@@ -66,6 +68,7 @@ describe("Parser",() => {
         parser = new Parser(
             scanner,
             filter,
+            metaDataCollector,
             forPass,
             preprocessCollector,
             preprocessAnalyser,
@@ -138,7 +141,7 @@ describe("Parser",() => {
 
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(12);
+        expect(calls.length).to.be.equal(13);
 
         expect(calls).to.deep.equal(expected94Calls);
     });
@@ -149,20 +152,21 @@ describe("Parser",() => {
 
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(12);
+        expect(calls.length).to.be.equal(13);
 
         expect(calls[0]).to.be.equal("scan");
         expect(calls[1]).to.be.equal("filter");
-        expect(calls[2]).to.be.equal("equCollector");
-        expect(calls[3]).to.be.equal("equAnalyser");
-        expect(calls[4]).to.be.equal("equEmitter");
-        expect(calls[5]).to.be.equal("labelCollector");
-        expect(calls[6]).to.be.equal("labelEmitter");
-        expect(calls[7]).to.be.equal("maths");
-        expect(calls[8]).to.be.equal("org");
-        expect(calls[9]).to.be.equal("default");
-        expect(calls[10]).to.be.equal("syntax");
-        expect(calls[11]).to.be.equal("illegal");
+        expect(calls[2]).to.be.equal("metaDataCollector");
+        expect(calls[3]).to.be.equal("equCollector");
+        expect(calls[4]).to.be.equal("equAnalyser");
+        expect(calls[5]).to.be.equal("equEmitter");
+        expect(calls[6]).to.be.equal("labelCollector");
+        expect(calls[7]).to.be.equal("labelEmitter");
+        expect(calls[8]).to.be.equal("maths");
+        expect(calls[9]).to.be.equal("org");
+        expect(calls[10]).to.be.equal("default");
+        expect(calls[11]).to.be.equal("syntax");
+        expect(calls[12]).to.be.equal("illegal");
     });
 
     it("Calls passes in correct order under ICWS'86",() => {
@@ -171,20 +175,21 @@ describe("Parser",() => {
 
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(12);
+        expect(calls.length).to.be.equal(13);
 
         expect(calls[0]).to.be.equal("scan");
         expect(calls[1]).to.be.equal("filter");
-        expect(calls[2]).to.be.equal("equCollector");
-        expect(calls[3]).to.be.equal("equAnalyser");
-        expect(calls[4]).to.be.equal("equEmitter");
-        expect(calls[5]).to.be.equal("labelCollector");
-        expect(calls[6]).to.be.equal("labelEmitter");
-        expect(calls[7]).to.be.equal("maths");
-        expect(calls[8]).to.be.equal("org");
-        expect(calls[9]).to.be.equal("default");
-        expect(calls[10]).to.be.equal("syntax");
-        expect(calls[11]).to.be.equal("illegal");
+        expect(calls[2]).to.be.equal("metaDataCollector");
+        expect(calls[3]).to.be.equal("equCollector");
+        expect(calls[4]).to.be.equal("equAnalyser");
+        expect(calls[5]).to.be.equal("equEmitter");
+        expect(calls[6]).to.be.equal("labelCollector");
+        expect(calls[7]).to.be.equal("labelEmitter");
+        expect(calls[8]).to.be.equal("maths");
+        expect(calls[9]).to.be.equal("org");
+        expect(calls[10]).to.be.equal("default");
+        expect(calls[11]).to.be.equal("syntax");
+        expect(calls[12]).to.be.equal("illegal");
     });
 
     it("Does not call syntax check if default pass fails",() => {
@@ -197,8 +202,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(11);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 11));
+        expect(calls.length).to.be.equal(12);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 12));
     });
 
     it("Does not call default pass check if org pass fails",() => {
@@ -211,8 +216,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(10);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 10));
+        expect(calls.length).to.be.equal(11);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 11));
     });
 
     it("Does not call org pass if maths pass fails",() => {
@@ -225,8 +230,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(9);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 9));
+        expect(calls.length).to.be.equal(10);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 10));
     });
 
     it("Does not call maths pass if label emitter fails",() => {
@@ -239,8 +244,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(8);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 8));
+        expect(calls.length).to.be.equal(9);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 9));
     });
 
     it("Does not call label emitter if label collector fails",() => {
@@ -253,8 +258,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(7);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 7));
+        expect(calls.length).to.be.equal(8);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 8));
     });
 
     it("Does not call label collector if equ emitter fails",() => {
@@ -267,8 +272,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(6);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 6));
+        expect(calls.length).to.be.equal(7);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 7));
     });
 
     it("Does not call equ emitter if equ analyser fails",() => {
@@ -281,8 +286,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(5);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 5));
+        expect(calls.length).to.be.equal(6);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 6));
     });
 
     it("Does not call equ analyser if equ collector fails",() => {
@@ -295,8 +300,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(4);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 4));
+        expect(calls.length).to.be.equal(5);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 5));
     });
 
     it("Does not call equ collector if for pass fails",() => {
@@ -309,12 +314,26 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
+        expect(calls.length).to.be.equal(4);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 4));
+    });
+
+    it("Does not call for pass if metadata collector pass fails",() => {
+
+        var options = Parser.DefaultOptions;
+
+        errorIn(metaDataCollector, "metaDataCollector");
+
+        context.messages = [];
+        calls = [];
+        parser.parse("MOV 0, 1", options);
+
         expect(calls.length).to.be.equal(3);
         expect(calls).to.deep.equal(expected94Calls.slice(0, 3));
     });
-
-    it("Does not call for pass if filter pass fails",() => {
-
+    
+    it("Does not call meta data collector collector if filter pass fails",() => {
+        
         var options = Parser.DefaultOptions;
 
         errorIn(filter, "filter");
@@ -355,6 +374,7 @@ describe("Parser",() => {
             return context;
         });
         warningIn(filter, "filter");
+        warningIn(metaDataCollector, "metaDataCollector");
         warningIn(forPass, "for");
         warningIn(preprocessCollector, "equCollector");
         warningIn(preprocessAnalyser, "equAnalyser");
@@ -370,8 +390,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(12);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 12));
+        expect(calls.length).to.be.equal(13);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 13));
     });
 
     it("Passes supplied options to each pass",() => {
