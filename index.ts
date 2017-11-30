@@ -110,6 +110,8 @@ class Api {
 
         this.core.setMessageProvider(messageProvider);
 
+        this.simulator.setMessageProvider(messageProvider);
+
         this.executive.initialise(options);
 
         this.simulator.initialise(options, parseResults);
@@ -118,18 +120,12 @@ class Api {
     }
 
     public step() : void {
-        this.simulator.step(); // change the internal state
-        // render
+        this.simulator.step();
     }
 
-    // public parse(document: string, options?: IParseOptions): IParseResult {
-    //     return this.parser.parse(document, options);
-    // }
-
-    // public serialise(tokens: IToken[]) : string {
-    //     return this.serialiser.serialise(tokens);
-    // }
-
+    public run(): void {
+        this.simulator.run();
+    }
 }
 
 // exports for use in npm package

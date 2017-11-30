@@ -5,10 +5,25 @@ import * as _ from "underscore";
 
 export class EndCondition implements IEndCondition {
 
+    private pubSubProvider: any;
+
+    public setMessageProvider(provider: any) {
+        this.pubSubProvider = provider;
+    }
+
     public check(state: IState): boolean {
 
         if (state.cycle === state.options.cyclesBeforeTie) {
             return true;
+        }
+
+        if(state.cycle === state.options.cyclesBeforeTie % 100) {
+            if(this.pubSubProvider) {
+                // TODO: progress report 1%
+                this.pubSubProvider.publish('RUN_PROGRESS', {
+                    runCompletion: state.cycle
+                });
+            }
         }
 
         var liveWarriors = _(state.warriors).filter((warrior: IWarrior) => warrior.tasks.length > 0);

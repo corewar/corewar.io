@@ -5,7 +5,8 @@ import { IState } from "./IState";
 export interface ISimulator {
 
     initialise(options: IOptions, warriors: IParseResult[]): void;
-    run(): void;
+    setMessageProvider?(provider: any): void;
+    run(): Promise<IState>;
     step(): boolean;
     getState(): IState;
 }
