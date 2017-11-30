@@ -10,7 +10,6 @@ export enum CoreAccessType {
 }
 
 export interface ICoreAccessEventArgs {
-
     task: ITask;
     address: number;
     accessType: CoreAccessType;
@@ -21,7 +20,7 @@ export interface ICore {
     coreAccess: ILiteEvent<ICoreAccessEventArgs>;
 
     initialise(options: IOptions): void;
-    setMessageProvider?(provider: any);
+    setMessageProvider?(provider: any): void;
     getSize(): number;
     wrap(address: number): number;
     executeAt(task: ITask, address: number): IInstruction;

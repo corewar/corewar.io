@@ -21,6 +21,8 @@ export class Simulator implements ISimulator {
     private executive: IExecutive;
     private endCondition: IEndCondition;
 
+    private pubSubProvider: any;
+
     constructor(
         core: ICore,
         loader: ILoader,
@@ -53,14 +55,22 @@ export class Simulator implements ISimulator {
         this.state.warriors = this.loader.load(warriors, options);
     }
 
-    public run() {
+    public setMessageProvider(provider: any) {
+        this.pubSubProvider = provider;
+        this.endCondition.setMessageProvider(provider);
+    }
 
-        while (this.step()) {
-            // TODO setTimeout?
-            window.setTimeout(() => {
-                //
-            }, 0);
-        }
+    public run(): Promise<IState> {
+
+        return new Promise((resolve, reject) => {
+
+            // TODO: progress updates based on core cycles
+            while (this.step() === false) {
+            }
+
+            resolve(this.state);
+        });
+
     }
 
     public step(): boolean {
