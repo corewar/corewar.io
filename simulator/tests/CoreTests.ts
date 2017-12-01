@@ -37,6 +37,7 @@ describe("Core",() => {
         return {
             instructionPointer: 0,
             warrior: {
+                id: 0,
                 author: "",
                 name: "",
                 startAddress: 0,
