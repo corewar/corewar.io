@@ -136,9 +136,9 @@ const mapCoreToUi = (instructions) => {
 };
 
 // actions
-export const init = (standardId, parseResult) => {
+export const init = (standardId, parseResults) => {
 
-  const simulatorState = corewar.initialiseSimulator(standardId, parseResult, PubSub);
+  const simulatorState = corewar.initialiseSimulator(standardId, parseResults, PubSub);
 
   const coreAccess = new Array(simulatorState.core.instructions.length);
   coreAccess.fill(defaultCell, 0, coreAccess.length)
@@ -188,10 +188,10 @@ export const step = () => {
 
 const tasksToExecutionState = (tasks, state, currentExecutionAddress) => {
 
-  let coreExecutionState;
+  let coreExecutionState = state.taskExecution;
 
   tasks.forEach(task => {
-    coreExecutionState = updateTask(task.address, state.taskExecution, task);
+    coreExecutionState = updateTask(task.address, coreExecutionState, task);
   });
 
   return colourExecutionState(state, coreExecutionState, currentExecutionAddress);
@@ -203,7 +203,6 @@ const getCurrentExecutionAddress = (state) => {
 }
 
 const colourExecutionState = (state, taskExecution, currentExecutionAddress) => {
-
     taskExecution.forEach((coreAddress) => {
       coreAddress.colour = getColour(coreAddress, currentExecutionAddress);
     });
@@ -219,7 +218,7 @@ const getColour = (coreAddress, currentExecution) => {
 
   switch (coreAddress.warriorNumber) {
     case 0:
-      return 'red'
+      return 'red';
     case 1:
       return 'green';
     default:
