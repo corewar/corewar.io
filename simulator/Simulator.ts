@@ -55,7 +55,7 @@ export class Simulator implements ISimulator {
         
         const defaultedOptions = _.defaults(options, Defaults);
 
-        this.optionValidator.validate(defaultedOptions);
+        this.optionValidator.validate(defaultedOptions, warriors.length);
 
         this.state.options = defaultedOptions;
 

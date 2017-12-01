@@ -11,6 +11,7 @@ import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { ITask } from "../interface/ITask";
 import { Fetcher } from "../Fetcher";
 import DataHelper from "./DataHelper";
+import * as _ from "underscore";
 
 "use strict";
 
@@ -24,7 +25,7 @@ describe("Fetcher",() => {
 
     beforeEach(() => {
 
-        var options = Defaults;
+        var options = _.clone(Defaults);
         options.coresize = 5;
 
         core = {

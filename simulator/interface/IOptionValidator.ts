@@ -2,5 +2,5 @@ import { IOptions } from "./IOptions";
 
 export interface IOptionValidator {
 
-    validate(state: IOptions): void;
+    validate(state: IOptions, warriorCount: number): void;
 }
