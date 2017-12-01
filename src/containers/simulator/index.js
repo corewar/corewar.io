@@ -12,19 +12,20 @@ const Simulator = props => {
   console.log(props);
   return <div>
     <h1>Core simulator</h1>
-    {props.redcode && <button onClick={() => props.init(props.standardId, props.parseResult)}>Initialise Simulator</button>}
+    {props.redcode && <button onClick={() => props.init(props.standardId, props.parseResults)}>Initialise Simulator</button>}
     {props.isInitialised && <button onClick={() => props.step()}>Step</button>}
     <div>
       <textarea value={props.redcode} readOnly="readOnly" />
-      <Core data={props.core} />
-      <Core data={props.coreAccess} />
+      {/* <Core type='core' data={props.core} /> */}
+      <Core type='coreAccess' data={props.coreAccess} />
+      <Core type='tasks' data={props.taskExecution} />
     </div>
   </div>
 }
 
 const mapStateToProps = state => ({
   redcode: state.parser.redcode,
-  parseResult: state.parser.parseResult,
+  parseResults: state.parser.parseResults,
   standardId: state.parser.standardId,
   core: state.simulator.core,
   coreAccess: state.simulator.coreAccess,

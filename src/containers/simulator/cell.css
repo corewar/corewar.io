@@ -1,0 +1,60 @@
+.coreAccess .cell {
+  font-size: 2em;
+}
+
+.cell {
+  display: inline-block;
+  width: 49px;
+  height: 49px;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+
+.cell-default {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  color:rgba(240,240,240, 1);
+}
+
+.cell-read {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  color: red;
+}
+
+.cell-write {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  color: red;
+}
+
+.cell-white {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  color: #fff;
+  transition: background-color 2000ms linear;
+}
+
+.cell-red {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  color: red;
+  transition: background-color 2000ms linear;
+}
+
+.cell-green {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-color: green;
+  color: green;
+  transition: background-color 2000ms linear;
+}

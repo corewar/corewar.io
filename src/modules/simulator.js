@@ -13,6 +13,7 @@ const initialState = {
   coreAccess: [],
   taskExecution: [],
   isInitialised: false,
+  currentExecutionAddress: null
 }
 
 
@@ -25,14 +26,15 @@ export default (state = initialState, action) => {
         ...state,
         core: action.core,
         coreAccess: action.coreAccess,
-        taskExcution: action.taskExcution,
+        taskExecution: action.taskExecution,
         isInitialised: true
       }
 
     case STEP:
       return {
         ...state,
-        taskExecution: action.taskExecution
+        taskExecution: tasksToExecutionState(action.taskExecution, state, action.currentExecutionAddress),
+        currentExecutionAddress: action.currentExecutionAddress
       }
 
     case CORE_ACCESS:
@@ -52,9 +54,9 @@ const updateItem = (index, array, item) => {
   return newArray;
 }
 
-const insertItem = (index, array, item) => {
-  let newArray = array.slice();
-  newArray.splice(index, 0, item);
+const updateTask = (index, array, item) => {
+  const newArray = array.slice();
+  newArray[index] = taskToCell(item);
   return newArray;
 }
 
@@ -62,12 +64,14 @@ const accessTypeToIcon = (accessType) => {
   switch(accessType) {
     case 0:
      return {
-       name: 'R',
+       name: '¤',
+       css: 'read',
        path: ''
      }
     case 1:
      return {
-       name: 'W',
+       name: '×',
+       css: 'write',
        path: ''
      }
     default:
@@ -84,28 +88,38 @@ const coreAccessToCell = (coreAccess) => {
     address: coreAccess.address,
     label: icon.name,
     icon: icon.icon,
-    colour: ''
+    colour: icon.css
   };
+};
+
+const taskToCell = (task) => {
+  return {
+    address: task.address,
+    label: '.',
+    icon: task.icon,
+    colour: task.colour,
+    warriorNumber: task.warriorNumber
+  }
 };
 
 const defaultCell = {
 	  address: 0,
-	  label: '-',
+	  label: '.',
 	  colour: 'default',
     icon: ''
 };
 
-const mapStateToExecution = (state) => {
+const stateToTasks = (state) => {
 
+  return state.warriors.map((w, i) =>
+      w.tasks.map(t => {
+        return {
+          address: t.instructionPointer,
+          warriorNumber: i,
+          colour: ''
+        }
+      })).reduce((a, c) => a.concat(c));
 
-  debugger;
-  //TODO: Decide whether this is mapped here or in components
-  state.map((state) => {
-    return {
-      warriorIndex: state.warriorIndex,
-      warriors: state.warriors,
-    }
-  });
 };
 
 const mapCoreToUi = (instructions) => {
@@ -129,6 +143,7 @@ export const init = (standardId, parseResult) => {
   const coreAccess = new Array(simulatorState.core.instructions.length);
   coreAccess.fill(defaultCell, 0, coreAccess.length)
   const taskExecution = new Array(simulatorState.core.instructions.length);
+  taskExecution.fill(defaultCell, 0, taskExecution.length)
 
   return dispatch => {
 
@@ -154,16 +169,60 @@ export const init = (standardId, parseResult) => {
 
 export const step = () => {
 
-  corewar.simulator.step();
-
   const state = corewar.simulator.getState();
 
-  //const taskExecution = mapStateToExecution(state);
+  const tasks = stateToTasks(state);
+
+  const currentExecutionAddress = getCurrentExecutionAddress(state);
+
+  corewar.simulator.step();
 
   return dispatch => {
     dispatch({
       type: STEP,
-      taskExecution: state
+      taskExecution: tasks,
+      currentExecutionAddress: currentExecutionAddress
     })
+  }
+}
+
+const tasksToExecutionState = (tasks, state, currentExecutionAddress) => {
+
+  let coreExecutionState;
+
+  tasks.forEach(task => {
+    coreExecutionState = updateTask(task.address, state.taskExecution, task);
+  });
+
+  return colourExecutionState(state, coreExecutionState, currentExecutionAddress);
+}
+
+const getCurrentExecutionAddress = (state) => {
+  const currentWarrior = state.warriors[state.warriorIndex];
+  return currentWarrior.tasks[currentWarrior.taskIndex].instructionPointer;
+}
+
+const colourExecutionState = (state, taskExecution, currentExecutionAddress) => {
+
+    taskExecution.forEach((coreAddress) => {
+      coreAddress.colour = getColour(coreAddress, currentExecutionAddress);
+    });
+
+    return taskExecution;
+  };
+
+const getColour = (coreAddress, currentExecution) => {
+
+  if(coreAddress.address === currentExecution) {
+    return 'white';
+  }
+
+  switch (coreAddress.warriorNumber) {
+    case 0:
+      return 'red'
+    case 1:
+      return 'green';
+    default:
+      return 'default';
   }
 }

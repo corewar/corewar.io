@@ -10,17 +10,6 @@ textarea {
   float: right;
 }
 
-.cell {
-  display: inline-block;
-  width: 49px;
-  height: 34px;
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  text-align: center;
-  padding-top: 15px;
-  font-size: 0.8em;
-}
-
 button {
   border: 1px solid #ccc;
   margin-right: 1em;
@@ -36,3 +25,4 @@ button:hover {
   cursor: pointer;
   border-color: #B5F44A;
 }
+
