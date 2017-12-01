@@ -1,12 +1,13 @@
-import React from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import './parser.css';
 import {
   parse,
   setStandard,
   save
-} from '../../modules/parser'
+} from '../../modules/parser';
 
 const messageTypeToString = (messageType) => {
   switch (messageType) {
@@ -22,7 +23,6 @@ const messageTypeToString = (messageType) => {
 }
 
 const Parser = props => (
-
   <div>
     <h1>Redcode Parser</h1>
     <div>
@@ -36,7 +36,7 @@ const Parser = props => (
         {props.currentParseResult && <button onClick={() => props.save()}>Save Warrior</button>}
       </p>
       <textarea onChange={e => props.parse(e.target.value)} value={props.redcode}></textarea>
-      <textarea value={props.currentParseResult && props.currentParseResult.warrior}></textarea>
+      <textarea value={props.currentParseResult && props.currentParseResult.warrior} readOnly></textarea>
       <div className="errors">
         <ul>
           {
@@ -68,3 +68,5 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Parser)
+
+export { Parser as PureParser }
