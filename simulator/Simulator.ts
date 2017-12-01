@@ -5,6 +5,7 @@ import { IFetcher } from "./interface/IFetcher";
 import { IDecoder } from "./interface/IDecoder";
 import { IExecutive } from "./interface/IExecutive";
 import { IEndCondition } from "./interface/IEndCondition";
+import { IOptionValidator } from "./interface/IOptionValidator";
 import { ICore } from "./interface/ICore";
 import { IOptions } from "./interface/IOptions";
 import { IParseResult } from "../parser/interface/IParseResult";
@@ -20,6 +21,7 @@ export class Simulator implements ISimulator {
     private decoder: IDecoder;
     private executive: IExecutive;
     private endCondition: IEndCondition;
+    private optionValidator: IOptionValidator;
 
     private pubSubProvider: any;
 
@@ -29,7 +31,8 @@ export class Simulator implements ISimulator {
         fetcher: IFetcher,
         decoder: IDecoder,
         executive: IExecutive,
-        endCondition: IEndCondition) {
+        endCondition: IEndCondition,
+        optionValidator: IOptionValidator) {
 
         this.state = {
             core: core,
@@ -45,11 +48,17 @@ export class Simulator implements ISimulator {
         this.decoder = decoder;
         this.executive = executive;
         this.endCondition = endCondition;
+        this.optionValidator = optionValidator;
     }
 
     public initialise(options: IOptions, warriors: IParseResult[]) {
-        // TODO throw error if options are invalid e.g. minSeparation must be >=1
-        this.state.options = _.defaults(options, Defaults);
+        
+        const defaultedOptions = _.defaults(options, Defaults);
+
+        this.optionValidator.validate(defaultedOptions);
+
+        this.state.options = defaultedOptions;
+
         this.state.core.initialise(options);
 
         this.state.warriors = this.loader.load(warriors, options);

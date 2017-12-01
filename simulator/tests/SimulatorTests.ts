@@ -20,6 +20,7 @@ import { OpcodeType, ModifierType } from "../interface/IInstruction";
 import { ModeType } from "../interface/IOperand";
 import DataHelper from "./DataHelper";
 import * as _ from "underscore";
+import { IOptionValidator } from "../interface/IOptionValidator";
 
 "use strict";
 
@@ -33,6 +34,7 @@ describe("Simulator",() => {
     var decoder: IDecoder;
     var executive: IExecutive;
     var endCondition: IEndCondition;
+    var optionValidator: IOptionValidator;
 
     var commandSpy: sinon.stub;
 
@@ -79,13 +81,18 @@ describe("Simulator",() => {
             check: sinon.stub()
         };
 
+        optionValidator = {
+            validate: sinon.stub()
+        };
+
         simulator = new Simulator(
             core,
             loader,
             fetcher,
             decoder,
             executive,
-            endCondition);
+            endCondition,
+            optionValidator);
     });
 
     it("first fetches then decodes and finally executes",() => {
