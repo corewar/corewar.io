@@ -85,35 +85,31 @@ const updateTask = (index, array, item, currentExecutionAddress) => {
   return newArray;
 }
 
-const accessTypeToIcon = (accessType) => {
+const accessTypeToUi = (accessType) => {
   switch(accessType) {
     case 0:
      return {
        name: '¤',
-       css: 'read',
-       path: ''
+       css: 'read'
      }
     case 1:
      return {
        name: '×',
-       css: 'write',
-       path: ''
+       css: 'write'
      }
     default:
      return {
-       name: '&#9785;',
-       path: ''
+       name: '&#9785;'
      }
   }
 }
 
 const coreAccessToCell = (coreAccess) => {
-  const icon = accessTypeToIcon(coreAccess.accessType);
+  const ui = accessTypeToUi(coreAccess.accessType);
   return {
     address: coreAccess.address,
-    label: icon.name,
-    icon: icon.icon,
-    colour: icon.css
+    label: ui.name,
+    colour: ui.css
   };
 };
 
@@ -121,7 +117,6 @@ const taskToCell = (task, currentExecutionAddress) => {
   return {
     address: task.address,
     label: '.',
-    icon: task.icon,
     colour: getColour(task.warriorNumber, task.address, currentExecutionAddress),
     warriorNumber: task.warriorNumber
   }
@@ -130,12 +125,10 @@ const taskToCell = (task, currentExecutionAddress) => {
 const defaultCell = {
 	  address: 0,
 	  label: '.',
-	  colour: 'default',
-    icon: ''
+	  colour: 'default'
 };
 
 const stateToTasks = (state) => {
-  debugger;
   return state.warriors.map((w, i) =>
       w.tasks.map(t => {
         return {
@@ -152,9 +145,7 @@ const mapCoreToUi = (instructions) => {
   return instructions.map(cell => (
     {
       address: cell.address,
-      label: corewar.instructionSerialiser.serialise(cell),
-      color: 'default',
-      icon: 'none'
+      color: 'default'
     }
   ));
 

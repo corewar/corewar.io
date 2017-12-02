@@ -35,7 +35,7 @@ const Parser = props => (
         </select>
       </p>
       <p>
-        {props.currentParseResult && <button onClick={() => props.save()}>Save Warrior</button>}
+        {props.currentParseResult.warrior && <button onClick={() => props.save()}>Save Warrior</button>}
       </p>
 
       <div className="columns">
