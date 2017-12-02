@@ -14,9 +14,11 @@ export class EndCondition implements IEndCondition {
     public check(state: IState): boolean {
 
         if (state.cycle === state.options.cyclesBeforeTie) {
-            this.pubSubProvider.publishSync('RUN_PROGRESS', {
-                runProgress: 100
-            });
+            if(this.pubSubProvider) {
+                this.pubSubProvider.publishSync('RUN_PROGRESS', {
+                    runProgress: 100
+                });
+            }
             return true;
         }
 

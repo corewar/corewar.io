@@ -55,6 +55,12 @@ export class Core implements ICore {
                 address: address
             });
         }
+
+        this._coreAccess.trigger({
+            task: task,
+            accessType: accessType,
+            address: address
+        });
     }
 
     public executeAt(task: ITask, address: number): IInstruction {
