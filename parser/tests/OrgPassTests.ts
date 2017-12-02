@@ -252,7 +252,7 @@ describe("OrgPass", () => {
 
         var tokens = TestHelper.instruction(1, "", "MOV", "", "", "0", ",", "", "1", "")
             .concat(TestHelper.instruction(2, "", "MOV", "", "", "0", ",", "", "1", ""))
-            .concat(TestHelper.endStatement(3, ""));
+            .concat(TestHelper.endStatement(3, "", "; this is a comment"));
 
         var context = new Context();
         context.tokens = tokens.slice();
