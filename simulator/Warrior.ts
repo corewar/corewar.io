@@ -4,6 +4,8 @@ import { ITask } from "./interface/ITask";
 
 export class Warrior implements IWarrior {
 
+    public id: number;
+
     public name: string;
     public author: string;
     public strategy: string;
@@ -14,6 +16,7 @@ export class Warrior implements IWarrior {
     public startAddress: number;
 
     constructor() {
+        this.id = 0;
         this.name = "";
         this.author = "";
         this.strategy = "";
