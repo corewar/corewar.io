@@ -1,7 +1,7 @@
-﻿import { IInstructionSerialiser } from "./interface/IInstructionSerialiser";
+﻿import { IInstructionSerialiser } from "./IInstructionSerialiser";
 
-import { IInstruction, OpcodeType, ModifierType } from "../../simulator/interface/IInstruction";
-import { IOperand, ModeType } from "../../simulator/interface/IOperand";
+import { IInstruction, OpcodeType, ModifierType } from "../simulator/interface/IInstruction";
+import { IOperand, ModeType } from "../simulator/interface/IOperand";
 
 export class InstructionSerialiser implements IInstructionSerialiser {
 

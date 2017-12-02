@@ -1,4 +1,4 @@
-﻿import { IInstruction } from "../../../simulator/interface/IInstruction";
+﻿import { IInstruction } from "../simulator/interface/IInstruction";
 
 export interface IInstructionSerialiser {
 
