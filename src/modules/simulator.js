@@ -177,7 +177,7 @@ export const init = (standardId, parseResults) => {
       standard: standardId,
       coresize: cs,
       minSeparation: 1,
-      instructionLimit: 10,
+      instructionLimit: 1,
     };
 
     const simulatorState = corewar.initialiseSimulator(options, parseResults, PubSub);
