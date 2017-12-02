@@ -40,9 +40,6 @@ import { Simulator } from "./simulator/Simulator";
 import { EndCondition } from "./simulator/EndCondition";
 import { OptionValidator } from "./simulator/OptionValidator";
 
-import { InstructionSerialiser } from "./corewar/presentation/InstructionSerialiser";
-import { CoreRenderer } from "./corewar/presentation/CoreRenderer";
-import { Presenter } from "./corewar/presentation/Presenter";
 import { ILoader } from "./simulator/interface/ILoader";
 
 import * as _ from "underscore";
@@ -53,7 +50,6 @@ class Api {
     parser: IParser;
     serialiser: ISerialiser;
     simulator: ISimulator;
-    instructionSerialiser: InstructionSerialiser;
     core: ICore;
     executive: IExecutive;
 
@@ -99,8 +95,6 @@ class Api {
             this.executive,
             new EndCondition(),
             new OptionValidator());
-
-        this.instructionSerialiser = new InstructionSerialiser();
     }
 
     public initialiseSimulator(standardId: number, parseResults: IParseResult[], messageProvider: any) : IState {
