@@ -20,10 +20,11 @@ import { OpcodeType, ModifierType } from "../interface/IInstruction";
 import { ModeType } from "../interface/IOperand";
 import DataHelper from "./DataHelper";
 import * as _ from "underscore";
+import { IOptionValidator } from "../interface/IOptionValidator";
 
 "use strict";
 
-describe("Simulator",() => {
+describe("Simulator", () => {
 
     var simulator: Simulator;
 
@@ -33,6 +34,7 @@ describe("Simulator",() => {
     var decoder: IDecoder;
     var executive: IExecutive;
     var endCondition: IEndCondition;
+    var optionValidator: IOptionValidator;
 
     var commandSpy: sinon.stub;
 
@@ -79,16 +81,21 @@ describe("Simulator",() => {
             check: sinon.stub()
         };
 
+        optionValidator = {
+            validate: sinon.stub()
+        };
+
         simulator = new Simulator(
             core,
             loader,
             fetcher,
             decoder,
             executive,
-            endCondition);
+            endCondition,
+            optionValidator);
     });
 
-    it("first fetches then decodes and finally executes",() => {
+    it("first fetches then decodes and finally executes", () => {
 
         var fetchCalled = false;
         var decodeCalled = false;
@@ -129,7 +136,7 @@ describe("Simulator",() => {
         expect(executeCalled).to.be.equal(true);
     });
 
-    it("returns true if the end condition check returns true",() => {
+    it("returns true if the end condition check returns true", () => {
 
         (<sinon.stub>endCondition.check).returns(true);
 
@@ -138,7 +145,7 @@ describe("Simulator",() => {
         expect(actual).to.be.equal(true);
     });
 
-    it("returns false if the end condition check returns false",() => {
+    it("returns false if the end condition check returns false", () => {
 
         (<sinon.stub>endCondition.check).returns(false);
 
@@ -147,7 +154,7 @@ describe("Simulator",() => {
         expect(actual).to.be.equal(false);
     });
 
-    it("increments the cycle number",() => {
+    it("increments the cycle number", () => {
 
         var checkSpy = <sinon.stub>endCondition.check;
         var state: IState;
@@ -168,7 +175,7 @@ describe("Simulator",() => {
         expect(state.cycle).to.be.equal(3);
     });
 
-    it("passes the context retrieved from fetch to decode",() => {
+    it("passes the context retrieved from fetch to decode", () => {
 
         var fetchContext = {};
 
@@ -179,7 +186,7 @@ describe("Simulator",() => {
         expect(<sinon.stub>decoder.decode).to.have.been.calledWith(fetchContext);
     });
 
-    it("passes the context retrieved from decode to execute",() => {
+    it("passes the context retrieved from decode to execute", () => {
 
         var decodeContext = { command: commandSpy };
 
@@ -190,7 +197,7 @@ describe("Simulator",() => {
         expect(commandSpy).to.have.been.calledWith(decodeContext);
     });
 
-    it("sets state options to value passed to initialise",() => {
+    it("sets state options to value passed to initialise", () => {
 
         var expected: IOptions = {
             coresize: 100,
@@ -221,7 +228,7 @@ describe("Simulator",() => {
         expect(actual.options).to.deep.equal(expected);
     });
 
-    it("uses default options if none supplied to initialise",() => {
+    it("uses default options if none supplied to initialise", () => {
 
         simulator.initialise({ coresize: 123 }, []);
         simulator.step();
@@ -231,14 +238,14 @@ describe("Simulator",() => {
         expect(actual.options).to.deep.equal(_.defaults({ coresize: 123 }, Defaults));
     });
 
-    it("initialises core using the supplied options",() => {
+    it("initialises core using the supplied options", () => {
 
         simulator.initialise(Defaults, []);
 
         expect(core.initialise).to.have.been.calledWith(Defaults);
     });
 
-    it("stores warriors returned from the loader in the state passed to the fetch method",() => {
+    it("stores warriors returned from the loader in the state passed to the fetch method", () => {
 
         var warriors = [];
         var loadedWarriors = [];
@@ -253,5 +260,26 @@ describe("Simulator",() => {
         var state = _((<sinon.stub>fetcher.fetch).lastCall.args).first();
 
         expect(state.warriors).to.be.equal(loadedWarriors);
+    });
+
+    it("Validates options provided during initialisation and raises any errors", () => {
+
+        const options = {};
+
+        const expectedError = Error("Test");
+        let actualError = null;
+
+        (<sinon.stub>optionValidator.validate).callsFake((options: IOptions) => {
+            throw expectedError;
+        });
+
+        try {
+            simulator.initialise(options, []);
+        } catch (e) {
+            actualError = e;
+        }
+
+        expect(optionValidator.validate).to.have.been.calledWith(options);
+        expect(actualError).to.be.equal(expectedError);
     });
 });

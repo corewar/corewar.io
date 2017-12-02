@@ -7,7 +7,8 @@ export enum ModeType {
     APreDecrement,  // {
     BPreDecrement,  // <
     APostIncrement, // }
-    BPostIncrement  // >
+    BPostIncrement, // >
+    Count
 }
 
 export interface IOperand {

@@ -38,6 +38,7 @@ import { WarriorLoader } from "./simulator/WarriorLoader";
 import { Fetcher } from "./simulator/Fetcher";
 import { Simulator } from "./simulator/Simulator";
 import { EndCondition } from "./simulator/EndCondition";
+import { OptionValidator } from "./simulator/OptionValidator";
 
 import { InstructionSerialiser } from "./corewar/presentation/InstructionSerialiser";
 import { CoreRenderer } from "./corewar/presentation/CoreRenderer";
@@ -96,7 +97,8 @@ class Api {
             fetcher,
             decoder,
             this.executive,
-            new EndCondition());
+            new EndCondition(),
+            new OptionValidator());
 
         this.instructionSerialiser = new InstructionSerialiser();
     }
