@@ -14,7 +14,7 @@ import DataHelper from "./DataHelper";
 
 "use strict";
 
-describe("WarriorLoader",() => {
+describe("WarriorLoader", () => {
 
     var instruction = DataHelper.instruction;
 
@@ -78,7 +78,7 @@ describe("WarriorLoader",() => {
         return core;
     }
 
-    it("Applies metadata to the warrior",() => {
+    it("Applies metadata to the warrior", () => {
 
         var parseResult: IParseResult = {
             tokens: [],
@@ -93,27 +93,27 @@ describe("WarriorLoader",() => {
         var core = buildCore(0);
 
         var loader = new WarriorLoader(core);
-        var actual = loader.load(0, parseResult);
+        var actual = loader.load(0, parseResult, 0);
 
         expect(actual.name).to.be.equal("johnSmith");
         expect(actual.author).to.be.equal("Joe Bloggs");
         expect(actual.strategy).to.be.equal("This is a strategy\nit has two lines");
     });
 
-    it("Creates a single process for the warrior",() => {
+    it("Creates a single process for the warrior", () => {
 
         var parseResult: IParseResult = DataHelper.buildParseResult([]);
         var core = buildCore(0);
 
         var loader = new WarriorLoader(core);
-        var actual = loader.load(0, parseResult);
+        var actual = loader.load(0, parseResult, 0);
 
         expect(actual.taskIndex).to.be.equal(0);
         expect(actual.tasks.length).to.be.equal(1);
         expect(actual.tasks[0].warrior).to.be.equal(actual);
     });
 
-    it("Sets the starting instruction pointer to the load address offset by the value indicated by the ORG instruction",() => {
+    it("Sets the starting instruction pointer to the load address offset by the value indicated by the ORG instruction", () => {
 
         var tokens: IToken[] = [
             {
@@ -135,18 +135,18 @@ describe("WarriorLoader",() => {
         var core = buildCore(10);
 
         var loader = new WarriorLoader(core);
-        var actual = loader.load(3, parseResult);
+        var actual = loader.load(3, parseResult, 0);
 
         expect(actual.tasks[0].instructionPointer).to.be.equal(7);
     });
 
-    it("Loads the warrior into the core at the specified address",() => {
+    it("Loads the warrior into the core at the specified address", () => {
 
         var tokens = DataHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
         var core = buildCore(30);
 
         var loader = new WarriorLoader(core);
-        loader.load(21, tokens);
+        loader.load(21, tokens, 0);
 
         for (var i = 0; i < 30; i++) {
 
@@ -161,12 +161,12 @@ describe("WarriorLoader",() => {
         }
     });
 
-    it("Correctly interprets token opcodes into simulator instructions",() => {
+    it("Correctly interprets token opcodes into simulator instructions", () => {
 
         var core = buildCore(20);
 
         var loader = new WarriorLoader(core);
-        loader.load(0, DataHelper.buildParseResult(testTokens));
+        loader.load(0, DataHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).opcode).to.be.equal(OpcodeType.DAT);
         expect(core.readAt(null, 1).opcode).to.be.equal(OpcodeType.MOV);
@@ -187,12 +187,12 @@ describe("WarriorLoader",() => {
         expect(core.readAt(null, 16).opcode).to.be.equal(OpcodeType.NOP);
     });
 
-    it("Correctly interprets token modifiers into simulator instructions",() => {
+    it("Correctly interprets token modifiers into simulator instructions", () => {
 
         var core = buildCore(20);
 
         var loader = new WarriorLoader(core);
-        loader.load(0, DataHelper.buildParseResult(testTokens));
+        loader.load(0, DataHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).modifier).to.be.equal(ModifierType.A);
         expect(core.readAt(null, 1).modifier).to.be.equal(ModifierType.B);
@@ -213,12 +213,12 @@ describe("WarriorLoader",() => {
         expect(core.readAt(null, 16).modifier).to.be.equal(ModifierType.B);
     });
 
-    it("Correctly interprets token a mode into simulator instructions",() => {
+    it("Correctly interprets token a mode into simulator instructions", () => {
 
         var core = buildCore(20);
 
         var loader = new WarriorLoader(core);
-        loader.load(0, DataHelper.buildParseResult(testTokens));
+        loader.load(0, DataHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).aOperand.mode).to.be.equal(ModeType.Direct);
         expect(core.readAt(null, 1).aOperand.mode).to.be.equal(ModeType.Immediate);
@@ -239,12 +239,12 @@ describe("WarriorLoader",() => {
         expect(core.readAt(null, 16).aOperand.mode).to.be.equal(ModeType.Immediate);
     });
 
-    it("Correctly interprets token a number into simulator instructions",() => {
+    it("Correctly interprets token a number into simulator instructions", () => {
 
         var core = buildCore(20);
 
         var loader = new WarriorLoader(core);
-        loader.load(0, DataHelper.buildParseResult(testTokens));
+        loader.load(0, DataHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).aOperand.address).to.be.equal(0);
         expect(core.readAt(null, 1).aOperand.address).to.be.equal(2);
@@ -265,12 +265,12 @@ describe("WarriorLoader",() => {
         expect(core.readAt(null, 16).aOperand.address).to.be.equal(0);
     });
 
-    it("Correctly interprets token b mode into simulator instructions",() => {
+    it("Correctly interprets token b mode into simulator instructions", () => {
 
         var core = buildCore(20);
 
         var loader = new WarriorLoader(core);
-        loader.load(0, DataHelper.buildParseResult(testTokens));
+        loader.load(0, DataHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).bOperand.mode).to.be.equal(ModeType.Direct);
         expect(core.readAt(null, 1).bOperand.mode).to.be.equal(ModeType.Immediate);
@@ -291,12 +291,12 @@ describe("WarriorLoader",() => {
         expect(core.readAt(null, 16).bOperand.mode).to.be.equal(ModeType.Immediate);
     });
 
-    it("Correctly interprets token b number into simulator instructions",() => {
+    it("Correctly interprets token b number into simulator instructions", () => {
 
         var core = buildCore(20);
 
         var loader = new WarriorLoader(core);
-        loader.load(0, DataHelper.buildParseResult(testTokens));
+        loader.load(0, DataHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).bOperand.address).to.be.equal(1);
         expect(core.readAt(null, 1).bOperand.address).to.be.equal(3);
@@ -317,15 +317,29 @@ describe("WarriorLoader",() => {
         expect(core.readAt(null, 16).bOperand.address).to.be.equal(0);
     });
 
-    it("Correctly sets the startAddress property of the warrior",() => {
+    it("Correctly sets the startAddress property of the warrior", () => {
 
         var tokens = DataHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
 
         var core = buildCore(5);
 
         var loader = new WarriorLoader(core);
-        var actual = loader.load(3, tokens);
+        var actual = loader.load(3, tokens, 0);
 
         expect(actual.startAddress).to.be.equal(3);
+    });
+
+    it("Correctly sets the unique id for the warrior", () => {
+
+        const expected = 73;
+
+        var tokens = DataHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+
+        var core = buildCore(5);
+
+        var loader = new WarriorLoader(core);
+        var actual = loader.load(3, tokens, expected);
+
+        expect(actual.id).to.be.equal(expected);
     });
 });

@@ -76,9 +76,9 @@ describe("Loader",() => {
 
         loader.load(warriors, Defaults);
 
-        expect(warriorLoader.load).to.have.been.calledWith(sinon.match.number, warriors[0]);
-        expect(warriorLoader.load).to.have.been.calledWith(sinon.match.number, warriors[1]);
-        expect(warriorLoader.load).to.have.been.calledWith(sinon.match.number, warriors[2]);
+        expect(warriorLoader.load).to.have.been.calledWith(sinon.match.number, warriors[0], sinon.match.number);
+        expect(warriorLoader.load).to.have.been.calledWith(sinon.match.number, warriors[1], sinon.match.number);
+        expect(warriorLoader.load).to.have.been.calledWith(sinon.match.number, warriors[2], sinon.match.number);
     });
 
     it("Returns the warriors which have been loaded into core",() => {
@@ -249,5 +249,29 @@ describe("Loader",() => {
         expect(actual[0].startAddress).to.be.equal(19);
         expect(actual[1].startAddress).to.be.equal(28);
         expect(actual[2].startAddress).to.be.equal(7);
+    });
+
+    it("Assigns a unique id to each warrior", () => {
+
+        var warriors = [
+            DataHelper.buildParseResult([]),
+            DataHelper.buildParseResult([]),
+            DataHelper.buildParseResult([])
+        ];
+
+        var loadSpy = sinon.stub();
+        loadSpy.returns(new Warrior());
+
+        warriorLoader = {
+            load: loadSpy
+        };
+
+        var loader = new Loader(random, core, warriorLoader);
+
+        loader.load(warriors, Defaults);
+
+        expect(warriorLoader.load).to.have.been.calledWith(sinon.match.any, sinon.match.any, 0);
+        expect(warriorLoader.load).to.have.been.calledWith(sinon.match.any, sinon.match.any, 1);
+        expect(warriorLoader.load).to.have.been.calledWith(sinon.match.any, sinon.match.any, 2);
     });
 });

@@ -23,12 +23,13 @@ export class Loader implements ILoader {
     public load(warriors: IParseResult[], options: IOptions): IWarrior[] {
 
         var result: IWarrior[] = [];
+        let id = 0;
 
         _(warriors).forEach((w: IParseResult) => {
 
             var address = this.getValidAddress(result, options);
 
-            result.push(this.warriorLoader.load(address, w));
+            result.push(this.warriorLoader.load(address, w, id++));
         });
 
         return result;
