@@ -1,4 +1,4 @@
-﻿import { IInstructionSerialiser } from "./IInstructionSerialiser";
+import { IInstructionSerialiser } from "./IInstructionSerialiser";
 import { IPoint } from "./IPoint";
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../simulator/interface/ICore";
 import * as _ from "underscore";
