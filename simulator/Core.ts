@@ -49,18 +49,12 @@ export class Core implements ICore {
     private triggerEvent(task: ITask, address: number, accessType: CoreAccessType) {
 
         if(this.pubSubProvider) {
-            this.pubSubProvider.publish('CORE_ACCESS', {
+            this.pubSubProvider.publishSync('CORE_ACCESS', {
                 task: task,
                 accessType: accessType,
                 address: address
             });
         }
-
-        this._coreAccess.trigger({
-            task: task,
-            accessType: accessType,
-            address: address
-        });
     }
 
     public executeAt(task: ITask, address: number): IInstruction {

@@ -60,6 +60,8 @@
     "webpack": "^3.8.1"
   },
   "dependencies": {
+    "@types/core-js": "^0.9.43",
+    "core-js": "^2.5.1",
     "pubsub-js": "^1.5.7",
     "underscore": "^1.8.3"
   }

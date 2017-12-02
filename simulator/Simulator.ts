@@ -52,7 +52,7 @@ export class Simulator implements ISimulator {
     }
 
     public initialise(options: IOptions, warriors: IParseResult[]) {
-        
+
         const defaultedOptions = _.defaults(options, Defaults);
 
         this.optionValidator.validate(defaultedOptions, warriors.length);
