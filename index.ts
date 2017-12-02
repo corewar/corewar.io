@@ -39,6 +39,7 @@ import { Fetcher } from "./simulator/Fetcher";
 import { Simulator } from "./simulator/Simulator";
 import { EndCondition } from "./simulator/EndCondition";
 import { OptionValidator } from "./simulator/OptionValidator";
+import { IOptions } from "./simulator/interface/IOptions";
 
 import { ILoader } from "./simulator/interface/ILoader";
 
@@ -97,11 +98,12 @@ class Api {
             new OptionValidator());
     }
 
-    public initialiseSimulator(standardId: number, parseResults: IParseResult[], messageProvider: any) : IState {
+    public initialiseSimulator(opts: IOptions, parseResults: IParseResult[], messageProvider: any) : IState {
 
         var options = _.defaults({
-            coresize: 64,
-            standard: standardId
+            coresize: opts.coresize,
+            instructionLimit: opts.instructionLimit,
+            standard: opts.standard
         }, Defaults);
 
         this.core.initialise(options);
