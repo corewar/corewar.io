@@ -58,6 +58,7 @@ export default class DataHelper {
 
     public static buildWarrior(): IWarrior {
         return {
+            id: 0,
             author: "",
             name: "",
             startAddress: 0,

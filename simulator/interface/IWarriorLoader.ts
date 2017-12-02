@@ -3,5 +3,5 @@ import { IWarrior } from "./IWarrior";
 
 export interface IWarriorLoader {
 
-    load(address: number, result: IParseResult): IWarrior;
+    load(address: number, result: IParseResult, id: number): IWarrior;
 }
