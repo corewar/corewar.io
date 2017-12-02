@@ -198,9 +198,6 @@ export class DefaultPass extends PassBase {
                 case "NOP":
                     token.lexeme = ".B";
                     break;
-                default:
-                    instruction.modifier = null;
-                    break;
             }
 
             instruction.modifier = token;
