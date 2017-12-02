@@ -8,6 +8,7 @@ import { MessageType } from "../interface/IMessage";
 import { IToken, TokenCategory } from "../interface/IToken";
 import { Standard } from "../interface/IParseOptions";
 import * as _ from "underscore";
+import { OpcodeType } from "../../simulator/interface/IInstruction";
 
 "use strict";
 
@@ -267,8 +268,19 @@ describe("OrgPass", () => {
 
     it("Ignores lines which do not begin with ORG or END", () => {
 
-        var tokens = TestHelper.instruction(1, "", "MOV", "", "", "0", ",", "", "1", "")
-            .concat(TestHelper.instruction(2, "", "MOV", "", "", "0", ",", "", "1", ""));
+        var tokens = [{
+            position: { line: 0, char: 0 },
+            lexeme: "FOR",
+            category: TokenCategory.Preprocessor
+        },{
+            position: { line: 0, char: 0 },
+            lexeme: "5",
+            category: TokenCategory.Number
+        },{
+            position: { line: 0, char: 0 },
+            lexeme: "\n",
+            category: TokenCategory.EOL
+        }]
 
         var context = new Context();
         context.tokens = tokens.slice();
