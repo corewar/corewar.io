@@ -28,7 +28,7 @@ export class WarriorLoader implements IWarriorLoader {
         this.core = core;
     }
 
-    public load(address: number, result: IParseResult): IWarrior {
+    public load(address: number, result: IParseResult, id: number): IWarrior {
 
         this.stream = new TokenStream(result.tokens, result.messages);
         this.address = address;
@@ -40,6 +40,7 @@ export class WarriorLoader implements IWarriorLoader {
 
         this.loadProcess();
 
+        this.warrior.id = id;
         this.warrior.name = result.metaData.name;
         this.warrior.author = result.metaData.author;
         this.warrior.strategy = result.metaData.strategy;

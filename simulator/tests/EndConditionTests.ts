@@ -26,6 +26,7 @@ describe("EndCondition",() => {
     function buildWarrior(): IWarrior {
 
         var warrior = {
+            id: 0,
             author: "",
             name: "",
             startAddress: 0,

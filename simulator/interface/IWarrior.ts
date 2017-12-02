@@ -2,6 +2,8 @@
 
 export interface IWarrior {
 
+    id: number;
+    
     name: string;
     author: string;
     strategy: string;
