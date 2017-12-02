@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for simulator/Simulator.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\prettify.css" />
+    <link rel="stylesheet" href="..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\index.html">All files</a> / <a href="index.html">simulator</a> Simulator.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">76.92% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>20/26</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">42.86% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">76.92% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>20/26</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">﻿import { ISimulator } from "./interface/ISimulator";
+import { IState } from "./interface/IState";
+import { ILoader } from "./interface/ILoader";
+import { IFetcher } from "./interface/IFetcher";
+import { IDecoder } from "./interface/IDecoder";
+import { IExecutive } from "./interface/IExecutive";
+import { IEndCondition } from "./interface/IEndCondition";
+import { IOptionValidator } from "./interface/IOptionValidator";
+import { ICore } from "./interface/ICore";
+import { IOptions } from "./interface/IOptions";
+import { IParseResult } from "../parser/interface/IParseResult";
+import Defaults from "./Defaults";
+import * as _ from "underscore";
+&nbsp;
+export class Simulator implements ISimulator {
+&nbsp;
+    private state: IState;
+&nbsp;
+    private loader: ILoader;
+    private fetcher: IFetcher;
+    private decoder: IDecoder;
+    private executive: IExecutive;
+    private endCondition: IEndCondition;
+    private optionValidator: IOptionValidator;
+&nbsp;
+    private pubSubProvider: any;
+&nbsp;
+    constructor(
+        core: ICore,
+        loader: ILoader,
+        fetcher: IFetcher,
+        decoder: IDecoder,
+        executive: IExecutive,
+        endCondition: IEndCondition,
+        optionValidator: IOptionValidator) {
+&nbsp;
+        this.state = {
+            core: core,
+            cycle: 0,
+            warriors: [],
+            warriorIndex: 0,
+            options: null//,
+            //context: null
+        };
+&nbsp;
+        this.loader = loader;
+        this.fetcher = fetcher;
+        this.decoder = decoder;
+        this.executive = executive;
+        this.endCondition = endCondition;
+        this.optionValidator = optionValidator;
+    }
+&nbsp;
+    public initialise(options: IOptions, warriors: IParseResult[]) {
+        
+        const defaultedOptions = _.defaults(options, Defaults);
+&nbsp;
+        this.optionValidator.validate(defaultedOptions, warriors.length);
+&nbsp;
+        this.state.options = defaultedOptions;
+&nbsp;
+        this.state.core.initialise(options);
+&nbsp;
+        this.state.warriors = this.loader.load(warriors, options);
+    }
+&nbsp;
+    public <span class="fstat-no" title="function not covered" >setMessageProvider</span>(provider: any) {
+<span class="cstat-no" title="statement not covered" >        this.pubSubProvider = provider;</span>
+<span class="cstat-no" title="statement not covered" >        this.endCondition.setMessageProvider(provider);</span>
+    }
+&nbsp;
+    public <span class="fstat-no" title="function not covered" >run</span>(): Promise&lt;IState&gt; {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return new Promise(<span class="fstat-no" title="function not covered" >(r</span>esolve, reject) =&gt; {</span>
+&nbsp;
+            // TODO: progress updates based on core cycles
+<span class="cstat-no" title="statement not covered" >            while (this.step() === false) {</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            resolve(this.state);</span>
+        });
+&nbsp;
+    }
+&nbsp;
+    public step(): boolean {
+&nbsp;
+        var context = this.fetcher.fetch(this.state);
+&nbsp;
+        context = this.decoder.decode(context);
+&nbsp;
+        context.command.apply(this.executive, [context]);
+&nbsp;
+        this.state.cycle += 1;
+&nbsp;
+        return this.endCondition.check(this.state);
+    }
+&nbsp;
+    public <span class="fstat-no" title="function not covered" >getState</span>() : IState {
+<span class="cstat-no" title="statement not covered" >        return this.state;</span>
+    }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Dec 02 2017 07:53:54 GMT+0000 (GMT Standard Time)
+</div>
+</div>
+<script src="..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\sorter.js"></script>
+</body>
+</html>

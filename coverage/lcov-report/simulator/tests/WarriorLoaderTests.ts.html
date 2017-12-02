@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for simulator/tests/WarriorLoaderTests.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">simulator/tests</a> WarriorLoaderTests.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">97.86% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>183/187</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">75% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>15/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">97.86% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>183/187</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">132x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">165x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">﻿import { expect } from "chai";
+&nbsp;
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
+import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
+import { IOptions } from "../interface/IOptions";
+import { ITask } from "../interface/ITask";
+import { IInstruction } from "../interface/IInstruction";
+import { OpcodeType, ModifierType } from "../interface/IInstruction";
+import { ModeType } from "../interface/IOperand";
+import { IParseResult } from "../../parser/interface/IParseResult";
+import { IToken, TokenCategory } from "../../parser/interface/IToken";
+import { WarriorLoader } from "../WarriorLoader";
+import DataHelper from "./DataHelper";
+&nbsp;
+"use strict";
+&nbsp;
+describe("WarriorLoader",() =&gt; {
+&nbsp;
+    var instruction = DataHelper.instruction;
+&nbsp;
+    var testTokens = instruction("DAT", ".A", "$", 0, "$", 1)
+        .concat(instruction("MOV", ".B", "#", 2, "#", 3))
+        .concat(instruction("ADD", ".AB", "*", 4, "*", 5))
+        .concat(instruction("SUB", ".BA", "@", 6, "@", 7))
+        .concat(instruction("MUL", ".F", "{", 8, "{", 9))
+        .concat(instruction("DIV", ".I", "&lt;", 10, "&lt;", 11))
+        .concat(instruction("MOD", ".X", "}", 12, "}", 13))
+        .concat(instruction("JMP", ".A", "&gt;", 14, "&gt;", 15))
+        .concat(instruction("JMZ", ".B", "$", -1, "#", -2))
+        .concat(instruction("JMN", ".AB", "#", -3, "*", -4))
+        .concat(instruction("DJN", ".BA", "*", -5, "@", -6))
+        .concat(instruction("CMP", ".F", "@", -7, "{", -8))
+        .concat(instruction("SEQ", ".I", "{", -9, "&lt;", -10))
+        .concat(instruction("SNE", ".F", "&lt;", -11, "}", -12))
+        .concat(instruction("SLT", ".X", "}", -13, "&gt;", -14))
+        .concat(instruction("SPL", ".A", "$", -15, "#", -16))
+        .concat(instruction("NOP", ".B", "#", 0, "#", 0));
+&nbsp;
+    function buildCore(size: number): ICore {
+        var core = {
+            getSize: <span class="fstat-no" title="function not covered" >() </span>=&gt; { <span class="cstat-no" title="statement not covered" >return 0; </span>},
+            coreAccess: new LiteEvent&lt;ICoreAccessEventArgs&gt;(),
+            instructions: [],
+            initialise: <span class="fstat-no" title="function not covered" >(o</span>ptions: IOptions) =&gt; {
+                //
+            },
+            wrap: <span class="fstat-no" title="function not covered" >(i</span>ndex: number): number =&gt; {
+<span class="cstat-no" title="statement not covered" >                return index;</span>
+            },
+            executeAt: <span class="fstat-no" title="function not covered" >(t</span>ask: ITask, index: number): IInstruction =&gt; {
+<span class="cstat-no" title="statement not covered" >                return core.instructions[index];</span>
+            },
+            readAt: (task: ITask, index: number): IInstruction =&gt; {
+                return core.instructions[index];
+            },
+            getAt: <span class="fstat-no" title="function not covered" >(i</span>ndex: number): IInstruction =&gt; {
+<span class="cstat-no" title="statement not covered" >                return core.instructions[index];</span>
+            },
+            setAt: (task: ITask, index: number, instruction: IInstruction) =&gt; {
+                core.instructions[index] = instruction;
+            }
+        };
+        for (var i = 0; i &lt; size; i++) {
+            core.instructions.push({
+                address: i,
+                opcode: OpcodeType.DAT,
+                modifier: ModifierType.F,
+                aOperand: {
+                    mode: ModeType.Immediate,
+                    address: 0
+                },
+                bOperand: {
+                    mode: ModeType.Immediate,
+                    address: 0
+                }
+            });
+        }
+        return core;
+    }
+&nbsp;
+    it("Applies metadata to the warrior",() =&gt; {
+&nbsp;
+        var parseResult: IParseResult = {
+            tokens: [],
+            messages: [],
+            metaData: {
+                name: "johnSmith",
+                author: "Joe Bloggs",
+                strategy: "This is a strategy\nit has two lines"
+            }
+        };
+&nbsp;
+        var core = buildCore(0);
+&nbsp;
+        var loader = new WarriorLoader(core);
+        var actual = loader.load(0, parseResult);
+&nbsp;
+        expect(actual.name).to.be.equal("johnSmith");
+        expect(actual.author).to.be.equal("Joe Bloggs");
+        expect(actual.strategy).to.be.equal("This is a strategy\nit has two lines");
+    });
+&nbsp;
+    it("Creates a single process for the warrior",() =&gt; {
+&nbsp;
+        var parseResult: IParseResult = DataHelper.buildParseResult([]);
+        var core = buildCore(0);
+&nbsp;
+        var loader = new WarriorLoader(core);
+        var actual = loader.load(0, parseResult);
+&nbsp;
+        expect(actual.taskIndex).to.be.equal(0);
+        expect(actual.tasks.length).to.be.equal(1);
+        expect(actual.tasks[0].warrior).to.be.equal(actual);
+    });
+&nbsp;
+    it("Sets the starting instruction pointer to the load address offset by the value indicated by the ORG instruction",() =&gt; {
+&nbsp;
+        var tokens: IToken[] = [
+            {
+                category: TokenCategory.Preprocessor,
+                lexeme: "ORG",
+                position: DataHelper.position
+            }, {
+                category: TokenCategory.Number,
+                lexeme: "4",
+                position: DataHelper.position
+            }, {
+                category: TokenCategory.EOL,
+                lexeme: "\n",
+                position: DataHelper.position
+            }
+        ];
+        var parseResult: IParseResult = DataHelper.buildParseResult(tokens);
+&nbsp;
+        var core = buildCore(10);
+&nbsp;
+        var loader = new WarriorLoader(core);
+        var actual = loader.load(3, parseResult);
+&nbsp;
+        expect(actual.tasks[0].instructionPointer).to.be.equal(7);
+    });
+&nbsp;
+    it("Loads the warrior into the core at the specified address",() =&gt; {
+&nbsp;
+        var tokens = DataHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        var core = buildCore(30);
+&nbsp;
+        var loader = new WarriorLoader(core);
+        loader.load(21, tokens);
+&nbsp;
+        for (var i = 0; i &lt; 30; i++) {
+&nbsp;
+            var instr = core.readAt(null, i);
+            expect(instr.address).to.be.equal(i);
+&nbsp;
+            if (i === 21) {
+                expect(instr.opcode).to.be.equal(OpcodeType.MOV);
+            } else {
+                expect(instr.opcode).to.be.equal(OpcodeType.DAT);
+            }
+        }
+    });
+&nbsp;
+    it("Correctly interprets token opcodes into simulator instructions",() =&gt; {
+&nbsp;
+        var core = buildCore(20);
+&nbsp;
+        var loader = new WarriorLoader(core);
+        loader.load(0, DataHelper.buildParseResult(testTokens));
+&nbsp;
+        expect(core.readAt(null, 0).opcode).to.be.equal(OpcodeType.DAT);
+        expect(core.readAt(null, 1).opcode).to.be.equal(OpcodeType.MOV);
+        expect(core.readAt(null, 2).opcode).to.be.equal(OpcodeType.ADD);
+        expect(core.readAt(null, 3).opcode).to.be.equal(OpcodeType.SUB);
+        expect(core.readAt(null, 4).opcode).to.be.equal(OpcodeType.MUL);
+        expect(core.readAt(null, 5).opcode).to.be.equal(OpcodeType.DIV);
+        expect(core.readAt(null, 6).opcode).to.be.equal(OpcodeType.MOD);
+        expect(core.readAt(null, 7).opcode).to.be.equal(OpcodeType.JMP);
+        expect(core.readAt(null, 8).opcode).to.be.equal(OpcodeType.JMZ);
+        expect(core.readAt(null, 9).opcode).to.be.equal(OpcodeType.JMN);
+        expect(core.readAt(null, 10).opcode).to.be.equal(OpcodeType.DJN);
+        expect(core.readAt(null, 11).opcode).to.be.equal(OpcodeType.CMP);
+        expect(core.readAt(null, 12).opcode).to.be.equal(OpcodeType.SEQ);
+        expect(core.readAt(null, 13).opcode).to.be.equal(OpcodeType.SNE);
+        expect(core.readAt(null, 14).opcode).to.be.equal(OpcodeType.SLT);
+        expect(core.readAt(null, 15).opcode).to.be.equal(OpcodeType.SPL);
+        expect(core.readAt(null, 16).opcode).to.be.equal(OpcodeType.NOP);
+    });
+&nbsp;
+    it("Correctly interprets token modifiers into simulator instructions",() =&gt; {
+&nbsp;
+        var core = buildCore(20);
+&nbsp;
+        var loader = new WarriorLoader(core);
+        loader.load(0, DataHelper.buildParseResult(testTokens));
+&nbsp;
+        expect(core.readAt(null, 0).modifier).to.be.equal(ModifierType.A);
+        expect(core.readAt(null, 1).modifier).to.be.equal(ModifierType.B);
+        expect(core.readAt(null, 2).modifier).to.be.equal(ModifierType.AB);
+        expect(core.readAt(null, 3).modifier).to.be.equal(ModifierType.BA);
+        expect(core.readAt(null, 4).modifier).to.be.equal(ModifierType.F);
+        expect(core.readAt(null, 5).modifier).to.be.equal(ModifierType.I);
+        expect(core.readAt(null, 6).modifier).to.be.equal(ModifierType.X);
+        expect(core.readAt(null, 7).modifier).to.be.equal(ModifierType.A);
+        expect(core.readAt(null, 8).modifier).to.be.equal(ModifierType.B);
+        expect(core.readAt(null, 9).modifier).to.be.equal(ModifierType.AB);
+        expect(core.readAt(null, 10).modifier).to.be.equal(ModifierType.BA);
+        expect(core.readAt(null, 11).modifier).to.be.equal(ModifierType.F);
+        expect(core.readAt(null, 12).modifier).to.be.equal(ModifierType.I);
+        expect(core.readAt(null, 13).modifier).to.be.equal(ModifierType.F);
+        expect(core.readAt(null, 14).modifier).to.be.equal(ModifierType.X);
+        expect(core.readAt(null, 15).modifier).to.be.equal(ModifierType.A);
+        expect(core.readAt(null, 16).modifier).to.be.equal(ModifierType.B);
+    });
+&nbsp;
+    it("Correctly interprets token a mode into simulator instructions",() =&gt; {
+&nbsp;
+        var core = buildCore(20);
+&nbsp;
+        var loader = new WarriorLoader(core);
+        loader.load(0, DataHelper.buildParseResult(testTokens));
+&nbsp;
+        expect(core.readAt(null, 0).aOperand.mode).to.be.equal(ModeType.Direct);
+        expect(core.readAt(null, 1).aOperand.mode).to.be.equal(ModeType.Immediate);
+        expect(core.readAt(null, 2).aOperand.mode).to.be.equal(ModeType.AIndirect);
+        expect(core.readAt(null, 3).aOperand.mode).to.be.equal(ModeType.BIndirect);
+        expect(core.readAt(null, 4).aOperand.mode).to.be.equal(ModeType.APreDecrement);
+        expect(core.readAt(null, 5).aOperand.mode).to.be.equal(ModeType.BPreDecrement);
+        expect(core.readAt(null, 6).aOperand.mode).to.be.equal(ModeType.APostIncrement);
+        expect(core.readAt(null, 7).aOperand.mode).to.be.equal(ModeType.BPostIncrement);
+        expect(core.readAt(null, 8).aOperand.mode).to.be.equal(ModeType.Direct);
+        expect(core.readAt(null, 9).aOperand.mode).to.be.equal(ModeType.Immediate);
+        expect(core.readAt(null, 10).aOperand.mode).to.be.equal(ModeType.AIndirect);
+        expect(core.readAt(null, 11).aOperand.mode).to.be.equal(ModeType.BIndirect);
+        expect(core.readAt(null, 12).aOperand.mode).to.be.equal(ModeType.APreDecrement);
+        expect(core.readAt(null, 13).aOperand.mode).to.be.equal(ModeType.BPreDecrement);
+        expect(core.readAt(null, 14).aOperand.mode).to.be.equal(ModeType.APostIncrement);
+        expect(core.readAt(null, 15).aOperand.mode).to.be.equal(ModeType.Direct);
+        expect(core.readAt(null, 16).aOperand.mode).to.be.equal(ModeType.Immediate);
+    });
+&nbsp;
+    it("Correctly interprets token a number into simulator instructions",() =&gt; {
+&nbsp;
+        var core = buildCore(20);
+&nbsp;
+        var loader = new WarriorLoader(core);
+        loader.load(0, DataHelper.buildParseResult(testTokens));
+&nbsp;
+        expect(core.readAt(null, 0).aOperand.address).to.be.equal(0);
+        expect(core.readAt(null, 1).aOperand.address).to.be.equal(2);
+        expect(core.readAt(null, 2).aOperand.address).to.be.equal(4);
+        expect(core.readAt(null, 3).aOperand.address).to.be.equal(6);
+        expect(core.readAt(null, 4).aOperand.address).to.be.equal(8);
+        expect(core.readAt(null, 5).aOperand.address).to.be.equal(10);
+        expect(core.readAt(null, 6).aOperand.address).to.be.equal(12);
+        expect(core.readAt(null, 7).aOperand.address).to.be.equal(14);
+        expect(core.readAt(null, 8).aOperand.address).to.be.equal(-1);
+        expect(core.readAt(null, 9).aOperand.address).to.be.equal(-3);
+        expect(core.readAt(null, 10).aOperand.address).to.be.equal(-5);
+        expect(core.readAt(null, 11).aOperand.address).to.be.equal(-7);
+        expect(core.readAt(null, 12).aOperand.address).to.be.equal(-9);
+        expect(core.readAt(null, 13).aOperand.address).to.be.equal(-11);
+        expect(core.readAt(null, 14).aOperand.address).to.be.equal(-13);
+        expect(core.readAt(null, 15).aOperand.address).to.be.equal(-15);
+        expect(core.readAt(null, 16).aOperand.address).to.be.equal(0);
+    });
+&nbsp;
+    it("Correctly interprets token b mode into simulator instructions",() =&gt; {
+&nbsp;
+        var core = buildCore(20);
+&nbsp;
+        var loader = new WarriorLoader(core);
+        loader.load(0, DataHelper.buildParseResult(testTokens));
+&nbsp;
+        expect(core.readAt(null, 0).bOperand.mode).to.be.equal(ModeType.Direct);
+        expect(core.readAt(null, 1).bOperand.mode).to.be.equal(ModeType.Immediate);
+        expect(core.readAt(null, 2).bOperand.mode).to.be.equal(ModeType.AIndirect);
+        expect(core.readAt(null, 3).bOperand.mode).to.be.equal(ModeType.BIndirect);
+        expect(core.readAt(null, 4).bOperand.mode).to.be.equal(ModeType.APreDecrement);
+        expect(core.readAt(null, 5).bOperand.mode).to.be.equal(ModeType.BPreDecrement);
+        expect(core.readAt(null, 6).bOperand.mode).to.be.equal(ModeType.APostIncrement);
+        expect(core.readAt(null, 7).bOperand.mode).to.be.equal(ModeType.BPostIncrement);
+        expect(core.readAt(null, 8).bOperand.mode).to.be.equal(ModeType.Immediate);
+        expect(core.readAt(null, 9).bOperand.mode).to.be.equal(ModeType.AIndirect);
+        expect(core.readAt(null, 10).bOperand.mode).to.be.equal(ModeType.BIndirect);
+        expect(core.readAt(null, 11).bOperand.mode).to.be.equal(ModeType.APreDecrement);
+        expect(core.readAt(null, 12).bOperand.mode).to.be.equal(ModeType.BPreDecrement);
+        expect(core.readAt(null, 13).bOperand.mode).to.be.equal(ModeType.APostIncrement);
+        expect(core.readAt(null, 14).bOperand.mode).to.be.equal(ModeType.BPostIncrement);
+        expect(core.readAt(null, 15).bOperand.mode).to.be.equal(ModeType.Immediate);
+        expect(core.readAt(null, 16).bOperand.mode).to.be.equal(ModeType.Immediate);
+    });
+&nbsp;
+    it("Correctly interprets token b number into simulator instructions",() =&gt; {
+&nbsp;
+        var core = buildCore(20);
+&nbsp;
+        var loader = new WarriorLoader(core);
+        loader.load(0, DataHelper.buildParseResult(testTokens));
+&nbsp;
+        expect(core.readAt(null, 0).bOperand.address).to.be.equal(1);
+        expect(core.readAt(null, 1).bOperand.address).to.be.equal(3);
+        expect(core.readAt(null, 2).bOperand.address).to.be.equal(5);
+        expect(core.readAt(null, 3).bOperand.address).to.be.equal(7);
+        expect(core.readAt(null, 4).bOperand.address).to.be.equal(9);
+        expect(core.readAt(null, 5).bOperand.address).to.be.equal(11);
+        expect(core.readAt(null, 6).bOperand.address).to.be.equal(13);
+        expect(core.readAt(null, 7).bOperand.address).to.be.equal(15);
+        expect(core.readAt(null, 8).bOperand.address).to.be.equal(-2);
+        expect(core.readAt(null, 9).bOperand.address).to.be.equal(-4);
+        expect(core.readAt(null, 10).bOperand.address).to.be.equal(-6);
+        expect(core.readAt(null, 11).bOperand.address).to.be.equal(-8);
+        expect(core.readAt(null, 12).bOperand.address).to.be.equal(-10);
+        expect(core.readAt(null, 13).bOperand.address).to.be.equal(-12);
+        expect(core.readAt(null, 14).bOperand.address).to.be.equal(-14);
+        expect(core.readAt(null, 15).bOperand.address).to.be.equal(-16);
+        expect(core.readAt(null, 16).bOperand.address).to.be.equal(0);
+    });
+&nbsp;
+    it("Correctly sets the startAddress property of the warrior",() =&gt; {
+&nbsp;
+        var tokens = DataHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+&nbsp;
+        var core = buildCore(5);
+&nbsp;
+        var loader = new WarriorLoader(core);
+        var actual = loader.load(3, tokens);
+&nbsp;
+        expect(actual.startAddress).to.be.equal(3);
+    });
+});</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Dec 02 2017 07:52:04 GMT+0000 (GMT Standard Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for parser/integration/tests/TestHelper.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\..\index.html">All files</a> / <a href="index.html">parser/integration/tests</a> TestHelper.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">47.17% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>25/53</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">9.09% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>1/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">47.17% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>25/53</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">﻿import { expect } from "chai";
+&nbsp;
+import { Standard } from "../../interface/IParseOptions";
+import { Expression } from "../../Expression";
+import { Parser } from "../../Parser";
+import { Scanner } from "../../Scanner";
+import { Filter } from "../../Filter";
+import { ForPass } from "../../ForPass";
+import { PreprocessCollector } from "../../PreprocessCollector";
+import { PreprocessAnalyser } from "../../PreprocessAnalyser";
+import { PreprocessEmitter } from "../../PreprocessEmitter";
+import { LabelCollector } from "../../LabelCollector";
+import { LabelEmitter } from "../../LabelEmitter";
+import { MathsProcessor } from "../../MathsProcessor";
+import { DefaultPass } from "../../DefaultPass";
+import { OrgPass } from "../../OrgPass";
+import { SyntaxCheck } from "../../SyntaxCheck";
+import { IllegalCommandCheck } from "../../IllegalCommandCheck";
+import { LoadFileSerialiser } from "../../LoadFileSerialiser";
+import { TestLoader } from "./TestLoader";
+import * as _ from "underscore";
+import { MetaDataCollector } from "../../MetaDataCollector";
+&nbsp;
+"use strict";
+&nbsp;
+export class TestHelper {
+    private <span class="fstat-no" title="function not covered" >static</span> failedIndex(name: string, a: string, b: string) {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        for (var i = 0; i &lt; a.length; i++) {</span>
+&nbsp;
+            var ac = <span class="cstat-no" title="statement not covered" >a[i];</span>
+            var bc = <span class="cstat-no" title="statement not covered" >b[i];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (ac !== bc) {</span>
+<span class="cstat-no" title="statement not covered" >                console.log(name + " Failed index " + i.toString() + ", " + ac + " !== " + bc);</span>
+&nbsp;
+                var si = <span class="cstat-no" title="statement not covered" >i - 10;</span>
+<span class="cstat-no" title="statement not covered" >                if (si &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    si = 0;</span>
+                }
+&nbsp;
+                var ei = <span class="cstat-no" title="statement not covered" >i + 10;</span>
+<span class="cstat-no" title="statement not covered" >                if (ei &gt;= a.length) {</span>
+<span class="cstat-no" title="statement not covered" >                    ei = a.length - 1;</span>
+                }
+&nbsp;
+                var msg = <span class="cstat-no" title="statement not covered" >"";</span>
+<span class="cstat-no" title="statement not covered" >                for (var j = si; j &lt;= ei; j++) {</span>
+<span class="cstat-no" title="statement not covered" >                    msg += a[j];</span>
+                }
+<span class="cstat-no" title="statement not covered" >                console.log("Back ten forward ten: " + msg);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+        }
+    }
+&nbsp;
+    public static testWarriorList(path: string, names: string[], standard: Standard, allowMessages: boolean = false) {
+&nbsp;
+        var loader = new TestLoader();
+        loader.getWarriors(path, names).then((warriors) =&gt; {
+&nbsp;
+            _(warriors).forEach(<span class="fstat-no" title="function not covered" >(w</span>arrior) =&gt; {
+&nbsp;
+                var expression = <span class="cstat-no" title="statement not covered" >new Expression();</span>
+&nbsp;
+                var parser = <span class="cstat-no" title="statement not covered" >new Parser(</span>
+                    new Scanner(),
+                    new Filter(),
+                    new MetaDataCollector(),
+                    new ForPass(expression),
+                    new PreprocessCollector(),
+                    new PreprocessAnalyser(),
+                    new PreprocessEmitter(),
+                    new LabelCollector(),
+                    new LabelEmitter(),
+                    new MathsProcessor(expression),
+                    new DefaultPass(),
+                    new OrgPass(),
+                    new SyntaxCheck(),
+                    new IllegalCommandCheck());
+&nbsp;
+                var result = <span class="cstat-no" title="statement not covered" >parser.parse(warrior.redcode, _.defaults({</span>
+                    standard: standard
+                }, Parser.DefaultOptions));
+&nbsp;
+                var serialiser = <span class="cstat-no" title="statement not covered" >new LoadFileSerialiser();</span>
+&nbsp;
+                var loadfile = <span class="cstat-no" title="statement not covered" >serialiser.serialise(result.tokens);</span>
+&nbsp;
+                var actual = <span class="cstat-no" title="statement not covered" >loadfile.trim();</span>
+                var expected = <span class="cstat-no" title="statement not covered" >warrior.loadfile.replace(/[\r]/g, "").trim();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (actual !== expected) {</span>
+<span class="cstat-no" title="statement not covered" >                    this.failedIndex(warrior.name, actual, expected);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                expect(actual).to.be.equal(expected);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (!allowMessages) {</span>
+<span class="cstat-no" title="statement not covered" >                    expect(result.messages.length).to.be.equal(0);</span>
+                }
+            });
+        });
+    }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Dec 02 2017 07:52:24 GMT+0000 (GMT Standard Time)
+</div>
+</div>
+<script src="..\..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\..\sorter.js"></script>
+</body>
+</html>

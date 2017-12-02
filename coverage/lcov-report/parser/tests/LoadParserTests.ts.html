@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for parser/tests/LoadParserTests.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">parser/tests</a> LoadParserTests.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>121/121</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>25/25</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>121/121</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">44x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">﻿import * as chai from "chai";
+import * as sinon from "sinon";
+import * as sinonChai from "sinon-chai";
+var expect = chai.expect;
+chai.use(sinonChai);
+&nbsp;
+import { IContext } from "../interface/IContext";
+import { IScanner } from "../interface/IScanner";
+import { IPass } from "../interface/IPass";
+import { IOptions } from "../../simulator/interface/IOptions";
+import { LoadParser } from "../LoadParser";
+import { Context } from "../Context";
+import { IMessage, MessageType } from "../interface/IMessage";
+import { Parser } from "../Parser";
+import { Standard } from "../interface/IParseOptions";
+import * as _ from "underscore";
+&nbsp;
+"use strict";
+&nbsp;
+describe("LoadParser",() =&gt; {
+&nbsp;
+    var context: IContext;
+&nbsp;
+    var scanner: IScanner;
+    var filter: IPass;
+    var syntaxCheck: IPass;
+    var illegalCommandCheck: IPass;
+    var modPass: IPass;
+&nbsp;
+    var loadParser: LoadParser;
+&nbsp;
+    var calls: string[];
+&nbsp;
+    var expected94Calls = [
+        "scan", "filter", "syntax", "mod"
+    ];
+&nbsp;
+    beforeEach(() =&gt; {
+&nbsp;
+        calls = [];
+        context = new Context();
+&nbsp;
+        scanner = fakeScanner("scan");
+        filter = fakePass("filter");
+        syntaxCheck = fakePass("syntax");
+        illegalCommandCheck = fakePass("illegal");
+        modPass = fakePass("mod");
+&nbsp;
+        loadParser = new LoadParser(
+            scanner,
+            filter,
+            syntaxCheck,
+            illegalCommandCheck,
+            modPass);
+    });
+&nbsp;
+    function fakeScanner(name: string): IScanner {
+        return {
+            scan: sinon.stub().callsFake((s: string, options: IOptions): IContext =&gt; {
+                calls.push(name);
+                return context;
+            })
+        };
+    }
+&nbsp;
+    function fakePass(name: string): IPass {
+&nbsp;
+        return {
+            process: sinon.stub().callsFake((context: IContext, options: IOptions): IContext =&gt; {
+                calls.push(name);
+                return context;
+            })
+        };
+    }
+&nbsp;
+    function fakeError(): IMessage {
+        return {
+            text: "",
+            type: MessageType.Error,
+            position: { line: 1, char: 1 }
+        };
+    }
+&nbsp;
+    function fakeWarning(): IMessage {
+        return {
+            text: "",
+            type: MessageType.Warning,
+            position: { line: 1, char: 1 }
+        };
+    }
+&nbsp;
+    function errorIn(pass: IPass, name: string): void {
+&nbsp;
+        (&lt;sinon.stub&gt;pass.process).callsFake((): IContext =&gt; {
+            context.messages.push(fakeError());
+            calls.push(name);
+            return context;
+        });
+    }
+&nbsp;
+    function warningIn(pass: IPass, name: string): void {
+&nbsp;
+        (&lt;sinon.stub&gt;pass.process).callsFake((): IContext =&gt; {
+            context.messages.push(fakeWarning());
+            calls.push(name);
+            return context;
+        });
+    }
+&nbsp;
+    it("Calls passes in correct order under ICWS'94-draft",() =&gt; {
+&nbsp;
+        var options = Parser.DefaultOptions;
+&nbsp;
+        loadParser.parse("MOV 0, 1", options);
+&nbsp;
+        expect(calls.length).to.be.equal(4);
+&nbsp;
+        expect(calls).to.deep.equal(expected94Calls);
+    });
+&nbsp;
+    it("Calls passes in correct order under ICWS'88",() =&gt; {
+&nbsp;
+        var options = _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions);
+&nbsp;
+        loadParser.parse("MOV 0, 1", options);
+&nbsp;
+        expect(calls.length).to.be.equal(5);
+&nbsp;
+        expect(calls[0]).to.be.equal("scan");
+        expect(calls[1]).to.be.equal("filter");
+        expect(calls[2]).to.be.equal("syntax");
+        expect(calls[3]).to.be.equal("illegal");
+        expect(calls[4]).to.be.equal("mod");
+    });
+&nbsp;
+    it("Calls passes in correct order under ICWS'86",() =&gt; {
+&nbsp;
+        var options = _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions);
+&nbsp;
+        loadParser.parse("MOV 0, 1", options);
+&nbsp;
+        expect(calls.length).to.be.equal(5);
+&nbsp;
+        expect(calls[0]).to.be.equal("scan");
+        expect(calls[1]).to.be.equal("filter");
+        expect(calls[2]).to.be.equal("syntax");
+        expect(calls[3]).to.be.equal("illegal");
+        expect(calls[4]).to.be.equal("mod");
+    });
+&nbsp;
+    it("Does not call mod pass if syntax check fails",() =&gt; {
+&nbsp;
+        var options = Parser.DefaultOptions;
+&nbsp;
+        errorIn(syntaxCheck, "syntax");
+&nbsp;
+        context.messages = [];
+        calls = [];
+        loadParser.parse("MOV 0, 1", options);
+&nbsp;
+        expect(calls.length).to.be.equal(3);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 3));
+    });
+&nbsp;
+    it("Does not call syntax check if filter pass fails",() =&gt; {
+&nbsp;
+        var options = Parser.DefaultOptions;
+&nbsp;
+        errorIn(filter, "filter");
+&nbsp;
+        context.messages = [];
+        calls = [];
+        loadParser.parse("MOV 0, 1", options);
+&nbsp;
+        expect(calls.length).to.be.equal(2);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 2));
+    });
+&nbsp;
+    it("Does not call filter pass if scan fails",() =&gt; {
+&nbsp;
+        var options = Parser.DefaultOptions;
+&nbsp;
+        (&lt;sinon.stub&gt;scanner.scan).callsFake((): IContext =&gt; {
+            context.messages.push(fakeError());
+            calls.push("scan");
+            return context;
+        });
+&nbsp;
+        context.messages = [];
+        calls = [];
+        loadParser.parse("MOV 0, 1", options);
+&nbsp;
+        expect(calls.length).to.be.equal(1);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 1));
+    });
+&nbsp;
+    it("Does call all passes regardless of raised warnings",() =&gt; {
+&nbsp;
+        var options = Parser.DefaultOptions;
+&nbsp;
+        (&lt;sinon.stub&gt;scanner.scan).callsFake((): IContext =&gt; {
+            context.messages.push(fakeWarning());
+            calls.push("scan");
+            return context;
+        });
+        warningIn(filter, "filter");
+        warningIn(syntaxCheck, "syntax");
+&nbsp;
+        context.messages = [];
+        calls = [];
+        loadParser.parse("MOV 0, 1", options);
+&nbsp;
+        expect(calls.length).to.be.equal(4);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 4));
+    });
+&nbsp;
+    it("Passes supplied options to each pass",() =&gt; {
+&nbsp;
+        var document = "MOV 0, 1";
+        var options = {};
+&nbsp;
+        loadParser.parse(document, options);
+&nbsp;
+        expect(scanner.scan).to.have.been.calledWith(document, options);
+        expect(filter.process).to.have.been.calledWith(context, options);
+        expect(syntaxCheck.process).to.have.been.calledWith(context, options);
+        expect(modPass.process).to.have.been.calledWith(context, options);
+    });
+&nbsp;
+    it("Returns context tokens, messages and metaData in ParserResult",() =&gt; {
+&nbsp;
+        var actual = loadParser.parse("MOV 0, 1", {});
+&nbsp;
+        expect(actual.metaData).to.be.equal(context.metaData);
+        expect(actual.tokens).to.be.equal(context.tokens);
+        expect(actual.messages).to.be.equal(context.messages);
+    });
+&nbsp;
+    it("Defaults the standard to ICWS'94-draft if not specified",() =&gt; {
+&nbsp;
+        loadParser.parse("MOV 0, 1");
+&nbsp;
+        expect((&lt;sinon.stub&gt;scanner.scan).lastCall.args[1].standard).to.be.equal(Standard.ICWS94draft);
+    });
+&nbsp;
+    it("Defaults the coresize to 8192 if not specified",() =&gt; {
+&nbsp;
+        loadParser.parse("MOV 0, 1");
+&nbsp;
+        expect((&lt;sinon.stub&gt;scanner.scan).lastCall.args[1].coresize).to.be.equal(8192);
+    });
+});
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Dec 02 2017 07:52:04 GMT+0000 (GMT Standard Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

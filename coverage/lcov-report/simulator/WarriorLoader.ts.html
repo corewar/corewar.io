@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for simulator/WarriorLoader.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\prettify.css" />
+    <link rel="stylesheet" href="..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\index.html">All files</a> / <a href="index.html">simulator</a> WarriorLoader.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.78% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>81/82</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">97.22% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>35/36</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>10/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.78% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>81/82</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">105x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">105x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">208x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">208x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">28x</span>
+<span class="cline-any cline-yes">28x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">208x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">﻿import { IWarriorLoader } from "./interface/IWarriorLoader";
+import { IWarrior } from "./interface/IWarrior";
+import { ICore } from "./interface/ICore";
+import { IInstruction, OpcodeType, ModifierType } from "./interface/IInstruction";
+import { IOperand, ModeType } from "./interface/IOperand";
+&nbsp;
+import { ITokenStream } from "../parser/interface/ITokenStream";
+import { IParseResult } from "../parser/interface/IParseResult";
+import { TokenCategory } from "../parser/interface/IToken";
+import { IParseInstruction } from "../parser/interface/IParseInstruction";
+import { IParseOperand } from "../parser/interface/IParseOperand";
+&nbsp;
+import { TokenStream } from "../parser/TokenStream";
+import { Warrior } from "./Warrior";
+&nbsp;
+export class WarriorLoader implements IWarriorLoader {
+&nbsp;
+    private address: number;
+    private stream: ITokenStream;
+    private warrior: IWarrior;
+&nbsp;
+    private core: ICore;
+&nbsp;
+    private startAddress: number;
+&nbsp;
+    constructor(core: ICore) {
+&nbsp;
+        this.core = core;
+    }
+&nbsp;
+    public load(address: number, result: IParseResult): IWarrior {
+&nbsp;
+        this.stream = new TokenStream(result.tokens, result.messages);
+        this.address = address;
+&nbsp;
+        this.warrior = new Warrior();
+        this.warrior.startAddress = address;
+&nbsp;
+        this.readInstructions();
+&nbsp;
+        this.loadProcess();
+&nbsp;
+        this.warrior.name = result.metaData.name;
+        this.warrior.author = result.metaData.author;
+        this.warrior.strategy = result.metaData.strategy;
+&nbsp;
+        return this.warrior;
+    }
+&nbsp;
+    private readInstructions() {
+        while (!this.stream.eof()) {
+&nbsp;
+            var next = this.stream.peek();
+&nbsp;
+            if (next.category === TokenCategory.Opcode) {
+&nbsp;
+                this.core.setAt(this.warrior.tasks[0], this.address, this.readInstruction());
+                this.address += 1;
+&nbsp;
+            } else <span class="missing-if-branch" title="else path not taken" >E</span>if (next.category === TokenCategory.Preprocessor) {
+&nbsp;
+                this.startAddress = this.readOrg();
+&nbsp;
+            } else {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                this.stream.readToEOL();</span>
+            }
+        }
+    }
+&nbsp;
+    private readInstruction(): IInstruction {
+&nbsp;
+        var parseInstruction = this.readParseInstruction();
+&nbsp;
+        var instruction: IInstruction = {
+            address: this.address,
+            opcode: this.getOpcode(parseInstruction),
+            modifier: this.getModifier(parseInstruction),
+            aOperand: this.getOperand(parseInstruction.aOperand),
+            bOperand: this.getOperand(parseInstruction.bOperand)
+        };
+&nbsp;
+        return instruction;
+    }
+&nbsp;
+    private readOrg(): number {
+        this.stream.read(); // ORG
+        var token = this.stream.read();
+&nbsp;
+        this.stream.readToEOL();
+&nbsp;
+        return this.address + parseInt(token.lexeme, 10);
+    }
+&nbsp;
+    private readParseInstruction(): IParseInstruction {
+&nbsp;
+        var result = {
+            opcode: this.stream.read(),
+            modifier: this.stream.read(),
+            aOperand: {
+                mode: this.stream.read(),
+                address: this.stream.read()
+            },
+            comma: this.stream.read(),
+            bOperand: {
+                mode: this.stream.read(),
+                address: this.stream.read()
+            }
+        };
+&nbsp;
+        this.stream.readToEOL();
+&nbsp;
+        return result;
+    }
+&nbsp;
+    private getOpcode(instruction: IParseInstruction): OpcodeType {
+&nbsp;
+        switch (instruction.opcode.lexeme) {
+            case "DAT":
+                return OpcodeType.DAT;
+            case "MOV":
+                return OpcodeType.MOV;
+            case "ADD":
+                return OpcodeType.ADD;
+            case "SUB":
+                return OpcodeType.SUB;
+            case "MUL":
+                return OpcodeType.MUL;
+            case "DIV":
+                return OpcodeType.DIV;
+            case "MOD":
+                return OpcodeType.MOD;
+            case "JMP":
+                return OpcodeType.JMP;
+            case "JMZ":
+                return OpcodeType.JMZ;
+            case "JMN":
+                return OpcodeType.JMN;
+            case "DJN":
+                return OpcodeType.DJN;
+            case "CMP":
+                return OpcodeType.CMP;
+            case "SEQ":
+                return OpcodeType.SEQ;
+            case "SNE":
+                return OpcodeType.SNE;
+            case "SLT":
+                return OpcodeType.SLT;
+            case "SPL":
+                return OpcodeType.SPL;
+            default:
+                return OpcodeType.NOP;
+        }
+    }
+&nbsp;
+    private getModifier(instruction: IParseInstruction): ModifierType {
+&nbsp;
+        switch (instruction.modifier.lexeme) {
+            case ".A":
+                return ModifierType.A;
+            case ".B":
+                return ModifierType.B;
+            case ".BA":
+                return ModifierType.BA;
+            case ".F":
+                return ModifierType.F;
+            case ".I":
+                return ModifierType.I;
+            case ".X":
+                return ModifierType.X;
+            default:
+                return ModifierType.AB;
+        }
+    }
+&nbsp;
+    private getOperand(operand: IParseOperand): IOperand {
+&nbsp;
+        var result: IOperand = {
+            mode: 0,
+            address: parseInt(operand.address.lexeme, 10)
+        };
+&nbsp;
+        switch (operand.mode.lexeme) {
+            case "#":
+                result.mode = ModeType.Immediate;
+                break;
+            case "*":
+                result.mode = ModeType.AIndirect;
+                break;
+            case "@":
+                result.mode = ModeType.BIndirect;
+                break;
+            case "{":
+                result.mode = ModeType.APreDecrement;
+                break;
+            case "&lt;":
+                result.mode = ModeType.BPreDecrement;
+                break;
+            case "}":
+                result.mode = ModeType.APostIncrement;
+                break;
+            case "&gt;":
+                result.mode = ModeType.BPostIncrement;
+                break;
+            default:
+                result.mode = ModeType.Direct;
+                break;
+        }
+&nbsp;
+        return result;
+    }
+&nbsp;
+    private loadProcess() {
+&nbsp;
+        this.warrior.tasks.push({
+            instructionPointer: this.startAddress,
+            warrior: this.warrior
+        });
+        this.warrior.taskIndex = 0;
+    }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Dec 02 2017 07:53:54 GMT+0000 (GMT Standard Time)
+</div>
+</div>
+<script src="..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\sorter.js"></script>
+</body>
+</html>

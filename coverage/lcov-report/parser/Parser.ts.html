@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for parser/Parser.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\prettify.css" />
+    <link rel="stylesheet" href="..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\index.html">All files</a> / <a href="index.html">parser</a> Parser.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>52/52</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">96.88% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>31/32</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>52/52</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">228x</span>
+<span class="cline-any cline-yes">156x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">﻿import { IParser } from "./interface/IParser";
+import { IPass } from "./interface/IPass";
+import { IScanner } from "./interface/IScanner";
+import { IContext } from "./interface/IContext";
+import { IMessage, MessageType } from "./interface/IMessage";
+import { IParseOptions, Standard } from "./interface/IParseOptions";
+import { IParseResult } from "./interface/IParseResult";
+import * as _ from "underscore";
+import { MetaDataCollector } from "./MetaDataCollector";
+&nbsp;
+export class Parser implements IParser {
+&nbsp;
+    private scanner: IScanner;
+    private filter: IPass;
+    private metaDataCollector: IPass;
+    private forPass: IPass;
+    private preprocessCollector: IPass;
+    private preprocessAnalyser: IPass;
+    private preprocessEmitter: IPass;
+    private labelCollector: IPass;
+    private labelEmitter: IPass;
+    private mathsProcessor: IPass;
+    private defaultPass: IPass;
+    private orgPass: IPass;
+    private syntaxCheck: IPass;
+    private illegalCommandCheck: IPass;
+&nbsp;
+    public static DefaultOptions: IParseOptions = {
+        standard: Standard.ICWS94draft,
+        coresize: 8192
+    };
+&nbsp;
+    constructor(
+        scanner: IScanner,
+        filter: IPass,
+        metaDataCollector: IPass,
+        forPass: IPass,
+        preprocessCollector: IPass,
+        preprocessAnalyser: IPass,
+        preprocessEmitter: IPass,
+        labelCollector: IPass,
+        labelEmitter: IPass,
+        mathsProcessor: IPass,
+        defaultPass: IPass,
+        orgPass: IPass,
+        syntaxCheck: IPass,
+        illegalCommandCheck: IPass) {
+&nbsp;
+        this.scanner = scanner;
+        this.filter = filter;
+        this.metaDataCollector = metaDataCollector;
+        this.forPass = forPass;
+        this.preprocessCollector = preprocessCollector;
+        this.preprocessAnalyser = preprocessAnalyser;
+        this.preprocessEmitter = preprocessEmitter;
+        this.labelCollector = labelCollector;
+        this.labelEmitter = labelEmitter;
+        this.mathsProcessor = mathsProcessor;
+        this.defaultPass = defaultPass;
+        this.orgPass = orgPass;
+        this.syntaxCheck = syntaxCheck;
+        this.illegalCommandCheck = illegalCommandCheck;
+    }
+&nbsp;
+    private noErrors(context: IContext): boolean {
+        return !_(context.messages).any((message: IMessage) =&gt; {
+            return message.type === MessageType.Error;
+        });
+    }
+&nbsp;
+    public parse(document: string, options?: IParseOptions): IParseResult {
+&nbsp;
+        options = _.defaults(options || {}, Parser.DefaultOptions);
+&nbsp;
+        var context = this.scanner.scan(document, options);
+&nbsp;
+        if (this.noErrors(context)) {
+            context = this.filter.process(context, options);
+        }
+        if (this.noErrors(context)) {
+            context = this.metaDataCollector.process(context, options);
+        }
+        if (options.standard === Standard.ICWS94draft) {
+            if (this.noErrors(context)) {
+                context = this.forPass.process(context, options);
+            }
+        }
+        if (this.noErrors(context)) {
+            context = this.preprocessCollector.process(context, options);
+        }
+        if (this.noErrors(context)) {
+            context = this.preprocessAnalyser.process(context, options);
+        }
+        if (this.noErrors(context)) {
+            context = this.preprocessEmitter.process(context, options);
+        }
+        if (this.noErrors(context)) {
+            context = this.labelCollector.process(context, options);
+        }
+        if (this.noErrors(context)) {
+            context = this.labelEmitter.process(context, options);
+        }
+        if (this.noErrors(context)) {
+            context = this.mathsProcessor.process(context, options);
+        }
+        if (this.noErrors(context)) {
+            context = this.orgPass.process(context, options);
+        }
+        if (this.noErrors(context)) {
+            context = this.defaultPass.process(context, options);
+        }
+        if (this.noErrors(context)) {
+            context = this.syntaxCheck.process(context, options);
+        }
+        if (options.standard &lt; Standard.ICWS94draft) {
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (this.noErrors(context)) {
+                context = this.illegalCommandCheck.process(context, options);
+            }
+        }
+&nbsp;
+        return {
+            metaData: context.metaData,
+            tokens: context.tokens,
+            messages: context.messages
+        };
+    }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Dec 02 2017 07:53:54 GMT+0000 (GMT Standard Time)
+</div>
+</div>
+<script src="..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\sorter.js"></script>
+</body>
+</html>

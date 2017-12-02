@@ -1,0 +1,1298 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for simulator/tests/DecoderTests.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">simulator/tests</a> DecoderTests.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.74% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>157/159</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>4/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">85.71% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>24/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.74% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>157/159</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">2023x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">85x</span>
+<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">56x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">﻿import * as chai from "chai";
+import * as sinon from "sinon";
+import * as sinonChai from "sinon-chai";
+var expect = chai.expect;
+chai.use(sinonChai);
+&nbsp;
+import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
+import { IInstruction } from "../interface/IInstruction";
+import { OpcodeType, ModifierType } from "../interface/IInstruction";
+import { IExecutive } from "../interface/IExecutive";
+import { IExecutionContext } from "../interface/IExecutionContext";
+import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
+import { ITask } from "../interface/ITask";
+import Defaults from "../Defaults";
+import { IOptions } from "../interface/IOptions";
+import { ModeType } from "../interface/IOperand";
+import { Decoder } from "../Decoder";
+import DataHelper from "./DataHelper";
+import * as _ from "underscore";
+&nbsp;
+"use strict";
+&nbsp;
+describe("Decoder",() =&gt; {
+&nbsp;
+    var core: ICore;
+    var coreData: IInstruction[];
+&nbsp;
+    var executive: IExecutive;
+&nbsp;
+    beforeEach(() =&gt; {
+&nbsp;
+        executive = {
+            initialise: <span class="fstat-no" title="function not covered" >() </span>=&gt; {
+                //
+            },
+            commandTable: []
+        };
+&nbsp;
+        for (var i = 0; i &lt; OpcodeType.Count * ModifierType.Count; i++) {
+            executive.commandTable[i] = <span class="fstat-no" title="function not covered" >(c</span>: IExecutionContext) =&gt; {
+                //
+            };
+        }
+&nbsp;
+        core = {
+            getSize: <span class="fstat-no" title="function not covered" >() </span>=&gt; { <span class="cstat-no" title="statement not covered" >return 0; </span>},
+            coreAccess: new LiteEvent&lt;ICoreAccessEventArgs&gt;(),
+            executeAt: sinon.stub(),
+            readAt: sinon.stub(),
+            getAt: sinon.stub(),
+            setAt: sinon.stub(),
+            wrap(address: number) {
+<span class="cstat-no" title="statement not covered" >                return address;</span>
+            },
+            initialise: <span class="fstat-no" title="function not covered" >(o</span>ptions: IOptions) =&gt; {
+                //
+            }
+        };
+    });
+&nbsp;
+    function prepareCore(
+        size: number,
+        instructions: IInstruction[]) {
+&nbsp;
+        coreData = [];
+&nbsp;
+        var j = 0;
+&nbsp;
+        for (var i = 0; i &lt; size; i++) {
+&nbsp;
+            if (j &lt; instructions.length &amp;&amp; instructions[j].address === i) {
+                coreData.push(instructions[j++]);
+            } else {
+                coreData.push(Defaults.initialInstruction);
+            }
+        }
+&nbsp;
+        core.executeAt = (task: ITask, address: number) =&gt; {
+            return coreData[address % size];
+        };
+        core.readAt = (task: ITask, address: number) =&gt; {
+            return coreData[address % size];
+        };
+    }
+&nbsp;
+    function buildTask(): ITask {
+&nbsp;
+        return {
+            instructionPointer: 0,
+            warrior: null
+        };
+    }
+&nbsp;
+    function setInstructionPointer(address: number): IExecutionContext {
+&nbsp;
+        var task = buildTask();
+&nbsp;
+        return {
+            task: task,
+            core: core,
+            instruction: core.executeAt(task, address),
+            instructionPointer: address
+        };
+    }
+&nbsp;
+    it("sets the A pointer to equal instruction pointer if the A addressing mode is immediate",() =&gt; {
+&nbsp;
+        prepareCore(5, [
+            DataHelper.buildInstruction(3, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, 5, ModeType.Immediate, 6)
+        ]);
+&nbsp;
+        var context = setInstructionPointer(3);
+&nbsp;
+        var decoder = new Decoder(executive);
+        decoder.decode(context);
+&nbsp;
+        expect(context.aPointer).to.be.equal(3);
+    });
+&nbsp;
+    it("sets the B pointer to equal instruction pointer if the B addressing mode is immediate",() =&gt; {
+&nbsp;
+        prepareCore(5, [
+            DataHelper.buildInstruction(3, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, 5, ModeType.Immediate, 6)
+        ]);
+&nbsp;
+        var context = setInstructionPointer(3);
+&nbsp;
+        var decoder = new Decoder(executive);
+        decoder.decode(context);
+&nbsp;
+        expect(context.bPointer).to.be.equal(3);
+    });
+&nbsp;
+    it("sets the A pointer to the relative position of the A field value if the A addressing mode is direct",() =&gt; {
+&nbsp;
+        prepareCore(5, [
+            DataHelper.buildInstruction(2, OpcodeType.MOV, ModifierType.I, ModeType.Direct, 2, ModeType.Immediate, 0)
+        ]);
+&nbsp;
+        var context = setInstructionPointer(2);
+&nbsp;
+        var decoder = new Decoder(executive);
+        decoder.decode(context);
+&nbsp;
+        expect(context.aPointer).to.be.equal(4);
+    });
+&nbsp;
+    it("sets the B pointer to the relative position of the B field value if the B addressing mode is direct",() =&gt; {
+&nbsp;
+        prepareCore(5, [
+            DataHelper.buildInstruction(1, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, 0, ModeType.Direct, 3)
+        ]);
+&nbsp;
+        var context = setInstructionPointer(1);
+&nbsp;
+        var decoder = new Decoder(executive);
+        decoder.decode(context);
+&nbsp;
+        expect(context.bPointer).to.be.equal(4);
+    });
+&nbsp;
+    it("sets the A pointer to the relative position of the A field value of the instruction pointed to by the current instruction A field \
+        value if the A addressing mode is A Indirect",() =&gt; {
+&nbsp;
+        prepareCore(5, [
+            DataHelper.buildInstruction(2, OpcodeType.MOV, ModifierType.I, ModeType.AIndirect, 2, ModeType.Immediate, 0),
+            DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, -1, ModeType.Immediate, 0),
+        ]);
+&nbsp;
+        var context = setInstructionPointer(2);
+&nbsp;
+        var decoder = new Decoder(executive);
+        decoder.decode(context);
+&nbsp;
+        expect(context.aPointer).to.be.equal(3);
+    });
+&nbsp;
+    it("sets the B pointer to the relative position of the A field value of the instruction pointed to by the current instruction B field \
+        value if the B addressing mode is A Indirect",() =&gt; {
+&nbsp;
+        prepareCore(5, [
+            DataHelper.buildInstruction(2, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, 0, ModeType.AIndirect, 2),
+            DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, -1, ModeType.Immediate, 0),
+        ]);
+&nbsp;
+        var context = setInstructionPointer(2);
+&nbsp;
+        var decoder = new Decoder(executive);
+        decoder.decode(context);
+&nbsp;
+        expect(context.bPointer).to.be.equal(3);
+    });
+&nbsp;
+    it("sets the A pointer to the relative position of the B field value of the instruction pointed to by the current instruction A field \
+        value if the A addressing mode is B Indirect",() =&gt; {
+&nbsp;
+        prepareCore(5, [
+            DataHelper.buildInstruction(2, OpcodeType.MOV, ModifierType.I, ModeType.BIndirect, 2, ModeType.Immediate, 0),
+            DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, 0, ModeType.Immediate, -1),
+        ]);
+&nbsp;
+        var context = setInstructionPointer(2);
+&nbsp;
+        var decoder = new Decoder(executive);
+        decoder.decode(context);
+&nbsp;
+        expect(context.aPointer).to.be.equal(3);
+    });
+&nbsp;
+    it("sets the B pointer to the relative position of the B field value of the instruction pointed to by the current instruction B field \
+        value if the B addressing mode is B Indirect",() =&gt; {
+&nbsp;
+        prepareCore(5, [
+            DataHelper.buildInstruction(2, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, 0, ModeType.BIndirect, 2),
+            DataHelper.buildInstruction(4, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, 0, ModeType.Immediate, -1),
+        ]);
+&nbsp;
+        var context = setInstructionPointer(2);
+&nbsp;
+        var decoder = new Decoder(executive);
+        decoder.decode(context);
+&nbsp;
+        expect(context.bPointer).to.be.equal(3);
+    });
+&nbsp;
+    it("sets the A pointer to the relative position of the pre-deremented A field value of the instruction pointed to by the current \
+        instruction A field value if the A addressing mode is A Pre-Decrement",() =&gt; {
+&nbsp;
+        var expectedInstruction = DataHelper.buildInstruction(
+            4, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, 0, ModeType.Immediate, 1);
+&nbsp;
+        prepareCore(5, [
+            DataHelper.buildInstruction(2, OpcodeType.MOV, ModifierType.I, ModeType.APreDecrement, 2, ModeType.Immediate, 0),
+            expectedInstruction,
+        ]);
+&nbsp;
+        var context = setInstructionPointer(2);
+&nbsp;
+        var decoder = new Decoder(executive);
+        decoder.decode(context);
+&nbsp;
+        expect(context.aPointer).to.be.equal(3);
+        expect(core.setAt).to.have.been.calledWith(sinon.match.any, 4, expectedInstruction);
+        expect(expectedInstruction.aOperand.address).to.be.equal(-1);
+    });
+&nbsp;
+    it("sets the B pointer to the relative position of the pre-deremented A field value of the instruction pointed to by the current \
+        instruction B field value if the B addressing mode is A Pre-Decrement",() =&gt; {
+&nbsp;
+        var expectedInstruction = DataHelper.buildInstruction(
+            4, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, 0, ModeType.Immediate, 1);
+&nbsp;
+        prepareCore(5, [
+            DataHelper.buildInstruction(2, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, 0, ModeType.APreDecrement, 2),
+            expectedInstruction,
+        ]);
+&nbsp;
+        var context = setInstructionPointer(2);
+&nbsp;
+        var decoder = new Decoder(executive);
+        decoder.decode(context);
+&nbsp;
+        expect(context.bPointer).to.be.equal(3);
+        expect(core.setAt).to.have.been.calledWith(sinon.match.any, 4, expectedInstruction);
+        expect(expectedInstruction.aOperand.address).to.be.equal(-1);
+    });
+&nbsp;
+    it("sets the A pointer to the relative position of the pre-deremented B field value of the instruction pointed to by the current \
+        instruction A field value if the A addressing mode is B Pre-Decrement",() =&gt; {
+&nbsp;
+        var expectedInstruction = DataHelper.buildInstruction(
+            4, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, 1, ModeType.Immediate, 0);
+&nbsp;
+        prepareCore(5, [
+            DataHelper.buildInstruction(2, OpcodeType.MOV, ModifierType.I, ModeType.BPreDecrement, 2, ModeType.Immediate, 0),
+            expectedInstruction,
+        ]);
+&nbsp;
+        var context = setInstructionPointer(2);
+&nbsp;
+        var decoder = new Decoder(executive);
+        decoder.decode(context);
+&nbsp;
+        expect(context.aPointer).to.be.equal(3);
+        expect(core.setAt).to.have.been.calledWith(sinon.match.any,4, expectedInstruction);
+        expect(expectedInstruction.bOperand.address).to.be.equal(-1);
+    });
+&nbsp;
+    it("sets the B pointer to the relative position of the pre-deremented B field value of the instruction pointed to by the current \
+        instruction B field value if the B addressing mode is B Pre-Decrement",() =&gt; {
+&nbsp;
+        var expectedInstruction = DataHelper.buildInstruction(
+            4, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, 1, ModeType.Immediate, 0);
+&nbsp;
+        prepareCore(5, [
+            DataHelper.buildInstruction(2, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, 0, ModeType.BPreDecrement, 2),
+            expectedInstruction,
+        ]);
+&nbsp;
+        var context = setInstructionPointer(2);
+&nbsp;
+        var decoder = new Decoder(executive);
+        decoder.decode(context);
+&nbsp;
+        expect(context.bPointer).to.be.equal(3);
+        expect(core.setAt).to.have.been.calledWith(sinon.match.any,4, expectedInstruction);
+        expect(expectedInstruction.bOperand.address).to.be.equal(-1);
+    });
+&nbsp;
+    it("sets the A pointer to the relative position of the post-incremented A field value of the instruction pointed to by the current \
+        instruction A field value if the A addressing mode is A Post-Increment",() =&gt; {
+&nbsp;
+        var expectedInstruction = DataHelper.buildInstruction(
+            4, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, -1, ModeType.Immediate, 1);
+&nbsp;
+        prepareCore(5, [
+            DataHelper.buildInstruction(2, OpcodeType.MOV, ModifierType.I, ModeType.APostIncrement, 2, ModeType.Immediate, 0),
+            expectedInstruction,
+        ]);
+&nbsp;
+        var context = setInstructionPointer(2);
+&nbsp;
+        var decoder = new Decoder(executive);
+        decoder.decode(context);
+&nbsp;
+        expect(context.aPointer).to.be.equal(3);
+        expect(core.setAt).to.have.been.calledWith(sinon.match.any,4, expectedInstruction);
+        expect(expectedInstruction.aOperand.address).to.be.equal(0);
+    });
+&nbsp;
+    it("sets the B pointer to the relative position of the post-incremented A field value of the instruction pointed to by the current \
+        instruction B field value if the B addressing mode is A Post-Increment",() =&gt; {
+&nbsp;
+        var expectedInstruction = DataHelper.buildInstruction(
+            4, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, -1, ModeType.Immediate, 1);
+&nbsp;
+        prepareCore(5, [
+            DataHelper.buildInstruction(2, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, 0, ModeType.APostIncrement, 2),
+            expectedInstruction,
+        ]);
+&nbsp;
+        var context = setInstructionPointer(2);
+&nbsp;
+        var decoder = new Decoder(executive);
+        decoder.decode(context);
+&nbsp;
+        expect(context.bPointer).to.be.equal(3);
+        expect(core.setAt).to.have.been.calledWith(sinon.match.any,4, expectedInstruction);
+        expect(expectedInstruction.aOperand.address).to.be.equal(0);
+    });
+&nbsp;
+    it("sets the A pointer to the relative position of the post-incremented B field value of the instruction pointed to by the current \
+        instruction A field value if the A addressing mode is B Post-Increment",() =&gt; {
+&nbsp;
+        var expectedInstruction = DataHelper.buildInstruction(
+            4, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, 1, ModeType.Immediate, -1);
+&nbsp;
+        prepareCore(5, [
+            DataHelper.buildInstruction(2, OpcodeType.MOV, ModifierType.I, ModeType.BPostIncrement, 2, ModeType.Immediate, 0),
+            expectedInstruction,
+        ]);
+&nbsp;
+        var context = setInstructionPointer(2);
+&nbsp;
+        var decoder = new Decoder(executive);
+        decoder.decode(context);
+&nbsp;
+        expect(context.aPointer).to.be.equal(3);
+        expect(core.setAt).to.have.been.calledWith(sinon.match.any,4, expectedInstruction);
+        expect(expectedInstruction.bOperand.address).to.be.equal(0);
+    });
+&nbsp;
+    it("sets the B pointer to the relative position of the post-incremented B field value of the instruction pointed to by the current \
+        instruction B field value if the B addressing mode is B Post-Increment",() =&gt; {
+&nbsp;
+        var expectedInstruction = DataHelper.buildInstruction(
+            4, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, 1, ModeType.Immediate, -1);
+&nbsp;
+        prepareCore(5, [
+            DataHelper.buildInstruction(2, OpcodeType.MOV, ModifierType.I, ModeType.Immediate, 0, ModeType.BPostIncrement, 2),
+            expectedInstruction,
+        ]);
+&nbsp;
+        var context = setInstructionPointer(2);
+&nbsp;
+        var decoder = new Decoder(executive);
+        decoder.decode(context);
+&nbsp;
+        expect(context.bPointer).to.be.equal(3);
+        expect(core.setAt).to.have.been.calledWith(sinon.match.any,4, expectedInstruction);
+        expect(expectedInstruction.bOperand.address).to.be.equal(0);
+    });
+&nbsp;
+    it("returns the command from the command table which corresponds with the combination of the current instruction's \
+        opcode and modifier",() =&gt; {
+&nbsp;
+        prepareCore(5, [
+            DataHelper.buildInstruction(3, OpcodeType.MOV, ModifierType.BA, ModeType.Immediate, 5, ModeType.Immediate, 6)
+        ]);
+&nbsp;
+        var context = setInstructionPointer(3);
+&nbsp;
+        var decoder = new Decoder(executive);
+        decoder.decode(context);
+&nbsp;
+        // OpcodeType.MOV = 1
+        // ModifierType.Count = 7
+        // ModifierType.BA = 3
+        // 1*7 + 3 = 10
+        expect(context.command).to.be.equal(executive.commandTable[10]);
+    });
+});</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Dec 02 2017 07:52:04 GMT+0000 (GMT Standard Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

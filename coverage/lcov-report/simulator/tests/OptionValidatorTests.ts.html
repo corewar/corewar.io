@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for simulator/tests/OptionValidatorTests.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">simulator/tests</a> OptionValidatorTests.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>67/67</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>17/17</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>67/67</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as chai from "chai";
+import * as sinon from "sinon";
+import * as sinonChai from "sinon-chai";
+var expect = chai.expect;
+chai.use(sinonChai);
+&nbsp;
+import Defaults from "../Defaults";
+import { IOptions } from "../interface/IOptions";
+import { OptionValidator } from "../OptionValidator";
+import * as _ from "underscore";
+&nbsp;
+describe("OptionValidator", () =&gt; {
+&nbsp;
+    var optionValidator;
+    var options;
+&nbsp;
+    beforeEach(() =&gt; {
+&nbsp;
+        optionValidator = new OptionValidator();
+        options = _.clone(Defaults);
+        options.initialInstruction = _.clone(Defaults.initialInstruction);
+        options.initialInstruction.aOperand = _.clone(Defaults.initialInstruction.aOperand);
+        options.initialInstruction.bOperand = _.clone(Defaults.initialInstruction.bOperand);
+    });
+&nbsp;
+    const validateAndExpect = (options: IOptions, warriorCount: number, expectedError: string) =&gt; {
+&nbsp;
+        let actual = null;
+&nbsp;
+        try {
+            optionValidator.validate(options, warriorCount);
+        } catch (e) {
+            actual = e;
+        }
+&nbsp;
+        expect(actual).not.to.be.null;
+        expect(actual.message).to.be.equal(expectedError);
+    }
+&nbsp;
+    it("Throws if coresize is less than zero", () =&gt; {
+&nbsp;
+        options.coresize = -1;
+&nbsp;
+        validateAndExpect(options, 1, OptionValidator.CoresizeNegativeMessage);
+    });
+&nbsp;
+    it("Throws if minSeparation is less than zero", () =&gt; {
+&nbsp;
+        options.minSeparation = -1;
+&nbsp;
+        validateAndExpect(options, 1, OptionValidator.MinSeparationNegativeMessage);
+    });
+&nbsp;
+    it("Throws if instructionLimit is less than zero", () =&gt; {
+&nbsp;
+        options.instructionLimit = -1;
+&nbsp;
+        validateAndExpect(options, 1, OptionValidator.InstructionLimitNegativeMessage);
+    });
+&nbsp;
+    it("Does not throw for valid coresize, instructionLimit and minSeparation", () =&gt; {
+&nbsp;
+        options.coresize = 6;
+        options.minSeparation = 1;
+        options.instructionLimit = 2;
+&nbsp;
+        optionValidator.validate(options, 2);
+    });
+&nbsp;
+    it("Throws if coresize is too small to contain all warriors", () =&gt; {
+&nbsp;
+        options.coresize = 5;
+        options.minSeparation = 1;
+        options.instructionLimit = 2;
+&nbsp;
+        validateAndExpect(options, 2, OptionValidator.CoreTooSmallForWarriorsMessage)
+    });
+&nbsp;
+    it("Throws if cyclesBeforeTie is less than one", () =&gt; {
+&nbsp;
+        options.cyclesBeforeTie = 0;
+&nbsp;
+        validateAndExpect(options, 1, OptionValidator.CyclesBeforeTieNegativeMessage);
+    });
+&nbsp;
+    it("Throws if maxTasks is less than one", () =&gt; {
+&nbsp;
+        options.maxTasks = 0;
+&nbsp;
+        validateAndExpect(options, 1, OptionValidator.MaxTasksNegativeMessage);
+    });
+&nbsp;
+    it("Throws if initial instruction is missing", () =&gt; {
+&nbsp;
+        options.initialInstruction = null;
+&nbsp;
+        validateAndExpect(options, 1, OptionValidator.NoInitialInstructionMessage);
+    });
+&nbsp;
+    it("Throws if initial instruction opcode is invalid", () =&gt; {
+&nbsp;
+        options.initialInstruction.opcode = -1;
+&nbsp;
+        validateAndExpect(options, 1, OptionValidator.InitialInstructionOpcodeMessage);
+    });
+&nbsp;
+    it("Throws if initial instruction modifier is invalid", () =&gt; {
+&nbsp;
+        options.initialInstruction.modifier = -1;
+&nbsp;
+        validateAndExpect(options, 1, OptionValidator.InitialInstructionModifierMessage);
+    });
+&nbsp;
+    it("Throws if initial instruction a operand is missing", () =&gt; {
+&nbsp;
+        options.initialInstruction.aOperand = null;
+&nbsp;
+        validateAndExpect(options, 1, OptionValidator.InitialInstructionAOperandMessage);
+    });
+&nbsp;
+    it("Throws if initial instruction a operand mode is invalid", () =&gt; {
+&nbsp;
+        options.initialInstruction.aOperand.mode = -1;
+&nbsp;
+        validateAndExpect(options, 1, OptionValidator.InitialInstructionAOperandModeMessage);
+    });
+&nbsp;
+    it("Throws if initial instruction b operand is missing", () =&gt; {
+&nbsp;
+        options.initialInstruction.bOperand = null;
+&nbsp;
+        validateAndExpect(options, 1, OptionValidator.InitialInstructionBOperandMessage);
+    });
+&nbsp;
+    it("Throws if initial instruction b operand mode is invalid", () =&gt; {
+&nbsp;
+        options.initialInstruction.bOperand.mode = -1;
+&nbsp;
+        validateAndExpect(options, 1, OptionValidator.InitialInstructionBOperandModeMessage);
+    });
+});</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Dec 02 2017 07:52:04 GMT+0000 (GMT Standard Time)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>
