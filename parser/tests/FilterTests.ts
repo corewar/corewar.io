@@ -55,6 +55,14 @@ describe("Filter", () => {
                 category: TokenCategory.Unknown,
                 position: { line: 1, char: 1 },
                 lexeme: "."
+            }, {
+                category: TokenCategory.EOL,
+                position: { line: 1, char: 1 },
+                lexeme: "\n"
+            }, {
+                category: TokenCategory.Preprocessor,
+                position: { line: 1, char: 1 },
+                lexeme: "FOR"
             }
         ];
 
@@ -63,7 +71,7 @@ describe("Filter", () => {
         var pass = new Filter();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).to.be.equal(10);
+        expect(actual.tokens.length).to.be.equal(12);
         expect(actual.messages.length).to.be.equal(0);
 
         for (var i = 0; i < tokens.length; i++) {
