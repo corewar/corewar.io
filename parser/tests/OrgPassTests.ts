@@ -11,9 +11,9 @@ import * as _ from "underscore";
 
 "use strict";
 
-describe("OrgPass",() => {
+describe("OrgPass", () => {
 
-    it("Makes the ORG instruction the first instruction in the output",() => {
+    it("Makes the ORG instruction the first instruction in the output", () => {
 
         var tokens = TestHelper
             .comment(1, ";redcode")
@@ -46,7 +46,7 @@ describe("OrgPass",() => {
         expect(actual.tokens[10].lexeme).to.be.equal("\n");
     });
 
-    it("Inserts ORG 0 if no ORG statement found",() => {
+    it("Inserts ORG 0 if no ORG statement found", () => {
 
         var tokens = TestHelper
             .instruction(1, "", "MOV", "", "", "1", ",", "", "2", "")
@@ -80,7 +80,7 @@ describe("OrgPass",() => {
         expect(actual.tokens[14].lexeme).to.be.equal("\n");
     });
 
-    it("Uses END address for ORG statement",() => {
+    it("Uses END address for ORG statement", () => {
 
         var tokens = TestHelper.instruction(1, "", "MOV", "", "", "0", ",", "", "1", "")
             .concat(TestHelper.endStatement(2, "2"));
@@ -105,7 +105,7 @@ describe("OrgPass",() => {
         expect(actual.tokens[7].lexeme).to.be.equal("\n");
     });
 
-    it("Raises a warning if multiple ORG instructions are found and uses latest definition",() => {
+    it("Raises a warning if multiple ORG instructions are found and uses latest definition", () => {
 
         var tokens = TestHelper.org(1, "1")
             .concat(TestHelper.org(2, "2"))
@@ -134,7 +134,7 @@ describe("OrgPass",() => {
         expect(actual.tokens[2].lexeme).to.be.equal("\n");
     });
 
-    it("Raises a warning if both an ORG and END ### instruction are declared and uses the ORG definition",() => {
+    it("Raises a warning if both an ORG and END ### instruction are declared and uses the ORG definition", () => {
 
         var tokens = TestHelper.org(1, "1")
             .concat(TestHelper.endStatement(2, "2"));
@@ -158,7 +158,7 @@ describe("OrgPass",() => {
         expect(actual.tokens[2].lexeme).to.be.equal("\n");
     });
 
-    it("Raises a syntax error if ORG statement does not contain an address",() => {
+    it("Raises a syntax error if ORG statement does not contain an address", () => {
 
         var tokens: IToken[] = [
             {
@@ -185,7 +185,7 @@ describe("OrgPass",() => {
         expect(actual.messages[0].position).to.deep.equal({ line: 4, char: 6 });
     });
 
-    it("Raises a syntax error if ORG statement contains additional tokens before the end of line",() => {
+    it("Raises a syntax error if ORG statement contains additional tokens before the end of line", () => {
 
         var tokens: IToken[] = [
             {
@@ -220,7 +220,7 @@ describe("OrgPass",() => {
         expect(actual.messages[0].position).to.deep.equal({ line: 4, char: 8 });
     });
 
-    it("Raises a syntax error if END statement contains additional tokens before the end of line",() => {
+    it("Raises a syntax error if END statement contains additional tokens before the end of line", () => {
 
         var tokens: IToken[] = [
             {
@@ -247,7 +247,7 @@ describe("OrgPass",() => {
         expect(actual.messages[0].position).to.deep.equal({ line: 4, char: 8 });
     });
 
-    it("Uses start label as default END address under ICWS'86 standard",() => {
+    it("Uses start label as default END address under ICWS'86 standard", () => {
 
         var tokens = TestHelper.instruction(1, "", "MOV", "", "", "0", ",", "", "1", "")
             .concat(TestHelper.instruction(2, "", "MOV", "", "", "0", ",", "", "1", ""))
@@ -263,5 +263,26 @@ describe("OrgPass",() => {
 
         expect(actual.tokens[0].lexeme).to.be.equal("ORG");
         expect(actual.tokens[1].lexeme).to.be.equal("1");
+    });
+
+    it("Ignores lines which do not begin with ORG or END", () => {
+
+        var tokens = TestHelper.instruction(1, "", "MOV", "", "", "0", ",", "", "1", "")
+            .concat(TestHelper.instruction(2, "", "MOV", "", "", "0", ",", "", "1", ""));
+
+        var context = new Context();
+        context.tokens = tokens.slice();
+
+        context.labels["start"] = 1;
+
+        var pass = new OrgPass();
+        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions));
+
+        const orgInstructionLength = 3;
+
+        expect(actual.tokens.length).to.be.equal(tokens.length + orgInstructionLength);
+        for (var i = 0; i < tokens.length; i++) {
+            expect(actual.tokens[i + orgInstructionLength].lexeme).to.be.equal(tokens[i].lexeme);
+        }
     });
 });
