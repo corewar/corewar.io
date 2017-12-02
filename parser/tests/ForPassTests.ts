@@ -148,4 +148,69 @@ describe("ForPass", () => {
 
         expect(actual.messages.length).to.be.equal(0);
     });
+
+    it("Allows labels to precede the FOR command", () => {
+
+        var instruction = TestHelper.instruction(2, "label", "MOV", ".AB", "#", "0", ",", "$", "1", "; comment");
+
+        var expression = new Expression();
+        sinon.stub(expression, "parse").returns(3);
+
+        var tokens: IToken[] = TestHelper.forStatement(1, instruction);
+        tokens.unshift({
+            position: {
+                line: 0,
+                char: 0
+            },
+            lexeme: "LABEL1",
+            category: TokenCategory.Label
+        });
+
+        var context = new Context();
+        context.tokens = tokens.slice();
+
+        var pass = new ForPass(expression);
+        var actual = pass.process(context, Parser.DefaultOptions);
+
+        expect(actual.tokens.length).to.be.equal(instruction.length * 3);
+
+        for (var i = 0; i < instruction.length * 3; i++) {
+            expect(actual.tokens[i].lexeme).to.be.equal(instruction[i % instruction.length].lexeme);
+        }
+    });
+
+    it("Ignores labels followed by preprocessor commands other than FOR", () => {
+
+        var tokens = [
+            {
+                category: TokenCategory.Label,
+                lexeme: "SomeLabel",
+                position: { line: 0, char: 0 }
+            },
+            {
+                category: TokenCategory.Preprocessor,
+                lexeme: "BUM",
+                position: { line: 0, char: 1 }
+            }, {
+                category: TokenCategory.EOL,
+                lexeme: "\n",
+                position: { line: 0, char: 3 }
+            }
+        ];
+
+        var expression = new Expression();
+        sinon.stub(expression, "parse").returns(3);
+
+        var context = new Context();
+        context.tokens = tokens.slice();
+
+        var pass = new ForPass(expression);
+        var actual = pass.process(context, Parser.DefaultOptions);
+
+        expect(actual.tokens.length).to.be.equal(tokens.length);
+
+        for (var i = 0; i < tokens.length; i++) {
+            expect(actual.tokens[i].lexeme).to.be.equal(tokens[i].lexeme);
+        }
+    });
 });
