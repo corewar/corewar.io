@@ -102,6 +102,7 @@ class Api {
 
         var options = _.defaults({
             coresize: opts.coresize,
+            minSeparation: opts.minSeparation,
             instructionLimit: opts.instructionLimit,
             standard: opts.standard
         }, Defaults);

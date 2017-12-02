@@ -8,7 +8,7 @@ export interface IOptions {
     instructionLimit?: number;
     maxTasks?: number;
     minSeparation?: number;
-    standard: number;
+    standard?: number;
     // TODO readDistance?: number;
     // TODO separation?: number;
     // TODO writeDistance?: number;
