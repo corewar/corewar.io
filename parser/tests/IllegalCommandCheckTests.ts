@@ -9,9 +9,9 @@ import { Standard } from "../interface/IParseOptions";
 import * as _ from "underscore";
 "use strict";
 
-describe("IllegalCommandCheck",() => {
+describe("IllegalCommandCheck", () => {
 
-    it("Does not raise errors for legal addressing modes under the ICWS'88 standard",() => {
+    it("Does not raise errors for legal addressing modes under the ICWS'88 standard", () => {
 
         var tokens = TestHelper.instruction(1, "", "MOV", ".A", "#", "0", ",", "$", "0", "")
             .concat(TestHelper.instruction(2, "", "MOV", ".A", "#", "0", ",", "@", "0", ""))
@@ -45,7 +45,7 @@ describe("IllegalCommandCheck",() => {
         expect(actual.messages.length).to.be.equal(0);
     });
 
-    it("Raises an error for each illegal addressing mode under the ICWS'88 standard",() => {
+    it("Raises an error for each illegal addressing mode under the ICWS'88 standard", () => {
 
         var tokens = TestHelper.instruction(1, "", "MOV", ".A", "#", "0", ",", "#", "0", "")
             .concat(TestHelper.instruction(1, "", "SLT", ".A", "$", "0", ",", "#", "0", ""))
@@ -75,5 +75,19 @@ describe("IllegalCommandCheck",() => {
         for (var i = 0; i < actual.messages.length; i++) {
             expect(actual.messages[i].position).to.deep.equal(tokens[i * 8].position);
         }
+    });
+
+    it("Ignores lines which do not begin with an opcode", () => {
+
+        var tokens = TestHelper.instruction(1, "Label1", "MOV", ".A", "#", "0", ",", "$", "0", "");
+
+        var context = new Context();
+        context.tokens = tokens.slice();
+
+        var pass = new IllegalCommandCheck();
+        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions));
+
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.tokens.length).to.be.equal(tokens.length);
     });
 });
