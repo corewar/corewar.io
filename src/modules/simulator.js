@@ -173,13 +173,14 @@ export const init = (standardId, parseResults) => {
       type: INIT_REQUESTED
     });
 
-    const simulatorState = corewar.initialiseSimulator({
-      standardId,
-      parseResults,
+    const options = {
+      standard: standardId,
       coresize: cs,
       minSeparation: 1,
-      messageProvider: PubSub
-     });
+      instructionLimit: 10,
+    };
+
+    const simulatorState = corewar.initialiseSimulator(options, parseResults, PubSub);
 
     dispatch({
       type: INIT,
