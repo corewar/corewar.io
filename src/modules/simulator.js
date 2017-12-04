@@ -1,5 +1,6 @@
 import { corewar } from "corewar";
 import * as PubSub from 'pubsub-js';
+import { setTimeout, clearInterval } from "timers";
 
 export const STEP = 'simulator/STEP'
 export const INIT = 'simulator/INIT'
@@ -10,6 +11,10 @@ export const RUN_PROGRESS = 'simulator/RUN_PROGRESS'
 export const CORE_ACCESS = 'simulator/CORE_ACCESS'
 export const RENDER_CORE = 'simulator/RENDER_CORE'
 
+export const SET_INSTRUCTION_LIMIT = 'simulator/SET_INSTRUCTION_LIMIT'
+export const SET_CORESIZE = 'simulator/SET_CORESIZE'
+export const SET_MIN_SEPARATION = 'simulator/SET_MIN_SEPARATION'
+
 // state
 const initialState = {
   core: [],
@@ -19,7 +24,10 @@ const initialState = {
   currentExecutionAddress: null,
   isRunning: false,
   runProgress: 0,
-  result: {}
+  result: {},
+  coreSize: 8000,
+  minSeparation: 1,
+  instructionLimit: 1
 }
 
 // reducer
@@ -51,21 +59,38 @@ export default (state = initialState, action) => {
     case RUN_PROGRESS:
       return {
         ...state,
-        runProgress: action.data
+        runProgress: action.data.runProgress
       }
 
     case RUN_ENDED:
       return {
         ...state,
         isRunning: false,
-        result: console.log(action.result)
+        result: console.log('END', action.result)
       }
 
     case CORE_ACCESS:
       return {
         ...state,
-        crap: console.log(action.data),
         coreAccess: updateItem(action.data.address, state.coreAccess, action.data)
+      }
+
+    case SET_CORESIZE:
+      return {
+        ...state,
+        coreSize: action.value
+      }
+
+    case SET_MIN_SEPARATION:
+      return {
+        ...state,
+        minSeparation: action.value
+      }
+
+    case SET_INSTRUCTION_LIMIT:
+      return {
+        ...state,
+        instructionLimit: action.value
       }
 
     default:
@@ -85,31 +110,65 @@ const updateTask = (index, array, item, currentExecutionAddress) => {
   return newArray;
 }
 
-const accessTypeToUi = (accessType) => {
-  switch(accessType) {
+export const setCoresize = (val) => {
+  return dispatch => {
+    dispatch({
+      type: SET_CORESIZE,
+      value: val
+    })
+  }
+}
+
+export const setMinSeparation = (val) => {
+  return dispatch => {
+    dispatch({
+      type: SET_MIN_SEPARATION,
+      value: val
+    })
+  }
+}
+
+export const setInstructionLimit = (val) => {
+  return dispatch => {
+    dispatch({
+      type: SET_INSTRUCTION_LIMIT,
+      value: val
+    })
+  }
+}
+
+const accessTypeToUi = (coreAccess) => {
+
+  var warriorId = coreAccess.task ? coreAccess.task.warrior.id : 0;
+
+  switch(coreAccess.accessType) {
     case 0:
      return {
        name: '¤',
-       css: 'read'
+       css: 'read',
+       colour: getColour(warriorId, coreAccess.address, 0)
      }
     case 1:
      return {
        name: '×',
-       css: 'write'
+       css: 'write',
+       colour: getColour(warriorId, coreAccess.address, 0)
      }
     default:
      return {
-       name: '&#9785;'
+       name: '&#9785;',
+       colour: getColour(warriorId, coreAccess.address, 0)
      }
   }
 }
 
 const coreAccessToCell = (coreAccess) => {
-  const ui = accessTypeToUi(coreAccess.accessType);
+  const ui = accessTypeToUi(coreAccess);
   return {
     address: coreAccess.address,
     label: ui.name,
-    colour: ui.css
+    css: ui.css,
+    colour: ui.colour
   };
 };
 
@@ -117,8 +176,8 @@ const taskToCell = (task, currentExecutionAddress) => {
   return {
     address: task.address,
     label: '.',
-    colour: getColour(task.warriorNumber, task.address, currentExecutionAddress),
-    warriorNumber: task.warriorNumber
+    colour: getColour(task.warriorId, task.address, currentExecutionAddress),
+    warriorId: task.warriorId
   }
 };
 
@@ -129,15 +188,17 @@ const defaultCell = {
 };
 
 const stateToTasks = (state) => {
-  return state.warriors.map((w, i) =>
+
+  const currentExecutionAddress = getCurrentExecutionAddress(state);
+
+  return state.warriors.map((w) =>
       w.tasks.map(t => {
         return {
           address: t.instructionPointer,
-          warriorNumber: i,
-          colour: ''
+          warriorId: w.id,
+          colour: getColour(w.id, t.instructionPointer, currentExecutionAddress)
         }
       })).reduce((a, c) => a.concat(c));
-
 };
 
 const mapCoreToUi = (instructions) => {
@@ -152,12 +213,18 @@ const mapCoreToUi = (instructions) => {
 };
 
 // actions
-export const init = (standardId, parseResults) => {
+export const init = (standardId, parseResults, coreSize, minSeparation, instructionLimit) => {
 
-  const cs = 64;
-  const coreAccess = new Array(cs);
+  const options = {
+    standard: standardId,
+    coresize: parseInt(coreSize, 10),
+    minSeparation: parseInt(minSeparation, 10),
+    instructionLimit: parseInt(instructionLimit, 10),
+  };
+
+  const coreAccess = new Array(options.coreSize);
   coreAccess.fill(defaultCell, 0, coreAccess.length)
-  const taskExecution = new Array(cs);
+  const taskExecution = new Array(options.coreSize);
   taskExecution.fill(defaultCell, 0, taskExecution.length)
 
   return dispatch => {
@@ -173,12 +240,7 @@ export const init = (standardId, parseResults) => {
       type: INIT_REQUESTED
     });
 
-    const options = {
-      standard: standardId,
-      coresize: cs,
-      minSeparation: 1,
-      instructionLimit: 1,
-    };
+    console.log('init', options);
 
     const simulatorState = corewar.initialiseSimulator(options, parseResults, PubSub);
 
@@ -189,15 +251,16 @@ export const init = (standardId, parseResults) => {
       taskExecution: taskExecution
     });
 
-    const tasks = stateToTasks(simulatorState);
+    // console.log(simulatorState);
+    // const currentExecutionAddress = getCurrentExecutionAddress(simulatorState);
 
-    const currentExecutionAddress = getCurrentExecutionAddress(simulatorState);
+    // const tasks = stateToTasks(simulatorState);
 
-      dispatch({
-        type: STEP,
-        taskExecution: tasks,
-        currentExecutionAddress: currentExecutionAddress
-      })
+    // dispatch({
+    //   type: STEP,
+    //   taskExecution: tasks,
+    //   currentExecutionAddress: currentExecutionAddress
+    // })
 
   }
 }
@@ -217,14 +280,49 @@ export const run = () => {
       })
     });
 
-    corewar.simulator.run().then((result) => {
-      dispatch({
-        type: RUN_ENDED,
-        result
-      })
-    });
+  //   // function step(timestamp) {
+  //   //   if (!start) start = timestamp;
+  //   //   var progress = timestamp - start;
+  //   //   element.style.left = Math.min(progress / 10, 200) + 'px';
+  //   //   if (progress < 2000) {
+  //   //     window.requestAnimationFrame(step);
+  //   //   }
+  //   // }
+
+  //   // corewar.simulator.run().then((result) => {
+  //   //   dispatch({
+  //   //     type: RUN_ENDED,
+  //   //     result
+  //   //   })
+  //   // });
+
+    var x = 0;
+
+    var token = setInterval(function() {
+
+      for(var i = 0; i < 100; i++) {
+        step()
+      }
+
+      x = x + 100;
+
+      if(x === 80000) {
+        clearInterval(token);
+        console.log('done');
+      }
+
+    }, 100)
 
   }
+
+  //     //for(var i = 0; i < 5; i++) {
+  //         step();
+  //     //}
+
+  // //for(var i = 0; i < 80000; i++) {
+
+  //   window.requestAnimationFrame(run.bind(this))
+  //}
 }
 
 export const step = () => {
@@ -232,6 +330,8 @@ export const step = () => {
   const state = corewar.simulator.getState();
 
   const tasks = stateToTasks(state);
+
+  console.log(tasks);
 
   const currentExecutionAddress = getCurrentExecutionAddress(state);
 
@@ -263,22 +363,13 @@ const getCurrentExecutionAddress = (state) => {
   return currentWarrior.tasks[currentWarrior.taskIndex].instructionPointer;
 }
 
-// const colourExecutionState = (state, taskExecution, currentExecutionAddress) => {
-//     taskExecution.forEach((coreAddress) => {
-//       coreAddress.colour = getColour(coreAddress, currentExecutionAddress);
-//     });
-
-//     return taskExecution;
-//   };
-
-
-const getColour = (warriorNumber, coreAddress, currentExecution) => {
+const getColour = (warriorId, coreAddress, currentExecution) => {
 
   if(coreAddress === currentExecution) {
     return 'white';
   }
 
-  switch (warriorNumber) {
+  switch (warriorId) {
     case 0:
       return 'red';
     case 1:
