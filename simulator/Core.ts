@@ -67,6 +67,8 @@ export class Core implements ICore {
 
         address = this.wrap(address);
 
+        this.triggerEvent(task, address, CoreAccessType.execute);
+
         return this.instructions[address];
     }
 

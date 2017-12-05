@@ -15,7 +15,7 @@ import * as _ from "underscore";
 
 "use strict";
 
-describe("Core",() => {
+describe("Core", () => {
 
     function buildInstruction(): IInstruction {
         return {
@@ -48,7 +48,7 @@ describe("Core",() => {
         };
     }
 
-    it("Initialises core to the required size and provides accessor methods",() => {
+    it("Initialises core to the required size and provides accessor methods", () => {
 
         var i: number;
         var instruction: IInstruction;
@@ -69,7 +69,7 @@ describe("Core",() => {
         }
     });
 
-    it("getAt/setAt wraps addresses using mod maths",() => {
+    it("getAt/setAt wraps addresses using mod maths", () => {
 
         var i: number;
         var instruction: IInstruction;
@@ -90,7 +90,7 @@ describe("Core",() => {
         }
     });
 
-    it("getAt/setAt wraps negative addresses using mod maths",() => {
+    it("getAt/setAt wraps negative addresses using mod maths", () => {
 
         var i: number;
         var instruction: IInstruction;
@@ -111,7 +111,7 @@ describe("Core",() => {
         }
     });
 
-    it(".wrap wraps addresses using mod maths",() => {
+    it(".wrap wraps addresses using mod maths", () => {
 
         var core = new Core();
         core.initialise({ coresize: 4, initialInstruction: Defaults.initialInstruction });
@@ -126,7 +126,7 @@ describe("Core",() => {
         expect(core.wrap(7)).to.be.equal(3);
     });
 
-    it(".wrap wraps negative addresses using mod maths",() => {
+    it(".wrap wraps negative addresses using mod maths", () => {
 
         var core = new Core();
         core.initialise({ coresize: 4, initialInstruction: Defaults.initialInstruction });
@@ -137,7 +137,7 @@ describe("Core",() => {
         expect(core.wrap(-1)).to.be.equal(3);
     });
 
-    it("Initialises core using the specified default instruction",() => {
+    it("Initialises core using the specified default instruction", () => {
 
         var defaultInstruction = {
             address: 0,
@@ -169,7 +169,7 @@ describe("Core",() => {
         }
     });
 
-    it("Assigns sequential address values to default core instructions",() => {
+    it("Assigns sequential address values to default core instructions", () => {
 
         var core = new Core();
         core.initialise({ coresize: 5, initialInstruction: Defaults.initialInstruction });
@@ -182,7 +182,7 @@ describe("Core",() => {
         }
     });
 
-    it("Triggers a read core access event for the specified Task when getAt is called",() => {
+    it("Triggers a read core access event for the specified Task when getAt is called", () => {
 
         var task = buildTask();
         var handler = sinon.stub();
@@ -202,7 +202,7 @@ describe("Core",() => {
         expect(eventArg.task).to.be.equal(task);
     });
 
-    it("Triggers a write core access event for the specified Task when setAt is called",() => {
+    it("Triggers a write core access event for the specified Task when setAt is called", () => {
 
         var task = buildTask();
         var handler = sinon.stub();
@@ -222,7 +222,7 @@ describe("Core",() => {
         expect(eventArg.task).to.be.equal(task);
     });
 
-    it("Triggers an execute core access event for the specified Task when executeAt is called",() => {
+    it("Triggers an execute core access event for the specified Task when executeAt is called", () => {
 
         var task = buildTask();
         var handler = sinon.stub();
@@ -233,7 +233,13 @@ describe("Core",() => {
 
         core.executeAt(task, 2);
 
-        expect(handler).not.to.have.been.called;
+        expect(handler).to.have.been.called;
+
+        var eventArg = <ICoreAccessEventArgs>_(handler.lastCall.args).first();
+
+        expect(eventArg.accessType).to.be.equal(CoreAccessType.execute);
+        expect(eventArg.address).to.be.equal(2);
+        expect(eventArg.task).to.be.equal(task);
     });
 
     it(".getSize returns the size of the core", () => {
