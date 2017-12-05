@@ -11,6 +11,7 @@ import {
   setInstructionLimit
 } from '../../modules/simulator'
 import Core from './core';
+import CanvasCore from './canvasCore';
 
 const Simulator = props => {
   //console.log(props);
@@ -32,9 +33,10 @@ const Simulator = props => {
     </p>
     <div>
       <textarea value={props.redcode} readOnly="readOnly" />
+      <CanvasCore width={400} height={400} coreSize={props.coreSize} data={props.coreAccess}/>
       {/* <Core type='core' data={props.core} /> */}
-      <Core type='coreAccess' data={props.coreAccess} />
-      <Core type='tasks' data={props.taskExecution} />
+      {/* <Core type='coreAccess' data={props.coreAccess} />
+      <Core type='tasks' data={props.taskExecution} /> */}
     </div>
   </div>
 }
