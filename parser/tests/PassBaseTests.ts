@@ -10,20 +10,12 @@ describe("PassBase", () => {
 
     it("Should throw an error when processLine is called directly on this abstract class", () => {
 
-        const options = {};
-        const context = new Context();
-        context.tokens = [{
-            category: TokenCategory.Preprocessor,
-            lexeme: "FOR",
-            position: { line: 1, char: 1 }
-        }];
-
         const passBase = new PassBase();
 
         let actual: Error = null;
 
         try {
-            passBase.process(context, options);
+            passBase.processLine();
         } catch (e) {
             actual = e;
         }
