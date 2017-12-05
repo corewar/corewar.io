@@ -1,11 +1,11 @@
 .coreAccess .cell {
-  font-size: 2em;
+  font-size: 0.3em;
 }
 
 .cell {
   display: inline-block;
-  width: 49px;
-  height: 49px;
+  width: 4px;
+  height: 4px;
   border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   text-align: center;

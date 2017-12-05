@@ -1,20 +1,23 @@
-import React from 'react'
-import { corewar } from 'corewar';
+import React, { Component } from 'react'
+import './cell.css'
 
-import './cell.css';
+class Cell extends Component {
 
-const Cell = props => {
+  shouldComponentUpdate(nextProps) {
+    return (nextProps.data.colour !== this.props.data.colour || nextProps.data.label !== this.props.data.label);
+  }
 
-  let css = `cell-${props.data ? props.data.colour : 'default'}`;
-  let label = props.data ? props.data.label : '';
-  let icon = props.data ? props.data.icon : '';
-  let address = props.data ? props.data.address : '';
+  render() {
+    const { data } = this.props;
+    let css = `cell-${data ? data.colour : 'default'}`;
+    let label = data ? data.label : '';
 
-  return <div className={`cell`}>
-    <span className={`${css}`}>
-      {label ? label : icon}
-    </span>
-  </div>
+    return <div className={`cell`}>
+      <span className={`${css}`}>
+        {label}
+      </span>
+    </div>
+  }
 }
 
 export default Cell;

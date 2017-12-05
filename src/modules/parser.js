@@ -69,6 +69,7 @@ export const save = () => {
 export const parse = (redcode) => {
 
   let result = corewar.parser.parse(redcode);
+  console.log(result);
   const warrior = corewar.serialiser.serialise(result.tokens);
   result.warrior = warrior;
 
