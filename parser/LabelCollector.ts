@@ -31,7 +31,7 @@ export class LabelCollector extends PassBase {
         }
     }
 
-    protected processLine() {
+    public processLine() {
 
         var next = this.stream.peek();
 

@@ -6,7 +6,7 @@ import { PassBase } from "./PassBase";
 export class IllegalCommandCheck extends PassBase {
 
 
-    protected processLine() {
+    public processLine() {
 
         if (this.stream.peek().category === TokenCategory.Opcode) {
             this.checkLine();

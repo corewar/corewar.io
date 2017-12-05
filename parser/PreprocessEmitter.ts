@@ -9,7 +9,7 @@ export class PreprocessEmitter extends PassBase {
     /// Perform preprocessor substitutions.
     /// Replace EQU defined labels with corresponding expression
     /// </summary>
-    protected processLine() {
+    public processLine() {
 
         // Perform preprocessor substitution
         // Insert EQU expressions

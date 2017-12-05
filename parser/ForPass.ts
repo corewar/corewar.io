@@ -16,7 +16,7 @@ export class ForPass extends PassBase {
     /// Records EQU substitutions and removes statements from token stream
     /// Performs a duplicate label check
     /// </summary>
-    protected processLine() {
+    public processLine() {
 
         // Record EQU label tokens
         // Remove EQU token labels from token stream

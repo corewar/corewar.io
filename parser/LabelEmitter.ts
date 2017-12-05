@@ -27,7 +27,7 @@ export class LabelEmitter extends PassBase {
         }
     }
 
-    protected processLine() {
+    public processLine() {
 
         // Pass 3
         // Replace labels with numbers

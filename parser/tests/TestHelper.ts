@@ -135,7 +135,7 @@ export class TestHelper {
         ];
     }
 
-    public static endStatement(line: number, label: string): IToken[] {
+    public static endStatement(line: number, label: string, comment?: string): IToken[] {
 
         var result: IToken[] = [];
 
@@ -154,6 +154,14 @@ export class TestHelper {
                 lexeme: label,
                 position: { line: line, char: 1 }
             });
+        }
+
+        if (comment) {
+            result.push({
+                category: TokenCategory.Comment,
+                lexeme: comment,
+                position: { line: line, char: 1 }
+            })
         }
 
         result.push({
@@ -194,7 +202,7 @@ export class TestHelper {
         return result;
     }
 
-    public static org(line: number, address: string): IToken[]{
+    public static org(line: number, address: string): IToken[] {
 
         var category = TestHelper.getCategory(address);
 
@@ -233,11 +241,11 @@ export class TestHelper {
             {
                 category: TokenCategory.Preprocessor,
                 lexeme: "ROF",
-                position: { line: line+2, char: 1 }
+                position: { line: line + 2, char: 1 }
             }, {
                 category: TokenCategory.EOL,
                 lexeme: "\n",
-                position: { line: line+2, char: 3 }
+                position: { line: line + 2, char: 3 }
             }
         ];
 

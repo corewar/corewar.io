@@ -31,7 +31,7 @@ export class OrgPass extends PassBase {
         return result;
     }
 
-    protected processLine() {
+    public processLine() {
 
         var next = this.stream.peek();
 

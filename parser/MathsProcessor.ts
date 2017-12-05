@@ -12,7 +12,7 @@ export class MathsProcessor extends PassBase {
         this.expression = expression;
     }
 
-    protected processLine() {
+    public processLine() {
 
         // Maths Processor
         // Locate and resolve mathematical expressions to resulting address

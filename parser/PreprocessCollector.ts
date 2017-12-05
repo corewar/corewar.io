@@ -25,7 +25,7 @@ export class PreprocessCollector extends PassBase {
         return super.process(context, options);
     }
 
-    protected processLine() {
+    public processLine() {
 
         while (!this.stream.eof()) {
 

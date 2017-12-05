@@ -6,7 +6,7 @@ import { PassBase } from "./PassBase";
 
 export class DefaultPass extends PassBase {
 
-    protected processLine() {
+    public processLine() {
 
         // Should specify default
         //    Modifiers (depends upon opcode)
@@ -197,9 +197,6 @@ export class DefaultPass extends PassBase {
                 case "SPL":
                 case "NOP":
                     token.lexeme = ".B";
-                    break;
-                default:
-                    instruction.modifier = null;
                     break;
             }
 
