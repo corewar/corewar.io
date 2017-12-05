@@ -6,7 +6,7 @@ import { PassBase } from "./PassBase";
 
 export class DefaultPass extends PassBase {
 
-    protected processLine() {
+    public processLine() {
 
         // Should specify default
         //    Modifiers (depends upon opcode)

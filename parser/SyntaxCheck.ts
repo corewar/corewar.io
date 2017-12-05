@@ -3,7 +3,7 @@ import { TokenCategory } from "./interface/IToken";
 
 export class SyntaxCheck extends PassBase {
 
-    protected processLine() {
+    public processLine() {
 
         var next = this.stream.peek();
 

@@ -8,7 +8,7 @@ export class Filter extends PassBase {
     /// Filters superfluous tokens from the token stream.
     /// Removes any empty lines and anything after the END preprocessor command
     /// </summary>
-    protected processLine() {
+    public processLine() {
 
         // Remove empty lines from stream
         // Remove anything after END from stream
