@@ -148,7 +148,7 @@ export const run = (processRate) => {
     runner = window.setInterval(() => {
 
       for(let i = 0; i < processRate; i++) {
-        step();
+        corewar.simulator.step();
       }
 
       operations += processRate;
