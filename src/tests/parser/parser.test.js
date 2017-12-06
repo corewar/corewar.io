@@ -20,7 +20,7 @@ describe('when rendering the parser', () => {
         parse: () => {}
       };
 
-      const wrapper = mount(<PureParser {...props} />);
+      const wrapper = shallow(<PureParser {...props} />);
 
     });
 
@@ -39,7 +39,8 @@ describe('when rendering the parser', () => {
 
       const wrapper = shallow(<PureParser {...props} />);
 
-      expect(wrapper.find('textarea')).to.have.length(2);
+      expect(wrapper.find('textarea')).to.have.length(1);
+      expect(wrapper.find('pre')).to.have.length(1);
 
     });
 
