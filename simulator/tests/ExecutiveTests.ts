@@ -64,7 +64,6 @@ describe("Executive", () => {
         };
 
         state = {
-            core: core,
             cycle: 0,
             options: options,
             warriorIndex: 0,

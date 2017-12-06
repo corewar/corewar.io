@@ -60,7 +60,9 @@
     "webpack": "^3.8.1"
   },
   "dependencies": {
+    "@types/clone": "^0.1.30",
     "@types/core-js": "^0.9.43",
+    "clone": "^2.1.1",
     "core-js": "^2.5.1",
     "pubsub-js": "^1.5.7",
     "underscore": "^1.8.3"

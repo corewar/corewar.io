@@ -33,11 +33,11 @@ describe("Core", () => {
         };
     }
 
-    function buildTask(): ITask {
+    function buildTask(warriorId: number = 0): ITask {
         return {
             instructionPointer: 0,
             warrior: {
-                id: 0,
+                id: warriorId,
                 author: "",
                 name: "",
                 startAddress: 0,
@@ -57,14 +57,14 @@ describe("Core", () => {
 
         for (i = 0; i < 4; i++) {
 
-            instruction = core.readAt(null, i);
+            instruction = core.readAt(buildTask(), i);
             instruction.aOperand.address = i;
-            core.setAt(null, i, instruction);
+            core.setAt(buildTask(), i, instruction);
         }
 
         for (i = 0; i < 4; i++) {
 
-            instruction = core.readAt(null, i);
+            instruction = core.readAt(buildTask(), i);
             expect(instruction.aOperand.address).to.be.equal(i);
         }
     });
@@ -78,14 +78,14 @@ describe("Core", () => {
 
         for (i = 4; i < 8; i++) {
 
-            instruction = core.readAt(null, i);
+            instruction = core.readAt(buildTask(), i);
             instruction.aOperand.address = i;
-            core.setAt(null, i, instruction);
+            core.setAt(buildTask(), i, instruction);
         }
 
         for (i = 0; i < 4; i++) {
 
-            instruction = core.readAt(null, i);
+            instruction = core.readAt(buildTask(), i);
             expect(instruction.aOperand.address).to.be.equal(i + 4);
         }
     });
@@ -99,14 +99,14 @@ describe("Core", () => {
 
         for (i = -4; i < 0; i++) {
 
-            instruction = core.readAt(null, i);
+            instruction = core.readAt(buildTask(), i);
             instruction.aOperand.address = i;
-            core.setAt(null, i, instruction);
+            core.setAt(buildTask(), i, instruction);
         }
 
         for (i = 0; i < 4; i++) {
 
-            instruction = core.readAt(null, i);
+            instruction = core.readAt(buildTask(), i);
             expect(instruction.aOperand.address).to.be.equal(i - 4);
         }
     });
@@ -158,7 +158,7 @@ describe("Core", () => {
 
         for (var i = 0; i < 3; i++) {
 
-            var instruction = core.readAt(null, i);
+            var instruction = core.readAt(buildTask(), i);
 
             expect(instruction.opcode).to.be.equal(OpcodeType.DIV);
             expect(instruction.modifier).to.be.equal(ModifierType.BA);
@@ -176,7 +176,7 @@ describe("Core", () => {
 
         for (var i = 0; i < 5; i++) {
 
-            var instruction = core.readAt(null, i);
+            var instruction = core.readAt(buildTask(), i);
 
             expect(instruction.address).to.be.equal(i);
         }
@@ -184,7 +184,7 @@ describe("Core", () => {
 
     it("Triggers a read core access event for the specified Task when getAt is called", () => {
 
-        var task = buildTask();
+        var task = buildTask(7);
         var handler = sinon.stub();
 
         var core = new Core();
@@ -199,12 +199,12 @@ describe("Core", () => {
 
         expect(eventArg.accessType).to.be.equal(CoreAccessType.read);
         expect(eventArg.address).to.be.equal(2);
-        expect(eventArg.task).to.be.equal(task);
+        expect(eventArg.warriorId).to.be.equal(task.warrior.id);
     });
 
     it("Triggers a write core access event for the specified Task when setAt is called", () => {
 
-        var task = buildTask();
+        var task = buildTask(5);
         var handler = sinon.stub();
 
         var core = new Core();
@@ -219,12 +219,12 @@ describe("Core", () => {
 
         expect(eventArg.accessType).to.be.equal(CoreAccessType.write);
         expect(eventArg.address).to.be.equal(2);
-        expect(eventArg.task).to.be.equal(task);
+        expect(eventArg.warriorId).to.be.equal(task.warrior.id);
     });
 
     it("Triggers an execute core access event for the specified Task when executeAt is called", () => {
 
-        var task = buildTask();
+        var task = buildTask(3);
         var handler = sinon.stub();
 
         var core = new Core();
@@ -239,7 +239,7 @@ describe("Core", () => {
 
         expect(eventArg.accessType).to.be.equal(CoreAccessType.execute);
         expect(eventArg.address).to.be.equal(2);
-        expect(eventArg.task).to.be.equal(task);
+        expect(eventArg.warriorId).to.be.equal(task.warrior.id);
     });
 
     it(".getSize returns the size of the core", () => {

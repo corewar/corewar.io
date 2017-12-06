@@ -4,6 +4,7 @@ import * as sinonChai from "sinon-chai";
 var expect = chai.expect;
 chai.use(sinonChai);
 
+import { Warrior } from "../Warrior";
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { ITask } from "../interface/ITask";
@@ -281,5 +282,24 @@ describe("Simulator", () => {
 
         expect(optionValidator.validate).to.have.been.calledWith(options);
         expect(actualError).to.be.equal(expectedError);
+    });
+
+    it("Returns a clone of state rather than the original", () => {
+
+        const mutated = simulator.getState();
+
+        mutated.cycle = 123;
+        mutated.warriorIndex = 876;
+        mutated.warriors.push(new Warrior());
+        mutated.warriors[0].tasks.push({
+            warrior: mutated.warriors[0],
+            instructionPointer: 666
+        });
+
+        const actual = simulator.getState();
+
+        expect(actual.cycle).not.to.be.equal(mutated.cycle);
+        expect(actual.warriorIndex).not.to.be.equal(mutated.warriorIndex);
+        expect(actual.warriors.length).to.be.equal(0);
     });
 });

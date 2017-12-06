@@ -44,7 +44,6 @@ describe("Fetcher",() => {
         };
 
         state = {
-            core: core,
             cycle: 0,
             options: options,
             warriorIndex: 0,
@@ -84,7 +83,7 @@ describe("Fetcher",() => {
         };
 
         var fetcher = new Fetcher();
-        var context = fetcher.fetch(state);
+        var context = fetcher.fetch(state, core);
 
         expect(context.warrior).to.be.equal(expectedWarrior);
         expect(context.task).to.be.equal(expectedTask);
@@ -122,7 +121,7 @@ describe("Fetcher",() => {
         };
 
         var fetcher = new Fetcher();
-        fetcher.fetch(state);
+        fetcher.fetch(state, core);
 
         expect(state.warriorIndex).to.be.equal(2);
         expect(expectedWarrior.taskIndex).to.be.equal(2);
@@ -156,7 +155,7 @@ describe("Fetcher",() => {
         };
 
         var fetcher = new Fetcher();
-        fetcher.fetch(state);
+        fetcher.fetch(state, core);
 
         expect(state.warriorIndex).to.be.equal(0);
         expect(expectedWarrior.taskIndex).to.be.equal(0);

@@ -10,7 +10,7 @@ export enum CoreAccessType {
 }
 
 export interface ICoreAccessEventArgs {
-    task: ITask;
+    warriorId: number;
     address: number;
     accessType: CoreAccessType;
 }
