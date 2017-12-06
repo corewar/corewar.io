@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import * as PubSub from 'pubsub-js';
+
 
 class CanvasCore extends React.Component{
 
@@ -10,32 +12,25 @@ class CanvasCore extends React.Component{
     this.cellSize = this.calculateCellSize();
     this.cellsWide = Math.floor(this.props.width / this.cellSize);
     this.cellsHigh = Math.floor(this.props.height / this.cellSize);
-
-
-    //this.previousExecutions = [];
+    this.messages = [];
 
     //this.canvas.addEventListener("click", (e) => { this.canvasClick(e); });
 
-
-
+    PubSub.subscribe('CORE_ACCESS', (msg, data) => {
+      this.messages.push(data);
+    });
   }
 
   componentDidMount() {
 
-    this.context = this.canvas.getContext("2d");
     this.renderGrid();
 
-
-    this.props.data.forEach((cell) => this.renderCell(cell).bind(this));
+    window.requestAnimationFrame(() => this.renderMessages());
 
   }
 
-  componentDidUpdate(prevProps, prevState) {
-
-    console.log(prevProps);
-
-    this.props.data.forEach((cell) => this.renderCell(cell).bind(this));
-
+  componentWillUnmount() {
+    PubSub.unsubscribe('CORE_ACCESS');
   }
 
   renderGrid() {
@@ -59,6 +54,20 @@ class CanvasCore extends React.Component{
     };
   }
 
+  renderMessages() {
+
+    this.messages.forEach((data) => {
+      this.renderCell(data, '#f00')
+    })
+
+    this.messages = [];
+
+    if(this.props.runProgress < 100) {
+      window.requestAnimationFrame(() => this.renderMessages());
+    }
+
+  }
+
   screenCoordinateToAddress(point) {
 
     var x = Math.floor(point.x / this.cellSize);
@@ -67,25 +76,38 @@ class CanvasCore extends React.Component{
     return y * this.cellsWide + x;
   }
 
-  renderCell(event, executionColour) {
+  getColour(warriorId) {
+    switch(warriorId) {
+      case 0:
+        return '#f00';
+      case 1:
+        return '#00f';
+      default:
+        return '#0f0';
+    }
+  }
+
+  renderCell(event) {
 
     var coordinate = this.addressToScreenCoordinate(event.address);
 
-    this.context = this.canvas.getContext("2d");
+    var warriorId = event.task && event.task.warrior.id;
+
+    var colour = this.getColour(warriorId);
 
     //TODO colour for each process
-    this.context.fillStyle = "#f00";
-    this.context.strokeStyle = "#f00";
+    this.context.fillStyle = colour;
+    this.context.strokeStyle = colour;
 
     switch (event.accessType) {
         case 0:
-            this.renderExecute(coordinate, executionColour);
-            break;
-        case 1:
             this.renderRead(coordinate);
             break;
-        case 2:
+        case 1:
             this.renderWrite(coordinate);
+            break;
+        case 2:
+            this.renderExecute(coordinate);
             break;
         default:
             //throw Error("Cannot render unknown CoreAccessType: " + event.accessType);
@@ -93,18 +115,13 @@ class CanvasCore extends React.Component{
     }
   }
 
-  renderExecute(coordinate, executionColour) {
-
-    var colour = this.context.fillStyle;
-    this.context.fillStyle = executionColour;
+  renderExecute(coordinate) {
 
     this.context.fillRect(
         coordinate.x,
         coordinate.y,
         this.cellSize,
         this.cellSize);
-
-    this.context.fillStyle = colour;
   }
 
   renderRead(coordinate) {
@@ -265,7 +282,12 @@ class CanvasCore extends React.Component{
   render() {
 
     return <canvas
-      ref={(canvasEl) => { this.canvas = canvasEl; }}
+      ref={(canvasEl) => {
+        if(canvasEl == null) {
+          return;
+        }
+        this.context = canvasEl.getContext("2d");
+        this.canvas = canvasEl; }}
       width={this.props.width}
       height={this.props.height}></canvas>
   }

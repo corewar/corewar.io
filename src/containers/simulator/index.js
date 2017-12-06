@@ -6,11 +6,11 @@ import {
   init,
   step,
   run,
+  pause,
   setCoresize,
   setMinSeparation,
   setInstructionLimit
 } from '../../modules/simulator'
-import Core from './core';
 import CanvasCore from './canvasCore';
 
 const Simulator = props => {
@@ -20,7 +20,8 @@ const Simulator = props => {
     {<h2>{`${props.runProgress}%`}</h2>}
     {props.redcode && <button onClick={() => props.init(props.standardId, props.parseResults, props.coreSize, props.minSeparation, props.instructionLimit)}>Initialise Simulator</button>}
     {props.isInitialised && <button onClick={() => props.step()}>Step</button>}
-    {props.isInitialised && props.isRunning === false && <button onClick={() => props.run()}>Run</button>}
+    {props.isInitialised && props.isRunning === false && <button onClick={() => props.run(100)}>Run</button>}
+    {props.isInitialised && props.isRunning && <button onClick={() => props.pause()}>Pause</button>}
     <p>
       <label>Coresize</label>
       <input onChange={e => props.setCoresize(e.target.value)} defaultValue={props.coreSize}/>
@@ -33,10 +34,12 @@ const Simulator = props => {
     </p>
     <div>
       <textarea value={props.redcode} readOnly="readOnly" />
-      <CanvasCore width={400} height={400} coreSize={props.coreSize} data={props.coreAccess}/>
-      {/* <Core type='core' data={props.core} /> */}
-      {/* <Core type='coreAccess' data={props.coreAccess} />
-      <Core type='tasks' data={props.taskExecution} /> */}
+      <CanvasCore
+        width={850}
+        height={850}
+        coreSize={props.coreSize}
+        data={props.coreAccess}
+        runProgress={props.runProgress} />
     </div>
   </div>
 }
@@ -60,6 +63,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   init,
   step,
   run,
+  pause,
   setCoresize,
   setMinSeparation,
   setInstructionLimit
