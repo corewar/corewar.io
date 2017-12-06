@@ -172,7 +172,9 @@ export const run = (processRate) => {
 }
 
 export const step = () => {
-  corewar.simulator.step();
+  return dispatch => {
+    corewar.simulator.step();
+  }
 }
 
 export const setCoresize = (val) => {
