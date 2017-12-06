@@ -48,8 +48,6 @@ const mapStateToProps = state => ({
   redcode: state.parser.redcode,
   parseResults: state.parser.parseResults,
   standardId: state.parser.standardId,
-  coreAccess: state.simulator.coreAccess,
-  taskExecution: state.simulator.taskExecution,
   isInitialised: state.simulator.isInitialised,
   isRunning: state.simulator.isRunning,
   runProgress: state.simulator.runProgress,
