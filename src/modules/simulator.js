@@ -105,7 +105,7 @@ export const init = (standardId, parseResults, coreSize, minSeparation, instruct
 
     console.log('init', options);
 
-    const simulatorState = corewar.initialiseSimulator(options, parseResults, PubSub);
+    corewar.initialiseSimulator(options, parseResults, PubSub);
 
     dispatch({
       type: INIT
