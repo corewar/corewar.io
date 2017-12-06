@@ -105,7 +105,7 @@ export const init = (standardId, parseResults, coreSize, minSeparation, instruct
 
     console.log('init', options);
 
-    const simulatorState = corewar.initialiseSimulator(options, parseResults, PubSub);
+    corewar.initialiseSimulator(options, parseResults, PubSub);
 
     dispatch({
       type: INIT
@@ -148,7 +148,7 @@ export const run = (processRate) => {
     runner = window.setInterval(() => {
 
       for(let i = 0; i < processRate; i++) {
-        step();
+        corewar.simulator.step();
       }
 
       operations += processRate;
@@ -172,7 +172,9 @@ export const run = (processRate) => {
 }
 
 export const step = () => {
-  corewar.simulator.step();
+  return dispatch => {
+    corewar.simulator.step();
+  }
 }
 
 export const setCoresize = (val) => {
