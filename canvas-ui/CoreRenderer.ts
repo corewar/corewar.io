@@ -139,7 +139,6 @@ export class CoreRenderer {
         this.context.beginPath();
         this.context.arc(centre.x, centre.y, radius, 0, 2 * Math.PI, false);
         this.context.fill();
-        //this.context.stroke();
     }
 
     private renderWrite(coordinate: IPoint) {
