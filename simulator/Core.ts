@@ -4,6 +4,7 @@ import { IOptions } from "./interface/IOptions";
 import { IInstruction } from "./interface/IInstruction";
 import { ITask } from "./interface/ITask";
 import * as _ from "underscore";
+import * as clone from "clone";
 
 export class Core implements ICore {
 
@@ -107,9 +108,7 @@ export class Core implements ICore {
 
     private buildDefaultInstruction(index: number): IInstruction {
 
-        var instruction = _.clone(this.options.initialInstruction);
-        instruction.aOperand = _.clone(instruction.aOperand);
-        instruction.bOperand = _.clone(instruction.bOperand);
+        var instruction = clone(this.options.initialInstruction);
         instruction.address = index;
 
         return instruction;
