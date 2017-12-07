@@ -22,6 +22,7 @@ export class Fetcher implements IFetcher {
         task.instructionPointer = (ip + 1) % state.options.coresize;
         // TODO should we instantiate an object everytime?
         return {
+            core: core,
             instructionPointer: ip,
             instruction: instruction,
             taskIndex: ti,
