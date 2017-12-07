@@ -8,6 +8,7 @@ import Defaults from "../Defaults";
 import { IOptions } from "../interface/IOptions";
 import { OptionValidator } from "../OptionValidator";
 import * as _ from "underscore";
+import * as clone from "clone";
 
 describe("OptionValidator", () => {
 
@@ -17,10 +18,7 @@ describe("OptionValidator", () => {
     beforeEach(() => {
 
         optionValidator = new OptionValidator();
-        options = _.clone(Defaults);
-        options.initialInstruction = _.clone(Defaults.initialInstruction);
-        options.initialInstruction.aOperand = _.clone(Defaults.initialInstruction.aOperand);
-        options.initialInstruction.bOperand = _.clone(Defaults.initialInstruction.bOperand);
+        options = clone(Defaults);
     });
 
     const validateAndExpect = (options: IOptions, warriorCount: number, expectedError: string) => {

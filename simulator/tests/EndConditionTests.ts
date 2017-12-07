@@ -44,16 +44,6 @@ describe("EndCondition",() => {
     function buildState(): IState {
 
         return {
-            core: {
-                getSize: () => { return 0; },
-                coreAccess: new LiteEvent<ICoreAccessEventArgs>(),
-                executeAt: sinon.stub(),
-                readAt: sinon.stub(),
-                getAt: sinon.stub(),
-                setAt: sinon.stub(),
-                wrap: sinon.stub(),
-                initialise: sinon.stub()
-            },
             cycle: 0,
             options: _.clone(Defaults),
             warriorIndex: 0,

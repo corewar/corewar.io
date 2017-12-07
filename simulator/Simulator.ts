@@ -10,12 +10,14 @@ import { ICore } from "./interface/ICore";
 import { IOptions } from "./interface/IOptions";
 import { IParseResult } from "../parser/interface/IParseResult";
 import Defaults from "./Defaults";
+import * as clone from "clone";
 import * as _ from "underscore";
 
 export class Simulator implements ISimulator {
 
     private state: IState;
 
+    private core: ICore;
     private loader: ILoader;
     private fetcher: IFetcher;
     private decoder: IDecoder;
@@ -34,13 +36,13 @@ export class Simulator implements ISimulator {
         endCondition: IEndCondition,
         optionValidator: IOptionValidator) {
 
+        this.core = core;
+
         this.state = {
-            core: core,
             cycle: 0,
             warriors: [],
             warriorIndex: 0,
-            options: null//,
-            //context: null
+            options: null
         };
 
         this.loader = loader;
@@ -59,7 +61,7 @@ export class Simulator implements ISimulator {
 
         this.state.options = defaultedOptions;
 
-        this.state.core.initialise(options);
+        this.core.initialise(options);
 
         this.state.warriors = this.loader.load(warriors, options);
     }
@@ -77,14 +79,14 @@ export class Simulator implements ISimulator {
             while (this.step() === false) {
             }
 
-            resolve(this.state);
+            resolve(clone(this.state));
         });
 
     }
 
     public step(): boolean {
 
-        var context = this.fetcher.fetch(this.state);
+        var context = this.fetcher.fetch(this.state, this.core);
 
         context = this.decoder.decode(context);
 
@@ -95,7 +97,7 @@ export class Simulator implements ISimulator {
         return this.endCondition.check(this.state);
     }
 
-    public getState() : IState {
-        return this.state;
+    public getState(): IState {
+        return clone(this.state);
     }
 }

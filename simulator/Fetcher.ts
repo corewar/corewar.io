@@ -1,10 +1,11 @@
 ﻿import { IFetcher } from "./interface/IFetcher";
 import { IState } from "./interface/IState";
+import { ICore } from "./interface/ICore";
 import { IExecutionContext } from "./interface/IExecutionContext";
 
 export class Fetcher implements IFetcher {
 
-    public fetch(state: IState): IExecutionContext {
+    public fetch(state: IState, core: ICore): IExecutionContext {
 
         var wi = state.warriorIndex;
         var warrior = state.warriors[wi];
@@ -16,12 +17,11 @@ export class Fetcher implements IFetcher {
         warrior.taskIndex = (ti + 1) % warrior.tasks.length;
 
         var ip = task.instructionPointer;
-        var instruction = state.core.executeAt(task, ip);
+        var instruction = core.executeAt(task, ip);
 
         task.instructionPointer = (ip + 1) % state.options.coresize;
         // TODO should we instantiate an object everytime?
         return {
-            core: state.core,
             instructionPointer: ip,
             instruction: instruction,
             taskIndex: ti,

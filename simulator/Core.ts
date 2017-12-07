@@ -4,6 +4,7 @@ import { IOptions } from "./interface/IOptions";
 import { IInstruction } from "./interface/IInstruction";
 import { ITask } from "./interface/ITask";
 import * as _ from "underscore";
+import * as clone from "clone";
 
 export class Core implements ICore {
 
@@ -48,16 +49,16 @@ export class Core implements ICore {
 
     private triggerEvent(task: ITask, address: number, accessType: CoreAccessType) {
 
-        if(this.pubSubProvider) {
+        if (this.pubSubProvider) {
             this.pubSubProvider.publishSync('CORE_ACCESS', {
-                task: task,
+                warriorId: task.warrior.id,
                 accessType: accessType,
                 address: address
             });
         }
 
         this._coreAccess.trigger({
-            task: task,
+            warriorId: task.warrior.id,
             accessType: accessType,
             address: address
         });
@@ -107,9 +108,7 @@ export class Core implements ICore {
 
     private buildDefaultInstruction(index: number): IInstruction {
 
-        var instruction = _.clone(this.options.initialInstruction);
-        instruction.aOperand = _.clone(instruction.aOperand);
-        instruction.bOperand = _.clone(instruction.bOperand);
+        var instruction = clone(this.options.initialInstruction);
         instruction.address = index;
 
         return instruction;
