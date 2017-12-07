@@ -51,7 +51,7 @@ export class Core implements ICore {
 
         if (this.pubSubProvider) {
             this.pubSubProvider.publishSync('CORE_ACCESS', {
-                warriorId: task.warrior.id,
+                warriorId: task ? task.warrior.id : null,
                 accessType: accessType,
                 address: address
             });
