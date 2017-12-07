@@ -91,7 +91,7 @@ class CanvasCore extends React.Component{
 
     var coordinate = this.addressToScreenCoordinate(event.address);
 
-    var warriorId = event.task && event.task.warrior.id;
+    var warriorId = event.warriorId;
 
     var colour = this.getColour(warriorId);
 
