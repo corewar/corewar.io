@@ -76,7 +76,8 @@ describe("Simulator", () => {
             initialise: () => {
                 //
             },
-            commandTable: []
+            commandTable: [],
+            setMessageProvider: () => {}
         };
 
         endCondition = {

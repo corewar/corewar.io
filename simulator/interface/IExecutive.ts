@@ -5,4 +5,5 @@ export interface IExecutive {
 
     initialise(options: IOptions): void;
     commandTable: ((context: IExecutionContext) => void)[];
+    setMessageProvider(messageProvider: any);
 }

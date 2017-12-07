@@ -82,6 +82,7 @@ export class Simulator implements ISimulator {
     public setMessageProvider(provider: any) {
         this.pubSubProvider = provider;
         this.endCondition.setMessageProvider(provider);
+        this.executive.setMessageProvider(provider);
     }
 
     public run(): Promise<IState> {

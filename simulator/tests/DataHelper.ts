@@ -56,9 +56,9 @@ export default class DataHelper {
         ];
     }
 
-    public static buildWarrior(): IWarrior {
+    public static buildWarrior(id: number = 0): IWarrior {
         return {
-            id: 0,
+            id: id,
             author: "",
             name: "",
             startAddress: 0,
