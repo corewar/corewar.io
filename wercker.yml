@@ -22,6 +22,11 @@ build:
   # Read more about steps on our dev center:
   # http://devcenter.wercker.com/docs/steps/index.html
   steps:
+
+    - script:
+        name: clear npm cache
+        code: npm cache clean --force
+
     # A step that executes `npm install` command
     - npm-install
     # A step that executes `npm test` command
