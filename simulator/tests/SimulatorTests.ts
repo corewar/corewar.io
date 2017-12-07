@@ -20,8 +20,9 @@ import Defaults from "../Defaults";
 import { OpcodeType, ModifierType } from "../interface/IInstruction";
 import { ModeType } from "../interface/IOperand";
 import DataHelper from "./DataHelper";
-import * as _ from "underscore";
 import { IOptionValidator } from "../interface/IOptionValidator";
+import * as _ from "underscore";
+import * as clone from "clone";
 
 "use strict";
 
@@ -75,11 +76,13 @@ describe("Simulator", () => {
             initialise: () => {
                 //
             },
-            commandTable: []
+            commandTable: [],
+            setMessageProvider: () => {}
         };
 
         endCondition = {
-            check: sinon.stub()
+            check: sinon.stub(),
+            setMessageProvider: sinon.stub()
         };
 
         optionValidator = {
@@ -306,9 +309,54 @@ describe("Simulator", () => {
     it("Should not execute step if end condition met", () => {
 
         (<sinon.stub>endCondition.check).returns(true);
-        
+
         var actual = simulator.step();
 
         expect(fetcher.fetch).not.to.be.called;
+    });
+
+    it("Should publish round start message if cycle is zero", () => {
+
+        const pubsub = {
+            publishSync: sinon.stub()
+        };
+
+        simulator.setMessageProvider(pubsub);
+
+        simulator.step();
+
+        expect(pubsub.publishSync).to.be.calledWith('ROUND_START', {});
+    });
+
+    it("Should not publish round start message if cycle is not zero", () => {
+
+        simulator.step();
+
+        const pubsub = {
+            publishSync: sinon.stub()
+        };
+
+        simulator.setMessageProvider(pubsub);
+
+        simulator.step();
+
+        expect(pubsub.publishSync).not.to.be.called;
+    });
+
+    it("Should publish initialise message when initialised", () => {
+
+        const pubsub = {
+            publishSync: sinon.stub()
+        };
+
+        const options = clone(Defaults);
+
+        simulator.setMessageProvider(pubsub);
+
+        simulator.initialise(options, []);
+
+        expect(pubsub.publishSync).to.have.been.calledWith('CORE_INITIALISE', {
+            state: simulator.getState()
+        });
     });
 });

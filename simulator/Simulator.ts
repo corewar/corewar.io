@@ -53,6 +53,17 @@ export class Simulator implements ISimulator {
         this.optionValidator = optionValidator;
     }
 
+    private publishInitialise(state: IState) {
+        
+        if (!this.pubSubProvider) {
+            return;
+        }
+
+        this.pubSubProvider.publishSync('CORE_INITIALISE', {
+            state: clone(state)
+        });
+    }
+
     public initialise(options: IOptions, warriors: IParseResult[]) {
 
         const defaultedOptions = _.defaults(options, Defaults);
@@ -64,11 +75,14 @@ export class Simulator implements ISimulator {
         this.core.initialise(options);
 
         this.state.warriors = this.loader.load(warriors, options);
+
+        this.publishInitialise(this.state);
     }
 
     public setMessageProvider(provider: any) {
         this.pubSubProvider = provider;
         this.endCondition.setMessageProvider(provider);
+        this.executive.setMessageProvider(provider);
     }
 
     public run(): Promise<IState> {
@@ -84,10 +98,22 @@ export class Simulator implements ISimulator {
 
     }
 
+    private publishRoundStart(): void {
+        if (!this.pubSubProvider) {
+            return;
+        }
+
+        this.pubSubProvider.publishSync('ROUND_START', {});
+    }
+
     public step(): boolean {
 
         if (this.endCondition.check(this.state)) {
             return true;
+        }
+
+        if (this.state.cycle === 0) {
+            this.publishRoundStart();
         }
 
         var context = this.fetcher.fetch(this.state, this.core);
