@@ -38,6 +38,10 @@ build:
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
 
+    - script:
+        name: clear npm cache
+        code: npm cache clean --force
+
     - npm-install
     # A step that executes `npm test` command
     - npm-test
