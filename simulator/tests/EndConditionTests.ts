@@ -13,7 +13,7 @@ import * as _ from "underscore";
 
 "use strict";
 
-describe("EndCondition",() => {
+describe("EndCondition", () => {
 
     function buildTask(warrior: IWarrior): ITask {
 
@@ -54,7 +54,7 @@ describe("EndCondition",() => {
         };
     }
 
-    it("returns false if there are multiple active warriors and the maximum number of cycles has not elapsed",() => {
+    it("returns false if there are multiple active warriors and the maximum number of cycles has not elapsed", () => {
 
         var state = buildState();
 
@@ -65,7 +65,7 @@ describe("EndCondition",() => {
         expect(actual).to.be.equal(false);
     });
 
-    it("returns true if the maximum number of cylces have elapsed",() => {
+    it("returns true if the maximum number of cylces have elapsed", () => {
 
         var state = buildState();
 
@@ -79,7 +79,7 @@ describe("EndCondition",() => {
         expect(actual).to.be.equal(true);
     });
 
-    it("returns true if there are multiple warriors and only one with active tasks",() => {
+    it("returns true if there are multiple warriors and only one with active tasks", () => {
 
         var state = buildState();
 
@@ -92,7 +92,7 @@ describe("EndCondition",() => {
         expect(actual).to.be.equal(true);
     });
 
-    it("returns false if there is only one warrior and it has active tasks",() => {
+    it("returns false if there is only one warrior and it has active tasks", () => {
 
         var state = buildState();
 
@@ -105,7 +105,7 @@ describe("EndCondition",() => {
         expect(actual).to.be.equal(false);
     });
 
-    it("returns true if there is only one warrior and it has no active tasks",() => {
+    it("returns true if there is only one warrior and it has no active tasks", () => {
 
         var state = buildState();
 
@@ -117,5 +117,69 @@ describe("EndCondition",() => {
         var actual = endCondition.check(state);
 
         expect(actual).to.be.equal(true);
+    });
+
+    it("publishes round end message in the event of a draw", () => {
+
+        const pubsub = {
+            publishSync: sinon.stub()
+        };
+        const state = buildState();
+
+        state.cycle = 123;
+        state.options.cyclesBeforeTie = 123;
+
+        const endCondition = new EndCondition();
+        endCondition.setMessageProvider(pubsub);
+
+        endCondition.check(state);
+
+        expect(pubsub.publishSync).to.have.been.calledWith('ROUND_END', {
+            winnerId: null,
+            outcome: 'DRAW'
+        });
+    });
+
+    it("publishes round end message if a warrior wins", () => {
+
+        const pubsub = {
+            publishSync: sinon.stub()
+        };
+        const state = buildState();
+
+        state.warriors[0].id = 5;
+        state.warriors[1].id = 7;
+        _(state.warriors).first().tasks = [];
+
+        const endCondition = new EndCondition();
+        endCondition.setMessageProvider(pubsub);
+
+        endCondition.check(state);
+
+        expect(pubsub.publishSync).to.have.been.calledWith('ROUND_END', {
+            winnerId: 7,
+            outcome: 'WIN'
+        });
+    });
+
+    it("publishes round end message if single warrior round ends", () => {
+
+        const pubsub = {
+            publishSync: sinon.stub()
+        };
+        const state = buildState();
+
+        state.warriors.pop();
+        _(state.warriors).first().tasks = [];
+
+        const endCondition = new EndCondition();
+        endCondition.setMessageProvider(pubsub);
+
+        endCondition.check(state);
+
+        expect(pubsub.publishSync).to.have.been.calledWith('ROUND_END', {
+            winnerId: null,
+            outcome: 'NONE'
+        });
     });
 });
