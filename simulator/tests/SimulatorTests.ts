@@ -20,8 +20,9 @@ import Defaults from "../Defaults";
 import { OpcodeType, ModifierType } from "../interface/IInstruction";
 import { ModeType } from "../interface/IOperand";
 import DataHelper from "./DataHelper";
-import * as _ from "underscore";
 import { IOptionValidator } from "../interface/IOptionValidator";
+import * as _ from "underscore";
+import * as clone from "clone";
 
 "use strict";
 
@@ -339,5 +340,22 @@ describe("Simulator", () => {
         simulator.step();
 
         expect(pubsub.publishSync).not.to.be.called;
+    });
+
+    it("Should publish initialise message when initialised", () => {
+
+        const pubsub = {
+            publishSync: sinon.stub()
+        };
+
+        const options = clone(Defaults);
+
+        simulator.setMessageProvider(pubsub);
+
+        simulator.initialise(options, []);
+
+        expect(pubsub.publishSync).to.have.been.calledWith('CORE_INITIALISE', {
+            state: simulator.getState()
+        });
     });
 });

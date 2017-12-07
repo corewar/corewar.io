@@ -53,6 +53,17 @@ export class Simulator implements ISimulator {
         this.optionValidator = optionValidator;
     }
 
+    private publishInitialise(state: IState) {
+        
+        if (!this.pubSubProvider) {
+            return;
+        }
+
+        this.pubSubProvider.publishSync('CORE_INITIALISE', {
+            state: clone(state)
+        });
+    }
+
     public initialise(options: IOptions, warriors: IParseResult[]) {
 
         const defaultedOptions = _.defaults(options, Defaults);
@@ -64,6 +75,8 @@ export class Simulator implements ISimulator {
         this.core.initialise(options);
 
         this.state.warriors = this.loader.load(warriors, options);
+
+        this.publishInitialise(this.state);
     }
 
     public setMessageProvider(provider: any) {
