@@ -58,7 +58,7 @@ export class Core implements ICore {
         }
 
         this._coreAccess.trigger({
-            warriorId: task.warrior.id,
+            warriorId: task ? task.warrior.id : null,
             accessType: accessType,
             address: address
         });
