@@ -302,4 +302,13 @@ describe("Simulator", () => {
         expect(actual.warriorIndex).not.to.be.equal(mutated.warriorIndex);
         expect(actual.warriors.length).to.be.equal(0);
     });
+
+    it("Should not execute step if end condition met", () => {
+
+        (<sinon.stub>endCondition.check).returns(true);
+        
+        var actual = simulator.step();
+
+        expect(fetcher.fetch).not.to.be.called;
+    });
 });

@@ -65,6 +65,7 @@
     "clone": "^2.1.1",
     "core-js": "^2.5.1",
     "pubsub-js": "^1.5.7",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "user": "0.0.0"
   }
 }

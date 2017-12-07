@@ -86,6 +86,10 @@ export class Simulator implements ISimulator {
 
     public step(): boolean {
 
+        if (this.endCondition.check(this.state)) {
+            return true;
+        }
+
         var context = this.fetcher.fetch(this.state, this.core);
 
         context = this.decoder.decode(context);
