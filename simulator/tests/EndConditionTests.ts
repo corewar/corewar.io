@@ -134,6 +134,10 @@ describe("EndCondition", () => {
 
         endCondition.check(state);
 
+        expect(pubsub.publishSync).to.have.been.calledWith('RUN_PROGRESS', {
+            runProgress: 100
+        });
+
         expect(pubsub.publishSync).to.have.been.calledWith('ROUND_END', {
             winnerId: null,
             outcome: 'DRAW'
@@ -156,6 +160,10 @@ describe("EndCondition", () => {
 
         endCondition.check(state);
 
+        expect(pubsub.publishSync).to.have.been.calledWith('RUN_PROGRESS', {
+            runProgress: 100
+        });
+
         expect(pubsub.publishSync).to.have.been.calledWith('ROUND_END', {
             winnerId: 7,
             outcome: 'WIN'
@@ -177,9 +185,35 @@ describe("EndCondition", () => {
 
         endCondition.check(state);
 
+        expect(pubsub.publishSync).to.have.been.calledWith('RUN_PROGRESS', {
+            runProgress: 100
+        });
+
         expect(pubsub.publishSync).to.have.been.calledWith('ROUND_END', {
             winnerId: null,
             outcome: 'NONE'
         });
+    });
+
+    it("Publishes incremental run progress", () => {
+        
+        const pubsub = {
+            publishSync: sinon.stub()
+        };
+        const state = buildState();
+
+        state.cycle = 12*5;
+        state.options.cyclesBeforeTie = 100*5;
+
+        const endCondition = new EndCondition();
+        endCondition.setMessageProvider(pubsub);
+
+        endCondition.check(state);
+
+        expect(pubsub.publishSync).to.have.been.calledWith('RUN_PROGRESS', {
+            runProgress: 12
+        });
+
+        expect(pubsub.publishSync).not.to.have.been.calledWith('ROUND_END', sinon.match.any);
     });
 });
