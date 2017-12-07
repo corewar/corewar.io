@@ -79,7 +79,8 @@ describe("Simulator", () => {
         };
 
         endCondition = {
-            check: sinon.stub()
+            check: sinon.stub(),
+            setMessageProvider: sinon.stub()
         };
 
         optionValidator = {
@@ -306,9 +307,37 @@ describe("Simulator", () => {
     it("Should not execute step if end condition met", () => {
 
         (<sinon.stub>endCondition.check).returns(true);
-        
+
         var actual = simulator.step();
 
         expect(fetcher.fetch).not.to.be.called;
+    });
+
+    it("Should publish round start message if cycle is zero", () => {
+
+        const pubsub = {
+            publishSync: sinon.stub()
+        };
+
+        simulator.setMessageProvider(pubsub);
+
+        simulator.step();
+
+        expect(pubsub.publishSync).to.be.calledWith('ROUND_START', {});
+    });
+
+    it("Should not publish round start message if cycle is not zero", () => {
+
+        simulator.step();
+
+        const pubsub = {
+            publishSync: sinon.stub()
+        };
+
+        simulator.setMessageProvider(pubsub);
+
+        simulator.step();
+
+        expect(pubsub.publishSync).not.to.be.called;
     });
 });

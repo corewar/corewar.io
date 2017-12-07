@@ -84,10 +84,22 @@ export class Simulator implements ISimulator {
 
     }
 
+    private publishRoundStart(): void {
+        if (!this.pubSubProvider) {
+            return;
+        }
+
+        this.pubSubProvider.publishSync('ROUND_START', {});
+    }
+
     public step(): boolean {
 
         if (this.endCondition.check(this.state)) {
             return true;
+        }
+
+        if (this.state.cycle === 0) {
+            this.publishRoundStart();
         }
 
         var context = this.fetcher.fetch(this.state, this.core);
