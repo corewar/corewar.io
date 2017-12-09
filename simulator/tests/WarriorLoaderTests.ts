@@ -5,7 +5,6 @@ var expect = chai.expect;
 chai.use(sinonChai);
 
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
-import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { IOptions } from "../interface/IOptions";
 import { ITask } from "../interface/ITask";
 import { IInstruction } from "../interface/IInstruction";
@@ -43,7 +42,6 @@ describe("WarriorLoader", () => {
     function buildCore(size: number): ICore {
         var core = {
             getSize: () => { return 0; },
-            coreAccess: new LiteEvent<ICoreAccessEventArgs>(),
             instructions: [],
             initialise: (options: IOptions) => {
                 //

@@ -3,7 +3,6 @@ import * as sinon from "sinon";
 
 import { ITask } from "../interface/ITask";
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
-import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { IWarrior } from "../interface/IWarrior";
 import { IState } from "../interface/IState";
 import Defaults from "../Defaults";

@@ -10,7 +10,6 @@ import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore"
 import Defaults from "../Defaults";
 import { IOptions } from "../interface/IOptions";
 import { IState } from "../interface/IState";
-import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { ModeType } from "../interface/IOperand";
 import { Executive } from "../Executive";
 import { IExecutionContext } from "../interface/IExecutionContext";
@@ -52,7 +51,6 @@ describe("Executive", () => {
 
         core = {
             getSize: () => { return 0; },
-            coreAccess: new LiteEvent<ICoreAccessEventArgs>(),
             executeAt: executeAtSpy,
             readAt: readAtSpy,
             getAt: getAtSpy,

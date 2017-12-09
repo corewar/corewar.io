@@ -1,5 +1,4 @@
 ﻿import { ITask } from "./ITask";
-import { ILiteEvent } from "../../modules/LiteEvent";
 import { IOptions } from "./IOptions";
 import { IInstruction } from "./IInstruction";
 
@@ -16,8 +15,6 @@ export interface ICoreAccessEventArgs {
 }
 
 export interface ICore {
-
-    coreAccess: ILiteEvent<ICoreAccessEventArgs>;
 
     initialise(options: IOptions): void;
     setMessageProvider?(provider: any): void;

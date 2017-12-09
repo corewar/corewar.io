@@ -7,7 +7,6 @@ import { OpcodeType, ModifierType } from "../interface/IInstruction";
 import { ModeType } from "../interface/IOperand";
 import Defaults from "../Defaults";
 import { IOptions } from "../interface/IOptions";
-import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { ITask } from "../interface/ITask";
 import { Fetcher } from "../Fetcher";
 import DataHelper from "./DataHelper";
@@ -30,7 +29,6 @@ describe("Fetcher",() => {
 
         core = {
             getSize: () => { return 0; },
-            coreAccess: new LiteEvent<ICoreAccessEventArgs>(),
             executeAt: sinon.stub(),
             readAt: sinon.stub(),
             getAt: sinon.stub(),
