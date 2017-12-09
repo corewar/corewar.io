@@ -1,8 +1,11 @@
 header {
-  position: absolute;
   border-bottom: 2px solid #fff;
-  height: 50px;
-  width: 100%;
-  top: 0;
-  left: 0;
+
+
+  grid-column-start: 1;
+  grid-column-end: 4;
+
+  display: grid;
+  grid-template-columns: 50px 200px auto 200px 50px;
+  grid-template-rows: 5px auto 5px;
 }

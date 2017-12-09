@@ -1,15 +1,16 @@
-import logo from '../../logo.png';
+import logo from '../../logo.png'
 import React from 'react'
 import { Route, NavLink } from 'react-router-dom'
 
 import SiteHeader from './siteHeader'
+import './app.css'
 
 import Home from '../home'
 import Parser from '../parser'
 import Simulator from '../simulator'
 
 const App = () => (
-  <div>
+  <div className="grid-container">
     <SiteHeader isAuthenticated={false}/>
     {/* <aside id="sidebar">
       <nav>

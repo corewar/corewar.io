@@ -10,26 +10,10 @@ textarea {
   float: right;
 }
 
-button {
-  border: 1px solid #ccc;
-  margin-right: 1em;
-  margin-bottom: 1em;
-  padding: 1em;
-  font-family: 'Roboto slab';
-  min-width: 100px;
-  background-color: #fff;
-  color: #424a5d;
-}
-
 input {
   border: 1px solid #ccc;
   padding: 0.5em;
   margin: 0.5em;
   width: 50px;
-}
-
-button:hover {
-  cursor: pointer;
-  border-color: #B5F44A;
 }
 

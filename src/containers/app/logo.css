@@ -1,7 +1,11 @@
 .logo {
-  display: block;
+
+  grid-row-start: 2;
+  grid-column-start: 2;
+  grid-column-end: 4;
+
   height: 100%;
-  color: #fff;
+  color: #EB5757;
   font-size: 2em;
   font-weight: bold;
   /* font-family: SOMETHING bold */
