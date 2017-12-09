@@ -201,7 +201,7 @@ class CanvasCore extends React.Component{
     this.renderVerticalLines();
     this.renderHorizontalLines();
 
-    this.context.strokeStyle = "#aaa";
+    this.context.strokeStyle = "#666";
     this.context.stroke();
   }
 
