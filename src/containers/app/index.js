@@ -7,8 +7,7 @@ import Sidebar from './sidebar'
 import './app.css'
 
 import Home from '../home'
-import ParseContainer from '../parser/parseContainer'
-import Simulator from '../simulator'
+import DebugInterface from './debugInterface'
 
 const App = () => (
   <div className="grid-container">
@@ -20,9 +19,8 @@ const App = () => (
         <NavLink to="/simulator" activeClassName="simulator-active" className="simulator">Simulator</NavLink>
       </nav> */}
     <main>
-      <Route exact path="/" component={ParseContainer} />
-      <Route exact path="/parser" component={ParseContainer} />
-      <Route exact path="/simulator" component={Simulator} />
+      <Route exact path="/" component={DebugInterface} />
+      <Route exact path="/parser" component={DebugInterface} />
     </main>
   </div>
 )

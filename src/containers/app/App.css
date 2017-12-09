@@ -11,8 +11,4 @@
   grid-column-start: 3;
   grid-column-end: 4;
 
-  display: grid;
-  grid-template-columns: auto 50px 50%;
-  grid-template-rows: auto;
-
 }

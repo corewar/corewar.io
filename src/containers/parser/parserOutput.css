@@ -5,8 +5,11 @@
   grid-row-end: 2;
 
   border: 2px solid #56CCF2;
+  border-right: none;
 
   padding: 10px;
+
+  min-height: 400px;
 }
 
 #output pre {
