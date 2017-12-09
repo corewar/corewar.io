@@ -21,8 +21,6 @@ export class WarriorLoader implements IWarriorLoader {
 
     private core: ICore;
 
-    private startAddress: number;
-
     constructor(core: ICore) {
 
         this.core = core;
@@ -34,11 +32,10 @@ export class WarriorLoader implements IWarriorLoader {
         this.address = address;
 
         this.warrior = new Warrior();
-        this.warrior.startAddress = address;
+        
+        this.loadProcess(address);
 
         this.readInstructions();
-
-        this.loadProcess();
 
         this.warrior.id = id;
         this.warrior.name = result.metaData.name;
@@ -60,7 +57,7 @@ export class WarriorLoader implements IWarriorLoader {
 
             } else if (next.category === TokenCategory.Preprocessor) {
 
-                this.startAddress = this.readOrg();
+                this.warrior.tasks[0].instructionPointer = this.readOrg();
 
             } else {
 
@@ -211,12 +208,14 @@ export class WarriorLoader implements IWarriorLoader {
         return result;
     }
 
-    private loadProcess() {
+    private loadProcess(startAddress: number) {
 
         this.warrior.tasks.push({
-            instructionPointer: this.startAddress,
+            instructionPointer: startAddress,
             warrior: this.warrior
         });
+        
+        this.warrior.startAddress = startAddress;
         this.warrior.taskIndex = 0;
     }
 }
