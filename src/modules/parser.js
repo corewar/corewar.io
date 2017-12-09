@@ -11,7 +11,7 @@ const initialState = {
   currentParseResult: {},
   parseResults: [],
   standardId: 2,
-  redcode: 'MOV 0, 1',
+  redcode: '',
   warrior: ''
 }
 

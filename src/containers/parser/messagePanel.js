@@ -3,21 +3,20 @@ import React from 'react'
 import ParseIcon from './parseIcon'
 
 
-const MessagePanel = ({messages}) => {
+const MessagePanel = ({ messages }) => (
 
-  return <section>
-
-    {
-      messages.length === 0 ?
+  <section>
+    {/* {
+      messages && messages.length === 0 ?
       <li>Parse successful</li> :
       messages.map((msg) => {
         <li>{`[${msg.position.line} , ${msg.position.char}] ${messageTypeToString(msg.type)} ${msg.text}`}</li>
       })
-    }
-    <ParseIcon success={messages.length === 0} />
+    } */}
+    <ParseIcon success={messages && messages.length === 0} />
   </section>
 
-}
+)
 
 const messageTypeToString = (messageType) => {
   switch (messageType) {

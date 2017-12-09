@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const ParseIcon = (success) => {
+const ParseIcon = ({ success }) => {
 
   <div className={`parseIcon-${success}`}>
   </div>
