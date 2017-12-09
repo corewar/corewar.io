@@ -1,4 +1,8 @@
-﻿import { expect } from "chai";
+﻿import * as chai from "chai";
+import * as sinon from "sinon";
+import * as sinonChai from "sinon-chai";
+var expect = chai.expect;
+chai.use(sinonChai);
 
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
@@ -56,9 +60,9 @@ describe("WarriorLoader", () => {
             getAt: (index: number): IInstruction => {
                 return core.instructions[index];
             },
-            setAt: (task: ITask, index: number, instruction: IInstruction) => {
+            setAt: sinon.stub().callsFake((task: ITask, index: number, instruction: IInstruction) => {
                 core.instructions[index] = instruction;
-            }
+            })
         };
         for (var i = 0; i < size; i++) {
             core.instructions.push({
@@ -341,5 +345,16 @@ describe("WarriorLoader", () => {
         var actual = loader.load(3, tokens, expected);
 
         expect(actual.id).to.be.equal(expected);
+    });
+
+    it("Raises core access events for the newly created task", () => {
+
+        var tokens = DataHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        var core = buildCore(0);
+
+        var loader = new WarriorLoader(core);
+        var actual = loader.load(0, tokens, 0);
+
+        expect(core.setAt).to.be.calledWith(actual.tasks[0], sinon.match.any, sinon.match.any);
     });
 });
