@@ -2,21 +2,20 @@ import React from 'react'
 
 import ParseIcon from './parseIcon'
 
+import './messagePanel.css'
 
 const MessagePanel = ({ messages }) => (
 
-  <section>
+  <section className="messagePanel">
+    <ul>
     {
       !messages || messages.length === 0 ?
-      <li>Parse successful</li> :
-      <ul>
-        {
+        <li>parse successful</li> :
         messages.map((msg) => (
-          <li>{`[${msg.position.line} , ${msg.position.char}] ${messageTypeToString(msg.type)} ${msg.text}`}</li>
+          <li className="error">{`[${msg.position.line} , ${msg.position.char}] ${messageTypeToString(msg.type)} ${msg.text}`}</li>
         ))
-      }
-      </ul>
     }
+    </ul>
     {/* <ParseIcon success={messages && messages.length === 0} /> */}
   </section>
 

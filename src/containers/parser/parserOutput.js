@@ -9,7 +9,6 @@ const ParserOutput = ({isParsing, parseResult}) => (
     <pre>
       {isParsing ? 'parsing...' : parseResult ? parseResult.warrior : 'awaiting redcode'}
     </pre>
-    <MessagePanel {...parseResult}/>
   </section>
 )
 

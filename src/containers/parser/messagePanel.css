@@ -1,0 +1,27 @@
+.messagePanel {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+
+  border: 2px solid #56CCF2;
+  border-top: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
+  font-size: 0.8em;
+}
+
+.messagePanel ul {
+  margin: 0.5em;
+  padding: 0;
+}
+
+.messagePanel ul li {
+  list-style: none;
+  color: #6FCF97;
+}
+
+.messagePanel ul li.error {
+  color: #EB5757;
+}

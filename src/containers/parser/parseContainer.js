@@ -18,6 +18,7 @@ const ParseContainer = ({ redcode, currentParseResult, isParsing, parse }) => {
   return <div id="parseContainer">
     <ParserInput redcode={redcode} handleChange={parse} />
     <ParserOutput parseResult={currentParseResult} isParsing={isParsing} />
+    <MessagePanel {...currentParseResult} />
   </div>
 }
 
