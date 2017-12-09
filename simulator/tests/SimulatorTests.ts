@@ -6,7 +6,6 @@ chai.use(sinonChai);
 
 import { Warrior } from "../Warrior";
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
-import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { ITask } from "../interface/ITask";
 import { IOptions } from "../interface/IOptions";
 import { IState } from "../interface/IState";
@@ -44,7 +43,6 @@ describe("Simulator", () => {
 
         core = {
             getSize: () => { return 0; },
-            coreAccess: new LiteEvent<ICoreAccessEventArgs>(),
             executeAt: sinon.stub(),
             readAt: sinon.stub(),
             getAt: sinon.stub(),

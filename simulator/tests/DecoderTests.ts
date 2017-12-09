@@ -9,7 +9,6 @@ import { IInstruction } from "../interface/IInstruction";
 import { OpcodeType, ModifierType } from "../interface/IInstruction";
 import { IExecutive } from "../interface/IExecutive";
 import { IExecutionContext } from "../interface/IExecutionContext";
-import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { ITask } from "../interface/ITask";
 import Defaults from "../Defaults";
 import { IOptions } from "../interface/IOptions";
@@ -45,7 +44,6 @@ describe("Decoder",() => {
 
         core = {
             getSize: () => { return 0; },
-            coreAccess: new LiteEvent<ICoreAccessEventArgs>(),
             executeAt: sinon.stub(),
             readAt: sinon.stub(),
             getAt: sinon.stub(),

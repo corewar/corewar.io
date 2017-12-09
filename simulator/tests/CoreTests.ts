@@ -184,62 +184,65 @@ describe("Core", () => {
 
     it("Triggers a read core access event for the specified Task when getAt is called", () => {
 
+        const pubsub = {
+            publishSync: sinon.stub()
+        }
+
         var task = buildTask(7);
-        var handler = sinon.stub();
 
         var core = new Core();
+        core.setMessageProvider(pubsub);
         core.initialise(_.defaults({ coresize: 4 }, Defaults));
-        core.coreAccess.subscribe(handler);
 
         core.readAt(task, 2);
 
-        expect(handler).to.have.been.called;
-
-        var eventArg = <ICoreAccessEventArgs>_(handler.lastCall.args).first();
-
-        expect(eventArg.accessType).to.be.equal(CoreAccessType.read);
-        expect(eventArg.address).to.be.equal(2);
-        expect(eventArg.warriorId).to.be.equal(task.warrior.id);
+        expect(pubsub.publishSync).to.have.been.calledWith('CORE_ACCESS', {
+            warriorId: task.warrior.id,
+            accessType: CoreAccessType.read,
+            address: 2
+        });
     });
 
     it("Triggers a write core access event for the specified Task when setAt is called", () => {
 
+        const pubsub = {
+            publishSync: sinon.stub()
+        };
+
         var task = buildTask(5);
-        var handler = sinon.stub();
 
         var core = new Core();
+        core.setMessageProvider(pubsub);
         core.initialise(_.defaults({ coresize: 4 }, Defaults));
-        core.coreAccess.subscribe(handler);
 
         core.setAt(task, 2, buildInstruction());
 
-        expect(handler).to.have.been.called;
-
-        var eventArg = <ICoreAccessEventArgs>_(handler.lastCall.args).first();
-
-        expect(eventArg.accessType).to.be.equal(CoreAccessType.write);
-        expect(eventArg.address).to.be.equal(2);
-        expect(eventArg.warriorId).to.be.equal(task.warrior.id);
+        expect(pubsub.publishSync).to.have.been.calledWith('CORE_ACCESS', {
+            warriorId: task.warrior.id,
+            accessType: CoreAccessType.write,
+            address: 2
+        });
     });
 
     it("Triggers an execute core access event for the specified Task when executeAt is called", () => {
 
+        const pubsub = {
+            publishSync: sinon.stub()
+        }
+
         var task = buildTask(3);
-        var handler = sinon.stub();
 
         var core = new Core();
+        core.setMessageProvider(pubsub);
         core.initialise(_.defaults({ coresize: 4 }, Defaults));
-        core.coreAccess.subscribe(handler);
 
         core.executeAt(task, 2);
 
-        expect(handler).to.have.been.called;
-
-        var eventArg = <ICoreAccessEventArgs>_(handler.lastCall.args).first();
-
-        expect(eventArg.accessType).to.be.equal(CoreAccessType.execute);
-        expect(eventArg.address).to.be.equal(2);
-        expect(eventArg.warriorId).to.be.equal(task.warrior.id);
+        expect(pubsub.publishSync).to.have.been.calledWith('CORE_ACCESS', {
+            warriorId: task.warrior.id,
+            accessType: CoreAccessType.execute,
+            address: 2
+        });
     });
 
     it(".getSize returns the size of the core", () => {

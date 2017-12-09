@@ -5,7 +5,6 @@ var expect = chai.expect;
 chai.use(sinonChai);
 
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
-import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { IRandom } from "../interface/IRandom";
 import { IWarriorLoader } from "../interface/IWarriorLoader";
 import { IParseResult } from "../../parser/interface/IParseResult";
@@ -47,7 +46,6 @@ describe("Loader",() => {
 
         core = {
             getSize: () => { return 0; },
-            coreAccess: new LiteEvent<ICoreAccessEventArgs>(),
             executeAt: sinon.stub(),
             readAt: sinon.stub(),
             getAt: sinon.stub(),

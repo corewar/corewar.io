@@ -1,5 +1,4 @@
-﻿import { ILiteEvent, LiteEvent } from "../modules/LiteEvent";
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "./interface/ICore";
+﻿import { ICore, ICoreAccessEventArgs, CoreAccessType } from "./interface/ICore";
 import { IOptions } from "./interface/IOptions";
 import { IInstruction } from "./interface/IInstruction";
 import { ITask } from "./interface/ITask";
@@ -8,11 +7,7 @@ import * as clone from "clone";
 
 export class Core implements ICore {
 
-    private _coreAccess: LiteEvent<ICoreAccessEventArgs>;
     private pubSubProvider: any;
-    public get coreAccess(): ILiteEvent<ICoreAccessEventArgs> {
-        return this._coreAccess;
-    }
 
     private options: IOptions;
     private instructions: IInstruction[] = null;
@@ -20,7 +15,7 @@ export class Core implements ICore {
     private cs: number;
 
     constructor() {
-        this._coreAccess = new LiteEvent<ICoreAccessEventArgs>();
+        
     }
 
     public initialise(options: IOptions) {
@@ -56,12 +51,6 @@ export class Core implements ICore {
                 address: address
             });
         }
-
-        this._coreAccess.trigger({
-            warriorId: task ? task.warrior.id : null,
-            accessType: accessType,
-            address: address
-        });
     }
 
     public executeAt(task: ITask, address: number): IInstruction {
