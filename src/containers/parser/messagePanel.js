@@ -6,14 +6,18 @@ import ParseIcon from './parseIcon'
 const MessagePanel = ({ messages }) => (
 
   <section>
-    {/* {
-      messages && messages.length === 0 ?
+    {
+      !messages || messages.length === 0 ?
       <li>Parse successful</li> :
-      messages.map((msg) => {
-        <li>{`[${msg.position.line} , ${msg.position.char}] ${messageTypeToString(msg.type)} ${msg.text}`}</li>
-      })
-    } */}
-    <ParseIcon success={messages && messages.length === 0} />
+      <ul>
+        {
+        messages.map((msg) => (
+          <li>{`[${msg.position.line} , ${msg.position.char}] ${messageTypeToString(msg.type)} ${msg.text}`}</li>
+        ))
+      }
+      </ul>
+    }
+    {/* <ParseIcon success={messages && messages.length === 0} /> */}
   </section>
 
 )
@@ -31,4 +35,4 @@ const messageTypeToString = (messageType) => {
   }
 }
 
-export default MessagePanel;
+export default MessagePanel

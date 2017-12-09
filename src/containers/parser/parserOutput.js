@@ -1,13 +1,15 @@
 import React from 'react'
 
+import MessagePanel from './messagePanel'
+
 import './parserOutput.css'
 
-const ParserOutput = ({parseResult}) => (
+const ParserOutput = ({isParsing, parseResult}) => (
   <section id="output">
     <pre>
-      {parseResult ? parseResult.warrior : 'awaiting redcode'}
+      {isParsing ? 'parsing...' : parseResult ? parseResult.warrior : 'awaiting redcode'}
     </pre>
-  {/* <MessagePanel {...parseResult}/> */}
+    <MessagePanel {...parseResult}/>
   </section>
 )
 

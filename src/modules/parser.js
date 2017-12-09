@@ -1,7 +1,7 @@
 import { corewar } from "corewar";
 
-export const PARSE_REQUESTED = 'parser/INCREMENT_REQUESTED'
-export const PARSE = 'parser/INCREMENT'
+export const PARSE_REQUESTED = 'parser/PARSE_REQUESTED'
+export const PARSE = 'parser/PARSE'
 export const SET_STANDARD = 'parser/SET_STANDARD'
 export const SAVE = 'parser/SAVE'
 
@@ -10,7 +10,7 @@ const initialState = {
   isParsing: false,
   currentParseResult: {},
   parseResults: [],
-  standardId: 2,
+  standardId: 2, // TODO: what's the best standard to use as a default?
   redcode: '',
   warrior: ''
 }
@@ -32,18 +32,18 @@ export default (state = initialState, action) => {
         isParsing: true
       }
 
-    case SAVE:
-      return {
-        ...state,
-        parseResults: insertItem(state.parseResults.length, state.parseResults, state.currentParseResult)
-      }
-
     case PARSE:
       return {
         ...state,
         currentParseResult: action.result,
         redcode: action.redcode,
         isParsing: false
+      }
+
+    case SAVE:
+      return {
+        ...state,
+        parseResults: insertItem(state.parseResults.length, state.parseResults, state.currentParseResult)
       }
 
     default:
@@ -68,15 +68,16 @@ export const save = () => {
 
 export const parse = (redcode) => {
 
-  let result = corewar.parser.parse(redcode);
-  console.log(result);
-  const warrior = corewar.serialiser.serialise(result.tokens);
-  result.warrior = warrior;
-
   return dispatch => {
     dispatch({
       type: PARSE_REQUESTED
     })
+
+    let result = corewar.parser.parse(redcode);
+    console.log(result);
+    // TODO: could we serialise the parse result in the core?
+    const warrior = corewar.serialiser.serialise(result.tokens);
+    result.warrior = warrior;
 
     dispatch({
       type: PARSE,

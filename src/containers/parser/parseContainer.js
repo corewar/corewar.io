@@ -10,7 +10,6 @@ import './parseContainer.css'
 
 import {
   parse,
-  setStandard,
   save
 } from '../../modules/parser';
 
@@ -24,15 +23,12 @@ const ParseContainer = ({ redcode, currentParseResult, isParsing, parse }) => {
 
 const mapStateToProps = state => ({
   currentParseResult: state.parser.currentParseResult,
-  parseResults: state.parser.parseResults,
   isParsing: state.parser.isParsing,
-  standardId: state.parser.standardId,
   redcode: state.parser.redcode
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   parse,
-  setStandard,
   save
 }, dispatch)
 
