@@ -23,6 +23,7 @@
     "react-test-renderer": "^16.1.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "typeface-roboto-condensed": "0.0.45",
     "typeface-roboto-slab": "0.0.44"
   },
   "scripts": {
