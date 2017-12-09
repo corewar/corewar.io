@@ -5,10 +5,10 @@ import UserInfo from './userInfo'
 import './login.css'
 
 const Login = ({ isAuthenticated }) => (
-  <div className="login">
+  <div className="loginContainer">
     {isAuthenticated ?
       <UserInfo /> :
-      <div>
+      <div className="loginButtons">
         <button>Login</button>
         <button>Sign up</button>
       </div>

@@ -1,19 +1,24 @@
-.login {
+.loginContainer {
   grid-row-start: 2;
   grid-column-start: 4;
   grid-column-end: 6;
 }
 
-.login button {
+.loginButtons {
+  height: 100%;
+}
+
+.loginButtons button {
   border: 1px solid #56CCF2;
   color: #56CCF2;
   background-color: transparent;
   height: 100%;
   min-width: 90px;
   margin-right: 0.5em;
+  font-family: 'roboto condensed';
 }
 
-.login button:hover {
+.loginButtons button:hover {
   background-color: #56CCF2;
   color: #100E14;
   cursor: pointer;
