@@ -40,10 +40,7 @@ import { Simulator } from "./simulator/Simulator";
 import { EndCondition } from "./simulator/EndCondition";
 import { OptionValidator } from "./simulator/OptionValidator";
 import { IOptions } from "./simulator/interface/IOptions";
-
 import { ILoader } from "./simulator/interface/ILoader";
-
-import * as _ from "underscore";
 import { IState } from "./simulator/interface/IState";
 
 class Api {
@@ -100,12 +97,12 @@ class Api {
 
     public initialiseSimulator(opts: IOptions, parseResults: IParseResult[], messageProvider: any) : IState {
 
-        var options = _.defaults({
+        var options = Object.assign(Defaults, {
             coresize: opts.coresize,
             minSeparation: opts.minSeparation,
             instructionLimit: opts.instructionLimit,
             standard: opts.standard
-        }, Defaults);
+        });
 
         this.core.initialise(options);
 
