@@ -1,6 +1,5 @@
 ﻿import { IToken, TokenCategory } from "./interface/IToken";
 import { ISerialiser } from "./interface/ISerialiser";
-import * as _ from "underscore";
 
 export class LoadFileSerialiser implements ISerialiser {
 
@@ -11,7 +10,7 @@ export class LoadFileSerialiser implements ISerialiser {
         var result = "";
         this.previous = TokenCategory.EOL;
 
-        _.forEach(tokens, (token: IToken) => {
+        tokens.forEach((token: IToken) => {
             result += this.serialiseToken(token);
             this.previous = token.category;
         });

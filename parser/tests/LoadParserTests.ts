@@ -217,14 +217,21 @@ describe("LoadParser",() => {
     it("Passes supplied options to each pass",() => {
 
         var document = "MOV 0, 1";
-        var options = {};
+        var options = {
+            coresize: 7
+        };
+
+        var expeceted = {
+            standard: Standard.ICWS94draft,
+            coresize: 7
+        };
 
         loadParser.parse(document, options);
 
-        expect(scanner.scan).to.have.been.calledWith(document, options);
-        expect(filter.process).to.have.been.calledWith(context, options);
-        expect(syntaxCheck.process).to.have.been.calledWith(context, options);
-        expect(modPass.process).to.have.been.calledWith(context, options);
+        expect(scanner.scan).to.have.been.calledWith(document, expeceted);
+        expect(filter.process).to.have.been.calledWith(context, expeceted);
+        expect(syntaxCheck.process).to.have.been.calledWith(context, expeceted);
+        expect(modPass.process).to.have.been.calledWith(context, expeceted);
     });
 
     it("Returns context tokens, messages and metaData in ParserResult",() => {
