@@ -11,7 +11,6 @@ import { IOptions } from "./interface/IOptions";
 import { IParseResult } from "../parser/interface/IParseResult";
 import Defaults from "./Defaults";
 import * as clone from "clone";
-import * as _ from "underscore";
 
 export class Simulator implements ISimulator {
 
@@ -66,7 +65,7 @@ export class Simulator implements ISimulator {
 
     public initialise(options: IOptions, warriors: IParseResult[]) {
 
-        const defaultedOptions = _.defaults(options, Defaults);
+        const defaultedOptions = Object.assign({}, Defaults, options);
 
         this.optionValidator.validate(defaultedOptions, warriors.length);
 

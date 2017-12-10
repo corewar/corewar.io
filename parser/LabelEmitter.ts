@@ -2,8 +2,6 @@
 import { IToken, TokenCategory } from "./interface/IToken";
 import { IParseOptions, Standard } from "./interface/IParseOptions";
 import { IContext } from "./interface/IContext";
-import * as _ from "underscore";
-
 import { PassBase } from "./PassBase";
 
 export class LabelEmitter extends PassBase {
@@ -48,7 +46,7 @@ export class LabelEmitter extends PassBase {
 
         var tokens = this.stream.readToEOL();
 
-        _.forEach(tokens, (token: IToken) => {
+        tokens.forEach((token: IToken) => {
 
             if (token.category === TokenCategory.Label) {
                 this.processLabel(token, isOpcode);
@@ -83,7 +81,7 @@ export class LabelEmitter extends PassBase {
             var token = {
                 category: TokenCategory.Number,
                 lexeme: diff.toString(),
-                position: _.clone(label.position)
+                position: Object.assign({}, label.position)
             };
 
             this.context.emitSingle(token);

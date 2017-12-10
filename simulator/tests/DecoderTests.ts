@@ -15,7 +15,6 @@ import { IOptions } from "../interface/IOptions";
 import { ModeType } from "../interface/IOperand";
 import { Decoder } from "../Decoder";
 import DataHelper from "./DataHelper";
-import * as _ from "underscore";
 
 "use strict";
 

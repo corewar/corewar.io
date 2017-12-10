@@ -20,10 +20,7 @@ import { OpcodeType, ModifierType } from "../interface/IInstruction";
 import { ModeType } from "../interface/IOperand";
 import DataHelper from "./DataHelper";
 import { IOptionValidator } from "../interface/IOptionValidator";
-import * as _ from "underscore";
 import * as clone from "clone";
-
-"use strict";
 
 describe("Simulator", () => {
 
@@ -163,17 +160,17 @@ describe("Simulator", () => {
 
         simulator.step();
 
-        state = _(checkSpy.lastCall.args).first();
+        state = checkSpy.lastCall.args[0];
         expect(state.cycle).to.be.equal(1);
 
         simulator.step();
 
-        state = _(checkSpy.lastCall.args).first();
+        state = checkSpy.lastCall.args[0];
         expect(state.cycle).to.be.equal(2);
 
         simulator.step();
 
-        state = _(checkSpy.lastCall.args).first();
+        state = checkSpy.lastCall.args[0];
         expect(state.cycle).to.be.equal(3);
     });
 
@@ -225,7 +222,7 @@ describe("Simulator", () => {
         simulator.initialise(expected, []);
         simulator.step();
 
-        var actual: IState = _((<sinon.stub>endCondition.check).lastCall.args).first();
+        var actual: IState = (<sinon.stub>endCondition.check).lastCall.args[0];
 
         expect(actual.options).to.deep.equal(expected);
     });
@@ -235,9 +232,9 @@ describe("Simulator", () => {
         simulator.initialise({ coresize: 123 }, []);
         simulator.step();
 
-        var actual: IState = _((<sinon.stub>endCondition.check).lastCall.args).first();
+        var actual: IState = (<sinon.stub>endCondition.check).lastCall.args[0];
 
-        expect(actual.options).to.deep.equal(_.defaults({ coresize: 123 }, Defaults));
+        expect(actual.options).to.deep.equal(Object.assign({}, Defaults, { coresize: 123 }));
     });
 
     it("initialises core using the supplied options", () => {
@@ -259,14 +256,18 @@ describe("Simulator", () => {
 
         expect(loader.load).to.have.been.calledWith(warriors, Defaults);
 
-        var state = _((<sinon.stub>fetcher.fetch).lastCall.args).first();
+        var state = (<sinon.stub>fetcher.fetch).lastCall.args[0];
 
         expect(state.warriors).to.be.equal(loadedWarriors);
     });
 
     it("Validates options provided during initialisation and raises any errors", () => {
 
-        const options = {};
+        const options = {
+            coresize: 123
+        };
+
+        const expectedOptions = Object.assign({}, Defaults, options);
 
         const expectedError = Error("Test");
         let actualError = null;
@@ -281,7 +282,7 @@ describe("Simulator", () => {
             actualError = e;
         }
 
-        expect(optionValidator.validate).to.have.been.calledWith(options);
+        expect(optionValidator.validate).to.have.been.calledWith(expectedOptions);
         expect(actualError).to.be.equal(expectedError);
     });
 

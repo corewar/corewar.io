@@ -7,8 +7,6 @@ import { LabelCollector } from "../LabelCollector";
 import { MessageType } from "../interface/IMessage";
 import { TestHelper } from "./TestHelper";
 import { Standard } from "../interface/IParseOptions";
-import * as _ from "underscore";
-"use strict";
 
 describe("LabelCollector", () => {
 
@@ -432,7 +430,7 @@ describe("LabelCollector", () => {
         context.tokens = tokens.slice();
 
         var pass = new LabelCollector();
-        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.labels["longlabe"]).to.be.equal(0);

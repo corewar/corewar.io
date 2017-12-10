@@ -3,7 +3,6 @@ import { IMetaData } from "./interface/IMetaData";
 import { IToken } from "./interface/IToken";
 import { IMessage } from "./interface/IMessage";
 import { IParseInstruction } from "./interface/IParseInstruction";
-import * as _ from "underscore";
 
 export class Context implements IContext {
 
@@ -35,41 +34,37 @@ export class Context implements IContext {
         this.tokens = this.tokens.concat(tokens);
     }
 
-    private hasValue(something: any): boolean {
-        return (!(_.isUndefined(something) || _.isNull(something)));
-    }
-
     public emitInstruction(instruction: IParseInstruction) {
 
-        if (this.hasValue(instruction.opcode)) {
+        if (instruction.opcode != null) {
             this.tokens.push(instruction.opcode);
         }
-        if (this.hasValue(instruction.modifier)) {
+        if (instruction.modifier != null) {
             this.tokens.push(instruction.modifier);
         }
-        if (this.hasValue(instruction.aOperand)) {
-            if (this.hasValue(instruction.aOperand.mode)) {
+        if (instruction.aOperand != null) {
+            if (instruction.aOperand.mode != null) {
                 this.tokens.push(instruction.aOperand.mode);
             }
-            if (this.hasValue(instruction.aOperand.address)) {
+            if (instruction.aOperand.address != null) {
                 this.tokens.push(instruction.aOperand.address);
             }
         }
-        if (this.hasValue(instruction.comma)) {
+        if (instruction.comma != null) {
             this.tokens.push(instruction.comma);
         }
-        if (this.hasValue(instruction.bOperand)) {
-            if (this.hasValue(instruction.bOperand.mode)) {
+        if (instruction.bOperand != null) {
+            if (instruction.bOperand.mode != null) {
                 this.tokens.push(instruction.bOperand.mode);
             }
-            if (this.hasValue(instruction.bOperand.address)) {
+            if (instruction.bOperand.address != null) {
                 this.tokens.push(instruction.bOperand.address);
             }
         }
-        if (this.hasValue(instruction.comment)) {
+        if (instruction.comment != null) {
             this.tokens.push(instruction.comment);
         }
-        if (this.hasValue(instruction.eol)) {
+        if (instruction.eol != null) {
             this.tokens.push(instruction.eol);
         }
     }

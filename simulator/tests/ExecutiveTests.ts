@@ -15,9 +15,6 @@ import { Executive } from "../Executive";
 import { IExecutionContext } from "../interface/IExecutionContext";
 import { ITask } from "../interface/ITask";
 import DataHelper from "./DataHelper";
-import * as _ from "underscore";
-
-"use strict";
 
 describe("Executive", () => {
 
@@ -29,7 +26,7 @@ describe("Executive", () => {
 
     beforeEach(() => {
 
-        options = _.clone(Defaults);
+        options = Object.assign({}, Defaults);
         options.coresize = 5;
         options.instructionLimit = 100;
 

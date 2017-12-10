@@ -7,10 +7,7 @@ import { Parser } from "../Parser";
 import { MessageType } from "../interface/IMessage";
 import { IToken, TokenCategory } from "../interface/IToken";
 import { Standard } from "../interface/IParseOptions";
-import * as _ from "underscore";
 import { OpcodeType } from "../../simulator/interface/IInstruction";
-
-"use strict";
 
 describe("OrgPass", () => {
 
@@ -260,7 +257,7 @@ describe("OrgPass", () => {
         context.labels["start"] = 1;
 
         var pass = new OrgPass();
-        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
 
         expect(actual.tokens[0].lexeme).to.be.equal("ORG");
         expect(actual.tokens[1].lexeme).to.be.equal("1");
@@ -288,7 +285,7 @@ describe("OrgPass", () => {
         context.labels["start"] = 1;
 
         var pass = new OrgPass();
-        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
 
         const orgInstructionLength = 3;
 

@@ -6,8 +6,6 @@ import { IllegalCommandCheck } from "../IllegalCommandCheck";
 import { Parser } from "../Parser";
 import { MessageType } from "../interface/IMessage";
 import { Standard } from "../interface/IParseOptions";
-import * as _ from "underscore";
-"use strict";
 
 describe("IllegalCommandCheck", () => {
 
@@ -40,7 +38,7 @@ describe("IllegalCommandCheck", () => {
         context.tokens = tokens.slice();
 
         var pass = new IllegalCommandCheck();
-        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
 
         expect(actual.messages.length).to.be.equal(0);
     });
@@ -63,14 +61,14 @@ describe("IllegalCommandCheck", () => {
         context.tokens = tokens.slice();
 
         var pass = new IllegalCommandCheck();
-        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
 
         expect(actual.messages.length).to.be.equal(11);
 
-        expect(_(actual.messages).where({
-            type: MessageType.Error,
-            text: "Illegal addressing mode under selected Corewar standard"
-        }).length).to.be.equal(11);
+        expect(actual.messages.filter(a => 
+            a.type === MessageType.Error &&
+            a.text === "Illegal addressing mode under selected Corewar standard"
+        ).length).to.be.equal(11);
 
         for (var i = 0; i < actual.messages.length; i++) {
             expect(actual.messages[i].position).to.deep.equal(tokens[i * 8].position);
@@ -85,7 +83,7 @@ describe("IllegalCommandCheck", () => {
         context.tokens = tokens.slice();
 
         var pass = new IllegalCommandCheck();
-        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(tokens.length);

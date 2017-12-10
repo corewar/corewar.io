@@ -5,7 +5,6 @@ import { IWarriorLoader } from "./interface/IWarriorLoader";
 import { IParseResult } from "../parser/interface/IParseResult";
 import { IWarrior } from "./interface/IWarrior";
 import { IOptions } from "./interface/IOptions";
-import * as _ from "underscore";
 
 export class Loader implements ILoader {
 
@@ -25,7 +24,7 @@ export class Loader implements ILoader {
         var result: IWarrior[] = [];
         let id = 0;
 
-        _(warriors).forEach((w: IParseResult) => {
+        warriors.forEach((w: IParseResult) => {
 
             var address = this.getValidAddress(result, options);
 
@@ -55,7 +54,7 @@ export class Loader implements ILoader {
         var instructionLimitLess1 = options.instructionLimit - 1;
         var minSeparationLess1 = options.minSeparation - 1;
 
-        _(warriors).forEach((w: IWarrior) => {
+        warriors.forEach((w: IWarrior) => {
 
             var s0 = address;
             var f0 = address + instructionLimitLess1;

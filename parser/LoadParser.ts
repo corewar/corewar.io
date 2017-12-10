@@ -5,7 +5,6 @@ import { IContext } from "./interface/IContext";
 import { IMessage, MessageType } from "./interface/IMessage";
 import { IParseOptions, Standard } from "./interface/IParseOptions";
 import { IParseResult } from "./interface/IParseResult";
-import * as _ from "underscore";
 
 import { Parser } from "./Parser";
 
@@ -32,14 +31,14 @@ export class LoadParser implements IParser {
     }
 
     private noErrors(context: IContext): boolean {
-        return !_(context.messages).any((message: IMessage) => {
+        return !context.messages.some((message: IMessage) => {
             return message.type === MessageType.Error;
         });
     }
 
     parse(document: string, options?: IParseOptions): IParseResult {
 
-        options = _.defaults(options || {}, Parser.DefaultOptions);
+        options = Object.assign({}, Parser.DefaultOptions, options || {});
 
         var context = this.scanner.scan(document, options);
 

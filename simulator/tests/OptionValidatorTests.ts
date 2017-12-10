@@ -7,7 +7,6 @@ chai.use(sinonChai);
 import Defaults from "../Defaults";
 import { IOptions } from "../interface/IOptions";
 import { OptionValidator } from "../OptionValidator";
-import * as _ from "underscore";
 import * as clone from "clone";
 
 describe("OptionValidator", () => {

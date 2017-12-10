@@ -6,8 +6,6 @@ import { Parser } from "../Parser";
 import { Scanner } from "../Scanner";
 import { PreprocessEmitter } from "../PreprocessEmitter";
 import { Standard } from "../interface/IParseOptions";
-import * as _ from "underscore";
-"use strict";
 
 describe("Scanner",() => {
 
@@ -18,7 +16,9 @@ describe("Scanner",() => {
         var scanner = new Scanner();
         var actual = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var newlines = _.where(actual, { category: TokenCategory.EOL, lexeme: "\n" });
+        var newlines = actual.filter(a => 
+            a.category === TokenCategory.EOL && 
+            a.lexeme === "\n");
 
         expect(newlines.length).to.be.equal(7);
     });
@@ -30,7 +30,9 @@ describe("Scanner",() => {
         var scanner = new Scanner();
         var actual = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var newlines = _.where(actual, { category: TokenCategory.EOL, lexeme: "\n" });
+        var newlines = actual.filter(a =>
+            a.category === TokenCategory.EOL &&
+            a.lexeme === "\n");
 
         expect(newlines.length).to.be.equal(2);
     });
@@ -73,10 +75,11 @@ describe("Scanner",() => {
         var document = "DAT MOV ADD SUB MUL DIV MOD JMP JMZ JMN DJN CMP SLT SPL";
 
         var scanner = new Scanner();
-        var actual = scanner.scan(document, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions)).tokens;
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
+        var actual = scanner.scan(document, options).tokens;
 
-        var opcodes = _(actual).where({ category: TokenCategory.Opcode });
-        var labels = _(actual).where({ category: TokenCategory.Label });
+        var opcodes = actual.filter(a => a.category === TokenCategory.Opcode);
+        var labels = actual.filter(a => a.category === TokenCategory.Label);
 
         expect(opcodes.length).to.be.equal(11);
         expect(labels.length).to.be.equal(3);
@@ -103,10 +106,11 @@ describe("Scanner",() => {
         var document = "DAT MOV ADD SUB MUL DIV MOD JMP JMZ JMN DJN CMP SLT SPL";
 
         var scanner = new Scanner();
-        var actual = scanner.scan(document, _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions)).tokens;
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
+        var actual = scanner.scan(document, options).tokens;
 
-        var opcodes = _(actual).where({ category: TokenCategory.Opcode });
-        var labels = _(actual).where({ category: TokenCategory.Label });
+        var opcodes = actual.filter(a => a.category === TokenCategory.Opcode);
+        var labels = actual.filter(a => a.category === TokenCategory.Label);
 
         expect(opcodes.length).to.be.equal(10);
         expect(labels.length).to.be.equal(4);
@@ -151,10 +155,11 @@ describe("Scanner",() => {
         var document = "EQU END ORG";
 
         var scanner = new Scanner();
-        var actual = scanner.scan(document, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions)).tokens;
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
+        var actual = scanner.scan(document, options).tokens;
 
-        var preprocessor = _(actual).where({ category: TokenCategory.Preprocessor });
-        var labels = _(actual).where({ category: TokenCategory.Label });
+        var preprocessor = actual.filter(a => a.category === TokenCategory.Preprocessor);
+        var labels = actual.filter(a => a.category === TokenCategory.Label);
 
         expect(preprocessor.length).to.be.equal(2);
         expect(labels.length).to.be.equal(1);
@@ -169,10 +174,11 @@ describe("Scanner",() => {
         var document = "EQU END ORG";
 
         var scanner = new Scanner();
-        var actual = scanner.scan(document, _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions)).tokens;
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
+        var actual = scanner.scan(document, options).tokens;
 
-        var preprocessor = _(actual).where({ category: TokenCategory.Preprocessor });
-        var labels = _(actual).where({ category: TokenCategory.Label });
+        var preprocessor = actual.filter(a => a.category === TokenCategory.Preprocessor);
+        var labels = actual.filter(a => a.category === TokenCategory.Label);
 
         expect(preprocessor.length).to.be.equal(1);
         expect(labels.length).to.be.equal(2);
@@ -205,7 +211,7 @@ describe("Scanner",() => {
         var scanner = new Scanner();
         var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var actual = _.where(tokens, { category: TokenCategory.Mode });
+        var actual = tokens.filter(a => a.category === TokenCategory.Mode);
 
         expect(actual.length).to.be.equal(8);
 
@@ -224,9 +230,10 @@ describe("Scanner",() => {
         var document = "MOV.AB #25, $26\nDAT @1, <6\nJMP >7";
 
         var scanner = new Scanner();
-        var tokens = scanner.scan(document, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions)).tokens;
+        const options =  Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
+        var tokens = scanner.scan(document, options).tokens;
 
-        var actual = _.where(tokens, { category: TokenCategory.Mode });
+        var actual = tokens.filter(a => a.category === TokenCategory.Mode);
 
         expect(actual.length).to.be.equal(4);
 
@@ -241,9 +248,10 @@ describe("Scanner",() => {
         var document = "MOV.AB #25, $26\nDAT @1, <6\nJMP >7";
 
         var scanner = new Scanner();
-        var tokens = scanner.scan(document, _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions)).tokens;
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
+        var tokens = scanner.scan(document, options).tokens;
 
-        var actual = _.where(tokens, { category: TokenCategory.Mode });
+        var actual = tokens.filter(a => a.category === TokenCategory.Mode);
 
         expect(actual.length).to.be.equal(4);
 
@@ -260,7 +268,9 @@ describe("Scanner",() => {
         var scanner = new Scanner();
         var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var actual = _.where(tokens, { category: TokenCategory.Comma, lexeme: "," });
+        var actual = tokens.filter(a => 
+            a.category === TokenCategory.Comma && 
+            a.lexeme === ",");
 
         expect(actual.length).to.be.equal(5);
     });
@@ -275,7 +285,7 @@ describe("Scanner",() => {
         expect(tokens[7].lexeme).to.be.equal("-");
         expect(tokens[7].category).to.be.equal(TokenCategory.Maths);
 
-        var actual = _.where(tokens, { category: TokenCategory.Number });
+        var actual = tokens.filter(a => a.category === TokenCategory.Number);
 
         expect(actual.length).to.be.equal(4);
 
@@ -292,7 +302,7 @@ describe("Scanner",() => {
         var scanner = new Scanner();
         var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var actual = _.where(tokens, { category: TokenCategory.Modifier });
+        var actual = tokens.filter(a => a.category === TokenCategory.Modifier);
 
         expect(actual.length).to.be.equal(7);
 
@@ -310,13 +320,14 @@ describe("Scanner",() => {
         var document = "MOV.A 0, 0\nADD.B 0, 0\n.AB 0, 0\nJMZ .BA 0, 0\nMOV 0,.F 0\nMOV 0, 0 .I\nMOV.X 0, 0\n. AB. BA. A . B. I";
 
         var scanner = new Scanner();
-        var tokens = scanner.scan(document, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions)).tokens;
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
+        var tokens = scanner.scan(document, options).tokens;
 
-        var modifiers = _.where(tokens, { category: TokenCategory.Modifier });
+        var modifiers = tokens.filter(a => a.category === TokenCategory.Modifier);
 
         expect(modifiers.length).to.be.equal(0);
 
-        var unknown = _(tokens).where({ category: TokenCategory.Unknown });
+        var unknown = tokens.filter(a => a.category === TokenCategory.Unknown);
 
         expect(unknown.length).to.be.equal(12);
 
@@ -333,7 +344,7 @@ describe("Scanner",() => {
         expect(unknown[10].lexeme).to.be.equal(".");
         expect(unknown[11].lexeme).to.be.equal(".");
 
-        var labels = _(tokens).where({ category: TokenCategory.Label });
+        var labels = tokens.filter(a => a.category === TokenCategory.Label);
 
         expect(labels.length).to.be.equal(5);
 
@@ -349,13 +360,14 @@ describe("Scanner",() => {
         var document = "MOV.A 0, 0\nADD.B 0, 0\n.AB 0, 0\nJMZ .BA 0, 0\nMOV 0,.F 0\nMOV 0, 0 .I\nMOV.X 0, 0\n. AB. BA. A . B. I";
 
         var scanner = new Scanner();
-        var tokens = scanner.scan(document, _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions)).tokens;
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
+        var tokens = scanner.scan(document, options).tokens;
 
-        var modifiers = _.where(tokens, { category: TokenCategory.Modifier });
+        var modifiers = tokens.filter(a => a.category === TokenCategory.Modifier);
 
         expect(modifiers.length).to.be.equal(0);
 
-        var unknown = _(tokens).where({ category: TokenCategory.Unknown });
+        var unknown = tokens.filter(a => a.category === TokenCategory.Unknown);
 
         expect(unknown.length).to.be.equal(12);
 
@@ -372,7 +384,7 @@ describe("Scanner",() => {
         expect(unknown[10].lexeme).to.be.equal(".");
         expect(unknown[11].lexeme).to.be.equal(".");
 
-        var labels = _(tokens).where({ category: TokenCategory.Label });
+        var labels = tokens.filter(a => a.category === TokenCategory.Label);
 
         expect(labels.length).to.be.equal(5);
 
@@ -390,7 +402,7 @@ describe("Scanner",() => {
         var scanner = new Scanner();
         var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var actual = _.where(tokens, { category: TokenCategory.Maths });
+        var actual = tokens.filter(a => a.category === TokenCategory.Maths);
 
         expect(actual.length).to.be.equal(5);
 
@@ -406,9 +418,10 @@ describe("Scanner",() => {
         var document = "MOV 5+4\nADD.F 3-2\nabc EQU 3/2\nxyz EQU 4*3\ndef EQU 5%6";
 
         var scanner = new Scanner();
-        var tokens = scanner.scan(document, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions)).tokens;
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
+        var tokens = scanner.scan(document, options).tokens;
 
-        var actual = _.where(tokens, { category: TokenCategory.Maths });
+        var actual = tokens.filter(a => a.category === TokenCategory.Maths);
 
         expect(actual.length).to.be.equal(4);
 
@@ -418,10 +431,10 @@ describe("Scanner",() => {
         expect(actual[3].lexeme).to.be.equal("*");
 
         expect(
-            _(tokens).where({
-                category: TokenCategory.Unknown,
-                lexeme: "%6"
-            }).length)
+            tokens.filter(a =>
+                a.category === TokenCategory.Unknown &&
+                a.lexeme === "%6"
+            ).length)
             .to.be.equal(1);
     });
 
@@ -430,9 +443,10 @@ describe("Scanner",() => {
         var document = "MOV 5 + 4\nADD.F 3 - 2\nabc EQU 3 / 2\nxyz EQU 4 * 3\ndef EQU 5 % 6";
 
         var scanner = new Scanner();
-        var tokens = scanner.scan(document, _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions)).tokens;
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
+        var tokens = scanner.scan(document, options).tokens;
 
-        var actual = _.where(tokens, { category: TokenCategory.Maths });
+        var actual = tokens.filter(a => a.category === TokenCategory.Maths);
 
         expect(actual.length).to.be.equal(2);
 
@@ -440,7 +454,7 @@ describe("Scanner",() => {
         expect(actual[1].lexeme).to.be.equal("-");
 
         expect(
-            _(tokens).filter((token: IToken) => {
+            tokens.filter((token: IToken) => {
                 return token.category === TokenCategory.Unknown &&
                     (token.lexeme === "*" || token.lexeme === "/" || token.lexeme === "%");
             }).length)
@@ -454,7 +468,7 @@ describe("Scanner",() => {
         var scanner = new Scanner();
         var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var actual = _.where(tokens, { category: TokenCategory.Maths });
+        var actual = tokens.filter(a => a.category === TokenCategory.Maths);
 
         expect(actual.length).to.be.equal(13);
 
@@ -478,9 +492,10 @@ describe("Scanner",() => {
         var document = "MOV (5 + 4)*3\nlabel EQU (4 % ((3 + 2) - 1))";
 
         var scanner = new Scanner();
-        var tokens = scanner.scan(document, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions)).tokens;
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
+        var tokens = scanner.scan(document, options).tokens;
 
-        var actual = _.where(tokens, { category: TokenCategory.Maths });
+        var actual = tokens.filter(a => a.category === TokenCategory.Maths);
 
         expect(actual.length).to.be.equal(3);
 
@@ -488,7 +503,7 @@ describe("Scanner",() => {
         expect(actual[1].lexeme).to.be.equal("+");
         expect(actual[2].lexeme).to.be.equal("-");
 
-        var unknown = _(tokens).where({ category: TokenCategory.Unknown });
+        var unknown = tokens.filter(a => a.category === TokenCategory.Unknown);
 
         expect(unknown.length).to.be.equal(7);
         expect(unknown[0].lexeme).to.be.equal("(5");
@@ -505,9 +520,10 @@ describe("Scanner",() => {
         var document = "MOV (5 + 4)*3\nlabel EQU (4 % ((3 + 2) - 1))";
 
         var scanner = new Scanner();
-        var tokens = scanner.scan(document, _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions)).tokens;
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
+        var tokens = scanner.scan(document, options).tokens;
 
-        var actual = _.where(tokens, { category: TokenCategory.Maths });
+        var actual = tokens.filter(a => a.category === TokenCategory.Maths);
 
         expect(actual.length).to.be.equal(3);
 
@@ -515,7 +531,7 @@ describe("Scanner",() => {
         expect(actual[1].lexeme).to.be.equal("+");
         expect(actual[2].lexeme).to.be.equal("-");
 
-        var unknown = _(tokens).where({ category: TokenCategory.Unknown });
+        var unknown = tokens.filter(a => a.category === TokenCategory.Unknown);
 
         expect(unknown.length).to.be.equal(7);
         expect(unknown[0].lexeme).to.be.equal("(5");
@@ -534,7 +550,7 @@ describe("Scanner",() => {
         var scanner = new Scanner();
         var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var actual = _.where(tokens, { category: TokenCategory.Comment });
+        var actual = tokens.filter(a => a.category === TokenCategory.Comment);
 
         expect(actual.length).to.be.equal(2);
 
@@ -549,7 +565,7 @@ describe("Scanner",() => {
         var scanner = new Scanner();
         var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var actual = _.where(tokens, { category: TokenCategory.Label });
+        var actual = tokens.filter(a => a.category === TokenCategory.Label);
 
         expect(actual.length).to.be.equal(7);
 
@@ -573,9 +589,9 @@ describe("Scanner",() => {
         var scanner = new Scanner();
         var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        expect(_.where(tokens, { category: TokenCategory.Opcode }).length).to.be.equal(28);
-        expect(_.where(tokens, { category: TokenCategory.Preprocessor }).length).to.be.equal(6);
-        expect(_.where(tokens, { category: TokenCategory.Modifier }).length).to.be.equal(14);
+        expect(tokens.filter(a => a.category === TokenCategory.Opcode).length).to.be.equal(28);
+        expect(tokens.filter(a => a.category === TokenCategory.Preprocessor).length).to.be.equal(6);
+        expect(tokens.filter(a => a.category === TokenCategory.Modifier).length).to.be.equal(14);
 
         expect(tokens[0].lexeme).to.be.equal("DAT");
         expect(tokens[1].lexeme).to.be.equal("MOV");
@@ -655,11 +671,11 @@ describe("Scanner",() => {
         var scanner = new Scanner();
         var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var line1 = _.filter(tokens,(item: IToken) => { return item.position.line === 1; });
-        var line2 = _.filter(tokens,(item: IToken) => { return item.position.line === 2; });
-        var line3 = _.filter(tokens,(item: IToken) => { return item.position.line === 3; });
-        var line4 = _.filter(tokens,(item: IToken) => { return item.position.line === 4; });
-        var line5 = _.filter(tokens,(item: IToken) => { return item.position.line === 5; });
+        var line1 = tokens.filter((item: IToken) => { return item.position.line === 1; });
+        var line2 = tokens.filter((item: IToken) => { return item.position.line === 2; });
+        var line3 = tokens.filter((item: IToken) => { return item.position.line === 3; });
+        var line4 = tokens.filter((item: IToken) => { return item.position.line === 4; });
+        var line5 = tokens.filter((item: IToken) => { return item.position.line === 5; });
 
         expect(line1.length).to.be.equal(8);
         expect(line1[0].position.char).to.be.equal(1);
@@ -710,7 +726,8 @@ describe("Scanner",() => {
         var document = "MOV\t#label- 1";
 
         var pass = new Scanner();
-        var actual = pass.scan(document, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions));
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
+        var actual = pass.scan(document, options);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(6);
@@ -730,7 +747,8 @@ describe("Scanner",() => {
         var document = "MOV\t#0\t-1";
 
         var pass = new Scanner();
-        var actual = pass.scan(document, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions));
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
+        var actual = pass.scan(document, options);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(7);
@@ -751,7 +769,8 @@ describe("Scanner",() => {
         var document = "eightlet mov 0, 1\nfour mov 0, 1\ntwelveletter mov 0, 1";
 
         var pass = new Scanner();
-        var actual = pass.scan(document, _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions));
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
+        var actual = pass.scan(document, options);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(18);

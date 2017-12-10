@@ -8,9 +8,6 @@ import { IState } from "../interface/IState";
 import Defaults from "../Defaults";
 import { EndCondition } from "../EndCondition";
 import DataHelper from "./DataHelper";
-import * as _ from "underscore";
-
-"use strict";
 
 describe("EndCondition", () => {
 
@@ -44,7 +41,7 @@ describe("EndCondition", () => {
 
         return {
             cycle: 0,
-            options: _.clone(Defaults),
+            options: Object.assign({}, Defaults),
             warriorIndex: 0,
             warriors: [
                 buildWarrior(),
@@ -82,7 +79,7 @@ describe("EndCondition", () => {
 
         var state = buildState();
 
-        _(state.warriors).first().tasks = [];
+        state.warriors[0].tasks = [];
 
         var endCondition = new EndCondition();
 
@@ -109,7 +106,7 @@ describe("EndCondition", () => {
         var state = buildState();
 
         state.warriors.pop();
-        _(state.warriors).first().tasks = [];
+        state.warriors[0].tasks = [];
 
         var endCondition = new EndCondition();
 
@@ -152,7 +149,7 @@ describe("EndCondition", () => {
 
         state.warriors[0].id = 5;
         state.warriors[1].id = 7;
-        _(state.warriors).first().tasks = [];
+        state.warriors[0].tasks = [];
 
         const endCondition = new EndCondition();
         endCondition.setMessageProvider(pubsub);
@@ -177,7 +174,7 @@ describe("EndCondition", () => {
         const state = buildState();
 
         state.warriors.pop();
-        _(state.warriors).first().tasks = [];
+        state.warriors[0].tasks = [];
 
         const endCondition = new EndCondition();
         endCondition.setMessageProvider(pubsub);

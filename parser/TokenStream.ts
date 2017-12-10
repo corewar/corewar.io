@@ -1,7 +1,6 @@
 ﻿import { IToken, TokenCategory } from "./interface/IToken";
 import { IMessage, MessageType } from "./interface/IMessage";
 import { ITokenStream } from "./interface/ITokenStream";
-import * as _ from "underscore";
 import { TokenHelper } from "./TokenHelper";
 
 export class TokenStream implements ITokenStream {
@@ -54,7 +53,7 @@ export class TokenStream implements ITokenStream {
     public expectOnly(lexeme: string): IToken {
 
         if (this.eof()) {
-            this.error(_(this.tokens).last(), "Expected '" + lexeme + "', got end of file");
+            this.error(this.tokens[this.tokens.length - 1], "Expected '" + lexeme + "', got end of file");
         }
 
         var token = this.read();
@@ -70,7 +69,7 @@ export class TokenStream implements ITokenStream {
 
         if (this.eof()) {
             this.error(
-                _(this.tokens).last(),
+                this.tokens[this.tokens.length - 1],
                 "Expected '" + TokenHelper.categoryToString(category) + "', got end of file");
         }
 

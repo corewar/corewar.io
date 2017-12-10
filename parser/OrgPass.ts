@@ -1,8 +1,6 @@
 ﻿import { IToken, TokenCategory } from "./interface/IToken";
 import { IContext } from "./interface/IContext";
 import { IParseOptions, Standard } from "./interface/IParseOptions";
-import * as _ from "underscore";
-
 import { PassBase } from "./PassBase";
 
 export class OrgPass extends PassBase {
@@ -114,7 +112,7 @@ export class OrgPass extends PassBase {
         if (this.orgAddress === null) {
 
             if (this.options.standard === Standard.ICWS86 &&
-                _(_(this.context.labels).keys()).contains(OrgPass.START_LABEL)) {
+                Object.keys(this.context.labels).includes(OrgPass.START_LABEL)) {
                 this.orgAddress = this.context.labels[OrgPass.START_LABEL];
             } else {
                 this.orgAddress = 0;
@@ -130,13 +128,13 @@ export class OrgPass extends PassBase {
         var org = {
             category: TokenCategory.Preprocessor,
             lexeme: "ORG",
-            position: _.clone(this.org.position)
+            position: Object.assign({}, this.org.position)
         };
 
         var address = {
             category: TokenCategory.Number,
             lexeme: this.orgAddress.toString(),
-            position: _.clone(this.org.position)
+            position: Object.assign({}, this.org.position)
         };
 
         var instruction: IToken[] = [org, address];
@@ -148,7 +146,7 @@ export class OrgPass extends PassBase {
         instruction.push({
             category: TokenCategory.EOL,
             lexeme: "\n",
-            position: _.clone(this.org.position)
+            position: Object.assign({}, this.org.position)
         });
 
         // HACK this is the only way I could find to insert an array into an array!

@@ -2,8 +2,6 @@
 import { IContext } from "./interface/IContext";
 import { IToken, TokenCategory } from "./interface/IToken";
 import { MessageType } from "./interface/IMessage";
-import * as _ from "underscore";
-
 import { PassBase } from "./PassBase";
 
 export class PreprocessCollector extends PassBase {
@@ -104,11 +102,11 @@ export class PreprocessCollector extends PassBase {
         expression.pop();
 
         // Remove comments
-        expression = _.filter(expression,(token: IToken) => {
+        expression = expression.filter((token: IToken) => {
             return token.category !== TokenCategory.Comment;
         });
 
-        _.forEach(labels, (label: IToken) => {
+        labels.forEach((label: IToken) => {
 
             if (label.lexeme in this.context.equs) {
                 this.warnDuplicateLabel(label);
@@ -125,14 +123,14 @@ export class PreprocessCollector extends PassBase {
         var expression: IToken[] = [{
             category: TokenCategory.EOL,
             lexeme: "\n",
-            position: _.clone(this.stream.peek().position)
+            position: Object.assign({}, this.stream.peek().position)
         }];
 
         expression = expression.concat(this.stream.readToEOL());
         // Remove terminating newline
         expression.pop();
 
-        _(this.previous).forEach((label: string) => {
+        this.previous.forEach((label: string) => {
 
             var existing = this.context.equs[label];
             this.context.equs[label] = existing.concat(expression);
