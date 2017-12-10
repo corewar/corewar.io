@@ -2,7 +2,6 @@
 import { IOptions } from "./interface/IOptions";
 import { IInstruction } from "./interface/IInstruction";
 import { ITask } from "./interface/ITask";
-import * as _ from "underscore";
 import * as clone from "clone";
 
 export class Core implements ICore {

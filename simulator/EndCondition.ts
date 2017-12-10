@@ -1,7 +1,6 @@
 ﻿import { IEndCondition } from "./interface/IEndCondition";
 import { IState } from "./interface/IState";
 import { IWarrior } from "./interface/IWarrior";
-import * as _ from "underscore";
 
 export class EndCondition implements IEndCondition {
 
@@ -45,7 +44,7 @@ export class EndCondition implements IEndCondition {
             this.publishProgress(state.cycle / (state.options.cyclesBeforeTie / 100));
         }
 
-        const liveWarriors = _(state.warriors).filter((warrior: IWarrior) => warrior.tasks.length > 0);
+        const liveWarriors = state.warriors.filter((warrior: IWarrior) => warrior.tasks.length > 0);
         let result = liveWarriors.length === 1;
 
         if (state.warriors.length === 1) {
