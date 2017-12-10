@@ -6,7 +6,7 @@ import SimulatorControls from './../simulator/simulatorControls'
 
 import './debugInterface.css'
 
-const DebugInterface = (props) => (
+const DebugInterface = () => (
   <div id="content">
     <div id="parser">
       <ParseContainer />
