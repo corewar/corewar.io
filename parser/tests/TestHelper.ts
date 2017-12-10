@@ -1,7 +1,4 @@
 ﻿import { IToken, TokenCategory } from "../interface/IToken";
-import * as _ from "underscore";
-
-"use strict";
 
 export class TestHelper {
 
@@ -55,7 +52,7 @@ export class TestHelper {
         if (aAddress !== "") {
 
             category = TokenCategory.Label;
-            if (_.contains(["-", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], aAddress[0])) {
+            if (["-", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(aAddress[0])) {
                 category = TokenCategory.Number;
             }
 
@@ -255,7 +252,7 @@ export class TestHelper {
     private static getCategory(lexeme: string): TokenCategory {
 
         var category = TokenCategory.Label;
-        if (_.contains(["-", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], lexeme[0])) {
+        if (["-", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(lexeme[0])) {
             category = TokenCategory.Number;
         }
 
