@@ -6,7 +6,7 @@
   grid-row-end: 5;
 
   display: grid;
-  grid-template-columns: auto 50%;
+  grid-template-columns: auto 500px;
   grid-template-rows: 50px auto;
 }
 

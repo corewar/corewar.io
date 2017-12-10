@@ -1,5 +1,5 @@
 #parseContainer {
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-rows: auto 50px;
+  grid-template-rows: auto 80px;
 }

@@ -4,6 +4,7 @@ export const PARSE_REQUESTED = 'parser/PARSE_REQUESTED'
 export const PARSE = 'parser/PARSE'
 export const SET_STANDARD = 'parser/SET_STANDARD'
 export const SAVE = 'parser/SAVE'
+export const REMOVE_WARRIOR = 'parser/REMOVE_WARRIOR'
 
 // state
 const initialState = {
@@ -46,6 +47,12 @@ export default (state = initialState, action) => {
         parseResults: action.result
       }
 
+    case REMOVE_WARRIOR:
+      return {
+        ...state,
+        parseResults: action.result
+      }
+
     default:
       return state
   }
@@ -54,13 +61,14 @@ export default (state = initialState, action) => {
 const insertItem = (index, array, item) => {
   let newArray = array.slice();
   newArray.splice(index, 0, item);
-  console.log(newArray);
   return newArray;
 }
 
 // actions
 export const save = () => {
+
   console.log('save')
+
   return (dispatch, getState) => {
 
     const { currentParseResult, parseResults } = getState().parser;
@@ -84,7 +92,6 @@ export const parse = (redcode) => {
     })
 
     let result = corewar.parser.parse(redcode);
-    console.log(result);
     // TODO: could we serialise the parse result in the core?
     const warrior = corewar.serialiser.serialise(result.tokens);
     result.warrior = warrior;
@@ -93,6 +100,25 @@ export const parse = (redcode) => {
       type: PARSE,
       result,
       redcode
+    })
+  }
+}
+
+export const removeWarrior = (index) => {
+
+  console.log('remove_warrior', index)
+
+  return (dispatch, getState) => {
+    const { parseResults } = getState().parser;
+
+    const result = [
+      ...parseResults.slice(0, index),
+      ...parseResults.slice(index + 1)
+    ]
+
+    dispatch({
+      type: REMOVE_WARRIOR,
+      result
     })
   }
 }

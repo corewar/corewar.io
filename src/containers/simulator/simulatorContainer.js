@@ -16,8 +16,8 @@ import {
 const SimulatorContainer = ({ coreSize }) => (
   <section id="core">
     <CanvasCore
-      width={600}
-      height={600}
+      width={500}
+      height={500}
       coreSize={coreSize}
       />
   </section>
