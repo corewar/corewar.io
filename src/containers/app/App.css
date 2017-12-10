@@ -1,13 +1,13 @@
 .grid-container {
   display: grid;
   grid-template-columns: 50px 100px auto 50px;
-  grid-template-rows: 50px 100px auto 50px;
+  grid-template-rows: 50px 50px 50px auto 20px;
 }
 
 .grid-container main {
 
   grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-end: 5;
   grid-column-start: 3;
   grid-column-end: 4;
 

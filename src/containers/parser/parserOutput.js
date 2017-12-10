@@ -1,7 +1,5 @@
 import React from 'react'
 
-import MessagePanel from './messagePanel'
-
 import './parserOutput.css'
 
 const ParserOutput = ({isParsing, parseResult}) => (

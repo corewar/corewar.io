@@ -1,0 +1,17 @@
+#simulatorControlContainer {
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  grid-template-rows: auto;
+}
+
+#simulatorControls {
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+
+
+  border: 2px solid #56CCF2;
+  border-bottom: none;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}

@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component }from 'react'
 import * as PubSub from 'pubsub-js';
 
 
-class CanvasCore extends React.Component{
+class CanvasCore extends Component {
 
   constructor(props) {
 
