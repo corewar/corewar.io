@@ -29,7 +29,7 @@ describe("Executive", () => {
 
     beforeEach(() => {
 
-        options = _.clone(Defaults);
+        options = Object.assign({}, Defaults);
         options.coresize = 5;
         options.instructionLimit = 100;
 

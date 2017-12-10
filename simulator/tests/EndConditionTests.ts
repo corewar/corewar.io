@@ -44,7 +44,7 @@ describe("EndCondition", () => {
 
         return {
             cycle: 0,
-            options: _.clone(Defaults),
+            options: Object.assign({}, Defaults),
             warriorIndex: 0,
             warriors: [
                 buildWarrior(),

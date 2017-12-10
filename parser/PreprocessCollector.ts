@@ -125,7 +125,7 @@ export class PreprocessCollector extends PassBase {
         var expression: IToken[] = [{
             category: TokenCategory.EOL,
             lexeme: "\n",
-            position: _.clone(this.stream.peek().position)
+            position: Object.assign({}, this.stream.peek().position)
         }];
 
         expression = expression.concat(this.stream.readToEOL());

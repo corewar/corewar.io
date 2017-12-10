@@ -130,13 +130,13 @@ export class OrgPass extends PassBase {
         var org = {
             category: TokenCategory.Preprocessor,
             lexeme: "ORG",
-            position: _.clone(this.org.position)
+            position: Object.assign({}, this.org.position)
         };
 
         var address = {
             category: TokenCategory.Number,
             lexeme: this.orgAddress.toString(),
-            position: _.clone(this.org.position)
+            position: Object.assign({}, this.org.position)
         };
 
         var instruction: IToken[] = [org, address];
@@ -148,7 +148,7 @@ export class OrgPass extends PassBase {
         instruction.push({
             category: TokenCategory.EOL,
             lexeme: "\n",
-            position: _.clone(this.org.position)
+            position: Object.assign({}, this.org.position)
         });
 
         // HACK this is the only way I could find to insert an array into an array!

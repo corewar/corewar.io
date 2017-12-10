@@ -83,7 +83,7 @@ export class LabelEmitter extends PassBase {
             var token = {
                 category: TokenCategory.Number,
                 lexeme: diff.toString(),
-                position: _.clone(label.position)
+                position: Object.assign({}, label.position)
             };
 
             this.context.emitSingle(token);

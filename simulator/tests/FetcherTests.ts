@@ -10,7 +10,6 @@ import { IOptions } from "../interface/IOptions";
 import { ITask } from "../interface/ITask";
 import { Fetcher } from "../Fetcher";
 import DataHelper from "./DataHelper";
-import * as _ from "underscore";
 
 "use strict";
 
@@ -24,7 +23,7 @@ describe("Fetcher",() => {
 
     beforeEach(() => {
 
-        var options = _.clone(Defaults);
+        var options = Object.assign({}, Defaults);
         options.coresize = 5;
 
         core = {
