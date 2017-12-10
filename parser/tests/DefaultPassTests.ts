@@ -6,8 +6,6 @@ import { Parser } from "../Parser";
 import { Context } from "../Context";
 import { TestHelper } from "./TestHelper";
 import { Standard } from "../interface/IParseOptions";
-import * as _ from "underscore";
-"use strict";
 
 describe("DefaultPass", () => {
 
@@ -131,7 +129,7 @@ describe("DefaultPass", () => {
         context.tokens = tokens.slice();
 
         var pass = new DefaultPass();
-        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(9);
@@ -153,7 +151,7 @@ describe("DefaultPass", () => {
         context.tokens = tokens.slice();
 
         var pass = new DefaultPass();
-        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(9);
@@ -235,9 +233,7 @@ describe("DefaultPass", () => {
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(8);
 
-        expect(_(actual.tokens).where({
-            category: TokenCategory.Comma
-        }).length).to.be.equal(0);
+        expect(actual.tokens.filter((a) => a.category === TokenCategory.Comma).length).to.be.equal(0);
     });
 
     it("Inserts missing commas under ICWS'88 standard", () => {
@@ -248,7 +244,7 @@ describe("DefaultPass", () => {
         context.tokens = tokens.slice();
 
         var pass = new DefaultPass();
-        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(9);
@@ -266,7 +262,7 @@ describe("DefaultPass", () => {
         context.tokens = tokens.slice();
 
         var pass = new DefaultPass();
-        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(9);
@@ -646,7 +642,7 @@ describe("DefaultPass", () => {
         context.tokens = TestHelper.instruction(1, "", "ADD", "", "$", "0", ",", ">", "0", "");
 
         var pass = new DefaultPass();
-        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -659,7 +655,7 @@ describe("DefaultPass", () => {
         context.tokens = TestHelper.instruction(1, "", "SUB", "", "$", "0", ",", ">", "0", "");
 
         var pass = new DefaultPass();
-        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -672,7 +668,7 @@ describe("DefaultPass", () => {
         context.tokens = TestHelper.instruction(1, "", "MUL", "", "$", "0", ",", ">", "0", "");
 
         var pass = new DefaultPass();
-        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -685,7 +681,7 @@ describe("DefaultPass", () => {
         context.tokens = TestHelper.instruction(1, "", "DIV", "", "$", "0", ",", ">", "0", "");
 
         var pass = new DefaultPass();
-        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -698,7 +694,7 @@ describe("DefaultPass", () => {
         context.tokens = TestHelper.instruction(1, "", "MOD", "", "$", "0", ",", ">", "0", "");
 
         var pass = new DefaultPass();
-        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
