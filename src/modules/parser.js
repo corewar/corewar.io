@@ -43,7 +43,7 @@ export default (state = initialState, action) => {
     case SAVE:
       return {
         ...state,
-        parseResults: insertItem(state.parseResults.length, state.parseResults, state.currentParseResult)
+        parseResults: action.result
       }
 
     default:
@@ -54,20 +54,29 @@ export default (state = initialState, action) => {
 const insertItem = (index, array, item) => {
   let newArray = array.slice();
   newArray.splice(index, 0, item);
+  console.log(newArray);
   return newArray;
 }
 
 // actions
 export const save = () => {
   console.log('save')
-  return dispatch => {
+  return (dispatch, getState) => {
+
+    const { currentParseResult, parseResults } = getState().parser;
+
+    const result = insertItem(parseResults.length, parseResults, currentParseResult)
+
     dispatch({
-      type: SAVE
+      type: SAVE,
+      result
     })
   }
 };
 
 export const parse = (redcode) => {
+
+  console.log('parse')
 
   return dispatch => {
     dispatch({

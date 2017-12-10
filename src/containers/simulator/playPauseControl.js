@@ -6,7 +6,7 @@ const PlayPauseControl = ({ isRunning, handlePlay, handlePause }) => (
   <div className="simulatorControl">
     {isRunning ?
       <FontAwesome name="pause" size="2x" onClick={handlePause} /> :
-      <FontAwesome name="play" size="2x" onClick={handlePlay}/>
+      <FontAwesome name="play" size="2x" onClick={() => handlePlay(100)}/>
     }
   </div>
 )

@@ -10,7 +10,7 @@ import {
   save
 } from '../../modules/parser'
 
-const Sidebar = () => (
+const Sidebar = ({ save }) => (
   <aside id="sidebar">
     <ControlButton iconClass={`plus`} handleClick={save} />
     <ControlButton iconClass={`panel`} />

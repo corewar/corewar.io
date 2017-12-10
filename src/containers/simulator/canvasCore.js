@@ -17,7 +17,6 @@ class CanvasCore extends Component {
     //this.canvas.addEventListener("click", (e) => { this.canvasClick(e); });
 
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
-      console.log('core access');
       this.messages.push(data);
     });
   }
@@ -63,9 +62,9 @@ class CanvasCore extends Component {
 
     this.messages = [];
 
-    if(this.props.runProgress < 100) {
+    //if(this.props.runProgress < 100) {
       window.requestAnimationFrame(() => this.renderMessages());
-    }
+    //}
 
   }
 

@@ -9,9 +9,8 @@ import ParserOutput from './parserOutput'
 import './parseContainer.css'
 
 import {
-  parse,
-  save
-} from '../../modules/parser';
+  parse
+} from '../../modules/parser'
 
 const ParseContainer = ({ redcode, currentParseResult, isParsing, parse }) => {
 
@@ -29,8 +28,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  parse,
-  save
+  parse
 }, dispatch)
 
 export default connect(

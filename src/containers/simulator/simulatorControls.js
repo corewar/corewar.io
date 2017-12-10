@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 import PlayPauseControl from './playPauseControl'
 import ResetControl from './resetControl'
+import StepControl from './stepControl'
 
 import './simulatorControls.css'
 
@@ -26,9 +27,7 @@ const SimulatorControls = ({ isRunning, isInitialised, init, step, run, pause })
       <div className="simulatorControl">
         <FontAwesome name="forward" size="2x"/>
       </div>
-      <div className="simulatorControl">
-        <FontAwesome name="step-forward" size="2x"/>
-      </div>
+      <StepControl handleClick={step}/>
       <div className="simulatorControl">
         <FontAwesome name="flag-checkered" size="2x"/>
       </div>
