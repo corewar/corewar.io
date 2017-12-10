@@ -9,9 +9,35 @@
   grid-column-start: 2;
   grid-column-end: 3;
 
+  display: grid;
+  grid-template-columns: repeat(8, 12.5%);
+  grid-template-rows: auto;
+
 
   border: 2px solid #56CCF2;
   border-bottom: none;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+}
+
+.simulatorControl:first-child {
+  grid-column-start: 2;
+}
+
+.simulatorControl {
+  font-size: 0.8em;
+  text-align: center;
+  padding-top: 12px;
+}
+
+.simulatorControl:hover {
+  cursor: pointer;
+}
+
+.active {
+  color: #6FCF97;
+}
+
+.inactive {
+  color: #aaa;
 }

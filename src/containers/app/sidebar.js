@@ -6,7 +6,7 @@ import './sidebar.css'
 
 const Sidebar = () => (
   <aside id="sidebar">
-    <ControlButton iconClass={`save`} />
+    <ControlButton iconClass={`plus`} />
     <ControlButton iconClass={`panel`} />
     <ControlButton iconClass={`delete`} />
   </aside>
