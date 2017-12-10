@@ -12,9 +12,6 @@ import { Parser } from "../Parser";
 import { IOptions } from "../../simulator/interface/IOptions";
 import { IMessage, MessageType } from "../interface/IMessage";
 import { Standard } from "../interface/IParseOptions";
-import * as _ from "underscore";
-
-"use strict";
 
 describe("Parser",() => {
 
@@ -148,7 +145,7 @@ describe("Parser",() => {
 
     it("Calls passes in correct order under ICWS'88",() => {
 
-        var options = _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions);
+        var options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
 
         parser.parse("MOV 0, 1", options);
 
@@ -171,7 +168,7 @@ describe("Parser",() => {
 
     it("Calls passes in correct order under ICWS'86",() => {
 
-        var options = _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions);
+        var options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
 
         parser.parse("MOV 0, 1", options);
 
