@@ -3,7 +3,6 @@ import { IContext } from "./interface/IContext";
 import { IParseOptions } from "./interface/IParseOptions";
 import { IToken, TokenCategory } from "./interface/IToken";
 import { MessageType } from "./interface/IMessage";
-import * as _ from "underscore";
 
 export class PreprocessAnalyser implements IPass {
 
@@ -30,18 +29,18 @@ export class PreprocessAnalyser implements IPass {
 
     private collectReferences() {
 
-        var keys = _(this.context.equs).keys();
+        var keys = Object.keys(this.context.equs);
 
-        _(keys).forEach((key: string) => {
+        keys.forEach((key: string) => {
 
             var expression = this.context.equs[key];
 
-            var references = _(expression).filter((token: IToken) => {
+            var references = expression.filter((token: IToken) => {
                 return token.category === TokenCategory.Label &&
-                    _(keys).contains(token.lexeme);
+                    keys.includes(token.lexeme);
             });
 
-            this.references[key] = _(references).map((token: IToken) => {
+            this.references[key] = references.map((token: IToken) => {
                 return token.lexeme;
             });
         });
@@ -59,10 +58,10 @@ export class PreprocessAnalyser implements IPass {
 
     private noCircularReferences(): boolean {
 
-        var keys = _(this.context.equs).keys();
+        var keys = Object.keys(this.context.equs);
         var result = true;
 
-        _(keys).forEach((key: string) => {
+        keys.forEach((key: string) => {
 
             try {
                 var seen: string[] = [];
@@ -80,13 +79,13 @@ export class PreprocessAnalyser implements IPass {
 
     private detectCircularReferencesRecursive(token: string, seen: string[]) {
 
-        if (_(seen).contains(token)) {
+        if (seen.includes(token)) {
             throw token;
         }
 
         seen.push(token);
 
-        _(this.references[token]).forEach((reference: string) => {
+        this.references[token].forEach((reference: string) => {
 
             this.detectCircularReferencesRecursive(reference, seen);
         });
@@ -97,9 +96,9 @@ export class PreprocessAnalyser implements IPass {
 
     private replaceAllReferences() {
 
-        var keys = _(this.context.equs).keys();
+        var keys = Object.keys(this.context.equs);
 
-        _(keys).forEach((key: string) => {
+        keys.forEach((key: string) => {
 
             this.replaceReferences(key);
         });
@@ -108,11 +107,11 @@ export class PreprocessAnalyser implements IPass {
     private replaceReferences(key: string) {
 
         var expression = this.context.equs[key];
-        var keys = _(this.context.equs).keys();
+        var keys = Object.keys(this.context.equs);
 
-        while (_(expression).any((token: IToken) => {
+        while (expression.some((token: IToken) => {
             return token.category === TokenCategory.Label &&
-                _(keys).contains(token.lexeme);
+                keys.includes(token.lexeme);
         })) {
 
             for (var i = 0; i < expression.length; i++) {
@@ -120,7 +119,7 @@ export class PreprocessAnalyser implements IPass {
 
                     var label = expression[i].lexeme;
 
-                    if (_(keys).contains(label)) {
+                    if (keys.includes(label)) {
                         // HACK this is the only way I could find to insert an array into an array!
                         var args: any[] = [i, 1];
                         expression.splice.apply(expression, args.concat(this.context.equs[label]));
