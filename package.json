@@ -16,6 +16,7 @@
     "pubsub-js": "^1.5.7",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
+    "react-fontawesome": "^1.6.1",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "next",
@@ -23,6 +24,7 @@
     "react-test-renderer": "^16.1.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "typeface-roboto-condensed": "0.0.45",
     "typeface-roboto-slab": "0.0.44"
   },
   "scripts": {

@@ -1,0 +1,35 @@
+.control {
+  display: grid;
+  grid-template-rows: 25% 50% 25%;
+  grid-template-columns: 25% 50% 25%;
+}
+
+.control-button {
+
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
+
+  border: 2px solid #56CCF2;
+  background: transparent;
+
+  display:block;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+
+  color: #56CCF2;
+
+}
+
+.control-button:hover {
+  color: #fff;
+  cursor: pointer;
+  border: 2px solid #fff;
+}
+
+.control .fa {
+  margin-left: 12px;
+  margin-top: 10px;
+}

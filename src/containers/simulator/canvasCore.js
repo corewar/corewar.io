@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component }from 'react'
 import * as PubSub from 'pubsub-js';
 
 
-class CanvasCore extends React.Component{
+class CanvasCore extends Component {
 
   constructor(props) {
 
@@ -62,9 +62,9 @@ class CanvasCore extends React.Component{
 
     this.messages = [];
 
-    if(this.props.runProgress < 100) {
+    //if(this.props.runProgress < 100) {
       window.requestAnimationFrame(() => this.renderMessages());
-    }
+    //}
 
   }
 
@@ -168,7 +168,7 @@ class CanvasCore extends React.Component{
     var width = this.cellsWide * this.cellSize;
     var height = this.cellsHigh * this.cellSize;
 
-    this.context.fillStyle = "#eee";
+    this.context.fillStyle = "#100E14";
     this.context.fillRect(0, 0, width, height);
   }
 
@@ -201,7 +201,7 @@ class CanvasCore extends React.Component{
     this.renderVerticalLines();
     this.renderHorizontalLines();
 
-    this.context.strokeStyle = "#aaa";
+    this.context.strokeStyle = "#666";
     this.context.stroke();
   }
 
@@ -247,7 +247,7 @@ class CanvasCore extends React.Component{
     var x = maxX;
     var y = maxY;
 
-    this.context.fillStyle = "#aaa";
+    this.context.fillStyle = "#100E14";
     while (extraCellsDrawn-- > 0) {
 
       this.context.fillRect(x, y, this.cellSize, this.cellSize);

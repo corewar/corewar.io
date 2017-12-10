@@ -1,0 +1,14 @@
+#sidebar {
+  grid-row-start: 4;
+  grid-row-end: 5;
+  grid-column-start: 2;
+  grid-column-end: 3;
+
+  display: grid;
+  grid-template-rows: 100px 100px 100px;
+}
+
+.control {
+  width: 100px;
+  height: 100px;
+}

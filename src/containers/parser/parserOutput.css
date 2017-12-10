@@ -1,0 +1,36 @@
+#output {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+  border: 2px solid #56CCF2;
+  border-right: none;
+
+  padding: 10px;
+
+  min-height: 400px;
+}
+
+#output pre {
+  color: #56CCF2;
+  margin: 0;
+  font-size: 0.8em;
+}
+
+#output pre::-webkit-scrollbar-track
+{
+	background-color: transparent;
+}
+
+#output pre::-webkit-scrollbar
+{
+  width: 6px;
+  background-color: transparent;
+}
+
+#output pre::-webkit-scrollbar-thumb
+{
+	border-radius: 5px;
+	background-color: #fff;
+}

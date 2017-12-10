@@ -88,22 +88,29 @@ export default (state = initialState, action) => {
 }
 
 // actions
-export const init = (standardId, parseResults, coreSize, minSeparation, instructionLimit) => {
+export const init = () => {
 
-  const options = {
-    standard: standardId,
-    coresize: parseInt(coreSize, 10),
-    minSeparation: parseInt(minSeparation, 10),
-    instructionLimit: parseInt(instructionLimit, 10),
-  };
+  return (dispatch, getState) => {
 
-  return dispatch => {
+    const state = getState();
+
+    console.log(state);
+
+    const { coreSize, minSeparation, instructionLimit } = state.simulator;
+    const { parseResults, standardId } = state.parser;
+
+    const options = {
+      standard: standardId,
+      coresize: coreSize,
+      minSeparation: minSeparation,
+      instructionLimit: instructionLimit,
+    };
 
     dispatch({
       type: INIT_REQUESTED
     });
 
-    console.log('init', options);
+    console.log('init', parseResults);
 
     corewar.initialiseSimulator(options, parseResults, PubSub);
 
@@ -120,7 +127,7 @@ export const pause = () => {
   window.clearTimeout(runner);
 
   return dispatch => {
-
+    console.log('pause')
     dispatch({
       type: PAUSE_REQUESTED
     })
@@ -131,7 +138,7 @@ export const pause = () => {
 export const run = (processRate) => {
 
   return dispatch => {
-
+    console.log('run')
     dispatch({
       type: RUN_REQUESTED
     })
@@ -160,19 +167,11 @@ export const run = (processRate) => {
 
     }, 1000/60)
   }
-
-  //     //for(var i = 0; i < 5; i++) {
-  //         step();
-  //     //}
-
-  // //for(var i = 0; i < 80000; i++) {
-
-  //   window.requestAnimationFrame(run.bind(this))
-  //}
 }
 
 export const step = () => {
   return dispatch => {
+    console.log('step')
     corewar.simulator.step();
   }
 }
