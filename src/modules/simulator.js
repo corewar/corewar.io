@@ -18,6 +18,7 @@ const initialState = {
   isInitialised: false,
   isRunning: false,
   runProgress: 0,
+  roundResult: {},
   result: {},
   coreSize: 8192,
   minSeparation: 1,
@@ -31,7 +32,8 @@ export default (state = initialState, action) => {
     case INIT:
       return {
         ...state,
-        isInitialised: true
+        isInitialised: true,
+        roundResult: {}
       }
 
     case STEP:
@@ -42,7 +44,8 @@ export default (state = initialState, action) => {
     case RUN_REQUESTED:
       return {
         ...state,
-        isRunning: true
+        isRunning: true,
+        roundResult: {}
       }
 
     case PAUSE_REQUESTED:
@@ -61,7 +64,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isRunning: false,
-        result: console.log('END', action.result)
+        roundResult: action.data
       }
 
     case SET_CORESIZE:
@@ -152,6 +155,15 @@ export const run = (processRate) => {
       })
     });
 
+    PubSub.subscribe('ROUND_END', (msg, data) => {
+      console.log('end')
+      window.clearInterval(runner);
+      dispatch({
+        type: RUN_ENDED,
+        data
+      })
+    });
+
     let operations = 0;
 
     runner = window.setInterval(() => {
@@ -162,6 +174,7 @@ export const run = (processRate) => {
 
       operations += processRate;
 
+      // TODO: This should be controlled by the simulator
       if(operations === 80000) {
         window.clearInterval(runner);
       }
