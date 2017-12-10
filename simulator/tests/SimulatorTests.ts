@@ -266,7 +266,11 @@ describe("Simulator", () => {
 
     it("Validates options provided during initialisation and raises any errors", () => {
 
-        const options = {};
+        const options = {
+            coresize: 123
+        };
+
+        const expectedOptions = Object.assign({}, Defaults, options);
 
         const expectedError = Error("Test");
         let actualError = null;
@@ -281,7 +285,7 @@ describe("Simulator", () => {
             actualError = e;
         }
 
-        expect(optionValidator.validate).to.have.been.calledWith(options);
+        expect(optionValidator.validate).to.have.been.calledWith(expectedOptions);
         expect(actualError).to.be.equal(expectedError);
     });
 

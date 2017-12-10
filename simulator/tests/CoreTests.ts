@@ -11,9 +11,6 @@ import { ModeType } from "../interface/IOperand";
 import { Core } from "../Core";
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import Defaults from "../Defaults";
-import * as _ from "underscore";
-
-"use strict";
 
 describe("Core", () => {
 
@@ -192,7 +189,7 @@ describe("Core", () => {
 
         var core = new Core();
         core.setMessageProvider(pubsub);
-        core.initialise(_.defaults({ coresize: 4 }, Defaults));
+        core.initialise(Object.assign({}, Defaults, { coresize: 4 }));
 
         core.readAt(task, 2);
 
@@ -213,7 +210,7 @@ describe("Core", () => {
 
         var core = new Core();
         core.setMessageProvider(pubsub);
-        core.initialise(_.defaults({ coresize: 4 }, Defaults));
+        core.initialise(Object.assign({}, Defaults, { coresize: 4 }));
 
         core.setAt(task, 2, buildInstruction());
 
@@ -234,7 +231,7 @@ describe("Core", () => {
 
         var core = new Core();
         core.setMessageProvider(pubsub);
-        core.initialise(_.defaults({ coresize: 4 }, Defaults));
+        core.initialise(Object.assign({}, Defaults, { coresize: 4 }));
 
         core.executeAt(task, 2);
 
@@ -248,7 +245,7 @@ describe("Core", () => {
     it(".getSize returns the size of the core", () => {
 
         var core = new Core();
-        core.initialise(_.defaults({ coresize: 23 }, Defaults));
+        core.initialise(Object.assign({}, Defaults, { coresize: 23 }));
 
         var actual = core.getSize();
 
