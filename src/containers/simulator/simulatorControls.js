@@ -17,7 +17,7 @@ import {
 } from '../../modules/simulator'
 
 
-const SimulatorControls = ({ isRunning, isInitialised, init, step, run, pause }) => (
+const SimulatorControls = ({ isRunning, isInitialised, parseResults, init, step, run, pause }) => (
   <section id="simulatorControlContainer">
     <div id="simulatorControls" className={isInitialised ? `active` : `inactive`}>
       <div className="simulatorControl">
@@ -31,14 +31,15 @@ const SimulatorControls = ({ isRunning, isInitialised, init, step, run, pause })
       <div className="simulatorControl">
         <FontAwesome name="flag-checkered" size="2x"/>
       </div>
-      <ResetControl isInitialised={isInitialised} handleReset={init} />
+      <ResetControl parseResults={parseResults} isInitialised={isInitialised} handleReset={init} />
     </div>
   </section>
 )
 
 const mapStateToProps = state => ({
   isInitialised: state.simulator.isInitialised,
-  isRunning: state.simulator.isRunning
+  isRunning: state.simulator.isRunning,
+  parseResults: state.parser.parseResults
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

@@ -19,6 +19,11 @@ class CanvasCore extends Component {
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
       this.messages.push(data);
     });
+
+    PubSub.subscribe('RESET_CORE', (msg, data) => {
+      this.renderGrid();
+    });
+
   }
 
   componentDidMount() {
