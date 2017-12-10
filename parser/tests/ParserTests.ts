@@ -397,22 +397,29 @@ describe("Parser",() => {
     it("Passes supplied options to each pass",() => {
 
         var document = "MOV 0, 1";
-        var options = {};
+        var options = {
+            coresize: 82
+        };
+
+        var expected = {
+            standard: Standard.ICWS94draft,
+            coresize: 82
+        };
 
         parser.parse(document, options);
 
-        expect(scanner.scan).to.have.been.calledWith(document, options);
-        expect(filter.process).to.have.been.calledWith(context, options);
-        expect(forPass.process).to.have.been.calledWith(context, options);
-        expect(preprocessCollector.process).to.have.been.calledWith(context, options);
-        expect(preprocessAnalyser.process).to.have.been.calledWith(context, options);
-        expect(preprocessEmitter.process).to.have.been.calledWith(context, options);
-        expect(labelCollector.process).to.have.been.calledWith(context, options);
-        expect(labelEmitter.process).to.have.been.calledWith(context, options);
-        expect(mathsProcessor.process).to.have.been.calledWith(context, options);
-        expect(orgPass.process).to.have.been.calledWith(context, options);
-        expect(defaultPass.process).to.have.been.calledWith(context, options);
-        expect(syntaxCheck.process).to.have.been.calledWith(context, options);
+        expect(scanner.scan).to.have.been.calledWith(document, expected);
+        expect(filter.process).to.have.been.calledWith(context, expected);
+        expect(forPass.process).to.have.been.calledWith(context, expected);
+        expect(preprocessCollector.process).to.have.been.calledWith(context, expected);
+        expect(preprocessAnalyser.process).to.have.been.calledWith(context, expected);
+        expect(preprocessEmitter.process).to.have.been.calledWith(context, expected);
+        expect(labelCollector.process).to.have.been.calledWith(context, expected);
+        expect(labelEmitter.process).to.have.been.calledWith(context, expected);
+        expect(mathsProcessor.process).to.have.been.calledWith(context, expected);
+        expect(orgPass.process).to.have.been.calledWith(context, expected);
+        expect(defaultPass.process).to.have.been.calledWith(context, expected);
+        expect(syntaxCheck.process).to.have.been.calledWith(context, expected);
     });
 
     it("Returns context tokens, messages and metaData in ParserResult",() => {
