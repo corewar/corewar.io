@@ -94,6 +94,8 @@ export const init = () => {
 
     const state = getState();
 
+    PubSub.publish('RESET_CORE');
+
     console.log(state);
 
     const { coreSize, minSeparation, instructionLimit } = state.simulator;
