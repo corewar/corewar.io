@@ -3,10 +3,9 @@ import { Route } from 'react-router-dom'
 
 import SiteHeader from './siteHeader'
 import Sidebar from './sidebar'
-import './app.css'
-
-import Home from '../home'
 import DebugInterface from './debugInterface'
+
+import './app.css'
 
 const App = () => (
   <div className="grid-container">
