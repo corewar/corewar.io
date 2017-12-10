@@ -1,8 +1,6 @@
 ﻿import { IToken, TokenCategory } from "./interface/IToken";
 import { IContext } from "./interface/IContext";
 import { IParseOptions, Standard } from "./interface/IParseOptions";
-import * as _ from "underscore";
-
 import { PassBase } from "./PassBase";
 
 export class OrgPass extends PassBase {
@@ -114,7 +112,7 @@ export class OrgPass extends PassBase {
         if (this.orgAddress === null) {
 
             if (this.options.standard === Standard.ICWS86 &&
-                _(_(this.context.labels).keys()).contains(OrgPass.START_LABEL)) {
+                Object.keys(this.context.labels).includes(OrgPass.START_LABEL)) {
                 this.orgAddress = this.context.labels[OrgPass.START_LABEL];
             } else {
                 this.orgAddress = 0;
