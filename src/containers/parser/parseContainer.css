@@ -3,3 +3,10 @@
   grid-template-columns: 50% 50%;
   grid-template-rows: auto 80px;
 }
+
+.sectionTitle {
+  color: #aaa;
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: 7px;
+}

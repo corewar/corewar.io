@@ -156,7 +156,6 @@ export const run = (processRate) => {
     });
 
     PubSub.subscribe('ROUND_END', (msg, data) => {
-      console.log('end')
       window.clearInterval(runner);
       dispatch({
         type: RUN_ENDED,

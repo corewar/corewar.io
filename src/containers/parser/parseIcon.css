@@ -1,0 +1,10 @@
+.parse-icon {
+  color: #6FCF97;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.error {
+  color: #EB5757;
+}
