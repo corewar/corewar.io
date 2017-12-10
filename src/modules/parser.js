@@ -64,6 +64,13 @@ const insertItem = (index, array, item) => {
   return newArray;
 }
 
+const removeItem = (index, array) => {
+  return [
+    ...array.slice(0, index),
+    ...array.slice(index + 1)
+  ]
+}
+
 // actions
 export const save = () => {
 
@@ -109,12 +116,10 @@ export const removeWarrior = (index) => {
   console.log('remove_warrior', index)
 
   return (dispatch, getState) => {
+
     const { parseResults } = getState().parser;
 
-    const result = [
-      ...parseResults.slice(0, index),
-      ...parseResults.slice(index + 1)
-    ]
+    const result = removeItem(index, parseResults);
 
     dispatch({
       type: REMOVE_WARRIOR,
