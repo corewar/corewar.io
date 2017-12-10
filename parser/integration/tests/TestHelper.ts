@@ -60,7 +60,7 @@ export class TestHelper {
         var loader = new TestLoader();
         loader.getWarriors(path, names).then((warriors) => {
 
-            _(warriors).forEach((warrior) => {
+            warriors.forEach((warrior) => {
 
                 var expression = new Expression();
 
