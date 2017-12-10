@@ -13,9 +13,6 @@ import { Context } from "../Context";
 import { IMessage, MessageType } from "../interface/IMessage";
 import { Parser } from "../Parser";
 import { Standard } from "../interface/IParseOptions";
-import * as _ from "underscore";
-
-"use strict";
 
 describe("LoadParser",() => {
 
@@ -120,7 +117,7 @@ describe("LoadParser",() => {
 
     it("Calls passes in correct order under ICWS'88",() => {
 
-        var options = _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions);
+        var options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
 
         loadParser.parse("MOV 0, 1", options);
 
@@ -135,7 +132,7 @@ describe("LoadParser",() => {
 
     it("Calls passes in correct order under ICWS'86",() => {
 
-        var options = _.defaults({ standard: Standard.ICWS86 }, Parser.DefaultOptions);
+        var options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
 
         loadParser.parse("MOV 0, 1", options);
 
