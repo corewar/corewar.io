@@ -59,6 +59,7 @@ const insertItem = (index, array, item) => {
 
 // actions
 export const save = () => {
+  console.log('save')
   return dispatch => {
     dispatch({
       type: SAVE

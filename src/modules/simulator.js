@@ -88,22 +88,25 @@ export default (state = initialState, action) => {
 }
 
 // actions
-export const init = (standardId, parseResults, coreSize, minSeparation, instructionLimit) => {
+export const init = () => {
 
-  const options = {
-    standard: standardId,
-    coresize: parseInt(coreSize, 10),
-    minSeparation: parseInt(minSeparation, 10),
-    instructionLimit: parseInt(instructionLimit, 10),
-  };
+  return (dispatch, getState) => {
 
-  return dispatch => {
+    const { coreSize, minSeparation, instructionLimit } = getState().simulator;
+    const { parseResults, standardId } = getState().parser;
+
+    const options = {
+      standard: standardId,
+      coresize: coreSize,
+      minSeparation: minSeparation,
+      instructionLimit: instructionLimit,
+    };
 
     dispatch({
       type: INIT_REQUESTED
     });
 
-    console.log('init', options);
+    console.log('init');
 
     corewar.initialiseSimulator(options, parseResults, PubSub);
 
@@ -117,6 +120,8 @@ let runner = null;
 
 export const pause = () => {
 
+  console.log('pause')
+
   window.clearTimeout(runner);
 
   return dispatch => {
@@ -129,6 +134,8 @@ export const pause = () => {
 }
 
 export const run = (processRate) => {
+
+  console.log('run')
 
   return dispatch => {
 

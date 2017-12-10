@@ -12,7 +12,7 @@ const MessagePanel = ({ messages }) => (
       !messages || messages.length === 0 ?
         <li>parse successful</li> :
         messages.map((msg) => (
-          <li className="error">{`[${msg.position.line} , ${msg.position.char}] ${messageTypeToString(msg.type)} ${msg.text}`}</li>
+          <li key={msg} className="error">{`[${msg.position.line} , ${msg.position.char}] ${messageTypeToString(msg.type)} ${msg.text}`}</li>
         ))
     }
     </ul>
