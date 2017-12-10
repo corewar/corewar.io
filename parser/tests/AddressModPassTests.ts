@@ -5,9 +5,6 @@ import { Context } from "../Context";
 import { AddressModPass } from "../AddressModPass";
 import { Parser } from "../Parser";
 import { TokenCategory } from "../interface/IToken";
-import * as _ from "underscore";
-
-"use strict";
 
 describe("AddressModPass",() => {
 
@@ -44,11 +41,11 @@ describe("AddressModPass",() => {
         context.tokens = tokens.slice();
 
         var pass = new AddressModPass();
-        var actual = pass.process(context, _.defaults({ coresize: 10 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { coresize: 10 }));
 
         expect(actual.messages.length).to.be.equal(0);
 
-        var addresses = _(actual.tokens).where({ category: TokenCategory.Number });
+        var addresses = actual.tokens.filter((a) => a.category === TokenCategory.Number);
 
         expect(addresses[0].lexeme).to.be.equal("0");
         expect(addresses[1].lexeme).to.be.equal("1");
