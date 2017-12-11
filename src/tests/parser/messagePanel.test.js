@@ -1,12 +1,12 @@
 
-import React from 'react';
-import { shallow } from 'enzyme';
-import { expect } from 'chai';
+import React from 'react'
+import { shallow } from 'enzyme'
+import { expect } from 'chai'
 
 import MessagePanel from './../../containers/parser/messagePanel'
 
 it('renders without crashing', () => {
-  shallow(<MessagePanel />);
+  shallow(<MessagePanel />)
 });
 
 it('renders no list items if there are no messages', () => {
@@ -17,7 +17,7 @@ it('renders no list items if there are no messages', () => {
 
   const wrapper = shallow(<MessagePanel {...parseResults}/>);
 
-  expect(wrapper.find('li')).to.have.length(0);
+  expect(wrapper.find('li')).to.have.length(0)
 });
 
 it('renders as many list items as there are messages', () => {
@@ -29,7 +29,7 @@ it('renders as many list items as there are messages', () => {
     ]
   }
 
-  const wrapper = shallow(<MessagePanel {...parseResults}/>);
+  const wrapper = shallow(<MessagePanel {...parseResults}/>)
 
-  expect(wrapper.find('li')).to.have.length(2);
+  expect(wrapper.find('li')).to.have.length(2)
 });

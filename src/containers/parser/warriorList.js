@@ -10,7 +10,9 @@ const WarriorList = ({ parseResults, removeWarrior }) => (
     <ul>
     {
       parseResults && parseResults.map((result, i) => (
-        <li key={`${result.metaData.name}_${i}`}>{result.metaData.name} <FontAwesome name='times' onClick={() => removeWarrior(i)}/></li>
+        <li key={`${result.metaData.name}_${i}`}>
+          {result.metaData.name} <FontAwesome name='times' onClick={() => removeWarrior(i)}/>
+        </li>
       ))
     }
     </ul>
