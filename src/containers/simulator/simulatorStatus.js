@@ -17,9 +17,9 @@ const getStatusMessage = (isRunning, isInitialised, parseResults, roundResult) =
   }
 
   if(roundResult.outcome) {
-    let outcome = `simulation complete - result(${roundResult.outcome})`;
+    let outcome = `simulation complete - ${roundResult.outcome}`;
     if(roundResult.winnerId) {
-      outcome += ` - winner(${roundResult.winnerId})`
+      outcome += ` - winner id: ${roundResult.winnerId}`
     }
     return outcome;
   }

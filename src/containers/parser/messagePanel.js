@@ -7,16 +7,15 @@ import './messagePanel.css'
 const MessagePanel = ({ messages }) => (
 
   <section className="messagePanel">
+    <span className="sectionTitle">parse result</span>
     <ul>
     {
-      !messages || messages.length === 0 ?
-        <li>parse successful</li> :
-        messages.map((msg) => (
-          <li key={msg} className="error">{`[${msg.position.line} , ${msg.position.char}] ${messageTypeToString(msg.type)} ${msg.text}`}</li>
-        ))
+      messages && messages.map((msg) => (
+        <li key={msg} className="error">{`[${msg.position.line} , ${msg.position.char}] ${messageTypeToString(msg.type)} ${msg.text}`}</li>
+      ))
     }
     </ul>
-    {/* <ParseIcon success={messages && messages.length === 0} /> */}
+    <ParseIcon success={!messages || messages.length === 0} />
   </section>
 
 )
