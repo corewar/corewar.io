@@ -1,0 +1,30 @@
+
+#simulatorStatus {
+
+  grid-row-start: 2;
+  grid-row-end: 3;
+
+  border: 2px solid #56CCF2;
+  border-bottom: none;
+}
+
+#simulatorStatus span {
+  display: inline-block;
+  height: 23px;
+  font-family: 'roboto slab';
+  color: #aaa;
+  margin-left: 10px;
+  margin-top: 5px;
+  font-size: 0.8em;
+}
+
+@keyframes fadeInOut { /* flame pulses */
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+
+.fade {
+    opacity: 1;
+    animation: fadeInOut 1s infinite;
+}

@@ -5,8 +5,8 @@ import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import store, { history } from './store'
 import App from './containers/app'
-import robotoSlab from 'typeface-roboto-slab'
-import robotoCondensed from 'typeface-roboto-condensed'
+import 'typeface-roboto-slab'
+import 'typeface-roboto-condensed'
 
 import './index.css'
 

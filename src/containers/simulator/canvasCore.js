@@ -84,11 +84,11 @@ class CanvasCore extends Component {
   getColour(warriorId) {
     switch(warriorId) {
       case 0:
-        return '#f00';
+        return '#EB5757';
       case 1:
-        return '#00f';
+        return '#6FCF97';
       default:
-        return '#0f0';
+        return '#56CCF2';
     }
   }
 
