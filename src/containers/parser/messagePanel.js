@@ -7,7 +7,7 @@ import './messagePanel.css'
 const MessagePanel = ({ messages }) => (
 
   <section className="messagePanel">
-    <span className="sectionTitle">parse result</span>
+    <span className="sectionSubTitle">parse result</span>
     <ul>
     {
       messages && messages.map((msg) => (

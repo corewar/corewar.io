@@ -6,7 +6,7 @@ import './warriorList.css'
 const WarriorList = ({ parseResults, removeWarrior }) => (
 
   <section className="warriorList">
-    <span className="sectionTitle">warriors</span>
+    <span className="sectionSubTitle">warriors</span>
     <ul>
     {
       parseResults && parseResults.map((result, i) => (
