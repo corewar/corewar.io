@@ -1,6 +1,6 @@
 #simulatorControlContainer {
   display: grid;
-  grid-template-columns: 25% 50% 25%;
+  grid-template-columns: 30% 70%;
   grid-template-rows: auto;
 }
 
@@ -10,7 +10,7 @@
   grid-column-end: 3;
 
   display: grid;
-  grid-template-columns: repeat(8, 12.5%);
+  grid-template-columns: repeat(8, 1fr);
   grid-template-rows: auto;
 
 

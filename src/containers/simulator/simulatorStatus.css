@@ -11,11 +11,10 @@
 #simulatorStatus span {
   display: inline-block;
   height: 23px;
-  font-family: 'roboto slab';
-  color: #aaa;
+  font-family: 'roboto condensed';
+  color: #EB5757;
   margin-left: 10px;
   margin-top: 5px;
-  font-size: 0.8em;
 }
 
 @keyframes fadeInOut { /* flame pulses */
