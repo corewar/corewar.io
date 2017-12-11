@@ -6,7 +6,7 @@ import './simulatorStatus.css';
 
 const SimulatorStatus = ({ isRunning, isInitialised, parseResults, roundResult }) => (
   <section id="simulatorStatus">
-    <span className={isRunning ? `fade` : ``}>{getStatusMessage(isRunning, isInitialised, parseResults, roundResult)}</span>
+    <span className={isRunning ? `fade` : ``}>{getStatusMessage(isRunning, isInitialised, parseResults, roundResult).toUpperCase()}</span>
   </section>
 )
 
