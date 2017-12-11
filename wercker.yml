@@ -41,3 +41,14 @@ build:
     - npm-install
     # A step that executes `npm test` command
     - npm-test
+test:
+  steps:
+    - npm test
+
+publish:
+  steps:
+    - script:
+      name: upversion and publish to npm
+      code: |
+        npm version patch
+        npm publish
