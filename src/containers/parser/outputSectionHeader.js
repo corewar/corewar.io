@@ -4,7 +4,7 @@ import './sectionHeader.css'
 
 const OutputSectionHeader = ({ headerText }) => (
   <section className="section-header output">
-    <span>{headerText.toUpperCase()}</span>
+    <span>{headerText && headerText.toUpperCase()}</span>
   </section>
 )
 
