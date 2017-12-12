@@ -6,14 +6,14 @@ import './simulatorStatus.css';
 
 const SimulatorStatus = ({ isRunning, isInitialised, parseResults, roundResult }) => (
   <section id="simulatorStatus">
-    <span className={isRunning ? `fade` : ``}>{getStatusMessage(isRunning, isInitialised, parseResults, roundResult).toUpperCase()}</span>
+    <span className={isRunning ? `fade` : ``}>{getStatusMessage(isRunning, isInitialised, parseResults, roundResult)}</span>
   </section>
 )
 
 const getStatusMessage = (isRunning, isInitialised, parseResults, roundResult) => {
 
   if(parseResults.length === 0) {
-    return 'waiting for warriors'
+    return 'CORE'
   }
 
   if(roundResult.outcome) {
@@ -24,13 +24,13 @@ const getStatusMessage = (isRunning, isInitialised, parseResults, roundResult) =
     return outcome;
   }
 
-  if(parseResults.length > 0 && !isInitialised && !isRunning) {
-    return `${parseResults.length} warriors loaded, awaiting init command`
-  }
+  // if(parseResults.length > 0 && !isInitialised && !isRunning) {
+  //   return `${parseResults.length} warriors loaded, awaiting init command`
+  // }
 
-  if(parseResults.length > 0 && isInitialised && !isRunning) {
-    return `${parseResults.length} warriors loaded & initialised, awaiting run command`
-  }
+  // if(parseResults.length > 0 && isInitialised && !isRunning) {
+  //   return `${parseResults.length} warriors loaded & initialised, awaiting run command`
+  // }
 
   if(isRunning) {
     return 'running simulation'

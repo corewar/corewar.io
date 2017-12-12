@@ -10,28 +10,32 @@ import {
   init,
   step,
   run,
-  pause
+  pause,
+  getCoreInstructions
 } from '../../modules/simulator';
 
-const SimulatorContainer = ({ coreSize }) => (
+const SimulatorContainer = ({ coreSize, instructions, getCoreInstructions }) => (
   <section id="core">
     <CanvasCore
       width={500}
       height={500}
       coreSize={coreSize}
+      getCoreInstructions={getCoreInstructions}
       />
   </section>
 )
 
 const mapStateToProps = state => ({
-  coreSize: state.simulator.coreSize
+  coreSize: state.simulator.coreSize,
+  instructions: state.simulator.instructions
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   init,
   step,
   run,
-  pause
+  pause,
+  getCoreInstructions
 }, dispatch)
 
 export default connect(

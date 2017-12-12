@@ -9,12 +9,11 @@ class CanvasCore extends Component {
     super(props);
 
     this.coreSize = props.coreSize;
+    this.getCoreInstructions = props.getCoreInstructions;
     this.cellSize = this.calculateCellSize();
     this.cellsWide = Math.floor(this.props.width / this.cellSize);
     this.cellsHigh = Math.floor(this.props.height / this.cellSize);
     this.messages = [];
-
-    //this.canvas.addEventListener("click", (e) => { this.canvasClick(e); });
 
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
       this.messages.push(data);
@@ -29,6 +28,8 @@ class CanvasCore extends Component {
   componentDidMount() {
 
     this.renderGrid();
+
+    this.canvas.addEventListener("click", (e) => { this.canvasClick(e); });
 
     window.requestAnimationFrame(() => this.renderMessages());
 
@@ -284,6 +285,14 @@ class CanvasCore extends Component {
       return { x: canvasX, y: canvasY };
   }
 
+  canvasClick(e) {
+
+    const point = this.getRelativeCoordinates(e);
+    const address = this.screenCoordinateToAddress(point);
+
+    this.getCoreInstructions(address);
+  }
+
   render() {
 
     return <canvas
@@ -299,4 +308,4 @@ class CanvasCore extends Component {
 
 }
 
-export default CanvasCore;
+export default CanvasCore
