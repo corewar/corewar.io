@@ -8,6 +8,7 @@ export const RUN_REQUESTED = 'simulator/RUN_REQUESTED'
 export const PAUSE_REQUESTED = 'simulator/PAUSE_REQUESTED'
 export const RUN_ENDED = 'simulator/RUN_ENDED'
 export const RUN_PROGRESS = 'simulator/RUN_PROGRESS'
+export const GET_CORE_INSTRUCTIONS = 'simulator/GET_CORE_INSTRUCTIONS'
 
 export const SET_INSTRUCTION_LIMIT = 'simulator/SET_INSTRUCTION_LIMIT'
 export const SET_CORESIZE = 'simulator/SET_CORESIZE'
@@ -20,9 +21,10 @@ const initialState = {
   runProgress: 0,
   roundResult: {},
   result: {},
-  coreSize: 8192,
+  coreSize: 64,
   minSeparation: 1,
-  instructionLimit: 1
+  instructionLimit: 1,
+  instructions: []
 }
 
 // reducer
@@ -65,6 +67,12 @@ export default (state = initialState, action) => {
         ...state,
         isRunning: false,
         roundResult: action.data
+      }
+
+    case GET_CORE_INSTRUCTIONS:
+      return {
+        ...state,
+        instructions: action.instructions
       }
 
     case SET_CORESIZE:
@@ -190,6 +198,29 @@ export const step = () => {
   return dispatch => {
     corewar.simulator.step();
   }
+}
+
+export const getCoreInstructions = (address) => {
+
+  console.log('getCoreInstructions', address)
+
+  const lowerLimit = address - 5;
+  const upperLimit = address + 5;
+  const instructions = [];
+
+  for (let index = lowerLimit; index <= upperLimit; index++) {
+    const instruction = corewar.core.getAt(index)
+    instruction.isCurrent = index === address
+    instructions.push(instruction)
+  }
+
+  return dispatch => {
+    dispatch({
+      type: GET_CORE_INSTRUCTIONS,
+      instructions
+    })
+  }
+
 }
 
 export const setCoresize = (val) => {
