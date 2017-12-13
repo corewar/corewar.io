@@ -8,11 +8,10 @@ class CanvasCore extends Component {
 
     super(props);
 
+    this.isRunning = props.isRunning;
     this.coreSize = props.coreSize;
     this.getCoreInstructions = props.getCoreInstructions;
-    this.cellSize = this.calculateCellSize();
-    this.cellsWide = Math.floor(this.props.width / this.cellSize);
-    this.cellsHigh = Math.floor(this.props.height / this.cellSize);
+
     this.messages = [];
 
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
@@ -25,13 +24,42 @@ class CanvasCore extends Component {
 
   }
 
+  getContainerSize() {
+    const container = document.getElementById('core');
+
+    this.containerWidth = container.clientWidth - 10;
+    this.containerHeight = container.clientHeight - 10;
+
+    this.canvas.width = this.containerWidth;
+    this.canvas.height = this.containerHeight;
+  }
+
+  resize() {
+
+    if(this.isRunning) {
+      return;
+    }
+
+    this.getContainerSize();
+
+    this.cellSize = this.calculateCellSize();
+    this.cellsWide = Math.floor(this.containerWidth / this.cellSize);
+    this.cellsHigh = Math.floor(this.containerHeight / this.cellSize);
+
+    this.renderGrid();
+  }
+
   componentDidMount() {
+
+    this.resize();
 
     this.renderGrid();
 
-    this.canvas.addEventListener("click", (e) => { this.canvasClick(e); });
+    this.canvas.addEventListener("click", e => this.canvasClick(e))
 
-    window.requestAnimationFrame(() => this.renderMessages());
+    //window.addEventListener('resize', e => this.resize(e), false)
+
+    window.requestAnimationFrame(() => this.renderMessages())
 
   }
 
@@ -180,7 +208,7 @@ class CanvasCore extends Component {
 
   calculateCellSize() {
 
-    var area = this.props.width * this.props.height;
+    var area = this.containerWidth * this.containerHeight;
     var n = this.coreSize;
 
     var maxCellSize = Math.sqrt(area / n);
@@ -195,8 +223,8 @@ class CanvasCore extends Component {
   }
 
   isValidCellSize(cellSize) {
-    var cellsWide = Math.floor(this.props.width / cellSize);
-    var cellsHigh = Math.floor(this.props.height / cellSize);
+    var cellsWide = Math.floor(this.containerWidth / cellSize);
+    var cellsHigh = Math.floor(this.containerHeight / cellSize);
 
     return cellsWide * cellsHigh >= this.coreSize;
   }
@@ -295,15 +323,14 @@ class CanvasCore extends Component {
 
   render() {
 
-    return <canvas
+    return <canvas style={{position:'absolute', left:0, top:0}}
       ref={(canvasEl) => {
         if(canvasEl == null) {
           return;
         }
         this.context = canvasEl.getContext("2d");
         this.canvas = canvasEl; }}
-      width={this.props.width}
-      height={this.props.height}></canvas>
+      ></canvas>
   }
 
 }
