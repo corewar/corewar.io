@@ -1,7 +1,7 @@
 .control {
 
-  grid-row-start: 7;
-  grid-row-end: 8;
+  grid-column-start: 8;
+  grid-column-end: 9;
 
   border: 2px solid #56CCF2;
   border-bottom: none;
@@ -16,13 +16,13 @@
   grid-column-start: 2;
   grid-column-end: 3;
 
-  border: 2px solid #56CCF2;
+  /* border: 2px solid #56CCF2;
   background: transparent;
 
   display:block;
   height: 100%;
   width: 100%;
-  border-radius: 50%;
+  border-radius: 50%; */
 
   color: #56CCF2;
 
@@ -31,10 +31,9 @@
 .control-button:hover {
   color: #fff;
   cursor: pointer;
-  border: 2px solid #fff;
 }
 
 .control .fa {
-  margin-left: 12px;
+  margin-left: 15px;
   margin-top: 10px;
 }
