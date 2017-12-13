@@ -35,6 +35,7 @@
 
 .simulatorControl:hover {
   cursor: pointer;
+  color: #56CCF2;
 }
 
 .active {

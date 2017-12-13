@@ -16,12 +16,12 @@
   grid-column-start: 2;
   grid-column-end: 3;
 
-  color: #56CCF2;
+  color: #fff;
 
 }
 
 .control-button:hover {
-  color: #fff;
+  color: #56CCF2;
   cursor: pointer;
 }
 

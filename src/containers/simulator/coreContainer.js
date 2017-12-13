@@ -4,17 +4,13 @@ import { connect } from 'react-redux'
 
 import CanvasCore from './canvasCore'
 
-import './simulatorContainer.css'
+import './coreContainer.css'
 
 import {
-  init,
-  step,
-  run,
-  pause,
   getCoreInstructions
 } from '../../modules/simulator';
 
-const SimulatorContainer = ({ coreSize, instructions, getCoreInstructions }) => (
+const CoreContainer = ({ coreSize, instructions, getCoreInstructions }) => (
   <section id="core">
     <CanvasCore
       width={500}
@@ -31,16 +27,12 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  init,
-  step,
-  run,
-  pause,
   getCoreInstructions
 }, dispatch)
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SimulatorContainer)
+)(CoreContainer)
 
-export { SimulatorContainer as PureSimulatorContainer }
+export { CoreContainer as PureCoreContainer }

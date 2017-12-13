@@ -1,7 +1,7 @@
 import React from 'react'
 
 import ParseContainer from './../parser/parseContainer'
-import SimulatorContainer from './../simulator/simulatorContainer'
+import CoreContainer from './../simulator/coreContainer'
 import SimulatorControls from './../simulator/simulatorControls'
 import SimulatorStatus from './../simulator/simulatorStatus'
 import CoreVisualiser from './../simulator/coreVisualiser'
@@ -19,7 +19,7 @@ const DebugInterface = () => (
       <SimulatorControls />
       <SimulatorStatus />
       <CoreVisualiser />
-      <SimulatorContainer />
+      <CoreContainer />
     </div>
   </div>
 )
