@@ -23,9 +23,4 @@
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 4;
-
-
-  display: grid;
-  grid-template-columns: 70px 1fr;
-  grid-template-rows: 50px 30px 50px 1fr;
 }
