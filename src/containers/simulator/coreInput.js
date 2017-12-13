@@ -5,15 +5,13 @@ import './coreInput.css'
 
 const CoreInput = ({ parseResults, removeWarrior }) => (
   <section id="coreInput">
-    <ul>
     {
       parseResults && parseResults.map((result, i) => (
-        <li key={`${result.metaData.name}_${i}`}>
+        <div className="coreItem" key={`${result.metaData.name}_${i}`}>
           {result.metaData.name} <FontAwesome name='times' onClick={() => removeWarrior(i)}/>
-        </li>
+        </div>
       ))
     }
-    </ul>
   </section>
 )
 

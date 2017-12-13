@@ -1,7 +1,7 @@
 .control {
 
-  grid-column-start: 8;
-  grid-column-end: 9;
+  grid-column-start: -1;
+  grid-column-end: -2;
 
   border: 2px solid #56CCF2;
   border-bottom: none;
