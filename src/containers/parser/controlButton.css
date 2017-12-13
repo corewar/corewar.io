@@ -1,7 +1,12 @@
 .control {
-  display: grid;
-  grid-template-rows: 25% 50% 25%;
-  grid-template-columns: 25% 50% 25%;
+
+  grid-row-start: 7;
+  grid-row-end: 8;
+
+  border: 2px solid #56CCF2;
+  border-bottom: none;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .control-button {

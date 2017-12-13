@@ -8,6 +8,7 @@ import ParserOutput from './parserOutput'
 import WarriorList from './warriorList'
 import InputSectionHeader from './inputSectionHeader'
 import OutputSectionHeader from './outputSectionHeader'
+import ParseControls from './parseControls'
 
 import './parseContainer.css'
 
@@ -18,6 +19,7 @@ import {
 
 const ParseContainer = ({ redcode, currentParseResult, parseResults, isParsing, parse, removeWarrior }) => (
   <div id="parseContainer">
+    <ParseControls />
     <InputSectionHeader headerText={`instructions`} />
     <ParserInput redcode={redcode} handleChange={parse} />
     <OutputSectionHeader headerText={`runtime`} />
