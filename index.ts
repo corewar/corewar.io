@@ -42,6 +42,7 @@ import { OptionValidator } from "./simulator/OptionValidator";
 import { IOptions } from "./simulator/interface/IOptions";
 import { ILoader } from "./simulator/interface/ILoader";
 import { IState } from "./simulator/interface/IState";
+import { IInstruction } from "./simulator/interface/IInstruction";
 
 class Api {
 
@@ -115,6 +116,10 @@ class Api {
         this.simulator.initialise(options, parseResults);
 
         return this.simulator.getState();
+    }
+
+    public getAt(address: number): IInstruction {
+        return this.core.getAt(address);
     }
 
     public step() : void {
