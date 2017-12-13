@@ -50,5 +50,7 @@ publish:
     - script:
       name: upversion and publish to npm
       code: |
+        git config user.email $git_email
+        git config user.name $git_name
         npm version patch
         npm publish
