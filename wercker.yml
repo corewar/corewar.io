@@ -36,7 +36,6 @@ build:
         name: echo nodejs information
         code: |
           echo "node version $(node -v) running"
-          echo "npm version $(npm -v) running"
 
     - npm-install
     # A step that executes `npm test` command
