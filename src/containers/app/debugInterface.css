@@ -6,7 +6,7 @@
   grid-row-end: 5;
 
   display: grid;
-  grid-template-columns: 1fr 1fr 520px;
+  grid-template-columns: 1fr 1fr 590px;
   grid-template-rows: 50px 30px auto;
 }
 
@@ -26,6 +26,6 @@
 
 
   display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: 50px 30px 50px auto;
+  grid-template-columns: 70px 1fr;
+  grid-template-rows: 50px 30px 50px 1fr;
 }
