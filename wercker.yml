@@ -28,13 +28,18 @@ test:
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
 deploy:
+
   steps:
+  
   - npm-install
+  
   - npm-test
+  
   - script
     name: build
     code: |
       npm build
+      
   - wercker-labs/azure-ftp-deploy:
     cwd: build/
     publish-url: ftp://waws-prod-dm1-033.ftp.azurewebsites.windows.net/site/wwwroot
