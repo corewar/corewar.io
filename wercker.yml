@@ -45,7 +45,7 @@ deploy:
         env
 
     - wercker-labs/azure-ftp-deploy:
-        cwd: build/
-        publish-url: ftp://waws-prod-dm1-033.ftp.azurewebsites.windows.net/site/wwwroot
-        username: corewar
-        password: 6rs94TSDPi1RKgQg2TySBwRnwuqGXWr7Tw0RTfqZtiap4QSdZujRl1L1BhpG
+      cwd: build/
+      publish-url: $publish_url
+      username: $username
+      password: $password
