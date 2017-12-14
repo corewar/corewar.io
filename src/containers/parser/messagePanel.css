@@ -1,11 +1,12 @@
 .messagePanel {
   grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 5;
 
   border: 2px solid #56CCF2;
   border-top: none;
+  border-right: none;
   border-bottom-left-radius: 10px;
   position: relative;
 

@@ -21,7 +21,7 @@ const initialState = {
   runProgress: 0,
   roundResult: {},
   result: {},
-  coreSize: 64,
+  coreSize: 2048,
   minSeparation: 1,
   instructionLimit: 1,
   instructions: []

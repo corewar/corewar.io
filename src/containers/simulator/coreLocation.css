@@ -1,18 +1,18 @@
 .coreLocation {
-  border-left: 2px solid #56CCF2;
+  border-top: 2px solid #56CCF2;
+  text-align: center;
 }
 
 .coreLocation:first-child {
-  border-left: none;
+  border-top: none;
 }
 
 .coreLocation span {
   font-family: 'roboto condensed';
   color: #EB5757;
   display: inline-block;
-  margin-left: 7px;
   margin-top: 5px;
-  font-size: 0.9em;
+
 }
 
 .coreLocation.current {

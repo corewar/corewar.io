@@ -1,0 +1,31 @@
+.control {
+
+  grid-column-start: -1;
+  grid-column-end: -2;
+
+  border: 2px solid #56CCF2;
+  border-bottom: none;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.control-button {
+
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
+
+  color: #fff;
+
+}
+
+.control-button:hover {
+  color: #56CCF2;
+  cursor: pointer;
+}
+
+.control .fa {
+  margin-left: 10px;
+  margin-top: 10px;
+}
