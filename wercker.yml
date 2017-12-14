@@ -16,7 +16,7 @@ box: node
 
     # - mongo
     # http://devcenter.wercker.com/docs/services/mongodb.html
-build:
+test:
   # The steps that will be executed on build
   # Steps make up the actions in your pipeline
   # Read more about steps on our dev center:
@@ -35,3 +35,16 @@ build:
         code: |
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
+deploy:
+  steps:
+  - npm-install
+  - npm-test
+  - script
+    name: build
+    code: |
+      npm build
+  - wercker-labs/azure-ftp-deploy:
+    cwd: build/
+    publish-url: ftp://waws-prod-dm1-033.ftp.azurewebsites.windows.net/site/wwwroot
+    username: dougmcdonald
+    password: gAwXcLMWrpQl7jv3TJ10mbxT0Eg38RYf3ckzsouLulfbA8pvZP909BFM5vuh
