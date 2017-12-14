@@ -40,11 +40,8 @@ deploy:
         npm i create-react-app -g
         npm run build
 
-    - script:
-      code: |
-        env
-
     - wercker-labs/azure-ftp-deploy:
+      cwd: build/
       publish-url: $publish_url
       username: $username
       password: $password
