@@ -45,7 +45,6 @@ deploy:
         env
 
     - wercker-labs/azure-ftp-deploy:
-      cwd: build/
       publish-url: $publish_url
       username: $username
       password: $password
