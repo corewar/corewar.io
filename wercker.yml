@@ -8,15 +8,7 @@ box: node
 # Read more about pipelines on our dev center
 # http://devcenter.wercker.com/docs/pipelines/index.html
 
-# You can also use services such as databases. Read more on our dev center:
-# http://devcenter.wercker.com/docs/services/index.html
-# services:
-    # - postgres
-    # http://devcenter.wercker.com/docs/services/postgresql.html
-
-    # - mongo
-    # http://devcenter.wercker.com/docs/services/mongodb.html
-build:
+test:
   # The steps that will be executed on build
   # Steps make up the actions in your pipeline
   # Read more about steps on our dev center:
@@ -35,3 +27,20 @@ build:
         code: |
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
+
+deploy:
+  steps:
+    - npm-install
+
+    - npm-test
+
+    - script:
+      name: build
+      code: |
+        npm build
+
+    - wercker-labs/azure-ftp-deploy:
+      cwd: build/
+      publish-url: $publish_url
+      username: $username
+      password: $password
