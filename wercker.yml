@@ -37,6 +37,7 @@ deploy:
     - script:
       name: build
       code: |
+        npm i create-react-app -g
         npm run build
 
     - wercker-labs/azure-ftp-deploy:
