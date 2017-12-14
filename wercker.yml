@@ -30,21 +30,16 @@ test:
 
 deploy:
   steps:
-    - npm-install
-
-    - npm-test
 
     - script:
       name: build
       code: |
-        npm i create-react-app -g
+        npm install -g create-react-app
+        npm i
         npm run build
 
-    - script:
-      code: |
-        env
-
     - wercker-labs/azure-ftp-deploy:
+      cwd: build/
       publish-url: $publish_url
       username: $username
       password: $password
