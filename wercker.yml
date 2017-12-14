@@ -27,13 +27,14 @@ test:
         code: |
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
+
 deploy:
   steps:
     - npm-install
 
     - npm-test
 
-    - script
+    - script:
       name: build
       code: |
         npm build
