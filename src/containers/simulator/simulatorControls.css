@@ -1,7 +1,10 @@
 #simulatorControlContainer {
+
+  grid-column-start: 2;
+
   display: grid;
   grid-template-columns: 30% 70%;
-  grid-template-rows: auto;
+  grid-template-rows: 1fr;
 }
 
 #simulatorControls {
@@ -32,6 +35,7 @@
 
 .simulatorControl:hover {
   cursor: pointer;
+  color: #56CCF2;
 }
 
 .active {

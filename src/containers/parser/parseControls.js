@@ -4,18 +4,16 @@ import { connect } from 'react-redux'
 
 import ControlButton from './controlButton'
 
-import './sidebar.css'
+import './parseControls.css'
 
 import {
   save
 } from '../../modules/parser'
 
-const Sidebar = ({ save }) => (
-  <aside id="sidebar">
+const ParseControls = ({ save }) => (
+  <div id="parseControls">
     <ControlButton iconClass={`plus`} handleClick={save} />
-    <ControlButton iconClass={`panel`} />
-    <ControlButton iconClass={`delete`} />
-  </aside>
+  </div>
 )
 
 const mapStateToProps = state => ({
@@ -28,6 +26,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Sidebar)
+)(ParseControls)
 
-export { Sidebar as PureSidebar }
+export { ParseControls as PureParseControls }
+

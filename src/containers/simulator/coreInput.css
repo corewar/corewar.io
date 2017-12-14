@@ -1,0 +1,38 @@
+#coreInput {
+
+  grid-row-start: 3;
+  grid-row-end: 4;
+  grid-column-start: 2;
+
+  border: 2px solid #56CCF2;
+  border-bottom: none;
+
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.coreItem {
+  border-left: 2px solid #56CCF2;
+
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+  font-family: 'roboto condensed';
+  color: #fff;
+
+  font-size: 0.8em;
+  padding: 5px;
+}
+
+.coreItem:first-child {
+  border-left: none;
+}
+
+.coreItem .fa {
+  float: right;
+  margin-right: 5px;
+  margin-top: 2px;
+  color: #EB5757;
+  cursor: pointer;
+}
