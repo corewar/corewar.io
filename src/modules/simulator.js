@@ -3,7 +3,6 @@ import * as PubSub from 'pubsub-js';
 
 export const STEP = 'simulator/STEP'
 export const INIT = 'simulator/INIT'
-export const INIT_REQUESTED = 'simulator/INIT_REQUESTED'
 export const RUN_REQUESTED = 'simulator/RUN_REQUESTED'
 export const PAUSE_REQUESTED = 'simulator/PAUSE_REQUESTED'
 export const RUN_ENDED = 'simulator/RUN_ENDED'
@@ -118,10 +117,6 @@ export const init = () => {
       minSeparation: minSeparation,
       instructionLimit: instructionLimit,
     };
-
-    dispatch({
-      type: INIT_REQUESTED
-    });
 
     corewar.initialiseSimulator(options, parseResults, PubSub);
 

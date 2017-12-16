@@ -8,7 +8,8 @@ const CoreInput = ({ parseResults, removeWarrior }) => (
     {
       parseResults && parseResults.map((result, i) => (
         <div className="coreItem" key={`${result.metaData.name}_${i}`}>
-          {result.metaData.name} <FontAwesome name='times' onClick={() => removeWarrior(i)}/>
+          <span>{result.metaData.name}</span> <FontAwesome name='times' onClick={() => removeWarrior(i)}/>
+          <div className={`inputItem coreItem_${i}`}></div>
         </div>
       ))
     }

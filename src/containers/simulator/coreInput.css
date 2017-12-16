@@ -31,8 +31,39 @@
 
 .coreItem .fa {
   float: right;
-  margin-right: 5px;
   margin-top: 2px;
   color: #EB5757;
   cursor: pointer;
+}
+
+.inputItem {
+  clear: both;
+  margin-top: 5px;
+  width: 100%;
+  height: 15px;
+  display: inline-block;
+}
+
+.coreItem_0 {
+  background-color: #EB5757;
+}
+
+.coreItem_1 {
+  background-color: #6FCF97;
+}
+
+.coreItem_2 {
+  background-color: #56CCF2;
+}
+
+.coreItem_3 {
+  background-color: #F2C94C;
+}
+
+.coreItem_4 {
+  background-color: #BB6BD9;
+}
+
+.coreItem_5 {
+  background-color: #BDBDBD;
 }

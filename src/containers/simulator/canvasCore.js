@@ -1,6 +1,15 @@
 import React, { Component }from 'react'
 import * as PubSub from 'pubsub-js';
 
+const colourPalette = [
+  '#EB5757',
+  '#6FCF97',
+  '#56CCF2',
+  '#F2C94C',
+  '#BB6BD9',
+  '#BDBDBD',
+];
+
 
 class CanvasCore extends Component {
 
@@ -111,14 +120,7 @@ class CanvasCore extends Component {
   }
 
   getColour(warriorId) {
-    switch(warriorId) {
-      case 0:
-        return '#EB5757';
-      case 1:
-        return '#6FCF97';
-      default:
-        return '#56CCF2';
-    }
+    return colourPalette[warriorId];
   }
 
   renderCell(event) {
