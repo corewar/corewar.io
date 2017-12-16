@@ -4,8 +4,8 @@ import * as sinonChai from "sinon-chai";
 var expect = chai.expect;
 chai.use(sinonChai);
 
+import { Warrior } from "../Warrior";
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
-import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { ITask } from "../interface/ITask";
 import { IOptions } from "../interface/IOptions";
 import { IState } from "../interface/IState";
@@ -19,10 +19,8 @@ import Defaults from "../Defaults";
 import { OpcodeType, ModifierType } from "../interface/IInstruction";
 import { ModeType } from "../interface/IOperand";
 import DataHelper from "./DataHelper";
-import * as _ from "underscore";
 import { IOptionValidator } from "../interface/IOptionValidator";
-
-"use strict";
+import * as clone from "clone";
 
 describe("Simulator", () => {
 
@@ -42,7 +40,6 @@ describe("Simulator", () => {
 
         core = {
             getSize: () => { return 0; },
-            coreAccess: new LiteEvent<ICoreAccessEventArgs>(),
             executeAt: sinon.stub(),
             readAt: sinon.stub(),
             getAt: sinon.stub(),
@@ -74,11 +71,13 @@ describe("Simulator", () => {
             initialise: () => {
                 //
             },
-            commandTable: []
+            commandTable: [],
+            setMessageProvider: () => {}
         };
 
         endCondition = {
-            check: sinon.stub()
+            check: sinon.stub(),
+            setMessageProvider: sinon.stub()
         };
 
         optionValidator = {
@@ -161,17 +160,17 @@ describe("Simulator", () => {
 
         simulator.step();
 
-        state = _(checkSpy.lastCall.args).first();
+        state = checkSpy.lastCall.args[0];
         expect(state.cycle).to.be.equal(1);
 
         simulator.step();
 
-        state = _(checkSpy.lastCall.args).first();
+        state = checkSpy.lastCall.args[0];
         expect(state.cycle).to.be.equal(2);
 
         simulator.step();
 
-        state = _(checkSpy.lastCall.args).first();
+        state = checkSpy.lastCall.args[0];
         expect(state.cycle).to.be.equal(3);
     });
 
@@ -223,7 +222,7 @@ describe("Simulator", () => {
         simulator.initialise(expected, []);
         simulator.step();
 
-        var actual: IState = _((<sinon.stub>endCondition.check).lastCall.args).first();
+        var actual: IState = (<sinon.stub>endCondition.check).lastCall.args[0];
 
         expect(actual.options).to.deep.equal(expected);
     });
@@ -233,9 +232,9 @@ describe("Simulator", () => {
         simulator.initialise({ coresize: 123 }, []);
         simulator.step();
 
-        var actual: IState = _((<sinon.stub>endCondition.check).lastCall.args).first();
+        var actual: IState = (<sinon.stub>endCondition.check).lastCall.args[0];
 
-        expect(actual.options).to.deep.equal(_.defaults({ coresize: 123 }, Defaults));
+        expect(actual.options).to.deep.equal(Object.assign({}, Defaults, { coresize: 123 }));
     });
 
     it("initialises core using the supplied options", () => {
@@ -257,14 +256,18 @@ describe("Simulator", () => {
 
         expect(loader.load).to.have.been.calledWith(warriors, Defaults);
 
-        var state = _((<sinon.stub>fetcher.fetch).lastCall.args).first();
+        var state = (<sinon.stub>fetcher.fetch).lastCall.args[0];
 
         expect(state.warriors).to.be.equal(loadedWarriors);
     });
 
     it("Validates options provided during initialisation and raises any errors", () => {
 
-        const options = {};
+        const options = {
+            coresize: 123
+        };
+
+        const expectedOptions = Object.assign({}, Defaults, options);
 
         const expectedError = Error("Test");
         let actualError = null;
@@ -279,7 +282,80 @@ describe("Simulator", () => {
             actualError = e;
         }
 
-        expect(optionValidator.validate).to.have.been.calledWith(options);
+        expect(optionValidator.validate).to.have.been.calledWith(expectedOptions);
         expect(actualError).to.be.equal(expectedError);
+    });
+
+    it("Returns a clone of state rather than the original", () => {
+
+        const mutated = simulator.getState();
+
+        mutated.cycle = 123;
+        mutated.warriorIndex = 876;
+        mutated.warriors.push(new Warrior());
+        mutated.warriors[0].tasks.push({
+            warrior: mutated.warriors[0],
+            instructionPointer: 666
+        });
+
+        const actual = simulator.getState();
+
+        expect(actual.cycle).not.to.be.equal(mutated.cycle);
+        expect(actual.warriorIndex).not.to.be.equal(mutated.warriorIndex);
+        expect(actual.warriors.length).to.be.equal(0);
+    });
+
+    it("Should not execute step if end condition met", () => {
+
+        (<sinon.stub>endCondition.check).returns(true);
+
+        var actual = simulator.step();
+
+        expect(fetcher.fetch).not.to.be.called;
+    });
+
+    it("Should publish round start message if cycle is zero", () => {
+
+        const pubsub = {
+            publishSync: sinon.stub()
+        };
+
+        simulator.setMessageProvider(pubsub);
+
+        simulator.step();
+
+        expect(pubsub.publishSync).to.be.calledWith('ROUND_START', {});
+    });
+
+    it("Should not publish round start message if cycle is not zero", () => {
+
+        simulator.step();
+
+        const pubsub = {
+            publishSync: sinon.stub()
+        };
+
+        simulator.setMessageProvider(pubsub);
+
+        simulator.step();
+
+        expect(pubsub.publishSync).not.to.be.called;
+    });
+
+    it("Should publish initialise message when initialised", () => {
+
+        const pubsub = {
+            publishSync: sinon.stub()
+        };
+
+        const options = clone(Defaults);
+
+        simulator.setMessageProvider(pubsub);
+
+        simulator.initialise(options, []);
+
+        expect(pubsub.publishSync).to.have.been.calledWith('CORE_INITIALISE', {
+            state: simulator.getState()
+        });
     });
 });

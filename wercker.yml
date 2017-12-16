@@ -36,8 +36,20 @@ build:
         name: echo nodejs information
         code: |
           echo "node version $(node -v) running"
-          echo "npm version $(npm -v) running"
 
     - npm-install
     # A step that executes `npm test` command
     - npm-test
+test:
+  steps:
+    - npm test
+
+publish:
+  steps:
+    - script:
+      name: upversion and publish to npm
+      code: |
+        npm i -g npm-cli-login
+        npm-cli-login -u $npm_user -p $npm_pass -e $npm_email
+        npm version patch
+        npm publish

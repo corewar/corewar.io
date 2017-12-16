@@ -10,12 +10,13 @@ import { ICore } from "./interface/ICore";
 import { IOptions } from "./interface/IOptions";
 import { IParseResult } from "../parser/interface/IParseResult";
 import Defaults from "./Defaults";
-import * as _ from "underscore";
+import * as clone from "clone";
 
 export class Simulator implements ISimulator {
 
     private state: IState;
 
+    private core: ICore;
     private loader: ILoader;
     private fetcher: IFetcher;
     private decoder: IDecoder;
@@ -34,13 +35,13 @@ export class Simulator implements ISimulator {
         endCondition: IEndCondition,
         optionValidator: IOptionValidator) {
 
+        this.core = core;
+
         this.state = {
-            core: core,
             cycle: 0,
             warriors: [],
             warriorIndex: 0,
-            options: null//,
-            //context: null
+            options: null
         };
 
         this.loader = loader;
@@ -51,22 +52,36 @@ export class Simulator implements ISimulator {
         this.optionValidator = optionValidator;
     }
 
-    public initialise(options: IOptions, warriors: IParseResult[]) {
+    private publishInitialise(state: IState) {
         
-        const defaultedOptions = _.defaults(options, Defaults);
+        if (!this.pubSubProvider) {
+            return;
+        }
+
+        this.pubSubProvider.publishSync('CORE_INITIALISE', {
+            state: clone(state)
+        });
+    }
+
+    public initialise(options: IOptions, warriors: IParseResult[]) {
+
+        const defaultedOptions = Object.assign({}, Defaults, options);
 
         this.optionValidator.validate(defaultedOptions, warriors.length);
 
         this.state.options = defaultedOptions;
 
-        this.state.core.initialise(options);
+        this.core.initialise(options);
 
         this.state.warriors = this.loader.load(warriors, options);
+
+        this.publishInitialise(this.state);
     }
 
     public setMessageProvider(provider: any) {
         this.pubSubProvider = provider;
         this.endCondition.setMessageProvider(provider);
+        this.executive.setMessageProvider(provider);
     }
 
     public run(): Promise<IState> {
@@ -77,14 +92,30 @@ export class Simulator implements ISimulator {
             while (this.step() === false) {
             }
 
-            resolve(this.state);
+            resolve(clone(this.state));
         });
 
     }
 
+    private publishRoundStart(): void {
+        if (!this.pubSubProvider) {
+            return;
+        }
+
+        this.pubSubProvider.publishSync('ROUND_START', {});
+    }
+
     public step(): boolean {
 
-        var context = this.fetcher.fetch(this.state);
+        if (this.endCondition.check(this.state)) {
+            return true;
+        }
+
+        if (this.state.cycle === 0) {
+            this.publishRoundStart();
+        }
+
+        var context = this.fetcher.fetch(this.state, this.core);
 
         context = this.decoder.decode(context);
 
@@ -95,7 +126,7 @@ export class Simulator implements ISimulator {
         return this.endCondition.check(this.state);
     }
 
-    public getState() : IState {
-        return this.state;
+    public getState(): IState {
+        return clone(this.state);
     }
 }

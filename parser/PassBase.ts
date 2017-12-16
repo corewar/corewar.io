@@ -41,7 +41,7 @@ export class PassBase implements IPass {
         }
     }
 
-    protected processLine() {
+    public processLine() {
 
         throw new Error("PassBase.processLine is an Abstract Method");
     }

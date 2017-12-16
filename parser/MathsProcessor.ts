@@ -1,6 +1,5 @@
 ﻿import { IExpression } from "./interface/IExpression";
 import { TokenCategory } from "./interface/IToken";
-import * as _ from "underscore";
 import { PassBase } from "./PassBase";
 
 export class MathsProcessor extends PassBase {
@@ -12,7 +11,7 @@ export class MathsProcessor extends PassBase {
         this.expression = expression;
     }
 
-    protected processLine() {
+    public processLine() {
 
         // Maths Processor
         // Locate and resolve mathematical expressions to resulting address
@@ -28,7 +27,7 @@ export class MathsProcessor extends PassBase {
                 this.context.emitSingle({
                     category: TokenCategory.Number,
                     lexeme: address.toString(),
-                    position: _.clone(next.position)
+                    position: Object.assign({}, next.position)
                 });
             } catch (err) {
                 this.stream.readToEOL();

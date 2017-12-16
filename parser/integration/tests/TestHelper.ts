@@ -18,10 +18,7 @@ import { SyntaxCheck } from "../../SyntaxCheck";
 import { IllegalCommandCheck } from "../../IllegalCommandCheck";
 import { LoadFileSerialiser } from "../../LoadFileSerialiser";
 import { TestLoader } from "./TestLoader";
-import * as _ from "underscore";
 import { MetaDataCollector } from "../../MetaDataCollector";
-
-"use strict";
 
 export class TestHelper {
     private static failedIndex(name: string, a: string, b: string) {
@@ -60,7 +57,7 @@ export class TestHelper {
         var loader = new TestLoader();
         loader.getWarriors(path, names).then((warriors) => {
 
-            _(warriors).forEach((warrior) => {
+            warriors.forEach((warrior) => {
 
                 var expression = new Expression();
 
@@ -80,9 +77,11 @@ export class TestHelper {
                     new SyntaxCheck(),
                     new IllegalCommandCheck());
 
-                var result = parser.parse(warrior.redcode, _.defaults({
-                    standard: standard
-                }, Parser.DefaultOptions));
+                var result = parser.parse(
+                    warrior.redcode,
+                    Object.assign(Parser.DefaultOptions, {
+                        standard: standard
+                    }));
 
                 var serialiser = new LoadFileSerialiser();
 

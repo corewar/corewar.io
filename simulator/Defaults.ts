@@ -2,11 +2,11 @@
 import { IInstruction, OpcodeType, ModifierType } from "./interface/IInstruction";
 import { ModeType } from "./interface/IOperand";
 
-export default class Defaults implements IOptions {
+class Defaults implements IOptions {
 
-    public static coresize: number = 8000;
-    public static cyclesBeforeTie: number = 80000;
-    public static initialInstruction: IInstruction = {
+    public coresize: number = 8000;
+    public cyclesBeforeTie: number = 80000;
+    public initialInstruction: IInstruction = {
         address: 0,
         opcode: OpcodeType.DAT,
         modifier: ModifierType.F,
@@ -19,7 +19,9 @@ export default class Defaults implements IOptions {
             address: 0
         }
     };
-    public static instructionLimit: number = 100;
-    public static maxTasks: number = 8000;
-    public static minSeparation: number = 100;
+    public instructionLimit: number = 100;
+    public maxTasks: number = 8000;
+    public minSeparation: number = 100;
 }
+
+export default new Defaults();

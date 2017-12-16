@@ -5,7 +5,6 @@ var expect = chai.expect;
 chai.use(sinonChai);
 
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
-import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { IRandom } from "../interface/IRandom";
 import { IWarriorLoader } from "../interface/IWarriorLoader";
 import { IParseResult } from "../../parser/interface/IParseResult";
@@ -13,9 +12,6 @@ import { Warrior } from "../Warrior";
 import { Loader } from "../Loader";
 import Defaults from "../Defaults";
 import DataHelper from "./DataHelper";
-import * as _ from "underscore";
-
-"use strict";
 
 describe("Loader",() => {
 
@@ -47,7 +43,6 @@ describe("Loader",() => {
 
         core = {
             getSize: () => { return 0; },
-            coreAccess: new LiteEvent<ICoreAccessEventArgs>(),
             executeAt: sinon.stub(),
             readAt: sinon.stub(),
             getAt: sinon.stub(),
@@ -122,11 +117,13 @@ describe("Loader",() => {
 
         randoms = [10, 10, 10, 20];
 
-        var options = _.defaults({
-            coresize: 30,
-            instructionLimit: 1,
-            minSeparation: 1
-        }, Defaults);
+        var options = Object.assign({},
+            Defaults,
+            {
+                coresize: 30,
+                instructionLimit: 1,
+                minSeparation: 1
+            });
 
         var warriors = [
             DataHelper.buildParseResult([]),
@@ -147,11 +144,13 @@ describe("Loader",() => {
 
         randoms = [10, 8, 12, 15, 6, 5];
 
-        var options = _.defaults({
-            coresize: 30,
-            instructionLimit: 5,
-            minSeparation: 1
-        }, Defaults);
+        var options = Object.assign({},
+            Defaults,
+            {
+                coresize: 30,
+                instructionLimit: 5,
+                minSeparation: 1
+            });
 
         var warriors = [
             DataHelper.buildParseResult([]),
@@ -174,11 +173,13 @@ describe("Loader",() => {
 
         randoms = [10, 12, 18, 19, 4, 1];
 
-        var options = _.defaults({
-            coresize: 30,
-            instructionLimit: 5,
-            minSeparation: 5
-        }, Defaults);
+        var options = Object.assign({},
+            Defaults, 
+            {
+                coresize: 30,
+                instructionLimit: 5,
+                minSeparation: 5
+            });
 
         var warriors = [
             DataHelper.buildParseResult([]),
@@ -201,11 +202,13 @@ describe("Loader",() => {
 
         randoms = [28, 20, 19, 6, 7];
 
-        var options = _.defaults({
-            coresize: 30,
-            instructionLimit: 5,
-            minSeparation: 5
-        }, Defaults);
+        var options = Object.assign({},
+            Defaults,
+            {
+                coresize: 30,
+                instructionLimit: 5,
+                minSeparation: 5
+            });
 
         var warriors = [
             DataHelper.buildParseResult([]),
@@ -228,11 +231,13 @@ describe("Loader",() => {
 
         randoms = [19, 27, 28, 6, 7];
 
-        var options = _.defaults({
-            coresize: 30,
-            instructionLimit: 5,
-            minSeparation: 5
-        }, Defaults);
+        var options = Object.assign({},
+            Defaults,
+            {
+                coresize: 30,
+                instructionLimit: 5,
+                minSeparation: 5
+            });
 
         var warriors = [
             DataHelper.buildParseResult([]),

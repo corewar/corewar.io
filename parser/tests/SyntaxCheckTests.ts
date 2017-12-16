@@ -7,8 +7,6 @@ import { TestHelper } from "./TestHelper";
 import { Parser } from "../Parser";
 import { SyntaxCheck } from "../SyntaxCheck";
 import { MessageType, IMessage } from "../interface/IMessage";
-import * as _ from "underscore";
-"use strict";
 
 describe("SyntaxCheck", () => {
 
@@ -42,7 +40,7 @@ describe("SyntaxCheck", () => {
         expect(actual.messages[2].position).to.deep.equal(tokens[2].position);
         expect(actual.messages[3].position).to.deep.equal(tokens[3].position);
 
-        _.forEach(actual.messages, (message: IMessage) => {
+        actual.messages.forEach((message: IMessage) => {
             expect(message.type).to.be.equal(MessageType.Error);
             expect(message.text).to.be.equal("Expected instruction or comment, got end of line");
         });

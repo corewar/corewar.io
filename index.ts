@@ -39,21 +39,16 @@ import { Fetcher } from "./simulator/Fetcher";
 import { Simulator } from "./simulator/Simulator";
 import { EndCondition } from "./simulator/EndCondition";
 import { OptionValidator } from "./simulator/OptionValidator";
-
-import { InstructionSerialiser } from "./corewar/presentation/InstructionSerialiser";
-import { CoreRenderer } from "./corewar/presentation/CoreRenderer";
-import { Presenter } from "./corewar/presentation/Presenter";
+import { IOptions } from "./simulator/interface/IOptions";
 import { ILoader } from "./simulator/interface/ILoader";
-
-import * as _ from "underscore";
 import { IState } from "./simulator/interface/IState";
+import { IInstruction } from "./simulator/interface/IInstruction";
 
 class Api {
 
     parser: IParser;
     serialiser: ISerialiser;
     simulator: ISimulator;
-    instructionSerialiser: InstructionSerialiser;
     core: ICore;
     executive: IExecutive;
 
@@ -99,16 +94,16 @@ class Api {
             this.executive,
             new EndCondition(),
             new OptionValidator());
-
-        this.instructionSerialiser = new InstructionSerialiser();
     }
 
-    public initialiseSimulator(standardId: number, parseResults: IParseResult[], messageProvider: any) : IState {
+    public initialiseSimulator(opts: IOptions, parseResults: IParseResult[], messageProvider: any) : IState {
 
-        var options = _.defaults({
-            coresize: 64,
-            standard: standardId
-        }, Defaults);
+        var options = Object.assign(Defaults, {
+            coresize: opts.coresize,
+            minSeparation: opts.minSeparation,
+            instructionLimit: opts.instructionLimit,
+            standard: opts.standard
+        });
 
         this.core.initialise(options);
 
@@ -121,6 +116,10 @@ class Api {
         this.simulator.initialise(options, parseResults);
 
         return this.simulator.getState();
+    }
+
+    public getAt(address: number): IInstruction {
+        return this.core.getAt(address);
     }
 
     public step() : void {

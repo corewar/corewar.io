@@ -9,14 +9,12 @@ import { IInstruction } from "../interface/IInstruction";
 import { OpcodeType, ModifierType } from "../interface/IInstruction";
 import { IExecutive } from "../interface/IExecutive";
 import { IExecutionContext } from "../interface/IExecutionContext";
-import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { ITask } from "../interface/ITask";
 import Defaults from "../Defaults";
 import { IOptions } from "../interface/IOptions";
 import { ModeType } from "../interface/IOperand";
 import { Decoder } from "../Decoder";
 import DataHelper from "./DataHelper";
-import * as _ from "underscore";
 
 "use strict";
 
@@ -33,7 +31,8 @@ describe("Decoder",() => {
             initialise: () => {
                 //
             },
-            commandTable: []
+            commandTable: [],
+            setMessageProvider: () => {}
         };
 
         for (var i = 0; i < OpcodeType.Count * ModifierType.Count; i++) {
@@ -44,7 +43,6 @@ describe("Decoder",() => {
 
         core = {
             getSize: () => { return 0; },
-            coreAccess: new LiteEvent<ICoreAccessEventArgs>(),
             executeAt: sinon.stub(),
             readAt: sinon.stub(),
             getAt: sinon.stub(),

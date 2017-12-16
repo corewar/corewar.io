@@ -6,7 +6,7 @@ import { PassBase } from "./PassBase";
 
 export class AddressModPass extends PassBase {
 
-    protected processLine() {
+    public processLine() {
 
         // Apply mod maths to address to ensure that they fall
         // between +/- (CORESIZE / 2)

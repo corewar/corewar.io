@@ -143,6 +143,8 @@ export class Executive implements IExecutive {
         this.nop,   // .I
     ];
 
+    private pubSubProvider: any;
+
     private instructionLimit: number;
 
     public initialise(options: IOptions) {
@@ -150,11 +152,28 @@ export class Executive implements IExecutive {
         this.instructionLimit = options.instructionLimit;
     }
 
+    public setMessageProvider(provider: any) {
+        this.pubSubProvider = provider;
+    }
+
+    private publishTaskCount(warriorId: number, taskCount: number) {
+        if (!this.pubSubProvider) {
+            return;
+        }
+
+        this.pubSubProvider.publishSync('TASK_COUNT', {
+            warriorId,
+            taskCount
+        });
+    }
+
     private dat(context: IExecutionContext) {
         //Remove current task from the queue
         var ti = context.taskIndex;
         context.warrior.taskIndex = context.taskIndex;
         context.warrior.tasks.splice(ti, 1);
+
+        this.publishTaskCount(context.warrior.id, context.warrior.tasks.length);
     }
 
     private mov_a(context: IExecutionContext) {
@@ -958,6 +977,7 @@ export class Executive implements IExecutive {
             });
             context.warrior.taskIndex = (context.warrior.taskIndex + 1) % context.warrior.tasks.length;
 
+            this.publishTaskCount(context.warrior.id, context.warrior.tasks.length);
         }
     }
 

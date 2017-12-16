@@ -10,15 +10,11 @@ import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore"
 import Defaults from "../Defaults";
 import { IOptions } from "../interface/IOptions";
 import { IState } from "../interface/IState";
-import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { ModeType } from "../interface/IOperand";
 import { Executive } from "../Executive";
 import { IExecutionContext } from "../interface/IExecutionContext";
 import { ITask } from "../interface/ITask";
 import DataHelper from "./DataHelper";
-import * as _ from "underscore";
-
-"use strict";
 
 describe("Executive", () => {
 
@@ -30,7 +26,7 @@ describe("Executive", () => {
 
     beforeEach(() => {
 
-        options = _.clone(Defaults);
+        options = Object.assign({}, Defaults);
         options.coresize = 5;
         options.instructionLimit = 100;
 
@@ -52,7 +48,6 @@ describe("Executive", () => {
 
         core = {
             getSize: () => { return 0; },
-            coreAccess: new LiteEvent<ICoreAccessEventArgs>(),
             executeAt: executeAtSpy,
             readAt: readAtSpy,
             getAt: getAtSpy,
@@ -64,7 +59,6 @@ describe("Executive", () => {
         };
 
         state = {
-            core: core,
             cycle: 0,
             options: options,
             warriorIndex: 0,
@@ -161,7 +155,7 @@ describe("Executive", () => {
 
     function buildContext(instructionPointer: number, aPointer: number, bPointer: number): IExecutionContext {
 
-        var warrior = DataHelper.buildWarrior();
+        var warrior = DataHelper.buildWarrior(7);
         var taskA = DataHelper.buildTask();
         var taskB = DataHelper.buildTask();
         var taskC = DataHelper.buildTask();
@@ -196,6 +190,10 @@ describe("Executive", () => {
 
     it("removes the current task from the queue when the DAT instruction is executed", () => {
 
+        const pubsub = {
+            publishSync: sinon.stub()
+        };
+
         prepareCore(5, [
             DataHelper.buildInstruction(3, OpcodeType.DAT, ModifierType.A, ModeType.Direct, 0, ModeType.Direct, 0)
         ]);
@@ -203,13 +201,19 @@ describe("Executive", () => {
         var context = buildContext(3, 0, 0);
 
         var exec = new Executive();
+        exec.setMessageProvider(pubsub);
         exec.initialise(options);
-        exec.commandTable[OpcodeType.DAT](context);
+        exec.commandTable[OpcodeType.DAT].apply(exec, [context]);
 
         expect(state.warriors[0].taskIndex).to.be.equal(1);
         expect(state.warriors[0].tasks.length).to.be.equal(2);
         expect(state.warriors[0].tasks[0].instructionPointer).to.be.equal(0);
         expect(state.warriors[0].tasks[1].instructionPointer).to.be.equal(0);
+
+        expect(pubsub.publishSync).to.be.calledWith('TASK_COUNT', {
+            warriorId: 7,
+            taskCount: 2
+        });
     });
 
     // MOV
@@ -4678,6 +4682,10 @@ describe("Executive", () => {
 
     it("SPL inserts an additional task to the current warrior's task list, directly after the current task", () => {
 
+        const pubsub = {
+            publishSync: sinon.stub()
+        };
+
         var instructions = [
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 1, ModeType.Immediate, 2),
             DataHelper.buildInstruction(3, OpcodeType.SPL, ModifierType.F, ModeType.Direct, -1, ModeType.Direct, 1),
@@ -4688,12 +4696,18 @@ describe("Executive", () => {
         var context = buildContext(3, 2, 4);
 
         var exec = new Executive();
+        exec.setMessageProvider(pubsub);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SPL, ModifierType.F)].apply(exec, [context]);
 
         expect(core.readAt).not.to.have.been.called;
 
         expect(context.warrior.tasks.length).to.be.equal(4);
+
+        expect(pubsub.publishSync).to.be.calledWith('TASK_COUNT', {
+            warriorId: 7,
+            taskCount: 4
+        });
     });
 
     it("SPL sets the newly created task's instruction pointer to the A pointer", () => {

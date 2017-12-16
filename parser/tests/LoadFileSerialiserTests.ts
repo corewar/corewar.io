@@ -3,8 +3,6 @@
 import { IToken, TokenCategory } from "../interface/IToken";
 import { LoadFileSerialiser } from "../LoadFileSerialiser";
 import { TestHelper } from "./TestHelper";
-import * as _ from "underscore";
-"use strict";
 
 describe("LoadFileSerialiser", () => {
 
@@ -78,5 +76,28 @@ describe("LoadFileSerialiser", () => {
         var actual = serialiser.serialise(tokens);
 
         expect(actual).to.be.equal("MOV.AB\t$0,\t$0\t; this is a comment\n");
+    });
+
+    it("Serialises comments preceded by newline", () => {
+
+        // var tokens: IToken[] = TestHelper.instruction(1, "", "MOV", ".AB", "$", "0", ",", "$", "0", "; this is a comment");
+        var tokens = [
+            {
+                category: TokenCategory.EOL,
+                lexeme: "\n",
+                position: { line: 0, char: 0 }
+            },
+            {
+                category: TokenCategory.Comment,
+                lexeme: "; this is a comment",
+                position: { line: 0, char: 0 }
+            }
+        ];
+
+        var serialiser = new LoadFileSerialiser();
+
+        var actual = serialiser.serialise(tokens);
+
+        expect(actual).to.be.equal("\n; this is a comment");
     });
 });

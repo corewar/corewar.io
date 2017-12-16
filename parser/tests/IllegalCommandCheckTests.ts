@@ -6,12 +6,10 @@ import { IllegalCommandCheck } from "../IllegalCommandCheck";
 import { Parser } from "../Parser";
 import { MessageType } from "../interface/IMessage";
 import { Standard } from "../interface/IParseOptions";
-import * as _ from "underscore";
-"use strict";
 
-describe("IllegalCommandCheck",() => {
+describe("IllegalCommandCheck", () => {
 
-    it("Does not raise errors for legal addressing modes under the ICWS'88 standard",() => {
+    it("Does not raise errors for legal addressing modes under the ICWS'88 standard", () => {
 
         var tokens = TestHelper.instruction(1, "", "MOV", ".A", "#", "0", ",", "$", "0", "")
             .concat(TestHelper.instruction(2, "", "MOV", ".A", "#", "0", ",", "@", "0", ""))
@@ -40,12 +38,12 @@ describe("IllegalCommandCheck",() => {
         context.tokens = tokens.slice();
 
         var pass = new IllegalCommandCheck();
-        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
 
         expect(actual.messages.length).to.be.equal(0);
     });
 
-    it("Raises an error for each illegal addressing mode under the ICWS'88 standard",() => {
+    it("Raises an error for each illegal addressing mode under the ICWS'88 standard", () => {
 
         var tokens = TestHelper.instruction(1, "", "MOV", ".A", "#", "0", ",", "#", "0", "")
             .concat(TestHelper.instruction(1, "", "SLT", ".A", "$", "0", ",", "#", "0", ""))
@@ -63,17 +61,31 @@ describe("IllegalCommandCheck",() => {
         context.tokens = tokens.slice();
 
         var pass = new IllegalCommandCheck();
-        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
 
         expect(actual.messages.length).to.be.equal(11);
 
-        expect(_(actual.messages).where({
-            type: MessageType.Error,
-            text: "Illegal addressing mode under selected Corewar standard"
-        }).length).to.be.equal(11);
+        expect(actual.messages.filter(a => 
+            a.type === MessageType.Error &&
+            a.text === "Illegal addressing mode under selected Corewar standard"
+        ).length).to.be.equal(11);
 
         for (var i = 0; i < actual.messages.length; i++) {
             expect(actual.messages[i].position).to.deep.equal(tokens[i * 8].position);
         }
+    });
+
+    it("Ignores lines which do not begin with an opcode", () => {
+
+        var tokens = TestHelper.instruction(1, "Label1", "MOV", ".A", "#", "0", ",", "$", "0", "");
+
+        var context = new Context();
+        context.tokens = tokens.slice();
+
+        var pass = new IllegalCommandCheck();
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
+
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.tokens.length).to.be.equal(tokens.length);
     });
 });

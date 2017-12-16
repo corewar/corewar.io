@@ -1,7 +1,6 @@
 ﻿import { IEndCondition } from "./interface/IEndCondition";
 import { IState } from "./interface/IState";
 import { IWarrior } from "./interface/IWarrior";
-import * as _ from "underscore";
 
 export class EndCondition implements IEndCondition {
 
@@ -11,27 +10,53 @@ export class EndCondition implements IEndCondition {
         this.pubSubProvider = provider;
     }
 
+    private publishRoundEnd(outcome: string, winnerId: number = null) {
+        if (!this.pubSubProvider) {
+            return;
+        }
+
+        this.pubSubProvider.publishSync('RUN_PROGRESS', {
+            runProgress: 100
+        });
+
+        this.pubSubProvider.publishSync('ROUND_END', {
+            winnerId,
+            outcome
+        });
+    }
+
+    private publishProgress(progress: number) {
+        if (this.pubSubProvider) {
+            this.pubSubProvider.publishSync('RUN_PROGRESS', {
+                runProgress: progress
+            });
+        }
+    }
+
     public check(state: IState): boolean {
 
         if (state.cycle === state.options.cyclesBeforeTie) {
+            this.publishRoundEnd('DRAW');
             return true;
         }
 
-        if(state.cycle === state.options.cyclesBeforeTie % 100) {
-            if(this.pubSubProvider) {
-                // TODO: progress report 1%
-                this.pubSubProvider.publish('RUN_PROGRESS', {
-                    runCompletion: state.cycle
-                });
+        if ((state.cycle % (state.options.cyclesBeforeTie / 100)) === 0) {
+            this.publishProgress(state.cycle / (state.options.cyclesBeforeTie / 100));
+        }
+
+        const liveWarriors = state.warriors.filter((warrior: IWarrior) => warrior.tasks.length > 0);
+        let result = liveWarriors.length === 1;
+
+        if (state.warriors.length === 1) {
+            if (liveWarriors.length === 0) {
+                this.publishRoundEnd('NONE');
+                return true;
             }
+        } else if (liveWarriors.length === 1) {
+            this.publishRoundEnd('WIN', liveWarriors[0].id);
+            return true;
         }
 
-        var liveWarriors = _(state.warriors).filter((warrior: IWarrior) => warrior.tasks.length > 0);
-
-        if (state.warriors.length > 1) {
-            return liveWarriors.length === 1;
-        } else {
-            return liveWarriors.length === 0;
-        }
+        return false;
     }
 }

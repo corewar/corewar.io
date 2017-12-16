@@ -1,12 +1,11 @@
 ﻿import { IParseInstruction } from "./interface/IParseInstruction";
 import { IToken, TokenCategory } from "./interface/IToken";
-import * as _ from "underscore";
 import { PassBase } from "./PassBase";
 
 export class IllegalCommandCheck extends PassBase {
 
 
-    protected processLine() {
+    public processLine() {
 
         if (this.stream.peek().category === TokenCategory.Opcode) {
             this.checkLine();
@@ -65,7 +64,7 @@ export class IllegalCommandCheck extends PassBase {
             instruction.aOperand.mode.lexeme +
             instruction.bOperand.mode.lexeme;
 
-        if (!_(IllegalCommandCheck.LegalCommands).contains(hash)) {
+        if (!IllegalCommandCheck.LegalCommands.includes(hash)) {
 
             this.stream.error(
                 instruction.opcode,

@@ -7,8 +7,6 @@ import { PreprocessCollector } from "../PreprocessCollector";
 import { MessageType } from "../interface/IMessage";
 import { TestHelper } from "./TestHelper";
 import { Standard } from "../interface/IParseOptions";
-import * as _ from "underscore";
-"use strict";
 
 describe("PreprocessCollector", () => {
 
@@ -408,7 +406,7 @@ describe("PreprocessCollector", () => {
         context.tokens = tokens.slice();
 
         var pass = new PreprocessCollector();
-        var result = pass.process(context, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions));
+        var result = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
 
         var label1 = result.equs["label1"];
         var label2 = result.equs["label2"];

@@ -1,12 +1,11 @@
 ﻿import { Standard } from "./interface/IParseOptions";
 import { IToken, TokenCategory } from "./interface/IToken";
 import { IParseInstruction } from "./interface/IParseInstruction";
-import * as _ from "underscore";
 import { PassBase } from "./PassBase";
 
 export class DefaultPass extends PassBase {
 
-    protected processLine() {
+    public processLine() {
 
         // Should specify default
         //    Modifiers (depends upon opcode)
@@ -85,7 +84,7 @@ export class DefaultPass extends PassBase {
             return {
                 category: TokenCategory.Comma,
                 lexeme: ",",
-                position: _.clone(this.stream.peek().position)
+                position: Object.assign({}, this.stream.peek().position)
             };
         }
     }
@@ -105,7 +104,7 @@ export class DefaultPass extends PassBase {
             return {
                 category: TokenCategory.Mode,
                 lexeme: mode,
-                position: _.clone(this.stream.peek().position)
+                position: Object.assign({}, this.stream.peek().position)
             };
         }
     }
@@ -118,14 +117,14 @@ export class DefaultPass extends PassBase {
                 instruction.comma = {
                     category: TokenCategory.Comma,
                     lexeme: ",",
-                    position: _.clone(this.stream.peek().position)
+                    position: Object.assign({}, this.stream.peek().position)
                 };
             }
 
             instruction.bOperand.address = {
                 category: TokenCategory.Number,
                 lexeme: "0",
-                position: _.clone(this.stream.peek().position)
+                position: Object.assign({}, this.stream.peek().position)
             };
 
             if (instruction.opcode.lexeme === "DAT") {
@@ -148,7 +147,7 @@ export class DefaultPass extends PassBase {
 
             var token = {
                 category: TokenCategory.Modifier,
-                position: _.clone(instruction.opcode.position),
+                position: Object.assign({}, instruction.opcode.position),
                 lexeme: ""
             };
 
@@ -197,9 +196,6 @@ export class DefaultPass extends PassBase {
                 case "SPL":
                 case "NOP":
                     token.lexeme = ".B";
-                    break;
-                default:
-                    instruction.modifier = null;
                     break;
             }
 

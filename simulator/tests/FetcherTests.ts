@@ -7,11 +7,9 @@ import { OpcodeType, ModifierType } from "../interface/IInstruction";
 import { ModeType } from "../interface/IOperand";
 import Defaults from "../Defaults";
 import { IOptions } from "../interface/IOptions";
-import { ILiteEvent, LiteEvent } from "../../modules/LiteEvent";
 import { ITask } from "../interface/ITask";
 import { Fetcher } from "../Fetcher";
 import DataHelper from "./DataHelper";
-import * as _ from "underscore";
 
 "use strict";
 
@@ -25,12 +23,11 @@ describe("Fetcher",() => {
 
     beforeEach(() => {
 
-        var options = _.clone(Defaults);
+        var options = Object.assign({}, Defaults);
         options.coresize = 5;
 
         core = {
             getSize: () => { return 0; },
-            coreAccess: new LiteEvent<ICoreAccessEventArgs>(),
             executeAt: sinon.stub(),
             readAt: sinon.stub(),
             getAt: sinon.stub(),
@@ -44,7 +41,6 @@ describe("Fetcher",() => {
         };
 
         state = {
-            core: core,
             cycle: 0,
             options: options,
             warriorIndex: 0,
@@ -84,7 +80,7 @@ describe("Fetcher",() => {
         };
 
         var fetcher = new Fetcher();
-        var context = fetcher.fetch(state);
+        var context = fetcher.fetch(state, core);
 
         expect(context.warrior).to.be.equal(expectedWarrior);
         expect(context.task).to.be.equal(expectedTask);
@@ -122,7 +118,7 @@ describe("Fetcher",() => {
         };
 
         var fetcher = new Fetcher();
-        fetcher.fetch(state);
+        fetcher.fetch(state, core);
 
         expect(state.warriorIndex).to.be.equal(2);
         expect(expectedWarrior.taskIndex).to.be.equal(2);
@@ -156,7 +152,7 @@ describe("Fetcher",() => {
         };
 
         var fetcher = new Fetcher();
-        fetcher.fetch(state);
+        fetcher.fetch(state, core);
 
         expect(state.warriorIndex).to.be.equal(0);
         expect(expectedWarrior.taskIndex).to.be.equal(0);

@@ -1,7 +1,4 @@
 ﻿import { IToken, TokenCategory } from "../interface/IToken";
-import * as _ from "underscore";
-
-"use strict";
 
 export class TestHelper {
 
@@ -55,7 +52,7 @@ export class TestHelper {
         if (aAddress !== "") {
 
             category = TokenCategory.Label;
-            if (_.contains(["-", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], aAddress[0])) {
+            if (["-", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(aAddress[0])) {
                 category = TokenCategory.Number;
             }
 
@@ -135,7 +132,7 @@ export class TestHelper {
         ];
     }
 
-    public static endStatement(line: number, label: string): IToken[] {
+    public static endStatement(line: number, label: string, comment?: string): IToken[] {
 
         var result: IToken[] = [];
 
@@ -154,6 +151,14 @@ export class TestHelper {
                 lexeme: label,
                 position: { line: line, char: 1 }
             });
+        }
+
+        if (comment) {
+            result.push({
+                category: TokenCategory.Comment,
+                lexeme: comment,
+                position: { line: line, char: 1 }
+            })
         }
 
         result.push({
@@ -194,7 +199,7 @@ export class TestHelper {
         return result;
     }
 
-    public static org(line: number, address: string): IToken[]{
+    public static org(line: number, address: string): IToken[] {
 
         var category = TestHelper.getCategory(address);
 
@@ -233,11 +238,11 @@ export class TestHelper {
             {
                 category: TokenCategory.Preprocessor,
                 lexeme: "ROF",
-                position: { line: line+2, char: 1 }
+                position: { line: line + 2, char: 1 }
             }, {
                 category: TokenCategory.EOL,
                 lexeme: "\n",
-                position: { line: line+2, char: 3 }
+                position: { line: line + 2, char: 3 }
             }
         ];
 
@@ -247,7 +252,7 @@ export class TestHelper {
     private static getCategory(lexeme: string): TokenCategory {
 
         var category = TokenCategory.Label;
-        if (_.contains(["-", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"], lexeme[0])) {
+        if (["-", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(lexeme[0])) {
             category = TokenCategory.Number;
         }
 

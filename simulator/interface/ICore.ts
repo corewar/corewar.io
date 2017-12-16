@@ -1,5 +1,4 @@
 ﻿import { ITask } from "./ITask";
-import { ILiteEvent } from "../../modules/LiteEvent";
 import { IOptions } from "./IOptions";
 import { IInstruction } from "./IInstruction";
 
@@ -10,14 +9,12 @@ export enum CoreAccessType {
 }
 
 export interface ICoreAccessEventArgs {
-    task: ITask;
+    warriorId: number;
     address: number;
     accessType: CoreAccessType;
 }
 
 export interface ICore {
-
-    coreAccess: ILiteEvent<ICoreAccessEventArgs>;
 
     initialise(options: IOptions): void;
     setMessageProvider?(provider: any): void;

@@ -7,8 +7,6 @@ import { TestHelper } from "./TestHelper";
 import { LabelEmitter } from "../LabelEmitter";
 import { MessageType } from "../interface/IMessage";
 import { Standard } from "../interface/IParseOptions";
-import * as _ from "underscore";
-"use strict";
 
 describe("LabelEmitter",() => {
 
@@ -176,7 +174,7 @@ describe("LabelEmitter",() => {
         context.labels["short1"] = 5;
 
         var pass = new LabelEmitter();
-        var actual = pass.process(context, _.defaults({ standard: Standard.ICWS88 }, Parser.DefaultOptions));
+        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(6);

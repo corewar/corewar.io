@@ -1,6 +1,4 @@
 ﻿import { IToken, TokenCategory } from "./interface/IToken";
-import * as _ from "underscore";
-
 import { PassBase } from "./PassBase";
 
 export class PreprocessEmitter extends PassBase {
@@ -9,7 +7,7 @@ export class PreprocessEmitter extends PassBase {
     /// Perform preprocessor substitutions.
     /// Replace EQU defined labels with corresponding expression
     /// </summary>
-    protected processLine() {
+    public processLine() {
 
         // Perform preprocessor substitution
         // Insert EQU expressions
@@ -30,8 +28,8 @@ export class PreprocessEmitter extends PassBase {
         var label = this.stream.read();
         var originalExpression = this.context.equs[label.lexeme];
 
-        var expression = _.map(originalExpression, (token: IToken) => {
-            var clone = _.clone(token);
+        var expression = originalExpression.map((token: IToken) => {
+            var clone = Object.assign({}, token);
             clone.position = label.position;
             return clone;
         });
