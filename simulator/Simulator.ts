@@ -53,7 +53,7 @@ export class Simulator implements ISimulator {
     }
 
     private publishInitialise(state: IState) {
-        
+
         if (!this.pubSubProvider) {
             return;
         }
@@ -64,6 +64,13 @@ export class Simulator implements ISimulator {
     }
 
     public initialise(options: IOptions, warriors: IParseResult[]) {
+
+        this.state = {
+            cycle: 0,
+            warriors: [],
+            warriorIndex: 0,
+            options: null
+        };
 
         const defaultedOptions = Object.assign({}, Defaults, options);
 
