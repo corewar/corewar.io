@@ -6,7 +6,7 @@ This project is a web user interface for the Corewar.
 
 It specifically consume our other project [Corewar](https://github.com/gareththegeek/corewar) which is a Typescript / Javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)
 
-You can use the website here [http://corewar.azurewebsites.net/](http://corewar.azurewebsites.net/)
+You can use the website here [http://www.corewar.io](http://www.corewar.io/)
 
 ## Technology
 
