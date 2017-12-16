@@ -36,20 +36,23 @@ export class Simulator implements ISimulator {
         optionValidator: IOptionValidator) {
 
         this.core = core;
-
-        this.state = {
-            cycle: 0,
-            warriors: [],
-            warriorIndex: 0,
-            options: null
-        };
-
         this.loader = loader;
         this.fetcher = fetcher;
         this.decoder = decoder;
         this.executive = executive;
         this.endCondition = endCondition;
         this.optionValidator = optionValidator;
+
+        this.initState();
+    }
+
+    private initState() : void {
+        this.state = {
+            cycle: 0,
+            warriors: [],
+            warriorIndex: 0,
+            options: null
+        };
     }
 
     private publishInitialise(state: IState) {
@@ -65,12 +68,7 @@ export class Simulator implements ISimulator {
 
     public initialise(options: IOptions, warriors: IParseResult[]) {
 
-        this.state = {
-            cycle: 0,
-            warriors: [],
-            warriorIndex: 0,
-            options: null
-        };
+        this.initState();
 
         const defaultedOptions = Object.assign({}, Defaults, options);
 
