@@ -52,7 +52,7 @@ deploy:
         yarn build
 
     - wercker-labs/azure-ftp-deploy:
-      cwd: /build
+      cwd: build/
       publish-url: $publish_url
       username: $username
       password: $password
