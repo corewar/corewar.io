@@ -32,11 +32,24 @@ deploy:
   steps:
 
     - script:
-      name: build
+      name: install yarn
       code: |
-        npm install -g create-react-app
-        npm run build
-        echo "completed build"
+        npm i -g yarn
+
+    - script:
+      name: install c-r-a
+      code: |
+        yarn add -g create-react-app
+
+    - script:
+      name: yarn install
+      code: |
+        yarn install
+
+    - script:
+      name: build app
+      code: |
+        yarn build
 
     - wercker-labs/azure-ftp-deploy:
       cwd: /build
