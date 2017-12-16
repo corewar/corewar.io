@@ -37,14 +37,14 @@ deploy:
         npm i -g yarn
 
     - script:
-      name: install c-r-a
-      code: |
-        yarn add -g create-react-app
-
-    - script:
       name: yarn install
       code: |
         yarn install
+
+    - script:
+      name: install c-r-a
+      code: |
+        yarn global add create-react-app
 
     - script:
       name: build app
