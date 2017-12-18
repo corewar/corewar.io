@@ -96,7 +96,7 @@ class Api {
             new OptionValidator());
     }
 
-    public initialiseSimulator(opts: IOptions, parseResults: IParseResult[], messageProvider: any) : IState {
+    public initialiseSimulator(opts: IOptions, parseResults: IParseResult[], messageProvider: any) {
 
         var options = Object.assign(Defaults, {
             coresize: opts.coresize,
@@ -105,7 +105,8 @@ class Api {
             standard: opts.standard
         });
 
-        this.core.initialise(options);
+        // is this needed anymore? it looks like the simulator init calls core init
+        //this.core.initialise(options);
 
         this.core.setMessageProvider(messageProvider);
 
@@ -114,8 +115,6 @@ class Api {
         this.executive.initialise(options);
 
         this.simulator.initialise(options, parseResults);
-
-        return this.simulator.getState();
     }
 
     public getAt(address: number): IInstruction {
