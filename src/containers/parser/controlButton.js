@@ -5,8 +5,8 @@ import './controlButton.css'
 
 const ControlButton = ({ iconClass, handleClick }) => (
   <div className='control'>
-    <div className='control-button'>
-      <FontAwesome name={iconClass} size="2x" onClick={() => handleClick()}/>
+    <div className='control-button' onClick={handleClick}>
+      <FontAwesome name={iconClass} size='2x' />
     </div>
   </div>
 )
