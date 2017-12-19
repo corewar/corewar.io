@@ -12,6 +12,8 @@ export const GET_CORE_INSTRUCTIONS = 'simulator/GET_CORE_INSTRUCTIONS'
 export const SET_INSTRUCTION_LIMIT = 'simulator/SET_INSTRUCTION_LIMIT'
 export const SET_CORESIZE = 'simulator/SET_CORESIZE'
 export const SET_MIN_SEPARATION = 'simulator/SET_MIN_SEPARATION'
+export const SET_PROCESS_RATE = 'simulator/SET_PROCESS_RATE'
+
 
 // state
 const initialState = {
@@ -20,10 +22,12 @@ const initialState = {
   runProgress: 0,
   roundResult: {},
   result: {},
-  coreSize: 2048,
+  coreSize: 8000,
   minSeparation: 1,
   instructionLimit: 1,
-  instructions: []
+  instructions: [],
+  processRateStep: 25,
+  processRate: 100
 }
 
 // reducer
@@ -92,6 +96,12 @@ export default (state = initialState, action) => {
         instructionLimit: action.value
       }
 
+    case SET_PROCESS_RATE:
+      return {
+        ...state,
+        processRate: action.processRate
+      }
+
     default:
       return state
   }
@@ -127,6 +137,7 @@ export const init = () => {
 }
 
 let runner = null;
+let operations = 0
 
 export const pause = () => {
 
@@ -142,11 +153,11 @@ export const pause = () => {
   }
 }
 
-export const run = (processRate) => {
+export const run = () => {
 
   console.log('run')
 
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch({
       type: RUN_REQUESTED
     })
@@ -166,19 +177,24 @@ export const run = (processRate) => {
       })
     });
 
-    let operations = 0;
+    const { processRate, isRunning } = getState().simulator
+
+    if(isRunning) {
+      window.clearInterval(runner)
+    }
 
     runner = window.setInterval(() => {
 
       for(let i = 0; i < processRate; i++) {
-        corewar.simulator.step();
+        corewar.simulator.step()
       }
 
       operations += processRate;
 
       // TODO: This should be controlled by the simulator
       if(operations === 80000) {
-        window.clearInterval(runner);
+        window.clearInterval(runner)
+        operations = 0
       }
 
 
@@ -242,5 +258,67 @@ export const setInstructionLimit = (val) => {
       type: SET_INSTRUCTION_LIMIT,
       value: val
     })
+  }
+}
+
+export const incrementProcessRate = () => {
+  return (dispatch, getState) => {
+    const { processRate, processRateStep } = getState().simulator
+    const newProcessRate = processRate + processRateStep
+    console.log('+= processRate', newProcessRate)
+    dispatch({
+      type: SET_PROCESS_RATE,
+      processRate: newProcessRate
+    })
+
+    window.clearInterval(runner)
+
+    runner = window.setInterval(() => {
+
+      for(let i = 0; i < newProcessRate; i++) {
+        corewar.simulator.step()
+      }
+
+      operations += newProcessRate;
+
+      // TODO: This should be controlled by the simulator
+      if(operations === 80000) {
+        window.clearInterval(runner)
+        operations = 0
+      }
+
+
+    }, 1000/60)
+  }
+}
+
+export const decrementProcessRate = () => {
+  return (dispatch, getState) => {
+    const { processRate, processRateStep } = getState().simulator
+    const newProcessRate = processRate - processRateStep
+    console.log('-= processRate', newProcessRate)
+    dispatch({
+      type: SET_PROCESS_RATE,
+      processRate: newProcessRate
+    })
+
+    window.clearInterval(runner)
+
+    runner = window.setInterval(() => {
+
+      for(let i = 0; i < newProcessRate; i++) {
+        corewar.simulator.step()
+      }
+
+      operations += newProcessRate;
+
+      // TODO: This should be controlled by the simulator
+      if(operations === 80000) {
+        window.clearInterval(runner)
+        operations = 0
+      }
+
+
+    }, 1000/60)
   }
 }

@@ -141,7 +141,7 @@ export const removeWarrior = (index) => {
 
     const state = getState();
 
-    const { standardId, currentParseResult, parseResults } = state.parser;
+    const { standardId, parseResults } = state.parser;
     const { coreSize, minSeparation, instructionLimit } = state.simulator;
 
     const result = removeItem(index, parseResults);
