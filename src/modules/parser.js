@@ -139,7 +139,10 @@ export const removeWarrior = (index) => {
 
   return (dispatch, getState) => {
 
-    const { parseResults } = getState().parser;
+    const state = getState();
+
+    const { standardId, currentParseResult, parseResults } = state.parser;
+    const { coreSize, minSeparation, instructionLimit } = state.simulator;
 
     const result = removeItem(index, parseResults);
 
@@ -147,6 +150,21 @@ export const removeWarrior = (index) => {
       type: REMOVE_WARRIOR,
       result
     })
+
+    PubSub.publish('RESET_CORE');
+
+    const options = {
+      standard: standardId,
+      coresize: coreSize,
+      minSeparation: minSeparation,
+      instructionLimit: instructionLimit,
+    };
+
+    corewar.initialiseSimulator(options, result, PubSub);
+
+    dispatch({
+      type: INIT
+    });
   }
 }
 
