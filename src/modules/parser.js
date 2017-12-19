@@ -1,4 +1,7 @@
 import { corewar } from "corewar";
+import * as PubSub from 'pubsub-js';
+
+import { INIT } from './simulator';
 
 export const PARSE_REQUESTED = 'parser/PARSE_REQUESTED'
 export const PARSE = 'parser/PARSE'
@@ -78,7 +81,10 @@ export const save = () => {
 
   return (dispatch, getState) => {
 
-    const { currentParseResult, parseResults } = getState().parser;
+    const state = getState();
+
+    const { standardId, currentParseResult, parseResults } = state.parser;
+    const { coreSize, minSeparation, instructionLimit } = state.simulator;
 
     const result = insertItem(parseResults.length, parseResults, currentParseResult)
 
@@ -86,6 +92,22 @@ export const save = () => {
       type: SAVE,
       result
     })
+
+    PubSub.publish('RESET_CORE');
+
+    const options = {
+      standard: standardId,
+      coresize: coreSize,
+      minSeparation: minSeparation,
+      instructionLimit: instructionLimit,
+    };
+
+    corewar.initialiseSimulator(options, result, PubSub);
+
+    dispatch({
+      type: INIT
+    });
+
   }
 };
 
