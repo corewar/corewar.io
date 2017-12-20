@@ -87,7 +87,7 @@ export class Simulator implements ISimulator {
 
     public run(): void {
 
-        while (this.step() === false) {
+        while (this.stepInternal() === false) {
         }
     }
 
@@ -96,6 +96,11 @@ export class Simulator implements ISimulator {
         if (this.endCondition.check(this.state)) {
             return true;
         }
+
+        return this.stepInternal();
+    }
+
+    private stepInternal(): boolean {
 
         if (this.state.cycle === 0) {
             this.publisher.publish({
