@@ -358,4 +358,21 @@ describe("Simulator", () => {
             }
         });
     });
+
+    it("Should repeatedly call step until end condition met when run called", () => {
+
+        const options = clone(Defaults);
+
+        simulator.initialise(options, []);
+
+        const stub = <sinon.stub>endCondition.check;
+        stub.onCall(0).returns(false);
+        stub.onCall(1).returns(false);
+        stub.onCall(2).returns(false);
+        stub.onCall(3).returns(true);
+
+        simulator.run();
+
+        expect(fetcher.fetch).to.have.callCount(4);
+    });
 });
