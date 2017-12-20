@@ -20,7 +20,10 @@ import { OpcodeType, ModifierType } from "../interface/IInstruction";
 import { ModeType } from "../interface/IOperand";
 import DataHelper from "./DataHelper";
 import { IOptionValidator } from "../interface/IOptionValidator";
+import { MessageType } from "../interface/IMessage";
+import { IPublisher } from "../interface/IPublisher";
 import * as clone from "clone";
+import { lchmod } from "fs";
 
 describe("Simulator", () => {
 
@@ -33,6 +36,7 @@ describe("Simulator", () => {
     var executive: IExecutive;
     var endCondition: IEndCondition;
     var optionValidator: IOptionValidator;
+    var publisher: IPublisher;
 
     var commandSpy: sinon.stub;
 
@@ -71,17 +75,19 @@ describe("Simulator", () => {
             initialise: () => {
                 //
             },
-            commandTable: [],
-            setMessageProvider: () => {}
+            commandTable: []
         };
 
         endCondition = {
-            check: sinon.stub(),
-            setMessageProvider: sinon.stub()
+            check: sinon.stub()
         };
 
         optionValidator = {
             validate: sinon.stub()
+        };
+
+        publisher = {
+            publish: sinon.stub()
         };
 
         simulator = new Simulator(
@@ -91,7 +97,8 @@ describe("Simulator", () => {
             decoder,
             executive,
             endCondition,
-            optionValidator);
+            optionValidator,
+            publisher);
     });
 
     it("first fetches then decodes and finally executes", () => {
@@ -316,46 +323,36 @@ describe("Simulator", () => {
 
     it("Should publish round start message if cycle is zero", () => {
 
-        const pubsub = {
-            publishSync: sinon.stub()
-        };
-
-        simulator.setMessageProvider(pubsub);
-
         simulator.step();
 
-        expect(pubsub.publishSync).to.be.calledWith('ROUND_START', {});
+        expect(publisher.publish).to.be.calledWith({
+            type: MessageType.RoundStart,
+            payload: {}
+        });
     });
 
     it("Should not publish round start message if cycle is not zero", () => {
 
         simulator.step();
 
-        const pubsub = {
-            publishSync: sinon.stub()
-        };
-
-        simulator.setMessageProvider(pubsub);
+        publisher.publish = sinon.stub();
 
         simulator.step();
 
-        expect(pubsub.publishSync).not.to.be.called;
+        expect(publisher.publish).not.to.be.called;
     });
 
     it("Should publish initialise message when initialised", () => {
 
-        const pubsub = {
-            publishSync: sinon.stub()
-        };
-
         const options = clone(Defaults);
-
-        simulator.setMessageProvider(pubsub);
 
         simulator.initialise(options, []);
 
-        expect(pubsub.publishSync).to.have.been.calledWith('CORE_INITIALISE', {
-            state: simulator.getState()
+        expect(publisher.publish).to.have.been.calledWith({
+            type: MessageType.CoreInitialise,
+            payload: {
+                state: simulator.getState()
+            }
         });
     });
 });

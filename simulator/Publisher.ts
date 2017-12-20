@@ -15,17 +15,17 @@ export class Publisher implements IPublisher {
         "ROUND_START"
     ];
 
-    constructor(publishProvider: IPublishProvider) {
+    public setPublishProvider(publishProvider: IPublishProvider) {
 
         this.publishProvider = publishProvider;
     }
 
     public publish(message: IMessage): void {
-        
+
         if (!this.publishProvider) {
             return;
         }
-        
+
         this.publishProvider.publishSync(
             this.typeDictionary[message.type],
             message.payload

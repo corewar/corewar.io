@@ -17,7 +17,6 @@ export interface ICoreAccessEventArgs {
 export interface ICore {
 
     initialise(options: IOptions): void;
-    setMessageProvider?(provider: any): void;
     getSize(): number;
     wrap(address: number): number;
     executeAt(task: ITask, address: number): IInstruction;

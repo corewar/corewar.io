@@ -8,6 +8,7 @@ import { IMessage, MessageType } from "./parser/interface/IMessage";
 import { ISimulator } from "./simulator/interface/ISimulator";
 import { ICore } from "./simulator/interface/ICore";
 import { IExecutive } from "./simulator/interface/IExecutive";
+import { IPublisher } from "./simulator/interface/IPublisher";
 import { OpcodeType, ModifierType } from "./simulator/interface/IInstruction";
 import Defaults from "./simulator/Defaults";
 
@@ -39,10 +40,14 @@ import { Fetcher } from "./simulator/Fetcher";
 import { Simulator } from "./simulator/Simulator";
 import { EndCondition } from "./simulator/EndCondition";
 import { OptionValidator } from "./simulator/OptionValidator";
+import { Publisher } from "./simulator/Publisher";
 import { IOptions } from "./simulator/interface/IOptions";
 import { ILoader } from "./simulator/interface/ILoader";
 import { IState } from "./simulator/interface/IState";
 import { IInstruction } from "./simulator/interface/IInstruction";
+import { IPublishProvider } from "./simulator/interface/IPublishProvider";
+
+import * as clone from "clone";
 
 class Api {
 
@@ -51,6 +56,7 @@ class Api {
     simulator: ISimulator;
     core: ICore;
     executive: IExecutive;
+    publisher: IPublisher;
 
     constructor() {
         // any setup needed for the NPM package to work properly
@@ -75,7 +81,9 @@ class Api {
             new SyntaxCheck(),
             new IllegalCommandCheck());
 
-        this.core = new Core();
+        this.publisher = new Publisher();
+
+        this.core = new Core(this.publisher);
 
         var loader = new Loader(
             new Random(),
@@ -83,7 +91,7 @@ class Api {
             new WarriorLoader(this.core));
 
         var fetcher = new Fetcher();
-        this.executive = new Executive();
+        this.executive = new Executive(this.publisher);
         var decoder = new Decoder(this.executive);
 
         this.simulator = new Simulator(
@@ -92,11 +100,12 @@ class Api {
             fetcher,
             decoder,
             this.executive,
-            new EndCondition(),
-            new OptionValidator());
+            new EndCondition(this.publisher),
+            new OptionValidator(),
+            this.publisher);
     }
 
-    public initialiseSimulator(opts: IOptions, parseResults: IParseResult[], messageProvider: any) {
+    public initialiseSimulator(opts: IOptions, parseResults: IParseResult[], messageProvider: IPublishProvider) {
 
         var options = Object.assign(Defaults, {
             coresize: opts.coresize,
@@ -105,12 +114,7 @@ class Api {
             standard: opts.standard
         });
 
-        // is this needed anymore? it looks like the simulator init calls core init
-        //this.core.initialise(options);
-
-        this.core.setMessageProvider(messageProvider);
-
-        this.simulator.setMessageProvider(messageProvider);
+        this.publisher.setPublishProvider(messageProvider);
 
         this.executive.initialise(options);
 
@@ -118,7 +122,7 @@ class Api {
     }
 
     public getAt(address: number): IInstruction {
-        return this.core.getAt(address);
+        return clone(this.core.getAt(address));
     }
 
     public step() : void {
