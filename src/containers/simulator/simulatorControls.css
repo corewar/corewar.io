@@ -3,7 +3,7 @@
   grid-column-start: 2;
 
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 40% 60%;
   grid-template-rows: 1fr;
 }
 
@@ -13,7 +13,7 @@
   grid-column-end: 3;
 
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: auto;
 
 
@@ -23,19 +23,74 @@
   border-top-left-radius: 10px;
 }
 
-.simulatorControl:first-child {
-  grid-column-start: 2;
-}
-
 .simulatorControl {
   font-size: 0.8em;
   text-align: center;
   padding-top: 12px;
+  position: relative;
+}
+
+.simulatorControl .tooltip {
+
+  visibility: hidden;
+  background-color: #56CCF2;
+  color: #000000;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 10px;
+
+  position: absolute;
+  z-index: 1;
+
+  width: 100px;
+  bottom: 120%;
+  left: 50%;
+  margin-left: -50px; /* Use half of the width (120/2 = 60), to center the tooltip */
+
 }
 
 .simulatorControl:hover {
   cursor: pointer;
   color: #56CCF2;
+}
+
+.simulatorControl:hover .tooltip {
+  visibility: visible;
+}
+
+.speedOptions {
+  color: #fff;
+  font-size: 1.2em;
+  padding-top: 3px;
+  position: relative;
+}
+
+.speedOptions ul {
+  display: none;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: 36px;
+  z-index: 1;
+}
+
+.simulatorControl:hover ul {
+  display: block;
+  list-style: none;
+  border-top: 2px solid #56CCF2;
+}
+
+.simulatorControl ul li {
+  width: 100px;
+  background-color: #56CCF2;
+  color: #100E14;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.simulatorControl ul li:hover {
+  color: #fff;
+  background-color: #100E14;
 }
 
 .active {
