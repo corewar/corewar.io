@@ -40,7 +40,10 @@ const SimulatorControls = ({
       <div className="simulatorControl">
         <FontAwesome name="flag-checkered" size="2x"/>
       </div>
-      <ResetControl parseResults={parseResults} isInitialised={isInitialised} handleReset={init} />
+      <ResetControl
+        parseResults={parseResults}
+        isInitialised={isInitialised}
+        handleReset={init} />
     </div>
   </section>
 )

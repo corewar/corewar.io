@@ -1,8 +1,8 @@
 import React from 'react'
 import FontAwesome from 'react-fontawesome'
 
-const StepControl = ({ isInitalised, handleClick }) => (
-  <div className="simulatorControl"  onClick={isInitalised ? handleClick : null}>
+const StepControl = ({ isInitialised, handleClick }) => (
+  <div className="simulatorControl"  onClick={isInitialised ? handleClick : null}>
     <span className="tooltip">step</span>
     <FontAwesome name="step-forward" size="2x"/>
   </div>
