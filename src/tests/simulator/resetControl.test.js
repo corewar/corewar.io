@@ -4,11 +4,11 @@ import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import StepControl from './../../containers/simulator/stepControl'
+import ResetControl from './../../containers/simulator/resetControl'
 import FontAwesome from 'react-fontawesome'
 
 it('renders without crashing', () => {
-  shallow(<StepControl />)
+  shallow(<ResetControl />)
 });
 
 it('calls the clickHandler when the button is clicked', () => {
@@ -20,7 +20,7 @@ it('calls the clickHandler when the button is clicked', () => {
     handleClick: clickHandler
   }
 
-  const wrapper = shallow(<StepControl {...props}/>)
+  const wrapper = shallow(<ResetControl {...props}/>)
   wrapper.find(FontAwesome).simulate('click')
 
   expect(clickHandler.calledOnce)
@@ -35,24 +35,8 @@ it('doesnt call the clickHandler when not initialised', () => {
     clickHandler: clickHandler
   }
 
-  const wrapper = shallow(<StepControl {...props}/>)
+  const wrapper = shallow(<ResetControl {...props}/>)
   wrapper.find(FontAwesome).simulate('click')
 
   expect(clickHandler.called).to.equal(false)
 });
-
-it('doesnt call the clickHandler when running', () => {
-
-    const clickHandler = sinon.spy()
-
-    const props = {
-      isInitialised: true,
-      isRunning: false,
-      clickHandler: clickHandler
-    }
-
-    const wrapper = shallow(<StepControl {...props}/>)
-    wrapper.find(FontAwesome).simulate('click')
-
-    expect(clickHandler.called).to.equal(false)
-  });
