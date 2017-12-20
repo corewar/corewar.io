@@ -17,8 +17,6 @@ class CanvasCore extends Component {
 
     super(props);
 
-    this.isRunning = props.isRunning;
-    this.isInitialised = props.isInitialised;
     this.coreSize = props.coreSize;
     this.getCoreInstructions = props.getCoreInstructions;
 
@@ -46,7 +44,7 @@ class CanvasCore extends Component {
 
   resize() {
 
-    if(this.isRunning) {
+    if(this.props.isRunning) {
       return;
     }
 
@@ -318,7 +316,7 @@ class CanvasCore extends Component {
 
   canvasClick(e) {
 
-    if(!this.isInitialised) {
+    if(!this.props.isInitialised) {
       return;
     }
 

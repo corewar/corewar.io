@@ -9,6 +9,8 @@ const CoreContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised
     <CanvasCore
       coreSize={coreSize}
       getCoreInstructions={getCoreInstructions}
+      isRunning={isRunning}
+      isInitialised={isInitialised}
       />
   </section>
 )
