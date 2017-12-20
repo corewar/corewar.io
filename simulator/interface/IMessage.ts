@@ -1,6 +1,6 @@
 export enum MessageType {
 
-    CoreAccess,
+    CoreAccess = 0,
     RunProgress,
     RoundEnd,
     TaskCount,
