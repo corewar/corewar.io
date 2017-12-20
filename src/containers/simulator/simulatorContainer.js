@@ -15,14 +15,16 @@ import {
   step,
   run,
   pause,
-  getCoreInstructions
+  getCoreInstructions,
+  incrementProcessRate,
+  decrementProcessRate
 } from '../../modules/simulator'
 
 import {
   removeWarrior
 } from '../../modules/parser'
 
-const SimulatorContainer = ({ isRunning, isInitialised, coreSize, instructions, parseResults, roundResult, init, step, run, pause, getCoreInstructions, removeWarrior }) => (
+const SimulatorContainer = ({ isRunning, isInitialised, coreSize, instructions, parseResults, roundResult, init, step, run, pause, getCoreInstructions, removeWarrior, incrementProcessRate, decrementProcessRate }) => (
 
   <div id="simulatorContainer">
     <CoreInput parseResults={parseResults} removeWarrior={removeWarrior} />
@@ -33,7 +35,9 @@ const SimulatorContainer = ({ isRunning, isInitialised, coreSize, instructions, 
       init={init}
       step={step}
       run={run}
-      pause={pause} />
+      pause={pause}
+      incrementProcessRate={incrementProcessRate}
+      decrementProcessRate={decrementProcessRate} />
     <SimulatorStatus
       isRunning={isRunning}
       isInitialised={isInitialised}
@@ -59,7 +63,9 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   run,
   pause,
   getCoreInstructions,
-  removeWarrior
+  removeWarrior,
+  incrementProcessRate,
+  decrementProcessRate
 }, dispatch)
 
 export default connect(

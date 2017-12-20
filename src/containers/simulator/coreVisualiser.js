@@ -6,10 +6,6 @@ import CoreLocation from './coreLocation'
 
 import './coreVisualiser.css'
 
-import {
-  getAt
-} from '../../modules/simulator'
-
 const CoreVisuliser = ({ instructions }) => (
 
   <section id="coreVisualiser">
