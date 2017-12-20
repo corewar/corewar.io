@@ -21,6 +21,7 @@
   border-bottom: none;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+  color: #fff;
 }
 
 .simulatorControl {
@@ -91,12 +92,4 @@
 .simulatorControl ul li:hover {
   color: #fff;
   background-color: #100E14;
-}
-
-.active {
-  color: #fff;
-}
-
-.inactive {
-  color: #aaa;
 }

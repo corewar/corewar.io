@@ -3,9 +3,10 @@ import FontAwesome from 'react-fontawesome'
 
 import './controlButton.css'
 
-const ControlButton = ({ iconClass, handleClick }) => (
+const ControlButton = ({ iconClass, tooltipText, handleClick, enabled }) => (
   <div className='control'>
-    <div className='control-button' onClick={handleClick}>
+    <span className="tooltip">{tooltipText}</span>
+    <div className='control-button' onClick={enabled ? handleClick : null}>
       <FontAwesome name={iconClass} size='2x' />
     </div>
   </div>
