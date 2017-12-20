@@ -85,16 +85,10 @@ export class Simulator implements ISimulator {
         this.publishInitialise(this.state);
     }
 
-    public run(): Promise<IState> {
+    public run(): void {
 
-        return new Promise((resolve, reject) => {
-
-            while (this.step() === false) {
-            }
-
-            resolve(clone(this.state));
-        });
-
+        while (this.step() === false) {
+        }
     }
 
     public step(): boolean {
