@@ -31,8 +31,8 @@ describe("Executive", () => {
     beforeEach(() => {
 
         publisher = {
-
-            publish: sinon.stub()
+            publish: sinon.stub(),
+            setPublishProvider: sinon.stub()
         };
 
         options = Object.assign({}, Defaults);

@@ -56,7 +56,8 @@ describe("EndCondition", () => {
 
     beforeEach(() => {
         publisher = {
-            publish: sinon.stub()
+            publish: sinon.stub(),
+            setPublishProvider: sinon.stub()
         };
     });
 

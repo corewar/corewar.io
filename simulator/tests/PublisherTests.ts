@@ -11,7 +11,7 @@ describe("Publisher", () => {
 
     it("can be called when the publish provider has not been specified", () => {
 
-        const publisher = new Publisher(null);
+        const publisher = new Publisher();
 
         publisher.publish({
             type: MessageType.CoreAccess,
@@ -25,7 +25,8 @@ describe("Publisher", () => {
             publishSync: sinon.stub() 
          };
 
-        const publisher = new Publisher(provider);
+        const publisher = new Publisher();
+        publisher.setPublishProvider(provider);
 
         publisher.publish({ type: MessageType.CoreAccess, payload: {} });
         expect(provider.publishSync.lastCall.args[0]).to.be.equal("CORE_ACCESS");

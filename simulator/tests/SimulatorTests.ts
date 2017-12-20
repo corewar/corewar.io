@@ -87,7 +87,8 @@ describe("Simulator", () => {
         };
 
         publisher = {
-            publish: sinon.stub()
+            publish: sinon.stub(),
+            setPublishProvider: sinon.stub()
         };
 
         simulator = new Simulator(
