@@ -274,10 +274,17 @@ export const setProcessRate = (rate) => {
   return (dispatch, getState) => {
 
     console.log('setProcessRate', rate)
+
     dispatch({
       type: SET_PROCESS_RATE,
       processRate: rate
     })
+
+    const { isInitialised } = getState().simulator
+
+    if(!isInitialised) {
+      return
+    }
 
     window.clearInterval(runner)
 
