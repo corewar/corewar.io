@@ -18,6 +18,7 @@ class CanvasCore extends Component {
     super(props);
 
     this.isRunning = props.isRunning;
+    this.isInitialised = props.isInitialised;
     this.coreSize = props.coreSize;
     this.getCoreInstructions = props.getCoreInstructions;
 
@@ -317,6 +318,10 @@ class CanvasCore extends Component {
 
   canvasClick(e) {
 
+    if(!this.isInitialised) {
+      return;
+    }
+
     const point = this.getRelativeCoordinates(e);
     const address = this.screenCoordinateToAddress(point);
 
@@ -325,7 +330,7 @@ class CanvasCore extends Component {
 
   render() {
 
-    return <canvas style={{position:'absolute', left:0, top:0}}
+    return <canvas
       ref={(canvasEl) => {
         if(canvasEl == null) {
           return;
