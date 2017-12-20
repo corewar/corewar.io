@@ -12,7 +12,11 @@ import {
 
 const ParseControls = ({ save, currentParseResult }) => (
   <div id="parseControls">
-    <ControlButton iconClass={`plus`} tooltipText={`add to core`} handleClick={save} enabled={currentParseResult.warrior} />
+    <ControlButton
+      iconClass={`plus`}
+      tooltipText={`add to core`}
+      handleClick={save}
+      enabled={currentParseResult.warrior && currentParseResult.messages.length === 0} />
   </div>
 )
 
