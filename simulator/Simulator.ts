@@ -87,7 +87,15 @@ export class Simulator implements ISimulator {
 
     public run(): void {
 
-        while (this.stepInternal() === false) {
+        try {
+            this.publisher.setAllMessagesEnabled(false);
+            this.publisher.setMessageTypeEnabled(MessageType.RoundEnd, true);
+
+            while (this.stepInternal() === false) {
+            }
+        }
+        finally {
+            this.publisher.setAllMessagesEnabled(true);
         }
     }
 

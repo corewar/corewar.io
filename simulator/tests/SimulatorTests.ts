@@ -375,4 +375,31 @@ describe("Simulator", () => {
 
         expect(fetcher.fetch).to.have.callCount(4);
     });
+
+    it("Should disable core access, progress and task count events when running", () => {
+
+        (<sinon.stub>endCondition.check).returns(true);
+
+        simulator.run();
+
+        expect(publisher.setAllMessagesEnabled).to.be.calledWith(false);
+        expect(publisher.setMessageTypeEnabled).to.be.calledWith(MessageType.RoundEnd, true);
+        expect(publisher.setAllMessagesEnabled).to.be.calledWith(true);
+
+        expect(publisher.setMessageTypeEnabled).to.be.calledBefore(fetcher.fetch);
+        expect(publisher.setAllMessagesEnabled).to.be.calledAfter(fetcher.fetch);
+    });
+
+    it("Should enable all messages even if error occurs", () => {
+
+        (<sinon.stub>fetcher.fetch).callsFake(() => { throw "Test Error" });
+
+        try {
+            simulator.run();
+        } catch (e) {
+            expect(e).to.be.equal("Test Error");
+        }
+
+        expect(publisher.setAllMessagesEnabled).to.have.been.calledWith(true);
+    });
 });
