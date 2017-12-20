@@ -27,4 +27,4 @@ export default connect(
   mapDispatchToProps
 )(CoreVisuliser)
 
-export { CoreVisuliser as PureCoreVisuliser }
+export { CoreVisuliser as PureCoreVisualiser }
