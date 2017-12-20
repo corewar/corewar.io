@@ -95,8 +95,6 @@ const serialiseOpcode = (instruction) => {
       case OpcodeType.SUB:
           return "SUB";
   }
-
-  throw "Unknown Opcode provided to InstructionSerialiser";
 }
 
 const serialiseModifier = (instruction) => {
@@ -117,8 +115,6 @@ const serialiseModifier = (instruction) => {
     case ModifierType.X:
       return "X"
   }
-
-  throw "Unknown Modifier provided to InstructionSerialiser"
 }
 
 const serialiseOperand = (operand) => (
