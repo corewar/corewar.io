@@ -29,8 +29,14 @@ const SimulatorControls = ({
         processRates={processRates}
         handleHover={speedControlHover}
         isHovering={isSpeedControlHovering} />
-      <PlayPauseControl isRunning={isRunning} handlePlay={run} handlePause={pause} />
-      <StepControl handleClick={step}/>
+      <PlayPauseControl
+        isInitialised={isInitialised}
+        isRunning={isRunning}
+        handlePlay={run}
+        handlePause={pause} />
+      <StepControl
+        isInitialised={isInitialised}
+        handleClick={step} />
       <div className="simulatorControl">
         <FontAwesome name="flag-checkered" size="2x"/>
       </div>

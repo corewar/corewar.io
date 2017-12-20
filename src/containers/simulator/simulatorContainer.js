@@ -41,10 +41,12 @@ const SimulatorContainer = ({
   processRates }) => (
 
   <div id="simulatorContainer">
-    <CoreInput parseResults={parseResults} removeWarrior={removeWarrior} />
+    <CoreInput
+      parseResults={parseResults}
+      removeWarrior={removeWarrior} />
     <SimulatorControls
-      isRunning={isRunning}
       isInitialised={isInitialised}
+      isRunning={isRunning}
       parseResults={parseResults}
       init={init}
       step={step}

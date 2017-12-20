@@ -116,6 +116,9 @@ export default (state = initialState, action) => {
 }
 
 // actions
+let runner = null;
+let operations = 0
+
 export const init = () => {
 
   console.log('init')
@@ -143,9 +146,6 @@ export const init = () => {
     });
   }
 }
-
-let runner = null;
-let operations = 0
 
 export const pause = () => {
 
@@ -301,8 +301,6 @@ export const setProcessRate = (rate) => {
         window.clearInterval(runner)
         operations = 0
       }
-
-
     }, 1000/60)
   }
 }
