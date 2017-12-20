@@ -88,7 +88,9 @@ describe("Simulator", () => {
 
         publisher = {
             publish: sinon.stub(),
-            setPublishProvider: sinon.stub()
+            setPublishProvider: sinon.stub(),
+            setAllMessagesEnabled: sinon.stub(),
+            setMessageTypeEnabled: sinon.stub()
         };
 
         simulator = new Simulator(

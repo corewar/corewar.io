@@ -32,7 +32,9 @@ describe("Executive", () => {
 
         publisher = {
             publish: sinon.stub(),
-            setPublishProvider: sinon.stub()
+            setPublishProvider: sinon.stub(),
+            setAllMessagesEnabled: sinon.stub(),
+            setMessageTypeEnabled: sinon.stub()
         };
 
         options = Object.assign({}, Defaults);
