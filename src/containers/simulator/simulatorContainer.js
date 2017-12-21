@@ -44,7 +44,11 @@ const SimulatorContainer = ({ isRunning, isInitialised, coreSize, instructions, 
       parseResults={parseResults}
       roundResult={roundResult}/>
     <CoreVisualiser instructions={instructions} />
-    <CoreContainer getCoreInstructions={getCoreInstructions} coreSize={coreSize} />
+    <CoreContainer
+      getCoreInstructions={getCoreInstructions}
+      coreSize={coreSize}
+      isRunning={isRunning}
+      isInitialised={isInitialised} />
   </div>
 )
 
