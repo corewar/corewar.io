@@ -85,16 +85,18 @@ export class Simulator implements ISimulator {
         this.publishInitialise(this.state);
     }
 
-    public run(): Promise<IState> {
+    public run(): void {
 
-        return new Promise((resolve, reject) => {
+        try {
+            this.publisher.setAllMessagesEnabled(false);
+            this.publisher.setMessageTypeEnabled(MessageType.RoundEnd, true);
 
-            while (this.step() === false) {
+            while (this.stepInternal() === false) {
             }
-
-            resolve(clone(this.state));
-        });
-
+        }
+        finally {
+            this.publisher.setAllMessagesEnabled(true);
+        }
     }
 
     public step(): boolean {
@@ -102,6 +104,11 @@ export class Simulator implements ISimulator {
         if (this.endCondition.check(this.state)) {
             return true;
         }
+
+        return this.stepInternal();
+    }
+
+    private stepInternal(): boolean {
 
         if (this.state.cycle === 0) {
             this.publisher.publish({

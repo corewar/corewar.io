@@ -5,7 +5,8 @@ export enum MessageType {
     RoundEnd,
     TaskCount,
     CoreInitialise,
-    RoundStart
+    RoundStart,
+    Count
 }
 
 export interface IMessage {

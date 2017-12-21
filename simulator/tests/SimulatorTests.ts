@@ -88,7 +88,9 @@ describe("Simulator", () => {
 
         publisher = {
             publish: sinon.stub(),
-            setPublishProvider: sinon.stub()
+            setPublishProvider: sinon.stub(),
+            setAllMessagesEnabled: sinon.stub(),
+            setMessageTypeEnabled: sinon.stub()
         };
 
         simulator = new Simulator(
@@ -355,5 +357,49 @@ describe("Simulator", () => {
                 state: simulator.getState()
             }
         });
+    });
+
+    it("Should repeatedly call step until end condition met when run called", () => {
+
+        const options = clone(Defaults);
+
+        simulator.initialise(options, []);
+
+        const stub = <sinon.stub>endCondition.check;
+        stub.onCall(0).returns(false);
+        stub.onCall(1).returns(false);
+        stub.onCall(2).returns(false);
+        stub.onCall(3).returns(true);
+
+        simulator.run();
+
+        expect(fetcher.fetch).to.have.callCount(4);
+    });
+
+    it("Should disable core access, progress and task count events when running", () => {
+
+        (<sinon.stub>endCondition.check).returns(true);
+
+        simulator.run();
+
+        expect(publisher.setAllMessagesEnabled).to.be.calledWith(false);
+        expect(publisher.setMessageTypeEnabled).to.be.calledWith(MessageType.RoundEnd, true);
+        expect(publisher.setAllMessagesEnabled).to.be.calledWith(true);
+
+        expect(publisher.setMessageTypeEnabled).to.be.calledBefore(fetcher.fetch);
+        expect(publisher.setAllMessagesEnabled).to.be.calledAfter(fetcher.fetch);
+    });
+
+    it("Should enable all messages even if error occurs", () => {
+
+        (<sinon.stub>fetcher.fetch).callsFake(() => { throw "Test Error" });
+
+        try {
+            simulator.run();
+        } catch (e) {
+            expect(e).to.be.equal("Test Error");
+        }
+
+        expect(publisher.setAllMessagesEnabled).to.have.been.calledWith(true);
     });
 });

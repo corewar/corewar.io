@@ -6,6 +6,8 @@ export class Publisher implements IPublisher {
 
     private publishProvider: IPublishProvider;
 
+    private typeEnabled: boolean[];
+
     private typeDictionary = [
         "CORE_ACCESS",
         "RUN_PROGRESS",
@@ -14,6 +16,11 @@ export class Publisher implements IPublisher {
         "CORE_INITIALISE",
         "ROUND_START"
     ];
+
+    constructor() {
+
+        this.setAllMessagesEnabled(true);
+    }
 
     public setPublishProvider(publishProvider: IPublishProvider) {
 
@@ -26,9 +33,26 @@ export class Publisher implements IPublisher {
             return;
         }
 
+        if (!this.typeEnabled[message.type]) {
+            return;
+        }
+
         this.publishProvider.publishSync(
             this.typeDictionary[message.type],
             message.payload
         )
+    }
+
+    public setAllMessagesEnabled(enabled: boolean): void {
+
+        this.typeEnabled = [];
+        for (var i = 0; i < MessageType.Count; i++) {
+            this.typeEnabled.push(enabled);
+        }
+    }
+
+    public setMessageTypeEnabled(type: MessageType, enabled: boolean): void {
+
+        this.typeEnabled[type] = enabled;
     }
 }
