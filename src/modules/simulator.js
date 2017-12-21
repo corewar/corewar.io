@@ -26,8 +26,16 @@ const initialState = {
   minSeparation: 1,
   instructionLimit: 1,
   instructions: [],
-  processRateStep: 25,
-  processRate: 100
+  processRate: 1,
+  processRates: [
+    1,
+    2,
+    5,
+    12,
+    30,
+    75,
+    200
+  ]
 }
 
 // reducer
@@ -108,6 +116,9 @@ export default (state = initialState, action) => {
 }
 
 // actions
+let runner = null;
+let operations = 0
+
 export const init = () => {
 
   console.log('init')
@@ -135,9 +146,6 @@ export const init = () => {
     });
   }
 }
-
-let runner = null;
-let operations = 0
 
 export const pause = () => {
 
@@ -261,64 +269,38 @@ export const setInstructionLimit = (val) => {
   }
 }
 
-export const incrementProcessRate = () => {
+export const setProcessRate = (rate) => {
+
   return (dispatch, getState) => {
-    const { processRate, processRateStep } = getState().simulator
-    const newProcessRate = processRate + processRateStep
-    console.log('+= processRate', newProcessRate)
+
+    console.log('setProcessRate', rate)
+
     dispatch({
       type: SET_PROCESS_RATE,
-      processRate: newProcessRate
+      processRate: rate
     })
+
+    const { isInitialised } = getState().simulator
+
+    if(!isInitialised) {
+      return
+    }
 
     window.clearInterval(runner)
 
     runner = window.setInterval(() => {
 
-      for(let i = 0; i < newProcessRate; i++) {
+      for(let i = 0; i < rate; i++) {
         corewar.simulator.step()
       }
 
-      operations += newProcessRate;
+      operations += rate;
 
       // TODO: This should be controlled by the simulator
       if(operations === 80000) {
         window.clearInterval(runner)
         operations = 0
       }
-
-
-    }, 1000/60)
-  }
-}
-
-export const decrementProcessRate = () => {
-  return (dispatch, getState) => {
-    const { processRate, processRateStep } = getState().simulator
-    const newProcessRate = processRate - processRateStep
-    console.log('-= processRate', newProcessRate)
-    dispatch({
-      type: SET_PROCESS_RATE,
-      processRate: newProcessRate
-    })
-
-    window.clearInterval(runner)
-
-    runner = window.setInterval(() => {
-
-      for(let i = 0; i < newProcessRate; i++) {
-        corewar.simulator.step()
-      }
-
-      operations += newProcessRate;
-
-      // TODO: This should be controlled by the simulator
-      if(operations === 80000) {
-        window.clearInterval(runner)
-        operations = 0
-      }
-
-
     }, 1000/60)
   }
 }

@@ -11,8 +11,8 @@
   font-family: 'roboto condensed';
   color: #EB5757;
   display: inline-block;
-  margin-top: 18%;
-
+  margin-top: 1.5em;
+  font-size: 0.8em;
 }
 
 .coreLocation.current {

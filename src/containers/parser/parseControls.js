@@ -10,13 +10,18 @@ import {
   save
 } from '../../modules/parser'
 
-const ParseControls = ({ save }) => (
+const ParseControls = ({ save, currentParseResult }) => (
   <div id="parseControls">
-    <ControlButton iconClass={`plus`} handleClick={save} />
+    <ControlButton
+      iconClass={`plus`}
+      tooltipText={`add to core`}
+      handleClick={save}
+      enabled={currentParseResult.warrior && currentParseResult.messages.length === 0} />
   </div>
 )
 
 const mapStateToProps = state => ({
+  currentParseResult: state.parser.currentParseResult
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

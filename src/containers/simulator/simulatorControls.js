@@ -4,23 +4,46 @@ import FontAwesome from 'react-fontawesome'
 import PlayPauseControl from './playPauseControl'
 import ResetControl from './resetControl'
 import StepControl from './stepControl'
-import FastForwardControl from './fastForwardControl'
-import RewindControl from './rewindControl'
+import SpeedControl from './speedControl'
 
 import './simulatorControls.css'
 
-
-const SimulatorControls = ({ isRunning, isInitialised, parseResults, init, step, run, pause, incrementProcessRate, decrementProcessRate }) => (
+const SimulatorControls = ({
+  isRunning,
+  isInitialised,
+  parseResults,
+  init,
+  step,
+  run,
+  pause,
+  setProcessRate,
+  processRate,
+  processRates,
+  speedControlHover,
+  isSpeedControlHovering }) => (
   <section id="simulatorControlContainer">
     <div id="simulatorControls" className={isInitialised ? `active` : `inactive`}>
-      <RewindControl handleClick={decrementProcessRate}/>
-      <PlayPauseControl isRunning={isRunning} handlePlay={run} handlePause={pause} />
-      <FastForwardControl handleClick={incrementProcessRate}/>
-      <StepControl handleClick={step}/>
+      <SpeedControl
+        handleClick={setProcessRate}
+        processRate={processRate}
+        processRates={processRates}
+        handleHover={speedControlHover}
+        isHovering={isSpeedControlHovering} />
+      <PlayPauseControl
+        isInitialised={isInitialised}
+        isRunning={isRunning}
+        handlePlay={run}
+        handlePause={pause} />
+      <StepControl
+        isInitialised={isInitialised}
+        handleClick={step} />
       <div className="simulatorControl">
         <FontAwesome name="flag-checkered" size="2x"/>
       </div>
-      <ResetControl parseResults={parseResults} isInitialised={isInitialised} handleReset={init} />
+      <ResetControl
+        parseResults={parseResults}
+        isInitialised={isInitialised}
+        handleReset={init} />
     </div>
   </section>
 )

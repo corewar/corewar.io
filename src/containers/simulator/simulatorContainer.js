@@ -16,28 +16,45 @@ import {
   run,
   pause,
   getCoreInstructions,
-  incrementProcessRate,
-  decrementProcessRate
+  setProcessRate
 } from '../../modules/simulator'
 
 import {
   removeWarrior
 } from '../../modules/parser'
 
-const SimulatorContainer = ({ isRunning, isInitialised, coreSize, instructions, parseResults, roundResult, init, step, run, pause, getCoreInstructions, removeWarrior, incrementProcessRate, decrementProcessRate }) => (
+const SimulatorContainer = ({
+  isRunning,
+  isInitialised,
+  coreSize,
+  instructions,
+  parseResults,
+  roundResult,
+  init,
+  step,
+  run,
+  pause,
+  getCoreInstructions,
+  removeWarrior,
+  setProcessRate,
+  processRate,
+  processRates }) => (
 
   <div id="simulatorContainer">
-    <CoreInput parseResults={parseResults} removeWarrior={removeWarrior} />
+    <CoreInput
+      parseResults={parseResults}
+      removeWarrior={removeWarrior} />
     <SimulatorControls
-      isRunning={isRunning}
       isInitialised={isInitialised}
+      isRunning={isRunning}
       parseResults={parseResults}
       init={init}
       step={step}
       run={run}
       pause={pause}
-      incrementProcessRate={incrementProcessRate}
-      decrementProcessRate={decrementProcessRate} />
+      setProcessRate={setProcessRate}
+      processRate={processRate}
+      processRates={processRates} />
     <SimulatorStatus
       isRunning={isRunning}
       isInitialised={isInitialised}
@@ -58,7 +75,9 @@ const mapStateToProps = state => ({
   isInitialised: state.simulator.isInitialised,
   isRunning: state.simulator.isRunning,
   roundResult: state.simulator.roundResult,
-  parseResults: state.parser.parseResults
+  parseResults: state.parser.parseResults,
+  processRate: state.simulator.processRate,
+  processRates: state.simulator.processRates
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -68,8 +87,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   pause,
   getCoreInstructions,
   removeWarrior,
-  incrementProcessRate,
-  decrementProcessRate
+  setProcessRate
 }, dispatch)
 
 export default connect(
