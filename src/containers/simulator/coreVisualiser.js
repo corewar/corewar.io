@@ -6,11 +6,14 @@ import CoreLocation from './coreLocation'
 
 import './coreVisualiser.css'
 
-const CoreVisuliser = ({ instructions }) => (
+const CoreVisuliser = ({ coreInfo }) => (
 
   <section id="coreVisualiser">
-    {instructions && instructions.map(instruction => (
-      <CoreLocation key={instruction.address} instruction={instruction}/>
+    {coreInfo && coreInfo.map(info => (
+      <CoreLocation
+        key={info.instruction.address}
+        instruction={info.instruction}
+        warriorId={info.access.warriorId}/>
     ))}
   </section>
 )

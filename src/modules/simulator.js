@@ -82,7 +82,7 @@ export default (state = initialState, action) => {
     case GET_CORE_INSTRUCTIONS:
       return {
         ...state,
-        instructions: action.instructions
+        coreInfo: action.coreInfo
       }
 
     case SET_CORESIZE:
@@ -211,8 +211,6 @@ export const run = () => {
 
     const { processRate, isRunning, roundResult } = getState().simulator
 
-    debugger;
-
     if(roundResult.outcome) {
       const state = getState();
 
@@ -285,18 +283,19 @@ export const getCoreInstructions = (address) => {
 
   const lowerLimit = address - 5;
   const upperLimit = address + 5;
-  const instructions = [];
+  const coreInfo = [];
 
   for (let index = lowerLimit; index <= upperLimit; index++) {
-    const instruction = corewar.core.getAt(index)
-    instruction.isCurrent = index === address
-    instructions.push(instruction)
+    const info = corewar.core.getWithInfoAt(index)
+    info.instruction.isCurrent = index === address
+    console.log(info)
+    coreInfo.push(info)
   }
 
   return dispatch => {
     dispatch({
       type: GET_CORE_INSTRUCTIONS,
-      instructions
+      coreInfo
     })
   }
 
@@ -340,9 +339,9 @@ export const setProcessRate = (rate) => {
       processRate: rate
     })
 
-    const { isInitialised } = getState().simulator
+    const { isInitialised, isRunning } = getState().simulator
 
-    if(!isInitialised) {
+    if(!isInitialised || !isRunning) {
       return
     }
 
