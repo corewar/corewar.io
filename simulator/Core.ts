@@ -53,7 +53,7 @@ export class Core implements ICore {
 
         this.publisher.publish({
             type: MessageType.CoreAccess,
-            payload: accessEventArgs
+            payload: [ accessEventArgs ]
         });
     }
 
