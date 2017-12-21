@@ -53,7 +53,7 @@ export class Core implements ICore {
 
         this.publisher.publish({
             type: MessageType.CoreAccess,
-            payload: accessEventArgs
+            payload: [ accessEventArgs ]
         });
     }
 
@@ -118,5 +118,13 @@ export class Core implements ICore {
         instruction.address = index;
 
         return instruction;
+    }
+
+    public publishCoreAccesses(): void {
+
+        this.publisher.publish({
+            type: MessageType.CoreAccess,
+            payload: this.locations.map(location => location.access)
+        });
     }
 }
