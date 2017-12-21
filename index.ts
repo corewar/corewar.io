@@ -48,6 +48,7 @@ import { IInstruction } from "./simulator/interface/IInstruction";
 import { IPublishProvider } from "./simulator/interface/IPublishProvider";
 
 import * as clone from "clone";
+import { ICoreLocation } from "./simulator/interface/ICoreLocation";
 
 class Api {
 
@@ -121,8 +122,8 @@ class Api {
         this.simulator.initialise(options, parseResults);
     }
 
-    public getAt(address: number): IInstruction {
-        return clone(this.core.getAt(address));
+    public getAt(address: number): ICoreLocation {
+        return clone(this.core.getWithInfoAt(address));
     }
 
     public step() : void {

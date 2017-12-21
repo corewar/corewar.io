@@ -47,9 +47,11 @@ describe("Simulator", () => {
             executeAt: sinon.stub(),
             readAt: sinon.stub(),
             getAt: sinon.stub(),
+            getWithInfoAt: sinon.stub(),
             setAt: sinon.stub(),
             wrap: sinon.stub(),
-            initialise: sinon.stub()
+            initialise: sinon.stub(),
+            publishCoreAccesses: sinon.stub()
         };
 
         loader = {
@@ -401,5 +403,12 @@ describe("Simulator", () => {
         }
 
         expect(publisher.setAllMessagesEnabled).to.have.been.calledWith(true);
+    });
+
+    it("Should publish core access event for all core addresses after run", () => {
+
+        simulator.run();
+
+        expect(core.publishCoreAccesses).to.have.been.called;
     });
 });

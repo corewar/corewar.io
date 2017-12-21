@@ -1,5 +1,6 @@
 ﻿import { ICore, ICoreAccessEventArgs, CoreAccessType } from "./interface/ICore";
 import { IOptions } from "./interface/IOptions";
+import { ICoreLocation } from "./interface/ICoreLocation";
 import { IInstruction } from "./interface/IInstruction";
 import { ITask } from "./interface/ITask";
 import { MessageType } from "./interface/IMessage";
@@ -11,7 +12,7 @@ export class Core implements ICore {
     private publisher: IPublisher;
 
     private options: IOptions;
-    private instructions: IInstruction[] = null;
+    private locations: ICoreLocation[] = null;
 
     private cs: number;
 
@@ -42,13 +43,17 @@ export class Core implements ICore {
 
     private triggerEvent(task: ITask, address: number, accessType: CoreAccessType) {
 
+        const accessEventArgs = {
+            warriorId: task ? task.warrior.id : null,
+            accessType: accessType,
+            address: address
+        };
+
+        this.locations[address].access = accessEventArgs;
+
         this.publisher.publish({
             type: MessageType.CoreAccess,
-            payload: {
-                warriorId: task ? task.warrior.id : null,
-                accessType: accessType,
-                address: address
-            }
+            payload: [ accessEventArgs ]
         });
     }
 
@@ -58,7 +63,7 @@ export class Core implements ICore {
 
         this.triggerEvent(task, address, CoreAccessType.execute);
 
-        return this.instructions[address];
+        return this.locations[address].instruction;
     }
 
     public readAt(task: ITask, address: number): IInstruction {
@@ -67,14 +72,21 @@ export class Core implements ICore {
 
         this.triggerEvent(task, address, CoreAccessType.read);
 
-        return this.instructions[address];
+        return this.locations[address].instruction;
     }
 
     public getAt(address: number): IInstruction {
 
         address = this.wrap(address);
 
-        return this.instructions[address];
+        return this.locations[address].instruction;
+    }
+
+    public getWithInfoAt(address: number): ICoreLocation {
+
+        address = this.wrap(address);
+
+        return this.locations[address];
     }
 
     public setAt(task: ITask, address: number, instruction: IInstruction) {
@@ -83,14 +95,20 @@ export class Core implements ICore {
 
         this.triggerEvent(task, address, CoreAccessType.write);
 
-        this.instructions[address] = instruction;
+        this.locations[address].instruction = instruction;
     }
 
     private allocateMemory() {
 
-        this.instructions = [];
+        this.locations = [];
         for (var i = 0; i < this.cs; i++) {
-            this.instructions.push(this.buildDefaultInstruction(i));
+            this.locations.push({
+                instruction: this.buildDefaultInstruction(i),
+                access: {
+                    accessType: CoreAccessType.write,
+                    address: i
+                }
+            });
         }
     }
 
@@ -100,5 +118,13 @@ export class Core implements ICore {
         instruction.address = index;
 
         return instruction;
+    }
+
+    public publishCoreAccesses(): void {
+
+        this.publisher.publish({
+            type: MessageType.CoreAccess,
+            payload: this.locations.map(location => location.access)
+        });
     }
 }

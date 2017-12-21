@@ -45,13 +45,15 @@ describe("Decoder",() => {
             executeAt: sinon.stub(),
             readAt: sinon.stub(),
             getAt: sinon.stub(),
+            getWithInfoAt: sinon.stub(),
             setAt: sinon.stub(),
             wrap(address: number) {
                 return address;
             },
             initialise: (options: IOptions) => {
                 //
-            }
+            },
+            publishCoreAccesses: sinon.stub()
         };
     });
 
