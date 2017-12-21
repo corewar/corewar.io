@@ -164,17 +164,40 @@ export const pause = () => {
 export const finishRound = () => {
   console.log('finish round')
 
-  return dispatch => {
+  return (dispatch, getState) => {
+
+    const { roundResult } = getState().simulator
+
+    if(roundResult.outcome) {
+      const state = getState();
+
+      PubSub.publishSync('RESET_CORE');
+
+      const { coreSize, minSeparation, instructionLimit } = state.simulator;
+      const { parseResults, standardId } = state.parser;
+
+      const options = {
+        standard: standardId,
+        coresize: coreSize,
+        minSeparation: minSeparation,
+        instructionLimit: instructionLimit,
+      };
+
+      corewar.initialiseSimulator(options, parseResults, PubSub);
+
+      dispatch({
+        type: INIT
+      });
+    }
 
     PubSub.subscribe('ROUND_END', (msg, data) => {
-      window.clearInterval(runner);
       dispatch({
         type: RUN_ENDED,
         data
       })
     });
-
-    corewar.simulator.run();
+    console.log('run')
+    corewar.simulator.run()
   }
 }
 
