@@ -58,6 +58,7 @@ describe("WarriorLoader", () => {
             getAt: (index: number): IInstruction => {
                 return core.instructions[index];
             },
+            getWithInfoAt: sinon.stub(),
             setAt: sinon.stub().callsFake((task: ITask, index: number, instruction: IInstruction) => {
                 core.instructions[index] = instruction;
             })
