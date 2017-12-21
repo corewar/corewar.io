@@ -9,7 +9,7 @@ export enum CoreAccessType {
 }
 
 export interface ICoreAccessEventArgs {
-    warriorId: number;
+    warriorId?: number;
     address: number;
     accessType: CoreAccessType;
 }

@@ -1,5 +1,6 @@
 ﻿import { ICore, ICoreAccessEventArgs, CoreAccessType } from "./interface/ICore";
 import { IOptions } from "./interface/IOptions";
+import { ICoreLocation } from "./interface/ICoreLocation";
 import { IInstruction } from "./interface/IInstruction";
 import { ITask } from "./interface/ITask";
 import { MessageType } from "./interface/IMessage";
@@ -11,7 +12,7 @@ export class Core implements ICore {
     private publisher: IPublisher;
 
     private options: IOptions;
-    private instructions: IInstruction[] = null;
+    private locations: ICoreLocation[] = null;
 
     private cs: number;
 
@@ -58,7 +59,7 @@ export class Core implements ICore {
 
         this.triggerEvent(task, address, CoreAccessType.execute);
 
-        return this.instructions[address];
+        return this.locations[address].instruction;
     }
 
     public readAt(task: ITask, address: number): IInstruction {
@@ -67,14 +68,14 @@ export class Core implements ICore {
 
         this.triggerEvent(task, address, CoreAccessType.read);
 
-        return this.instructions[address];
+        return this.locations[address].instruction;
     }
 
     public getAt(address: number): IInstruction {
 
         address = this.wrap(address);
 
-        return this.instructions[address];
+        return this.locations[address].instruction;
     }
 
     public setAt(task: ITask, address: number, instruction: IInstruction) {
@@ -83,14 +84,20 @@ export class Core implements ICore {
 
         this.triggerEvent(task, address, CoreAccessType.write);
 
-        this.instructions[address] = instruction;
+        this.locations[address].instruction = instruction;
     }
 
     private allocateMemory() {
 
-        this.instructions = [];
+        this.locations = [];
         for (var i = 0; i < this.cs; i++) {
-            this.instructions.push(this.buildDefaultInstruction(i));
+            this.locations.push({
+                instruction: this.buildDefaultInstruction(i),
+                access: {
+                    accessType: CoreAccessType.write,
+                    address: i
+                }
+            });
         }
     }
 
