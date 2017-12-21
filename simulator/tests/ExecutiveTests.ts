@@ -67,7 +67,8 @@ describe("Executive", () => {
             wrap: wrapSpy,
             initialise: (options: IOptions) => {
                 //
-            }
+            },
+            publishCoreAccesses: sinon.stub()
         };
 
         state = {

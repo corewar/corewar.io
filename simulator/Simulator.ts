@@ -85,11 +85,6 @@ export class Simulator implements ISimulator {
         this.publishInitialise(this.state);
     }
 
-    private publishCoreAccesses() {
-
-        
-    }
-
     public run(): void {
 
         try {
@@ -102,8 +97,6 @@ export class Simulator implements ISimulator {
         finally {
             this.publisher.setAllMessagesEnabled(true);
         }
-
-        this.publishCoreAccesses();
     }
 
     public step(): boolean {

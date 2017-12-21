@@ -119,4 +119,12 @@ export class Core implements ICore {
 
         return instruction;
     }
+
+    public publishCoreAccesses(): void {
+
+        this.publisher.publish({
+            type: MessageType.CoreAccess,
+            payload: this.locations.map(location => location.access)
+        });
+    }
 }
