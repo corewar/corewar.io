@@ -5,18 +5,7 @@ import { expect } from 'chai'
 import sinon from 'sinon'
 
 import CoreLocation from './../../containers/simulator/coreLocation'
-
-const ModeType = {
-  Immediate : 0,     // #
-  Direct: 1,         // $
-  AIndirect: 2,      // *
-  BIndirect: 3,      // @
-  APreDecrement: 4,  // {
-  BPreDecrement: 5,  // <
-  APostIncrement: 6, // }
-  BPostIncrement: 7, // >
-  Count: 8
-}
+import { ModeType } from './../../containers/simulator/coreEnums'
 
 it('renders without crashing', () => {
 
