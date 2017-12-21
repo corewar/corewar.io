@@ -5,6 +5,7 @@ import { expect } from 'chai'
 import sinon from 'sinon'
 
 import { PureCoreVisualiser } from './../../containers/simulator/coreVisualiser'
+import CoreLocation from './../../containers/simulator/coreLocation'
 import FontAwesome from 'react-fontawesome'
 
 it('renders without crashing', () => {
@@ -12,8 +13,6 @@ it('renders without crashing', () => {
 });
 
 it('renders one coreLocation per instruction', () => {
-
-  const clickHandler = sinon.spy()
 
   const props = {
     instructions: [
@@ -24,6 +23,6 @@ it('renders one coreLocation per instruction', () => {
 
   const wrapper = shallow(<PureCoreVisualiser {...props}/>)
 
-  expect(clickHandler.calledOnce)
+  expect(wrapper.find(CoreLocation).length).to.equal(props.instructions.length)
 });
 

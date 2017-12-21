@@ -12,8 +12,6 @@ it('renders without crashing', () => {
 
 it('adds the fade class when running', () => {
 
-  const clickHandler = sinon.spy()
-
   const props = {
     isRunning: true,
     roundResult: {}
@@ -25,8 +23,6 @@ it('adds the fade class when running', () => {
 });
 
 it('shows "running simulation" when running', () => {
-
-  const clickHandler = sinon.spy()
 
   const props = {
     isRunning: true,
@@ -41,8 +37,6 @@ it('shows "running simulation" when running', () => {
 
 it('shows the default text if not running', () => {
 
-  const clickHandler = sinon.spy()
-
   const props = {
     isRunning: false,
     roundResult: {}
@@ -54,8 +48,6 @@ it('shows the default text if not running', () => {
 });
 
 it('shows the outcome text is there is an outcome', () => {
-
-  const clickHandler = sinon.spy()
 
   const props = {
     isRunning: false,
@@ -70,8 +62,6 @@ it('shows the outcome text is there is an outcome', () => {
 });
 
 it('shows the winnerId if there is one', () => {
-
-  const clickHandler = sinon.spy()
 
   const props = {
     isRunning: false,

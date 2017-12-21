@@ -6,7 +6,7 @@ const SpeedControl = ({ processRate, processRates, handleClick }) => (
     <div className="speedOptions">
       <span>{`${processRate} x`}</span>
       <ul>
-        {processRates.map(rate => (
+        {processRates && processRates.map(rate => (
           <li key={rate} onClick={() => { handleClick(rate) }}>{rate} x</li>
         ))}
       </ul>
