@@ -259,4 +259,39 @@ describe("Core", () => {
 
         expect(actual).to.be.equal(23);
     });
+
+    it(".getWithInfoAt returns instruction at specified address", () => {
+
+        var core = new Core(publisher);
+        core.initialise(Object.assign({}, Defaults, { coresize: 5 }));
+
+        const expected = buildInstruction();
+
+        core.setAt(buildTask(), 0, expected);
+
+        const actual = core.getWithInfoAt(0);
+
+        expect(actual.instruction).to.be.deep.equal(expected);
+    });
+
+    it(".getWithInfoAt returns most recent core access event args", () => {
+
+        var core = new Core(publisher);
+        core.initialise(Object.assign({}, Defaults, { coresize: 5 }));
+
+        const task = buildTask(7);
+
+        const expected =  {
+
+            warriorId: task.warrior.id,
+            accessType: CoreAccessType.write,
+            address: 2
+        };
+
+        core.setAt(task, 2, buildInstruction());
+
+        const actual = core.getWithInfoAt(2);
+
+        expect(actual.access).to.be.deep.equal(expected);
+    });
 });

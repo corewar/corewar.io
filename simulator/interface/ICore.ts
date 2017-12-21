@@ -1,6 +1,7 @@
 ﻿import { ITask } from "./ITask";
 import { IOptions } from "./IOptions";
 import { IInstruction } from "./IInstruction";
+import { ICoreLocation } from "./ICoreLocation";
 
 export enum CoreAccessType {
     read,
@@ -22,5 +23,6 @@ export interface ICore {
     executeAt(task: ITask, address: number): IInstruction;
     readAt(task: ITask, address: number): IInstruction;
     getAt(address: number): IInstruction;
+    getWithInfoAt(address: number): ICoreLocation;
     setAt(task: ITask, address: number, instruction: IInstruction): void;
 }

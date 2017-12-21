@@ -43,13 +43,17 @@ export class Core implements ICore {
 
     private triggerEvent(task: ITask, address: number, accessType: CoreAccessType) {
 
+        const accessEventArgs = {
+            warriorId: task ? task.warrior.id : null,
+            accessType: accessType,
+            address: address
+        };
+
+        this.locations[address].access = accessEventArgs;
+
         this.publisher.publish({
             type: MessageType.CoreAccess,
-            payload: {
-                warriorId: task ? task.warrior.id : null,
-                accessType: accessType,
-                address: address
-            }
+            payload: accessEventArgs
         });
     }
 
@@ -76,6 +80,13 @@ export class Core implements ICore {
         address = this.wrap(address);
 
         return this.locations[address].instruction;
+    }
+
+    public getWithInfoAt(address: number): ICoreLocation {
+
+        address = this.wrap(address);
+
+        return this.locations[address];
     }
 
     public setAt(task: ITask, address: number, instruction: IInstruction) {

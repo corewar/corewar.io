@@ -47,6 +47,7 @@ describe("Simulator", () => {
             executeAt: sinon.stub(),
             readAt: sinon.stub(),
             getAt: sinon.stub(),
+            getWithInfoAt: sinon.stub(),
             setAt: sinon.stub(),
             wrap: sinon.stub(),
             initialise: sinon.stub()

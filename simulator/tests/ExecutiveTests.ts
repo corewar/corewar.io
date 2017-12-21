@@ -62,6 +62,7 @@ describe("Executive", () => {
             executeAt: executeAtSpy,
             readAt: readAtSpy,
             getAt: getAtSpy,
+            getWithInfoAt: sinon.stub(),
             setAt: setAtSpy,
             wrap: wrapSpy,
             initialise: (options: IOptions) => {
