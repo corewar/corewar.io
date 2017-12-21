@@ -35,6 +35,7 @@ const SimulatorControls = ({
         handlePlay={run}
         handlePause={pause} />
       <StepControl
+        isRunning={isRunning}
         isInitialised={isInitialised}
         handleClick={step} />
       <div className="simulatorControl">

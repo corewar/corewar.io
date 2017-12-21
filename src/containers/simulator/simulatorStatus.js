@@ -11,11 +11,14 @@ const SimulatorStatus = ({ isRunning, isInitialised, parseResults, roundResult }
 
 const getStatusMessage = (isRunning, isInitialised, parseResults, roundResult) => {
 
-  if(roundResult.outcome) {
-    let outcome = `simulation complete - ${roundResult.outcome}`;
+  if(roundResult && roundResult.outcome) {
+
+    let outcome = `simulation complete - ${roundResult.outcome}`
+
     if(roundResult.winnerId) {
       outcome += ` - winner id: ${roundResult.winnerId}`
     }
+
     return outcome;
   }
 
@@ -23,7 +26,7 @@ const getStatusMessage = (isRunning, isInitialised, parseResults, roundResult) =
     return 'running simulation'
   }
 
-  return 'CORE'
+  return 'core'
 
 }
 

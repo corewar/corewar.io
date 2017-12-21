@@ -37,6 +37,22 @@ it('calls the playHandler when the play button is clicked', () => {
   expect(playHandler.calledOnce)
 });
 
+it('doesnt call the playHandler when not initialised', () => {
+
+  const playHandler = sinon.spy()
+
+  const props = {
+    isInitialised: false,
+    isRunning: false,
+    handlePlay: playHandler
+  }
+
+  const wrapper = shallow(<PlayPauseControl {...props}/>)
+  wrapper.find(FontAwesome).simulate('click')
+
+  expect(playHandler.called).to.equal(false)
+});
+
 
 it('renders the pause button when running', () => {
 
@@ -62,4 +78,20 @@ it('calls the pauseHandler when the pause button is clicked', () => {
   wrapper.find(FontAwesome).simulate('click')
 
   expect(pauseHandler.calledOnce)
+});
+
+it('doesnt call the pauseHandler when not initialised', () => {
+
+  const pauseHandler = sinon.spy()
+
+  const props = {
+    isInitialised: false,
+    isRunning: false,
+    handlePause: pauseHandler
+  }
+
+  const wrapper = shallow(<PlayPauseControl {...props}/>)
+  wrapper.find(FontAwesome).simulate('click')
+
+  expect(pauseHandler.called).to.equal(false)
 });
