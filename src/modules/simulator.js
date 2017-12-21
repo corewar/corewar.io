@@ -161,6 +161,23 @@ export const pause = () => {
   }
 }
 
+export const finishRound = () => {
+  console.log('finish round')
+
+  return dispatch => {
+
+    PubSub.subscribe('ROUND_END', (msg, data) => {
+      window.clearInterval(runner);
+      dispatch({
+        type: RUN_ENDED,
+        data
+      })
+    });
+
+    corewar.simulator.run();
+  }
+}
+
 export const run = () => {
 
   console.log('run')

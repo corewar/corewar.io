@@ -16,7 +16,8 @@ import {
   run,
   pause,
   getCoreInstructions,
-  setProcessRate
+  setProcessRate,
+  finishRound
 } from '../../modules/simulator'
 
 import {
@@ -38,7 +39,8 @@ const SimulatorContainer = ({
   removeWarrior,
   setProcessRate,
   processRate,
-  processRates }) => (
+  processRates,
+  finishRound }) => (
 
   <div id="simulatorContainer">
     <CoreInput
@@ -52,6 +54,7 @@ const SimulatorContainer = ({
       step={step}
       run={run}
       pause={pause}
+      finishRound={finishRound}
       setProcessRate={setProcessRate}
       processRate={processRate}
       processRates={processRates} />
@@ -87,7 +90,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   pause,
   getCoreInstructions,
   removeWarrior,
-  setProcessRate
+  setProcessRate,
+  finishRound
 }, dispatch)
 
 export default connect(

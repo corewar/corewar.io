@@ -5,6 +5,7 @@ import PlayPauseControl from './playPauseControl'
 import ResetControl from './resetControl'
 import StepControl from './stepControl'
 import SpeedControl from './speedControl'
+import FinishRoundControl from './finishRoundControl'
 
 import './simulatorControls.css'
 
@@ -19,16 +20,14 @@ const SimulatorControls = ({
   setProcessRate,
   processRate,
   processRates,
-  speedControlHover,
-  isSpeedControlHovering }) => (
+  finishRound }) => (
   <section id="simulatorControlContainer">
     <div id="simulatorControls" className={isInitialised ? `active` : `inactive`}>
       <SpeedControl
         handleClick={setProcessRate}
         processRate={processRate}
         processRates={processRates}
-        handleHover={speedControlHover}
-        isHovering={isSpeedControlHovering} />
+        />
       <PlayPauseControl
         isInitialised={isInitialised}
         isRunning={isRunning}
@@ -38,9 +37,10 @@ const SimulatorControls = ({
         isRunning={isRunning}
         isInitialised={isInitialised}
         handleClick={step} />
-      <div className="simulatorControl">
-        <FontAwesome name="flag-checkered" size="2x"/>
-      </div>
+      <FinishRoundControl
+        isInitialised={isInitialised}
+        handleFinish={finishRound}
+      />
       <ResetControl
         parseResults={parseResults}
         isInitialised={isInitialised}
