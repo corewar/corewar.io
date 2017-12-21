@@ -97,6 +97,8 @@ export class Simulator implements ISimulator {
         finally {
             this.publisher.setAllMessagesEnabled(true);
         }
+
+        this.core.publishCoreAccesses();
     }
 
     public step(): boolean {
