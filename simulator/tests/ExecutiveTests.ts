@@ -14,6 +14,8 @@ import { ModeType } from "../interface/IOperand";
 import { Executive } from "../Executive";
 import { IExecutionContext } from "../interface/IExecutionContext";
 import { ITask } from "../interface/ITask";
+import { MessageType } from "../interface/IMessage";
+import { IPublisher } from "../interface/IPublisher";
 import DataHelper from "./DataHelper";
 
 describe("Executive", () => {
@@ -24,7 +26,14 @@ describe("Executive", () => {
 
     var coreData: IInstruction[];
 
+    let publisher: IPublisher;
+
     beforeEach(() => {
+
+        publisher = {
+            publish: sinon.stub(),
+            setPublishProvider: sinon.stub()
+        };
 
         options = Object.assign({}, Defaults);
         options.coresize = 5;
@@ -66,7 +75,7 @@ describe("Executive", () => {
         };
 
         chai.use((chai, util) => {
-            chai.Assertion.addMethod("thisInstruction", function(expected: IInstruction) {
+            chai.Assertion.addMethod("thisInstruction", function (expected: IInstruction) {
 
                 var actual = <IInstruction>this._obj;
 
@@ -190,18 +199,13 @@ describe("Executive", () => {
 
     it("removes the current task from the queue when the DAT instruction is executed", () => {
 
-        const pubsub = {
-            publishSync: sinon.stub()
-        };
-
         prepareCore(5, [
             DataHelper.buildInstruction(3, OpcodeType.DAT, ModifierType.A, ModeType.Direct, 0, ModeType.Direct, 0)
         ]);
 
         var context = buildContext(3, 0, 0);
 
-        var exec = new Executive();
-        exec.setMessageProvider(pubsub);
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[OpcodeType.DAT].apply(exec, [context]);
 
@@ -210,9 +214,12 @@ describe("Executive", () => {
         expect(state.warriors[0].tasks[0].instructionPointer).to.be.equal(0);
         expect(state.warriors[0].tasks[1].instructionPointer).to.be.equal(0);
 
-        expect(pubsub.publishSync).to.be.calledWith('TASK_COUNT', {
-            warriorId: 7,
-            taskCount: 2
+        expect(publisher.publish).to.be.calledWith({
+            type: MessageType.TaskCount,
+            payload: {
+                warriorId: 7,
+                taskCount: 2
+            }
         });
     });
 
@@ -230,7 +237,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOV, ModifierType.A)].apply(exec, [context]);
 
@@ -255,7 +262,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOV, ModifierType.B)].apply(exec, [context]);
 
@@ -280,7 +287,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOV, ModifierType.AB)].apply(exec, [context]);
 
@@ -305,7 +312,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOV, ModifierType.BA)].apply(exec, [context]);
 
@@ -330,7 +337,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOV, ModifierType.F)].apply(exec, [context]);
 
@@ -355,7 +362,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOV, ModifierType.X)].apply(exec, [context]);
 
@@ -379,7 +386,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.MOV, ModifierType.I)].apply(exec, [context]);
 
@@ -406,7 +413,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.ADD, ModifierType.A)].apply(exec, [context]);
 
@@ -433,7 +440,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.ADD, ModifierType.B)].apply(exec, [context]);
 
@@ -460,7 +467,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.ADD, ModifierType.AB)].apply(exec, [context]);
 
@@ -487,7 +494,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.ADD, ModifierType.BA)].apply(exec, [context]);
 
@@ -514,7 +521,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.ADD, ModifierType.F)].apply(exec, [context]);
 
@@ -542,7 +549,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.ADD, ModifierType.X)].apply(exec, [context]);
 
@@ -570,7 +577,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.ADD, ModifierType.I)].apply(exec, [context]);
 
@@ -600,7 +607,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SUB, ModifierType.A)].apply(exec, [context]);
 
@@ -627,7 +634,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SUB, ModifierType.B)].apply(exec, [context]);
 
@@ -654,7 +661,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SUB, ModifierType.AB)].apply(exec, [context]);
 
@@ -681,7 +688,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SUB, ModifierType.BA)].apply(exec, [context]);
 
@@ -708,7 +715,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SUB, ModifierType.F)].apply(exec, [context]);
 
@@ -736,7 +743,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SUB, ModifierType.X)].apply(exec, [context]);
 
@@ -764,7 +771,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SUB, ModifierType.I)].apply(exec, [context]);
 
@@ -794,7 +801,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MUL, ModifierType.A)].apply(exec, [context]);
 
@@ -821,7 +828,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MUL, ModifierType.B)].apply(exec, [context]);
 
@@ -848,7 +855,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MUL, ModifierType.AB)].apply(exec, [context]);
 
@@ -875,7 +882,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MUL, ModifierType.BA)].apply(exec, [context]);
 
@@ -902,7 +909,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MUL, ModifierType.F)].apply(exec, [context]);
 
@@ -930,7 +937,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MUL, ModifierType.X)].apply(exec, [context]);
 
@@ -958,7 +965,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MUL, ModifierType.I)].apply(exec, [context]);
 
@@ -988,7 +995,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DIV, ModifierType.A)].apply(exec, [context]);
 
@@ -1013,7 +1020,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DIV, ModifierType.B)].apply(exec, [context]);
 
@@ -1038,7 +1045,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DIV, ModifierType.AB)].apply(exec, [context]);
 
@@ -1063,7 +1070,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DIV, ModifierType.BA)].apply(exec, [context]);
 
@@ -1088,7 +1095,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DIV, ModifierType.F)].apply(exec, [context]);
 
@@ -1113,7 +1120,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DIV, ModifierType.X)].apply(exec, [context]);
 
@@ -1138,7 +1145,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DIV, ModifierType.I)].apply(exec, [context]);
 
@@ -1163,7 +1170,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DIV, ModifierType.A)].apply(exec, [context]);
 
@@ -1190,7 +1197,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DIV, ModifierType.B)].apply(exec, [context]);
 
@@ -1217,7 +1224,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DIV, ModifierType.AB)].apply(exec, [context]);
 
@@ -1244,7 +1251,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DIV, ModifierType.BA)].apply(exec, [context]);
 
@@ -1271,7 +1278,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DIV, ModifierType.F)].apply(exec, [context]);
 
@@ -1298,7 +1305,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DIV, ModifierType.F)].apply(exec, [context]);
 
@@ -1325,7 +1332,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DIV, ModifierType.X)].apply(exec, [context]);
 
@@ -1352,7 +1359,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DIV, ModifierType.X)].apply(exec, [context]);
 
@@ -1379,7 +1386,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DIV, ModifierType.I)].apply(exec, [context]);
 
@@ -1406,7 +1413,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DIV, ModifierType.I)].apply(exec, [context]);
 
@@ -1435,7 +1442,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOD, ModifierType.A)].apply(exec, [context]);
 
@@ -1460,7 +1467,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOD, ModifierType.B)].apply(exec, [context]);
 
@@ -1485,7 +1492,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOD, ModifierType.AB)].apply(exec, [context]);
 
@@ -1510,7 +1517,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOD, ModifierType.BA)].apply(exec, [context]);
 
@@ -1535,7 +1542,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOD, ModifierType.F)].apply(exec, [context]);
 
@@ -1560,7 +1567,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOD, ModifierType.X)].apply(exec, [context]);
 
@@ -1585,7 +1592,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOD, ModifierType.I)].apply(exec, [context]);
 
@@ -1610,7 +1617,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOD, ModifierType.A)].apply(exec, [context]);
 
@@ -1637,7 +1644,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOD, ModifierType.B)].apply(exec, [context]);
 
@@ -1664,7 +1671,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOD, ModifierType.AB)].apply(exec, [context]);
 
@@ -1691,7 +1698,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOD, ModifierType.BA)].apply(exec, [context]);
 
@@ -1718,7 +1725,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOD, ModifierType.F)].apply(exec, [context]);
 
@@ -1745,7 +1752,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOD, ModifierType.F)].apply(exec, [context]);
 
@@ -1772,7 +1779,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOD, ModifierType.X)].apply(exec, [context]);
 
@@ -1799,7 +1806,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOD, ModifierType.X)].apply(exec, [context]);
 
@@ -1826,7 +1833,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOD, ModifierType.I)].apply(exec, [context]);
 
@@ -1853,7 +1860,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.MOD, ModifierType.I)].apply(exec, [context]);
 
@@ -1878,7 +1885,7 @@ describe("Executive", () => {
 
         var context = buildContext(1, 4, 0);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMP, ModifierType.A)].apply(exec, [context]);
 
@@ -1900,7 +1907,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.A)].apply(exec, [context]);
 
@@ -1920,7 +1927,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.A)].apply(exec, [context]);
 
@@ -1940,7 +1947,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.BA)].apply(exec, [context]);
 
@@ -1960,7 +1967,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.BA)].apply(exec, [context]);
 
@@ -1980,7 +1987,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.B)].apply(exec, [context]);
 
@@ -2000,7 +2007,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.B)].apply(exec, [context]);
 
@@ -2020,7 +2027,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.AB)].apply(exec, [context]);
 
@@ -2040,7 +2047,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.AB)].apply(exec, [context]);
 
@@ -2061,7 +2068,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.JMZ, ModifierType.F)].apply(exec, [context]);
 
@@ -2081,7 +2088,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.F)].apply(exec, [context]);
 
@@ -2101,7 +2108,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.F)].apply(exec, [context]);
 
@@ -2122,7 +2129,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.JMZ, ModifierType.X)].apply(exec, [context]);
 
@@ -2142,7 +2149,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.X)].apply(exec, [context]);
 
@@ -2162,7 +2169,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.X)].apply(exec, [context]);
 
@@ -2183,7 +2190,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.JMZ, ModifierType.I)].apply(exec, [context]);
 
@@ -2203,7 +2210,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.I)].apply(exec, [context]);
 
@@ -2223,7 +2230,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMZ, ModifierType.I)].apply(exec, [context]);
 
@@ -2245,7 +2252,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.A)].apply(exec, [context]);
 
@@ -2265,7 +2272,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.A)].apply(exec, [context]);
 
@@ -2285,7 +2292,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.BA)].apply(exec, [context]);
 
@@ -2305,7 +2312,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.BA)].apply(exec, [context]);
 
@@ -2325,7 +2332,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.B)].apply(exec, [context]);
 
@@ -2345,7 +2352,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.B)].apply(exec, [context]);
 
@@ -2365,7 +2372,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.AB)].apply(exec, [context]);
 
@@ -2385,7 +2392,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.AB)].apply(exec, [context]);
 
@@ -2405,7 +2412,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.F)].apply(exec, [context]);
 
@@ -2425,7 +2432,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.F)].apply(exec, [context]);
 
@@ -2445,7 +2452,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.F)].apply(exec, [context]);
 
@@ -2465,7 +2472,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.X)].apply(exec, [context]);
 
@@ -2485,7 +2492,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.X)].apply(exec, [context]);
 
@@ -2505,7 +2512,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.X)].apply(exec, [context]);
 
@@ -2525,7 +2532,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.I)].apply(exec, [context]);
 
@@ -2545,7 +2552,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.I)].apply(exec, [context]);
 
@@ -2565,7 +2572,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.JMN, ModifierType.I)].apply(exec, [context]);
 
@@ -2588,7 +2595,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DJN, ModifierType.A)].apply(exec, [context]);
 
@@ -2610,7 +2617,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DJN, ModifierType.A)].apply(exec, [context]);
 
@@ -2631,7 +2638,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DJN, ModifierType.BA)].apply(exec, [context]);
 
@@ -2653,7 +2660,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DJN, ModifierType.BA)].apply(exec, [context]);
 
@@ -2674,7 +2681,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DJN, ModifierType.B)].apply(exec, [context]);
 
@@ -2696,7 +2703,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DJN, ModifierType.B)].apply(exec, [context]);
 
@@ -2717,7 +2724,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DJN, ModifierType.AB)].apply(exec, [context]);
 
@@ -2739,7 +2746,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DJN, ModifierType.AB)].apply(exec, [context]);
 
@@ -2760,7 +2767,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DJN, ModifierType.F)].apply(exec, [context]);
 
@@ -2781,7 +2788,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DJN, ModifierType.F)].apply(exec, [context]);
 
@@ -2804,7 +2811,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DJN, ModifierType.F)].apply(exec, [context]);
 
@@ -2827,7 +2834,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DJN, ModifierType.X)].apply(exec, [context]);
 
@@ -2848,7 +2855,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DJN, ModifierType.X)].apply(exec, [context]);
 
@@ -2871,7 +2878,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DJN, ModifierType.X)].apply(exec, [context]);
 
@@ -2894,7 +2901,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DJN, ModifierType.I)].apply(exec, [context]);
 
@@ -2915,7 +2922,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DJN, ModifierType.I)].apply(exec, [context]);
 
@@ -2938,7 +2945,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.DJN, ModifierType.I)].apply(exec, [context]);
 
@@ -2963,7 +2970,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.A)].apply(exec, [context]);
 
@@ -2984,7 +2991,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.A)].apply(exec, [context]);
 
@@ -3005,7 +3012,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.B)].apply(exec, [context]);
 
@@ -3026,7 +3033,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.B)].apply(exec, [context]);
 
@@ -3048,7 +3055,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.CMP, ModifierType.AB)].apply(exec, [context]);
 
@@ -3069,7 +3076,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.AB)].apply(exec, [context]);
 
@@ -3091,7 +3098,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.CMP, ModifierType.BA)].apply(exec, [context]);
 
@@ -3112,7 +3119,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.BA)].apply(exec, [context]);
 
@@ -3133,7 +3140,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.F)].apply(exec, [context]);
 
@@ -3154,7 +3161,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.F)].apply(exec, [context]);
 
@@ -3176,7 +3183,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.CMP, ModifierType.F)].apply(exec, [context]);
 
@@ -3198,7 +3205,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.CMP, ModifierType.X)].apply(exec, [context]);
 
@@ -3220,7 +3227,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.CMP, ModifierType.X)].apply(exec, [context]);
 
@@ -3242,7 +3249,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.CMP, ModifierType.X)].apply(exec, [context]);
 
@@ -3263,7 +3270,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.I)].apply(exec, [context]);
 
@@ -3284,7 +3291,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.I)].apply(exec, [context]);
 
@@ -3305,7 +3312,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.I)].apply(exec, [context]);
 
@@ -3326,7 +3333,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.I)].apply(exec, [context]);
 
@@ -3347,7 +3354,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.I)].apply(exec, [context]);
 
@@ -3368,7 +3375,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.CMP, ModifierType.I)].apply(exec, [context]);
 
@@ -3390,7 +3397,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.CMP, ModifierType.I)].apply(exec, [context]);
 
@@ -3413,7 +3420,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.A)].apply(exec, [context]);
 
@@ -3434,7 +3441,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.A)].apply(exec, [context]);
 
@@ -3455,7 +3462,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.B)].apply(exec, [context]);
 
@@ -3476,7 +3483,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.B)].apply(exec, [context]);
 
@@ -3498,7 +3505,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SEQ, ModifierType.AB)].apply(exec, [context]);
 
@@ -3519,7 +3526,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.AB)].apply(exec, [context]);
 
@@ -3541,7 +3548,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SEQ, ModifierType.BA)].apply(exec, [context]);
 
@@ -3562,7 +3569,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.BA)].apply(exec, [context]);
 
@@ -3583,7 +3590,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.F)].apply(exec, [context]);
 
@@ -3604,7 +3611,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.F)].apply(exec, [context]);
 
@@ -3626,7 +3633,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SEQ, ModifierType.F)].apply(exec, [context]);
 
@@ -3648,7 +3655,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SEQ, ModifierType.X)].apply(exec, [context]);
 
@@ -3670,7 +3677,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SEQ, ModifierType.X)].apply(exec, [context]);
 
@@ -3692,7 +3699,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SEQ, ModifierType.X)].apply(exec, [context]);
 
@@ -3713,7 +3720,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.I)].apply(exec, [context]);
 
@@ -3734,7 +3741,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.I)].apply(exec, [context]);
 
@@ -3755,7 +3762,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.I)].apply(exec, [context]);
 
@@ -3776,7 +3783,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.I)].apply(exec, [context]);
 
@@ -3797,7 +3804,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.I)].apply(exec, [context]);
 
@@ -3818,7 +3825,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SEQ, ModifierType.I)].apply(exec, [context]);
 
@@ -3840,7 +3847,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SEQ, ModifierType.I)].apply(exec, [context]);
 
@@ -3863,7 +3870,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.A)].apply(exec, [context]);
 
@@ -3884,7 +3891,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.A)].apply(exec, [context]);
 
@@ -3905,7 +3912,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.B)].apply(exec, [context]);
 
@@ -3926,7 +3933,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.B)].apply(exec, [context]);
 
@@ -3947,7 +3954,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.AB)].apply(exec, [context]);
 
@@ -3968,7 +3975,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.AB)].apply(exec, [context]);
 
@@ -3989,7 +3996,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.BA)].apply(exec, [context]);
 
@@ -4010,7 +4017,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.BA)].apply(exec, [context]);
 
@@ -4031,7 +4038,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.F)].apply(exec, [context]);
 
@@ -4053,7 +4060,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.F)].apply(exec, [context]);
 
@@ -4075,7 +4082,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SNE, ModifierType.F)].apply(exec, [context]);
 
@@ -4097,7 +4104,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SNE, ModifierType.X)].apply(exec, [context]);
 
@@ -4119,7 +4126,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SNE, ModifierType.X)].apply(exec, [context]);
 
@@ -4141,7 +4148,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SNE, ModifierType.X)].apply(exec, [context]);
 
@@ -4162,7 +4169,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.I)].apply(exec, [context]);
 
@@ -4183,7 +4190,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.I)].apply(exec, [context]);
 
@@ -4204,7 +4211,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.I)].apply(exec, [context]);
 
@@ -4225,7 +4232,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.I)].apply(exec, [context]);
 
@@ -4246,7 +4253,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.I)].apply(exec, [context]);
 
@@ -4267,7 +4274,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SNE, ModifierType.I)].apply(exec, [context]);
 
@@ -4289,7 +4296,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SNE, ModifierType.I)].apply(exec, [context]);
 
@@ -4313,7 +4320,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SLT, ModifierType.A)].apply(exec, [context]);
 
@@ -4335,7 +4342,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SLT, ModifierType.A)].apply(exec, [context]);
 
@@ -4357,7 +4364,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SLT, ModifierType.B)].apply(exec, [context]);
 
@@ -4379,7 +4386,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SLT, ModifierType.B)].apply(exec, [context]);
 
@@ -4401,7 +4408,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SLT, ModifierType.AB)].apply(exec, [context]);
 
@@ -4423,7 +4430,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SLT, ModifierType.AB)].apply(exec, [context]);
 
@@ -4445,7 +4452,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SLT, ModifierType.BA)].apply(exec, [context]);
 
@@ -4467,7 +4474,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SLT, ModifierType.BA)].apply(exec, [context]);
 
@@ -4489,7 +4496,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SLT, ModifierType.F)].apply(exec, [context]);
 
@@ -4512,7 +4519,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SLT, ModifierType.F)].apply(exec, [context]);
 
@@ -4534,7 +4541,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SLT, ModifierType.F)].apply(exec, [context]);
 
@@ -4556,7 +4563,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SLT, ModifierType.X)].apply(exec, [context]);
 
@@ -4579,7 +4586,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SLT, ModifierType.X)].apply(exec, [context]);
 
@@ -4601,7 +4608,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SLT, ModifierType.X)].apply(exec, [context]);
 
@@ -4623,7 +4630,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SLT, ModifierType.I)].apply(exec, [context]);
 
@@ -4646,7 +4653,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SLT, ModifierType.I)].apply(exec, [context]);
 
@@ -4668,7 +4675,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SLT, ModifierType.I)].apply(exec, [context]);
 
@@ -4682,10 +4689,6 @@ describe("Executive", () => {
 
     it("SPL inserts an additional task to the current warrior's task list, directly after the current task", () => {
 
-        const pubsub = {
-            publishSync: sinon.stub()
-        };
-
         var instructions = [
             DataHelper.buildInstruction(2, OpcodeType.DAT, ModifierType.F, ModeType.Immediate, 1, ModeType.Immediate, 2),
             DataHelper.buildInstruction(3, OpcodeType.SPL, ModifierType.F, ModeType.Direct, -1, ModeType.Direct, 1),
@@ -4695,8 +4698,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
-        exec.setMessageProvider(pubsub);
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SPL, ModifierType.F)].apply(exec, [context]);
 
@@ -4704,9 +4706,12 @@ describe("Executive", () => {
 
         expect(context.warrior.tasks.length).to.be.equal(4);
 
-        expect(pubsub.publishSync).to.be.calledWith('TASK_COUNT', {
-            warriorId: 7,
-            taskCount: 4
+        expect(publisher.publish).to.be.calledWith({
+            type: MessageType.TaskCount,
+            payload: {
+                warriorId: 7,
+                taskCount: 4
+            }
         });
     });
 
@@ -4721,7 +4726,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SPL, ModifierType.F)].apply(exec, [context]);
 
@@ -4742,7 +4747,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SPL, ModifierType.F)].apply(exec, [context]);
 
@@ -4764,7 +4769,7 @@ describe("Executive", () => {
 
         context.warrior.tasks.splice(2, 1);
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SPL, ModifierType.F)].apply(exec, [context]);
 
@@ -4786,7 +4791,7 @@ describe("Executive", () => {
 
         options.instructionLimit = 3;
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.SPL, ModifierType.F)].apply(exec, [context]);
 
@@ -4809,7 +4814,7 @@ describe("Executive", () => {
 
             state.options.instructionLimit = 3;
 
-            var exec = new Executive();
+            var exec = new Executive(publisher);
             exec.initialise(options);
             exec.commandTable[decode(OpcodeType.SPL, ModifierType.F)].apply(exec, [context]);
 
@@ -4833,7 +4838,7 @@ describe("Executive", () => {
 
         state.options.instructionLimit = 3;
 
-        var exec = new Executive();
+        var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[decode(OpcodeType.NOP, ModifierType.F)].apply(exec, [context]);
 

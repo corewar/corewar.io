@@ -1,36 +1,44 @@
 ﻿import { IEndCondition } from "./interface/IEndCondition";
 import { IState } from "./interface/IState";
 import { IWarrior } from "./interface/IWarrior";
+import { MessageType } from "./interface/IMessage";
+import { IPublisher } from "./interface/IPublisher";
 
 export class EndCondition implements IEndCondition {
 
-    private pubSubProvider: any;
+    private publisher: IPublisher;
 
-    public setMessageProvider(provider: any) {
-        this.pubSubProvider = provider;
+    constructor(publisher: IPublisher) {
+
+        this.publisher = publisher;
     }
 
     private publishRoundEnd(outcome: string, winnerId: number = null) {
-        if (!this.pubSubProvider) {
-            return;
-        }
 
-        this.pubSubProvider.publishSync('RUN_PROGRESS', {
-            runProgress: 100
+        this.publisher.publish({
+            type: MessageType.RunProgress,
+            payload: {
+                runProgress: 100
+            }
         });
 
-        this.pubSubProvider.publishSync('ROUND_END', {
-            winnerId,
-            outcome
+        this.publisher.publish({
+            type: MessageType.RoundEnd,
+            payload: {
+                winnerId,
+                outcome
+            }
         });
     }
 
     private publishProgress(progress: number) {
-        if (this.pubSubProvider) {
-            this.pubSubProvider.publishSync('RUN_PROGRESS', {
+
+        this.publisher.publish({
+            type: MessageType.RunProgress,
+            payload: {
                 runProgress: progress
-            });
-        }
+            }
+        });
     }
 
     public check(state: IState): boolean {

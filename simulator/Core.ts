@@ -2,19 +2,22 @@
 import { IOptions } from "./interface/IOptions";
 import { IInstruction } from "./interface/IInstruction";
 import { ITask } from "./interface/ITask";
+import { MessageType } from "./interface/IMessage";
+import { IPublisher } from "./interface/IPublisher";
 import * as clone from "clone";
 
 export class Core implements ICore {
 
-    private pubSubProvider: any;
+    private publisher: IPublisher;
 
     private options: IOptions;
     private instructions: IInstruction[] = null;
 
     private cs: number;
 
-    constructor() {
-        
+    constructor(publisher: IPublisher) {
+
+        this.publisher = publisher;
     }
 
     public initialise(options: IOptions) {
@@ -23,10 +26,6 @@ export class Core implements ICore {
         this.cs = this.options.coresize;
 
         this.allocateMemory();
-    }
-
-    public setMessageProvider(provider: any) {
-        this.pubSubProvider = provider;
     }
 
     public getSize(): number {
@@ -43,13 +42,14 @@ export class Core implements ICore {
 
     private triggerEvent(task: ITask, address: number, accessType: CoreAccessType) {
 
-        if (this.pubSubProvider) {
-            this.pubSubProvider.publishSync('CORE_ACCESS', {
+        this.publisher.publish({
+            type: MessageType.CoreAccess,
+            payload: {
                 warriorId: task ? task.warrior.id : null,
                 accessType: accessType,
                 address: address
-            });
-        }
+            }
+        });
     }
 
     public executeAt(task: ITask, address: number): IInstruction {

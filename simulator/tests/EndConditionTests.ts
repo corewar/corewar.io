@@ -8,6 +8,8 @@ import { IState } from "../interface/IState";
 import Defaults from "../Defaults";
 import { EndCondition } from "../EndCondition";
 import DataHelper from "./DataHelper";
+import { MessageType } from "../interface/IMessage";
+import { IPublisher } from "../interface/IPublisher";
 
 describe("EndCondition", () => {
 
@@ -50,11 +52,20 @@ describe("EndCondition", () => {
         };
     }
 
+    let publisher: IPublisher;
+
+    beforeEach(() => {
+        publisher = {
+            publish: sinon.stub(),
+            setPublishProvider: sinon.stub()
+        };
+    });
+
     it("returns false if there are multiple active warriors and the maximum number of cycles has not elapsed", () => {
 
         var state = buildState();
 
-        var endCondition = new EndCondition();
+        var endCondition = new EndCondition(publisher);
 
         var actual = endCondition.check(state);
 
@@ -68,7 +79,7 @@ describe("EndCondition", () => {
         state.cycle = 123;
         state.options.cyclesBeforeTie = 123;
 
-        var endCondition = new EndCondition();
+        var endCondition = new EndCondition(publisher);
 
         var actual = endCondition.check(state);
 
@@ -81,7 +92,7 @@ describe("EndCondition", () => {
 
         state.warriors[0].tasks = [];
 
-        var endCondition = new EndCondition();
+        var endCondition = new EndCondition(publisher);
 
         var actual = endCondition.check(state);
 
@@ -94,7 +105,7 @@ describe("EndCondition", () => {
 
         state.warriors.pop();
 
-        var endCondition = new EndCondition();
+        var endCondition = new EndCondition(publisher);
 
         var actual = endCondition.check(state);
 
@@ -108,7 +119,7 @@ describe("EndCondition", () => {
         state.warriors.pop();
         state.warriors[0].tasks = [];
 
-        var endCondition = new EndCondition();
+        var endCondition = new EndCondition(publisher);
 
         var actual = endCondition.check(state);
 
@@ -117,99 +128,107 @@ describe("EndCondition", () => {
 
     it("publishes round end message in the event of a draw", () => {
 
-        const pubsub = {
-            publishSync: sinon.stub()
-        };
         const state = buildState();
 
         state.cycle = 123;
         state.options.cyclesBeforeTie = 123;
 
-        const endCondition = new EndCondition();
-        endCondition.setMessageProvider(pubsub);
+        const endCondition = new EndCondition(publisher);
 
         endCondition.check(state);
 
-        expect(pubsub.publishSync).to.have.been.calledWith('RUN_PROGRESS', {
-            runProgress: 100
+        expect(publisher.publish).to.have.been.calledWith({
+            type: MessageType.RunProgress,
+            payload: {
+                runProgress: 100
+            }
         });
 
-        expect(pubsub.publishSync).to.have.been.calledWith('ROUND_END', {
-            winnerId: null,
-            outcome: 'DRAW'
+        expect(publisher.publish).to.have.been.calledWith({
+            type: MessageType.RoundEnd,
+            payload: {
+                winnerId: null,
+                outcome: 'DRAW'
+            }
         });
     });
 
     it("publishes round end message if a warrior wins", () => {
 
-        const pubsub = {
-            publishSync: sinon.stub()
-        };
         const state = buildState();
 
         state.warriors[0].id = 5;
         state.warriors[1].id = 7;
         state.warriors[0].tasks = [];
 
-        const endCondition = new EndCondition();
-        endCondition.setMessageProvider(pubsub);
+        const endCondition = new EndCondition(publisher);
 
         endCondition.check(state);
 
-        expect(pubsub.publishSync).to.have.been.calledWith('RUN_PROGRESS', {
-            runProgress: 100
+        expect(publisher.publish).to.have.been.calledWith({
+            type: MessageType.RunProgress,
+            payload: {
+                runProgress: 100
+            }
         });
 
-        expect(pubsub.publishSync).to.have.been.calledWith('ROUND_END', {
-            winnerId: 7,
-            outcome: 'WIN'
+        expect(publisher.publish).to.have.been.calledWith({
+            type: MessageType.RoundEnd,
+            payload: {
+                winnerId: 7,
+                outcome: 'WIN'
+            }
         });
     });
 
     it("publishes round end message if single warrior round ends", () => {
 
-        const pubsub = {
-            publishSync: sinon.stub()
-        };
         const state = buildState();
 
         state.warriors.pop();
         state.warriors[0].tasks = [];
 
-        const endCondition = new EndCondition();
-        endCondition.setMessageProvider(pubsub);
+        const endCondition = new EndCondition(publisher);
 
         endCondition.check(state);
 
-        expect(pubsub.publishSync).to.have.been.calledWith('RUN_PROGRESS', {
-            runProgress: 100
+        expect(publisher.publish).to.have.been.calledWith({
+            type: MessageType.RunProgress,
+            payload: {
+                runProgress: 100
+            }
         });
 
-        expect(pubsub.publishSync).to.have.been.calledWith('ROUND_END', {
-            winnerId: null,
-            outcome: 'NONE'
+        expect(publisher.publish).to.have.been.calledWith({
+            type: MessageType.RoundEnd,
+            payload: {
+                winnerId: null,
+                outcome: 'NONE'
+            }
         });
     });
 
     it("Publishes incremental run progress", () => {
-        
-        const pubsub = {
-            publishSync: sinon.stub()
-        };
+
         const state = buildState();
 
-        state.cycle = 12*5;
-        state.options.cyclesBeforeTie = 100*5;
+        state.cycle = 12 * 5;
+        state.options.cyclesBeforeTie = 100 * 5;
 
-        const endCondition = new EndCondition();
-        endCondition.setMessageProvider(pubsub);
+        const endCondition = new EndCondition(publisher);
 
         endCondition.check(state);
 
-        expect(pubsub.publishSync).to.have.been.calledWith('RUN_PROGRESS', {
-            runProgress: 12
+        expect(publisher.publish).to.have.been.calledWith({
+            type: MessageType.RunProgress,
+            payload: {
+                runProgress: 12
+            }
         });
 
-        expect(pubsub.publishSync).not.to.have.been.calledWith('ROUND_END', sinon.match.any);
+        expect(publisher.publish).not.to.have.been.calledWith({
+            type: MessageType.RoundEnd, 
+            payload: sinon.match.any
+        });
     });
 });

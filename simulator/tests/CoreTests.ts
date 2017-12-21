@@ -11,6 +11,8 @@ import { ModeType } from "../interface/IOperand";
 import { Core } from "../Core";
 import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import Defaults from "../Defaults";
+import { MessageType } from "../interface/IMessage";
+import { IPublisher } from "../interface/IPublisher";
 
 describe("Core", () => {
 
@@ -45,11 +47,21 @@ describe("Core", () => {
         };
     }
 
+    let publisher: IPublisher;
+
+    beforeEach(() => {
+
+        publisher = {
+            publish: sinon.stub(),
+            setPublishProvider: sinon.stub()
+        };
+    });
+
     it("Initialises core to the required size and provides accessor methods", () => {
 
         var i: number;
         var instruction: IInstruction;
-        var core = new Core();
+        var core = new Core(publisher);
         core.initialise({ coresize: 4, initialInstruction: Defaults.initialInstruction });
 
         for (i = 0; i < 4; i++) {
@@ -70,7 +82,7 @@ describe("Core", () => {
 
         var i: number;
         var instruction: IInstruction;
-        var core = new Core();
+        var core = new Core(publisher);
         core.initialise({ coresize: 4, initialInstruction: Defaults.initialInstruction });
 
         for (i = 4; i < 8; i++) {
@@ -91,7 +103,7 @@ describe("Core", () => {
 
         var i: number;
         var instruction: IInstruction;
-        var core = new Core();
+        var core = new Core(publisher);
         core.initialise({ coresize: 4, initialInstruction: Defaults.initialInstruction });
 
         for (i = -4; i < 0; i++) {
@@ -110,7 +122,7 @@ describe("Core", () => {
 
     it(".wrap wraps addresses using mod maths", () => {
 
-        var core = new Core();
+        var core = new Core(publisher);
         core.initialise({ coresize: 4, initialInstruction: Defaults.initialInstruction });
 
         expect(core.wrap(0)).to.be.equal(0);
@@ -125,7 +137,7 @@ describe("Core", () => {
 
     it(".wrap wraps negative addresses using mod maths", () => {
 
-        var core = new Core();
+        var core = new Core(publisher);
         core.initialise({ coresize: 4, initialInstruction: Defaults.initialInstruction });
 
         expect(core.wrap(-4)).to.be.equal(0);
@@ -150,7 +162,7 @@ describe("Core", () => {
             }
         };
 
-        var core = new Core();
+        var core = new Core(publisher);
         core.initialise({ coresize: 3, initialInstruction: defaultInstruction });
 
         for (var i = 0; i < 3; i++) {
@@ -168,7 +180,7 @@ describe("Core", () => {
 
     it("Assigns sequential address values to default core instructions", () => {
 
-        var core = new Core();
+        var core = new Core(publisher);
         core.initialise({ coresize: 5, initialInstruction: Defaults.initialInstruction });
 
         for (var i = 0; i < 5; i++) {
@@ -181,70 +193,64 @@ describe("Core", () => {
 
     it("Triggers a read core access event for the specified Task when getAt is called", () => {
 
-        const pubsub = {
-            publishSync: sinon.stub()
-        }
-
         var task = buildTask(7);
 
-        var core = new Core();
-        core.setMessageProvider(pubsub);
+        var core = new Core(publisher);
         core.initialise(Object.assign({}, Defaults, { coresize: 4 }));
 
         core.readAt(task, 2);
 
-        expect(pubsub.publishSync).to.have.been.calledWith('CORE_ACCESS', {
-            warriorId: task.warrior.id,
-            accessType: CoreAccessType.read,
-            address: 2
+        expect(publisher.publish).to.have.been.calledWith({
+            type: MessageType.CoreAccess,
+            payload: {
+                warriorId: task.warrior.id,
+                accessType: CoreAccessType.read,
+                address: 2
+            }
         });
     });
 
     it("Triggers a write core access event for the specified Task when setAt is called", () => {
 
-        const pubsub = {
-            publishSync: sinon.stub()
-        };
-
         var task = buildTask(5);
 
-        var core = new Core();
-        core.setMessageProvider(pubsub);
+        var core = new Core(publisher);
         core.initialise(Object.assign({}, Defaults, { coresize: 4 }));
 
         core.setAt(task, 2, buildInstruction());
 
-        expect(pubsub.publishSync).to.have.been.calledWith('CORE_ACCESS', {
-            warriorId: task.warrior.id,
-            accessType: CoreAccessType.write,
-            address: 2
+        expect(publisher.publish).to.have.been.calledWith({
+            type: MessageType.CoreAccess,
+            payload: {
+                warriorId: task.warrior.id,
+                accessType: CoreAccessType.write,
+                address: 2
+            }
         });
     });
 
     it("Triggers an execute core access event for the specified Task when executeAt is called", () => {
 
-        const pubsub = {
-            publishSync: sinon.stub()
-        }
-
         var task = buildTask(3);
 
-        var core = new Core();
-        core.setMessageProvider(pubsub);
+        var core = new Core(publisher);
         core.initialise(Object.assign({}, Defaults, { coresize: 4 }));
 
         core.executeAt(task, 2);
 
-        expect(pubsub.publishSync).to.have.been.calledWith('CORE_ACCESS', {
-            warriorId: task.warrior.id,
-            accessType: CoreAccessType.execute,
-            address: 2
+        expect(publisher.publish).to.have.been.calledWith({
+            type: MessageType.CoreAccess,
+            payload: {
+                warriorId: task.warrior.id,
+                accessType: CoreAccessType.execute,
+                address: 2
+            }
         });
     });
 
     it(".getSize returns the size of the core", () => {
 
-        var core = new Core();
+        var core = new Core(publisher);
         core.initialise(Object.assign({}, Defaults, { coresize: 23 }));
 
         var actual = core.getSize();

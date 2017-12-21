@@ -9,6 +9,8 @@ import { IOptionValidator } from "./interface/IOptionValidator";
 import { ICore } from "./interface/ICore";
 import { IOptions } from "./interface/IOptions";
 import { IParseResult } from "../parser/interface/IParseResult";
+import { MessageType } from "./interface/IMessage";
+import { IPublisher } from "./interface/IPublisher";
 import Defaults from "./Defaults";
 import * as clone from "clone";
 
@@ -23,8 +25,7 @@ export class Simulator implements ISimulator {
     private executive: IExecutive;
     private endCondition: IEndCondition;
     private optionValidator: IOptionValidator;
-
-    private pubSubProvider: any;
+    private publisher: IPublisher;
 
     constructor(
         core: ICore,
@@ -33,7 +34,8 @@ export class Simulator implements ISimulator {
         decoder: IDecoder,
         executive: IExecutive,
         endCondition: IEndCondition,
-        optionValidator: IOptionValidator) {
+        optionValidator: IOptionValidator,
+        publisher: IPublisher) {
 
         this.core = core;
         this.loader = loader;
@@ -42,11 +44,12 @@ export class Simulator implements ISimulator {
         this.executive = executive;
         this.endCondition = endCondition;
         this.optionValidator = optionValidator;
+        this.publisher = publisher;
 
         this.initState();
     }
 
-    private initState() : void {
+    private initState(): void {
         this.state = {
             cycle: 0,
             warriors: [],
@@ -57,12 +60,11 @@ export class Simulator implements ISimulator {
 
     private publishInitialise(state: IState) {
 
-        if (!this.pubSubProvider) {
-            return;
-        }
-
-        this.pubSubProvider.publishSync('CORE_INITIALISE', {
-            state: clone(state)
+        this.publisher.publish({
+            type: MessageType.CoreInitialise,
+            payload: {
+                state: clone(state)
+            }
         });
     }
 
@@ -83,31 +85,16 @@ export class Simulator implements ISimulator {
         this.publishInitialise(this.state);
     }
 
-    public setMessageProvider(provider: any) {
-        this.pubSubProvider = provider;
-        this.endCondition.setMessageProvider(provider);
-        this.executive.setMessageProvider(provider);
-    }
-
     public run(): Promise<IState> {
 
         return new Promise((resolve, reject) => {
 
-            // TODO: progress updates based on core cycles
             while (this.step() === false) {
             }
 
             resolve(clone(this.state));
         });
 
-    }
-
-    private publishRoundStart(): void {
-        if (!this.pubSubProvider) {
-            return;
-        }
-
-        this.pubSubProvider.publishSync('ROUND_START', {});
     }
 
     public step(): boolean {
@@ -117,7 +104,10 @@ export class Simulator implements ISimulator {
         }
 
         if (this.state.cycle === 0) {
-            this.publishRoundStart();
+            this.publisher.publish({
+                type: MessageType.RoundStart,
+                payload: {}
+            });
         }
 
         var context = this.fetcher.fetch(this.state, this.core);

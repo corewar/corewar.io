@@ -31,8 +31,7 @@ describe("Decoder",() => {
             initialise: () => {
                 //
             },
-            commandTable: [],
-            setMessageProvider: () => {}
+            commandTable: []
         };
 
         for (var i = 0; i < OpcodeType.Count * ModifierType.Count; i++) {
