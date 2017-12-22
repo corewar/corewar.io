@@ -152,11 +152,11 @@ export class Executive implements IExecutive {
         this.publisher = publisher;
     }
 
-    private instructionLimit: number;
+    private maxTasks: number;
 
     public initialise(options: IOptions) {
 
-        this.instructionLimit = options.instructionLimit;
+        this.maxTasks = options.maxTasks;
     }
 
     private publishTaskCount(warriorId: number, taskCount: number) {
@@ -972,7 +972,7 @@ export class Executive implements IExecutive {
 
     private spl(context: IExecutionContext) {
 
-        if (context.warrior.tasks.length < this.instructionLimit) {
+        if (context.warrior.tasks.length < this.maxTasks) {
 
             context.warrior.tasks.splice(context.warrior.taskIndex, 0, {
                 instructionPointer: context.core.wrap(context.aPointer),

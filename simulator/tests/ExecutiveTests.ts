@@ -39,7 +39,7 @@ describe("Executive", () => {
 
         options = Object.assign({}, Defaults);
         options.coresize = 5;
-        options.instructionLimit = 100;
+        options.maxTasks = 100;
 
         var readAtSpy = sinon.stub();
         readAtSpy.returns(options.initialInstruction);
@@ -4793,7 +4793,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        options.instructionLimit = 3;
+        options.maxTasks = 3;
 
         var exec = new Executive(publisher);
         exec.initialise(options);
@@ -4816,7 +4816,7 @@ describe("Executive", () => {
             prepareCore(5, instructions);
             var context = buildContext(3, 2, 4);
 
-            state.options.instructionLimit = 3;
+            state.options.maxTasks = 3;
 
             var exec = new Executive(publisher);
             exec.initialise(options);
@@ -4840,7 +4840,7 @@ describe("Executive", () => {
         prepareCore(5, instructions);
         var context = buildContext(3, 2, 4);
 
-        state.options.instructionLimit = 3;
+        state.options.maxTasks = 3;
 
         var exec = new Executive(publisher);
         exec.initialise(options);
