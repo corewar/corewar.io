@@ -357,4 +357,24 @@ describe("WarriorLoader", () => {
 
         expect(core.setAt).to.be.calledWith(actual.tasks[0], sinon.match.any, sinon.match.any);
     });
+
+    it("Assigns warrior id before writing to core", () => {
+
+        const expected = 8;
+
+        var tokens = DataHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        var core = buildCore(0);
+
+        var loader = new WarriorLoader(core);
+        
+        var actual = null;
+        (<sinon.stub>core.setAt).callsFake((task, address, instruction) => {
+
+            actual = task.warrior.id;
+        });
+
+        loader.load(0, tokens, expected);
+
+        expect(actual).to.be.equal(expected);
+    });
 });
