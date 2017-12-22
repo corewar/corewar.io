@@ -6,6 +6,7 @@ import ResetControl from './resetControl'
 import StepControl from './stepControl'
 import SpeedControl from './speedControl'
 import FinishRoundControl from './finishRoundControl'
+import RunProgressIndicator from './runProgressIndicator'
 
 import './simulatorControls.css'
 
@@ -13,6 +14,7 @@ const SimulatorControls = ({
   isRunning,
   isInitialised,
   parseResults,
+  runProgress,
   init,
   step,
   run,
@@ -22,6 +24,9 @@ const SimulatorControls = ({
   processRates,
   finishRound }) => (
   <section id="simulatorControlContainer">
+    <div id="runProgressContainer">
+      <RunProgressIndicator runProgress={runProgress}/>
+    </div>
     <div id="simulatorControls" className={isInitialised ? `active` : `inactive`}>
       <SpeedControl
         handleClick={setProcessRate}

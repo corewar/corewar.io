@@ -72,6 +72,7 @@ class CanvasCore extends Component {
 
   componentWillUnmount() {
     PubSub.unsubscribe('CORE_ACCESS');
+    PubSub.unsubscribe('RESET_CORE');
   }
 
   renderGrid() {
