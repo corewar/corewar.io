@@ -10,7 +10,6 @@ const colourPalette = [
   '#BDBDBD',
 ];
 
-
 class CanvasCore extends Component {
 
   constructor(props) {
@@ -23,7 +22,7 @@ class CanvasCore extends Component {
     this.messages = [];
 
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
-      this.messages.push(data);
+      this.messages = this.messages.concat(data);
     });
 
     PubSub.subscribe('RESET_CORE', (msg, data) => {
