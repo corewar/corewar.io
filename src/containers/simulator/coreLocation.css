@@ -9,7 +9,7 @@
 
 .coreLocation span {
   font-family: 'roboto condensed';
-  color: #fff;
+  color: #666;
   display: inline-block;
   margin-top: 1.5em;
   font-size: 0.8em;
@@ -20,7 +20,7 @@
 }
 
 .coreLocation.current span {
-  color: #fff;
+  color: #100E14;
 }
 
 span.coreLocation_0 {
