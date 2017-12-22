@@ -88,6 +88,20 @@ describe("EndCondition", () => {
         expect(actual).to.be.equal(true);
     });
 
+    it("returns true if more than the maximum number of cylces have elapsed", () => {
+
+        var state = buildState();
+
+        state.cycle = 124;
+        state.options.cyclesBeforeTie = 123;
+
+        var endCondition = new EndCondition(publisher);
+
+        var actual = endCondition.check(state);
+
+        expect(actual).to.be.equal(true);
+    });
+
     it("returns true if there are multiple warriors and only one with active tasks", () => {
 
         var state = buildState();
@@ -229,7 +243,7 @@ describe("EndCondition", () => {
         });
 
         expect(publisher.publish).not.to.have.been.calledWith({
-            type: MessageType.RoundEnd, 
+            type: MessageType.RoundEnd,
             payload: sinon.match.any
         });
     });
