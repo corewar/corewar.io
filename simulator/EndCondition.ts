@@ -43,7 +43,7 @@ export class EndCondition implements IEndCondition {
 
     public check(state: IState): boolean {
 
-        if (state.cycle === state.options.cyclesBeforeTie) {
+        if (state.cycle >= state.options.cyclesBeforeTie) {
             this.publishRoundEnd('DRAW');
             return true;
         }
