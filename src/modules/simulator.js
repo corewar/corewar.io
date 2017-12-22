@@ -57,8 +57,7 @@ export default (state = initialState, action) => {
     case RUN_REQUESTED:
       return {
         ...state,
-        isRunning: true,
-        roundResult: {}
+        isRunning: true
       }
 
     case PAUSE_REQUESTED:
@@ -127,7 +126,7 @@ export const init = () => {
 
     const state = getState();
 
-    PubSub.publish('RESET_CORE');
+    PubSub.publishSync('RESET_CORE');
 
     const { coreSize, minSeparation, instructionLimit } = state.simulator;
     const { parseResults, standardId } = state.parser;
@@ -164,17 +163,40 @@ export const pause = () => {
 export const finishRound = () => {
   console.log('finish round')
 
-  return dispatch => {
+  return (dispatch, getState) => {
+
+    const { roundResult } = getState().simulator
+
+    if(roundResult.outcome) {
+      const state = getState();
+
+      PubSub.publishSync('RESET_CORE');
+
+      const { coreSize, minSeparation, instructionLimit } = state.simulator;
+      const { parseResults, standardId } = state.parser;
+
+      const options = {
+        standard: standardId,
+        coresize: coreSize,
+        minSeparation: minSeparation,
+        instructionLimit: instructionLimit,
+      };
+
+      corewar.initialiseSimulator(options, parseResults, PubSub);
+
+      dispatch({
+        type: INIT
+      });
+    }
 
     PubSub.subscribe('ROUND_END', (msg, data) => {
-      window.clearInterval(runner);
       dispatch({
         type: RUN_ENDED,
         data
       })
     });
 
-    corewar.simulator.run();
+    corewar.simulator.run()
   }
 }
 
@@ -186,6 +208,32 @@ export const run = () => {
     dispatch({
       type: RUN_REQUESTED
     })
+
+    const { processRate, isRunning, roundResult } = getState().simulator
+
+    debugger;
+
+    if(roundResult.outcome) {
+      const state = getState();
+
+      PubSub.publishSync('RESET_CORE');
+
+      const { coreSize, minSeparation, instructionLimit } = state.simulator;
+      const { parseResults, standardId } = state.parser;
+
+      const options = {
+        standard: standardId,
+        coresize: coreSize,
+        minSeparation: minSeparation,
+        instructionLimit: instructionLimit,
+      };
+
+      corewar.initialiseSimulator(options, parseResults, PubSub);
+
+      dispatch({
+        type: INIT
+      });
+    }
 
     PubSub.subscribe('RUN_PROGRESS', (msg, data) => {
       dispatch({
@@ -201,12 +249,6 @@ export const run = () => {
         data
       })
     });
-
-    const { processRate, isRunning } = getState().simulator
-
-    if(isRunning) {
-      window.clearInterval(runner)
-    }
 
     runner = window.setInterval(() => {
 
@@ -224,6 +266,7 @@ export const run = () => {
 
 
     }, 1000/60)
+
   }
 }
 
