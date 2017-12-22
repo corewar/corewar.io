@@ -7,6 +7,29 @@
   grid-template-rows: 1fr;
 }
 
+#runProgressContainer {
+
+  border: 2px solid #56CCF2;
+  border-bottom: none;
+  border-right: none;
+  border-top-left-radius: 10px;
+}
+
+.progressBar {
+  height: 100%;
+  display: inline-block;
+  background-color: #56CCF2;
+  border-top-left-radius: 5px;
+  color: #fff;
+  font-family: 'roboto condensed';
+  text-align: center;
+}
+
+.progressBar span {
+  display: inline-block;
+  padding-top: 0.8em;
+}
+
 #simulatorControls {
 
   grid-column-start: 2;
@@ -20,7 +43,6 @@
   border: 2px solid #56CCF2;
   border-bottom: none;
   border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
   color: #fff;
 }
 

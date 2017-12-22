@@ -29,6 +29,7 @@ const SimulatorContainer = ({
   isInitialised,
   coreSize,
   coreInfo,
+  runProgress,
   parseResults,
   roundResult,
   init,
@@ -57,7 +58,8 @@ const SimulatorContainer = ({
       finishRound={finishRound}
       setProcessRate={setProcessRate}
       processRate={processRate}
-      processRates={processRates} />
+      processRates={processRates}
+      runProgress={runProgress} />
     <SimulatorStatus
       isRunning={isRunning}
       isInitialised={isInitialised}
@@ -80,7 +82,8 @@ const mapStateToProps = state => ({
   roundResult: state.simulator.roundResult,
   parseResults: state.parser.parseResults,
   processRate: state.simulator.processRate,
-  processRates: state.simulator.processRates
+  processRates: state.simulator.processRates,
+  runProgress: state.simulator.runProgress
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
