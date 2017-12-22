@@ -8,6 +8,7 @@ export const PAUSE_REQUESTED = 'simulator/PAUSE_REQUESTED'
 export const RUN_ENDED = 'simulator/RUN_ENDED'
 export const RUN_PROGRESS = 'simulator/RUN_PROGRESS'
 export const GET_CORE_INSTRUCTIONS = 'simulator/GET_CORE_INSTRUCTIONS'
+export const SET_CORE_FOCUS = 'simulator/SET_CORE_FOCUS'
 
 export const SET_INSTRUCTION_LIMIT = 'simulator/SET_INSTRUCTION_LIMIT'
 export const SET_CORESIZE = 'simulator/SET_CORESIZE'
@@ -20,6 +21,7 @@ const initialState = {
   isInitialised: false,
   isRunning: false,
   runProgress: 0,
+  focus: null,
   roundResult: {},
   result: {},
   coreSize: 8000,
@@ -83,6 +85,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         coreInfo: action.coreInfo
+      }
+
+    case SET_CORE_FOCUS:
+      return {
+        ...state,
+        focus: action.focus
       }
 
     case SET_CORESIZE:
@@ -272,8 +280,27 @@ export const step = () => {
 
   console.log('step')
 
-  return dispatch => {
+  return (dispatch, getState) => {
+
+    const { focus } = getState().simulator
+
     corewar.simulator.step();
+
+    const lowerLimit = focus - 5;
+    const upperLimit = focus + 5;
+    const coreInfo = [];
+
+    for (let index = lowerLimit; index <= upperLimit; index++) {
+      const info = corewar.core.getWithInfoAt(index)
+      info.instruction.isCurrent = index === focus
+      coreInfo.push(info)
+    }
+
+    dispatch({
+      type: GET_CORE_INSTRUCTIONS,
+      coreInfo
+    })
+
   }
 }
 
@@ -288,11 +315,16 @@ export const getCoreInstructions = (address) => {
   for (let index = lowerLimit; index <= upperLimit; index++) {
     const info = corewar.core.getWithInfoAt(index)
     info.instruction.isCurrent = index === address
-    console.log(info)
     coreInfo.push(info)
   }
 
   return dispatch => {
+
+    dispatch({
+      type: SET_CORE_FOCUS,
+      focus: address
+    })
+
     dispatch({
       type: GET_CORE_INSTRUCTIONS,
       coreInfo
