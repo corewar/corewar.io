@@ -32,15 +32,15 @@ export class WarriorLoader implements IWarriorLoader {
         this.address = address;
 
         this.warrior = new Warrior();
-        
-        this.loadProcess(address);
-
-        this.readInstructions();
 
         this.warrior.id = id;
         this.warrior.name = result.metaData.name;
         this.warrior.author = result.metaData.author;
         this.warrior.strategy = result.metaData.strategy;
+        
+        this.loadProcess(address);
+
+        this.readInstructions();
 
         return this.warrior;
     }
