@@ -28,7 +28,7 @@ const SimulatorContainer = ({
   isRunning,
   isInitialised,
   coreSize,
-  instructions,
+  coreInfo,
   parseResults,
   roundResult,
   init,
@@ -63,7 +63,7 @@ const SimulatorContainer = ({
       isInitialised={isInitialised}
       parseResults={parseResults}
       roundResult={roundResult}/>
-    <CoreVisualiser instructions={instructions} />
+    <CoreVisualiser coreInfo={coreInfo} />
     <CoreContainer
       getCoreInstructions={getCoreInstructions}
       coreSize={coreSize}
@@ -74,7 +74,7 @@ const SimulatorContainer = ({
 
 const mapStateToProps = state => ({
   coreSize: state.simulator.coreSize,
-  instructions: state.simulator.instructions,
+  coreInfo: state.simulator.coreInfo,
   isInitialised: state.simulator.isInitialised,
   isRunning: state.simulator.isRunning,
   roundResult: state.simulator.roundResult,

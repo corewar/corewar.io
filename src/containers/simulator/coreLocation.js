@@ -4,9 +4,9 @@ import { ModifierType, ModeType, OpcodeType } from './coreEnums'
 
 import './coreLocation.css'
 
-const CoreLocation = ({ instruction }) => (
+const CoreLocation = ({ instruction, warriorId }) => (
   <div className={`coreLocation ${instruction.isCurrent ? `current` : ``}` }>
-    <span>{serialise(instruction)}</span>
+    <span className={typeof warriorId != null ? `coreLocation_${warriorId}` : ``}>{serialise(instruction)}</span>
   </div>
 )
 

@@ -9,7 +9,7 @@
 
 .coreLocation span {
   font-family: 'roboto condensed';
-  color: #EB5757;
+  color: #666;
   display: inline-block;
   margin-top: 1.5em;
   font-size: 0.8em;
@@ -20,5 +20,29 @@
 }
 
 .coreLocation.current span {
-  color: #fff;
+  color: #100E14;
+}
+
+span.coreLocation_0 {
+  color: #EB5757;
+}
+
+span.coreLocation_1 {
+  color: #6FCF97;
+}
+
+span.coreLocation_2 {
+  color: #56CCF2;
+}
+
+span.coreLocation_3 {
+  color: #F2C94C;
+}
+
+span.coreLocation_4 {
+  color: #BB6BD9;
+}
+
+span.coreLocation_5 {
+  color: #BDBDBD;
 }
