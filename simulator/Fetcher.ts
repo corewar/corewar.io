@@ -2,6 +2,7 @@
 import { IState } from "./interface/IState";
 import { ICore } from "./interface/ICore";
 import { IExecutionContext } from "./interface/IExecutionContext";
+import { IWarrior } from "./interface/IWarrior";
 
 export class Fetcher implements IFetcher {
 
@@ -10,8 +11,7 @@ export class Fetcher implements IFetcher {
         var wi = state.warriorIndex;
         var warrior = state.warriors[wi];
 
-        // skip dead warriors
-        if(warrior.tasks.length === 0) {
+        while(this.isDead(warrior)) {
             wi = (wi + 1) % state.warriors.length
             warrior = state.warriors[wi]
         }
@@ -37,5 +37,9 @@ export class Fetcher implements IFetcher {
             warriorIndex: wi,
             warrior: warrior
         };
+    }
+
+    private isDead(warrior: IWarrior) : boolean {
+        return warrior.tasks.length === 0
     }
 }
