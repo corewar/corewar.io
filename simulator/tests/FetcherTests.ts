@@ -161,4 +161,28 @@ describe("Fetcher",() => {
         expect(expectedTask.instructionPointer).to.be.equal(0);
     });
 
+    it("executes in the context of the next warrior if the current warrior has no tasks", () => {
+
+        var validWarrior = DataHelper.buildWarrior();
+        validWarrior.tasks = [
+            DataHelper.buildTask()
+        ]
+
+        var deadWarrior = DataHelper.buildWarrior();
+        deadWarrior.tasks = [];
+
+        state.warriors = [
+            validWarrior,
+            deadWarrior
+        ];
+
+        state.warriorIndex = 1;
+
+        var fetcher = new Fetcher();
+        var executionContext = fetcher.fetch(state, core);
+
+        expect(executionContext.warriorIndex).to.be.equal(0);
+        expect(executionContext.warrior).to.be.equal(validWarrior);
+    })
+
 });
