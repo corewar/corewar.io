@@ -76,3 +76,18 @@ it('shows the winnerId if there is one', () => {
   expect(wrapper.find('#simulatorStatus span').text()).contains(`- winner id: ${props.roundResult.winnerId}`)
 });
 
+it('shows the winnerId if there is one even if its id=0', () => {
+
+    const props = {
+      isRunning: false,
+      roundResult: {
+        outcome: 'win',
+        winnerId: 0
+      }
+    }
+
+    const wrapper = mount(<PureSimulatorStatus {...props}/>)
+
+    expect(wrapper.find('#simulatorStatus span').text()).contains(`- winner id: ${props.roundResult.winnerId}`)
+  });
+

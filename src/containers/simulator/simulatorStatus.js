@@ -5,7 +5,9 @@ import './simulatorStatus.css';
 
 const SimulatorStatus = ({ isRunning, isInitialised, parseResults, roundResult }) => (
   <section id="simulatorStatus">
-    <span className={isRunning ? `fade` : ``}>{getStatusMessage(isRunning, isInitialised, parseResults, roundResult)}</span>
+    <div className={isRunning ? `resultContainer fade` : `resultContainer`}>
+      {getStatusMessage(isRunning, isInitialised, parseResults, roundResult)}
+    </div>
   </section>
 )
 
@@ -13,13 +15,21 @@ const getStatusMessage = (isRunning, isInitialised, parseResults, roundResult) =
 
   if(roundResult && roundResult.outcome) {
 
-    let outcome = `simulation complete - ${roundResult.outcome}`
+    let winner;
 
-    if(roundResult.winnerId) {
-      outcome += ` - winner id: ${roundResult.winnerId}`
+    if(typeof roundResult.winnerId !== "undefined") {
+      winner = parseResults[roundResult.winnerId]
     }
 
-    return outcome;
+    return <span>simulation complete - {roundResult.outcome}
+      {winner &&
+        <span>
+          <div className={`winner_${roundResult.winnerId}`}></div>
+          {`${winner.metaData.name}, ${winner.metaData.author}`}
+        </span>}
+    </span>
+
+
   }
 
   if(isRunning) {

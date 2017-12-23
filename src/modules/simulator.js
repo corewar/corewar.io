@@ -249,6 +249,7 @@ export const run = () => {
     });
 
     PubSub.subscribe('ROUND_END', (msg, data) => {
+      console.log('ROUND_END')
       window.clearInterval(runner);
       dispatch({
         type: RUN_ENDED,
@@ -265,7 +266,7 @@ export const run = () => {
       operations += processRate;
 
       // TODO: This should be controlled by the simulator
-      if(operations === 80000) {
+      if(operations >= 80000) {
         window.clearInterval(runner)
         operations = 0
       }
