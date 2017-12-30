@@ -173,8 +173,10 @@ export class Executive implements IExecutive {
     private dat(context: IExecutionContext) {
         //Remove current task from the queue
         var ti = context.taskIndex;
-        context.warrior.taskIndex = context.taskIndex;
         context.warrior.tasks.splice(ti, 1);
+        // wrap the warrior task index to cater for the event when
+        // we just chomped off the last task
+        context.warrior.taskIndex = ti % context.warrior.tasks.length;
 
         this.publishTaskCount(context.warrior.id, context.warrior.tasks.length);
     }
