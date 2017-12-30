@@ -10,7 +10,7 @@
   border-bottom: none;
 }
 
-#simulatorStatus span {
+.resultContainer {
   display: inline-block;
   height: 23px;
   font-family: 'roboto condensed';
@@ -29,4 +29,35 @@
 .fade {
     opacity: 1;
     animation: fadeInOut 1s infinite;
+}
+
+.resultContainer div {
+  display: inline-block;
+  width: 100px;
+  margin: 0 10px 0 10px;
+  height: 16px;
+}
+
+div.winner_0 {
+  background-color: #EB5757;
+}
+
+div.winner_1 {
+  background-color: #6FCF97;
+}
+
+div.winner_2 {
+  background-color: #56CCF2;
+}
+
+div.winner_3 {
+  background-color: #F2C94C;
+}
+
+div.winner_4 {
+  background-color: #BB6BD9;
+}
+
+div.winner_5 {
+  background-color: #BDBDBD;
 }
