@@ -40,6 +40,9 @@ const initialState = {
   ]
 }
 
+// selectors
+export const getSimulatorState = state => state.simulator
+
 // reducer
 export default (state = initialState, action) => {
   switch (action.type) {

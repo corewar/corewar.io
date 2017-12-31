@@ -1,13 +1,15 @@
 import { corewar } from "corewar";
 import * as PubSub from 'pubsub-js';
 
-import { INIT } from './simulator';
+import { removeItem } from './../helpers/arrayHelpers'
 
-export const PARSE_REQUESTED = 'parser/PARSE_REQUESTED'
+import { INIT } from './simulatorReducers';
+
 export const PARSE = 'parser/PARSE'
 export const SET_STANDARD = 'parser/SET_STANDARD'
-export const SAVE = 'parser/SAVE'
+export const ADD_WARRIOR = 'parser/ADD_WARRIOR'
 export const REMOVE_WARRIOR = 'parser/REMOVE_WARRIOR'
+export const RESET_CORE = 'parser/RESET_CORE'
 
 // state
 const initialState = {
@@ -19,6 +21,8 @@ const initialState = {
   warrior: ''
 }
 
+// selectors
+export const getParserState = state => state.parser
 
 // reducer
 export default (state = initialState, action) => {
@@ -30,12 +34,6 @@ export default (state = initialState, action) => {
         standardId: action.standardId
       }
 
-    case PARSE_REQUESTED:
-      return {
-        ...state,
-        isParsing: true
-      }
-
     case PARSE:
       return {
         ...state,
@@ -44,7 +42,7 @@ export default (state = initialState, action) => {
         isParsing: false
       }
 
-    case SAVE:
+    case ADD_WARRIOR:
       return {
         ...state,
         parseResults: action.result
@@ -56,83 +54,17 @@ export default (state = initialState, action) => {
         parseResults: action.result
       }
 
+    case RESET_CORE:
+      return {
+        ...state
+      }
+
     default:
       return state
   }
 }
 
-const insertItem = (index, array, item) => {
-  let newArray = array.slice();
-  newArray.splice(index, 0, item);
-  return newArray;
-}
-
-const removeItem = (index, array) => {
-  return [
-    ...array.slice(0, index),
-    ...array.slice(index + 1)
-  ]
-}
-
 // actions
-export const save = () => {
-
-  console.log('save')
-
-  return (dispatch, getState) => {
-
-    const state = getState();
-
-    const { standardId, currentParseResult, parseResults } = state.parser;
-    const { coreSize, minSeparation, instructionLimit } = state.simulator;
-
-    const result = insertItem(parseResults.length, parseResults, currentParseResult)
-
-    dispatch({
-      type: SAVE,
-      result
-    })
-
-    PubSub.publish('RESET_CORE');
-
-    const options = {
-      standard: standardId,
-      coresize: coreSize,
-      minSeparation: minSeparation,
-      instructionLimit: instructionLimit,
-    };
-
-    corewar.initialiseSimulator(options, result, PubSub);
-
-    dispatch({
-      type: INIT
-    });
-
-  }
-};
-
-export const parse = (redcode) => {
-
-  console.log('parse')
-
-  return dispatch => {
-    dispatch({
-      type: PARSE_REQUESTED
-    })
-
-    let result = corewar.parser.parse(redcode);
-    // TODO: could we serialise the parse result in the core?
-    const warrior = corewar.serialiser.serialise(result.tokens);
-    result.warrior = warrior;
-
-    dispatch({
-      type: PARSE,
-      result,
-      redcode
-    })
-  }
-}
-
 export const removeWarrior = (index) => {
 
   console.log('remove_warrior', index)
@@ -151,7 +83,9 @@ export const removeWarrior = (index) => {
       result
     })
 
-    PubSub.publish('RESET_CORE');
+    dispatch({
+      type: RESET_CORE
+    })
 
     const options = {
       standard: standardId,
@@ -164,7 +98,7 @@ export const removeWarrior = (index) => {
 
     dispatch({
       type: INIT
-    });
+    })
   }
 }
 

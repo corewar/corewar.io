@@ -1,5 +1,4 @@
 import React from 'react'
-import FontAwesome from 'react-fontawesome'
 
 import PlayPauseControl from './playPauseControl'
 import ResetControl from './resetControl'

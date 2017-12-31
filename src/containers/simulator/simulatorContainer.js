@@ -18,11 +18,11 @@ import {
   getCoreInstructions,
   setProcessRate,
   finishRound
-} from '../../modules/simulator'
+} from '../../actions/simulatorActions'
 
 import {
   removeWarrior
-} from '../../modules/parser'
+} from '../../actions/parserActions'
 
 const SimulatorContainer = ({
   isRunning,
