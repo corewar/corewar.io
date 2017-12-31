@@ -134,9 +134,7 @@ describe("Executive", () => {
         });
     });
 
-    function prepareCore(
-        size: number,
-        instructions: IInstruction[]) {
+    function prepareCore(size: number, instructions: IInstruction[]) {
 
         options.coresize = size;
         coreData = [];
@@ -166,21 +164,24 @@ describe("Executive", () => {
         });
     }
 
-    function buildContext(instructionPointer: number, aPointer: number, bPointer: number): IExecutionContext {
+    function buildContext(instructionPointer: number,
+        aPointer: number,
+        bPointer: number,
+        currentTaskIndex: number = 1,
+        numberOfTasks: number = 3): IExecutionContext {
 
         var warrior = DataHelper.buildWarrior(7);
-        var taskA = DataHelper.buildTask();
-        var taskB = DataHelper.buildTask();
-        var taskC = DataHelper.buildTask();
+
+        for (let i = 0; i < numberOfTasks; i++) {
+            const task = DataHelper.buildTask();
+            task.instructionPointer = i === currentTaskIndex ? instructionPointer : 0;
+            warrior.tasks.push(task);
+        }
 
         state.warriors = [warrior];
-        warrior.tasks = [taskA, taskB, taskC];
 
         state.warriorIndex = 0;
-        warrior.taskIndex = 2;// Task Index 1 is executing but the index has been incremented by the fetch
-        taskA.instructionPointer = 0;
-        taskB.instructionPointer = instructionPointer;
-        taskC.instructionPointer = 0;
+        warrior.taskIndex = currentTaskIndex + 1; // Task Index 'currentTaskIndex' is executing but the index has been incremented by the fetch
 
         return {
             aPointer: aPointer,
@@ -188,8 +189,8 @@ describe("Executive", () => {
             core: core,
             instruction: core.getAt(instructionPointer),
             instructionPointer: instructionPointer,
-            task: taskB,
-            taskIndex: 1,// Task which is actually executing
+            task: warrior.tasks[currentTaskIndex],
+            taskIndex: currentTaskIndex, // Task which is actually executing
             warrior: warrior,
             warriorIndex: state.warriorIndex
         };
@@ -215,6 +216,34 @@ describe("Executive", () => {
 
         expect(state.warriors[0].taskIndex).to.be.equal(1);
         expect(state.warriors[0].tasks.length).to.be.equal(2);
+        expect(state.warriors[0].tasks[0].instructionPointer).to.be.equal(0);
+        expect(state.warriors[0].tasks[1].instructionPointer).to.be.equal(0);
+
+        expect(publisher.publish).to.be.calledWith({
+            type: MessageType.TaskCount,
+            payload: {
+                warriorId: 7,
+                taskCount: 2
+            }
+        });
+    });
+
+    it("sets the 'taskIndex' of the warrior to zero if the final task in the warrior has a DAT instruction executed", () => {
+
+        prepareCore(5, [
+            DataHelper.buildInstruction(3, OpcodeType.DAT, ModifierType.A, ModeType.Direct, 0, ModeType.Direct, 0)
+        ]);
+
+        const numberOfTasks = 3;
+
+        var context = buildContext(3, 0, 0, 2, 3);
+
+        var exec = new Executive(publisher);
+        exec.initialise(options);
+        exec.commandTable[OpcodeType.DAT].apply(exec, [context]);
+
+        expect(state.warriors[0].taskIndex).to.be.equal(0);
+        expect(state.warriors[0].tasks.length).to.be.equal(numberOfTasks - 1);
         expect(state.warriors[0].tasks[0].instructionPointer).to.be.equal(0);
         expect(state.warriors[0].tasks[1].instructionPointer).to.be.equal(0);
 

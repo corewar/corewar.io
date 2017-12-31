@@ -22,7 +22,6 @@ export class Fetcher implements IFetcher {
         state.warriorIndex = (wi + 1) % state.warriors.length;
         warrior.taskIndex = (ti + 1) % warrior.tasks.length;
 
-
         var ip = task.instructionPointer;
         var instruction = core.executeAt(task, ip);
         task.instructionPointer = (ip + 1) % state.options.coresize;
