@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import MessagePanel from './messagePanel'
-import ParserInput from './parserInput'
-import ParserOutput from './parserOutput'
-import InputSectionHeader from './inputSectionHeader'
-import OutputSectionHeader from './outputSectionHeader'
+import MessagePanel from '../../components/parser/messagePanel'
+import ParserInput from '../../components/parser/parserInput'
+import ParserOutput from '../../components/parser/parserOutput'
+import InputSectionHeader from '../../components/parser/inputSectionHeader'
+import OutputSectionHeader from '../../components/parser/outputSectionHeader'
 import ParseControls from './parseControls'
 
 import './parseContainer.css'

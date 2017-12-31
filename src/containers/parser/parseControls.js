@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import ControlButton from './controlButton'
+import ControlButton from '../../components/parser/controlButton'
 
 import './parseControls.css'
 
