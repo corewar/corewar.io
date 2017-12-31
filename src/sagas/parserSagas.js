@@ -1,5 +1,5 @@
 import { call, put, takeEvery, takeLatest, select, all } from 'redux-saga/effects'
-import { insertItem } from './../helpers/arrayHelpers'
+import { insertItem, removeItem } from './../helpers/arrayHelpers'
 
 import { corewar } from 'corewar'
 import * as PubSub from 'pubsub-js'
@@ -11,21 +11,21 @@ import {
   PARSE,
   ADD_WARRIOR_REQUESTED,
   ADD_WARRIOR,
-  RESET_CORE
+  REMOVE_WARRIOR_REQUESTED,
+  REMOVE_WARRIOR
 } from './../actions/parserActions'
 
 import { getParserState } from './../reducers/parserReducers'
 import { getSimulatorState } from './../reducers/simulatorReducers'
 
 // sagas
-function* parseSaga(action) {
+function* parseSaga({ redcode }) {
 
-  let result = yield call([corewar, corewar.parse], action.redcode)
+  let result = yield call([corewar, corewar.parse], redcode)
 
   const warrior = yield call([corewar, corewar.serialise], result.tokens)
 
   result.warrior = warrior;
-  const redcode = action.redcode;
 
   yield put({ type: PARSE, result, redcode })
 
@@ -33,16 +33,8 @@ function* parseSaga(action) {
 
 function* addWarriorSaga() {
 
-  console.log('add warrior')
-
   const { standardId, currentParseResult, parseResults } = yield select(getParserState)
   const { coreSize, minSeparation, instructionLimit } = yield select(getSimulatorState)
-
-  const result = yield call(insertItem, parseResults.length, parseResults, currentParseResult)
-
-  yield put({ type: ADD_WARRIOR, result })
-
-  yield call(PubSub.publishSync, 'RESET_CORE')
 
   const options = {
     standard: standardId,
@@ -50,6 +42,38 @@ function* addWarriorSaga() {
     minSeparation: minSeparation,
     instructionLimit: instructionLimit,
   };
+
+  const result = yield call(insertItem, parseResults.length, parseResults, currentParseResult)
+
+  yield put({ type: ADD_WARRIOR, result })
+
+  yield call(PubSub.publishSync, 'RESET_CORE')
+
+  yield call([corewar, corewar.initialiseSimulator], options, result, PubSub);
+
+  yield put({ type: INIT })
+
+}
+
+function* removeWarriorSaga({ index }) {
+
+  console.log('remove_warrior', index)
+
+  const { standardId, parseResults } = yield select(getParserState)
+  const { coreSize, minSeparation, instructionLimit } = yield select(getSimulatorState)
+
+  const options = {
+    standard: standardId,
+    coresize: coreSize,
+    minSeparation: minSeparation,
+    instructionLimit: instructionLimit,
+  };
+
+  const result = removeItem(index, parseResults);
+
+  yield put({ type: REMOVE_WARRIOR, result })
+
+  yield call(PubSub.publishSync, 'RESET_CORE')
 
   yield call([corewar, corewar.initialiseSimulator], options, result, PubSub);
 
@@ -61,6 +85,7 @@ function* addWarriorSaga() {
 export default function* parserWatchers() {
   yield all([
     takeLatest(PARSE_REQUESTED, parseSaga),
-    takeEvery(ADD_WARRIOR_REQUESTED, addWarriorSaga)
+    takeEvery(ADD_WARRIOR_REQUESTED, addWarriorSaga),
+    takeEvery(REMOVE_WARRIOR_REQUESTED, removeWarriorSaga)
   ])
 }
