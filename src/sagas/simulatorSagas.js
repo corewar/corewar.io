@@ -1,5 +1,4 @@
-import { call, put, takeEvery, takeLatest, select, all } from 'redux-saga/effects'
-import { insertItem, removeItem } from './../helpers/arrayHelpers'
+import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 
 import { corewar } from 'corewar'
 import * as PubSub from 'pubsub-js'
@@ -27,9 +26,6 @@ import {
   SET_PROCESS_RATE_REQUESTED
 } from './../actions/simulatorActions'
 
-import {
-
-} from './../actions/simulatorActions'
 
 import { getParserState } from './../reducers/parserReducers'
 import { getSimulatorState } from './../reducers/simulatorReducers'
@@ -74,7 +70,7 @@ function* stepSaga() {
     coreInfo.push(info)
   }
 
-  yield put({type: GET_CORE_INSTRUCTIONS, coreInfo })
+  yield put({ type: GET_CORE_INSTRUCTIONS, coreInfo })
 }
 
 function* runSaga() {
@@ -165,7 +161,7 @@ function* finishSaga() {
 
 }
 
-function* getCoreInstructionsSaga(address) {
+function* getCoreInstructionsSaga({ address }) {
 
   const lowerLimit = address - 5;
   const upperLimit = address + 5;
@@ -183,9 +179,9 @@ function* getCoreInstructionsSaga(address) {
 
 }
 
-function* setProcessRateSaga(rate) {
+function* setProcessRateSaga({ rate }) {
 
-  yield put({ type: SET_PROCESS_RATE, processRate: rate })
+  yield put({ type: SET_PROCESS_RATE, rate })
 
   const { isInitialised, isRunning } = yield select(getSimulatorState)
 

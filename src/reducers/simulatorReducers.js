@@ -96,7 +96,7 @@ export default (state = initialState, action) => {
     case SET_PROCESS_RATE:
       return {
         ...state,
-        processRate: action.processRate
+        processRate: action.rate
       }
 
     default:
