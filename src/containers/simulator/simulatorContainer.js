@@ -1,5 +1,4 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import CoreContainer from './coreContainer'
@@ -17,7 +16,7 @@ import {
   pause,
   getCoreInstructions,
   setProcessRate,
-  finishRound
+  finish
 } from '../../actions/simulatorActions'
 
 import {
@@ -41,7 +40,7 @@ const SimulatorContainer = ({
   setProcessRate,
   processRate,
   processRates,
-  finishRound }) => (
+  finish }) => (
 
   <div id="simulatorContainer">
     <CoreInput
@@ -55,7 +54,7 @@ const SimulatorContainer = ({
       step={step}
       run={run}
       pause={pause}
-      finishRound={finishRound}
+      finish={finish}
       setProcessRate={setProcessRate}
       processRate={processRate}
       processRates={processRates}
@@ -86,20 +85,18 @@ const mapStateToProps = state => ({
   runProgress: state.simulator.runProgress
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  init,
-  step,
-  run,
-  pause,
-  getCoreInstructions,
-  removeWarrior,
-  setProcessRate,
-  finishRound
-}, dispatch)
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  {
+    init,
+    step,
+    run,
+    pause,
+    getCoreInstructions,
+    removeWarrior,
+    setProcessRate,
+    finish
+  }
 )(SimulatorContainer)
 
 export { SimulatorContainer as PureSimulatorContainer }

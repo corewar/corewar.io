@@ -4,7 +4,7 @@ import createSagaMiddleware from 'redux-saga'
 import createHistory from 'history/createBrowserHistory'
 
 import rootReducer from './reducers'
-import parserWatchers from './sagas/parserSagas'
+import rootSaga from './sagas'
 
 export const history = createHistory()
 const sagaMiddleware = createSagaMiddleware()
@@ -36,6 +36,6 @@ const store = createStore(
 )
 
 // then run the saga
-sagaMiddleware.run(parserWatchers)
+sagaMiddleware.run(rootSaga)
 
 export default store

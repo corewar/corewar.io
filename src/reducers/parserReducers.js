@@ -4,11 +4,8 @@ import * as PubSub from 'pubsub-js';
 import { removeItem } from './../helpers/arrayHelpers'
 
 import {
-  PARSE_REQUESTED,
   PARSE,
-  ADD_WARRIOR_REQUESTED,
   ADD_WARRIOR,
-  REMOVE_WARRIOR_REQUESTED,
   REMOVE_WARRIOR
 } from './../actions/parserActions'
 

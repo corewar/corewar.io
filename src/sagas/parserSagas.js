@@ -4,15 +4,17 @@ import { insertItem, removeItem } from './../helpers/arrayHelpers'
 import { corewar } from 'corewar'
 import * as PubSub from 'pubsub-js'
 
-import { INIT } from './../reducers/simulatorReducers'
+import {
+  INIT
+} from './../actions/simulatorActions'
 
 import {
-  PARSE_REQUESTED,
   PARSE,
-  ADD_WARRIOR_REQUESTED,
+  PARSE_REQUESTED,
   ADD_WARRIOR,
-  REMOVE_WARRIOR_REQUESTED,
-  REMOVE_WARRIOR
+  ADD_WARRIOR_REQUESTED,
+  REMOVE_WARRIOR,
+  REMOVE_WARRIOR_REQUESTED
 } from './../actions/parserActions'
 
 import { getParserState } from './../reducers/parserReducers'
@@ -82,10 +84,8 @@ function* removeWarriorSaga({ index }) {
 }
 
 // watchers
-export default function* parserWatchers() {
-  yield all([
-    takeLatest(PARSE_REQUESTED, parseSaga),
-    takeEvery(ADD_WARRIOR_REQUESTED, addWarriorSaga),
-    takeEvery(REMOVE_WARRIOR_REQUESTED, removeWarriorSaga)
-  ])
-}
+export const parserWatchers = [
+  takeLatest(PARSE_REQUESTED, parseSaga),
+  takeEvery(ADD_WARRIOR_REQUESTED, addWarriorSaga),
+  takeEvery(REMOVE_WARRIOR_REQUESTED, removeWarriorSaga)
+]
