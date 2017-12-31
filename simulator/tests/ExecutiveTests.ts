@@ -235,15 +235,16 @@ describe("Executive", () => {
         ]);
 
         const numberOfTasks = 3;
+        const expectedNumberOfTasks = numberOfTasks - 1;
 
-        var context = buildContext(3, 0, 0, 2, 3);
+        var context = buildContext(3, 0, 0, 2, numberOfTasks);
 
         var exec = new Executive(publisher);
         exec.initialise(options);
         exec.commandTable[OpcodeType.DAT].apply(exec, [context]);
 
         expect(state.warriors[0].taskIndex).to.be.equal(0);
-        expect(state.warriors[0].tasks.length).to.be.equal(numberOfTasks - 1);
+        expect(state.warriors[0].tasks.length).to.be.equal(expectedNumberOfTasks);
         expect(state.warriors[0].tasks[0].instructionPointer).to.be.equal(0);
         expect(state.warriors[0].tasks[1].instructionPointer).to.be.equal(0);
 
@@ -251,7 +252,7 @@ describe("Executive", () => {
             type: MessageType.TaskCount,
             payload: {
                 warriorId: 7,
-                taskCount: 2
+                taskCount: expectedNumberOfTasks
             }
         });
     });
