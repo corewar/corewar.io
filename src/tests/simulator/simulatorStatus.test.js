@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
@@ -19,7 +18,7 @@ it('adds the fade class when running', () => {
 
   const wrapper = mount(<PureSimulatorStatus {...props}/>)
 
-  expect(wrapper.find('#simulatorStatus span').props().className).to.equal(`fade`)
+  expect(wrapper.find('#simulatorStatus div').props().className).to.contain(`fade`)
 });
 
 it('shows "running simulation" when running', () => {
@@ -31,7 +30,7 @@ it('shows "running simulation" when running', () => {
 
   const wrapper = mount(<PureSimulatorStatus {...props}/>)
 
-  expect(wrapper.find('#simulatorStatus span').text()).to.equal(`running simulation`)
+  expect(wrapper.find('#simulatorStatus div').text()).to.equal(`running simulation`)
 });
 
 
@@ -44,7 +43,7 @@ it('shows the default text if not running', () => {
 
   const wrapper = mount(<PureSimulatorStatus {...props}/>)
 
-  expect(wrapper.find('#simulatorStatus span').text()).to.equal(`core`)
+  expect(wrapper.find('#simulatorStatus div').text()).to.equal(`core`)
 });
 
 it('shows the outcome text is there is an outcome', () => {
@@ -58,28 +57,51 @@ it('shows the outcome text is there is an outcome', () => {
 
   const wrapper = mount(<PureSimulatorStatus {...props}/>)
 
-  expect(wrapper.find('#simulatorStatus span').text()).to.equal(`simulation complete - ${props.roundResult.outcome}`)
+  expect(wrapper.find('#simulatorStatus div').text()).to.equal(`simulation complete - ${props.roundResult.outcome}`)
 });
 
-it('shows the winnerId if there is one', () => {
+it('shows the winning warriors name and author', () => {
+
+  const winnerId = 0
 
   const props = {
     isRunning: false,
+    isInitialised: true,
+    parseResults: [
+      {
+        metaData: {
+          author: 'doug',
+          name: 'super warrior'
+        }
+      }
+    ],
     roundResult: {
       outcome: 'win',
-      winnerId: 3
+      winnerId: winnerId
     }
   }
 
   const wrapper = mount(<PureSimulatorStatus {...props}/>)
 
-  expect(wrapper.find('#simulatorStatus span').text()).contains(`- winner id: ${props.roundResult.winnerId}`)
+  const winner = props.parseResults[winnerId]
+
+  expect(wrapper.find('#simulatorStatus').text()).contains(`${winner.metaData.author}`)
+  expect(wrapper.find('#simulatorStatus').text()).contains(`${winner.metaData.name}`)
 });
 
-it('shows the winnerId if there is one even if its id=0', () => {
+it('shows a dom element coloured by the winner id', () => {
 
     const props = {
       isRunning: false,
+      isInitialised: true,
+      parseResults: [
+        {
+          metaData: {
+            author: 'doug',
+            name: 'super warrior'
+          }
+        }
+      ],
       roundResult: {
         outcome: 'win',
         winnerId: 0
@@ -88,6 +110,6 @@ it('shows the winnerId if there is one even if its id=0', () => {
 
     const wrapper = mount(<PureSimulatorStatus {...props}/>)
 
-    expect(wrapper.find('#simulatorStatus span').text()).contains(`- winner id: ${props.roundResult.winnerId}`)
+    expect(wrapper.find(`.winner_${props.roundResult.winnerId}`)).to.have.length(1)
   });
 
