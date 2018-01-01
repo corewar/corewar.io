@@ -5,7 +5,7 @@ import { expect } from 'chai'
 import sinon from 'sinon'
 
 import { PureCoreVisualiser } from './../../containers/simulator/coreVisualiser'
-import CoreLocation from './../../containers/simulator/coreLocation'
+import CoreLocation from './../../components/simulator/coreLocation'
 import FontAwesome from 'react-fontawesome'
 
 it('renders without crashing', () => {

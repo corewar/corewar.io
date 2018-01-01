@@ -3,7 +3,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { expect } from 'chai'
 
-import MessagePanel from './../../containers/parser/messagePanel'
+import MessagePanel from './../../components/parser/messagePanel'
 
 it('renders without crashing', () => {
   shallow(<MessagePanel />)

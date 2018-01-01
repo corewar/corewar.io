@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import PlayPauseControl from './../../containers/simulator/playPauseControl'
+import PlayPauseControl from './../../components/simulator/playPauseControl'
 import FontAwesome from 'react-fontawesome'
 
 it('renders without crashing', () => {

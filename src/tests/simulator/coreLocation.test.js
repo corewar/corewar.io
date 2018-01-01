@@ -4,8 +4,8 @@ import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import CoreLocation from './../../containers/simulator/coreLocation'
-import { ModeType } from './../../containers/simulator/coreEnums'
+import CoreLocation from './../../components/simulator/coreLocation'
+import { ModeType } from './../../helpers/coreEnums'
 
 it('renders without crashing', () => {
 

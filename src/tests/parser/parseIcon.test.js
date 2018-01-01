@@ -3,7 +3,7 @@ import React from 'react'
 import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
 
-import ParseIcon from './../../containers/parser/parseIcon'
+import ParseIcon from './../../components/parser/parseIcon'
 import FontAwesome from 'react-fontawesome'
 
 it('renders without crashing', () => {

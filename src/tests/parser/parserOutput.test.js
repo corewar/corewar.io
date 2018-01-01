@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import ParserOutput from './../../containers/parser/parserOutput'
+import ParserOutput from './../../components/parser/parserOutput'
 
 it('renders without crashing', () => {
   shallow(<ParserOutput />)

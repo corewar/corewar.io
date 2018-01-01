@@ -3,7 +3,7 @@ import React from 'react'
 import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
 
-import InputSectionHeader from './../../containers/parser/inputSectionHeader'
+import InputSectionHeader from './../../components/parser/inputSectionHeader'
 
 it('renders without crashing', () => {
   shallow(<InputSectionHeader />)
