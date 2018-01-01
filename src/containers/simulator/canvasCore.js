@@ -331,7 +331,6 @@ class CanvasCore extends Component {
     return <canvas
       ref={(canvasEl) => {
         if(canvasEl == null) {
-          console.log('nuller')
           return;
         }
         this.context = canvasEl.getContext("2d");

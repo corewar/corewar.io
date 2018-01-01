@@ -1,4 +1,4 @@
-import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
+import { call, put, takeEvery, takeLatest, select, fork } from 'redux-saga/effects'
 
 import { corewar } from 'corewar'
 import * as PubSub from 'pubsub-js'
@@ -96,19 +96,19 @@ function* runSaga() {
     yield put({ type: INIT })
   }
 
-  yield call(PubSub.subscribe, 'RUN_PROGRESS', (msg, data) => {
-    call({ type: RUN_PROGRESS, data })
+  yield fork(PubSub.subscribe, 'RUN_PROGRESS', function*(msg, data) {
+    yield put({ type: RUN_PROGRESS, data })
   })
 
-  yield call(PubSub.subscribe, 'ROUND_END', (msg, data) => {
-    call(window.clearInterval, runner)
-    put({ type: RUN_ENDED, data })
+  PubSub.subscribe('ROUND_END', function*(msg, data) {
+    yield fork(window.clearInterval, runner)
+    yield put({ type: RUN_ENDED, data })
   })
 
-  runner = yield call(window.setInterval, () => {
+  runner = window.setInterval(() => {
 
     for(let i = 0; i < processRate; i++) {
-      call([corewar, corewar.step])
+      corewar.step()
     }
 
     operations += processRate;
@@ -194,14 +194,14 @@ function* setProcessRateSaga({ rate }) {
   runner = yield call(window.setInterval, () => {
 
     for(let i = 0; i < rate; i++) {
-      call([corewar, corewar.step])
+      corewar.step()
     }
 
     operations += rate;
 
     // TODO: This should be controlled by the simulator
     if(operations === 80000) {
-      call(window.clearInterval, runner)
+      window.clearInterval(runner)
       operations = 0
     }
   }, 1000/60)

@@ -21,7 +21,7 @@ import { getParserState } from './../reducers/parserReducers'
 import { getSimulatorState } from './../reducers/simulatorReducers'
 
 // sagas
-function* parseSaga({ redcode }) {
+export function* parseSaga({ redcode }) {
 
   let result = yield call([corewar, corewar.parse], redcode)
 
@@ -58,8 +58,6 @@ function* addWarriorSaga() {
 }
 
 function* removeWarriorSaga({ index }) {
-
-  console.log('remove_warrior', index)
 
   const { standardId, parseResults } = yield select(getParserState)
   const { coreSize, minSeparation, instructionLimit } = yield select(getSimulatorState)
