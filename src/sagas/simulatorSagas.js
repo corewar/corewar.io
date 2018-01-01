@@ -1,4 +1,5 @@
-import { call, put, takeEvery, takeLatest, select, fork } from 'redux-saga/effects'
+import { channel } from 'redux-saga'
+import { call, put, takeEvery, takeLatest, select, take, fork } from 'redux-saga/effects'
 
 import { corewar } from 'corewar'
 import * as PubSub from 'pubsub-js'
@@ -33,6 +34,8 @@ import { getSimulatorState } from './../reducers/simulatorReducers'
 // oddities
 let runner = null;
 let operations = 0
+const roundProgressChannel = channel()
+const roundEndChannel = channel()
 
 // sagas
 function* initSaga() {
@@ -73,6 +76,35 @@ function* stepSaga() {
   yield put({ type: GET_CORE_INSTRUCTIONS, coreInfo })
 }
 
+function* watchRoundProgressChannel() {
+  while (true) {
+    const action = yield take(roundProgressChannel)
+    yield put(action)
+  }
+}
+
+function* watchRoundEndChannel() {
+  while(true) {
+    const action = yield take(roundEndChannel)
+    yield call(window.clearInterval, runner)
+    yield put(action)
+  }
+}
+
+const sendRoundProgress = (msg, data) => {
+  roundProgressChannel.put({
+    type: RUN_PROGRESS,
+    data
+  })
+}
+
+const sendRoundEnd = (msg, data) => {
+  roundEndChannel.put({
+    type: RUN_ENDED,
+    data
+  })
+}
+
 function* runSaga() {
 
   yield put({ type: RUN })
@@ -96,14 +128,9 @@ function* runSaga() {
     yield put({ type: INIT })
   }
 
-  yield fork(PubSub.subscribe, 'RUN_PROGRESS', function*(msg, data) {
-    yield put({ type: RUN_PROGRESS, data })
-  })
+  yield call(PubSub.subscribe, 'RUN_PROGRESS', sendRoundProgress)
 
-  PubSub.subscribe('ROUND_END', function*(msg, data) {
-    yield fork(window.clearInterval, runner)
-    yield put({ type: RUN_ENDED, data })
-  })
+  yield call(PubSub.subscribe, 'ROUND_END', sendRoundEnd)
 
   runner = window.setInterval(() => {
 
@@ -153,9 +180,7 @@ function* finishSaga() {
 
   }
 
-  yield call(PubSub.subscribe, 'ROUND_END', (msg, data) => {
-    put({ type: RUN_ENDED, data })
-  })
+  yield call(PubSub.subscribe, 'ROUND_END', sendRoundEnd)
 
   yield call([corewar, corewar.run])
 
@@ -215,5 +240,7 @@ export const simulatorWatchers = [
   takeLatest(FINISH_REQUESTED, finishSaga),
   takeLatest(RUN_REQUESTED, runSaga),
   takeLatest(GET_CORE_INSTRUCTIONS_REQUESTED, getCoreInstructionsSaga),
-  takeLatest(SET_PROCESS_RATE_REQUESTED, setProcessRateSaga)
+  takeLatest(SET_PROCESS_RATE_REQUESTED, setProcessRateSaga),
+  takeEvery(roundProgressChannel, watchRoundProgressChannel),
+  takeEvery(roundEndChannel, watchRoundEndChannel)
 ]

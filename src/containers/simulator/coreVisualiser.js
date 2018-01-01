@@ -22,12 +22,8 @@ const mapStateToProps = state => ({
   instructions: state.simulator.instructions
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-}, dispatch)
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(CoreVisuliser)
 
 export { CoreVisuliser as PureCoreVisualiser }

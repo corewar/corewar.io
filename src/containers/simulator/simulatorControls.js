@@ -21,7 +21,7 @@ const SimulatorControls = ({
   setProcessRate,
   processRate,
   processRates,
-  finishRound }) => (
+  finish }) => (
   <section id="simulatorControlContainer">
     <div id="runProgressContainer">
       <RunProgressIndicator runProgress={runProgress}/>
@@ -43,7 +43,7 @@ const SimulatorControls = ({
         handleClick={step} />
       <FinishRoundControl
         isInitialised={isInitialised}
-        handleFinish={finishRound}
+        handleFinish={finish}
       />
       <ResetControl
         parseResults={parseResults}
