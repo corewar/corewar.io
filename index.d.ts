@@ -4,6 +4,7 @@ import { IParseResult } from "./parser/interface/IParseResult";
 import { IToken } from "./parser/interface/IToken";
 import { IOptions } from "./simulator/interface/IOptions";
 import { IState } from "./simulator/interface/IState";
+import { ICoreLocation } from "./simulator/interface/ICoreLocation";
 
 declare namespace corewar {
 
@@ -18,6 +19,10 @@ declare namespace corewar {
     serialise(tokens: IToken[]) : string;
 
     run() : void;
+
+    parse(redcode: string): IParseResult;
+
+    getWithInfoAt(address: number) : ICoreLocation;
 
   }
 
