@@ -15,14 +15,18 @@ it('renders without crashing', () => {
 it('renders one coreLocation per instruction', () => {
 
   const props = {
-    instructions: [
-      { address: 0 },
-      { address: 1 }
-    ]
+    coreInfo: [{
+      instruction: { address: 0 },
+      access: { warriorId: 0 }
+    },
+    {
+      instruction: { address: 1 },
+      access: { warriorId: 1 }
+    }]
   }
 
   const wrapper = shallow(<PureCoreVisualiser {...props}/>)
 
-  expect(wrapper.find(CoreLocation).length).to.equal(props.instructions.length)
+  expect(wrapper.find(CoreLocation).length).to.equal(props.coreInfo.length)
 });
 
