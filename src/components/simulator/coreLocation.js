@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ModifierType, ModeType, OpcodeType } from './coreEnums'
+import { ModifierType, ModeType, OpcodeType } from './../../helpers/coreEnums'
 
 import './coreLocation.css'
 

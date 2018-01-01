@@ -2,7 +2,7 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import CoreLocation from './coreLocation'
+import CoreLocation from './../../components/simulator/coreLocation'
 
 import './coreVisualiser.css'
 

@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import CoreContainer from './coreContainer'
-import SimulatorControls from './simulatorControls'
+import CoreContainer from './../../components/simulator/coreContainer'
+import SimulatorControls from './../../components/simulator/simulatorControls'
+import CoreInput from './../../components/simulator/coreInput'
+
 import SimulatorStatus from './simulatorStatus'
 import CoreVisualiser from './coreVisualiser'
-import CoreInput from './coreInput'
 
 import './simulatorContainer.css'
 
