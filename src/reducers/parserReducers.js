@@ -1,8 +1,3 @@
-import { corewar } from "corewar";
-import * as PubSub from 'pubsub-js';
-
-import { removeItem } from './../helpers/arrayHelpers'
-
 import {
   PARSE,
   ADD_WARRIOR,

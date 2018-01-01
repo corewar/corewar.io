@@ -6,7 +6,7 @@ import './coreLocation.css'
 
 const CoreLocation = ({ instruction, warriorId }) => (
   <div className={`coreLocation ${instruction.isCurrent ? `current` : ``}` }>
-    <span className={typeof warriorId != null ? `coreLocation_${warriorId}` : ``}>{serialise(instruction)}</span>
+    <span className={warriorId != null ? `coreLocation_${warriorId}` : ``}>{serialise(instruction)}</span>
   </div>
 )
 

@@ -1,4 +1,4 @@
-import { call, put, takeEvery, takeLatest, select, all } from 'redux-saga/effects'
+import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 import { insertItem, removeItem } from './../helpers/arrayHelpers'
 
 import { corewar } from 'corewar'

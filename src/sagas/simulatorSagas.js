@@ -1,5 +1,5 @@
 import { channel } from 'redux-saga'
-import { call, put, takeEvery, takeLatest, select, take, fork } from 'redux-saga/effects'
+import { call, put, takeEvery, takeLatest, select, take } from 'redux-saga/effects'
 
 import { corewar } from 'corewar'
 import * as PubSub from 'pubsub-js'
@@ -7,22 +7,17 @@ import * as PubSub from 'pubsub-js'
 import {
   INIT,
   INIT_REQUESTED,
-  STEP,
   STEP_REQUESTED,
   RUN,
   RUN_REQUESTED,
   PAUSE,
   PAUSE_REQUESTED,
   RUN_PROGRESS,
-  RUN_PROGRESS_REQUESTED,
   RUN_ENDED,
-  RUN_ENDED_REQUESTED,
-  FINISH,
   FINISH_REQUESTED,
   GET_CORE_INSTRUCTIONS,
   GET_CORE_INSTRUCTIONS_REQUESTED,
   SET_CORE_FOCUS,
-  SET_CORE_FOCUS_REQUESTED,
   SET_PROCESS_RATE,
   SET_PROCESS_RATE_REQUESTED
 } from './../actions/simulatorActions'
@@ -110,7 +105,7 @@ function* runSaga() {
   yield put({ type: RUN })
 
   const { standardId, parseResults } = yield select(getParserState)
-  const { coreSize, minSeparation, instructionLimit, processRate, isRunning, roundResult } = yield select(getSimulatorState)
+  const { coreSize, minSeparation, instructionLimit, processRate, roundResult } = yield select(getSimulatorState)
 
   const options = {
     standard: standardId,
