@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import SpeedControl from './../../containers/simulator/speedControl'
+import SpeedControl from './../../components/simulator/speedControl'
 
 it('renders without crashing', () => {
   shallow(<SpeedControl />)

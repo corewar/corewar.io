@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import ControlButton from './../../containers/parser/controlButton'
+import ControlButton from './../../components/parser/controlButton'
 import FontAwesome from 'react-fontawesome'
 
 it('renders without crashing', () => {

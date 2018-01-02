@@ -1,21 +1,20 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import ControlButton from './controlButton'
+import ControlButton from '../../components/parser/controlButton'
 
 import './parseControls.css'
 
 import {
-  save
-} from '../../modules/parser'
+  addWarrior
+} from './../../actions/parserActions'
 
-const ParseControls = ({ save, currentParseResult }) => (
+const ParseControls = ({ addWarrior, currentParseResult }) => (
   <div id="parseControls">
     <ControlButton
       iconClass={`plus`}
       tooltipText={`add to core`}
-      handleClick={save}
+      handleClick={addWarrior}
       enabled={currentParseResult.warrior && currentParseResult.messages.length === 0} />
   </div>
 )
@@ -24,13 +23,11 @@ const mapStateToProps = state => ({
   currentParseResult: state.parser.currentParseResult
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  save
-}, dispatch)
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  {
+    addWarrior
+  }
 )(ParseControls)
 
 export { ParseControls as PureParseControls }

@@ -1,8 +1,7 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import CoreLocation from './coreLocation'
+import CoreLocation from './../../components/simulator/coreLocation'
 
 import './coreVisualiser.css'
 
@@ -22,12 +21,8 @@ const mapStateToProps = state => ({
   instructions: state.simulator.instructions
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-}, dispatch)
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(CoreVisuliser)
 
 export { CoreVisuliser as PureCoreVisualiser }

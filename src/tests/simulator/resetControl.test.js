@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import ResetControl from './../../containers/simulator/resetControl'
+import ResetControl from './../../components/simulator/resetControl'
 import FontAwesome from 'react-fontawesome'
 
 it('renders without crashing', () => {

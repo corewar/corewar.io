@@ -1,22 +1,20 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import MessagePanel from './messagePanel'
-import ParserInput from './parserInput'
-import ParserOutput from './parserOutput'
-import InputSectionHeader from './inputSectionHeader'
-import OutputSectionHeader from './outputSectionHeader'
+import MessagePanel from '../../components/parser/messagePanel'
+import ParserInput from '../../components/parser/parserInput'
+import ParserOutput from '../../components/parser/parserOutput'
+import InputSectionHeader from '../../components/parser/inputSectionHeader'
+import OutputSectionHeader from '../../components/parser/outputSectionHeader'
 import ParseControls from './parseControls'
 
 import './parseContainer.css'
 
 import {
-  parse,
-  removeWarrior
-} from '../../modules/parser'
+  parse
+} from '../../actions/parserActions'
 
-const ParseContainer = ({ redcode, currentParseResult, parseResults, isParsing, parse, removeWarrior }) => (
+const ParseContainer = ({ redcode, currentParseResult, parseResults, isParsing, parse }) => (
   <div id="parseContainer">
     <ParseControls />
     <InputSectionHeader headerText={`instructions`} />
@@ -34,14 +32,11 @@ const mapStateToProps = state => ({
   redcode: state.parser.redcode
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  parse,
-  removeWarrior
-}, dispatch)
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  {
+    parse
+  }
 )(ParseContainer)
 
 export { ParseContainer as PureParseContainer }

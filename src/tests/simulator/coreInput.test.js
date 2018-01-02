@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import CoreInput from './../../containers/simulator/coreInput'
+import CoreInput from './../../components/simulator/coreInput'
 import FontAwesome from 'react-fontawesome'
 
 it('renders without crashing', () => {
