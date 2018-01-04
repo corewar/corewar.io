@@ -16,35 +16,36 @@ class CanvasCore extends Component {
 
     super(props)
 
-    this.coreSize = props.coreSize;
-    this.getCoreInstructions = props.getCoreInstructions;
+    this.coreSize = props.coreSize
+    this.getCoreInstructions = props.getCoreInstructions
 
-    this.messages = [];
+    this.messages = []
 
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
-      this.messages = this.messages.concat(data);
-    });
+      this.messages = this.messages.concat(data)
+    })
 
     PubSub.subscribe('RESET_CORE', (msg, data) => {
-      this.renderGrid();
-    });
+      this.messages = []
+      this.renderGrid()
+    })
 
   }
 
   getContainerSize() {
-    const container = document.getElementById('core');
+    const container = document.getElementById('core')
 
-    this.containerWidth = container.clientWidth - 10;
-    this.containerHeight = container.clientHeight - 10;
+    this.containerWidth = container.clientWidth - 10
+    this.containerHeight = container.clientHeight - 10
 
-    this.canvas.width = this.containerWidth;
-    this.canvas.height = this.containerHeight;
+    this.canvas.width = this.containerWidth
+    this.canvas.height = this.containerHeight
   }
 
   resize() {
 
     if(this.props.isRunning) {
-      return;
+      return
     }
 
     this.getContainerSize();

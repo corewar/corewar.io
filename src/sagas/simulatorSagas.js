@@ -35,6 +35,12 @@ const roundEndChannel = channel()
 // sagas
 function* initSaga() {
 
+  yield call(window.clearTimeout, runner)
+
+  yield call(PubSub.publishSync, 'RESET_CORE')
+
+  yield put({ type: PAUSE })
+
   const { standardId, parseResults } = yield select(getParserState)
   const { coreSize, minSeparation, instructionLimit } = yield select(getSimulatorState)
 
@@ -45,11 +51,10 @@ function* initSaga() {
     instructionLimit: instructionLimit,
   };
 
-  yield call(PubSub.publishSync, 'RESET_CORE')
-
   yield call([corewar, corewar.initialiseSimulator], options, parseResults, PubSub)
 
-  yield put({ type: INIT });
+  yield put({ type: INIT })
+
 }
 
 function* stepSaga() {
@@ -147,7 +152,7 @@ function* runSaga() {
 
 function* pauseSaga() {
 
-  yield call(window.clearTimeout, runner);
+  yield call(window.clearTimeout, runner)
 
   yield put({ type: PAUSE })
 
