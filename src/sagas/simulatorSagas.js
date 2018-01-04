@@ -33,7 +33,7 @@ const roundProgressChannel = channel()
 const roundEndChannel = channel()
 
 // sagas
-function* initSaga() {
+export function* initSaga() {
 
   yield call(window.clearTimeout, runner)
 
@@ -132,7 +132,7 @@ function* runSaga() {
 
   yield call(PubSub.subscribe, 'ROUND_END', sendRoundEnd)
 
-  runner = window.setInterval(() => {
+  runner = yield call(window.setInterval, () => {
 
     for(let i = 0; i < processRate; i++) {
       corewar.step()
@@ -142,7 +142,8 @@ function* runSaga() {
 
     // TODO: This should be controlled by the simulator
     if(operations >= 80000) {
-      call(window.clearInterval, runner)
+      console.log('dont think we will ever get here')
+      window.clearInterval(runner)
       operations = 0
     }
 
