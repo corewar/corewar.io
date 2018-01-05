@@ -46,6 +46,7 @@ const SimulatorContainer = ({
   <div id="simulatorContainer">
     <CoreInput
       parseResults={parseResults}
+      runProgress={runProgress}
       removeWarrior={removeWarrior} />
     <SimulatorControls
       isInitialised={isInitialised}

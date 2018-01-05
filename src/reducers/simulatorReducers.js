@@ -45,7 +45,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isInitialised: true,
-        roundResult: {}
+        roundResult: {},
+        runProgress: 0
       }
 
     case STEP:
