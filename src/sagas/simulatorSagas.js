@@ -35,7 +35,7 @@ const roundEndChannel = channel()
 // sagas
 export function* initSaga() {
 
-  yield call(window.clearTimeout, runner)
+  yield call(window.clearInterval, runner)
 
   yield call(PubSub.publishSync, 'RESET_CORE')
 
