@@ -130,8 +130,6 @@ class CanvasCore extends Component {
     var warriorId = event.warriorId;
 
     var colour = this.getColour(warriorId);
-
-    //TODO colour for each process
     this.context.fillStyle = colour;
     this.context.strokeStyle = colour;
 
@@ -146,7 +144,7 @@ class CanvasCore extends Component {
             this.renderExecute(coordinate);
             break;
         default:
-            //throw Error("Cannot render unknown CoreAccessType: " + event.accessType);
+            throw Error("Cannot render unknown CoreAccessType: " + event.accessType);
             return;
     }
   }
@@ -233,12 +231,12 @@ class CanvasCore extends Component {
 
   renderGridLines() {
 
-    this.context.beginPath();
-    this.renderVerticalLines();
-    this.renderHorizontalLines();
+    this.context.beginPath()
+    this.renderVerticalLines()
+    this.renderHorizontalLines()
 
-    this.context.strokeStyle = "#666";
-    this.context.stroke();
+    this.context.strokeStyle = "#666"
+    this.context.stroke()
   }
 
   renderHorizontalLines() {
@@ -321,10 +319,37 @@ class CanvasCore extends Component {
       return;
     }
 
-    const point = this.getRelativeCoordinates(e);
-    const address = this.screenCoordinateToAddress(point);
+    const point = this.getRelativeCoordinates(e)
 
-    this.getCoreInstructions(address);
+    this.highlightClickPoint(point)
+
+    const address = this.screenCoordinateToAddress(point)
+
+    this.getCoreInstructions(address)
+  }
+
+  highlightClickPoint(point) {
+
+    const address = this.screenCoordinateToAddress(point)
+
+    const cell = this.addressToScreenCoordinate(address)
+
+    const { x, y } = cell
+
+    this.context.beginPath()
+
+    this.context.fillStyle = '#fff';
+    this.context.strokeStyle = '#fff';
+
+    this.context.moveTo(x, y)
+
+    this.context.lineTo(x + this.cellSize, y)
+    this.context.lineTo(x + this.cellSize, y - this.cellSize)
+    this.context.lineTo(x, y - this.cellSize)
+    this.context.lineTo(x, y)
+
+    this.context.stroke()
+
   }
 
   render() {
@@ -332,9 +357,9 @@ class CanvasCore extends Component {
     return <canvas
       ref={(canvasEl) => {
         if(canvasEl == null) {
-          return;
+          return
         }
-        this.context = canvasEl.getContext("2d");
+        this.context = canvasEl.getContext("2d")
         this.canvas = canvasEl; }}
       ></canvas>
   }
