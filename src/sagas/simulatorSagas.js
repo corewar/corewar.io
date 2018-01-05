@@ -33,7 +33,13 @@ const roundProgressChannel = channel()
 const roundEndChannel = channel()
 
 // sagas
-function* initSaga() {
+export function* initSaga() {
+
+  yield call(window.clearInterval, runner)
+
+  yield call(PubSub.publishSync, 'RESET_CORE')
+
+  yield put({ type: PAUSE })
 
   const { standardId, parseResults } = yield select(getParserState)
   const { coreSize, minSeparation, instructionLimit } = yield select(getSimulatorState)
@@ -45,11 +51,10 @@ function* initSaga() {
     instructionLimit: instructionLimit,
   };
 
-  yield call(PubSub.publishSync, 'RESET_CORE')
-
   yield call([corewar, corewar.initialiseSimulator], options, parseResults, PubSub)
 
-  yield put({ type: INIT });
+  yield put({ type: INIT })
+
 }
 
 function* stepSaga() {
@@ -127,7 +132,7 @@ function* runSaga() {
 
   yield call(PubSub.subscribe, 'ROUND_END', sendRoundEnd)
 
-  runner = window.setInterval(() => {
+  runner = yield call(window.setInterval, () => {
 
     for(let i = 0; i < processRate; i++) {
       corewar.step()
@@ -137,7 +142,8 @@ function* runSaga() {
 
     // TODO: This should be controlled by the simulator
     if(operations >= 80000) {
-      call(window.clearInterval, runner)
+      console.log('dont think we will ever get here')
+      window.clearInterval(runner)
       operations = 0
     }
 
@@ -147,7 +153,7 @@ function* runSaga() {
 
 function* pauseSaga() {
 
-  yield call(window.clearTimeout, runner);
+  yield call(window.clearTimeout, runner)
 
   yield put({ type: PAUSE })
 
