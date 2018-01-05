@@ -10,3 +10,18 @@ export const removeItem = (index, array) => {
     ...array.slice(index + 1)
   ]
 }
+
+export const replaceItem = (index, array, item) => {
+
+    return array.map((el, i) => {
+      if(i !== index) {
+        return el;
+      }
+
+      return {
+        ...el,
+        ...item
+      }
+    })
+
+}

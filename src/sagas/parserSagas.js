@@ -69,7 +69,7 @@ function* removeWarriorSaga({ index }) {
     instructionLimit: instructionLimit,
   };
 
-  const result = removeItem(index, parseResults);
+  const result = yield call(removeItem, index, parseResults);
 
   yield put({ type: REMOVE_WARRIOR, result })
 

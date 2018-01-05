@@ -1,5 +1,5 @@
-import React, { Component }from 'react'
-import * as PubSub from 'pubsub-js';
+import React, { Component } from 'react'
+import * as PubSub from 'pubsub-js'
 
 const colourPalette = [
   '#EB5757',
@@ -14,7 +14,7 @@ class CanvasCore extends Component {
 
   constructor(props) {
 
-    super(props);
+    super(props)
 
     this.coreSize = props.coreSize;
     this.getCoreInstructions = props.getCoreInstructions;
