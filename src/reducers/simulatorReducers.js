@@ -17,13 +17,18 @@ const initialState = {
   runProgress: 0,
   focus: null,
   roundResult: {},
-  result: {},
   coreSize: 8000,
   minSeparation: 1,
   instructionLimit: 1,
   instructions: [],
   processRate: 1,
-  processRates: [1, 2, 5, 12, 30, 75, 200]
+  processRates: [1, 2, 5, 12, 30, 75, 200],
+  currentCoreOption: 1,
+  coreOptions: [
+    { id: 1, name: 'Default'},
+    { id: 2, name: 'Nano' },
+    { id: 3, name: 'Ltd Process' }
+  ]
 }
 
 // selectors

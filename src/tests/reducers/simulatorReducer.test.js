@@ -28,7 +28,6 @@ describe('when testing the simulator reducers', () => {
       runProgress: 0,
       focus: null,
       roundResult: {},
-      result: {},
       coreSize: 8000,
       minSeparation: 1,
       instructionLimit: 1,

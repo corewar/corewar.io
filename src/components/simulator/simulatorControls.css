@@ -36,7 +36,7 @@
   grid-column-end: 3;
 
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-template-rows: auto;
 
 
@@ -81,20 +81,25 @@
   visibility: visible;
 }
 
-.speedOptions {
+.optionDropdown {
   color: #fff;
   font-size: 1.2em;
   padding-top: 3px;
   position: relative;
 }
 
-.speedOptions ul {
+.optionDropdown ul {
   display: none;
   position: absolute;
   margin: 0;
   padding: 0;
   top: 36px;
   z-index: 1;
+}
+
+.optionDropdown ul li.active {
+  background-color: #fff;
+  color: #56CCF2;
 }
 
 .simulatorControl:hover ul {
@@ -104,7 +109,7 @@
 }
 
 .simulatorControl ul li {
-  width: 100px;
+  width: 80px;
   background-color: #56CCF2;
   color: #100E14;
   padding-top: 5px;

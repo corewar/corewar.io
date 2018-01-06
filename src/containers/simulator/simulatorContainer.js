@@ -41,7 +41,9 @@ const SimulatorContainer = ({
   setProcessRate,
   processRate,
   processRates,
-  finish }) => (
+  finish,
+  coreOptions,
+  currentCoreOption }) => (
 
   <div id="simulatorContainer">
     <CoreInput
@@ -60,7 +62,9 @@ const SimulatorContainer = ({
       setProcessRate={setProcessRate}
       processRate={processRate}
       processRates={processRates}
-      runProgress={runProgress} />
+      runProgress={runProgress}
+      coreOptions={coreOptions}
+      currentCoreOption={currentCoreOption} />
     <SimulatorStatus
       isRunning={isRunning}
       isInitialised={isInitialised}
@@ -84,7 +88,9 @@ const mapStateToProps = state => ({
   parseResults: state.parser.parseResults,
   processRate: state.simulator.processRate,
   processRates: state.simulator.processRates,
-  runProgress: state.simulator.runProgress
+  runProgress: state.simulator.runProgress,
+  coreOptions: state.simulator.coreOptions,
+  currentCoreOption: state.simulator.currentCoreOption
 })
 
 export default connect(
