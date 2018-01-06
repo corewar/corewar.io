@@ -17,7 +17,6 @@ class CanvasCore extends Component {
 
     super(props)
 
-    this.coreSize = props.coreSize
     this.getCoreInstructions = props.getCoreInstructions
 
     this.messages = []
@@ -225,7 +224,7 @@ class CanvasCore extends Component {
   calculateCellSize() {
 
     var area = this.containerWidth * this.containerHeight;
-    var n = this.coreSize;
+    var n = this.props.coreSize;
 
     var maxCellSize = Math.sqrt(area / n);
     var possibleCellSize = Math.floor(maxCellSize);
@@ -242,7 +241,7 @@ class CanvasCore extends Component {
     var cellsWide = Math.floor(this.containerWidth / cellSize);
     var cellsHigh = Math.floor(this.containerHeight / cellSize);
 
-    return cellsWide * cellsHigh >= this.coreSize;
+    return cellsWide * cellsHigh >= this.props.coreSize;
   }
 
   renderGridLines() {
@@ -282,7 +281,7 @@ class CanvasCore extends Component {
   greyOutExtraCells() {
 
     var cellsDrawn = this.cellsWide * this.cellsHigh
-    var extraCellsDrawn = cellsDrawn - this.coreSize;
+    var extraCellsDrawn = cellsDrawn - this.props.coreSize;
 
     if (extraCellsDrawn === 0) {
         return
