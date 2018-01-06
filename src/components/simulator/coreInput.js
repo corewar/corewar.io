@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as PubSub from 'pubsub-js'
 import FontAwesome from 'react-fontawesome'
+import PropTypes from 'prop-types'
 import { List } from 'immutable'
 
 import './coreInput.css'
@@ -54,5 +55,17 @@ class CoreInput extends Component {
     </section>
   }
 }
+
+CoreInput.PropTypes = {
+  parseResult: PropTypes.arrayOf(
+    PropTypes.shape({
+      metaData: PropTypes.shape({
+        name: PropTypes.string,
+        author: PropTypes.string
+      })
+    })),
+  removeWarrior: PropTypes.func
+}
+
 export default CoreInput
 

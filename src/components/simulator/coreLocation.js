@@ -100,7 +100,7 @@ const serialiseMode = (mode) => {
       return "#"
   }
 
-  throw "Unknown Mode provided to InstructionSerialiser"
+  //throw "Unknown Mode provided to InstructionSerialiser"
 }
 
 const serialiseAddress = (address) => (
