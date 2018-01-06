@@ -5,4 +5,4 @@ import App from './../../containers/app/index'
 
 it('renders without crashing', () => {
   shallow(<App />)
-});
+})
