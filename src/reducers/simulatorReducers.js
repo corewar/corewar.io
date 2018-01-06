@@ -23,15 +23,7 @@ const initialState = {
   instructionLimit: 1,
   instructions: [],
   processRate: 1,
-  processRates: [
-    1,
-    2,
-    5,
-    12,
-    30,
-    75,
-    200
-  ]
+  processRates: [1, 2, 5, 12, 30, 75, 200]
 }
 
 // selectors
