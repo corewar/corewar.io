@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import * as PubSub from 'pubsub-js'
 
 const colourPalette = [
@@ -30,20 +31,26 @@ class CanvasCore extends Component {
       this.renderGrid()
     })
 
+    this.state = {
+      height: 550,
+      width: 550
+    }
+
   }
 
   getContainerSize() {
 
-    const container = document.getElementById('core')
+    const width = this.canvasContainer.clientWidth - 10
+    const height = this.canvasContainer.clientHeight - 10
 
-    this.containerWidth = container.clientWidth - 10
-    this.containerHeight = container.clientHeight - 10
+    this.setState({
+      width: width,
+      height: height
+    })
 
-    this.coreCanvas.width = this.containerWidth
-    this.coreCanvas.height = this.containerHeight
+    this.containerWidth = width
+    this.containerHeight = height
 
-    this.interactiveCanvas.width = this.containerWidth
-    this.interactiveCanvas.height = this.containerHeight
   }
 
   resize() {
@@ -58,14 +65,14 @@ class CanvasCore extends Component {
     this.cellsWide = Math.floor(this.containerWidth / this.cellSize);
     this.cellsHigh = Math.floor(this.containerHeight / this.cellSize);
 
-    this.renderGrid();
+    this.renderGrid()
   }
 
   componentDidMount() {
 
     this.resize();
 
-    this.renderGrid();
+    //this.renderGrid();
 
     this.interactiveCanvas.addEventListener("click", e => this.canvasClick(e))
 
@@ -194,7 +201,8 @@ class CanvasCore extends Component {
 
     this.coreContext.setTransform(1, 0, 0, 1, 0, 0)
     this.coreContext.clearRect(0, 0, this.containerWidth, this.containerHeight)
-    this.coreContext.setTransform(1, 0, 0, 1, 0.5, 0.5);
+    this.coreContext.setTransform(1, 0, 0, 1, 0.5, 0.5)
+
   }
 
   clearInteractiveCanvas() {
@@ -211,6 +219,7 @@ class CanvasCore extends Component {
 
     this.coreContext.fillStyle = "#100E14";
     this.coreContext.fillRect(0, 0, width, height);
+
   }
 
   calculateCellSize() {
@@ -272,11 +281,11 @@ class CanvasCore extends Component {
 
   greyOutExtraCells() {
 
-    var cellsDrawn = this.cellsWide * this.cellsHigh;
+    var cellsDrawn = this.cellsWide * this.cellsHigh
     var extraCellsDrawn = cellsDrawn - this.coreSize;
 
     if (extraCellsDrawn === 0) {
-        return;
+        return
     }
 
     var gridWidth = this.cellsWide * this.cellSize;
@@ -288,7 +297,8 @@ class CanvasCore extends Component {
     var x = maxX;
     var y = maxY;
 
-    this.coreContext.fillStyle = "#100E14";
+    this.coreContext.fillStyle = "#100E14"
+
     while (extraCellsDrawn-- > 0) {
 
       this.coreContext.fillRect(x, y, this.cellSize, this.cellSize);
@@ -360,26 +370,35 @@ class CanvasCore extends Component {
 
   render() {
 
-    return <div id="canvas">
+    return <div id="canvasContainer"
+      ref={(canvasContainer) => {
+        if(canvasContainer == null) { return }
+        this.canvasContainer = canvasContainer
+    }}>
       <canvas
         ref={(coreCanvasEl) => {
-          if(coreCanvasEl == null) {
-            return
-          }
+          if(coreCanvasEl == null) { return }
           this.coreContext = coreCanvasEl.getContext("2d")
-          this.coreCanvas = coreCanvasEl; }}
+          this.coreCanvas = coreCanvasEl }}
+        height={this.state.height}
+        width={this.state.width}
         ></canvas>
       <canvas
         ref={(interactiveCanvasEl) => {
-          if(interactiveCanvasEl == null) {
-            return
-          }
+          if(interactiveCanvasEl == null) { return }
           this.interactiveContext = interactiveCanvasEl.getContext("2d")
-          this.interactiveCanvas = interactiveCanvasEl; }}
+          this.interactiveCanvas = interactiveCanvasEl }}
+        height={this.state.height}
+        width={this.state.width}
         ></canvas>
       </div>
   }
 
+}
+
+CanvasCore.PropTypes = {
+  coreSize: PropTypes.number.isRequired,
+  getCoreInstructions: PropTypes.func
 }
 
 export default CanvasCore

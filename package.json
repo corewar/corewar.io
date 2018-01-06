@@ -38,6 +38,17 @@
     "coverage": "react-scripts test --env=jsdom --coverage",
     "eject": "react-scripts eject"
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/**/node_modules/*.test.js",
+      "!src/registerServiceWorker.js",
+      "!src/store.js",
+      "!src/setupTests.js",
+      "!src/index.js",
+      "!src/sagas/index.js"
+    ]
+  },
   "devDependencies": {
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0"
