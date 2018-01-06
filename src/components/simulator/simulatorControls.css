@@ -83,7 +83,6 @@
 
 .optionDropdown {
   color: #fff;
-  font-size: 1.2em;
   padding-top: 3px;
   position: relative;
 }
@@ -105,7 +104,7 @@
 .simulatorControl:hover ul {
   display: block;
   list-style: none;
-  border-top: 2px solid #56CCF2;
+
 }
 
 .simulatorControl ul li {

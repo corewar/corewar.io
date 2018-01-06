@@ -17,7 +17,8 @@ import {
   pause,
   getCoreInstructions,
   setProcessRate,
-  finish
+  finish,
+  setCoreOptions
 } from '../../actions/simulatorActions'
 
 import {
@@ -43,7 +44,8 @@ const SimulatorContainer = ({
   processRates,
   finish,
   coreOptions,
-  currentCoreOption }) => (
+  currentCoreOption,
+  setCoreOptions }) => (
 
   <div id="simulatorContainer">
     <CoreInput
@@ -64,7 +66,8 @@ const SimulatorContainer = ({
       processRates={processRates}
       runProgress={runProgress}
       coreOptions={coreOptions}
-      currentCoreOption={currentCoreOption} />
+      currentCoreOption={currentCoreOption}
+      setCoreOptions={setCoreOptions} />
     <SimulatorStatus
       isRunning={isRunning}
       isInitialised={isInitialised}
@@ -103,7 +106,8 @@ export default connect(
     getCoreInstructions,
     removeWarrior,
     setProcessRate,
-    finish
+    finish,
+    setCoreOptions
   }
 )(SimulatorContainer)
 

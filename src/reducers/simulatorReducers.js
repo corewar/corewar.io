@@ -7,7 +7,8 @@ import {
   RUN_ENDED,
   GET_CORE_INSTRUCTIONS,
   SET_CORE_FOCUS,
-  SET_PROCESS_RATE
+  SET_PROCESS_RATE,
+  SET_CORE_OPTIONS
 } from './../actions/simulatorActions'
 
 // state
@@ -94,7 +95,17 @@ export default (state = initialState, action) => {
         processRate: action.rate
       }
 
+    case SET_CORE_OPTIONS:
+      return {
+        ...state,
+        currentCoreOption: action.id,
+        coreSize: action.coreSize,
+        minSeparation: action.minSeparation,
+        instructionLimit: action.instructionLimit
+      }
+
     default:
       return state
   }
 }
+

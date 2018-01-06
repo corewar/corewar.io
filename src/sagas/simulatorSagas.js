@@ -19,7 +19,9 @@ import {
   GET_CORE_INSTRUCTIONS_REQUESTED,
   SET_CORE_FOCUS,
   SET_PROCESS_RATE,
-  SET_PROCESS_RATE_REQUESTED
+  SET_PROCESS_RATE_REQUESTED,
+  SET_CORE_OPTIONS,
+  SET_CORE_OPTIONS_REQUESTED
 } from './../actions/simulatorActions'
 
 
@@ -49,7 +51,7 @@ export function* initSaga() {
     coresize: coreSize,
     minSeparation: minSeparation,
     instructionLimit: instructionLimit,
-  };
+  }
 
   yield call([corewar, corewar.initialiseSimulator], options, parseResults, PubSub)
 
@@ -233,6 +235,51 @@ function* setProcessRateSaga({ rate }) {
   }, 1000/60)
 }
 
+function* setCoreOptionsSaga({ id }) {
+
+  const { standardId } = yield select(getParserState)
+  const { coreSize, minSeparation, instructionLimit } = yield call(getCoreOptions, id)
+
+  // const options = {
+  //   standard: standardId,
+  //   coresize: coreSize,
+  //   minSeparation: minSeparation,
+  //   instructionLimit: instructionLimit,
+  // }
+
+  yield put({ type: SET_CORE_OPTIONS, coreSize, minSeparation, instructionLimit, id })
+
+}
+
+const getCoreOptions = (id) => {
+
+    switch (id) {
+      case 1:
+        return {
+          coreSize: 8000,
+          minSeparation: 1,
+          instructionLimit: 1
+        }
+      case 2:
+        return {
+          coreSize: 64,
+          minSeparation: 1,
+          instructionLimit: 1
+        }
+
+      case 3:
+        return {
+          coreSize: 64,
+          minSeparation: 1,
+          instructionLimit: 1
+        }
+
+      default:
+        return {}
+    }
+
+  }
+
 // watchers
 export const simulatorWatchers = [
   takeLatest(INIT_REQUESTED, initSaga),
@@ -240,6 +287,7 @@ export const simulatorWatchers = [
   takeEvery(PAUSE_REQUESTED, pauseSaga),
   takeLatest(FINISH_REQUESTED, finishSaga),
   takeLatest(RUN_REQUESTED, runSaga),
+  takeLatest(SET_CORE_OPTIONS_REQUESTED, setCoreOptionsSaga),
   takeLatest(GET_CORE_INSTRUCTIONS_REQUESTED, getCoreInstructionsSaga),
   takeLatest(SET_PROCESS_RATE_REQUESTED, setProcessRateSaga),
   takeEvery(roundProgressChannel, watchRoundProgressChannel),
