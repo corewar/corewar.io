@@ -3,9 +3,9 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { expect } from 'chai'
 
-import SiteHeader from './../../containers/app/siteHeader'
-import Login from './../../containers/app/login'
-import Logo from './../../containers/app/logo'
+import SiteHeader from './../../components/app/siteHeader'
+import Login from './../../components/app/login'
+import Logo from './../../components/app/logo'
 
 it('renders without crashing', () => {
   shallow(<SiteHeader />)

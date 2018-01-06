@@ -14,6 +14,7 @@
     "corewar": "0.0.64",
     "immutable": "^3.8.2",
     "jest-cli": "^21.2.1",
+    "prop-types": "^15.6.0",
     "pubsub-js": "^1.5.7",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
