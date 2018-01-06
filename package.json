@@ -46,7 +46,8 @@
       "!src/store.js",
       "!src/setupTests.js",
       "!src/index.js",
-      "!src/sagas/index.js"
+      "!src/sagas/index.js",
+      "!src/reducers/index.js"
     ]
   },
   "devDependencies": {
