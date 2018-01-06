@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 
-import SiteHeader from './siteHeader'
-import DebugInterface from './debugInterface'
+import SiteHeader from './../../components/app/siteHeader'
+import DebugInterface from './../../components/app/debugInterface'
 
 import './app.css'
 
@@ -16,4 +16,4 @@ const App = () => (
   </div>
 )
 
-export default App;
+export default App

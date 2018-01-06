@@ -1,7 +1,7 @@
 import React from 'react'
 
-import ParseContainer from './../parser/parseContainer'
-import SimulatorContainer from './../simulator/simulatorContainer'
+import ParseContainer from './../../containers/parser/parseContainer'
+import SimulatorContainer from './../../containers/simulator/simulatorContainer'
 
 
 import './debugInterface.css'
