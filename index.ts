@@ -109,10 +109,12 @@ class Api {
     public initialiseSimulator(opts: IOptions, parseResults: IParseResult[], messageProvider: IPublishProvider) {
 
         var options = Object.assign(Defaults, {
+            standard: opts.standard,
             coresize: opts.coresize,
+            cyclesBeforeTie: opts.cyclesBeforeTie,
             minSeparation: opts.minSeparation,
             instructionLimit: opts.instructionLimit,
-            standard: opts.standard
+            maxTasks: opts.maxTasks
         })
 
         this.publisher.setPublishProvider(messageProvider)
