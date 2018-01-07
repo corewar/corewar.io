@@ -83,8 +83,11 @@
 
 .optionDropdown {
   color: #fff;
-  padding-top: 3px;
   position: relative;
+}
+
+.optionDropdown.text {
+  padding-top: 3px;
 }
 
 .optionDropdown ul {
@@ -97,14 +100,13 @@
 }
 
 .optionDropdown ul li.active {
-  background-color: #fff;
   color: #56CCF2;
+  background-color: #100E14;
 }
 
 .simulatorControl:hover ul {
   display: block;
   list-style: none;
-
 }
 
 .simulatorControl ul li {

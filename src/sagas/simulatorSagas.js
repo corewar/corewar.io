@@ -44,13 +44,15 @@ export function* initSaga() {
   yield put({ type: PAUSE })
 
   const { standardId, parseResults } = yield select(getParserState)
-  const { coreSize, minSeparation, instructionLimit } = yield select(getSimulatorState)
+  const { coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks } = yield select(getSimulatorState)
 
   const options = {
     standard: standardId,
     coresize: coreSize,
+    cyclesBeforeTie: cyclesBeforeTie,
     minSeparation: minSeparation,
     instructionLimit: instructionLimit,
+    maxTasks: maxTasks
   }
 
   yield call([corewar, corewar.initialiseSimulator], options, parseResults, PubSub)
@@ -112,13 +114,15 @@ function* runSaga() {
   yield put({ type: RUN })
 
   const { standardId, parseResults } = yield select(getParserState)
-  const { coreSize, minSeparation, instructionLimit, processRate, roundResult } = yield select(getSimulatorState)
+  const { coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks, processRate, roundResult } = yield select(getSimulatorState)
 
   const options = {
     standard: standardId,
     coresize: coreSize,
+    cyclesBeforeTie: cyclesBeforeTie,
     minSeparation: minSeparation,
     instructionLimit: instructionLimit,
+    maxTasks: maxTasks
   }
 
   if(roundResult.outcome) {
@@ -163,14 +167,16 @@ function* pauseSaga() {
 
 function* finishSaga() {
 
-  const { roundResult, coreSize, minSeparation, instructionLimit } = yield select(getSimulatorState)
   const { standardId, parseResults } = yield select(getParserState)
+  const { coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks, roundResult } = yield select(getSimulatorState)
 
   const options = {
     standard: standardId,
     coresize: coreSize,
+    cyclesBeforeTie: cyclesBeforeTie,
     minSeparation: minSeparation,
     instructionLimit: instructionLimit,
+    maxTasks: maxTasks
   }
 
   if(roundResult.outcome) {
@@ -237,41 +243,107 @@ function* setProcessRateSaga({ rate }) {
 
 function* setCoreOptionsSaga({ id }) {
 
+  const { isRunning } = yield select(getSimulatorState)
+
+  if(isRunning) {
+
+    yield call(window.clearTimeout, runner)
+
+    yield put({ type: PAUSE })
+
+    yield call(PubSub.publishSync, 'RESET_CORE');
+
+  }
+
   const { standardId, parseResults } = yield select(getParserState)
-  const { coreSize, minSeparation, instructionLimit } = yield call(getCoreOptions, id)
+  const { coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks } = yield call(getCoreOptions, id)
 
-  yield put({ type: SET_CORE_OPTIONS, coreSize, minSeparation, instructionLimit, id })
+  yield put({ type: SET_CORE_OPTIONS, coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks, id })
 
+  yield put({ type: INIT })
+
+}
+
+const CoreOptions = {
+  Beginner: 1,
+  Nano: 2,
+  Tiny: 3,
+  LimitedProcess: 4,
+  Fortress: 5,
+  NinetyFourT: 6,
+  TinyLimitedProcess: 7
 }
 
 const getCoreOptions = (id) => {
 
-    switch (id) {
-      case 1:
-        return {
-          coreSize: 8000,
-          minSeparation: 1,
-          instructionLimit: 1
-        }
-      case 2:
-        return {
-          coreSize: 64,
-          minSeparation: 1,
-          instructionLimit: 1
-        }
+  switch (id) {
+    case CoreOptions.Beginner:
+      return {
+        coreSize: 8000,
+        cyclesBeforeTie: 80000,
+        maxTasks: 8000,
+        minSeparation: 100,
+        instructionLimit: 100
+      }
+    case CoreOptions.Nano:
+      return {
+        coreSize: 80,
+        cyclesBeforeTie: 800,
+        maxTasks: 80,
+        minSeparation: 5,
+        instructionLimit: 5
+      }
 
-      case 3:
-        return {
-          coreSize: 64,
-          minSeparation: 1,
-          instructionLimit: 1
-        }
+    case CoreOptions.Tiny:
+      return {
+        coreSize: 800,
+        cyclesBeforeTie: 8000,
+        maxTasks: 800,
+        minSeparation: 20,
+        instructionLimit: 20
+      }
 
-      default:
-        return {}
-    }
+    case CoreOptions.LimitedProcess:
+      return {
+        coreSize: 8000,
+        cyclesBeforeTie: 80000,
+        maxTasks: 8,
+        minSeparation: 200,
+        instructionLimit: 200
+      }
 
+    case CoreOptions.Fortress:
+      return {
+        coreSize: 8000,
+        cyclesBeforeTie: 80000,
+        maxTasks: 80,
+        minSeparation: 4000,
+        instructionLimit: 400
+      }
+
+    case CoreOptions.NinetyFourT:
+      return {
+        coreSize: 8192,
+        cyclesBeforeTie: 100000,
+        maxTasks: 8000,
+        minSeparation: 300,
+        instructionLimit: 300
+      }
+
+    case CoreOptions.TinyLimitedProcess:
+      return {
+        coreSize: 800,
+        cyclesBeforeTie: 8000,
+        maxTasks: 8,
+        minSeparation: 50,
+        instructionLimit: 50
+      }
+
+    default:
+      return {}
   }
+
+}
 
 // watchers
 export const simulatorWatchers = [

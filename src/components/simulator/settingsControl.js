@@ -8,7 +8,10 @@ const SettingsControl = ({ currentCoreOption, coreOptions, handleClick }) => (
       <FontAwesome name="cog" size="2x" />
       <ul>
         {coreOptions && coreOptions.map(option => (
-          <li key={option.id} className={option.id === currentCoreOption ? `active` : ``} onClick={() => handleClick(option.id)}>{option.name}</li>
+          <li
+            key={option.id}
+            className={option.id === currentCoreOption ? `active` : ``}
+            onClick={() => handleClick(option.id)}>{option.name}</li>
         ))}
       </ul>
     </div>
