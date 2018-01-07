@@ -237,15 +237,8 @@ function* setProcessRateSaga({ rate }) {
 
 function* setCoreOptionsSaga({ id }) {
 
-  const { standardId } = yield select(getParserState)
+  const { standardId, parseResults } = yield select(getParserState)
   const { coreSize, minSeparation, instructionLimit } = yield call(getCoreOptions, id)
-
-  // const options = {
-  //   standard: standardId,
-  //   coresize: coreSize,
-  //   minSeparation: minSeparation,
-  //   instructionLimit: instructionLimit,
-  // }
 
   yield put({ type: SET_CORE_OPTIONS, coreSize, minSeparation, instructionLimit, id })
 
