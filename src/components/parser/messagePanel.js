@@ -27,7 +27,7 @@ const messageTypeToString = (messageType) => {
       case 1: // MessageType.Warning
           return 'WARNING: ';
       case 2: // MessageType.Info
-          return '';
+          return 'INFO: ';
       default:
           return '';
   }

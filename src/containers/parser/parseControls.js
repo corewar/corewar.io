@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import ControlButton from '../../components/parser/controlButton'
 
@@ -15,9 +16,17 @@ const ParseControls = ({ addWarrior, currentParseResult }) => (
       iconClass={`plus`}
       tooltipText={`add to core`}
       handleClick={addWarrior}
-      enabled={currentParseResult.warrior && currentParseResult.messages.length === 0} />
+      enabled={currentParseResult && currentParseResult.warrior && currentParseResult.messages.length === 0} />
   </div>
 )
+
+ParseControls.PropTypes = {
+  addWarrior: PropTypes.func,
+  currentParseResult: PropTypes.shape({
+    warrior: PropTypes.string,
+    messages: PropTypes.array
+  }).isRequired
+}
 
 const mapStateToProps = state => ({
   currentParseResult: state.parser.currentParseResult

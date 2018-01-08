@@ -18,7 +18,7 @@ it('renders without crashing', () => {
   }
 
   shallow(<CoreLocation {...props} />)
-});
+})
 
 it('applies the current class if the prop.isCurrent is set', () => {
 
@@ -33,5 +33,5 @@ it('applies the current class if the prop.isCurrent is set', () => {
   const wrapper = mount(<CoreLocation {...props}/>)
 
   expect(wrapper.find('.coreLocation').props().className).contains('current')
-});
+})
 

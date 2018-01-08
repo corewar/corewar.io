@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import UserInfo from './userInfo'
 
@@ -15,5 +16,9 @@ const Login = ({ isAuthenticated }) => (
     }
   </div>
 )
+
+Login.PropTypes = {
+  isAuthenticated: PropTypes.bool
+}
 
 export default Login

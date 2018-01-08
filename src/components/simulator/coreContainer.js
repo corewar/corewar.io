@@ -1,7 +1,7 @@
 import React from 'react'
 
 import CanvasCore from './canvasCore'
-import ErrorBoundary from './../errorBoundary'
+import ErrorBoundary from './../app/errorBoundary'
 
 import './coreContainer.css'
 

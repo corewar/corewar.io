@@ -16,18 +16,18 @@
   border-bottom-right-radius: 10px;
   padding: 5px;
 
-
-
   position: relative;
 
   min-height: 550px;
 }
 
-#canvas {
+#canvasContainer {
   position: relative;
+  min-height: 550px;
+  min-width: 500px;
 }
 
-#canvas canvas {
+#canvasContainer canvas {
   position: absolute;
   top: 0;
   left: 0;

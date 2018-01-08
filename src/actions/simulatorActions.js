@@ -1,4 +1,6 @@
 
+import { action } from './creator'
+
 export const INIT = 'simulator/INIT'
 export const STEP = 'simulator/STEP'
 export const RUN = 'simulator/RUN'
@@ -18,10 +20,6 @@ export const SET_PROCESS_RATE_REQUESTED = 'simulator/SET_PROCESS_RATE_REQUESTED'
 export const RUN_ENDED = 'simulator/RUN_ENDED'
 export const RUN_PROGRESS = 'simulator/RUN_PROGRESS'
 export const SET_CORE_FOCUS = 'simulator/SET_CORE_FOCUS'
-
-function action(type, payload = {}) {
-  return {type, ...payload}
-}
 
 export const init = () => action(INIT_REQUESTED)
 export const step = () => action(STEP_REQUESTED)

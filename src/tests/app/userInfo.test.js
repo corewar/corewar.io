@@ -1,8 +1,8 @@
 
 import React from 'react'
 import { shallow } from 'enzyme'
-import App from './../../containers/app/index'
+import UserInfo from './../../components/app/userInfo'
 
 it('renders without crashing', () => {
-  shallow(<App />)
-})
+  shallow(<UserInfo />)
+});

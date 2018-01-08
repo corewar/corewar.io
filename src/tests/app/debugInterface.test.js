@@ -1,8 +1,8 @@
 
 import React from 'react'
 import { shallow } from 'enzyme'
-import App from './../../containers/app/index'
+import DebugInterface from './../../components/app/debugInterface'
 
 it('renders without crashing', () => {
-  shallow(<App />)
-})
+  shallow(<DebugInterface />)
+});
