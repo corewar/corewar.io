@@ -33,13 +33,17 @@ class CanvasCore extends Component {
   }
 
   getContainerSize() {
+
     const container = document.getElementById('core')
 
     this.containerWidth = container.clientWidth - 10
     this.containerHeight = container.clientHeight - 10
 
-    this.canvas.width = this.containerWidth
-    this.canvas.height = this.containerHeight
+    this.coreCanvas.width = this.containerWidth
+    this.coreCanvas.height = this.containerHeight
+
+    this.interactiveCanvas.width = this.containerWidth
+    this.interactiveCanvas.height = this.containerHeight
   }
 
   resize() {
@@ -63,7 +67,7 @@ class CanvasCore extends Component {
 
     this.renderGrid();
 
-    this.canvas.addEventListener("click", e => this.canvasClick(e))
+    this.interactiveCanvas.addEventListener("click", e => this.canvasClick(e))
 
     //window.addEventListener('resize', e => this.resize(e), false)
 
@@ -103,12 +107,9 @@ class CanvasCore extends Component {
       this.renderCell(data, '#f00')
     })
 
-    this.messages = [];
+    this.messages = []
 
-    //if(this.props.runProgress < 100) {
-      window.requestAnimationFrame(() => this.renderMessages());
-    //}
-
+    window.requestAnimationFrame(() => this.renderMessages())
   }
 
   screenCoordinateToAddress(point) {
@@ -130,10 +131,8 @@ class CanvasCore extends Component {
     var warriorId = event.warriorId;
 
     var colour = this.getColour(warriorId);
-
-    //TODO colour for each process
-    this.context.fillStyle = colour;
-    this.context.strokeStyle = colour;
+    this.coreContext.fillStyle = colour;
+    this.coreContext.strokeStyle = colour;
 
     switch (event.accessType) {
         case 0:
@@ -146,14 +145,14 @@ class CanvasCore extends Component {
             this.renderExecute(coordinate);
             break;
         default:
-            //throw Error("Cannot render unknown CoreAccessType: " + event.accessType);
+            throw Error("Cannot render unknown CoreAccessType: " + event.accessType);
             return;
     }
   }
 
   renderExecute(coordinate) {
 
-    this.context.fillRect(
+    this.coreContext.fillRect(
         coordinate.x,
         coordinate.y,
         this.cellSize,
@@ -162,18 +161,17 @@ class CanvasCore extends Component {
 
   renderRead(coordinate) {
 
-    var hSize = this.cellSize / 2;
-    var radius = this.cellSize / 8;
+    var hSize = this.cellSize / 2
+    var radius = this.cellSize / 8
 
     var centre = {
         x: coordinate.x + hSize,
         y: coordinate.y + hSize
-    };
+    }
 
-    this.context.beginPath();
-    this.context.arc(centre.x, centre.y, radius, 0, 2 * Math.PI, false);
-    this.context.fill();
-    //this.context.stroke();
+    this.coreContext.beginPath()
+    this.coreContext.arc(centre.x, centre.y, radius, 0, 2 * Math.PI, false)
+    this.coreContext.fill()
   }
 
   renderWrite(coordinate) {
@@ -184,19 +182,26 @@ class CanvasCore extends Component {
     var x1 = x0 + this.cellSize;
     var y1 = y0 + this.cellSize;
 
-    this.context.beginPath();
-    this.context.moveTo(x0, y0);
-    this.context.lineTo(x1, y1);
-    this.context.moveTo(x0, y1);
-    this.context.lineTo(x1, y0);
-    this.context.stroke();
+    this.coreContext.beginPath();
+    this.coreContext.moveTo(x0, y0);
+    this.coreContext.lineTo(x1, y1);
+    this.coreContext.moveTo(x0, y1);
+    this.coreContext.lineTo(x1, y0);
+    this.coreContext.stroke();
   }
 
   clearCanvas() {
 
-    this.context.setTransform(1, 0, 0, 1, 0, 0);
-    this.context.clearRect(0, 0, this.props.width, this.props.height);
-    this.context.setTransform(1, 0, 0, 1, 0.5, 0.5);
+    this.coreContext.setTransform(1, 0, 0, 1, 0, 0)
+    this.coreContext.clearRect(0, 0, this.containerWidth, this.containerHeight)
+    this.coreContext.setTransform(1, 0, 0, 1, 0.5, 0.5);
+  }
+
+  clearInteractiveCanvas() {
+
+    this.interactiveContext.setTransform(1, 0, 0, 1, 0, 0)
+    this.interactiveContext.clearRect(0, 0, this.containerWidth, this.containerHeight)
+    this.interactiveContext.setTransform(1, 0, 0, 1, 0.5, 0.5)
   }
 
   fillGridArea() {
@@ -204,8 +209,8 @@ class CanvasCore extends Component {
     var width = this.cellsWide * this.cellSize;
     var height = this.cellsHigh * this.cellSize;
 
-    this.context.fillStyle = "#100E14";
-    this.context.fillRect(0, 0, width, height);
+    this.coreContext.fillStyle = "#100E14";
+    this.coreContext.fillRect(0, 0, width, height);
   }
 
   calculateCellSize() {
@@ -233,12 +238,12 @@ class CanvasCore extends Component {
 
   renderGridLines() {
 
-    this.context.beginPath();
-    this.renderVerticalLines();
-    this.renderHorizontalLines();
+    this.coreContext.beginPath()
+    this.renderVerticalLines()
+    this.renderHorizontalLines()
 
-    this.context.strokeStyle = "#666";
-    this.context.stroke();
+    this.coreContext.strokeStyle = "#666"
+    this.coreContext.stroke()
   }
 
   renderHorizontalLines() {
@@ -248,8 +253,8 @@ class CanvasCore extends Component {
 
     for (var y = 0; y <= gridHeight; y += this.cellSize) {
 
-        this.context.moveTo(0, y);
-        this.context.lineTo(gridWidth, y);
+        this.coreContext.moveTo(0, y);
+        this.coreContext.lineTo(gridWidth, y);
     }
   }
 
@@ -260,8 +265,8 @@ class CanvasCore extends Component {
 
     for (var x = 0; x <= gridWidth; x += this.cellSize) {
 
-        this.context.moveTo(x, 0);
-        this.context.lineTo(x, gridHeight);
+        this.coreContext.moveTo(x, 0);
+        this.coreContext.lineTo(x, gridHeight);
     }
   }
 
@@ -283,10 +288,10 @@ class CanvasCore extends Component {
     var x = maxX;
     var y = maxY;
 
-    this.context.fillStyle = "#100E14";
+    this.coreContext.fillStyle = "#100E14";
     while (extraCellsDrawn-- > 0) {
 
-      this.context.fillRect(x, y, this.cellSize, this.cellSize);
+      this.coreContext.fillRect(x, y, this.cellSize, this.cellSize);
 
       x -= this.cellSize;
 
@@ -309,8 +314,8 @@ class CanvasCore extends Component {
       }
       while (currentElement = currentElement.offsetParent)
 
-      var canvasX = event.pageX - totalOffsetX;
-      var canvasY = event.pageY - totalOffsetY;
+      var canvasX = (event.pageX - totalOffsetX) - 2;
+      var canvasY = (event.pageY - totalOffsetY) - 2;
 
       return { x: canvasX, y: canvasY };
   }
@@ -321,22 +326,58 @@ class CanvasCore extends Component {
       return;
     }
 
-    const point = this.getRelativeCoordinates(e);
-    const address = this.screenCoordinateToAddress(point);
+    this.clearInteractiveCanvas()
 
-    this.getCoreInstructions(address);
+    const point = this.getRelativeCoordinates(e)
+
+    const address = this.screenCoordinateToAddress(point)
+
+    this.highlightClickPoint(point, address)
+
+    this.getCoreInstructions(address)
+  }
+
+  highlightClickPoint(point, address) {
+
+    const cell = this.addressToScreenCoordinate(address)
+
+    const { x, y } = cell
+
+    this.interactiveContext.beginPath()
+
+    this.interactiveContext.strokeStyle = '#fff'
+
+    this.interactiveContext.moveTo(x, y)
+
+    this.interactiveContext.lineTo(x + this.cellSize, y)
+    this.interactiveContext.lineTo(x + this.cellSize, y + this.cellSize)
+    this.interactiveContext.lineTo(x, y + this.cellSize)
+    this.interactiveContext.lineTo(x, y)
+
+    this.interactiveContext.stroke()
+
   }
 
   render() {
 
-    return <canvas
-      ref={(canvasEl) => {
-        if(canvasEl == null) {
-          return;
-        }
-        this.context = canvasEl.getContext("2d");
-        this.canvas = canvasEl; }}
-      ></canvas>
+    return <div id="canvas">
+      <canvas
+        ref={(coreCanvasEl) => {
+          if(coreCanvasEl == null) {
+            return
+          }
+          this.coreContext = coreCanvasEl.getContext("2d")
+          this.coreCanvas = coreCanvasEl; }}
+        ></canvas>
+      <canvas
+        ref={(interactiveCanvasEl) => {
+          if(interactiveCanvasEl == null) {
+            return
+          }
+          this.interactiveContext = interactiveCanvasEl.getContext("2d")
+          this.interactiveCanvas = interactiveCanvasEl; }}
+        ></canvas>
+      </div>
   }
 
 }
