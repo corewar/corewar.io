@@ -36,7 +36,7 @@
   grid-column-end: 3;
 
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-template-rows: auto;
 
 
@@ -81,14 +81,16 @@
   visibility: visible;
 }
 
-.speedOptions {
+.optionDropdown {
   color: #fff;
-  font-size: 1.2em;
-  padding-top: 3px;
   position: relative;
 }
 
-.speedOptions ul {
+.optionDropdown.text {
+  padding-top: 3px;
+}
+
+.optionDropdown ul {
   display: none;
   position: absolute;
   margin: 0;
@@ -97,14 +99,18 @@
   z-index: 1;
 }
 
+.optionDropdown ul li.active {
+  color: #56CCF2;
+  background-color: #100E14;
+}
+
 .simulatorControl:hover ul {
   display: block;
   list-style: none;
-  border-top: 2px solid #56CCF2;
 }
 
 .simulatorControl ul li {
-  width: 100px;
+  width: 80px;
   background-color: #56CCF2;
   color: #100E14;
   padding-top: 5px;

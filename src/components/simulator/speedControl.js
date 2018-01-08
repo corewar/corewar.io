@@ -3,11 +3,14 @@ import React from 'react'
 const SpeedControl = ({ processRate, processRates, handleClick }) => (
   <div className="simulatorControl">
     <span className="tooltip">set speed</span>
-    <div className="speedOptions">
-      <span>{`${processRate} x`}</span>
+    <div className="optionDropdown text">
+      <span className="text">{`${processRate} x`}</span>
       <ul>
         {processRates && processRates.map(rate => (
-          <li key={rate} onClick={() => handleClick(rate)}>{rate} x</li>
+          <li
+            key={rate}
+            className={rate === processRate ? `active` : ``}
+            onClick={() => handleClick(rate)}>{rate} x</li>
         ))}
       </ul>
     </div>

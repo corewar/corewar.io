@@ -9,7 +9,7 @@ const colourPalette = [
   '#F2C94C',
   '#BB6BD9',
   '#BDBDBD',
-];
+]
 
 class CanvasCore extends Component {
 
@@ -17,7 +17,6 @@ class CanvasCore extends Component {
 
     super(props)
 
-    this.coreSize = props.coreSize
     this.getCoreInstructions = props.getCoreInstructions
 
     this.messages = []
@@ -28,7 +27,7 @@ class CanvasCore extends Component {
 
     PubSub.subscribe('RESET_CORE', (msg, data) => {
       this.messages = []
-      this.renderGrid()
+      this.init()
     })
 
     this.state = {
@@ -38,7 +37,18 @@ class CanvasCore extends Component {
 
   }
 
-  getContainerSize() {
+  componentDidUpdate(prevProps) {
+    // if we got a new set of core options and the coreSize changed we need to redraw
+    // the grid with new cell sizes
+    if(this.props.coreSize !== prevProps.coreSize) {
+      this.cellSize = this.calculateCellSize()
+      this.cellsWide = Math.floor(this.containerWidth / this.cellSize)
+      this.cellsHigh = Math.floor(this.containerHeight / this.cellSize)
+      this.renderGrid()
+    }
+  }
+
+  init() {
 
     const width = this.canvasContainer.clientWidth - 10
     const height = this.canvasContainer.clientHeight - 10
@@ -51,32 +61,19 @@ class CanvasCore extends Component {
     this.containerWidth = width
     this.containerHeight = height
 
-  }
-
-  resize() {
-
-    if(this.props.isRunning) {
-      return
-    }
-
-    this.getContainerSize();
-
-    this.cellSize = this.calculateCellSize();
-    this.cellsWide = Math.floor(this.containerWidth / this.cellSize);
-    this.cellsHigh = Math.floor(this.containerHeight / this.cellSize);
+    this.cellSize = this.calculateCellSize()
+    this.cellsWide = Math.floor(this.containerWidth / this.cellSize)
+    this.cellsHigh = Math.floor(this.containerHeight / this.cellSize)
 
     this.renderGrid()
+
   }
 
   componentDidMount() {
 
-    this.resize();
-
-    //this.renderGrid();
+    this.init()
 
     this.interactiveCanvas.addEventListener("click", e => this.canvasClick(e))
-
-    //window.addEventListener('resize', e => this.resize(e), false)
 
     window.requestAnimationFrame(() => this.renderMessages())
 
@@ -225,7 +222,7 @@ class CanvasCore extends Component {
   calculateCellSize() {
 
     var area = this.containerWidth * this.containerHeight;
-    var n = this.coreSize;
+    var n = this.props.coreSize;
 
     var maxCellSize = Math.sqrt(area / n);
     var possibleCellSize = Math.floor(maxCellSize);
@@ -242,7 +239,7 @@ class CanvasCore extends Component {
     var cellsWide = Math.floor(this.containerWidth / cellSize);
     var cellsHigh = Math.floor(this.containerHeight / cellSize);
 
-    return cellsWide * cellsHigh >= this.coreSize;
+    return cellsWide * cellsHigh >= this.props.coreSize;
   }
 
   renderGridLines() {
@@ -282,7 +279,7 @@ class CanvasCore extends Component {
   greyOutExtraCells() {
 
     var cellsDrawn = this.cellsWide * this.cellsHigh
-    var extraCellsDrawn = cellsDrawn - this.coreSize;
+    var extraCellsDrawn = cellsDrawn - this.props.coreSize;
 
     if (extraCellsDrawn === 0) {
         return
