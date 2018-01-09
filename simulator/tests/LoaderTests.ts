@@ -49,8 +49,7 @@ describe("Loader",() => {
             getWithInfoAt: sinon.stub(),
             setAt: sinon.stub(),
             initialise: sinon.stub(),
-            wrap: sinon.stub(),
-            publishCoreAccesses: sinon.stub()
+            wrap: sinon.stub()
         };
     });
 

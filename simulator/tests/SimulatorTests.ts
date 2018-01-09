@@ -50,8 +50,7 @@ describe("Simulator", () => {
             getWithInfoAt: sinon.stub(),
             setAt: sinon.stub(),
             wrap: sinon.stub(),
-            initialise: sinon.stub(),
-            publishCoreAccesses: sinon.stub()
+            initialise: sinon.stub()
         };
 
         loader = {
@@ -404,12 +403,5 @@ describe("Simulator", () => {
 
         throw "TODO Update tests to match new IPublisher interface";
         //expect(publisher.setAllMessagesEnabled).to.have.been.calledWith(true);
-    });
-
-    it("Should publish core access event for all core addresses after run", () => {
-
-        simulator.run();
-
-        expect(core.publishCoreAccesses).to.have.been.called;
     });
 });

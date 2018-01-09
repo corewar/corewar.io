@@ -38,8 +38,7 @@ describe("Fetcher",() => {
             },
             initialise: (options: IOptions) => {
                 //
-            },
-            publishCoreAccesses: sinon.stub()
+            }
         };
 
         state = {

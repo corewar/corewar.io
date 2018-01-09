@@ -119,13 +119,4 @@ export class Core implements ICore {
 
         return instruction;
     }
-
-    //TODO this method is no longer required
-    public publishCoreAccesses(): void {
-
-        this.publisher.queue({
-            type: MessageType.CoreAccess,
-            payload: this.locations.map(location => location.access)
-        });
-    }
 }
