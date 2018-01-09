@@ -49,6 +49,7 @@ import { IPublishProvider } from "./simulator/interface/IPublishProvider"
 
 import * as clone from "clone"
 import { ICoreLocation } from "./simulator/interface/ICoreLocation"
+import { LatestOnlyStrategy } from "./simulator/LatestOnlyStrategy";
 
 class Api {
 
@@ -82,7 +83,14 @@ class Api {
             new SyntaxCheck(),
             new IllegalCommandCheck())
 
-        this.publisher = new Publisher()
+        this.publisher = new Publisher([
+            new LatestOnlyStrategy(),//TODO CORE_ACCESS should use different strategy
+            new LatestOnlyStrategy(),
+            new LatestOnlyStrategy(),
+            new LatestOnlyStrategy(),//TODO TASK_COUNT should use different strategy
+            new LatestOnlyStrategy(),
+            new LatestOnlyStrategy()
+        ]);
 
         this.core = new Core(this.publisher)
 
