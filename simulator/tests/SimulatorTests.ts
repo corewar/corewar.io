@@ -89,10 +89,9 @@ describe("Simulator", () => {
         };
 
         publisher = {
+            queue: sinon.stub(),
             publish: sinon.stub(),
-            setPublishProvider: sinon.stub(),
-            setAllMessagesEnabled: sinon.stub(),
-            setMessageTypeEnabled: sinon.stub()
+            setPublishProvider: sinon.stub()
         };
 
         simulator = new Simulator(
@@ -384,12 +383,13 @@ describe("Simulator", () => {
 
         simulator.run();
 
-        expect(publisher.setAllMessagesEnabled).to.be.calledWith(false);
-        expect(publisher.setMessageTypeEnabled).to.be.calledWith(MessageType.RoundEnd, true);
-        expect(publisher.setAllMessagesEnabled).to.be.calledWith(true);
+        throw "TODO Update tests to match new IPublisher interface";
+        // expect(publisher.setAllMessagesEnabled).to.be.calledWith(false);
+        // expect(publisher.setMessageTypeEnabled).to.be.calledWith(MessageType.RoundEnd, true);
+        // expect(publisher.setAllMessagesEnabled).to.be.calledWith(true);
 
-        expect(publisher.setMessageTypeEnabled).to.be.calledBefore(fetcher.fetch);
-        expect(publisher.setAllMessagesEnabled).to.be.calledAfter(fetcher.fetch);
+        // expect(publisher.setMessageTypeEnabled).to.be.calledBefore(fetcher.fetch);
+        // expect(publisher.setAllMessagesEnabled).to.be.calledAfter(fetcher.fetch);
     });
 
     it("Should enable all messages even if error occurs", () => {
@@ -402,7 +402,8 @@ describe("Simulator", () => {
             expect(e).to.be.equal("Test Error");
         }
 
-        expect(publisher.setAllMessagesEnabled).to.have.been.calledWith(true);
+        throw "TODO Update tests to match new IPublisher interface";
+        //expect(publisher.setAllMessagesEnabled).to.have.been.calledWith(true);
     });
 
     it("Should publish core access event for all core addresses after run", () => {

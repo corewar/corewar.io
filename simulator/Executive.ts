@@ -161,7 +161,7 @@ export class Executive implements IExecutive {
 
     private publishTaskCount(warriorId: number, taskCount: number) {
 
-        this.publisher.publish({
+        this.publisher.queue({
             type: MessageType.TaskCount,
             payload: {
                 warriorId,

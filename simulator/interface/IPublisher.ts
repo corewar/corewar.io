@@ -3,8 +3,7 @@ import { IPublishProvider } from "./IPublishProvider";
 
 export interface IPublisher {
     
-    publish(message: IMessage): void;
+    queue(message: IMessage): void;
+    publish(): void;
     setPublishProvider(publishProvider: IPublishProvider): void;
-    setAllMessagesEnabled(enabled: boolean): void;
-    setMessageTypeEnabled(type: MessageType, enabled: boolean): void;
 }

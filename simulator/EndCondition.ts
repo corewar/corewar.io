@@ -15,14 +15,14 @@ export class EndCondition implements IEndCondition {
 
     private publishRoundEnd(outcome: string, winnerId: number = null) {
 
-        this.publisher.publish({
+        this.publisher.queue({
             type: MessageType.RunProgress,
             payload: {
                 runProgress: 100
             }
         });
 
-        this.publisher.publish({
+        this.publisher.queue({
             type: MessageType.RoundEnd,
             payload: {
                 winnerId,
@@ -33,7 +33,7 @@ export class EndCondition implements IEndCondition {
 
     private publishProgress(progress: number) {
 
-        this.publisher.publish({
+        this.publisher.queue({
             type: MessageType.RunProgress,
             payload: {
                 runProgress: progress

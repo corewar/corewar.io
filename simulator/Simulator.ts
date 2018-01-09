@@ -60,7 +60,7 @@ export class Simulator implements ISimulator {
 
     private publishInitialise(state: IState) {
 
-        this.publisher.publish({
+        this.publisher.queue({
             type: MessageType.CoreInitialise,
             payload: {
                 state: clone(state)
@@ -87,18 +87,10 @@ export class Simulator implements ISimulator {
 
     public run(): void {
 
-        try {
-            this.publisher.setAllMessagesEnabled(false);
-            this.publisher.setMessageTypeEnabled(MessageType.RoundEnd, true);
-
-            while (this.stepInternal() === false) {
-            }
-        }
-        finally {
-            this.publisher.setAllMessagesEnabled(true);
+        while (this.stepInternal() === false) {
         }
 
-        this.core.publishCoreAccesses();
+        this.publisher.publish();
     }
 
     public step(): boolean {
@@ -113,7 +105,7 @@ export class Simulator implements ISimulator {
     private stepInternal(): boolean {
 
         if (this.state.cycle === 0) {
-            this.publisher.publish({
+            this.publisher.queue({
                 type: MessageType.RoundStart,
                 payload: {}
             });
