@@ -11,8 +11,6 @@ import { ITask } from "../interface/ITask";
 import { Fetcher } from "../Fetcher";
 import DataHelper from "./DataHelper";
 
-"use strict";
-
 describe("Fetcher",() => {
 
     var imp = DataHelper.buildInstruction(3, OpcodeType.MOV, ModifierType.I, ModeType.Direct, 0, ModeType.Direct, 1);
