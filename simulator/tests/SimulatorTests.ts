@@ -328,7 +328,7 @@ describe("Simulator", () => {
 
         simulator.step();
 
-        expect(publisher.publish).to.be.calledWith({
+        expect(publisher.queue).to.be.calledWith({
             type: MessageType.RoundStart,
             payload: {}
         });
@@ -338,11 +338,11 @@ describe("Simulator", () => {
 
         simulator.step();
 
-        publisher.publish = sinon.stub();
+        publisher.queue = sinon.stub();
 
         simulator.step();
 
-        expect(publisher.publish).not.to.be.called;
+        expect(publisher.queue).not.to.be.called;
     });
 
     it("Should publish initialise message when initialised", () => {
@@ -351,7 +351,7 @@ describe("Simulator", () => {
 
         simulator.initialise(options, []);
 
-        expect(publisher.publish).to.have.been.calledWith({
+        expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.CoreInitialise,
             payload: {
                 state: simulator.getState()
@@ -376,32 +376,14 @@ describe("Simulator", () => {
         expect(fetcher.fetch).to.have.callCount(4);
     });
 
-    it("Should disable core access, progress and task count events when running", () => {
+    it("should trigger publisher publish after run completes", () => {
 
-        (<sinon.stub>endCondition.check).returns(true);
+        const options = clone(Defaults);
+
+        simulator.initialise(options, []);
 
         simulator.run();
 
-        throw "TODO Update tests to match new IPublisher interface";
-        // expect(publisher.setAllMessagesEnabled).to.be.calledWith(false);
-        // expect(publisher.setMessageTypeEnabled).to.be.calledWith(MessageType.RoundEnd, true);
-        // expect(publisher.setAllMessagesEnabled).to.be.calledWith(true);
-
-        // expect(publisher.setMessageTypeEnabled).to.be.calledBefore(fetcher.fetch);
-        // expect(publisher.setAllMessagesEnabled).to.be.calledAfter(fetcher.fetch);
-    });
-
-    it("Should enable all messages even if error occurs", () => {
-
-        (<sinon.stub>fetcher.fetch).callsFake(() => { throw "Test Error" });
-
-        try {
-            simulator.run();
-        } catch (e) {
-            expect(e).to.be.equal("Test Error");
-        }
-
-        throw "TODO Update tests to match new IPublisher interface";
-        //expect(publisher.setAllMessagesEnabled).to.have.been.calledWith(true);
+        expect(publisher.publish).to.have.been.called;
     });
 });
