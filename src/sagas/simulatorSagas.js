@@ -170,16 +170,16 @@ function* finishSaga() {
   const { standardId, parseResults } = yield select(getParserState)
   const { coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks, roundResult } = yield select(getSimulatorState)
 
-  const options = {
-    standard: standardId,
-    coresize: coreSize,
-    cyclesBeforeTie: cyclesBeforeTie,
-    minSeparation: minSeparation,
-    instructionLimit: instructionLimit,
-    maxTasks: maxTasks
-  }
-
   if(roundResult.outcome) {
+
+    const options = {
+      standard: standardId,
+      coresize: coreSize,
+      cyclesBeforeTie: cyclesBeforeTie,
+      minSeparation: minSeparation,
+      instructionLimit: instructionLimit,
+      maxTasks: maxTasks
+    }
 
     yield call(PubSub.publishSync, 'RESET_CORE');
 
