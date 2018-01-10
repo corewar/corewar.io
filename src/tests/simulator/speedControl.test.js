@@ -21,7 +21,7 @@ it('renders the current processRate', () => {
 
   const wrapper = shallow(<SpeedControl {...props}/>)
 
-  expect(wrapper.find('.speedOptions span').text()).to.equal(`${props.processRate} x`)
+  expect(wrapper.find('.optionDropdown span').text()).to.equal(`${props.processRate} x`)
 });
 
 it('renders one list item per processRate', () => {
@@ -34,7 +34,7 @@ it('renders one list item per processRate', () => {
 
   const wrapper = mount(<SpeedControl {...props}/>)
 
-  expect(wrapper.find('.speedOptions ul li').length).to.equal(props.processRates.length)
+  expect(wrapper.find('.optionDropdown ul li').length).to.equal(props.processRates.length)
 });
 
 it('fires the clickHandler when a li is clicked', () => {

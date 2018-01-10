@@ -28,12 +28,26 @@ describe('when testing the simulator reducers', () => {
       runProgress: 0,
       focus: null,
       roundResult: {},
+
       coreSize: 8000,
-      minSeparation: 1,
-      instructionLimit: 1,
+      cyclesBeforeTie: 80000,
+      minSeparation: 100,
+      instructionLimit: 100,
+      maxTasks: 8000,
+
       instructions: [],
       processRate: 1,
-      processRates: [1, 2, 5, 12, 30, 75, 200]
+      processRates: [1, 2, 5, 12, 30, 75, 200],
+      currentCoreOption: 1,
+      coreOptions: [
+        { id: 1, name: 'Beginner'},
+        { id: 2, name: 'Nano' },
+        { id: 3, name: 'Tiny' },
+        { id: 4, name: 'Limited Process' },
+        { id: 5, name: 'Fortress' },
+        { id: 6, name: '94t' },
+        { id: 7, name: 'Tiny Limited Process' }
+      ]
     })
 
   })
