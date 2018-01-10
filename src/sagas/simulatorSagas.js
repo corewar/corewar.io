@@ -251,7 +251,7 @@ function* setCoreOptionsSaga({ id }) {
 
     yield put({ type: PAUSE })
 
-    yield call(PubSub.publishSync, 'RESET_CORE');
+    yield call(PubSub.publishSync, 'RESET_CORE')
 
   }
 
