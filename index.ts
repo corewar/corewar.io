@@ -50,6 +50,8 @@ import { IPublishProvider } from "./simulator/interface/IPublishProvider"
 import * as clone from "clone"
 import { ICoreLocation } from "./simulator/interface/ICoreLocation"
 import { LatestOnlyStrategy } from "./simulator/LatestOnlyStrategy";
+import { PerWarriorStrategy } from "./simulator/PerWarriorStrategy";
+import { PerKeyStrategy } from "./simulator/PerKeyStrategy";
 
 class Api {
 
@@ -84,10 +86,10 @@ class Api {
             new IllegalCommandCheck())
 
         this.publisher = new Publisher([
-            new LatestOnlyStrategy(),//TODO CORE_ACCESS should use different strategy
+            new PerKeyStrategy(p => p.address),
             new LatestOnlyStrategy(),
             new LatestOnlyStrategy(),
-            new LatestOnlyStrategy(),//TODO TASK_COUNT should use different strategy
+            new PerKeyStrategy(p => p.warriorId),
             new LatestOnlyStrategy(),
             new LatestOnlyStrategy()
         ]);
