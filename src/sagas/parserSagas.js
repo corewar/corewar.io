@@ -36,14 +36,16 @@ export function* parseSaga({ redcode }) {
 function* addWarriorSaga() {
 
   const { standardId, currentParseResult, parseResults } = yield select(getParserState)
-  const { coreSize, minSeparation, instructionLimit } = yield select(getSimulatorState)
+  const { coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks } = yield select(getSimulatorState)
 
   const options = {
     standard: standardId,
     coresize: coreSize,
     minSeparation: minSeparation,
     instructionLimit: instructionLimit,
-  };
+    maxTasks: maxTasks,
+    cyclesBeforeTie: cyclesBeforeTie
+  }
 
   const result = yield call(insertItem, parseResults.length, parseResults, currentParseResult)
 
@@ -60,14 +62,16 @@ function* addWarriorSaga() {
 function* removeWarriorSaga({ index }) {
 
   const { standardId, parseResults } = yield select(getParserState)
-  const { coreSize, minSeparation, instructionLimit } = yield select(getSimulatorState)
+  const { coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks } = yield select(getSimulatorState)
 
   const options = {
     standard: standardId,
     coresize: coreSize,
     minSeparation: minSeparation,
     instructionLimit: instructionLimit,
-  };
+    cyclesBeforeTie: cyclesBeforeTie,
+    maxTasks: maxTasks
+  }
 
   const result = yield call(removeItem, index, parseResults);
 
