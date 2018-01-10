@@ -51,7 +51,7 @@ it('applies the active class to the currentCoreOption', () => {
 
   const wrapper = mount(<SettingsControl {...props}/>)
 
-  expect(wrapper.find('.optionDropdown ul li')[0].props().className).to.equal(`active`)
+  expect(wrapper.find('.optionDropdown ul li').at(0).props().className).to.equal(`active`)
 })
 
 it('fires the clickHandler when a li is clicked', () => {
