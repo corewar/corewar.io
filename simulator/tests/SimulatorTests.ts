@@ -104,7 +104,7 @@ describe("Simulator", () => {
             publisher);
     });
 
-    it("first fetches then decodes and finally executes", () => {
+    it("step first fetches then decodes and finally executes", () => {
 
         var fetchCalled = false;
         var decodeCalled = false;
@@ -145,7 +145,7 @@ describe("Simulator", () => {
         expect(executeCalled).to.be.equal(true);
     });
 
-    it("returns true if the end condition check returns true", () => {
+    it("step returns true if the end condition check returns true", () => {
 
         (<sinon.stub>endCondition.check).returns(true);
 
@@ -154,7 +154,7 @@ describe("Simulator", () => {
         expect(actual).to.be.equal(true);
     });
 
-    it("returns false if the end condition check returns false", () => {
+    it("step returns false if the end condition check returns false", () => {
 
         (<sinon.stub>endCondition.check).returns(false);
 
@@ -163,7 +163,7 @@ describe("Simulator", () => {
         expect(actual).to.be.equal(false);
     });
 
-    it("increments the cycle number", () => {
+    it("step increments the cycle number", () => {
 
         var checkSpy = <sinon.stub>endCondition.check;
         var state: IState;
@@ -184,7 +184,7 @@ describe("Simulator", () => {
         expect(state.cycle).to.be.equal(3);
     });
 
-    it("passes the context retrieved from fetch to decode", () => {
+    it("step passes the context retrieved from fetch to decode", () => {
 
         var fetchContext = {};
 
@@ -195,7 +195,7 @@ describe("Simulator", () => {
         expect(<sinon.stub>decoder.decode).to.have.been.calledWith(fetchContext);
     });
 
-    it("passes the context retrieved from decode to execute", () => {
+    it("step passes the context retrieved from decode to execute", () => {
 
         var decodeContext = { command: commandSpy };
 
@@ -324,7 +324,7 @@ describe("Simulator", () => {
         expect(fetcher.fetch).not.to.be.called;
     });
 
-    it("Should publish round start message if cycle is zero", () => {
+    it("step should publish round start message if cycle is zero", () => {
 
         simulator.step();
 
@@ -334,7 +334,7 @@ describe("Simulator", () => {
         });
     });
 
-    it("Should not publish round start message if cycle is not zero", () => {
+    it("step should not publish round start message if cycle is not zero", () => {
 
         simulator.step();
 
@@ -345,7 +345,7 @@ describe("Simulator", () => {
         expect(publisher.queue).not.to.be.called;
     });
 
-    it("Should publish initialise message when initialised", () => {
+    it("should publish initialise message when initialised", () => {
 
         const options = clone(Defaults);
 
@@ -359,7 +359,9 @@ describe("Simulator", () => {
         });
     });
 
-    it("Should repeatedly call step until end condition met when run called", () => {
+    it("should repeatedly call step until end condition met when run called", () => {
+
+        const preCheck = 1;
 
         const options = clone(Defaults);
 
@@ -373,7 +375,7 @@ describe("Simulator", () => {
 
         simulator.run();
 
-        expect(fetcher.fetch).to.have.callCount(4);
+        expect(fetcher.fetch).to.have.callCount(4-preCheck);
     });
 
     it("should trigger publisher publish after run completes", () => {
@@ -383,6 +385,9 @@ describe("Simulator", () => {
         simulator.initialise(options, []);
 
         publisher.publish = sinon.stub();
+
+        const stub = <sinon.stub>endCondition.check;
+        stub.onCall(2).returns(true);
 
         simulator.run();
 
@@ -409,5 +414,33 @@ describe("Simulator", () => {
         simulator.step();
 
         expect(publisher.publish).to.have.been.called;
+    });
+
+    it("step should step the specified number of times", () => {
+
+        const options = clone(Defaults);
+
+        simulator.initialise(options, []);
+
+        simulator.step(3);
+
+        var checkSpy = <sinon.stub>endCondition.check;
+        const state = checkSpy.lastCall.args[0];
+
+        expect(state.cycle).to.be.equal(3);
+    });
+
+    it("step should step once if a negative step number is requested", () => {
+
+        const options = clone(Defaults);
+
+        simulator.initialise(options, []);
+
+        simulator.step(-5);
+
+        var checkSpy = <sinon.stub>endCondition.check;
+        const state = checkSpy.lastCall.args[0];
+
+        expect(state.cycle).to.be.equal(1);
     });
 });

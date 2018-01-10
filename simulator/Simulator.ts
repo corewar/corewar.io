@@ -89,26 +89,29 @@ export class Simulator implements ISimulator {
 
     public run(): void {
 
-        while (this.stepInternal() === false) {
-        }
+        const remainingSteps = this.state.options.cyclesBeforeTie - this.state.cycle;
 
-        this.publisher.publish();
+        this.step(remainingSteps);
     }
 
-    public step(): boolean {
+    public step(steps?: number): boolean {
 
         if (this.endCondition.check(this.state)) {
             return true;
         }
 
-        const result = this.stepInternal();
+        const result = this.multiStep(steps);
 
         this.publisher.publish();
 
         return result;
     }
 
-    private stepInternal(): boolean {
+    private multiStep(steps?: number): boolean {
+
+        if (!steps || steps < 1) {
+            steps = 1;
+        }
 
         if (this.state.cycle === 0) {
             this.publisher.queue({
@@ -117,6 +120,16 @@ export class Simulator implements ISimulator {
             });
         }
 
+        for (let i = 0; i < steps; i++) {
+            if (this.singleStep()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private singleStep(): boolean {
         var context = this.fetcher.fetch(this.state, this.core);
 
         context = this.decoder.decode(context);

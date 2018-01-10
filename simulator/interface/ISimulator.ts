@@ -6,6 +6,6 @@ export interface ISimulator {
 
     initialise(options: IOptions, warriors: IParseResult[]): void;
     run(): void;
-    step(): boolean;
+    step(steps?: number): boolean;
     getState(): IState;
 }
