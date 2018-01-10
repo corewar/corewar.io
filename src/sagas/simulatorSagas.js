@@ -29,7 +29,7 @@ import { getParserState } from './../reducers/parserReducers'
 import { getSimulatorState } from './../reducers/simulatorReducers'
 
 // oddities
-let runner = null;
+let runner = null
 let operations = 0
 const roundProgressChannel = channel()
 const roundEndChannel = channel()
@@ -65,11 +65,11 @@ function* stepSaga() {
 
   const { focus } = yield select(getSimulatorState)
 
-  yield call([corewar, corewar.step]);
+  yield call([corewar, corewar.step])
 
-  const lowerLimit = focus - 5;
-  const upperLimit = focus + 5;
-  const coreInfo = [];
+  const lowerLimit = focus - 5
+  const upperLimit = focus + 5
+  const coreInfo = []
 
   for (let index = lowerLimit; index <= upperLimit; index++) {
     const info = yield call([corewar, corewar.getWithInfoAt], index)
@@ -144,7 +144,7 @@ function* runSaga() {
       corewar.step()
     }
 
-    operations += processRate;
+    operations += processRate
 
     // TODO: This should be controlled by the simulator
     if(operations >= 80000) {
@@ -181,7 +181,7 @@ function* finishSaga() {
       maxTasks: maxTasks
     }
 
-    yield call(PubSub.publishSync, 'RESET_CORE');
+    yield call(PubSub.publishSync, 'RESET_CORE')
 
     yield call([corewar, corewar.initialiseSimulator], options, parseResults, PubSub)
 
@@ -197,9 +197,9 @@ function* finishSaga() {
 
 function* getCoreInstructionsSaga({ address }) {
 
-  const lowerLimit = address - 5;
-  const upperLimit = address + 5;
-  const coreInfo = [];
+  const lowerLimit = address - 5
+  const upperLimit = address + 5
+  const coreInfo = []
 
   for (let index = lowerLimit; index <= upperLimit; index++) {
     const info = yield call([corewar, corewar.getWithInfoAt], index)
@@ -231,7 +231,7 @@ function* setProcessRateSaga({ rate }) {
       corewar.step()
     }
 
-    operations += rate;
+    operations += rate
 
     // TODO: This should be controlled by the simulator
     if(operations === 80000) {
