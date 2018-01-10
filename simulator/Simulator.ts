@@ -83,6 +83,8 @@ export class Simulator implements ISimulator {
         this.state.warriors = this.loader.load(warriors, options);
 
         this.publishInitialise(this.state);
+
+        this.publisher.publish();
     }
 
     public run(): void {
@@ -99,7 +101,11 @@ export class Simulator implements ISimulator {
             return true;
         }
 
-        return this.stepInternal();
+        const result = this.stepInternal();
+
+        this.publisher.publish();
+
+        return result;
     }
 
     private stepInternal(): boolean {

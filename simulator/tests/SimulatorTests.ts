@@ -382,7 +382,31 @@ describe("Simulator", () => {
 
         simulator.initialise(options, []);
 
+        publisher.publish = sinon.stub();
+
         simulator.run();
+
+        expect(publisher.publish).to.have.been.called;
+    });
+
+    it("should trigger publisher publish when initialisation completes", () => {
+
+        const options = clone(Defaults);
+
+        simulator.initialise(options, []);
+
+        expect(publisher.publish).to.have.been.called;
+    });
+
+    it("should trigger publisher publish when step completes", () => {
+
+        const options = clone(Defaults);
+
+        simulator.initialise(options, []);
+
+        publisher.publish = sinon.stub();
+
+        simulator.step();
 
         expect(publisher.publish).to.have.been.called;
     });

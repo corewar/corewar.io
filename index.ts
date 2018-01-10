@@ -50,7 +50,6 @@ import { IPublishProvider } from "./simulator/interface/IPublishProvider"
 import * as clone from "clone"
 import { ICoreLocation } from "./simulator/interface/ICoreLocation"
 import { LatestOnlyStrategy } from "./simulator/LatestOnlyStrategy";
-import { PerWarriorStrategy } from "./simulator/PerWarriorStrategy";
 import { PerKeyStrategy } from "./simulator/PerKeyStrategy";
 
 class Api {
