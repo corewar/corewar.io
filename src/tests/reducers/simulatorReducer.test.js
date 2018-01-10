@@ -11,7 +11,8 @@ import {
   RUN_ENDED,
   GET_CORE_INSTRUCTIONS,
   SET_CORE_FOCUS,
-  SET_PROCESS_RATE
+  SET_PROCESS_RATE,
+  SET_CORE_OPTIONS
 } from './../../actions/simulatorActions'
 
 describe('when testing the simulator reducers', () => {
@@ -184,6 +185,31 @@ describe('when testing the simulator reducers', () => {
 
     expect(result).to.deep.equal({
       processRate: action.rate
+    })
+
+  })
+
+  it('should handle the SET_CORE_OPTIONS action', () => {
+
+    const action = {
+      type: SET_CORE_OPTIONS,
+      id: 1,
+      coreSize: 2,
+      cyclesBeforeTie: 3,
+      minSeparation: 4,
+      instructionLimit: 5,
+      maxTasks: 6
+    }
+
+    const result = simulatorReducer([], action)
+
+    expect(result).to.deep.equal({
+      currentCoreOption: action.id,
+      coreSize: action.coreSize,
+      cyclesBeforeTie: action.cyclesBeforeTie,
+      minSeparation: action.minSeparation,
+      instructionLimit: action.instructionLimit,
+      maxTasks: action.maxTasks
     })
 
   })
