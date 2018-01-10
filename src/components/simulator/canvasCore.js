@@ -20,6 +20,7 @@ class CanvasCore extends Component {
     this.getCoreInstructions = props.getCoreInstructions
 
     this.messages = []
+    this.lastAddress = null
 
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
       this.messages = this.messages.concat(data)
@@ -119,9 +120,14 @@ class CanvasCore extends Component {
 
   renderCurrentTask(data) {
 
-    const coordinate = this.addressToScreenCoordinate(data.address)
+    const lastAccess = this.addressToScreenCoordinate(this.lastAddress)
 
-    this.clearInteractiveCanvas()
+    this.interactiveContext.clearRect(lastAccess.x,
+      lastAccess.y,
+      this.cellSize,
+      this.cellSize)
+
+    const coordinate = this.addressToScreenCoordinate(data.address)
 
     this.interactiveContext.fillStyle = '#ffffff'
 
@@ -130,6 +136,8 @@ class CanvasCore extends Component {
       coordinate.y,
       this.cellSize,
       this.cellSize)
+
+    this.lastAddress = data.address
 
   }
 
