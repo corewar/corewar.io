@@ -78,9 +78,9 @@ export class Simulator implements ISimulator {
 
         this.state.options = defaultedOptions;
 
-        this.core.initialise(options);
+        this.core.initialise(defaultedOptions);
 
-        this.state.warriors = this.loader.load(warriors, options);
+        this.state.warriors = this.loader.load(warriors, defaultedOptions);
 
         this.publishInitialise(this.state);
 
