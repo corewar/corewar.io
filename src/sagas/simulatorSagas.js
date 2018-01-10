@@ -255,7 +255,6 @@ function* setCoreOptionsSaga({ id }) {
 
   }
 
-  const { standardId, parseResults } = yield select(getParserState)
   const { coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks } = yield call(getCoreOptions, id)
 
   yield put({ type: SET_CORE_OPTIONS, coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks, id })
