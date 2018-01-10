@@ -70,15 +70,12 @@ describe("Publisher", () => {
 
     it("publishes all queued messages by dequeueing all strategies", () => {
 
-        const coreAccessMessages = [{ type: MessageType.CoreAccess, payload: {} }];
-        const runProgressMessages = [{ type: MessageType.RunProgress, payload: {} }];
-        const roundEndMessages = [{ type: MessageType.RoundEnd, payload: {} }];
-        const taskCountMessages = [
-            { type: MessageType.TaskCount, payload: { a: "a" } },
-            { type: MessageType.TaskCount, payload: { b: "b" } }
-        ];
-        const initialiseMessages = [{ type: MessageType.CoreInitialise, payload: {} }];
-        const roundStartMessages = [{ type: MessageType.RoundStart, payload: {} }];
+        const coreAccessMessages = { type: MessageType.CoreAccess, payload: [{}] };
+        const runProgressMessages = { type: MessageType.RunProgress, payload: [{}] };
+        const roundEndMessages = { type: MessageType.RoundEnd, payload: [{}] };
+        const taskCountMessages = { type: MessageType.TaskCount, payload: [{ a: "a" }, { b: "b" }] };
+        const initialiseMessages = { type: MessageType.CoreInitialise, payload: [{}] };
+        const roundStartMessages = { type: MessageType.RoundStart, payload: [{}] };
 
         const strategies = [
             { dequeue: sinon.stub().returns(coreAccessMessages), queue: sinon.stub() },
@@ -96,12 +93,11 @@ describe("Publisher", () => {
 
         publisher.publish();
 
-        expect(provider.publishSync).to.have.been.calledWith("CORE_ACCESS", coreAccessMessages[0].payload);
-        expect(provider.publishSync).to.have.been.calledWith("RUN_PROGRESS", runProgressMessages[0].payload);
-        expect(provider.publishSync).to.have.been.calledWith("ROUND_END", roundEndMessages[0].payload);
-        expect(provider.publishSync).to.have.been.calledWith("TASK_COUNT", taskCountMessages[0].payload);
-        expect(provider.publishSync).to.have.been.calledWith("TASK_COUNT", taskCountMessages[1].payload);
-        expect(provider.publishSync).to.have.been.calledWith("CORE_INITIALISE", initialiseMessages[0].payload);
-        expect(provider.publishSync).to.have.been.calledWith("ROUND_START", roundStartMessages[0].payload);
+        expect(provider.publishSync).to.have.been.calledWith("CORE_ACCESS", coreAccessMessages);
+        expect(provider.publishSync).to.have.been.calledWith("RUN_PROGRESS", runProgressMessages);
+        expect(provider.publishSync).to.have.been.calledWith("ROUND_END", roundEndMessages);
+        expect(provider.publishSync).to.have.been.calledWith("TASK_COUNT", taskCountMessages);
+        expect(provider.publishSync).to.have.been.calledWith("CORE_INITIALISE", initialiseMessages);
+        expect(provider.publishSync).to.have.been.calledWith("ROUND_START", roundStartMessages);
     });
 });

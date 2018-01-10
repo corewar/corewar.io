@@ -1,10 +1,12 @@
 import { IPublishStrategy } from "./interface/IPublishStrategy";
 import { IMessage } from "./interface/IMessage";
+import { MessageType } from "./interface/IMessage";
 
 export class PerKeyStrategy implements IPublishStrategy {
 
     private key: (IMessage) => number;
-    private messages: { [key: number]: IMessage; } = {};
+    private type: MessageType;
+    private payloads: { [key: number]: IMessage; } = {};
 
     constructor(key: (IMessage) => number) {
 
@@ -13,15 +15,23 @@ export class PerKeyStrategy implements IPublishStrategy {
 
     public queue(message: IMessage): void {
 
-        this.messages[this.key(message.payload)] = message;
+        this.type = message.type;
+        this.payloads[this.key(message.payload)] = message.payload;
     }
 
-    public dequeue(): IMessage[] {
+    public dequeue(): IMessage {
 
-        const messages = Object.keys(this.messages).map(k => <IMessage>this.messages[k]);
+        const payloads = Object.keys(this.payloads).map(k => this.payloads[k]);
 
-        this.messages = {};
+        if (payloads.length === 0) {
+            return null;
+        }
 
-        return messages;
+        this.payloads = {};
+
+        return {
+            type: this.type,
+            payload: payloads
+        };
     }
 }

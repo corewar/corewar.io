@@ -203,11 +203,11 @@ describe("Core", () => {
 
         expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.CoreAccess,
-            payload: [{
+            payload: {
                 warriorId: task.warrior.id,
                 accessType: CoreAccessType.read,
                 address: 2
-            }]
+            }
         });
     });
 
@@ -222,11 +222,11 @@ describe("Core", () => {
 
         expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.CoreAccess,
-            payload: [{
+            payload: {
                 warriorId: task.warrior.id,
                 accessType: CoreAccessType.write,
                 address: 2
-            }]
+            }
         });
     });
 
@@ -241,11 +241,11 @@ describe("Core", () => {
 
         expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.CoreAccess,
-            payload: [{
+            payload: {
                 warriorId: task.warrior.id,
                 accessType: CoreAccessType.execute,
                 address: 2
-            }]
+            }
         });
     });
 

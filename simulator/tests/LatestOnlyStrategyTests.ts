@@ -6,11 +6,11 @@ import { MessageType } from "../interface/IMessage";
 
 describe("LatestOnlyStrategy", () => {
 
-    it("returns empty array if no message queued", () => {
+    it("returns null if no message queued", () => {
 
         const strategy = new LatestOnlyStrategy();
 
-        expect(strategy.dequeue()).to.be.deep.equal([]);
+        expect(strategy.dequeue()).to.be.null;
     });
 
     it("returns most recent message queued", () => {
@@ -23,10 +23,10 @@ describe("LatestOnlyStrategy", () => {
         strategy.queue(unexpected);
         strategy.queue(expected);
 
-        expect(strategy.dequeue()).to.be.deep.equal([expected]);
+        expect(strategy.dequeue()).to.be.deep.equal(expected);
     });
 
-    it("returns empty array after if dequeued a second time without queueing", () => {
+    it("returns null if dequeued a second time without queueing", () => {
 
         const strategy = new LatestOnlyStrategy();
 
@@ -35,6 +35,6 @@ describe("LatestOnlyStrategy", () => {
         strategy.queue(message);
         strategy.dequeue();
 
-        expect(strategy.dequeue()).to.be.deep.equal([]);
+        expect(strategy.dequeue()).to.be.null;
     });
 });

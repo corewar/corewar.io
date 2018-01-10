@@ -53,7 +53,7 @@ export class Core implements ICore {
 
         this.publisher.queue({
             type: MessageType.CoreAccess,
-            payload: [ accessEventArgs ]
+            payload: accessEventArgs
         });
     }
 

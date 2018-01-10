@@ -15,15 +15,15 @@ export class LatestOnlyStrategy implements IPublishStrategy {
         this.message = message;
     }
 
-    public dequeue(): IMessage[] {
+    public dequeue(): IMessage {
 
         if (!this.message) {
-            return [];
+            return null;
         }
 
         const message = this.message;
         this.message = null;
 
-        return [message];
+        return message;
     }
 }

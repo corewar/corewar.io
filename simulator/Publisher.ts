@@ -40,12 +40,16 @@ export class Publisher implements IPublisher {
 
         this.publishStrategies
             .forEach(s => {
-                s.dequeue().forEach(m => {
-                    this.publishProvider.publishSync(
-                        this.typeDictionary[m.type],
-                        m.payload
-                    );
-                })
+                var message = s.dequeue();
+
+                if (!message) {
+                    return;
+                }
+
+                this.publishProvider.publishSync(
+                    this.typeDictionary[message.type],
+                    message
+                );
             });
     }
 }

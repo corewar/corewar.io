@@ -4,13 +4,13 @@ import * as sinon from "sinon";
 import { PerKeyStrategy } from "../PerKeyStrategy";
 import { MessageType } from "../interface/IMessage";
 
-describe("PerAddressStrategy", () => {
+describe("PerKeyStrategy", () => {
 
-    it("returns empty array if no message queued", () => {
+    it("returns null if no message queued", () => {
 
         const strategy = new PerKeyStrategy(p => 0);
 
-        expect(strategy.dequeue()).to.be.deep.equal([]);
+        expect(strategy.dequeue()).to.be.null;
     });
 
     it("returns most recent message queued for a single address", () => {
@@ -23,10 +23,13 @@ describe("PerAddressStrategy", () => {
         strategy.queue(unexpected);
         strategy.queue(expected);
 
-        expect(strategy.dequeue()).to.be.deep.equal([expected]);
+        expect(strategy.dequeue()).to.be.deep.equal({
+            type: MessageType.CoreAccess,
+            payload: [ expected.payload ]
+        });
     });
 
-    it("returns empty array if dequeued a second time without queueing", () => {
+    it("returns null if dequeued a second time without queueing", () => {
 
         const strategy = new PerKeyStrategy(p => p.address);
 
@@ -35,21 +38,24 @@ describe("PerAddressStrategy", () => {
         strategy.queue(message);
         strategy.dequeue();
 
-        expect(strategy.dequeue()).to.be.deep.equal([]);
+        expect(strategy.dequeue()).to.be.null;
     });
 
-    it("returns a message for each unique address", () => {
+    it("returns a payload for each unique address", () => {
 
         const strategy = new PerKeyStrategy(p => p.warriorId);
 
-        const message1 = { type: MessageType.CoreAccess, payload: { warriorId: 1 } };
-        const message2 = { type: MessageType.CoreAccess, payload: { warriorId: 5 } };
-        const message3 = { type: MessageType.CoreAccess, payload: { warriorId: 8 } };
+        const payload1 = { warriorId: 1 };
+        const payload2 = { warriorId: 5 };
+        const payload3 = { warriorId: 8 };
 
-        strategy.queue(message1);
-        strategy.queue(message2);
-        strategy.queue(message3);
+        strategy.queue({ type: MessageType.TaskCount, payload: payload1 });
+        strategy.queue({ type: MessageType.TaskCount, payload: payload2 });
+        strategy.queue({ type: MessageType.TaskCount, payload: payload3 });
 
-        expect(strategy.dequeue()).to.be.deep.equal([message1, message2, message3]);
+        expect(strategy.dequeue()).to.be.deep.equal({
+            type: MessageType.TaskCount,
+            payload: [payload1, payload2, payload3]
+        });
     });
 });
