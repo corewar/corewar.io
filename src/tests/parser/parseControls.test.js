@@ -20,5 +20,37 @@ describe('when testing the parse controls', () => {
     expect(wrapper.find(ControlButton)).to.have.length(1)
   })
 
+  it('control button is not enabled if there is no currentParseResult', () => {
+
+    const wrapper = mount(<PureParseControls currentParseResult={null} />)
+
+    expect(!wrapper.find(ControlButton).props().enabled)
+  })
+
+  it('control button is not enabled if there is no warrior', () => {
+
+    const wrapper = mount(<PureParseControls currentParseResult={{ warrior: null }} />)
+
+    expect(!wrapper.find(ControlButton).props().enabled)
+  })
+
+  it('control button is enabled if there is a correctly parsed warrior', () => {
+
+    const wrapper = mount(<PureParseControls currentParseResult={{ warrior: '', messages: [] }} />)
+
+    expect(wrapper.find(ControlButton).props().enabled)
+  })
+
+  it('click handler is fired on click', () => {
+
+    const clickHandler = sinon.spy()
+
+    const wrapper = shallow(<PureParseControls addWarrior={clickHandler} />)
+
+    wrapper.find(ControlButton).simulate('click')
+
+    expect(clickHandler.calledOnce)
+  })
+
 })
 
