@@ -80,34 +80,35 @@ class CanvasCore extends Component {
   }
 
   componentWillUnmount() {
-    PubSub.unsubscribe('CORE_ACCESS');
-    PubSub.unsubscribe('RESET_CORE');
+    PubSub.unsubscribe('CORE_ACCESS')
+    PubSub.unsubscribe('RESET_CORE')
   }
 
   renderGrid() {
-    this.clearCanvas();
+    this.clearCanvas()
 
-    this.fillGridArea();
+    this.fillGridArea()
 
-    this.renderGridLines();
+    this.renderGridLines()
 
-    this.greyOutExtraCells();
+    this.greyOutExtraCells()
   }
 
   addressToScreenCoordinate(address) {
 
-    var ix = address % this.cellsWide;
-    var iy = Math.floor(address / this.cellsWide);
+    var ix = address % this.cellsWide
+    var iy = Math.floor(address / this.cellsWide)
 
     return {
         x: ix * this.cellSize,
         y: iy * this.cellSize
-    };
+    }
   }
 
   renderMessages() {
 
     this.messages.forEach((data) => {
+      this.renderCurrentTask(data)
       this.renderCell(data, '#f00')
     })
 
@@ -116,27 +117,43 @@ class CanvasCore extends Component {
     window.requestAnimationFrame(() => this.renderMessages())
   }
 
+  renderCurrentTask(data) {
+
+    const coordinate = this.addressToScreenCoordinate(data.address)
+
+    this.clearInteractiveCanvas()
+
+    this.interactiveContext.fillStyle = '#ffffff'
+
+    this.interactiveContext.fillRect(
+      coordinate.x,
+      coordinate.y,
+      this.cellSize,
+      this.cellSize)
+
+  }
+
   screenCoordinateToAddress(point) {
 
-    var x = Math.floor(point.x / this.cellSize);
-    var y = Math.floor(point.y / this.cellSize);
+    var x = Math.floor(point.x / this.cellSize)
+    var y = Math.floor(point.y / this.cellSize)
 
-    return y * this.cellsWide + x;
+    return y * this.cellsWide + x
   }
 
   getColour(warriorId) {
-    return colourPalette[warriorId];
+    return colourPalette[warriorId]
   }
 
   renderCell(event) {
 
-    var coordinate = this.addressToScreenCoordinate(event.address);
+    var coordinate = this.addressToScreenCoordinate(event.address)
 
-    var warriorId = event.warriorId;
+    var warriorId = event.warriorId
 
-    var colour = this.getColour(warriorId);
-    this.coreContext.fillStyle = colour;
-    this.coreContext.strokeStyle = colour;
+    var colour = this.getColour(warriorId)
+    this.coreContext.fillStyle = colour
+    this.coreContext.strokeStyle = colour
 
     switch (event.accessType) {
         case 0:
