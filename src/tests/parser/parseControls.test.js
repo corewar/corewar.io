@@ -34,6 +34,13 @@ describe('when testing the parse controls', () => {
     expect(!wrapper.find(ControlButton).props().enabled)
   })
 
+  it('control button is not enabled if there is a warrior bu it has errors', () => {
+
+    const wrapper = mount(<PureParseControls currentParseResult={{ warrior: '', messages: ['parse error'] }} />)
+
+    expect(!wrapper.find(ControlButton).props().enabled)
+  })
+
   it('control button is enabled if there is a correctly parsed warrior', () => {
 
     const wrapper = mount(<PureParseControls currentParseResult={{ warrior: '', messages: [] }} />)
