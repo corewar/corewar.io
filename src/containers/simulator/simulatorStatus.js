@@ -33,7 +33,7 @@ const getStatusMessage = (isRunning, isInitialised, parseResults, roundResult) =
   }
 
   if(isRunning) {
-    return 'running simulation'
+    return '(╯°□°）╯ < FIGHT!'
   }
 
   return 'core'

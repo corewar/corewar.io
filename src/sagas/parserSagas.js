@@ -5,7 +5,8 @@ import { corewar } from 'corewar'
 import * as PubSub from 'pubsub-js'
 
 import {
-  INIT
+  INIT,
+  PAUSE
 } from './../actions/simulatorActions'
 
 import {
@@ -19,6 +20,7 @@ import {
 
 import { getParserState } from './../reducers/parserReducers'
 import { getSimulatorState } from './../reducers/simulatorReducers'
+import { pauseSaga, getCoreOptionsFromState, initialiseCore } from './simulatorSagas'
 
 // sagas
 export function* parseSaga({ redcode }) {
@@ -35,53 +37,29 @@ export function* parseSaga({ redcode }) {
 
 function* addWarriorSaga() {
 
-  const { standardId, currentParseResult, parseResults } = yield select(getParserState)
-  const { coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks } = yield select(getSimulatorState)
+  yield call(pauseSaga)
 
-  const options = {
-    standard: standardId,
-    coresize: coreSize,
-    minSeparation: minSeparation,
-    instructionLimit: instructionLimit,
-    maxTasks: maxTasks,
-    cyclesBeforeTie: cyclesBeforeTie
-  }
+  const data = yield call(getCoreOptionsFromState)
 
-  const result = yield call(insertItem, parseResults.length, parseResults, currentParseResult)
+  const { currentParseResult } = yield select(getParserState)
+
+  const result = yield call(insertItem, data.parseResults.length, data.parseResults, currentParseResult)
 
   yield put({ type: ADD_WARRIOR, result })
 
-  yield call(PubSub.publishSync, 'RESET_CORE')
-
-  yield call([corewar, corewar.initialiseSimulator], options, result, PubSub);
-
-  yield put({ type: INIT })
+  yield call(initialiseCore, data.options, result)
 
 }
 
 function* removeWarriorSaga({ index }) {
 
-  const { standardId, parseResults } = yield select(getParserState)
-  const { coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks } = yield select(getSimulatorState)
+  const data = yield call(getCoreOptionsFromState)
 
-  const options = {
-    standard: standardId,
-    coresize: coreSize,
-    minSeparation: minSeparation,
-    instructionLimit: instructionLimit,
-    cyclesBeforeTie: cyclesBeforeTie,
-    maxTasks: maxTasks
-  }
-
-  const result = yield call(removeItem, index, parseResults);
+  const result = yield call(removeItem, index, data.parseResults);
 
   yield put({ type: REMOVE_WARRIOR, result })
 
-  yield call(PubSub.publishSync, 'RESET_CORE')
-
-  yield call([corewar, corewar.initialiseSimulator], options, result, PubSub);
-
-  yield put({ type: INIT });
+  yield call(initialiseCore, data.options, data.parseResults)
 
 }
 

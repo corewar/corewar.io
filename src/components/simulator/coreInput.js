@@ -16,8 +16,15 @@ class CoreInput extends Component {
     }
 
     PubSub.subscribe('TASK_COUNT', (msg, data) => {
-      const newTasks = this.state.tasks.splice(data.warriorId, 1, data.taskCount)
+
+      let newTasks = []
+
+      data.payload.forEach((item) => {
+        newTasks = this.state.tasks.splice(item.warriorId, 1, item.taskCount)
+      })
+
       this.setState({ tasks: newTasks })
+
     })
   }
 

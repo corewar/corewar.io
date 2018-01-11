@@ -24,9 +24,9 @@ import {
   SET_CORE_OPTIONS_REQUESTED
 } from './../actions/simulatorActions'
 
-
 import { getParserState } from './../reducers/parserReducers'
 import { getSimulatorState } from './../reducers/simulatorReducers'
+import { getCoreOptions, CoreOptions } from './coreOptions'
 
 // oddities
 let runner = null
@@ -37,27 +37,11 @@ const roundEndChannel = channel()
 // sagas
 export function* initSaga() {
 
-  yield call(window.clearInterval, runner)
+  yield call(pauseSaga)
 
-  yield call(PubSub.publishSync, 'RESET_CORE')
+  const data = yield call(getCoreOptionsFromState)
 
-  yield put({ type: PAUSE })
-
-  const { standardId, parseResults } = yield select(getParserState)
-  const { coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks } = yield select(getSimulatorState)
-
-  const options = {
-    standard: standardId,
-    coresize: coreSize,
-    cyclesBeforeTie: cyclesBeforeTie,
-    minSeparation: minSeparation,
-    instructionLimit: instructionLimit,
-    maxTasks: maxTasks
-  }
-
-  yield call([corewar, corewar.initialiseSimulator], options, parseResults, PubSub)
-
-  yield put({ type: INIT })
+  yield call(initialiseCore, data.options, data.parseResults)
 
 }
 
@@ -80,99 +64,59 @@ function* stepSaga() {
   yield put({ type: GET_CORE_INSTRUCTIONS, coreInfo })
 }
 
-function* watchRoundProgressChannel() {
-  while (true) {
-    const action = yield take(roundProgressChannel)
-    yield put(action)
-  }
-}
-
-function* watchRoundEndChannel() {
-  while(true) {
-    const action = yield take(roundEndChannel)
-    yield call(window.clearInterval, runner)
-    yield put(action)
-  }
-}
-
-const sendRoundProgress = (msg, data) => {
-  roundProgressChannel.put({
-    type: RUN_PROGRESS,
-    data
-  })
-}
-
-const sendRoundEnd = (msg, data) => {
-  roundEndChannel.put({
-    type: RUN_ENDED,
-    data
-  })
-}
-
 function* runSaga() {
+
+  const data = yield call(getCoreOptionsFromState)
+
+  const { processRate } = yield select(getSimulatorState)
+
+  if(data.result.outcome) {
+    yield call(initialiseCore, data.options, data.parseResults)
+  }
+
+  yield call(PubSub.unsubscribe, 'RUN_PROGRESS')
+  yield call(PubSub.subscribe, 'RUN_PROGRESS', sendRoundProgress)
+
+  yield call(PubSub.unsubscribe, 'ROUND_END')
+  yield call(PubSub.subscribe, 'ROUND_END', sendRoundEnd)
 
   yield put({ type: RUN })
 
-  const { standardId, parseResults } = yield select(getParserState)
-  const { coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks, processRate, roundResult } = yield select(getSimulatorState)
-
-  const options = {
-    standard: standardId,
-    coresize: coreSize,
-    cyclesBeforeTie: cyclesBeforeTie,
-    minSeparation: minSeparation,
-    instructionLimit: instructionLimit,
-    maxTasks: maxTasks
-  }
-
-  if(roundResult.outcome) {
-
-    yield call(PubSub.publishSync, 'RESET_CORE')
-
-    yield call([corewar, corewar.initialiseSimulator], options, parseResults, PubSub);
-
-    yield put({ type: INIT })
-  }
-
-  yield call(PubSub.subscribe, 'RUN_PROGRESS', sendRoundProgress)
-
-  yield call(PubSub.subscribe, 'ROUND_END', sendRoundEnd)
-
   runner = yield call(window.setInterval, () => {
 
-    for(let i = 0; i < processRate; i++) {
-      corewar.step()
-    }
+    corewar.step(processRate)
 
-    operations += processRate
+    //operations += processRate
 
-    // TODO: This should be controlled by the simulator
-    if(operations >= 80000) {
-      console.log('dont think we will ever get here')
-      window.clearInterval(runner)
-      operations = 0
-    }
+    // // TODO: This should be controlled by the simulator
+    // if(operations >= 80000) {
+    //   window.clearInterval(runner)
+    //   operations = 0
+    // }
 
   }, 1000/60)
 
 }
 
-function* pauseSaga() {
+export function* pauseSaga() {
 
-  yield call(window.clearTimeout, runner)
+  const { isRunning } = yield select(getSimulatorState)
 
-  yield put({ type: PAUSE })
-
+  if(isRunning) {
+    yield call(window.clearInterval, runner)
+    yield put({ type: PAUSE })
+  }
 }
 
-function* finishSaga() {
+export function* getCoreOptionsFromState() {
 
   const { standardId, parseResults } = yield select(getParserState)
   const { coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks, roundResult } = yield select(getSimulatorState)
 
-  if(roundResult.outcome) {
-
-    const options = {
+  return {
+    result: roundResult,
+    parseResults: parseResults,
+    options: {
       standard: standardId,
       coresize: coreSize,
       cyclesBeforeTie: cyclesBeforeTie,
@@ -180,15 +124,30 @@ function* finishSaga() {
       instructionLimit: instructionLimit,
       maxTasks: maxTasks
     }
+  }
+}
 
-    yield call(PubSub.publishSync, 'RESET_CORE')
+export function* initialiseCore(options, parseResults) {
 
-    yield call([corewar, corewar.initialiseSimulator], options, parseResults, PubSub)
+  yield call(PubSub.publishSync, 'RESET_CORE')
 
-    yield put({ type: INIT })
+  yield call([corewar, corewar.initialiseSimulator], options, parseResults, PubSub)
+
+  yield put({ type: INIT })
+
+}
+
+export function* finishSaga() {
+
+  const data = yield call(getCoreOptionsFromState)
+
+  if(data.result.outcome) {
+
+    yield call(initialiseCore, data.options, data.parseResults)
 
   }
 
+  yield call(PubSub.unsubscribe, 'ROUND_END')
   yield call(PubSub.subscribe, 'ROUND_END', sendRoundEnd)
 
   yield call([corewar, corewar.run])
@@ -231,29 +190,21 @@ function* setProcessRateSaga({ rate }) {
       corewar.step()
     }
 
-    operations += rate
+    // operations += rate
 
-    // TODO: This should be controlled by the simulator
-    if(operations === 80000) {
-      window.clearInterval(runner)
-      operations = 0
-    }
+    // // TODO: This should be controlled by the simulator
+    // if(operations === 80000) {
+    //   window.clearInterval(runner)
+    //   operations = 0
+    // }
   }, 1000/60)
 }
 
 function* setCoreOptionsSaga({ id }) {
 
-  const { isRunning } = yield select(getSimulatorState)
+  yield call(pauseSaga)
 
-  if(isRunning) {
-
-    yield call(window.clearTimeout, runner)
-
-    yield put({ type: PAUSE })
-
-    yield call(PubSub.publishSync, 'RESET_CORE')
-
-  }
+  yield call(PubSub.publishSync, 'RESET_CORE')
 
   const { coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks } = yield call(getCoreOptions, id)
 
@@ -263,85 +214,33 @@ function* setCoreOptionsSaga({ id }) {
 
 }
 
-const CoreOptions = {
-  Beginner: 1,
-  Nano: 2,
-  Tiny: 3,
-  LimitedProcess: 4,
-  Fortress: 5,
-  NinetyFourT: 6,
-  TinyLimitedProcess: 7
+function* watchRoundProgressChannel() {
+  while (true) {
+    const action = yield take(roundProgressChannel)
+    yield put(action)
+  }
 }
 
-const getCoreOptions = (id) => {
-
-  switch (id) {
-    case CoreOptions.Beginner:
-      return {
-        coreSize: 8000,
-        cyclesBeforeTie: 80000,
-        maxTasks: 8000,
-        minSeparation: 100,
-        instructionLimit: 100
-      }
-    case CoreOptions.Nano:
-      return {
-        coreSize: 80,
-        cyclesBeforeTie: 800,
-        maxTasks: 80,
-        minSeparation: 5,
-        instructionLimit: 5
-      }
-
-    case CoreOptions.Tiny:
-      return {
-        coreSize: 800,
-        cyclesBeforeTie: 8000,
-        maxTasks: 800,
-        minSeparation: 20,
-        instructionLimit: 20
-      }
-
-    case CoreOptions.LimitedProcess:
-      return {
-        coreSize: 8000,
-        cyclesBeforeTie: 80000,
-        maxTasks: 8,
-        minSeparation: 200,
-        instructionLimit: 200
-      }
-
-    case CoreOptions.Fortress:
-      return {
-        coreSize: 8000,
-        cyclesBeforeTie: 80000,
-        maxTasks: 80,
-        minSeparation: 4000,
-        instructionLimit: 400
-      }
-
-    case CoreOptions.NinetyFourT:
-      return {
-        coreSize: 8192,
-        cyclesBeforeTie: 100000,
-        maxTasks: 8000,
-        minSeparation: 300,
-        instructionLimit: 300
-      }
-
-    case CoreOptions.TinyLimitedProcess:
-      return {
-        coreSize: 800,
-        cyclesBeforeTie: 8000,
-        maxTasks: 8,
-        minSeparation: 50,
-        instructionLimit: 50
-      }
-
-    default:
-      return {}
+function* watchRoundEndChannel() {
+  while(true) {
+    yield call(window.clearInterval, runner)
+    const action = yield take(roundEndChannel)
+    yield put(action)
   }
+}
 
+const sendRoundProgress = (msg, data) => {
+  roundProgressChannel.put({
+    type: RUN_PROGRESS,
+    data: data.payload
+  })
+}
+
+const sendRoundEnd = (msg, data) => {
+  roundEndChannel.put({
+    type: RUN_ENDED,
+    data: data.payload
+  })
 }
 
 // watchers

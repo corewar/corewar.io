@@ -23,7 +23,7 @@ class CanvasCore extends Component {
     this.lastAddress = null
 
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
-      this.messages = this.messages.concat(data)
+      this.messages = this.messages.concat(data.payload)
     })
 
     PubSub.subscribe('RESET_CORE', (msg, data) => {

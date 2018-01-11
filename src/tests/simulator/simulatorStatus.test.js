@@ -30,7 +30,7 @@ it('shows "running simulation" when running', () => {
 
   const wrapper = mount(<PureSimulatorStatus {...props}/>)
 
-  expect(wrapper.find('#simulatorStatus div').text()).to.equal(`running simulation`)
+  expect(wrapper.find('#simulatorStatus div').text()).to.equal(`(╯°□°）╯ < FIGHT!`)
 });
 
 
