@@ -236,6 +236,12 @@ describe("Core", () => {
 
         var core = new Core(publisher);
         core.initialise(Object.assign({}, Defaults, { coresize: 4 }));
+        
+        const addInstruction = Object.assign({}, Defaults.initialInstruction, {
+            address: 2,
+            opcode: OpcodeType.ADD 
+        });
+        core.setAt(task, 2, addInstruction);
 
         core.executeAt(task, 2);
 
@@ -247,6 +253,18 @@ describe("Core", () => {
                 address: 2
             }
         });
+    });
+
+    it("does not trigger an execute core access event for a dat instruction", () => {
+
+        var task = buildTask(3);
+
+        var core = new Core(publisher);
+        core.initialise(Object.assign({}, Defaults, { coresize: 4 }));
+
+        core.executeAt(task, 2);
+
+        expect(publisher.queue).not.to.have.been.called;
     });
 
     it(".getSize returns the size of the core", () => {
