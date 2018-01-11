@@ -12,6 +12,8 @@ import { IParseOperand } from "../parser/interface/IParseOperand";
 
 import { TokenStream } from "../parser/TokenStream";
 import { Warrior } from "./Warrior";
+import { IPublisher } from "./interface/IPublisher";
+import { MessageType } from "./interface/IMessage";
 
 export class WarriorLoader implements IWarriorLoader {
 
@@ -20,10 +22,12 @@ export class WarriorLoader implements IWarriorLoader {
     private warrior: IWarrior;
 
     private core: ICore;
+    private publisher: IPublisher;
 
-    constructor(core: ICore) {
+    constructor(core: ICore, publisher: IPublisher) {
 
         this.core = core;
+        this.publisher = publisher;
     }
 
     public load(address: number, result: IParseResult, id: number): IWarrior {
@@ -217,5 +221,13 @@ export class WarriorLoader implements IWarriorLoader {
         
         this.warrior.startAddress = startAddress;
         this.warrior.taskIndex = 0;
+
+        this.publisher.queue({
+            type: MessageType.TaskCount,
+            payload: {
+                warriorId: this.warrior.id,
+                taskCount: 1
+            }
+        });
     }
 }
