@@ -16,7 +16,7 @@ const ParseControls = ({ addWarrior, currentParseResult }) => (
       iconClass={`plus`}
       tooltipText={`add to core`}
       handleClick={addWarrior}
-      />
+      enabled={currentParseResult && currentParseResult.warrior && currentParseResult.messages.length === 0} />
   </div>
 )
 
