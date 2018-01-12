@@ -1,4 +1,3 @@
-import test from 'tape'
 import { corewar } from 'corewar'
 import { expect } from 'chai'
 
@@ -7,16 +6,12 @@ import { put, call } from 'redux-saga/effects'
 import {
   PARSE,
   PARSE_REQUESTED,
-  ADD_WARRIOR,
-  ADD_WARRIOR_REQUESTED,
-  REMOVE_WARRIOR,
-  REMOVE_WARRIOR_REQUESTED
-} from './../../actions/parserActions'
+} from '../../../actions/parserActions'
 
 
-import { parseSaga } from '../../sagas/parserSagas'
+import { parseSaga } from '../../../sagas/parserSagas'
 
-describe('when testing the parser', () => {
+describe('when parsing', () => {
 
   const inputRedcode = 'somecode'
 

@@ -28,7 +28,7 @@ export function* parseSaga({ redcode }) {
 
 }
 
-function* addWarriorSaga() {
+export function* addWarriorSaga() {
 
   yield call(pauseSaga)
 
@@ -44,7 +44,9 @@ function* addWarriorSaga() {
 
 }
 
-function* removeWarriorSaga({ index }) {
+export function* removeWarriorSaga({ index }) {
+
+  yield call(pauseSaga)
 
   const data = yield call(getCoreOptionsFromState)
 

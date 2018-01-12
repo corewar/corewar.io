@@ -85,7 +85,7 @@ function* runSaga() {
 
 }
 
-export function* runCoreSaga() {
+export function* renderCoreSaga() {
 
   while(yield take(runChannel)) {
 
@@ -239,6 +239,6 @@ export const simulatorWatchers = [
   takeLatest(SET_PROCESS_RATE_REQUESTED, setProcessRateSaga),
   fork(watchRoundProgressChannel),
   fork(watchRoundEndChannel),
-  fork(runCoreSaga),
+  fork(renderCoreSaga),
   fork(addMessageSubscriptions)
 ]

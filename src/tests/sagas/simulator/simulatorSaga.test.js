@@ -6,12 +6,18 @@ import { put, call, select } from 'redux-saga/effects'
 
 import {
   PAUSE
-} from './../../actions/simulatorActions'
+} from '../../../actions/simulatorActions'
 
 
-import { initSaga, pauseSaga, getCoreOptionsFromState, initialiseCore } from '../../sagas/simulatorSagas'
-import { getSimulatorState } from './../../reducers/simulatorReducers'
-import { exec } from 'child_process';
+import {
+  initSaga,
+  pauseSaga,
+  getCoreOptionsFromState,
+  initialiseCore,
+  addMessageSubscriptions
+} from '../../../sagas/simulatorSagas'
+
+import { getSimulatorState } from '../../../reducers/simulatorReducers'
 
 const runner = null
 
@@ -37,29 +43,21 @@ describe('when testing the init saga', () => {
 
 describe('when testing the pause saga', () => {
 
-  it('should pause and clear the interval if running', () => {
+  it('should put the pause action', () => {
 
     const saga = pauseSaga()
-
-    expect(saga.next().value).to.deep.equal(select(getSimulatorState))
-
-    expect(saga.next({ isRunning: true }).value).to.deep.equal(call(window.clearInterval, runner))
 
     expect(saga.next().value).to.deep.equal(put({ type: PAUSE }))
 
   })
 
-  it('should not pause and clear the interval if not running', () => {
+})
 
-    const saga = pauseSaga()
+describe('when testing the addMessageSubscriptions saga', () => {
 
-    const selectIsRunning = saga.next().value
+  const saga = addMessageSubscriptions()
 
-    expect(selectIsRunning).to.deep.equal(select(getSimulatorState))
 
-    expect(saga.next({ isRunning: false }).done).to.equal(true)
-
-  })
 
 })
 
