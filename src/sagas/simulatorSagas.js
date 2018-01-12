@@ -196,7 +196,6 @@ function* setCoreOptionsSaga({ id }) {
 }
 
 function* watchRoundProgressChannel() {
-
   while (true) {
     const action = yield take(roundProgressChannel)
     yield put(action)
