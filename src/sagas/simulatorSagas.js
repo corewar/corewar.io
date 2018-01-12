@@ -1,5 +1,5 @@
-import { channel } from 'redux-saga'
-import { call, put, takeEvery, takeLatest, select, take } from 'redux-saga/effects'
+import { channel, delay } from 'redux-saga'
+import { call, put, takeEvery, takeLatest, select, take, fork } from 'redux-saga/effects'
 
 import { corewar } from 'corewar'
 import * as PubSub from 'pubsub-js'
@@ -26,13 +26,13 @@ import {
 
 import { getParserState } from './../reducers/parserReducers'
 import { getSimulatorState } from './../reducers/simulatorReducers'
-import { getCoreOptions, CoreOptions } from './coreOptions'
+import { getCoreOptions } from './coreOptions'
 
 // oddities
-let runner = null
-let operations = 0
 const roundProgressChannel = channel()
 const roundEndChannel = channel()
+const runChannel = channel()
+const START = 'START_RUN'
 
 // sagas
 export function* initSaga() {
@@ -43,6 +43,11 @@ export function* initSaga() {
 
   yield call(initialiseCore, data.options, data.parseResults)
 
+}
+
+export function* setupMessageListeners() {
+  yield call(PubSub.subscribe, 'ROUND_END', sendRoundEnd)
+  yield call(PubSub.subscribe, 'RUN_PROGRESS', sendRoundProgress)
 }
 
 function* stepSaga() {
@@ -68,44 +73,41 @@ function* runSaga() {
 
   const data = yield call(getCoreOptionsFromState)
 
-  const { processRate } = yield select(getSimulatorState)
-
   if(data.result.outcome) {
     yield call(initialiseCore, data.options, data.parseResults)
   }
 
-  yield call(PubSub.unsubscribe, 'RUN_PROGRESS')
-  yield call(PubSub.subscribe, 'RUN_PROGRESS', sendRoundProgress)
-
-  yield call(PubSub.unsubscribe, 'ROUND_END')
-  yield call(PubSub.subscribe, 'ROUND_END', sendRoundEnd)
-
   yield put({ type: RUN })
 
-  runner = yield call(window.setInterval, () => {
-
-    corewar.step(processRate)
-
-    //operations += processRate
-
-    // // TODO: This should be controlled by the simulator
-    // if(operations >= 80000) {
-    //   window.clearInterval(runner)
-    //   operations = 0
-    // }
-
-  }, 1000/60)
+  runChannel.put({
+    type: START
+  })
 
 }
 
-export function* pauseSaga() {
+export function* runCoreSaga() {
 
-  const { isRunning } = yield select(getSimulatorState)
+  while(yield take(runChannel)) {
 
-  if(isRunning) {
-    yield call(window.clearInterval, runner)
-    yield put({ type: PAUSE })
+    while(true) {
+
+      yield call(delay, 1000/60)
+
+      const { isRunning, processRate } = yield select(getSimulatorState)
+
+      // if the state says we're running, call a step
+      if (isRunning) {
+        yield call([corewar, corewar.step], processRate)
+      } else {
+        // Otherwise, go idle until we get another put to `runChannel`
+        break
+      }
+    }
   }
+}
+
+export function* pauseSaga() {
+  yield put({ type: PAUSE })
 }
 
 export function* getCoreOptionsFromState() {
@@ -147,9 +149,6 @@ export function* finishSaga() {
 
   }
 
-  yield call(PubSub.unsubscribe, 'ROUND_END')
-  yield call(PubSub.subscribe, 'ROUND_END', sendRoundEnd)
-
   yield call([corewar, corewar.run])
 
 }
@@ -182,22 +181,6 @@ function* setProcessRateSaga({ rate }) {
     return
   }
 
-  yield call(window.clearInterval, runner)
-
-  runner = yield call(window.setInterval, () => {
-
-    for(let i = 0; i < rate; i++) {
-      corewar.step()
-    }
-
-    // operations += rate
-
-    // // TODO: This should be controlled by the simulator
-    // if(operations === 80000) {
-    //   window.clearInterval(runner)
-    //   operations = 0
-    // }
-  }, 1000/60)
 }
 
 function* setCoreOptionsSaga({ id }) {
@@ -215,6 +198,7 @@ function* setCoreOptionsSaga({ id }) {
 }
 
 function* watchRoundProgressChannel() {
+
   while (true) {
     const action = yield take(roundProgressChannel)
     yield put(action)
@@ -223,7 +207,7 @@ function* watchRoundProgressChannel() {
 
 function* watchRoundEndChannel() {
   while(true) {
-    yield call(window.clearInterval, runner)
+    yield call(pauseSaga)
     const action = yield take(roundEndChannel)
     yield put(action)
   }
@@ -253,6 +237,8 @@ export const simulatorWatchers = [
   takeLatest(SET_CORE_OPTIONS_REQUESTED, setCoreOptionsSaga),
   takeLatest(GET_CORE_INSTRUCTIONS_REQUESTED, getCoreInstructionsSaga),
   takeLatest(SET_PROCESS_RATE_REQUESTED, setProcessRateSaga),
-  takeEvery(roundProgressChannel, watchRoundProgressChannel),
-  takeEvery(roundEndChannel, watchRoundEndChannel)
+  fork(watchRoundProgressChannel),
+  fork(watchRoundEndChannel),
+  fork(runCoreSaga),
+  fork(setupMessageListeners)
 ]

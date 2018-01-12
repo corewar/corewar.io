@@ -79,7 +79,6 @@ export default (state = initialState, action) => {
       }
 
     case RUN_ENDED:
-      console.log(action)
       return {
         ...state,
         isRunning: false,

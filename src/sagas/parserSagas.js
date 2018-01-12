@@ -2,12 +2,6 @@ import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 import { insertItem, removeItem } from './../helpers/arrayHelpers'
 
 import { corewar } from 'corewar'
-import * as PubSub from 'pubsub-js'
-
-import {
-  INIT,
-  PAUSE
-} from './../actions/simulatorActions'
 
 import {
   PARSE,
@@ -19,7 +13,6 @@ import {
 } from './../actions/parserActions'
 
 import { getParserState } from './../reducers/parserReducers'
-import { getSimulatorState } from './../reducers/simulatorReducers'
 import { pauseSaga, getCoreOptionsFromState, initialiseCore } from './simulatorSagas'
 
 // sagas
@@ -59,7 +52,7 @@ function* removeWarriorSaga({ index }) {
 
   yield put({ type: REMOVE_WARRIOR, result })
 
-  yield call(initialiseCore, data.options, data.parseResults)
+  yield call(initialiseCore, data.options, result)
 
 }
 
