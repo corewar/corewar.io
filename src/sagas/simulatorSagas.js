@@ -69,7 +69,7 @@ function* stepSaga() {
   yield put({ type: GET_CORE_INSTRUCTIONS, coreInfo })
 }
 
-function* runSaga() {
+export function* runSaga() {
 
   const data = yield call(getCoreOptionsFromState)
 
@@ -213,14 +213,14 @@ function* watchRoundEndChannel() {
   }
 }
 
-const sendRoundProgress = (msg, data) => {
+export const sendRoundProgress = (msg, data) => {
   roundProgressChannel.put({
     type: RUN_PROGRESS,
     data: data.payload
   })
 }
 
-const sendRoundEnd = (msg, data) => {
+export const sendRoundEnd = (msg, data) => {
   roundEndChannel.put({
     type: RUN_ENDED,
     data: data.payload
