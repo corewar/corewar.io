@@ -27,7 +27,6 @@ export const getCoreOptions = (id) => {
         minSeparation: 5,
         instructionLimit: 5
       }
-
     case CoreOptions.Tiny:
       return {
         coreSize: 800,
