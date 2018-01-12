@@ -15,6 +15,7 @@ import {
   RUN_PROGRESS,
   RUN_ENDED,
   FINISH_REQUESTED,
+  START_REQUESTED,
   GET_CORE_INSTRUCTIONS,
   GET_CORE_INSTRUCTIONS_REQUESTED,
   SET_CORE_FOCUS,
@@ -32,7 +33,6 @@ import { getCoreOptions } from './coreOptions'
 const roundProgressChannel = channel()
 const roundEndChannel = channel()
 const runChannel = channel()
-const START = 'START_RUN'
 
 // sagas
 export function* initSaga() {
@@ -45,7 +45,7 @@ export function* initSaga() {
 
 }
 
-export function* setupMessageListeners() {
+export function* addMessageSubscriptions() {
   yield call(PubSub.subscribe, 'ROUND_END', sendRoundEnd)
   yield call(PubSub.subscribe, 'RUN_PROGRESS', sendRoundProgress)
 }
@@ -80,7 +80,7 @@ function* runSaga() {
   yield put({ type: RUN })
 
   runChannel.put({
-    type: START
+    type: START_REQUESTED
   })
 
 }
@@ -240,5 +240,5 @@ export const simulatorWatchers = [
   fork(watchRoundProgressChannel),
   fork(watchRoundEndChannel),
   fork(runCoreSaga),
-  fork(setupMessageListeners)
+  fork(addMessageSubscriptions)
 ]
