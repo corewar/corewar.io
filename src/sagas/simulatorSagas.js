@@ -144,9 +144,7 @@ export function* finishSaga() {
   const data = yield call(getCoreOptionsFromState)
 
   if(data.result.outcome) {
-
     yield call(initialiseCore, data.options, data.parseResults)
-
   }
 
   yield call([corewar, corewar.run])
