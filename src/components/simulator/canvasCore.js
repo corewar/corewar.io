@@ -54,9 +54,6 @@ class CanvasCore extends Component {
     const width = this.canvasContainer.clientWidth - 10
     const height = this.canvasContainer.clientHeight - 10
 
-    console.log(width)
-    console.log(height)
-
     this.setState({
       width: width,
       height: height
@@ -66,7 +63,6 @@ class CanvasCore extends Component {
     this.containerHeight = height
 
     this.cellSize = this.calculateCellSize()
-    console.log(this.cellSize)
     this.cellsWide = Math.floor(this.containerWidth / this.cellSize)
     this.cellsHigh = Math.floor(this.containerHeight / this.cellSize)
 
@@ -360,8 +356,6 @@ class CanvasCore extends Component {
 
       var canvasX = (event.pageX - totalOffsetX) - 2;
       var canvasY = (event.pageY - totalOffsetY) - 2;
-
-      console.log({ x: canvasX, y: canvasY })
 
       return { x: canvasX, y: canvasY };
   }
