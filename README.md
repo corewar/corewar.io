@@ -98,6 +98,17 @@ Published whenever a warrior creates or loses a task.
 }]
 ```
 
+### NEXT_EXECUTION
+
+Published once per call to step and indicates the next address which will be executed
+
+```
+{
+  warriorId: number,  // The unique id of the next warrior
+  address: number     // The address in core at which the next warrior will execute
+}
+```
+
 ## Testing
 
 [![wercker status](https://app.wercker.com/status/d6b4d4035c2ccc4e92f9ed40ae3f727d/m/master "wercker status")](https://app.wercker.com/project/byKey/d6b4d4035c2ccc4e92f9ed40ae3f727d)
