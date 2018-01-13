@@ -5,7 +5,7 @@ import { simulatorWatchers } from './simulatorSagas'
 
 export default function* rootSaga() {
   yield all([
-    parserWatchers,
-    simulatorWatchers
+    ...parserWatchers,
+    ...simulatorWatchers
   ])
 }
