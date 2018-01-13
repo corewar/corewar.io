@@ -11,105 +11,93 @@ describe("Publisher", () => {
 
     it("can be called when the publish provider has not been specified", () => {
 
-        const publisher = new Publisher();
+        const publisher = new Publisher([]);
 
-        publisher.publish({
-            type: MessageType.CoreAccess,
-            payload: {}
-        });
+        publisher.publish();
     });
 
-    it("publishes messages of the requested type", () => {
+    it("publishes nothing if no messages are queued", () => {
+
+        const publisher = new Publisher([]);
 
         const provider = {
             publishSync: sinon.stub()
         };
 
-        const publisher = new Publisher();
         publisher.setPublishProvider(provider);
 
-        publisher.publish({ type: MessageType.CoreAccess, payload: {} });
-        expect(provider.publishSync.lastCall.args[0]).to.be.equal("CORE_ACCESS");
-
-        publisher.publish({ type: MessageType.RunProgress, payload: {} });
-        expect(provider.publishSync.lastCall.args[0]).to.be.equal("RUN_PROGRESS");
-
-        publisher.publish({ type: MessageType.RoundEnd, payload: {} });
-        expect(provider.publishSync.lastCall.args[0]).to.be.equal("ROUND_END");
-
-        publisher.publish({ type: MessageType.TaskCount, payload: {} });
-        expect(provider.publishSync.lastCall.args[0]).to.be.equal("TASK_COUNT");
-
-        publisher.publish({ type: MessageType.CoreInitialise, payload: {} });
-        expect(provider.publishSync.lastCall.args[0]).to.be.equal("CORE_INITIALISE");
-
-        publisher.publish({ type: MessageType.RoundStart, payload: {} });
-        expect(provider.publishSync.lastCall.args[0]).to.be.equal("ROUND_START");
-    });
-
-    it("Allows all message types to be disabled", () => {
-
-        const provider = {
-            publishSync: sinon.stub()
-        };
-
-        const publisher = new Publisher();
-        publisher.setPublishProvider(provider);
-
-        publisher.setAllMessagesEnabled(false);
-
-        publisher.publish({ type: MessageType.CoreAccess, payload: {} });
-        publisher.publish({ type: MessageType.CoreInitialise, payload: {} });
-        publisher.publish({ type: MessageType.RoundEnd, payload: {} });
-        publisher.publish({ type: MessageType.RoundStart, payload: {} });
-        publisher.publish({ type: MessageType.RunProgress, payload: {} });
-        publisher.publish({ type: MessageType.TaskCount, payload: {} });
+        publisher.publish();
 
         expect(provider.publishSync).not.to.have.been.called;
     });
 
-    it("Allows all message types to be enabled", () => {
+    it("queues messages with the relevant publish strategy", () => {
 
-        const provider = {
-            publishSync: sinon.stub()
+        const unexpected = {
+            queue: sinon.stub(),
+            dequeue: sinon.stub()
+        };
+        const expectedStrategy = {
+            queue: sinon.stub(),
+            dequeue: sinon.stub()
         };
 
-        const publisher = new Publisher();
-        publisher.setPublishProvider(provider);
+        const expectedPayload = {
+            type: MessageType.TaskCount,
+            payload: {}
+        };
 
-        publisher.setAllMessagesEnabled(true);
+        const strategies = [
+            unexpected,
+            unexpected,
+            unexpected,
+            unexpected,
+            unexpected,
+            unexpected
+        ];
+        strategies[MessageType.TaskCount] = expectedStrategy;
 
-        publisher.publish({ type: MessageType.CoreAccess, payload: {} });
-        publisher.publish({ type: MessageType.CoreInitialise, payload: {} });
-        publisher.publish({ type: MessageType.RoundEnd, payload: {} });
-        publisher.publish({ type: MessageType.RoundStart, payload: {} });
-        publisher.publish({ type: MessageType.RunProgress, payload: {} });
-        publisher.publish({ type: MessageType.TaskCount, payload: {} });
+        const publisher = new Publisher(strategies);
 
-        expect(provider.publishSync).to.have.callCount(6);
+        publisher.queue(expectedPayload);
+
+        expect(expectedStrategy.queue).to.have.been.calledWith(expectedPayload);
+
+        expect(expectedStrategy.dequeue).not.to.have.been.called;
+        expect(unexpected.queue).not.to.have.been.called;
+        expect(unexpected.dequeue).not.to.have.been.called;
     });
 
-    it("Allows specific message type to be disabled", () => {
+    it("publishes all queued messages by dequeueing all strategies", () => {
 
-        const provider = {
-            publishSync: sinon.stub()
-        };
+        const coreAccessMessages = { type: MessageType.CoreAccess, payload: [{}] };
+        const runProgressMessages = { type: MessageType.RunProgress, payload: [{}] };
+        const roundEndMessages = { type: MessageType.RoundEnd, payload: [{}] };
+        const taskCountMessages = { type: MessageType.TaskCount, payload: [{ a: "a" }, { b: "b" }] };
+        const initialiseMessages = { type: MessageType.CoreInitialise, payload: [{}] };
+        const roundStartMessages = { type: MessageType.RoundStart, payload: [{}] };
 
-        const publisher = new Publisher();
+        const strategies = [
+            { dequeue: sinon.stub().returns(coreAccessMessages), queue: sinon.stub() },
+            { dequeue: sinon.stub().returns(runProgressMessages), queue: sinon.stub() },
+            { dequeue: sinon.stub().returns(roundEndMessages), queue: sinon.stub() },
+            { dequeue: sinon.stub().returns(taskCountMessages), queue: sinon.stub() },
+            { dequeue: sinon.stub().returns(initialiseMessages), queue: sinon.stub() },
+            { dequeue: sinon.stub().returns(roundStartMessages), queue: sinon.stub() }
+        ];
+
+        const provider = { publishSync: sinon.stub() };
+
+        const publisher = new Publisher(strategies);
         publisher.setPublishProvider(provider);
 
-        publisher.setAllMessagesEnabled(true);
-        publisher.setMessageTypeEnabled(MessageType.RoundEnd, false);
-        publisher.setMessageTypeEnabled(MessageType.CoreAccess, true);
+        publisher.publish();
 
-        publisher.publish({ type: MessageType.CoreAccess, payload: {} });
-        publisher.publish({ type: MessageType.CoreInitialise, payload: {} });
-        publisher.publish({ type: MessageType.RoundEnd, payload: {} });
-        publisher.publish({ type: MessageType.RoundStart, payload: {} });
-        publisher.publish({ type: MessageType.RunProgress, payload: {} });
-        publisher.publish({ type: MessageType.TaskCount, payload: {} });
-
-        expect(provider.publishSync).to.have.callCount(5);
-        expect(provider.publishSync).not.to.have.been.calledWith("ROUND_END", sinon.match.any);
+        expect(provider.publishSync).to.have.been.calledWith("CORE_ACCESS", coreAccessMessages.payload);
+        expect(provider.publishSync).to.have.been.calledWith("RUN_PROGRESS", runProgressMessages.payload);
+        expect(provider.publishSync).to.have.been.calledWith("ROUND_END", roundEndMessages.payload);
+        expect(provider.publishSync).to.have.been.calledWith("TASK_COUNT", taskCountMessages.payload);
+        expect(provider.publishSync).to.have.been.calledWith("CORE_INITIALISE", initialiseMessages.payload);
+        expect(provider.publishSync).to.have.been.calledWith("ROUND_START", roundStartMessages.payload);
     });
 });

@@ -56,10 +56,9 @@ describe("EndCondition", () => {
 
     beforeEach(() => {
         publisher = {
+            queue: sinon.stub(),
             publish: sinon.stub(),
-            setPublishProvider: sinon.stub(),
-            setAllMessagesEnabled: sinon.stub(),
-            setMessageTypeEnabled: sinon.stub()
+            setPublishProvider: sinon.stub()
         };
     });
 
@@ -153,14 +152,14 @@ describe("EndCondition", () => {
 
         endCondition.check(state);
 
-        expect(publisher.publish).to.have.been.calledWith({
+        expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.RunProgress,
             payload: {
                 runProgress: 100
             }
         });
 
-        expect(publisher.publish).to.have.been.calledWith({
+        expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.RoundEnd,
             payload: {
                 winnerId: null,
@@ -181,14 +180,14 @@ describe("EndCondition", () => {
 
         endCondition.check(state);
 
-        expect(publisher.publish).to.have.been.calledWith({
+        expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.RunProgress,
             payload: {
                 runProgress: 100
             }
         });
 
-        expect(publisher.publish).to.have.been.calledWith({
+        expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.RoundEnd,
             payload: {
                 winnerId: 7,
@@ -208,14 +207,14 @@ describe("EndCondition", () => {
 
         endCondition.check(state);
 
-        expect(publisher.publish).to.have.been.calledWith({
+        expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.RunProgress,
             payload: {
                 runProgress: 100
             }
         });
 
-        expect(publisher.publish).to.have.been.calledWith({
+        expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.RoundEnd,
             payload: {
                 winnerId: null,
@@ -235,14 +234,14 @@ describe("EndCondition", () => {
 
         endCondition.check(state);
 
-        expect(publisher.publish).to.have.been.calledWith({
+        expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.RunProgress,
             payload: {
                 runProgress: 12
             }
         });
 
-        expect(publisher.publish).not.to.have.been.calledWith({
+        expect(publisher.queue).not.to.have.been.calledWith({
             type: MessageType.RoundEnd,
             payload: sinon.match.any
         });

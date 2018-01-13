@@ -1,12 +1,12 @@
 import { IMessage, MessageType } from "./interface/IMessage";
 import { IPublisher } from "./interface/IPublisher";
 import { IPublishProvider } from "./interface/IPublishProvider";
+import { IPublishStrategy } from "./interface/IPublishStrategy";
 
 export class Publisher implements IPublisher {
 
     private publishProvider: IPublishProvider;
-
-    private typeEnabled: boolean[];
+    private publishStrategies: IPublishStrategy[];
 
     private typeDictionary = [
         "CORE_ACCESS",
@@ -17,42 +17,39 @@ export class Publisher implements IPublisher {
         "ROUND_START"
     ];
 
-    constructor() {
+    constructor(strategies: IPublishStrategy[]) {
 
-        this.setAllMessagesEnabled(true);
+        this.publishStrategies = strategies;
     }
 
-    public setPublishProvider(publishProvider: IPublishProvider) {
+    public setPublishProvider(publishProvider: IPublishProvider): void {
 
         this.publishProvider = publishProvider;
     }
 
-    public publish(message: IMessage): void {
+    public queue(message: IMessage): void {
+
+        this.publishStrategies[message.type].queue(message);
+    }
+
+    public publish(): void {
 
         if (!this.publishProvider) {
             return;
         }
 
-        if (!this.typeEnabled[message.type]) {
-            return;
-        }
+        this.publishStrategies
+            .forEach(s => {
+                var message = s.dequeue();
 
-        this.publishProvider.publishSync(
-            this.typeDictionary[message.type],
-            message.payload
-        )
-    }
+                if (!message) {
+                    return;
+                }
 
-    public setAllMessagesEnabled(enabled: boolean): void {
-
-        this.typeEnabled = [];
-        for (var i = 0; i < MessageType.Count; i++) {
-            this.typeEnabled.push(enabled);
-        }
-    }
-
-    public setMessageTypeEnabled(type: MessageType, enabled: boolean): void {
-
-        this.typeEnabled[type] = enabled;
+                this.publishProvider.publishSync(
+                    this.typeDictionary[message.type],
+                    message.payload
+                );
+            });
     }
 }

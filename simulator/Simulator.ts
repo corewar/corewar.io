@@ -60,7 +60,7 @@ export class Simulator implements ISimulator {
 
     private publishInitialise(state: IState) {
 
-        this.publisher.publish({
+        this.publisher.queue({
             type: MessageType.CoreInitialise,
             payload: {
                 state: clone(state)
@@ -83,42 +83,53 @@ export class Simulator implements ISimulator {
         this.state.warriors = this.loader.load(warriors, defaultedOptions);
 
         this.publishInitialise(this.state);
+
+        this.publisher.publish();
     }
 
     public run(): void {
 
-        try {
-            this.publisher.setAllMessagesEnabled(false);
-            this.publisher.setMessageTypeEnabled(MessageType.RoundEnd, true);
+        const remainingSteps = this.state.options.cyclesBeforeTie - this.state.cycle;
 
-            while (this.stepInternal() === false) {
-            }
-        }
-        finally {
-            this.publisher.setAllMessagesEnabled(true);
-        }
-
-        this.core.publishCoreAccesses();
+        this.step(remainingSteps);
     }
 
-    public step(): boolean {
+    public step(steps?: number): boolean {
 
         if (this.endCondition.check(this.state)) {
             return true;
         }
 
-        return this.stepInternal();
+        const result = this.multiStep(steps);
+
+        this.publisher.publish();
+
+        return result;
     }
 
-    private stepInternal(): boolean {
+    private multiStep(steps?: number): boolean {
+
+        if (!steps || steps < 1) {
+            steps = 1;
+        }
 
         if (this.state.cycle === 0) {
-            this.publisher.publish({
+            this.publisher.queue({
                 type: MessageType.RoundStart,
                 payload: {}
             });
         }
 
+        for (let i = 0; i < steps; i++) {
+            if (this.singleStep()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private singleStep(): boolean {
         var context = this.fetcher.fetch(this.state, this.core);
 
         context = this.decoder.decode(context);

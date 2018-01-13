@@ -52,8 +52,7 @@ describe("Decoder",() => {
             },
             initialise: (options: IOptions) => {
                 //
-            },
-            publishCoreAccesses: sinon.stub()
+            }
         };
     });
 

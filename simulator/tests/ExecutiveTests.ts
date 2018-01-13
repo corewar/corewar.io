@@ -31,10 +31,9 @@ describe("Executive", () => {
     beforeEach(() => {
 
         publisher = {
+            queue: sinon.stub(),
             publish: sinon.stub(),
-            setPublishProvider: sinon.stub(),
-            setAllMessagesEnabled: sinon.stub(),
-            setMessageTypeEnabled: sinon.stub()
+            setPublishProvider: sinon.stub()
         };
 
         options = Object.assign({}, Defaults);
@@ -67,8 +66,7 @@ describe("Executive", () => {
             wrap: wrapSpy,
             initialise: (options: IOptions) => {
                 //
-            },
-            publishCoreAccesses: sinon.stub()
+            }
         };
 
         state = {
@@ -219,7 +217,7 @@ describe("Executive", () => {
         expect(state.warriors[0].tasks[0].instructionPointer).to.be.equal(0);
         expect(state.warriors[0].tasks[1].instructionPointer).to.be.equal(0);
 
-        expect(publisher.publish).to.be.calledWith({
+        expect(publisher.queue).to.be.calledWith({
             type: MessageType.TaskCount,
             payload: {
                 warriorId: 7,
@@ -248,7 +246,7 @@ describe("Executive", () => {
         expect(state.warriors[0].tasks[0].instructionPointer).to.be.equal(0);
         expect(state.warriors[0].tasks[1].instructionPointer).to.be.equal(0);
 
-        expect(publisher.publish).to.be.calledWith({
+        expect(publisher.queue).to.be.calledWith({
             type: MessageType.TaskCount,
             payload: {
                 warriorId: 7,
@@ -4740,7 +4738,7 @@ describe("Executive", () => {
 
         expect(context.warrior.tasks.length).to.be.equal(4);
 
-        expect(publisher.publish).to.be.calledWith({
+        expect(publisher.queue).to.be.calledWith({
             type: MessageType.TaskCount,
             payload: {
                 warriorId: 7,

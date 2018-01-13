@@ -52,10 +52,9 @@ describe("Core", () => {
     beforeEach(() => {
 
         publisher = {
+            queue: sinon.stub(),
             publish: sinon.stub(),
-            setPublishProvider: sinon.stub(),
-            setAllMessagesEnabled: sinon.stub(),
-            setMessageTypeEnabled: sinon.stub()
+            setPublishProvider: sinon.stub()
         };
     });
 
@@ -202,13 +201,13 @@ describe("Core", () => {
 
         core.readAt(task, 2);
 
-        expect(publisher.publish).to.have.been.calledWith({
+        expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.CoreAccess,
-            payload: [{
+            payload: {
                 warriorId: task.warrior.id,
                 accessType: CoreAccessType.read,
                 address: 2
-            }]
+            }
         });
     });
 
@@ -221,13 +220,13 @@ describe("Core", () => {
 
         core.setAt(task, 2, buildInstruction());
 
-        expect(publisher.publish).to.have.been.calledWith({
+        expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.CoreAccess,
-            payload: [{
+            payload: {
                 warriorId: task.warrior.id,
                 accessType: CoreAccessType.write,
                 address: 2
-            }]
+            }
         });
     });
 
@@ -240,13 +239,13 @@ describe("Core", () => {
 
         core.executeAt(task, 2);
 
-        expect(publisher.publish).to.have.been.calledWith({
+        expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.CoreAccess,
-            payload: [{
+            payload: {
                 warriorId: task.warrior.id,
                 accessType: CoreAccessType.execute,
                 address: 2
-            }]
+            }
         });
     });
 
@@ -293,46 +292,5 @@ describe("Core", () => {
         const actual = core.getWithInfoAt(2);
 
         expect(actual.access).to.be.deep.equal(expected);
-    });
-
-    it("Publishes core access event for all core locations", () => {
-
-        var core = new Core(publisher);
-        core.initialise(Object.assign({}, Defaults, { coresize: 4 }));
-
-        const task1 = buildTask(7);
-        const task2 = buildTask(5);
-
-        const expected = [{
-            warriorId: task1.warrior.id,
-            accessType: CoreAccessType.write,
-            address: 0
-        }, {
-            accessType: CoreAccessType.write,
-            address: 1
-        }, {
-            warriorId: task2.warrior.id,
-            accessType: CoreAccessType.read,
-            address: 2
-        }, {
-            warriorId: task1.warrior.id,
-            accessType: CoreAccessType.execute,
-            address: 3
-        }];
-
-        core.setAt(task1, 0, buildInstruction());
-        core.readAt(task2, 2);
-        core.executeAt(task1, 3);
-
-        publisher.publish = sinon.stub();
-
-        core.publishCoreAccesses();
-
-        expect(publisher.publish).to.have.callCount(1);
-
-        expect(publisher.publish).to.have.been.calledWith({
-            type: MessageType.CoreAccess,
-            payload: expected
-        });
     });
 });

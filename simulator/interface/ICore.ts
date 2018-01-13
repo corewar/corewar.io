@@ -25,5 +25,4 @@ export interface ICore {
     getAt(address: number): IInstruction;
     getWithInfoAt(address: number): ICoreLocation;
     setAt(task: ITask, address: number, instruction: IInstruction): void;
-    publishCoreAccesses(): void;
 }

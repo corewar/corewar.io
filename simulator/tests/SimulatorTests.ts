@@ -50,8 +50,7 @@ describe("Simulator", () => {
             getWithInfoAt: sinon.stub(),
             setAt: sinon.stub(),
             wrap: sinon.stub(),
-            initialise: sinon.stub(),
-            publishCoreAccesses: sinon.stub()
+            initialise: sinon.stub()
         };
 
         loader = {
@@ -89,10 +88,9 @@ describe("Simulator", () => {
         };
 
         publisher = {
+            queue: sinon.stub(),
             publish: sinon.stub(),
-            setPublishProvider: sinon.stub(),
-            setAllMessagesEnabled: sinon.stub(),
-            setMessageTypeEnabled: sinon.stub()
+            setPublishProvider: sinon.stub()
         };
 
         simulator = new Simulator(
@@ -106,7 +104,7 @@ describe("Simulator", () => {
             publisher);
     });
 
-    it("first fetches then decodes and finally executes", () => {
+    it("step first fetches then decodes and finally executes", () => {
 
         var fetchCalled = false;
         var decodeCalled = false;
@@ -147,7 +145,7 @@ describe("Simulator", () => {
         expect(executeCalled).to.be.equal(true);
     });
 
-    it("returns true if the end condition check returns true", () => {
+    it("step returns true if the end condition check returns true", () => {
 
         (<sinon.stub>endCondition.check).returns(true);
 
@@ -156,7 +154,7 @@ describe("Simulator", () => {
         expect(actual).to.be.equal(true);
     });
 
-    it("returns false if the end condition check returns false", () => {
+    it("step returns false if the end condition check returns false", () => {
 
         (<sinon.stub>endCondition.check).returns(false);
 
@@ -165,7 +163,7 @@ describe("Simulator", () => {
         expect(actual).to.be.equal(false);
     });
 
-    it("increments the cycle number", () => {
+    it("step increments the cycle number", () => {
 
         var checkSpy = <sinon.stub>endCondition.check;
         var state: IState;
@@ -186,7 +184,7 @@ describe("Simulator", () => {
         expect(state.cycle).to.be.equal(3);
     });
 
-    it("passes the context retrieved from fetch to decode", () => {
+    it("step passes the context retrieved from fetch to decode", () => {
 
         var fetchContext = {};
 
@@ -197,7 +195,7 @@ describe("Simulator", () => {
         expect(<sinon.stub>decoder.decode).to.have.been.calledWith(fetchContext);
     });
 
-    it("passes the context retrieved from decode to execute", () => {
+    it("step passes the context retrieved from decode to execute", () => {
 
         var decodeContext = { command: commandSpy };
 
@@ -326,34 +324,34 @@ describe("Simulator", () => {
         expect(fetcher.fetch).not.to.be.called;
     });
 
-    it("Should publish round start message if cycle is zero", () => {
+    it("step should publish round start message if cycle is zero", () => {
 
         simulator.step();
 
-        expect(publisher.publish).to.be.calledWith({
+        expect(publisher.queue).to.be.calledWith({
             type: MessageType.RoundStart,
             payload: {}
         });
     });
 
-    it("Should not publish round start message if cycle is not zero", () => {
+    it("step should not publish round start message if cycle is not zero", () => {
 
         simulator.step();
 
-        publisher.publish = sinon.stub();
+        publisher.queue = sinon.stub();
 
         simulator.step();
 
-        expect(publisher.publish).not.to.be.called;
+        expect(publisher.queue).not.to.be.called;
     });
 
-    it("Should publish initialise message when initialised", () => {
+    it("should publish initialise message when initialised", () => {
 
         const options = clone(Defaults);
 
         simulator.initialise(options, []);
 
-        expect(publisher.publish).to.have.been.calledWith({
+        expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.CoreInitialise,
             payload: {
                 state: simulator.getState()
@@ -361,7 +359,9 @@ describe("Simulator", () => {
         });
     });
 
-    it("Should repeatedly call step until end condition met when run called", () => {
+    it("should repeatedly call step until end condition met when run called", () => {
+
+        const preCheck = 1;
 
         const options = clone(Defaults);
 
@@ -375,40 +375,72 @@ describe("Simulator", () => {
 
         simulator.run();
 
-        expect(fetcher.fetch).to.have.callCount(4);
+        expect(fetcher.fetch).to.have.callCount(4-preCheck);
     });
 
-    it("Should disable core access, progress and task count events when running", () => {
+    it("should trigger publisher publish after run completes", () => {
 
-        (<sinon.stub>endCondition.check).returns(true);
+        const options = clone(Defaults);
+
+        simulator.initialise(options, []);
+
+        publisher.publish = sinon.stub();
+
+        const stub = <sinon.stub>endCondition.check;
+        stub.onCall(2).returns(true);
 
         simulator.run();
 
-        expect(publisher.setAllMessagesEnabled).to.be.calledWith(false);
-        expect(publisher.setMessageTypeEnabled).to.be.calledWith(MessageType.RoundEnd, true);
-        expect(publisher.setAllMessagesEnabled).to.be.calledWith(true);
-
-        expect(publisher.setMessageTypeEnabled).to.be.calledBefore(fetcher.fetch);
-        expect(publisher.setAllMessagesEnabled).to.be.calledAfter(fetcher.fetch);
+        expect(publisher.publish).to.have.been.called;
     });
 
-    it("Should enable all messages even if error occurs", () => {
+    it("should trigger publisher publish when initialisation completes", () => {
 
-        (<sinon.stub>fetcher.fetch).callsFake(() => { throw "Test Error" });
+        const options = clone(Defaults);
 
-        try {
-            simulator.run();
-        } catch (e) {
-            expect(e).to.be.equal("Test Error");
-        }
+        simulator.initialise(options, []);
 
-        expect(publisher.setAllMessagesEnabled).to.have.been.calledWith(true);
+        expect(publisher.publish).to.have.been.called;
     });
 
-    it("Should publish core access event for all core addresses after run", () => {
+    it("should trigger publisher publish when step completes", () => {
 
-        simulator.run();
+        const options = clone(Defaults);
 
-        expect(core.publishCoreAccesses).to.have.been.called;
+        simulator.initialise(options, []);
+
+        publisher.publish = sinon.stub();
+
+        simulator.step();
+
+        expect(publisher.publish).to.have.been.called;
+    });
+
+    it("step should step the specified number of times", () => {
+
+        const options = clone(Defaults);
+
+        simulator.initialise(options, []);
+
+        simulator.step(3);
+
+        var checkSpy = <sinon.stub>endCondition.check;
+        const state = checkSpy.lastCall.args[0];
+
+        expect(state.cycle).to.be.equal(3);
+    });
+
+    it("step should step once if a negative step number is requested", () => {
+
+        const options = clone(Defaults);
+
+        simulator.initialise(options, []);
+
+        simulator.step(-5);
+
+        var checkSpy = <sinon.stub>endCondition.check;
+        const state = checkSpy.lastCall.args[0];
+
+        expect(state.cycle).to.be.equal(1);
     });
 });

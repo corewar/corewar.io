@@ -59,11 +59,11 @@ Contains the initial state of the simulator core and process tree.
 Published when a warrior reads to, writes from or executes within the core
 
 ```
-{
+[{
   warriorId: number,      // Each warrior has a unique id
   accessType: AccessType, // AccessType can be 0=read, 1=write or 2=execute
   address: number         // Absolute address within the core
-}
+}]
 ```
 
 ### RUN_PROGRESS
@@ -92,10 +92,10 @@ Published at the end of the round to indicate the outcome
 Published whenever a warrior creates or loses a task.
 
 ```
-{
+[{
   warriorId: number,  // The unique id of the warrior
   taskCount: number   // The warrior's current task count
-}
+}]
 ```
 
 ## Testing
