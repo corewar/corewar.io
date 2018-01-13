@@ -20,7 +20,7 @@ class CanvasCore extends Component {
     this.getCoreInstructions = props.getCoreInstructions
 
     this.messages = []
-    this.lastAddress = null
+    this.lastCoordinates = null
 
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
       this.messages = this.messages.concat(data)
@@ -54,6 +54,9 @@ class CanvasCore extends Component {
     const width = this.canvasContainer.clientWidth - 10
     const height = this.canvasContainer.clientHeight - 10
 
+    console.log(width)
+    console.log(height)
+
     this.setState({
       width: width,
       height: height
@@ -63,6 +66,7 @@ class CanvasCore extends Component {
     this.containerHeight = height
 
     this.cellSize = this.calculateCellSize()
+    console.log(this.cellSize)
     this.cellsWide = Math.floor(this.containerWidth / this.cellSize)
     this.cellsHigh = Math.floor(this.containerHeight / this.cellSize)
 
@@ -88,6 +92,8 @@ class CanvasCore extends Component {
   renderGrid() {
     this.clearCanvas()
 
+    this.clearInteractiveCanvas()
+
     this.fillGridArea()
 
     this.renderGridLines()
@@ -109,8 +115,7 @@ class CanvasCore extends Component {
   renderMessages() {
 
     this.messages.forEach((data) => {
-      this.renderCurrentTask(data)
-      this.renderCell(data, '#f00')
+      this.renderCell(data)
     })
 
     this.messages = []
@@ -118,16 +123,16 @@ class CanvasCore extends Component {
     window.requestAnimationFrame(() => this.renderMessages())
   }
 
-  renderCurrentTask(data) {
+  renderCurrentTask(coordinate) {
 
-    const lastAccess = this.addressToScreenCoordinate(this.lastAddress)
+    if(this.lastCoordinates) {
 
-    this.interactiveContext.clearRect(lastAccess.x - 1,
-      lastAccess.y - 1,
-      this.cellSize + 2,
-      this.cellSize + 2)
-
-    const coordinate = this.addressToScreenCoordinate(data.address)
+      this.interactiveContext.clearRect(
+        this.lastCoordinates.x,
+        this.lastCoordinates.y,
+        this.lastCoordinates.wh,
+        this.lastCoordinates.wh)
+    }
 
     this.interactiveContext.fillStyle = '#ffffff'
 
@@ -137,7 +142,11 @@ class CanvasCore extends Component {
       this.cellSize,
       this.cellSize)
 
-    this.lastAddress = data.address
+    this.lastCoordinates = {
+      x: coordinate.x,
+      y: coordinate.y - 1,
+      wh: this.cellSize + 2
+    }
 
   }
 
@@ -185,7 +194,10 @@ class CanvasCore extends Component {
         coordinate.x,
         coordinate.y,
         this.cellSize,
-        this.cellSize);
+        this.cellSize)
+
+    this.renderCurrentTask(coordinate)
+
   }
 
   renderRead(coordinate) {
@@ -348,6 +360,8 @@ class CanvasCore extends Component {
 
       var canvasX = (event.pageX - totalOffsetX) - 2;
       var canvasY = (event.pageY - totalOffsetY) - 2;
+
+      console.log({ x: canvasX, y: canvasY })
 
       return { x: canvasX, y: canvasY };
   }
