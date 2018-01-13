@@ -19,8 +19,8 @@ class CoreInput extends Component {
 
       let newTasks = []
 
-      data.payload.forEach((item) => {
-        newTasks = this.state.tasks.splice(item.warriorId, 1, item.taskCount)
+      data.forEach((item) => {
+        newTasks = this.state.tasks.splice(data.warriorId, 1, data.taskCount)
       })
 
       this.setState({ tasks: newTasks })

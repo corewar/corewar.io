@@ -76,7 +76,7 @@ it('updates the task count for the given warriorId / index on the "TASK_COUNT" m
 
     wrapper.setState({ tasks: List([10, 20, 30]) })
 
-    PubSub.publishSync('TASK_COUNT', { payload: [{ warriorId: 1, taskCount: 100 }]})
+    PubSub.publishSync('TASK_COUNT', [{ warriorId: 1, taskCount: 100 }])
 
     expect(wrapper.state('tasks')).to.deep.equal(List([10, 100, 30]))
 

@@ -213,14 +213,14 @@ function* watchRoundEndChannel() {
 export const sendRoundProgress = (msg, data) => {
   roundProgressChannel.put({
     type: RUN_PROGRESS,
-    data: data.payload
+    data
   })
 }
 
 export const sendRoundEnd = (msg, data) => {
   roundEndChannel.put({
     type: RUN_ENDED,
-    data: data.payload
+    data
   })
 }
 
