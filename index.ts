@@ -98,7 +98,7 @@ class Api {
         var loader = new Loader(
             new Random(),
             this.core,
-            new WarriorLoader(this.core));
+            new WarriorLoader(this.core, this.publisher));
 
         var fetcher = new Fetcher();
         this.executive = new Executive(this.publisher);

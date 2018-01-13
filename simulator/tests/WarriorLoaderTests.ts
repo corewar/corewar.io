@@ -14,6 +14,8 @@ import { IParseResult } from "../../parser/interface/IParseResult";
 import { IToken, TokenCategory } from "../../parser/interface/IToken";
 import { WarriorLoader } from "../WarriorLoader";
 import DataHelper from "./DataHelper";
+import { IPublisher } from "../interface/IPublisher";
+import { MessageType } from "../interface/IMessage";
 
 "use strict";
 
@@ -38,6 +40,16 @@ describe("WarriorLoader", () => {
         .concat(instruction("SLT", ".X", "}", -13, ">", -14))
         .concat(instruction("SPL", ".A", "$", -15, "#", -16))
         .concat(instruction("NOP", ".B", "#", 0, "#", 0));
+
+    var publisher: IPublisher;
+
+    beforeEach(() => {
+
+        this.publisher = {
+            queue: sinon.stub(),
+            publish: sinon.stub()
+        };
+    });
 
     function buildCore(size: number): ICore {
         var core = {
@@ -96,7 +108,7 @@ describe("WarriorLoader", () => {
 
         var core = buildCore(0);
 
-        var loader = new WarriorLoader(core);
+        var loader = new WarriorLoader(core, this.publisher);
         var actual = loader.load(0, parseResult, 0);
 
         expect(actual.name).to.be.equal("johnSmith");
@@ -109,7 +121,7 @@ describe("WarriorLoader", () => {
         var parseResult: IParseResult = DataHelper.buildParseResult([]);
         var core = buildCore(0);
 
-        var loader = new WarriorLoader(core);
+        var loader = new WarriorLoader(core, this.publisher);
         var actual = loader.load(0, parseResult, 0);
 
         expect(actual.taskIndex).to.be.equal(0);
@@ -138,7 +150,7 @@ describe("WarriorLoader", () => {
 
         var core = buildCore(10);
 
-        var loader = new WarriorLoader(core);
+        var loader = new WarriorLoader(core, this.publisher);
         var actual = loader.load(3, parseResult, 0);
 
         expect(actual.tasks[0].instructionPointer).to.be.equal(7);
@@ -149,7 +161,7 @@ describe("WarriorLoader", () => {
         var tokens = DataHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
         var core = buildCore(30);
 
-        var loader = new WarriorLoader(core);
+        var loader = new WarriorLoader(core, this.publisher);
         loader.load(21, tokens, 0);
 
         for (var i = 0; i < 30; i++) {
@@ -169,7 +181,7 @@ describe("WarriorLoader", () => {
 
         var core = buildCore(20);
 
-        var loader = new WarriorLoader(core);
+        var loader = new WarriorLoader(core, this.publisher);
         loader.load(0, DataHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).opcode).to.be.equal(OpcodeType.DAT);
@@ -195,7 +207,7 @@ describe("WarriorLoader", () => {
 
         var core = buildCore(20);
 
-        var loader = new WarriorLoader(core);
+        var loader = new WarriorLoader(core, this.publisher);
         loader.load(0, DataHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).modifier).to.be.equal(ModifierType.A);
@@ -221,7 +233,7 @@ describe("WarriorLoader", () => {
 
         var core = buildCore(20);
 
-        var loader = new WarriorLoader(core);
+        var loader = new WarriorLoader(core, this.publisher);
         loader.load(0, DataHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).aOperand.mode).to.be.equal(ModeType.Direct);
@@ -247,7 +259,7 @@ describe("WarriorLoader", () => {
 
         var core = buildCore(20);
 
-        var loader = new WarriorLoader(core);
+        var loader = new WarriorLoader(core, this.publisher);
         loader.load(0, DataHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).aOperand.address).to.be.equal(0);
@@ -273,7 +285,7 @@ describe("WarriorLoader", () => {
 
         var core = buildCore(20);
 
-        var loader = new WarriorLoader(core);
+        var loader = new WarriorLoader(core, this.publisher);
         loader.load(0, DataHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).bOperand.mode).to.be.equal(ModeType.Direct);
@@ -299,7 +311,7 @@ describe("WarriorLoader", () => {
 
         var core = buildCore(20);
 
-        var loader = new WarriorLoader(core);
+        var loader = new WarriorLoader(core, this.publisher);
         loader.load(0, DataHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).bOperand.address).to.be.equal(1);
@@ -327,7 +339,7 @@ describe("WarriorLoader", () => {
 
         var core = buildCore(5);
 
-        var loader = new WarriorLoader(core);
+        var loader = new WarriorLoader(core, this.publisher);
         var actual = loader.load(3, tokens, 0);
 
         expect(actual.startAddress).to.be.equal(3);
@@ -341,7 +353,7 @@ describe("WarriorLoader", () => {
 
         var core = buildCore(5);
 
-        var loader = new WarriorLoader(core);
+        var loader = new WarriorLoader(core, this.publisher);
         var actual = loader.load(3, tokens, expected);
 
         expect(actual.id).to.be.equal(expected);
@@ -352,7 +364,7 @@ describe("WarriorLoader", () => {
         var tokens = DataHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
         var core = buildCore(0);
 
-        var loader = new WarriorLoader(core);
+        var loader = new WarriorLoader(core, this.publisher);
         var actual = loader.load(0, tokens, 0);
 
         expect(core.setAt).to.be.calledWith(actual.tasks[0], sinon.match.any, sinon.match.any);
@@ -365,7 +377,7 @@ describe("WarriorLoader", () => {
         var tokens = DataHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
         var core = buildCore(0);
 
-        var loader = new WarriorLoader(core);
+        var loader = new WarriorLoader(core, this.publisher);
         
         var actual = null;
         (<sinon.stub>core.setAt).callsFake((task, address, instruction) => {
@@ -377,4 +389,22 @@ describe("WarriorLoader", () => {
 
         expect(actual).to.be.equal(expected);
     });
+
+    it("queues a task count of 1 for the warrior's id", () => {
+
+        const expectedId = 5;
+        const core = buildCore(0);
+        const tokens = DataHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const loader = new WarriorLoader(core, this.publisher);
+
+        loader.load(0, tokens, expectedId);
+
+        expect(this.publisher.queue).to.have.been.calledWith({
+            type: MessageType.TaskCount,
+            payload: {
+                warriorId: expectedId,
+                taskCount: 1
+            }
+        });
+    })
 });
