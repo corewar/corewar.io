@@ -122,10 +122,10 @@ class CanvasCore extends Component {
 
     const lastAccess = this.addressToScreenCoordinate(this.lastAddress)
 
-    this.interactiveContext.clearRect(lastAccess.x,
-      lastAccess.y,
-      this.cellSize,
-      this.cellSize)
+    this.interactiveContext.clearRect(lastAccess.x - 1,
+      lastAccess.y - 1,
+      this.cellSize + 2,
+      this.cellSize + 2)
 
     const coordinate = this.addressToScreenCoordinate(data.address)
 
@@ -216,6 +216,7 @@ class CanvasCore extends Component {
     this.coreContext.lineTo(x1, y1);
     this.coreContext.moveTo(x0, y1);
     this.coreContext.lineTo(x1, y0);
+    this.coreContext.moveTo(x0, y0);
     this.coreContext.stroke();
   }
 
@@ -228,7 +229,6 @@ class CanvasCore extends Component {
   }
 
   clearInteractiveCanvas() {
-
     this.interactiveContext.setTransform(1, 0, 0, 1, 0, 0)
     this.interactiveContext.clearRect(0, 0, this.containerWidth, this.containerHeight)
     this.interactiveContext.setTransform(1, 0, 0, 1, 0.5, 0.5)
@@ -375,18 +375,20 @@ class CanvasCore extends Component {
 
     const { x, y } = cell
 
-    this.interactiveContext.beginPath()
+    //this.interactiveContext.beginPath()
 
-    this.interactiveContext.strokeStyle = '#fff'
+    this.interactiveContext.strokeStyle = '#ffffff'
 
-    this.interactiveContext.moveTo(x, y)
+    this.interactiveContext.strokeRect(x, y, this.cellSize, this.cellSize)
 
-    this.interactiveContext.lineTo(x + this.cellSize, y)
-    this.interactiveContext.lineTo(x + this.cellSize, y + this.cellSize)
-    this.interactiveContext.lineTo(x, y + this.cellSize)
-    this.interactiveContext.lineTo(x, y)
+    // this.interactiveContext.moveTo(x, y)
 
-    this.interactiveContext.stroke()
+    // this.interactiveContext.lineTo(x + this.cellSize, y)
+    // this.interactiveContext.lineTo(x + this.cellSize, y + this.cellSize)
+    // this.interactiveContext.lineTo(x, y + this.cellSize)
+    // this.interactiveContext.lineTo(x, y)
+
+    //this.interactiveContext.stroke()
 
   }
 
