@@ -1,7 +1,7 @@
 ﻿import { ICore, ICoreAccessEventArgs, CoreAccessType } from "./interface/ICore";
 import { IOptions } from "./interface/IOptions";
 import { ICoreLocation } from "./interface/ICoreLocation";
-import { IInstruction } from "./interface/IInstruction";
+import { IInstruction, OpcodeType } from "./interface/IInstruction";
 import { ITask } from "./interface/ITask";
 import { MessageType } from "./interface/IMessage";
 import { IPublisher } from "./interface/IPublisher";
@@ -61,9 +61,13 @@ export class Core implements ICore {
 
         address = this.wrap(address);
 
-        this.triggerEvent(task, address, CoreAccessType.execute);
+        const instruction = this.locations[address].instruction;
 
-        return this.locations[address].instruction;
+        if (instruction.opcode !== OpcodeType.DAT) {
+            this.triggerEvent(task, address, CoreAccessType.execute);
+        }
+
+        return instruction;
     }
 
     public readAt(task: ITask, address: number): IInstruction {
