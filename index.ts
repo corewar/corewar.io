@@ -129,9 +129,9 @@ class Api {
         return clone(this.core.getWithInfoAt(address));
     }
 
-    public step(steps?: number) : void {
+    public step(steps?: number) : boolean {
 
-        this.simulator.step(steps);
+        return this.simulator.step(steps);
     }
 
     public run(): void {
