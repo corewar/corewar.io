@@ -48,7 +48,7 @@ export class Publisher implements IPublisher {
 
                 this.publishProvider.publishSync(
                     this.typeDictionary[message.type],
-                    message
+                    message.payload
                 );
             });
     }

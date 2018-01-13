@@ -93,11 +93,11 @@ describe("Publisher", () => {
 
         publisher.publish();
 
-        expect(provider.publishSync).to.have.been.calledWith("CORE_ACCESS", coreAccessMessages);
-        expect(provider.publishSync).to.have.been.calledWith("RUN_PROGRESS", runProgressMessages);
-        expect(provider.publishSync).to.have.been.calledWith("ROUND_END", roundEndMessages);
-        expect(provider.publishSync).to.have.been.calledWith("TASK_COUNT", taskCountMessages);
-        expect(provider.publishSync).to.have.been.calledWith("CORE_INITIALISE", initialiseMessages);
-        expect(provider.publishSync).to.have.been.calledWith("ROUND_START", roundStartMessages);
+        expect(provider.publishSync).to.have.been.calledWith("CORE_ACCESS", coreAccessMessages.payload);
+        expect(provider.publishSync).to.have.been.calledWith("RUN_PROGRESS", runProgressMessages.payload);
+        expect(provider.publishSync).to.have.been.calledWith("ROUND_END", roundEndMessages.payload);
+        expect(provider.publishSync).to.have.been.calledWith("TASK_COUNT", taskCountMessages.payload);
+        expect(provider.publishSync).to.have.been.calledWith("CORE_INITIALISE", initialiseMessages.payload);
+        expect(provider.publishSync).to.have.been.calledWith("ROUND_START", roundStartMessages.payload);
     });
 });
