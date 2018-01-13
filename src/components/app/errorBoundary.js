@@ -13,8 +13,6 @@ class ErrorBoundary extends React.Component {
 
   componentDidCatch(error, info) {
     this.setState({ hasError: true })
-    // this gets reported to rollbar
-    throw new Error(error, info)
   }
 
   render() {

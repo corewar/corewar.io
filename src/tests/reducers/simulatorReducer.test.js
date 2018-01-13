@@ -11,7 +11,8 @@ import {
   RUN_ENDED,
   GET_CORE_INSTRUCTIONS,
   SET_CORE_FOCUS,
-  SET_PROCESS_RATE
+  SET_PROCESS_RATE,
+  SET_CORE_OPTIONS
 } from './../../actions/simulatorActions'
 
 describe('when testing the simulator reducers', () => {
@@ -28,12 +29,26 @@ describe('when testing the simulator reducers', () => {
       runProgress: 0,
       focus: null,
       roundResult: {},
+
       coreSize: 8000,
-      minSeparation: 1,
-      instructionLimit: 1,
+      cyclesBeforeTie: 80000,
+      minSeparation: 100,
+      instructionLimit: 100,
+      maxTasks: 8000,
+
       instructions: [],
       processRate: 1,
-      processRates: [1, 2, 5, 12, 30, 75, 200]
+      processRates: [1, 2, 5, 12, 30, 75, 200],
+      currentCoreOption: 1,
+      coreOptions: [
+        { id: 1, name: 'Beginner'},
+        { id: 2, name: 'Nano' },
+        { id: 3, name: 'Tiny' },
+        { id: 4, name: 'Limited Process' },
+        { id: 5, name: 'Fortress' },
+        { id: 6, name: '94t' },
+        { id: 7, name: 'Tiny Limited Process' }
+      ]
     })
 
   })
@@ -170,6 +185,31 @@ describe('when testing the simulator reducers', () => {
 
     expect(result).to.deep.equal({
       processRate: action.rate
+    })
+
+  })
+
+  it('should handle the SET_CORE_OPTIONS action', () => {
+
+    const action = {
+      type: SET_CORE_OPTIONS,
+      id: 1,
+      coreSize: 2,
+      cyclesBeforeTie: 3,
+      minSeparation: 4,
+      instructionLimit: 5,
+      maxTasks: 6
+    }
+
+    const result = simulatorReducer([], action)
+
+    expect(result).to.deep.equal({
+      currentCoreOption: action.id,
+      coreSize: action.coreSize,
+      cyclesBeforeTie: action.cyclesBeforeTie,
+      minSeparation: action.minSeparation,
+      instructionLimit: action.instructionLimit,
+      maxTasks: action.maxTasks
     })
 
   })

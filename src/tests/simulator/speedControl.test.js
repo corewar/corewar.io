@@ -21,7 +21,7 @@ it('renders the current processRate', () => {
 
   const wrapper = shallow(<SpeedControl {...props}/>)
 
-  expect(wrapper.find('.speedOptions span').text()).to.equal(`${props.processRate} x`)
+  expect(wrapper.find('.optionDropdown span').text()).to.equal(`${props.processRate} x`)
 });
 
 it('renders one list item per processRate', () => {
@@ -34,24 +34,38 @@ it('renders one list item per processRate', () => {
 
   const wrapper = mount(<SpeedControl {...props}/>)
 
-  expect(wrapper.find('.speedOptions ul li').length).to.equal(props.processRates.length)
+  expect(wrapper.find('.optionDropdown ul li').length).to.equal(props.processRates.length)
 });
 
 it('fires the clickHandler when a li is clicked', () => {
 
-    const clickHandler = sinon.spy()
+  const clickHandler = sinon.spy()
 
-    const props = {
-      handleClick: clickHandler,
-      processRates: [
-        1, 2, 3, 4
-      ]
-    }
+  const props = {
+    handleClick: clickHandler,
+    processRates: [
+      1, 2, 3, 4
+    ]
+  }
 
-    const wrapper = mount(<SpeedControl {...props}/>)
+  const wrapper = mount(<SpeedControl {...props}/>)
 
-    wrapper.find('li').first().simulate('click')
+  wrapper.find('li').first().simulate('click')
 
-    expect(clickHandler.calledOnce)
-  });
+  expect(clickHandler.calledOnce)
+})
+
+it('applies the active class to the current process rate', () => {
+
+  const props = {
+    processRate: 2,
+    processRates: [
+      1, 2, 3, 4
+    ]
+  }
+
+  const wrapper = mount(<SpeedControl {...props}/>)
+
+  expect(wrapper.find('.optionDropdown ul li').at(1).props().className).to.equal(`active`)
+})
 

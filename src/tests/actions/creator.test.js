@@ -1,7 +1,6 @@
 
 import { expect } from 'chai'
 import { action } from './../../actions/creator'
-import { EINPROGRESS } from 'constants'
 
 describe('when testing the action creator', () => {
 
@@ -24,5 +23,6 @@ describe('when testing the action creator', () => {
     expect(result.data).to.deep.equal(payload.data)
 
   })
+
 })
 

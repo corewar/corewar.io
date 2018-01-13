@@ -36,5 +36,16 @@ describe('when testing the ErrorBoundary component', () => {
     expect(wrapper.find(Login)).to.have.length(1)
   })
 
+  function ProblemChild() {
+    throw new Error('Error thrown from problem child')
+  }
+
+  it('if an error is caught, sets the state to error: true', () => {
+
+    const wrapper = mount(<ErrorBoundary><ProblemChild/></ErrorBoundary>)
+
+    expect(wrapper.state().hasError).to.equal(true)
+  })
+
 })
 
