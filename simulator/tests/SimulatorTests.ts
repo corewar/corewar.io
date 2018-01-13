@@ -24,6 +24,7 @@ import { MessageType } from "../interface/IMessage";
 import { IPublisher } from "../interface/IPublisher";
 import * as clone from "clone";
 import { lchmod } from "fs";
+import { IExecutionContext } from "../interface/IExecutionContext";
 
 describe("Simulator", () => {
 
@@ -37,6 +38,8 @@ describe("Simulator", () => {
     var endCondition: IEndCondition;
     var optionValidator: IOptionValidator;
     var publisher: IPublisher;
+
+    var context: IExecutionContext;
 
     var commandSpy: sinon.stub;
 
@@ -61,7 +64,15 @@ describe("Simulator", () => {
             fetch: sinon.stub()
         };
 
-        (<sinon.stub>fetcher.fetch).returns({});
+        context = {
+            warrior: new Warrior(),
+            task: { 
+                warrior: new Warrior(),
+                instructionPointer: 0 
+            }
+        };
+
+        (<sinon.stub>fetcher.fetch).returns(context);
 
         decoder = {
             decode: sinon.stub()
@@ -106,20 +117,10 @@ describe("Simulator", () => {
 
     it("step first fetches then decodes and finally executes", () => {
 
-        var fetchCalled = false;
         var decodeCalled = false;
         var executeCalled = false;
 
-        (<sinon.stub>fetcher.fetch).callsFake(() => {
-            expect(fetchCalled).not.to.be.equal(true);
-            expect(decodeCalled).not.to.be.equal(true);
-            expect(executeCalled).not.to.be.equal(true);
-
-            fetchCalled = true;
-        });
-
         (<sinon.stub>decoder.decode).callsFake(() => {
-            expect(fetchCalled).to.be.equal(true);
             expect(decodeCalled).not.to.be.equal(true);
             expect(executeCalled).not.to.be.equal(true);
 
@@ -131,7 +132,6 @@ describe("Simulator", () => {
         });
 
         commandSpy.callsFake(() => {
-            expect(fetchCalled).to.be.equal(true);
             expect(decodeCalled).to.be.equal(true);
             expect(executeCalled).not.to.be.equal(true);
 
@@ -140,7 +140,6 @@ describe("Simulator", () => {
 
         simulator.step();
 
-        expect(fetchCalled).to.be.equal(true);
         expect(decodeCalled).to.be.equal(true);
         expect(executeCalled).to.be.equal(true);
     });
@@ -186,13 +185,9 @@ describe("Simulator", () => {
 
     it("step passes the context retrieved from fetch to decode", () => {
 
-        var fetchContext = {};
-
-        (<sinon.stub>fetcher.fetch).returns(fetchContext);
-
         simulator.step();
 
-        expect(<sinon.stub>decoder.decode).to.have.been.calledWith(fetchContext);
+        expect(<sinon.stub>decoder.decode).to.have.been.calledWith(context);
     });
 
     it("step passes the context retrieved from decode to execute", () => {
@@ -342,7 +337,10 @@ describe("Simulator", () => {
 
         simulator.step();
 
-        expect(publisher.queue).not.to.be.called;
+        expect(publisher.queue).not.to.be.calledWith({
+            type: MessageType.CoreInitialise,
+            payload: sinon.any
+        });
     });
 
     it("should publish initialise message when initialised", () => {
@@ -375,7 +373,7 @@ describe("Simulator", () => {
 
         simulator.run();
 
-        expect(fetcher.fetch).to.have.callCount(4-preCheck);
+        expect(fetcher.fetch).to.have.callCount(4 - preCheck);
     });
 
     it("should trigger publisher publish after run completes", () => {
@@ -442,5 +440,40 @@ describe("Simulator", () => {
         const state = checkSpy.lastCall.args[0];
 
         expect(state.cycle).to.be.equal(1);
+    });
+
+    it("should raise the next execution message with the next task's instruction pointer value", () => {
+
+        const expectedAddress = 56;
+        const expectedId = 3;
+
+        const options = clone(Defaults);
+
+        simulator.initialise(options, []);
+
+        var first = true;
+        var fetchStub = <sinon.stub>fetcher.fetch;
+        fetchStub.callsFake((s, c) => {
+
+            if (first) {
+                first = false;
+                return context;
+            } else {
+                return {
+                    warrior: { id: expectedId },
+                    task: { instructionPointer: expectedAddress}
+                };
+            }
+        });
+
+        simulator.step();
+
+        expect(publisher.queue).to.have.been.calledWith({
+            type: MessageType.NextExecution,
+            payload: {
+                warriorId: expectedId,
+                address: expectedAddress
+            }
+        });
     });
 });
