@@ -126,13 +126,9 @@ export class Simulator implements ISimulator {
             }
         }
 
-        var context = this.fetcher.fetch(this.state, this.core);
         this.publisher.queue({
             type: MessageType.NextExecution,
-            payload: {
-                warriorId: context.warrior.id,
-                address: context.task.instructionPointer
-            }
+            payload: this.fetcher.getNextExecution(this.state)
         });
 
         return false;

@@ -61,14 +61,15 @@ describe("Simulator", () => {
         };
 
         fetcher = {
+            getNextExecution: sinon.stub(),
             fetch: sinon.stub()
         };
 
         context = {
             warrior: new Warrior(),
-            task: { 
+            task: {
                 warrior: new Warrior(),
-                instructionPointer: 0 
+                instructionPointer: 0
             }
         };
 

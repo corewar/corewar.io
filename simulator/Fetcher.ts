@@ -6,6 +6,25 @@ import { IWarrior } from "./interface/IWarrior";
 
 export class Fetcher implements IFetcher {
 
+    public getNextExecution(state: IState): any {
+
+        var wi = state.warriorIndex;
+        var warrior = state.warriors[wi];
+
+        while(this.isDead(warrior)) {
+            wi = (wi + 1) % state.warriors.length
+            warrior = state.warriors[wi]
+        }
+
+        var ti = warrior.taskIndex;
+        var task = warrior.tasks[ti];
+
+        return {
+            warriorId: warrior.id,
+            address: task.instructionPointer
+        };
+    }
+
     public fetch(state: IState, core: ICore): IExecutionContext {
 
         var wi = state.warriorIndex;
