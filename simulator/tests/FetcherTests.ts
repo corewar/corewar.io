@@ -180,6 +180,35 @@ describe("Fetcher",() => {
 
         expect(executionContext.warriorIndex).to.be.equal(0);
         expect(executionContext.warrior).to.be.equal(validWarrior);
-    })
+    });
 
+    it(".getNextExecution returns new warrior's id and execution address", () => {
+
+        const expectedWarrior = DataHelper.buildWarrior();
+
+        state.warriors = [
+            DataHelper.buildWarrior(),
+            expectedWarrior,
+            DataHelper.buildWarrior()
+        ];
+        state.warriorIndex = 1;
+
+        const expectedTask = DataHelper.buildTask();
+
+        expectedWarrior.tasks = [
+            DataHelper.buildTask(),
+            DataHelper.buildTask(),
+            expectedTask,
+            DataHelper.buildTask()
+        ];
+        expectedWarrior.taskIndex = 2;
+
+        expectedTask.instructionPointer = 3;
+
+        const fetcher = new Fetcher();
+        const actual = fetcher.getNextExecution(state);
+
+        expect(actual.warriorId).to.be.equal(expectedWarrior.id);
+        expect(actual.address).to.be.equal(expectedTask.instructionPointer);
+    });
 });
