@@ -126,6 +126,11 @@ export class Simulator implements ISimulator {
             }
         }
 
+        this.publisher.queue({
+            type: MessageType.NextExecution,
+            payload: this.fetcher.getNextExecution(this.state)
+        });
+
         return false;
     }
 

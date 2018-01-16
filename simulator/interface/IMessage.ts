@@ -6,6 +6,7 @@ export enum MessageType {
     TaskCount,
     CoreInitialise,
     RoundStart,
+    NextExecution,
     Count
 }
 
