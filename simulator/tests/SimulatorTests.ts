@@ -452,19 +452,10 @@ describe("Simulator", () => {
 
         simulator.initialise(options, []);
 
-        var first = true;
-        var fetchStub = <sinon.stub>fetcher.fetch;
-        fetchStub.callsFake((s, c) => {
-
-            if (first) {
-                first = false;
-                return context;
-            } else {
-                return {
-                    warrior: { id: expectedId },
-                    task: { instructionPointer: expectedAddress}
-                };
-            }
+        var getNextExecutionStub = <sinon.stub>fetcher.getNextExecution;
+        getNextExecutionStub.returns({
+            warriorId: expectedId,
+            address: expectedAddress
         });
 
         simulator.step();
