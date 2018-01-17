@@ -20,7 +20,7 @@ class CanvasCore extends Component {
     this.getCoreInstructions = props.getCoreInstructions
 
     this.messages = []
-    this.lastAddress = null
+    this.lastCoordinates = null
 
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
       this.messages = this.messages.concat(data)
@@ -88,6 +88,8 @@ class CanvasCore extends Component {
   renderGrid() {
     this.clearCanvas()
 
+    this.clearInteractiveCanvas()
+
     this.fillGridArea()
 
     this.renderGridLines()
@@ -109,8 +111,7 @@ class CanvasCore extends Component {
   renderMessages() {
 
     this.messages.forEach((data) => {
-      this.renderCurrentTask(data)
-      this.renderCell(data, '#f00')
+      this.renderCell(data)
     })
 
     this.messages = []
@@ -118,16 +119,16 @@ class CanvasCore extends Component {
     window.requestAnimationFrame(() => this.renderMessages())
   }
 
-  renderCurrentTask(data) {
+  renderCurrentTask(coordinate) {
 
-    const lastAccess = this.addressToScreenCoordinate(this.lastAddress)
+    if(this.lastCoordinates) {
 
-    this.interactiveContext.clearRect(lastAccess.x,
-      lastAccess.y,
-      this.cellSize,
-      this.cellSize)
-
-    const coordinate = this.addressToScreenCoordinate(data.address)
+      this.interactiveContext.clearRect(
+        this.lastCoordinates.x,
+        this.lastCoordinates.y,
+        this.lastCoordinates.wh,
+        this.lastCoordinates.wh)
+    }
 
     this.interactiveContext.fillStyle = '#ffffff'
 
@@ -137,7 +138,11 @@ class CanvasCore extends Component {
       this.cellSize,
       this.cellSize)
 
-    this.lastAddress = data.address
+    this.lastCoordinates = {
+      x: coordinate.x,
+      y: coordinate.y - 1,
+      wh: this.cellSize + 2
+    }
 
   }
 
@@ -185,7 +190,10 @@ class CanvasCore extends Component {
         coordinate.x,
         coordinate.y,
         this.cellSize,
-        this.cellSize);
+        this.cellSize)
+
+    this.renderCurrentTask(coordinate)
+
   }
 
   renderRead(coordinate) {
@@ -216,6 +224,7 @@ class CanvasCore extends Component {
     this.coreContext.lineTo(x1, y1);
     this.coreContext.moveTo(x0, y1);
     this.coreContext.lineTo(x1, y0);
+    this.coreContext.moveTo(x0, y0);
     this.coreContext.stroke();
   }
 
@@ -228,7 +237,6 @@ class CanvasCore extends Component {
   }
 
   clearInteractiveCanvas() {
-
     this.interactiveContext.setTransform(1, 0, 0, 1, 0, 0)
     this.interactiveContext.clearRect(0, 0, this.containerWidth, this.containerHeight)
     this.interactiveContext.setTransform(1, 0, 0, 1, 0.5, 0.5)
@@ -375,18 +383,20 @@ class CanvasCore extends Component {
 
     const { x, y } = cell
 
-    this.interactiveContext.beginPath()
+    //this.interactiveContext.beginPath()
 
-    this.interactiveContext.strokeStyle = '#fff'
+    this.interactiveContext.strokeStyle = '#ffffff'
 
-    this.interactiveContext.moveTo(x, y)
+    this.interactiveContext.strokeRect(x, y, this.cellSize, this.cellSize)
 
-    this.interactiveContext.lineTo(x + this.cellSize, y)
-    this.interactiveContext.lineTo(x + this.cellSize, y + this.cellSize)
-    this.interactiveContext.lineTo(x, y + this.cellSize)
-    this.interactiveContext.lineTo(x, y)
+    // this.interactiveContext.moveTo(x, y)
 
-    this.interactiveContext.stroke()
+    // this.interactiveContext.lineTo(x + this.cellSize, y)
+    // this.interactiveContext.lineTo(x + this.cellSize, y + this.cellSize)
+    // this.interactiveContext.lineTo(x, y + this.cellSize)
+    // this.interactiveContext.lineTo(x, y)
+
+    //this.interactiveContext.stroke()
 
   }
 
