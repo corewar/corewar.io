@@ -55,51 +55,61 @@ export class TestHelper {
     public static testWarriorList(path: string, names: string[], standard: Standard, allowMessages: boolean = false) {
 
         var loader = new TestLoader();
-        loader.getWarriors(path, names).then((warriors) => {
+        return loader.getWarriors(path, names).then((warriors) => {
 
-            warriors.forEach((warrior) => {
+            return new Promise((resolve, reject) => {
+                let remaining = warriors.length;
+                warriors.forEach((warrior) => {
 
-                var expression = new Expression();
+                    var expression = new Expression();
 
-                var parser = new Parser(
-                    new Scanner(),
-                    new Filter(),
-                    new MetaDataCollector(),
-                    new ForPass(expression),
-                    new PreprocessCollector(),
-                    new PreprocessAnalyser(),
-                    new PreprocessEmitter(),
-                    new LabelCollector(),
-                    new LabelEmitter(),
-                    new MathsProcessor(expression),
-                    new DefaultPass(),
-                    new OrgPass(),
-                    new SyntaxCheck(),
-                    new IllegalCommandCheck());
+                    var parser = new Parser(
+                        new Scanner(),
+                        new Filter(),
+                        new MetaDataCollector(),
+                        new ForPass(expression),
+                        new PreprocessCollector(),
+                        new PreprocessAnalyser(),
+                        new PreprocessEmitter(),
+                        new LabelCollector(),
+                        new LabelEmitter(),
+                        new MathsProcessor(expression),
+                        new DefaultPass(),
+                        new OrgPass(),
+                        new SyntaxCheck(),
+                        new IllegalCommandCheck());
 
-                var result = parser.parse(
-                    warrior.redcode,
-                    Object.assign(Parser.DefaultOptions, {
-                        standard: standard
-                    }));
+                    var result = parser.parse(
+                        warrior.redcode,
+                        Object.assign(Parser.DefaultOptions, {
+                            standard: standard
+                        }));
 
-                var serialiser = new LoadFileSerialiser();
+                    var serialiser = new LoadFileSerialiser();
 
-                var loadfile = serialiser.serialise(result.tokens);
+                    var loadfile = serialiser.serialise(result.tokens);
 
-                var actual = loadfile.trim();
-                var expected = warrior.loadfile.replace(/[\r]/g, "").trim();
+                    var actual = loadfile.trim();
+                    var expected = warrior.loadfile.replace(/[\r]/g, "").trim();
 
-                if (actual !== expected) {
-                    this.failedIndex(warrior.name, actual, expected);
-                }
+                    if (actual !== expected) {
+                        this.failedIndex(warrior.name, actual, expected);
+                    }
 
-                expect(actual).to.be.equal(expected);
+                    expect(actual).to.be.equal(expected);
 
-                if (!allowMessages) {
-                    expect(result.messages.length).to.be.equal(0);
-                }
+                    if (!allowMessages) {
+                        expect(result.messages.length).to.be.equal(0);
+                    }
+
+                    if (--remaining == 0) {
+                        resolve();
+                    }
+                });
             });
         });
+        // .catch((e) => {
+        //     throw e;
+        // });
     }
 }

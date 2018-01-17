@@ -7,7 +7,7 @@ describe("ICWS'94-draft",() => {
 
     it("alien22, B-PanamaX, Bunker t3, dbldwarf",() => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-94/", [
             //TODO "aeka", this requires nested for and stringification
                 "alien22",
@@ -19,7 +19,7 @@ describe("ICWS'94-draft",() => {
 
     it("DynamicImp-gate, Gate-Daemon, HomemadeIceCream, Pinchers",() => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-94/", [
                 "DynamicImp-gate",
                 "Gate-Daemon",
@@ -31,7 +31,7 @@ describe("ICWS'94-draft",() => {
 
     it("Rave, reverse dwarf", () => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-94/", [
                 "Rave",
                 "reversedwarf",
@@ -40,7 +40,7 @@ describe("ICWS'94-draft",() => {
 
     it("Insight v1.0, Quick-Scan94Prototype, RotLD TNG, Ryooki 1.4, Scimitar",() => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-94/", [
                 "Insightv1.0",
                 "Quick-Scan94Prototype",
@@ -52,7 +52,7 @@ describe("ICWS'94-draft",() => {
 
     it("Single Vector, Suicial Alien 22, Sweeper v5, Vector",() => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-94/", [
                 //TODO requires label on a line by itself "SilkWarrior1.3",
                 "SingleVector",
