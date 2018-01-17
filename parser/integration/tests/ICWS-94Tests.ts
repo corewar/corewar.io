@@ -11,8 +11,8 @@ describe("ICWS'94-draft",() => {
             "parser/integration/warriors/ICWS-94/", [
             //TODO "aeka", this requires nested for and stringification
                 "alien22",
-                "B-PanamaX",
-                "Bunkert3",
+                "b-panamaX",
+                "bunkert3",
                 "dbldwarf"
             ], Standard.ICWS94draft);
     });
@@ -21,10 +21,10 @@ describe("ICWS'94-draft",() => {
 
         return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-94/", [
-                "DynamicImp-gate",
-                "Gate-Daemon",
-                "HomemadeIceCream",
-                "Pinchers",
+                "dynamicimp-gate",
+                "gate-daemon",
+                "homemadeicecream",
+                "pinchers",
                 //TODO "Pyramidv5.5", this requires for variable usage and label by its self
             ], Standard.ICWS94draft);
     });
@@ -33,7 +33,7 @@ describe("ICWS'94-draft",() => {
 
         return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-94/", [
-                "Rave",
+                "rave",
                 "reversedwarf",
             ], Standard.ICWS94draft);
     });
@@ -42,8 +42,8 @@ describe("ICWS'94-draft",() => {
 
         return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-94/", [
-                "Insightv1.0",
-                "Quick-Scan94Prototype",
+                "insightv1.0",
+                "quick-scan94prototype",
                 "rotldtng",
                 "ryooki1.4",
                 "scimitar",
@@ -55,10 +55,10 @@ describe("ICWS'94-draft",() => {
         return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-94/", [
                 //TODO requires label on a line by itself "SilkWarrior1.3",
-                "SingleVector",
-                "SuicidalAlien22",
+                "singlevector",
+                "suicidalalien22",
                 "sweeperv5",
-                "Vector",
+                "vector",
             ], Standard.ICWS94draft, true);
     });
 });
