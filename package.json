@@ -11,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "chai": "^4.1.2",
-    "corewar": "0.0.68",
+    "corewar": "0.0.70",
     "immutable": "^3.8.2",
     "jest-cli": "^21.2.1",
     "prop-types": "^15.6.0",

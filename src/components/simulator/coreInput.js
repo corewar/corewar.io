@@ -20,7 +20,7 @@ class CoreInput extends Component {
       let newTasks = []
 
       data.forEach((item) => {
-        newTasks = this.state.tasks.splice(data.warriorId, 1, data.taskCount)
+        newTasks = this.state.tasks.splice(item.warriorId, 1, item.taskCount)
       })
 
       this.setState({ tasks: newTasks })
