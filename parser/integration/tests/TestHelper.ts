@@ -79,6 +79,9 @@ export class TestHelper {
                         new SyntaxCheck(),
                         new IllegalCommandCheck());
 
+                    console.log(warrior.name + " REDCODE " + warrior.redcode);
+                    console.log(warrior.name + " LD " + warrior.loadfile);
+
                     var result = parser.parse(
                         warrior.redcode,
                         Object.assign(Parser.DefaultOptions, {
