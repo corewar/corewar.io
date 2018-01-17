@@ -21,7 +21,6 @@ export class TestLoader {
 
                     files[filename] = fileData;
                     if (--fileCount === 0) {
-                        console.log(files)
                         resolve(this.mapWarriors(path, names, files));
                     }
 
