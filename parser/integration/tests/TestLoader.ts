@@ -17,10 +17,12 @@ export class TestLoader {
 
         return new Promise((resolve, reject) => {
             filenames.forEach((filename) => {
+                console.log(filename)
                 fs.readFile(filename, "utf8", (err, fileData) => {
 
                     files[filename] = fileData;
                     if (--fileCount === 0) {
+                        console.log(files)
                         resolve(this.mapWarriors(path, names, files));
                     }
                 });

@@ -92,6 +92,10 @@ export class TestHelper {
 
                     var loadfile = serialiser.serialise(result.tokens);
 
+                    if(warrior.name === 'commando') {
+                        console.log(result.tokens)
+                    }
+
                     var actual = loadfile.trim();
                     var expected = warrior.loadfile.replace(/[\r]/g, "").trim();
 
