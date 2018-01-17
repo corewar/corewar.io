@@ -11,7 +11,7 @@ describe("ICWS'94-draft",() => {
             "parser/integration/warriors/ICWS-94/", [
             //TODO "aeka", this requires nested for and stringification
                 "alien22",
-                "b-panamaX",
+                "b-panamax",
                 "bunkert3",
                 "dbldwarf"
             ], Standard.ICWS94draft);
