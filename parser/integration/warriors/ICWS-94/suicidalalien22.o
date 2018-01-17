@@ -1,0 +1,7 @@
+Program "Suicidal Alien 22" (length 2) by "Franz"
+
+       ORG      START
+START  MOV.I  $    -1, $    -1     
+       DJN.B  $    -1, $    -1     
+
+Suicidal Alien 22 by Franz scores 0
