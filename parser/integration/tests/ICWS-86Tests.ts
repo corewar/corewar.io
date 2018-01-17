@@ -8,7 +8,7 @@ describe("ICWS'86",() => {
     it("bigraidar, chang1, commando, dwarf, dwarfgun",() => {
 
         return TestHelper.testWarriorList(
-            "parser/integration/warriors/ICWS-86/", [
+            "./parser/integration/warriors/ICWS-86/", [
                 "bigraidar",
                 "chang1",
                 "commando",
