@@ -79,9 +79,6 @@ export class TestHelper {
                         new SyntaxCheck(),
                         new IllegalCommandCheck());
 
-                    console.log(warrior.name + " REDCODE " + warrior.redcode);
-                    console.log(warrior.name + " LD " + warrior.loadfile);
-
                     var result = parser.parse(
                         warrior.redcode,
                         Object.assign(Parser.DefaultOptions, {
@@ -91,10 +88,6 @@ export class TestHelper {
                     var serialiser = new LoadFileSerialiser();
 
                     var loadfile = serialiser.serialise(result.tokens);
-
-                    if(warrior.name === 'commando') {
-                        console.log(result.tokens)
-                    }
 
                     var actual = loadfile.trim();
                     var expected = warrior.loadfile.replace(/[\r]/g, "").trim();
