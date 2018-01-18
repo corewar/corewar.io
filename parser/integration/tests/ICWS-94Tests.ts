@@ -7,43 +7,43 @@ describe("ICWS'94-draft",() => {
 
     it("alien22, B-PanamaX, Bunker t3, dbldwarf",() => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-94/", [
             //TODO "aeka", this requires nested for and stringification
                 "alien22",
-                "B-PanamaX",
-                "Bunkert3",
+                "b-panamax",
+                "bunkert3",
                 "dbldwarf"
             ], Standard.ICWS94draft);
     });
 
     it("DynamicImp-gate, Gate-Daemon, HomemadeIceCream, Pinchers",() => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-94/", [
-                "DynamicImp-gate",
-                "Gate-Daemon",
-                "HomemadeIceCream",
-                "Pinchers",
+                "dynamicimp-gate",
+                "gate-daemon",
+                "homemadeicecream",
+                "pinchers",
                 //TODO "Pyramidv5.5", this requires for variable usage and label by its self
             ], Standard.ICWS94draft);
     });
 
     it("Rave, reverse dwarf", () => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-94/", [
-                "Rave",
+                "rave",
                 "reversedwarf",
             ], Standard.ICWS94draft);
     });
 
     it("Insight v1.0, Quick-Scan94Prototype, RotLD TNG, Ryooki 1.4, Scimitar",() => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-94/", [
-                "Insightv1.0",
-                "Quick-Scan94Prototype",
+                "insightv1.0",
+                "quick-scan94prototype",
                 "rotldtng",
                 "ryooki1.4",
                 "scimitar",
@@ -52,13 +52,13 @@ describe("ICWS'94-draft",() => {
 
     it("Single Vector, Suicial Alien 22, Sweeper v5, Vector",() => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-94/", [
                 //TODO requires label on a line by itself "SilkWarrior1.3",
-                "SingleVector",
-                "SuicidalAlien22",
+                "singlevector",
+                "suicidalalien22",
                 "sweeperv5",
-                "Vector",
+                "vector",
             ], Standard.ICWS94draft, true);
     });
 });

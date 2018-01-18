@@ -1,0 +1,13 @@
+Program "Unknown" (length 8) by "Anonymous"
+
+       ORG      START
+START  JMZ.B  $     0, <     7     
+       CMP.I  $     6, @     6     
+       JMP.B  $     3, $     0     
+       SUB.AB #    15, $     4     
+       JMP.B  $    -4, $     0     
+       MOV.I  $     2, @     2     
+       JMP.B  $    -6, $     0     
+       DAT.F  #     0, #   -14     
+
+Unknown by Anonymous scores 0

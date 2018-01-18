@@ -7,7 +7,7 @@ describe("ICWS'88",() => {
 
     it("aisr, cancer, cleaner, cowboy, death",() => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-88/", [
                 "aisr",
                 "cancer",
@@ -19,7 +19,7 @@ describe("ICWS'88",() => {
 
     it("dracula, drdeath, drfrog, dude, dwomp",() => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-88/", [
                 "dracula",
                 "drdeath",
@@ -31,7 +31,7 @@ describe("ICWS'88",() => {
 
     it("fairy1, ferret, fydgitr, hithard2, immobilizer",() => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-88/", [
                 "fairy1",
                 "ferret",
@@ -43,7 +43,7 @@ describe("ICWS'88",() => {
 
     it("imp, imps, jumper, kirin, kwc72c",() => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-88/", [
                 "imp",
                 "imps",
@@ -55,7 +55,7 @@ describe("ICWS'88",() => {
 
     it("lincogs, minidpls, minidspr, mousetrap, muledna2",() => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-88/", [
                 "lincogs",
                 "minidpls",
@@ -67,7 +67,7 @@ describe("ICWS'88",() => {
 
     it("nfluenza, ogre, parasite6, phage, phage2",() => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-88/", [
                 "nfluenza",
                 "ogre",
@@ -79,7 +79,7 @@ describe("ICWS'88",() => {
 
     it("pinup, piper, plague, pmjump, roller",() => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-88/", [
                 "pinup",
                 "piper",
@@ -91,7 +91,7 @@ describe("ICWS'88",() => {
 
     it("schindler, sieve, slaver, splat, sud",() => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-88/", [
                 "schindler",
                 "sieve",
@@ -103,7 +103,7 @@ describe("ICWS'88",() => {
 
     it("trapper, ultima, vampsprd, virusold, w2",() => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-88/", [
                 "trapper",
                 "ultima",
@@ -115,7 +115,7 @@ describe("ICWS'88",() => {
 
     it("wally, waspnest, wipe5, zamzow",() => {
 
-        TestHelper.testWarriorList(
+        return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-88/", [
                 "wally",
                 "waspnest",

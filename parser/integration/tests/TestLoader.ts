@@ -23,6 +23,10 @@ export class TestLoader {
                     if (--fileCount === 0) {
                         resolve(this.mapWarriors(path, names, files));
                     }
+
+                    if(err) {
+                        console.log(err)
+                    }
                 });
             });
         });

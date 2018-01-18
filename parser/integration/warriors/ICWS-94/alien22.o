@@ -1,0 +1,9 @@
+Program "Alien 22" (length 4) by "Franz"
+
+       ORG      START
+START  MOV.I  $     3, @     3     
+       DJN.B  $    -1, $     2     
+       MOV.I  $     0, $     1     
+       DAT.F  #     0, #    -4     
+
+Alien 22 by Franz scores 0

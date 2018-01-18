@@ -1,0 +1,9 @@
+Program "Unknown" (length 4) by "Anonymous"
+
+       ORG      START
+       DAT.F  #     0, #     4     
+START  SUB.AB #     5, $    -1     
+       MOV.AB #     0, @    -2     
+       JMP.B  $    -2, $     0     
+
+Unknown by Anonymous scores 0

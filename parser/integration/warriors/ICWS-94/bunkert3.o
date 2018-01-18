@@ -1,0 +1,56 @@
+Program "Bunker t3" (length 51) by "P.Kline"
+
+       ORG      START
+       DAT.F  #     0, #    50     
+       DAT.F  #     0, # -3951     
+START  MOV.I  <    -2, <    -1     
+       MOV.I  <    -3, <    -2     
+       MOV.I  <    -4, <    -3     
+       MOV.I  <    -5, <    -4     
+       MOV.I  <    -6, <    -5     
+       MOV.I  <    -7, <    -6     
+       MOV.I  <    -8, <    -7     
+       MOV.I  <    -9, <    -8     
+       MOV.I  <   -10, <    -9     
+       MOV.I  <   -11, <   -10     
+       MOV.I  <   -12, <   -11     
+       SPL.B  $     1, $     0     
+       MOV.I  $    -1, $     0     
+       SPL.B  $     1, $     0     
+       MOV.I  $    -1, $     0     
+       SPL.B  $    23, $     0     
+       JMP.B  $ -3978, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       DAT.F  $     0, $     0     
+       SUB.A  #     0, #  4000     
+       SUB.BA }     6, $    -1     
+       JMN.A  $     3, $    -2     
+       MOV.I  $     6, >   -20     
+       JMP.B  $    -3, {     3     
+       MOV.I  $     5, {     2     
+       SPL.B  $    -6, $  1000     
+       MOV.I  <  3993, {  3993     
+       JMP.B  $  3992, #  2964     
+       DAT.F  <  2667, #    50     
+       DAT.F  #    11, # -3989     
+       DAT.F  $     0, $     0     
+
+Bunker t3 by P.Kline scores 0

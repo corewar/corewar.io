@@ -1,0 +1,14 @@
+Program "Vector" (length 9) by "T.Hsu"
+
+       ORG      START
+START  SPL.B  $     1, #     0     
+       SPL.B  $     1, #     0     
+       SPL.B  <     0, #     7     
+       DJN.A  @     5, #     0     
+       MOV.I  #     0, $  2667     
+       JMP.B  $  2668, $     1     
+       JMP.B  $ -2667, $  2666     
+       JMP.B  $    -2, $ -2669     
+       JMP.B  $  2663, $    -4     
+
+Vector by T.Hsu scores 0

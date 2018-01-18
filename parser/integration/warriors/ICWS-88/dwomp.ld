@@ -1,0 +1,12 @@
+;      DWOMP.S
+;      MARK A. DURHAM
+;
+ORG	0
+SPL.B	$5,	$0
+JMP.B	$2,	$0
+DAT.F	#0,	#2396
+JMP.B	$0,	<-2
+DAT.F	#0,	#0
+ADD.F	$-3,	$-1
+MOV.I	$-2,	@-2
+JMP.B	$-2,	$0
