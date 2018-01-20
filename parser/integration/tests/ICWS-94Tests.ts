@@ -25,7 +25,7 @@ describe("ICWS'94-draft",() => {
                 "gate-daemon",
                 "homemadeicecream",
                 "pinchers",
-                //TODO "Pyramidv5.5", this requires for variable usage and label by its self
+                //TODO "pyramidv5.5" requires for loop variable
             ], Standard.ICWS94draft);
     });
 
@@ -50,11 +50,11 @@ describe("ICWS'94-draft",() => {
             ], Standard.ICWS94draft, true);
     });
 
-    it("Single Vector, Suicial Alien 22, Sweeper v5, Vector",() => {
+    it("Silk Warrior 1.3, Single Vector, Suicial Alien 22, Sweeper v5, Vector",() => {
 
         return TestHelper.testWarriorList(
             "parser/integration/warriors/ICWS-94/", [
-                //TODO requires label on a line by itself "SilkWarrior1.3",
+                "silkwarrior1.3",
                 "singlevector",
                 "suicidalalien22",
                 "sweeperv5",
