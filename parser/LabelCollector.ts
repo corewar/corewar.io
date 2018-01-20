@@ -71,6 +71,10 @@ export class LabelCollector extends PassBase {
             return;
         }
 
+        if (next.category === TokenCategory.EOL) {
+            next = this.stream.expect(TokenCategory.EOL);
+        }
+
         var opcode = this.stream.expect(TokenCategory.Opcode);
         this.context.emitSingle(opcode);
     }

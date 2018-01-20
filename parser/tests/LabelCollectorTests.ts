@@ -459,4 +459,40 @@ describe("LabelCollector", () => {
 
         expect(actual.labels["label1"]).to.be.equal(1);
     });
+
+    it("Correctly associates labels on a line by themselves with the following line", () => {
+
+        var tokens: IToken[] = [
+            {
+                category: TokenCategory.Opcode,
+                lexeme: "MOV",
+                position: { line: 2, char: 1 }
+            }, {
+                category: TokenCategory.EOL,
+                lexeme: "\n",
+                position: { line: 1, char: 2 }
+            }, {
+                category: TokenCategory.Label,
+                lexeme: "label1",
+                position: { line: 1, char: 1 }
+            }, {
+                category: TokenCategory.EOL,
+                lexeme: "\n",
+                position: { line: 1, char: 2 }
+            }, {
+                category: TokenCategory.Opcode,
+                lexeme: "MOV",
+                position: { line: 2, char: 1 }
+            }
+        ];
+
+        var context = new Context();
+        context.tokens = tokens.slice();
+
+        var pass = new LabelCollector();
+        var actual = pass.process(context, Parser.DefaultOptions);
+
+        expect(actual.messages.length).to.be.equal(0);
+        expect(actual.labels["label1"]).to.be.equal(1);
+    });
 });
