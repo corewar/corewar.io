@@ -817,4 +817,27 @@ describe("Scanner",() => {
 
         expect(actual.tokens[2].category).to.be.equal(TokenCategory.Mode);
     });
+
+    it("Allows labels to be folowed by a colon", () => {
+
+        var document = "label1: label2 label3";
+
+        var scanner = new Scanner();
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
+        var actual = scanner.scan(document, options).tokens;
+     
+        expect(actual.length).to.be.equal(4);
+        
+        expect(actual[0].category).to.be.equal(TokenCategory.Label);
+        expect(actual[0].lexeme).to.be.equal("label1");
+
+        expect(actual[1].category).to.be.equal(TokenCategory.Label);
+        expect(actual[1].lexeme).to.be.equal("label2");
+
+        expect(actual[2].category).to.be.equal(TokenCategory.Label);
+        expect(actual[2].lexeme).to.be.equal("label3");
+
+        expect(actual[3].category).to.be.equal(TokenCategory.EOL);
+        expect(actual[3].lexeme).to.be.equal("\n");
+    });
 });
