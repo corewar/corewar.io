@@ -50,7 +50,7 @@ export class Scanner implements IScanner {
     }
 
     private static ICWS94draftRegex: IScannerRegex = {
-        LabelRE: /^[A-Z_][A-Z_0-9]*/i,
+        LabelRE: /^[A-Z_][A-Z_0-9]*\:?/i,
         OpcodeRE: /^(DAT|MOV|ADD|SUB|MUL|DIV|MOD|JMP|JMZ|JMN|DJN|CMP|SLT|SPL|SEQ|SNE|NOP)(?!\w)/i,
         PreprocessorRE: /^(EQU|END|ORG|FOR|ROF)(?!\w)/i,
         ModifierRE: /^\.(AB|BA|A|B|F|X|I)/i,
@@ -63,7 +63,7 @@ export class Scanner implements IScanner {
     };
 
     private static ICWS88Regex: IScannerRegex = {
-        LabelRE: /^[A-Z][A-Z0-9]*/i,
+        LabelRE: /^[A-Z][A-Z0-9]*\:?/i,
         OpcodeRE: /^(DAT|MOV|ADD|SUB|JMP|JMZ|JMN|CMP|SLT|DJN|SPL)(?!\w)/i,
         PreprocessorRE: /^(END|EQU)(?!\w)/i,
         ModifierRE: /$a/i,
@@ -76,7 +76,7 @@ export class Scanner implements IScanner {
     };
 
     private static ICWS86Regex: IScannerRegex = {
-        LabelRE: /^[A-Z][A-Z0-9]{0,7}(?![A-Z0-9])/i,
+        LabelRE: /^[A-Z][A-Z0-9]{0,7}(?![A-Z0-9])\:?/i,
         OpcodeRE: /^(DAT|MOV|ADD|SUB|JMP|JMZ|JMN|CMP|DJN|SPL)(?!\w)/i,
         PreprocessorRE: /^(END)(?!\w)/i,
         ModifierRE: /$a/i,
@@ -273,7 +273,7 @@ export class Scanner implements IScanner {
             lexeme = lexeme.toUpperCase();
         }
 
-        this.emit(category, lexeme);
+        this.emit(category, lexeme.replace(":", ""));
         return accumulator.substr(lexeme.length);
     }
 
