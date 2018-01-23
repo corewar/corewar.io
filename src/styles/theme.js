@@ -5,7 +5,7 @@ export const colour = {
   'darkbg': '#131518',
   'defaultbg': '#1A1D22',
   'lightbg': '#292C33',
-  'lines': '#828282',
+  'grey': '#828282',
   warrior: [
     '#56CCF2',
     '#EB5757',
@@ -22,7 +22,8 @@ export const space = {
   l: '32px',
   xl: '64px',
   xxl: '128px',
-  header: '48px'
+  header: '48px',
+  controls: '48px'
 }
 
 export const icon = {
