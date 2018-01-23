@@ -6,6 +6,7 @@ import { colour, space, font } from '../../styles/theme'
 const StyledPre = styled.pre`
   font-family: ${font.code};
   font-size: ${font.base};
+  line-height: 1.2em;
   background-color: transparent;
   padding: ${space.m};
   width: calc(100% - ${space.m} - ${space.m});
@@ -14,6 +15,7 @@ const StyledPre = styled.pre`
   caret-color: ${colour.white};
   color: ${colour.white};
   resize: none;
+  overflow-y: scroll;
 
   &:focus {
     outline: none;

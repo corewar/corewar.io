@@ -5,9 +5,10 @@ import { colour, space, font } from '../../styles/theme'
 
 const StyledTextarea = styled.textarea`
   font-family: ${font.code};
+  line-height: 1.2em;
   font-size: ${font.base};
   background-color: transparent;
-  padding: ${space.m};
+  margin: ${space.m};
   width: calc(100% - ${space.m} - ${space.m});
   height: calc(100% - ${space.m} - ${space.m});
   border: none;
