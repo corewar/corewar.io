@@ -37,7 +37,7 @@ const StyledTextarea = styled.textarea`
 
 const ParserInput = ({ redcode, handleChange }) => (
   <StyledTextarea
-    placeholder="enter your redcode"
+    placeholder='enter your redcode'
     defaultValue={redcode}
     onChange={e => handleChange(e.target.value)}
     autoComplete="off"

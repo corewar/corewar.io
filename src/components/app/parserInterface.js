@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import styledProperty from 'styled-property'
@@ -8,15 +9,16 @@ import ParserInput from '../../components/parser/parserInput'
 import { colour, font, space } from '../../styles/theme'
 import { media } from '../../styles/mediaQuery'
 
+import {
+  parse
+} from '../../actions/parserActions'
+
 const MobileContainer = styled.div`
-
-
   display: none;
   grid-template-rows: ${space.s} 48px 1fr 48px;
   grid-template-columns: 1fr;
 
   ${media.phone`display: grid;`}
-
 `
 
 const MobileNav = styled.div`
@@ -57,19 +59,30 @@ const MobileControls = styled.div`
   background-color: ${colour.lightbg};
 `
 
-const V2Interface = () => (
+const ParserInterface = ({ redcode, parse }) => (
   <MobileContainer>
     <MobileNav>
-      <StyledLink to='/v2'>src</StyledLink>
+      <StyledLink to='/src'>src</StyledLink>
       <StyledLink to='/output'>output</StyledLink>
       <StyledLink to='/core'>core</StyledLink>
     </MobileNav>
     <MobileBody>
-      <ParserInput redcode={'redcode'} handleChange={() => {}} />
+      <ParserInput redcode={redcode} handleChange={parse} />
     </MobileBody>
     <MobileControls>
     </MobileControls>
   </MobileContainer>
 )
 
-export default V2Interface
+const mapStateToProps = state => ({
+  redcode: state.parser.redcode
+})
+
+export default connect(
+  mapStateToProps,
+  {
+    parse
+  }
+)(ParserInterface)
+
+export { ParserInterface as PureParserInterface }
