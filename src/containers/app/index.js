@@ -14,7 +14,7 @@ const RootGrid = styled.div`
   grid-template-rows: 48px 1fr;
 
   main {
-    background-color: ${colour.darkbg};
+    background-color: ${colour.defaultbg};
     height: calc(100vh - ${space.header});
     width: 100vw;
   }
