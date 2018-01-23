@@ -1,5 +1,5 @@
 
-import { colour, space, font } from '../../styles/theme'
+import { colour, space, font } from '../styles/theme'
 
 export const sourceCode = props => `
   font-family: ${font.code};

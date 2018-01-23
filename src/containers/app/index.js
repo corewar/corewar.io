@@ -6,18 +6,12 @@ import SiteHeader from './../../components/app/siteHeader'
 import ParserInterface from './../../components/app/parserInterface'
 import OutputInterface from '../../components/app/outputInterface'
 
-import { colour, space } from '../../styles/theme'
+import { space } from '../../styles/theme'
 
 const RootGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 48px 1fr;
-
-  main {
-    background-color: ${colour.darkbg};
-    height: calc(100vh - ${space.header});
-    width: 100vw;
-  }
 `
 
 const App = () => (
