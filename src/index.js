@@ -5,19 +5,32 @@ import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import store, { history } from './store'
 import App from './containers/app'
-import 'typeface-roboto-slab'
-import 'typeface-roboto-condensed'
+import styled from 'styled-components'
 
-import './index.css'
+import 'typeface-lato'
+import 'typeface-anonymous-pro'
+
+import './cssreset.css'
+
+import { font, colour } from './styles/theme'
+
+const Wrapper = styled.div`
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: ${font.default};
+  font-size: ${font.base};
+  background-color: ${colour.darkbg};
+`
 
 const target = document.querySelector('#root')
 
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div>
+      <Wrapper>
         <App />
-      </div>
+      </Wrapper>
     </ConnectedRouter>
   </Provider>,
   target

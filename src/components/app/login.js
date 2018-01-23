@@ -1,20 +1,49 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+
+import { colour, font, space } from '../../styles/theme'
+import { media } from '../../styles/mediaQuery'
 
 import UserInfo from './userInfo'
 
-import './login.css'
+const LoginModule = styled.div`
+
+  background-color: ${colour.coral};
+  grid-column-start: 3;
+
+  ${media.phone`
+    grid-column-start: 2;
+  `}
+
+`
+
+const LinkContainer = styled.div`
+  color: ${colour.white};
+  text-align: center;
+  padding-top: ${space.m}
+`
+
+const StyledLink = styled(Link)`
+  color: ${colour.white};
+  font-weight: 300;
+  font-size: ${font.base};
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+`
 
 const Login = ({ isAuthenticated }) => (
-  <div className="loginContainer">
+  <LoginModule>
     {isAuthenticated ?
       <UserInfo /> :
-      <div className="loginButtons">
-        <button>Login</button>
-        <button>Sign up</button>
-      </div>
+      <LinkContainer>
+        <StyledLink to='/'>login</StyledLink> / <StyledLink to='/'>sign up</StyledLink>
+      </LinkContainer>
     }
-  </div>
+  </LoginModule>
 )
 
 Login.PropTypes = {
