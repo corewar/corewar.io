@@ -15,9 +15,11 @@ import './cssreset.css'
 import { font, colour } from './styles/theme'
 
 const Wrapper = styled.div`
+  min-width: 360px;
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
-  height: 100%;
+  height: 100vh;
   font-family: ${font.default};
   font-size: ${font.base};
   background-color: ${colour.darkbg};

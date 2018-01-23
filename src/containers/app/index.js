@@ -9,6 +9,7 @@ import V2Interface from './../../components/app/v2Interface'
 import { colour, space } from '../../styles/theme'
 
 const RootGrid = styled.div`
+
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 48px 1fr;

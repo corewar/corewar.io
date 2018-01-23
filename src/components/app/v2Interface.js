@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import styledProperty from 'styled-property'
 
-import ParseContainer from './../../containers/parser/parseContainer'
-import SimulatorContainer from './../../containers/simulator/simulatorContainer'
+import ParserInput from '../../components/parser/parserInput'
 
 import { colour, font, space } from '../../styles/theme'
 import { media } from '../../styles/mediaQuery'
@@ -66,6 +65,7 @@ const V2Interface = () => (
       <StyledLink to='/core'>core</StyledLink>
     </MobileNav>
     <MobileBody>
+      <ParserInput redcode={'redcode'} handleChange={() => {}} />
     </MobileBody>
     <MobileControls>
     </MobileControls>
