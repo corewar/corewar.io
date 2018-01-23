@@ -21,7 +21,8 @@ export const space = {
   m: '16px',
   l: '32px',
   xl: '64px',
-  xxl: '128px'
+  xxl: '128px',
+  header: '48px'
 }
 
 export const icon = {

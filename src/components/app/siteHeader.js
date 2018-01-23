@@ -11,7 +11,7 @@ import { media } from '../../styles/mediaQuery'
 const Header = styled.header`
 
   display: grid;
-  grid-template-columns: 240px 1fr 120px;
+  grid-template-columns: 240px 1fr 180px;
 
   ${media.phone`
     grid-template-columns: 2fr 1fr;
