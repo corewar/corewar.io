@@ -18,6 +18,7 @@ const TabletLayout = () => (
     <Main>
       <Route exact path='/' component={ParserInterface} />
       <Route exact path='/src' component={ParserInterface} />
+      <Route exact path='/output' component={ParserInterface} />
       <Route exact path='/core' component={ParserInterface} />
     </Main>
   </TabletGrid>
