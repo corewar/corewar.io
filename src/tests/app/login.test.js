@@ -14,7 +14,7 @@ it('renders the login and sign up buttons if unauthenticated', () => {
 
   const wrapper = shallow(<Login isAuthenticated={false}/>)
 
-  expect(wrapper.find('button')).to.have.length(2)
+  expect(wrapper.find('a')).to.have.length(2)
 })
 
 it('renders the user info component if authenticated', () => {

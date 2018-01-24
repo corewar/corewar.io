@@ -8,7 +8,7 @@ import UserInfo from './userInfo'
 import TabLink from '../styledComponents/tabLink'
 
 import { media } from '../../styles/mediaQuery'
-import { colour, space } from '../../styles/theme'
+import { colour } from '../../styles/theme'
 
 const Header = styled.header`
   display: grid;

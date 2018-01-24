@@ -6,8 +6,6 @@ import SiteHeader from './../../components/app/siteHeader'
 import ParserInterface from './../../components/app/parserInterface'
 import OutputInterface from '../../components/app/outputInterface'
 
-import { space } from '../../styles/theme'
-
 const RootGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;

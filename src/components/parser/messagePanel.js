@@ -1,7 +1,5 @@
 import React from 'react'
 
-import ParseIcon from './parseIcon'
-
 import './messagePanel.css'
 
 const MessagePanel = ({ messages }) => (
@@ -15,7 +13,6 @@ const MessagePanel = ({ messages }) => (
       ))
     }
     </ul>
-    <ParseIcon success={!messages || messages.length === 0} />
   </section>
 
 )
