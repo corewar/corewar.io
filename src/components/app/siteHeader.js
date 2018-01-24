@@ -26,7 +26,6 @@ const Nav = styled.div`
   color: ${colour.white};
   ${media.tablet`display: flex;`}
   ${media.desktop`display: flex;`}
-  ${media.designer`display: flex;`}
   ${media.phone`display: none;`}
 `
 
