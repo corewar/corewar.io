@@ -2,10 +2,8 @@ import styled from 'styled-components'
 
 import { colour } from '../../../styles/theme'
 
-const Footer = styled.div`
-  grid-row-start: 4;
-
+const Controls = styled.div`
   background-color: ${colour.lightbg};
 `
 
-export default Footer
+export default Controls

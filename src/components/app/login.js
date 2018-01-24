@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { colour, font, space } from '../../styles/theme'
+import { colour, space } from '../../styles/theme'
 import { media } from '../../styles/mediaQuery'
 
 import UserInfo from './userInfo'

@@ -1,9 +1,6 @@
 import React from 'react'
 import Media from "react-media"
-import { Route } from 'react-router-dom'
-import styled from 'styled-components'
 
-import SiteHeader from './../../components/app/siteHeader'
 import MobileLayout from '../app/mobileLayout'
 import TabletLayout from '../app/tabletLayout'
 
