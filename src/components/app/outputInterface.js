@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import CompiledOutput from '../styledComponents/compiledOutput'
 
 const OutputInterface = ({ currentParseResult }) => (
-  <CompiledOutput>
+  <CompiledOutput mobile>
     {currentParseResult.warrior}
   </CompiledOutput>
 )

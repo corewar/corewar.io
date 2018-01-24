@@ -2,6 +2,8 @@ import styled from 'styled-components'
 
 import { sourceCode } from '../../styles/sourceCode'
 
+import { space } from '../../styles/theme'
+
 const SourceCodeTextArea = styled.textarea.attrs({
   // we can define static props
   placeholder: 'enter your redcode',
@@ -12,7 +14,8 @@ const SourceCodeTextArea = styled.textarea.attrs({
   // or we can define dynamic ones
   onChange: props => props.handleChange
 })`
-  ${sourceCode}
+  ${sourceCode};
+  height: ${props => props.desktop && `calc(100vh - ${space.m} - ${space.m} - ${space.header} - ${space.header})`};
 `
 
 export default SourceCodeTextArea
