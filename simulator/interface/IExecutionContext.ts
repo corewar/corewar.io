@@ -2,6 +2,12 @@
 import { IInstruction } from "./IInstruction";
 import { ITask } from "./ITask";
 import { IWarrior } from "./IWarrior";
+import { IOperand } from "./IOperand";
+
+export interface IOperandPair {
+    destination: IOperand;
+    source: IOperand;
+}
 
 export interface IExecutionContext {
 
@@ -11,8 +17,11 @@ export interface IExecutionContext {
     instruction?: IInstruction;
 
     command?: (context: IExecutionContext) => void;
-    aPointer?: number;
-    bPointer?: number;
+
+    operands: IOperandPair[];
+    
+    aInstruction?: IInstruction;
+    bInstruction?: IInstruction;
 
     taskIndex?: number;
     task?: ITask;
