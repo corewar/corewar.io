@@ -16,7 +16,7 @@ const ParserGrid = styled.section`
   display: grid;
   grid-template-columns: 60% 40%;
   grid-template-rows: 1fr;
-  height: 100%;
+  height: calc(100vh - 48px);
 `
 
 const ParserInterface = ({ redcode, parse, currentParseResult }) => (
