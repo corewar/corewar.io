@@ -21,7 +21,7 @@ const ParserGrid = styled.section`
 
 const ParserContainer = styled.section`
   display: grid;
-  grid-template-columns: 1fr 48px;
+  grid-template-columns: 1fr ${space.header};
   grid-template-rows: 1fr;
 `
 
