@@ -6,13 +6,23 @@ import Octicon from 'react-octicon'
 import SourceCodeTextArea from '../styledComponents/sourceCodeTextArea'
 import CompiledOutput from '../styledComponents/compiledOutput'
 import Controls from '../styledComponents/desktop/controls'
+import CoreContainer from '../simulator/coreContainer'
 import Button from '../styledComponents/button'
 
 import { space } from '../../styles/theme'
 
 import {
-  parse
+  parse,
+  addWarrior
 } from '../../actions/parserActions'
+
+import {
+  step,
+  init,
+  run,
+  pause,
+  getCoreInstructions
+} from '../../actions/simulatorActions'
 
 const DesktopContainer = styled.section`
   display: grid;
@@ -27,9 +37,14 @@ const ParserGrid = styled.section`
   height: calc(100vh - ${space.header} - ${space.header});
 `
 
-const CompleteInterface = ({ redcode, parse, currentParseResult }) => (
+const CompleteInterface = ({ redcode, parse, currentParseResult,
+  coreSize, getCoreInstructions, isRunning, isInitialised, addWarrior,
+  run, pause, step, init }) => (
   <DesktopContainer>
     <Controls>
+      <Button onClick={addWarrior}>
+        <Octicon mega name="chevron-right"/>
+      </Button>
     </Controls>
     <ParserGrid>
       <SourceCodeTextArea desktop
@@ -39,18 +54,39 @@ const CompleteInterface = ({ redcode, parse, currentParseResult }) => (
         {currentParseResult.warrior}
       </CompiledOutput>
     </ParserGrid>
+    <div></div>
+    <CoreContainer
+      coreSize={coreSize}
+      getCoreInstructions={getCoreInstructions}
+      isRunning={isRunning}
+      isInitialised={isInitialised}
+      run={run}
+      pause={pause}
+      step={step}
+      init={init}
+      />
   </DesktopContainer>
 )
 
 const mapStateToProps = state => ({
   redcode: state.parser.redcode,
-  currentParseResult: state.parser.currentParseResult
+  currentParseResult: state.parser.currentParseResult,
+  coreSize: state.simulator.coreSize,
+  getCoreInstructions: state.simulator.getCoreInstructions,
+  isRunning: state.simulator.isRunning,
+  isInitialised: state.simulator.isInitialised
 })
 
 export default connect(
   mapStateToProps,
   {
-    parse
+    run,
+    init,
+    pause,
+    parse,
+    step,
+    addWarrior,
+    getCoreInstructions
   }
 )(CompleteInterface)
 

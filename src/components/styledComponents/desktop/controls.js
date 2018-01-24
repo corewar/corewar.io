@@ -7,8 +7,10 @@ const Controls = styled.div`
   height: 100%;
   background-color: ${colour.lightbg};
   border-bottom: 1px solid ${colour.grey};
+  text-align: center;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr)
 `
 
 export default Controls

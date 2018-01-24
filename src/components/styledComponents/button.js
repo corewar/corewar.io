@@ -8,6 +8,7 @@ const Button = styled.button.attrs({
 })`
   color: ${props => props.disabled ? colour.grey : colour.white };
   border: none;
+  outline: none;
   background-color: transparent;
   width: 100%;
   height: 100%;
