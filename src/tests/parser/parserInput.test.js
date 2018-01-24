@@ -19,7 +19,7 @@ it('renders a textarea with the redcode as the default', () => {
   const wrapper = shallow(<SourceCodeTextArea {...props}/>)
 
   expect(wrapper.find('textarea')).to.have.length(1)
-  expect(wrapper.find('textarea').props().defaultValue).to.equal(props.redcode)
+  expect(wrapper.find(SourceCodeTextArea).props().defaultValue).to.equal(props.redcode)
 });
 
 it('calls the handleChange when the onChange event fires', () => {
