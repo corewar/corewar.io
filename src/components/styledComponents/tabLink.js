@@ -21,4 +21,6 @@ const TabLink = styledProperty(BaseLink, 'activeClassName')`
   color: ${colour.white};
 `
 
+TabLink.displayName = 'TabLink'
+
 export default TabLink

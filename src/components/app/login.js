@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { colour, font, space } from '../../styles/theme'
 import { media } from '../../styles/mediaQuery'
 
 import UserInfo from './userInfo'
+import HeaderLink from '../styledComponents/headerLink'
 
 const LoginModule = styled.div`
 
@@ -25,22 +25,13 @@ const LinkContainer = styled.div`
   padding-top: ${space.m}
 `
 
-const StyledLink = styled(Link)`
-  color: ${colour.white};
-  font-weight: 300;
-  font-size: ${font.base};
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-  }
-`
 
 const Login = ({ isAuthenticated }) => (
   <LoginModule>
     {isAuthenticated ?
       <UserInfo /> :
       <LinkContainer>
-        <StyledLink to='/'>login</StyledLink> / <StyledLink to='/'>sign up</StyledLink>
+        <HeaderLink to='/'>login</HeaderLink> / <HeaderLink to='/'>sign up</HeaderLink>
       </LinkContainer>
     }
   </LoginModule>

@@ -8,7 +8,7 @@ import UserInfo from './userInfo'
 import TabLink from '../styledComponents/tabLink'
 
 import { media } from '../../styles/mediaQuery'
-import { colour, space } from '../../styles/theme'
+import { colour } from '../../styles/theme'
 
 const Header = styled.header`
   display: grid;
@@ -25,6 +25,8 @@ const Nav = styled.div`
   display: none;
   color: ${colour.white};
   ${media.tablet`display: flex;`}
+  ${media.desktop`display: flex;`}
+  ${media.designer`display: flex;`}
   ${media.phone`display: none;`}
 `
 

@@ -6,13 +6,14 @@ export const sourceCode = props => `
   line-height: 1.2em;
   font-size: ${font.base};
   background-color: transparent;
-  margin: ${space.m};
+
   width: calc(100% - ${space.m} - ${space.m});
-  height: calc(100% - ${space.m} - ${space.m});
+  height: 100%;
   border: none;
   caret-color: ${colour.white};
   color: ${colour.white};
   resize: none;
+  overflow-y: scroll;
 
   &:focus {
     outline: none;
