@@ -17,16 +17,24 @@ const ParserGrid = styled.section`
   height: calc(100vh - ${space.header});
 `
 
+const ParserContainer = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 48px;
+  grid-template-rows: 1fr;
+`
+
 const ParserInterface = ({ redcode, parse, currentParseResult }) => (
-  <ParserGrid>
-    <SourceCodeTextArea
-      value={redcode}
-      handleChange={e => parse(e.target.value)} />
-    <CompiledOutput tablet>
-      {currentParseResult.warrior}
-    </CompiledOutput>
+  <ParserContainer>
+    <ParserGrid>
+      <SourceCodeTextArea
+        value={redcode}
+        handleChange={e => parse(e.target.value)} />
+      <CompiledOutput tablet>
+        {currentParseResult.warrior}
+      </CompiledOutput>
+    </ParserGrid>
     <Controls />
-  </ParserGrid>
+  </ParserContainer>
 )
 
 const mapStateToProps = state => ({
