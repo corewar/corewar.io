@@ -9,6 +9,7 @@ const SiteName = styled.div`
   font-family: ${font.default};
   font-size: ${font.large};
   font-weight: 300;
+  line-height: 1.2em;
   color: ${colour.darkbg};
   padding-left: ${space.m};
   padding-top: ${space.s};

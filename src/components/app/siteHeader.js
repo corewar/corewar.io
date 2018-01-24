@@ -20,17 +20,15 @@ const Header = styled.header`
 `
 
 const Nav = styled.div`
-
   text-align: center;
 
   display: none;
   color: ${colour.white};
   ${media.tablet`display: flex;`}
   ${media.phone`display: none;`}
-
 `
 
-const SiteHeader = ({isAuthenticated}) => (
+const SiteHeader = ({ isAuthenticated }) => (
   <Header>
     <Logo siteName='corewar' siteDomain='.io' />
     <Nav>
