@@ -6,13 +6,14 @@ import NavBar from '../styledComponents/mobile/navBar'
 import Main from '../styledComponents/mobile/main'
 import Footer from '../styledComponents/mobile/footer'
 import SourceCodeTextArea from '../styledComponents/sourceCodeTextArea'
+import CompiledOutput from '../styledComponents/compiledOutput'
 import TabLink from '../styledComponents/tabLink'
 
 import {
   parse
 } from '../../actions/parserActions'
 
-const ParserInterface = ({ redcode, parse }) => (
+const ParserInterface = ({ redcode, parse, currentParseResult }) => (
   <Container>
     <NavBar>
       <TabLink to='/src'>src</TabLink>
@@ -23,6 +24,9 @@ const ParserInterface = ({ redcode, parse }) => (
       <SourceCodeTextArea
         value={redcode}
         handleChange={e => parse(e.target.value)} />
+      <CompiledOutput>
+        {currentParseResult.warrior}
+      </CompiledOutput>
     </Main>
     <Footer>
     </Footer>
@@ -30,7 +34,8 @@ const ParserInterface = ({ redcode, parse }) => (
 )
 
 const mapStateToProps = state => ({
-  redcode: state.parser.redcode
+  redcode: state.parser.redcode,
+  currentParseResult: state.parser.currentParseResult
 })
 
 export default connect(
