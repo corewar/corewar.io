@@ -6,18 +6,30 @@ import FontAwesomeButton from '../simulator/fontAwesomeButton'
 import ErrorBoundary from './../app/errorBoundary'
 
 import { colour, space } from  '../../styles/theme'
+import { media } from  '../../styles/mediaQuery'
 
 const CanvasWrapper = styled.section`
 
   position: relative;
-  min-height: 500px;
+
+  ${media.tablet`min-height: 400px;`}
+  ${media.phone`min-height: 400px;`}
+
+
   display: grid;
   grid-template-rows: 130px 1fr ${space.header};
 
   #canvasContainer {
     position: relative;
-    min-height: 500px;
-    min-width: 500px;
+
+    ${media.desktop`min-height: 500px;`}
+    ${media.tablet`min-height: 400px;`}
+    ${media.phone`min-height: 400px;`}
+
+    ${media.desktop`min-width: 500px;`}
+    ${media.tablet`min-width: 400px;`}
+    ${media.phone`min-width: 400px;`}
+
     border: 1px solid ${colour.grey};
   }
 
@@ -27,7 +39,6 @@ const CanvasWrapper = styled.section`
     left: 0;
   }
 `
-
 const Controls = styled.div`
   height: calc(${space.header} - ${space.m});
   width: 100%;

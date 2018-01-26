@@ -11,7 +11,8 @@ import Button from '../styledComponents/button'
 import { space } from '../../styles/theme'
 
 import {
-  parse
+  parse,
+  addWarrior
 } from '../../actions/parserActions'
 
 const ParserGrid = styled.section`
@@ -25,7 +26,7 @@ const ParserContainer = styled.section`
   grid-template-rows: 1fr;
 `
 
-const ParserInterface = ({ redcode, parse, currentParseResult }) => (
+const ParserInterface = ({ redcode, parse, currentParseResult, addWarrior }) => (
   <ParserContainer>
     <ParserGrid>
       <SourceCodeTextArea
@@ -41,7 +42,7 @@ const ParserInterface = ({ redcode, parse, currentParseResult }) => (
         <Octicon mega name="issue-opened"/>
       </Button>
       <Button
-        handleClick={() => { console.log('clicked me') }}>
+        handleClick={addWarrior}>
         <Octicon mega name="chevron-right"/>
       </Button>
     </Controls>
@@ -56,7 +57,8 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    parse
+    parse,
+    addWarrior
   }
 )(ParserInterface)
 

@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 import { colour } from '../../styles/theme'
 
 const Button = styled.button.attrs({
-  onClick: props => !props.disabled ? props.handleClick : undefined
+  onClick: props => props.enabled ? props.handleClick : null
 })`
-  color: ${props => props.disabled ? colour.grey : colour.white };
+  color: ${props => !props.enabled ? colour.grey : colour.white };
   border: none;
   outline: none;
   background-color: transparent;
@@ -18,8 +18,8 @@ const Button = styled.button.attrs({
   }
 `
 
-Button.propTypes = {
-  handleClick: PropTypes.func.required
-}
+// Button.propTypes = {
+//   handleClick: PropTypes.func.required
+// }
 
 export default Button
