@@ -2,15 +2,20 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import SourceCodeTextArea from '../styledComponents/sourceCodeTextArea'
+import MobileContent from '../styledComponents/mobile/mobileContent'
+import MobileControls from '../../containers/parser/mobileControls'
 
 import {
   parse
 } from '../../actions/parserActions'
 
 const InputInterface = ({ redcode, parse }) => (
-  <SourceCodeTextArea
-    value={redcode}
-    handleChange={e => parse(e.target.value)} />
+  <MobileContent>
+    <SourceCodeTextArea
+      value={redcode}
+      handleChange={e => parse(e.target.value)} />
+    <MobileControls />
+  </MobileContent>
 )
 
 const mapStateToProps = state => ({

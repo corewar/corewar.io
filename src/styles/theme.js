@@ -29,7 +29,7 @@ export const space = {
 export const icon = {
   color: '#f2f2f2',
   base: '12px',
-  large: '20px',
+  large: '20px'
 }
 
 export const font = {
@@ -40,5 +40,5 @@ export const font = {
   base: '16px',
   large: '24px',
   xlarge: '28px',
-  xxlarge: '96px',
+  xxlarge: '96px'
 }
