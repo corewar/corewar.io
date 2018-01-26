@@ -10,11 +10,11 @@ import { media } from  '../../styles/mediaQuery'
 
 const CanvasWrapper = styled.section`
 
+  height: 100%;
   position: relative;
 
   ${media.tablet`min-height: 400px;`}
   ${media.phone`min-height: 400px;`}
-
 
   display: grid;
   grid-template-rows: 130px 1fr ${space.header};

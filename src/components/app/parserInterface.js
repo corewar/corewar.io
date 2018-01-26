@@ -42,6 +42,7 @@ const ParserInterface = ({ redcode, parse, currentParseResult, addWarrior }) => 
         <Octicon mega name="issue-opened"/>
       </Button>
       <Button
+        enabled={true}
         handleClick={addWarrior}>
         <Octicon mega name="chevron-right"/>
       </Button>
