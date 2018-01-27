@@ -4,6 +4,7 @@ import Octicon from 'react-octicon'
 
 import Controls from '../../components/styledComponents/tablet/controls'
 import Button from '../../components/styledComponents/button'
+import ParseStatusButton from '../../components/styledComponents/parseStatusButton'
 
 import {
   addWarrior
@@ -11,18 +12,24 @@ import {
 
 const TabletControls = ({ addWarrior, currentParseResult }) => (
   <Controls>
-  <Button
-    enabled={true}
+  <ParseStatusButton
+    enabled={hasNoErrors(currentParseResult)}
+    messages={currentParseResult.messages}
     handleClick={() => { console.log('disabled clicked me') }} disabled>
     <Octicon mega name="issue-opened"/>
-  </Button>
+  </ParseStatusButton>
   <Button
-    enabled={currentParseResult.warrior && currentParseResult.messages.filter(x => x.type !== 1).length === 0}
+    enabled={hasNoErrors(currentParseResult)}
     handleClick={addWarrior}>
     <Octicon mega name="chevron-right"/>
   </Button>
   </Controls>
 )
+
+// TODO: this is duplicated between here and mobileControls
+const hasNoErrors = (currentParseResult) => {
+  currentParseResult.warrior && currentParseResult.messages.filter(x => x.type !== 0).length === 0
+}
 
 const mapStateToProps = state => ({
   currentParseResult: state.parser.currentParseResult
