@@ -1,18 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import Octicon from 'react-octicon'
 
-import SourceCodeTextArea from '../styledComponents/sourceCodeTextArea'
-import CompiledOutput from '../styledComponents/compiledOutput'
-import Controls from '../styledComponents/tablet/controls'
-import Button from '../styledComponents/button'
+import SourceCodeTextArea from '../../components/styledComponents/sourceCodeTextArea'
+import CompiledOutput from '../../components/styledComponents/compiledOutput'
+import TabletControls from '../parser/tabletControls'
 
 import { space } from '../../styles/theme'
 
 import {
-  parse,
-  addWarrior
+  parse
 } from '../../actions/parserActions'
 
 const ParserGrid = styled.section`
@@ -36,17 +33,7 @@ const ParserInterface = ({ redcode, parse, currentParseResult, addWarrior }) => 
         {currentParseResult.warrior}
       </CompiledOutput>
     </ParserGrid>
-    <Controls>
-      <Button
-        handleClick={() => { console.log('disabled clicked me') }} disabled>
-        <Octicon mega name="issue-opened"/>
-      </Button>
-      <Button
-        enabled={true}
-        handleClick={addWarrior}>
-        <Octicon mega name="chevron-right"/>
-      </Button>
-    </Controls>
+    <TabletControls />
   </ParserContainer>
 )
 
@@ -58,8 +45,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    parse,
-    addWarrior
+    parse
   }
 )(ParserInterface)
 

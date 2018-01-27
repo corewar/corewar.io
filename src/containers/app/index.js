@@ -1,9 +1,9 @@
 import React from 'react'
 import Media from "react-media"
 
-import MobileLayout from '../app/mobileLayout'
-import TabletLayout from '../app/tabletLayout'
-import DesktopLayout from '../app/desktopLayout'
+import MobileLayout from '../../components/app/mobileLayout'
+import TabletLayout from '../../components/app/tabletLayout'
+import DesktopLayout from '../../components/app/desktopLayout'
 
 import { sizes } from '../../styles/mediaQuery'
 
@@ -19,7 +19,7 @@ const App = () => (
       render={() => <TabletLayout />}
     />
 
-<Media
+    <Media
       query={{ minWidth: sizes.desktop }}
       render={() => <DesktopLayout />}
     />

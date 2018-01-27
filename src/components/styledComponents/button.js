@@ -14,7 +14,7 @@ const Button = styled.button.attrs({
   height: 100%;
 
   &:hover {
-    ${props => !props.disabled && `cursor: pointer`};
+    ${props => props.enabled && `cursor: pointer`};
   }
 `
 

@@ -6,6 +6,9 @@ export const colour = {
   'defaultbg': '#1A1D22',
   'lightbg': '#292C33',
   'grey': '#828282',
+  'error': '#EB5757',
+  'warning': '#F2C94C',
+  'info': '#56CCF2',
   warrior: [
     '#56CCF2',
     '#EB5757',

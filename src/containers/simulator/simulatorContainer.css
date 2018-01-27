@@ -1,6 +1,0 @@
-#simulatorContainer {
-
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  grid-template-rows: 50px 30px 50px 1fr;
-}
