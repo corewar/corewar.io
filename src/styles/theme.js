@@ -9,6 +9,7 @@ export const colour = {
   'error': '#EB5757',
   'warning': '#F2C94C',
   'info': '#56CCF2',
+  'success': '#6FCF97',
   warrior: [
     '#56CCF2',
     '#EB5757',
