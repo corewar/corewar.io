@@ -16,20 +16,20 @@ const MobileControls = ({ addWarrior, currentParseResult }) => (
     <ParseStatusButton
       enabled={hasNoErrors(currentParseResult)}
       messages={currentParseResult.messages}
-      handleClick={() => { console.log('disabled clicked me') }} disabled>
+      handleClick={() => { console.log('disabled clicked me') }}>
       <Octicon mega name="issue-opened"/>
     </ParseStatusButton>
     <Button
-      messages={hasNoErrors(currentParseResult)}
+      enabled={hasNoErrors(currentParseResult)}
       handleClick={addWarrior}>
       <Octicon mega name="chevron-right"/>
     </Button>
   </Controls>
 )
 
-const hasNoErrors = (currentParseResult) => {
-  currentParseResult.warrior && currentParseResult.messages.filter(x => x.type !== 0).length === 0
-}
+const hasNoErrors = (currentParseResult) => (
+  currentParseResult.warrior && currentParseResult.messages.filter(x => x.type === 0).length === 0
+)
 
 MobileControls.PropTypes = {
   addWarrior: PropTypes.func,

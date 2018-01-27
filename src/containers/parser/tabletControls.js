@@ -27,9 +27,9 @@ const TabletControls = ({ addWarrior, currentParseResult }) => (
 )
 
 // TODO: this is duplicated between here and mobileControls
-const hasNoErrors = (currentParseResult) => {
-  currentParseResult.warrior && currentParseResult.messages.filter(x => x.type !== 0).length === 0
-}
+const hasNoErrors = (currentParseResult) => (
+  currentParseResult.warrior && currentParseResult.messages.filter(x => x.type === 0).length === 0
+)
 
 const mapStateToProps = state => ({
   currentParseResult: state.parser.currentParseResult

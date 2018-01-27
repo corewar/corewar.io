@@ -7,10 +7,12 @@ import ParserInterface from '../../containers/app/parserInterface'
 import Main from '../styledComponents/tablet/main'
 import CoreContainer from '../../containers/simulator/coreContainer'
 
+import { space } from '../../styles/theme'
+
 const TabletGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 48px 1fr;
+  grid-template-rows: ${space.header} 1fr ${space.controls};
 `
 
 const TabletLayout = () => (
