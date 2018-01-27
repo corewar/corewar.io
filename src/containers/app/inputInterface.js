@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import SourceCodeTextArea from '../styledComponents/sourceCodeTextArea'
-import MobileControls from '../../containers/parser/mobileControls'
+import SourceCodeTextArea from '../../components/styledComponents/sourceCodeTextArea'
+import MobileControls from '../parser/mobileControls'
 
 import {
   parse

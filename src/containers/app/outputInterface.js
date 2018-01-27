@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import CompiledOutput from '../styledComponents/compiledOutput'
-import MobileControls from '../../containers/parser/mobileControls'
+import CompiledOutput from '../../components/styledComponents/compiledOutput'
+import MobileControls from '../parser/mobileControls'
 
 const OutputInterface = ({ currentParseResult }) => (
   <CompiledOutput mobile>

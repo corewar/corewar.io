@@ -2,18 +2,18 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 
-import SiteHeader from '../../components/app/siteHeader'
+import SiteHeader from './siteHeader'
 
-import Container from '../../components/styledComponents/mobile/container'
-import NavBar from '../../components/styledComponents/mobile/navBar'
-import Main from '../../components/styledComponents/mobile/main'
-import TabLink from '../../components/styledComponents/tabLink'
+import Container from '../styledComponents/mobile/container'
+import NavBar from '../styledComponents/mobile/navBar'
+import Main from '../styledComponents/mobile/main'
+import TabLink from '../styledComponents/tabLink'
 
-import InputInterface from '../../components/app/inputInterface'
-import OutputInterface from '../../components/app/outputInterface'
-import CoreContainer from '../simulator/coreContainer'
-import MobileControls from '../parser/mobileControls'
-import SimulatorControls from '../simulator/simulatorControls'
+import InputInterface from '../../containers/app/inputInterface'
+import OutputInterface from '../../containers/app/outputInterface'
+import CoreContainer from '../../containers/simulator/coreContainer'
+import MobileControls from '../../containers/parser/mobileControls'
+import SimulatorControls from '../../containers/simulator/simulatorControls'
 
 const MobileGrid = styled.div`
   display: grid;

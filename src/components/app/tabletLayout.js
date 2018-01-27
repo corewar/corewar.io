@@ -2,10 +2,10 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 
-import SiteHeader from '../../components/app/siteHeader'
-import ParserInterface from '../../components/app/parserInterface'
-import Main from '../../components/styledComponents/tablet/main'
-import CoreContainer from '../simulator/coreContainer'
+import SiteHeader from './siteHeader'
+import ParserInterface from '../../containers/app/parserInterface'
+import Main from '../styledComponents/tablet/main'
+import CoreContainer from '../../containers/simulator/coreContainer'
 
 const TabletGrid = styled.div`
   display: grid;

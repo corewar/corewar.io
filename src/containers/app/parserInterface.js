@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 import Octicon from 'react-octicon'
 
-import SourceCodeTextArea from '../styledComponents/sourceCodeTextArea'
-import CompiledOutput from '../styledComponents/compiledOutput'
-import Controls from '../styledComponents/tablet/controls'
-import Button from '../styledComponents/button'
+import SourceCodeTextArea from '../../components/styledComponents/sourceCodeTextArea'
+import CompiledOutput from '../../components/styledComponents/compiledOutput'
+import Controls from '../../components/styledComponents/tablet/controls'
+import Button from '../../components/styledComponents/button'
 
 import { space } from '../../styles/theme'
 
