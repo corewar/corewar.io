@@ -83,8 +83,6 @@ const getIdenticonSvg = (warrior, i) => {
 
   const hash = sha.getHash('HEX')
 
-  console.log(hash)
-
   const options = {
     size: 40,
     foreground: hexToRgbA(colour.warrior[i]),
