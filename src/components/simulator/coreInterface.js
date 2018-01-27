@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import CanvasCore from './canvasCore'
 import FontAwesomeButton from '../simulator/fontAwesomeButton'
 import ErrorBoundary from './../app/errorBoundary'
+import Warriors from '../../containers/simulator/warriors'
 
 import { colour, space } from  '../../styles/theme'
 import { media } from  '../../styles/mediaQuery'
@@ -40,9 +41,9 @@ const CanvasWrapper = styled.section`
   }
 `
 
-const CoreInterface = ({ coreSize, getCoreInstructions, isRunning, isInitialised, run, pause, step, init }) => (
+const CoreInterface = ({ coreSize, getCoreInstructions, isRunning, isInitialised, run, pause, step, init, parseResults }) => (
   <CanvasWrapper>
-    <div></div>
+    <Warriors parseResults={parseResults}/>
     <ErrorBoundary>
       <CanvasCore
         coreSize={coreSize}

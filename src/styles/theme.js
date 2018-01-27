@@ -39,8 +39,8 @@ export const icon = {
 export const font = {
   default: `Lato, verdana, sans-serif`,
   code: `Anonymous Pro, courier new, mono`,
-  xsmall: '8px',
-  small: '10px',
+  xsmall: '10px',
+  small: '12px',
   base: '16px',
   large: '24px',
   xlarge: '28px',

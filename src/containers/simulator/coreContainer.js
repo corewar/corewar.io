@@ -12,12 +12,13 @@ import {
 } from '../../actions/simulatorActions'
 
 const CoreContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised,
-  run, pause, step, init }) => (
+  run, pause, step, init, parseResults }) => (
     <CoreInterface
       coreSize={coreSize}
       getCoreInstructions={getCoreInstructions}
       isRunning={isRunning}
       isInitialised={isInitialised}
+      parseResults={parseResults}
       run={run}
       pause={pause}
       step={step}
@@ -29,7 +30,8 @@ const mapStateToProps = state => ({
   coreSize: state.simulator.coreSize,
   getCoreInstructions: state.simulator.getCoreInstructions,
   isRunning: state.simulator.isRunning,
-  isInitialised: state.simulator.isInitialised
+  isInitialised: state.simulator.isInitialised,
+  parseResults: state.parser.parseResults
 })
 
 export default connect(
