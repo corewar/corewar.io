@@ -8,4 +8,6 @@ const Main = styled.main`
   background-color: ${colour.defaultbg};
 `
 
+Main.displayName = 'mobileMain'
+
 export default Main

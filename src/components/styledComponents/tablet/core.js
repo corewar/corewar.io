@@ -2,11 +2,14 @@ import styled from 'styled-components'
 
 import { colour, space } from '../../../styles/theme'
 
-const Main = styled.main`
+const Core = styled.main`
   height: calc(100vh - ${space.header});
   background-color: ${colour.defaultbg};
+
+  display: grid;
+  grid-template-rows: 1fr ${space.controls};
 `
 
-Main.displayName = 'tabletMain'
+Core.displayName = 'Core'
 
-export default Main
+export default Core

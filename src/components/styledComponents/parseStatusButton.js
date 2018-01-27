@@ -18,7 +18,7 @@ const getStatusColour = (messages) => {
     case 2:
       return colour.info
     default:
-      return colour.grey
+      return colour.success
   }
 }
 

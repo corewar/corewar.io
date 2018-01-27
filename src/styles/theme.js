@@ -9,6 +9,7 @@ export const colour = {
   'error': '#EB5757',
   'warning': '#F2C94C',
   'info': '#56CCF2',
+  'success': '#6FCF97',
   warrior: [
     '#56CCF2',
     '#EB5757',
@@ -38,8 +39,8 @@ export const icon = {
 export const font = {
   default: `Lato, verdana, sans-serif`,
   code: `Anonymous Pro, courier new, mono`,
-  xsmall: '8px',
-  small: '10px',
+  xsmall: '10px',
+  small: '12px',
   base: '16px',
   large: '24px',
   xlarge: '28px',

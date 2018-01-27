@@ -6,10 +6,10 @@ import { media } from '../../../styles/mediaQuery'
 const Container = styled.div`
   grid-row-start: 2;
   display: grid;
-  grid-template-rows: ${space.s} ${space.header} 1fr ${space.controls};
+  grid-template-rows: 1fr;
   grid-template-columns: 1fr;
 `
 
-Container.displayName = 'mobileContainer'
+Container.displayName = 'tabletContainer'
 
 export default Container
