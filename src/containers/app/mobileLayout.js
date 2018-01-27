@@ -11,7 +11,9 @@ import TabLink from '../../components/styledComponents/tabLink'
 
 import InputInterface from '../../components/app/inputInterface'
 import OutputInterface from '../../components/app/outputInterface'
-import MobileCore from '../simulator/mobileCore'
+import CoreContainer from '../simulator/coreContainer'
+import MobileControls from '../parser/mobileControls'
+import SimulatorControls from '../simulator/simulatorControls'
 
 const MobileGrid = styled.div`
   display: grid;
@@ -32,8 +34,11 @@ const MobileLayout = () => (
         <Route exact path='/' component={InputInterface} />
         <Route exact path='/src' component={InputInterface} />
         <Route exact path='/output' component={OutputInterface} />
-        <Route exact path='/core' component={MobileCore} />
+        <Route exact path='/core' component={CoreContainer} />
       </Main>
+      <Route exact path='/src' component={MobileControls} />
+      <Route exact path='/output' component={MobileControls} />
+      <Route exact path='/core' component={SimulatorControls} />
     </Container>
   </MobileGrid>
 )

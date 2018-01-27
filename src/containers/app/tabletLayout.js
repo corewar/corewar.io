@@ -4,8 +4,8 @@ import styled from 'styled-components'
 
 import SiteHeader from '../../components/app/siteHeader'
 import ParserInterface from '../../components/app/parserInterface'
-import TabletCore from '../../containers/simulator/tabletCore'
 import Main from '../../components/styledComponents/tablet/main'
+import CoreContainer from '../simulator/coreContainer'
 
 const TabletGrid = styled.div`
   display: grid;
@@ -20,7 +20,7 @@ const TabletLayout = () => (
       <Route exact path='/' component={ParserInterface} />
       <Route exact path='/src' component={ParserInterface} />
       <Route exact path='/output' component={ParserInterface} />
-      <Route exact path='/core' component={TabletCore} />
+      <Route exact path='/core' component={CoreContainer} />
     </Main>
   </TabletGrid>
 )

@@ -1,13 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import CoreContainer from '../../components/simulator/coreContainer'
-
-import { space } from '../../styles/theme'
-
-import {
-  addWarrior
-} from '../../actions/parserActions'
+import CoreInterface from '../../components/simulator/coreInterface'
 
 import {
   step,
@@ -17,9 +11,9 @@ import {
   getCoreInstructions
 } from '../../actions/simulatorActions'
 
-const TabletCore = ({ coreSize, getCoreInstructions, isRunning, isInitialised,
+const CoreContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised,
   run, pause, step, init }) => (
-    <CoreContainer
+    <CoreInterface
       coreSize={coreSize}
       getCoreInstructions={getCoreInstructions}
       isRunning={isRunning}
@@ -47,6 +41,6 @@ export default connect(
     step,
     getCoreInstructions
   }
-)(TabletCore)
+)(CoreContainer)
 
-export { TabletCore as PureTabletCore }
+export { CoreContainer as PureCoreContainer }

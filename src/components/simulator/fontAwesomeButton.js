@@ -9,12 +9,15 @@ const Container = styled.div.attrs({
 })`
 
   display: ${props => !props.visible && `none`};
-  color: ${props => props.enabled && `${colour.white}`};
+  color: ${props => props.enabled ? `${colour.white}` : `${colour.grey}`};
   font-size: ${font.small};
+  width: 100%;
+  text-align: center;
+  margin-top: ${font.base};
 
   &:hover {
-    cursor: pointer;
-    color: ${colour.blue}
+    cursor: ${props => props.enabled && `pointer`};
+    color: ${props => props.enabled && `${colour.blue}`};
   }
 `
 

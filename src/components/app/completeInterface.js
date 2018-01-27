@@ -6,7 +6,7 @@ import Octicon from 'react-octicon'
 import SourceCodeTextArea from '../styledComponents/sourceCodeTextArea'
 import CompiledOutput from '../styledComponents/compiledOutput'
 import Controls from '../styledComponents/desktop/controls'
-import CoreContainer from '../simulator/coreContainer'
+import CoreContainer from '../../containers/simulator/coreContainer'
 import Button from '../styledComponents/button'
 
 import { space } from '../../styles/theme'
