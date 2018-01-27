@@ -21,6 +21,8 @@ const SimulatorControls = ({ isRunning, isInitialised, run, pause, step, init })
   </Controls>
 )
 
+SimulatorControls.displayName = 'SimulatorControls'
+
 const mapStateToProps = state => ({
   isInitialised: state.simulator.isInitialised,
   isRunning: state.simulator.isRunning
