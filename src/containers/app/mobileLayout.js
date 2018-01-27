@@ -36,6 +36,7 @@ const MobileLayout = () => (
         <Route exact path='/output' component={OutputInterface} />
         <Route exact path='/core' component={CoreContainer} />
       </Main>
+      <Route exact path='/' component={MobileControls} />
       <Route exact path='/src' component={MobileControls} />
       <Route exact path='/output' component={MobileControls} />
       <Route exact path='/core' component={SimulatorControls} />
