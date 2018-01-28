@@ -24,7 +24,7 @@ export function runTest(testConfig: IExecutiveTestConfig[], testMethod: (IExecut
 
     testConfig.forEach(c => {
 
-        const context = this.buildContext(testConfig);
+        const context = buildContext(c);
         testMethod(context, c.e);
     });
 }
@@ -35,10 +35,10 @@ function buildContext(testConfig: IExecutiveTestConfig): IExecutionContext {
     options.maxTasks = 100;
     options.coresize = 3;
 
-    const instruction = this.parseInstruction(testConfig.i);
-    const aInstruction = this.parseInstruction(testConfig.a);
-    const bInstruction = this.parseInstruction(testConfig.b);
-    const operands = this.buildOperands(instruction, aInstruction, bInstruction);
+    const instruction = TestHelper.parseInstruction(0, testConfig.i);
+    const aInstruction = TestHelper.parseInstruction(0, testConfig.a);
+    const bInstruction = TestHelper.parseInstruction(0, testConfig.b);
+    const operands = buildOperands(instruction, aInstruction, bInstruction);
 
     return {
         core: TestHelper.buildCore(options.coresize),

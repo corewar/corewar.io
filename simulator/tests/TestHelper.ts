@@ -47,7 +47,7 @@ export default class TestHelper {
         amode: string,
         anumber: number,
         bmode: string,
-        bnumber: number): IToken[]{
+        bnumber: number): IToken[] {
 
         return [
             TestHelper.buildToken(TokenCategory.Opcode, opcode),
@@ -110,7 +110,7 @@ export default class TestHelper {
         wrapStub.callsFake((address: number) => {
             return address;
         });
-    
+
         return {
             getSize: () => { return size; },
             executeAt: sinon.stub(),
@@ -126,9 +126,9 @@ export default class TestHelper {
     public static hookChaiInstructionAssertion() {
         chai.use((chai, util) => {
             chai.Assertion.addMethod("thisInstruction", function (expected: IInstruction) {
-    
+
                 var actual = <IInstruction>this._obj;
-    
+
                 this.assert(
                     actual.opcode === expected.opcode,
                     "expected #{this} to have opcode #{exp} but got #{act}",
@@ -136,7 +136,7 @@ export default class TestHelper {
                     expected.opcode,
                     actual.opcode
                 );
-    
+
                 this.assert(
                     actual.modifier === expected.modifier,
                     "expected #{this} to have modifier #{exp} but got #{act}",
@@ -144,7 +144,7 @@ export default class TestHelper {
                     expected.modifier,
                     actual.modifier
                 );
-    
+
                 this.assert(
                     actual.aOperand.mode === expected.aOperand.mode,
                     "expected #{this} to have A operand mode #{exp} but got #{act}",
@@ -152,7 +152,7 @@ export default class TestHelper {
                     expected.aOperand.mode,
                     actual.aOperand.mode
                 );
-    
+
                 this.assert(
                     actual.aOperand.address === expected.aOperand.address,
                     "expected #{this} to have A operand address #{exp} but got #{act}",
@@ -160,7 +160,7 @@ export default class TestHelper {
                     expected.aOperand.address,
                     actual.aOperand.address
                 );
-    
+
                 this.assert(
                     actual.bOperand.mode === expected.bOperand.mode,
                     "expected #{this} to have B operand mode #{exp} but got #{act}",
@@ -168,7 +168,7 @@ export default class TestHelper {
                     expected.bOperand.mode,
                     actual.bOperand.mode
                 );
-    
+
                 this.assert(
                     actual.bOperand.address === expected.bOperand.address,
                     "expected #{this} to have B operand address #{exp} but got #{act}",
@@ -200,9 +200,9 @@ export default class TestHelper {
         "SPL": OpcodeType.SPL,
         "NOP": OpcodeType.NOP
     };
-    
+
     static modifierTable = {
-    
+
         ".A": ModifierType.A,
         ".B": ModifierType.B,
         ".AB": ModifierType.AB,
@@ -211,9 +211,9 @@ export default class TestHelper {
         ".X": ModifierType.X,
         ".I": ModifierType.I,
     };
-    
+
     static modeTable = {
-    
+
         "#": ModeType.Immediate,
         "$": ModeType.Direct,
         "*": ModeType.AIndirect,
@@ -229,12 +229,21 @@ export default class TestHelper {
         const parts = line.split(" ");
         const command = parts[0].split(".");
         const opcode = command[0];
-        const modifier = command[1];
-        const aMode = parts[1].substring(0, 1);
-        const aOperand = parseInt(parts[1].substring(1));
-        const bMode = parts[1].substring(0, 1);
-        const bOperand = parseInt(parts[1].substring(1));
-    
+
+        let modifier = ".AB";
+        let aMode = "$";
+        let aOperand = 0;
+        let bMode = "$";
+        let bOperand = 0;
+
+        if (parts.length > 1) {
+            modifier = command[1];
+            aMode = parts[1].substring(0, 1);
+            aOperand = parseInt(parts[1].substring(1));
+            bMode = parts[1].substring(0, 1);
+            bOperand = parseInt(parts[1].substring(1));
+        }
+
         return TestHelper.buildInstruction(
             address,
             this.opcodeTable[opcode],

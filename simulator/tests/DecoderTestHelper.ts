@@ -28,7 +28,7 @@ export function runTest(testConfig: IDecoderTestConfig[], testMethod: (IExecutio
 
     testConfig.forEach(c => {
 
-        const context = this.buildContext(testConfig);
+        const context = buildContext(c);
         testMethod(context, c.e);
     });
 }
