@@ -2,15 +2,16 @@ import * as chai from "chai";
 import * as sinon from "sinon";
 
 import * as Helper from "./ExecutiveTestHelper";
+import DataHelper from "./DataHelper";
 
 import { IInstruction, OpcodeType, ModifierType } from "../interface/IInstruction";
-import { IExecutionContext } from "../interface/IExecutionContext";
+import { IExecutionContext, IOperandPair } from "../interface/IExecutionContext";
 import { ICore } from "../interface/ICore";
 import { IOptions } from "../interface/IOptions";
 import { IExecutive } from "../interface/IExecutive";
-import Defaults from "../Defaults";
-import DataHelper from "./DataHelper";
 import { ModeType } from "../interface/IOperand";
+import Defaults from "../Defaults";
+import { Decoder } from "../Decoder";
 
 interface IExecutiveTestConfig {
     i: string,
@@ -18,6 +19,50 @@ interface IExecutiveTestConfig {
     b: string,
     e: string
 }
+
+const opcodeTable = {
+
+    "DAT": OpcodeType.DAT,
+    "MOV": OpcodeType.MOV,
+    "ADD": OpcodeType.ADD,
+    "SUB": OpcodeType.SUB,
+    "MUL": OpcodeType.MUL,
+    "DIV": OpcodeType.DIV,
+    "MOD": OpcodeType.MOD,
+    "JMP": OpcodeType.JMP,
+    "JMZ": OpcodeType.JMZ,
+    "JMN": OpcodeType.JMN,
+    "DJN": OpcodeType.DJN,
+    "CMP": OpcodeType.CMP,
+    "SEQ": OpcodeType.SEQ,
+    "SNE": OpcodeType.SNE,
+    "SLT": OpcodeType.SLT,
+    "SPL": OpcodeType.SPL,
+    "NOP": OpcodeType.NOP
+};
+
+const modifierTable = {
+
+    ".A": ModifierType.A,
+    ".B": ModifierType.B,
+    ".AB": ModifierType.AB,
+    ".BA": ModifierType.BA,
+    ".F": ModifierType.F,
+    ".X": ModifierType.X,
+    ".I": ModifierType.I,
+};
+
+const modeTable = {
+
+    "#": ModeType.Immediate,
+    "$": ModeType.Direct,
+    "*": ModeType.AIndirect,
+    "@": ModeType.BIndirect,
+    "{": ModeType.APreDecrement,
+    "<": ModeType.BPreDecrement,
+    "}": ModeType.APostIncrement,
+    ">": ModeType.BPostIncrement
+};
 
 export function hookChaiInstructionAssertion() {
     chai.use((chai, util) => {
@@ -76,84 +121,7 @@ export function hookChaiInstructionAssertion() {
     });
 }
 
-function buildCore(size: number): ICore {
-
-    const wrapStub = sinon.stub();
-    wrapStub.callsFake((address: number) => {
-        return address;
-    });
-
-    return {
-        getSize: () => { return size; },
-        executeAt: sinon.stub(),
-        readAt: sinon.stub(),
-        getAt: sinon.stub(),
-        getWithInfoAt: sinon.stub(),
-        setAt: sinon.stub(),
-        wrap: wrapStub,
-        initialise: (options: IOptions) => { }
-    };
-}
-
-function buildContext(instructions: IInstruction[]): IExecutionContext {
-
-    const options = Object.assign({}, Defaults);
-    options.maxTasks = 100;
-    options.coresize = instructions.length;
-
-    return {
-        core: this.buildCore(instructions.length),
-        instruction: instructions[1],
-        instructionPointer: 1,
-        operands
-    };
-}
-
-const opcodeTable = {
-
-    "DAT": OpcodeType.DAT,
-    "MOV": OpcodeType.MOV,
-    "ADD": OpcodeType.ADD,
-    "SUB": OpcodeType.SUB,
-    "MUL": OpcodeType.MUL,
-    "DIV": OpcodeType.DIV,
-    "MOD": OpcodeType.MOD,
-    "JMP": OpcodeType.JMP,
-    "JMZ": OpcodeType.JMZ,
-    "JMN": OpcodeType.JMN,
-    "DJN": OpcodeType.DJN,
-    "CMP": OpcodeType.CMP,
-    "SEQ": OpcodeType.SEQ,
-    "SNE": OpcodeType.SNE,
-    "SLT": OpcodeType.SLT,
-    "SPL": OpcodeType.SPL,
-    "NOP": OpcodeType.NOP
-};
-
-const modifierTable = {
-
-    ".A": ModifierType.A,
-    ".B": ModifierType.B,
-    ".AB": ModifierType.AB,
-    ".BA": ModifierType.BA,
-    ".F": ModifierType.F,
-    ".X": ModifierType.X,
-    ".I": ModifierType.I,
-};
-
-const modeTable = {
-
-    "#": ModeType.Immediate,
-    "$": ModeType.Direct,
-    "*": ModeType.AIndirect,
-    "@": ModeType.BIndirect,
-    "{": ModeType.APreDecrement,
-    "<": ModeType.BPreDecrement,
-    "}": ModeType.APostIncrement,
-    ">": ModeType.BPostIncrement
-};
-
-function parseLine(address: number, line: string): IInstruction {
+export function parseInstruction(address: number, line: string): IInstruction {
 
     const parts = line.split(" ");
     const command = parts[0].split(".");
@@ -174,20 +142,91 @@ function parseLine(address: number, line: string): IInstruction {
         bOperand);
 }
 
-function parseInstructions(core: string): IInstruction[] {
+export function runTest(testConfig: IExecutiveTestConfig[], testMethod: (IExecutionContext, string) => void) {
 
-    let address = 0;
-    return core.split("; ").map(line => this.parseInstruction(address++, line));
-}
+    testConfig.forEach(c => {
 
-export function runTest(core: IExecutiveTestConfig[], testMethod: (IExecutionContext) => void) {
-
-    core.forEach(c => {
-        const instructions = this.parseInstructions(c);
-        const context = this.buildContext(instructions);
-        testMethod(context);
+        const context = this.buildContext(testConfig);
+        testMethod(context, c.e);
     });
 }
+
+function buildCore(size: number): ICore {
+
+    const wrapStub = sinon.stub();
+    wrapStub.callsFake((address: number) => {
+        return address;
+    });
+
+    return {
+        getSize: () => { return size; },
+        executeAt: sinon.stub(),
+        readAt: sinon.stub(),
+        getAt: sinon.stub(),
+        getWithInfoAt: sinon.stub(),
+        setAt: sinon.stub(),
+        wrap: wrapStub,
+        initialise: (options: IOptions) => { }
+    };
+}
+
+function buildContext(testConfig: IExecutiveTestConfig): IExecutionContext {
+
+    const options = Object.assign({}, Defaults);
+    options.maxTasks = 100;
+    options.coresize = 3;
+
+    const instruction = this.parseInstruction(testConfig.i);
+    const aInstruction = this.parseInstruction(testConfig.a);
+    const bInstruction = this.parseInstruction(testConfig.b);
+    const operands = this.buildOperands(instruction, aInstruction, bInstruction);
+
+    return {
+        core: this.buildCore(options.coresize),
+        instruction: instruction,
+        instructionPointer: 1,
+        aInstruction: aInstruction,
+        bInstruction: bInstruction,
+        operands: operands,
+        task: DataHelper.buildTask(),
+        taskIndex: 2,
+        warrior: DataHelper.buildWarrior(7),
+        warriorIndex: 1
+    };
+}
+
+function buildOperands(
+    instruction: IInstruction,
+    aInstruction: IInstruction,
+    bInstruction: IInstruction): IOperandPair[] {
+
+    switch(instruction.modifier){
+
+        case ModifierType.A:
+            return [{ source: aInstruction.aOperand, destination: bInstruction.aOperand }];
+        case ModifierType.B:
+            return [{ source: aInstruction.bOperand, destination: bInstruction.bOperand }];
+        case ModifierType.AB:
+            return [{ source: aInstruction.aOperand, destination: bInstruction.bOperand }];
+        case ModifierType.BA:
+            return [{ source: aInstruction.bOperand, destination: bInstruction.aOperand }];
+        case ModifierType.F:
+        case ModifierType.I:
+            return [
+                { source: aInstruction.aOperand, destination: bInstruction.aOperand },
+                { source: aInstruction.bOperand, destination: bInstruction.bOperand }
+            ];
+        case ModifierType.X:
+            return [
+                { source: aInstruction.aOperand, destination: bInstruction.bOperand },
+                { source: aInstruction.bOperand, destination: bInstruction.aOperand }
+            ];
+        default:
+            throw Error("Unknown modifier type: " + instruction.modifier);
+    }
+}
+
+
 
 /*export function prepareCore(size: number, instructions: IInstruction[]) {
 
