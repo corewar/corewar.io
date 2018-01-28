@@ -4,24 +4,17 @@ import { connect } from 'react-redux'
 import CoreInterface from '../../components/simulator/coreInterface'
 
 import {
-  step,
   init,
-  run,
-  pause,
   getCoreInstructions
 } from '../../actions/simulatorActions'
 
-const CoreContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised,
-  run, pause, step, init, parseResults }) => (
+const CoreContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, parseResults }) => (
     <CoreInterface
       coreSize={coreSize}
       getCoreInstructions={getCoreInstructions}
       isRunning={isRunning}
       isInitialised={isInitialised}
       parseResults={parseResults}
-      run={run}
-      pause={pause}
-      step={step}
       init={init}
       />
 )
@@ -37,10 +30,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    run,
     init,
-    pause,
-    step,
     getCoreInstructions
   }
 )(CoreContainer)
