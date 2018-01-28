@@ -131,7 +131,7 @@ export default class TestHelper {
 
                 this.assert(
                     actual.opcode === expected.opcode,
-                    "expected #{this} to have opcode #{exp} but got #{act}",
+                    "expected " + TestHelper.instructionToString(actual) + " to have opcode #{exp} but got #{act}",
                     "ITS NOT CLEAR FROM THE DOCS WHAT THIS STRING IS FOR - LET ME KNOW IF YOU SEE IT!!",
                     expected.opcode,
                     actual.opcode
@@ -139,7 +139,7 @@ export default class TestHelper {
 
                 this.assert(
                     actual.modifier === expected.modifier,
-                    "expected #{this} to have modifier #{exp} but got #{act}",
+                    "expected " + TestHelper.instructionToString(actual) + " to have modifier #{exp} but got #{act}",
                     "ITS NOT CLEAR FROM THE DOCS WHAT THIS STRING IS FOR - LET ME KNOW IF YOU SEE IT!!",
                     expected.modifier,
                     actual.modifier
@@ -147,7 +147,7 @@ export default class TestHelper {
 
                 this.assert(
                     actual.aOperand.mode === expected.aOperand.mode,
-                    "expected #{this} to have A operand mode #{exp} but got #{act}",
+                    "expected " + TestHelper.instructionToString(actual) + " to have A operand mode #{exp} but got #{act}",
                     "ITS NOT CLEAR FROM THE DOCS WHAT THIS STRING IS FOR - LET ME KNOW IF YOU SEE IT!!",
                     expected.aOperand.mode,
                     actual.aOperand.mode
@@ -155,7 +155,7 @@ export default class TestHelper {
 
                 this.assert(
                     actual.aOperand.address === expected.aOperand.address,
-                    "expected #{this} to have A operand address #{exp} but got #{act}",
+                    "expected " + TestHelper.instructionToString(actual) + " to have A operand address #{exp} but got #{act}",
                     "ITS NOT CLEAR FROM THE DOCS WHAT THIS STRING IS FOR - LET ME KNOW IF YOU SEE IT!!",
                     expected.aOperand.address,
                     actual.aOperand.address
@@ -163,7 +163,7 @@ export default class TestHelper {
 
                 this.assert(
                     actual.bOperand.mode === expected.bOperand.mode,
-                    "expected #{this} to have B operand mode #{exp} but got #{act}",
+                    "expected " + TestHelper.instructionToString(actual) + " to have B operand mode #{exp} but got #{act}",
                     "ITS NOT CLEAR FROM THE DOCS WHAT THIS STRING IS FOR - LET ME KNOW IF YOU SEE IT!!",
                     expected.bOperand.mode,
                     actual.bOperand.mode
@@ -171,7 +171,7 @@ export default class TestHelper {
 
                 this.assert(
                     actual.bOperand.address === expected.bOperand.address,
-                    "expected #{this} to have B operand address #{exp} but got #{act}",
+                    "expected " + TestHelper.instructionToString(actual) + " to have B operand address #{exp} but got #{act}",
                     "ITS NOT CLEAR FROM THE DOCS WHAT THIS STRING IS FOR - LET ME KNOW IF YOU SEE IT!!",
                     expected.bOperand.address,
                     actual.bOperand.address
@@ -203,13 +203,13 @@ export default class TestHelper {
 
     static modifierTable = {
 
-        ".A": ModifierType.A,
-        ".B": ModifierType.B,
-        ".AB": ModifierType.AB,
-        ".BA": ModifierType.BA,
-        ".F": ModifierType.F,
-        ".X": ModifierType.X,
-        ".I": ModifierType.I,
+        "A": ModifierType.A,
+        "B": ModifierType.B,
+        "AB": ModifierType.AB,
+        "BA": ModifierType.BA,
+        "F": ModifierType.F,
+        "X": ModifierType.X,
+        "I": ModifierType.I,
     };
 
     static modeTable = {
@@ -229,19 +229,18 @@ export default class TestHelper {
         const parts = line.split(" ");
         const command = parts[0].split(".");
         const opcode = command[0];
+        const modifier = command[1];
 
-        let modifier = ".AB";
         let aMode = "$";
         let aOperand = 0;
         let bMode = "$";
         let bOperand = 0;
 
         if (parts.length > 1) {
-            modifier = command[1];
             aMode = parts[1].substring(0, 1);
             aOperand = parseInt(parts[1].substring(1));
-            bMode = parts[1].substring(0, 1);
-            bOperand = parseInt(parts[1].substring(1));
+            bMode = parts[2].substring(0, 1);
+            bOperand = parseInt(parts[2].substring(1));
         }
 
         return TestHelper.buildInstruction(
@@ -252,5 +251,26 @@ export default class TestHelper {
             aOperand,
             this.modeTable[bMode],
             bOperand);
+    }
+
+    public static instructionToString(instruction: IInstruction) {
+
+        const opcode = this.reverseLookup(this.opcodeTable, instruction.opcode);
+        const modifier = this.reverseLookup(this.modifierTable, instruction.modifier);
+        const aMode = this.reverseLookup(this.modeTable, instruction.aOperand.mode);
+        const aAddress = instruction.aOperand.address.toString();
+        const bMode = this.reverseLookup(this.modeTable, instruction.bOperand.mode);
+        const bAddress = instruction.bOperand.address.toString();
+
+        return opcode + "." + modifier + " " + aMode + aAddress + ", " + bMode + bAddress;
+    }
+
+    private static reverseLookup = function (dictionary, value) {
+        for (var prop in dictionary) {
+            if (dictionary.hasOwnProperty(prop)) {
+                if (dictionary[prop] === value)
+                    return prop;
+            }
+        }
     }
 }

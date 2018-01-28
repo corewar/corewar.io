@@ -33,7 +33,7 @@ describe("Executive", () => {
     // ], (context: IExecutionContext) => {
     //     it("removes the current task from the queue when the DAT instruction is executed", () => {
 
-    //         this.exec.commandTable[context.instruction.opcode].apply(this.exec, [context]);
+    //         this.executive.commandTable[context.instruction.opcode].apply(this.exec, [context]);
 
 
     //     });
@@ -48,9 +48,10 @@ describe("Executive", () => {
         { i: "MOV.X" , a: "NOP.A $1, $2", b: "DAT.F #3, #4", e: "DAT.F #2, #1" },
         { i: "MOV.I" , a: "NOP.A $1, $2", b: "DAT.F #3, #4", e: "NOP.A $1, $2" }
     ], (context: IExecutionContext, expectation: string) => {
-        it("correctly executes MOV instruction", () => {
 
-            this.exec.commandTable[context.instruction.opcode].apply(this.exec, [context]);
+        it("correctly executes " + TestHelper.instructionToString(context.instruction), () => {
+
+            this.executive.commandTable[context.instruction.opcode].apply(this.exec, [context]);
 
             const expected = TestHelper.parseInstruction(0, expectation);
             

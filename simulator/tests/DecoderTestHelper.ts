@@ -1,6 +1,8 @@
-import { IExecutionContext } from "../interface/IExecutionContext";
+import * as sinon from "sinon";
+
 import TestHelper from "./TestHelper";
 
+import { IExecutionContext } from "../interface/IExecutionContext";
 
 export interface IDecoderTestConfig {
     core: string[],
@@ -12,7 +14,7 @@ function buildContext(testConfig: IDecoderTestConfig): IExecutionContext {
 
     const instruction = TestHelper.parseInstruction(testConfig.ip, testConfig.core[testConfig.ip]);
 
-    return {
+    const result = {
         core: TestHelper.buildCore(testConfig.core.length),
         instruction: instruction,
         instructionPointer: testConfig.ip,
@@ -22,6 +24,21 @@ function buildContext(testConfig: IDecoderTestConfig): IExecutionContext {
         warrior: TestHelper.buildWarrior(),
         warriorIndex: 1
     };
+
+    let i = 0;
+    const instructions = testConfig.core.map(c => TestHelper.parseInstruction(i++, c));
+
+    const get = <sinon.stub>result.core.getAt;
+    get.callsFake(address => {
+        return instructions[address];
+    });
+
+    const read = <sinon.stub>result.core.readAt;
+    read.callsFake((task, address) => {
+        return instructions[address];
+    });
+
+    return result;
 }
 
 export function runTest(testConfig: IDecoderTestConfig[], testMethod: (IExecutionContext, string) => void) {
