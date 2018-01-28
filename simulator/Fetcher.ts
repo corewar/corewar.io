@@ -63,7 +63,8 @@ export class Fetcher implements IFetcher {
             taskIndex: c.taskIndex,
             task: c.task,
             warriorIndex: c.warriorIndex,
-            warrior: c.warrior
+            warrior: c.warrior,
+            operands: []
         };
     }
 

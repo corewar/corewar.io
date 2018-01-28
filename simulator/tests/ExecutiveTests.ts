@@ -4,7 +4,7 @@ import * as sinonChai from "sinon-chai";
 var expect = chai.expect;
 chai.use(sinonChai);
 
-import DataHelper from "./DataHelper";
+import TestHelper from "./TestHelper";
 import * as Helper from "./ExecutiveTestHelper";
 import { Executive } from "../Executive";
 import { IPublisher } from "../interface/IPublisher";
@@ -52,7 +52,7 @@ describe("Executive", () => {
 
             this.exec.commandTable[context.instruction.opcode].apply(this.exec, [context]);
 
-            const expected = Helper.parseInstruction(0, expectation);
+            const expected = TestHelper.parseInstruction(0, expectation);
             
             expect(context.core.setAt).to.have.been.calledWith(context.task, context.bInstruction.address, expected);
         });
