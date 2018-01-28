@@ -102,7 +102,7 @@ export class Decoder implements IDecoder {
                     destination: context.bInstruction.bOperand
                 }];
             default:
-                throw Error("Unknown modifier: " + context.instruction.modifier);
+                throw "Unknown modifier: " + context.instruction.modifier;
         }
     }
 
