@@ -1,19 +1,31 @@
 import styled from 'styled-components'
 
 import { media } from  './../../../styles/mediaQuery'
-import { colour } from '../../../styles/theme'
+import { colour, space } from '../../../styles/theme'
 
 const Controls = styled.div`
 
   grid-row-start: 4;
-  ${media.desktop`grid-row-start: 2`};
-  ${media.tablet`grid-row-start: 2`};
-  ${media.phone`grid-row-start: 4`};
-  background-color: ${colour.lightbg};
-  border-top: 1px solid ${colour.grey};
+
+  ${media.designer`grid-row-start: 2;`}
+  ${media.desktop`grid-row-start: 2;`}
+  ${media.tablet`grid-row-start: 2;`}
+  ${media.phone`grid-row-start: 4;`}
+
+
+
+  ${media.phone`
+    1px solid ${colour.grey};
+    background-color: ${colour.lightbg};
+  `}
+  ${media.tablet`
+    1px solid ${colour.grey};
+    background-color: ${colour.lightbg};
+  `}
 
   display: flex;
   flex-direction: row;
+  height: ${space.controls};
 `
 
 export default Controls

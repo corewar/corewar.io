@@ -8,6 +8,8 @@ import CompiledOutput from '../styledComponents/compiledOutput'
 import Controls from '../styledComponents/desktop/controls'
 import CoreContainer from '../../containers/simulator/coreContainer'
 import Button from '../styledComponents/button'
+import ParseStatusButton from '../styledComponents/parseStatusButton'
+import SimulatorControls from '../../containers/simulator/simulatorControls'
 
 import { space } from '../../styles/theme'
 
@@ -37,14 +39,25 @@ const ParserGrid = styled.section`
   height: calc(100vh - ${space.header} - ${space.header});
 `
 
+const CoreWrapper = styled.div`
+  display: grid;
+  grid-template-rows: 1fr ${space.controls};
+`
+
 const CompleteInterface = ({ redcode, parse, currentParseResult,
   coreSize, getCoreInstructions, isRunning, isInitialised, addWarrior,
   run, pause, step, init }) => (
   <DesktopContainer>
     <Controls>
-      <Button onClick={addWarrior}>
+      <Button onClick={addWarrior} enabled={hasNoErrors(currentParseResult)}>
         <Octicon mega name="chevron-right"/>
       </Button>
+      <ParseStatusButton
+        enabled={hasNoErrors(currentParseResult)}
+        messages={currentParseResult.messages}
+        handleClick={() => { console.log('disabled clicked me') }}>
+      <Octicon mega name="issue-opened"/>
+    </ParseStatusButton>
     </Controls>
     <ParserGrid>
       <SourceCodeTextArea desktop
@@ -55,17 +68,24 @@ const CompleteInterface = ({ redcode, parse, currentParseResult,
       </CompiledOutput>
     </ParserGrid>
     <div></div>
-    <CoreContainer
-      coreSize={coreSize}
-      getCoreInstructions={getCoreInstructions}
-      isRunning={isRunning}
-      isInitialised={isInitialised}
-      run={run}
-      pause={pause}
-      step={step}
-      init={init}
-      />
+    <CoreWrapper>
+      <CoreContainer
+        coreSize={coreSize}
+        getCoreInstructions={getCoreInstructions}
+        isRunning={isRunning}
+        isInitialised={isInitialised}
+        run={run}
+        pause={pause}
+        step={step}
+        init={init}
+        />
+      <SimulatorControls />
+    </CoreWrapper>
   </DesktopContainer>
+)
+
+const hasNoErrors = (currentParseResult) => (
+  currentParseResult.warrior && currentParseResult.messages.filter(x => x.type === 0).length === 0
 )
 
 const mapStateToProps = state => ({
