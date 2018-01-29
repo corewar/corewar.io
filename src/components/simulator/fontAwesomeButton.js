@@ -13,7 +13,7 @@ const Container = styled.div.attrs({
   font-size: ${font.small};
   width: 100%;
   text-align: center;
-  margin-top: ${font.base};
+  margin-top: ${font.small};
 
   &:hover {
     cursor: ${props => props.enabled && `pointer`};
