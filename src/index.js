@@ -3,8 +3,10 @@ import registerServiceWorker from './registerServiceWorker'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
+import { Route } from 'react-router-dom'
 import store, { history } from './store'
 import App from './containers/app'
+import Landing from './components/app/landing'
 import styled from 'styled-components'
 
 import 'typeface-lato'
@@ -31,7 +33,8 @@ render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Wrapper>
-        <App />
+        <Route exact path='/' component={Landing} />
+        <Route exact path='/app' component={App} />
       </Wrapper>
     </ConnectedRouter>
   </Provider>,

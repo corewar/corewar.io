@@ -28,7 +28,7 @@ import {
 
 const DesktopContainer = styled.section`
   display: grid;
-  grid-template-columns: 5fr 1fr 4fr;
+  grid-template-columns: 5fr 1fr 4fr 1px;
   grid-template-rows: ${space.header} 1fr;
   grid-column-gap: ${space.m};
 `

@@ -47,13 +47,23 @@ class CanvasCore extends Component {
     }
   }
 
+  // debounce(callback, wait, context = this) {
+  //   let timeout = null
+  //   let callbackArgs = null
+
+  //   const later = () => callback.apply(context, callbackArgs)
+
+  //   return function() {
+  //     callbackArgs = arguments
+  //     clearTimeout(timeout)
+  //     timeout = setTimeout(later, wait)
+  //   }
+  // }
 
   init() {
 
-    console.log('init')
-
-    const width = this.canvasContainer.clientWidth - 10
-    const height = this.canvasContainer.clientHeight - 10
+    const width = this.canvasContainer.clientWidth
+    const height = this.canvasContainer.clientHeight
 
     this.setState({
       width: width,
@@ -73,11 +83,11 @@ class CanvasCore extends Component {
 
   componentDidMount() {
 
-    console.log('moun')
-
     this.init()
 
     this.interactiveCanvas.addEventListener("click", e => this.canvasClick(e))
+
+    //window.addEventListener('resize', this.debounce(this.init, 1000))
 
     window.requestAnimationFrame(() => this.renderMessages())
 

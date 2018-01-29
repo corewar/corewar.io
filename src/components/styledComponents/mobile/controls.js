@@ -9,22 +9,22 @@ const Controls = styled.div`
   border: none;
 
   ${media.phone`
-    border: 1px solid ${colour.grey};
+    border-top: 1px solid ${colour.grey};
     background-color: ${colour.lightbg};
     grid-row-start: 4;
   `}
   ${media.tablet`
-    border: 1px solid ${colour.grey};
+    border-top: 1px solid ${colour.grey};
     background-color: ${colour.lightbg};
   `}
   ${media.desktop`
-    border: 1px solid ${colour.grey};
+    border-top: 1px solid ${colour.grey};
     background-color: ${colour.lightbg};
   `}
 
   display: flex;
   flex-direction: row;
-  height: ${space.controls};
+  height: calc(${space.controls} - 1px);
 `
 
 export default Controls

@@ -7,6 +7,7 @@ import CompiledOutput from '../../components/styledComponents/compiledOutput'
 import TabletControls from '../parser/tabletControls'
 
 import { space } from '../../styles/theme'
+import { media } from '../../styles/mediaQuery'
 
 import {
   parse

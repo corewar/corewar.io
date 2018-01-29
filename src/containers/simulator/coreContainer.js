@@ -8,7 +8,11 @@ import {
   getCoreInstructions
 } from '../../actions/simulatorActions'
 
-const CoreContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, parseResults, maxTasks }) => (
+import {
+  removeWarrior
+} from '../../actions/parserActions'
+
+const CoreContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, parseResults, maxTasks, removeWarrior }) => (
     <CoreInterface
       coreSize={coreSize}
       getCoreInstructions={getCoreInstructions}
@@ -17,6 +21,7 @@ const CoreContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised
       parseResults={parseResults}
       maxTasks={maxTasks}
       init={init}
+      removeWarrior={removeWarrior}
       />
 )
 
@@ -32,7 +37,8 @@ export default connect(
   mapStateToProps,
   {
     init,
-    getCoreInstructions
+    getCoreInstructions,
+    removeWarrior
   }
 )(CoreContainer)
 

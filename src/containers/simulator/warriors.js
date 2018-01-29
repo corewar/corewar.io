@@ -4,12 +4,15 @@ import Identicon from 'identicon.js'
 import jssha from 'jssha'
 import { List } from 'immutable'
 import * as PubSub from 'pubsub-js'
+import Octicon from 'react-octicon'
 
 import { colour, space, font } from '../../styles/theme'
+import { removeWarrior } from '../../actions/parserActions';
 
 const WarriorContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: ${space.s};
   grid-template-rows: repeat(2, 1fr);
   color: ${colour.white};
   font-size: ${font.small};
@@ -32,7 +35,6 @@ const WarriorContainer = styled.div`
     background-color: ${colour.blue};
   }
 `
-
 const WarriorWrapper = styled.div`
   padding: ${space.xs};
   display: grid;
@@ -42,6 +44,12 @@ const WarriorWrapper = styled.div`
 
 const WarriorControls = styled.div`
   padding-left: ${space.s};
+  display: flex;
+  justify-content: space-between;
+
+  span:hover {
+    cursor: pointer;
+  }
 `
 
 const TaskCountDisplay = styled.div`
@@ -91,13 +99,13 @@ class Warriors extends Component {
   }
 
   render() {
-    const { parseResults, maxTasks } = this.props
+    const { parseResults, maxTasks, removeWarrior } = this.props
     return <WarriorContainer>
       {parseResults && parseResults.map((result, i) => {
         const taskCount = this.state.tasks.get(i)
         return <WarriorWrapper key={`${result.warrior}_${i}`}>
           <img src={`data:image/svg+xml;base64,${getIdenticonSvg(result.warrior, i)}`} />
-          <WarriorControls>{result.metaData.name}</WarriorControls>
+          <WarriorControls>{result.metaData.name}<Octicon name="trashcan" onClick={() => removeWarrior(i)} /></WarriorControls>
           <TaskCountDisplay>{taskCount ? taskCount : 0 }</TaskCountDisplay>
           <TaskBar tasks={taskCount} maxTasks={maxTasks} warriorIndex={i}></TaskBar>
         </WarriorWrapper>
