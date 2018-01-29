@@ -91,7 +91,7 @@ export function* renderCoreSaga() {
 
     while(true) {
 
-      yield call(delay, 1000/90)
+      yield call(delay, 1000/60)
 
       const { isRunning, processRate } = yield select(getSimulatorState)
 

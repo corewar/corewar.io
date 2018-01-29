@@ -25,11 +25,12 @@ const Container = styled.div`
     ul {
       position: absolute;
       display: block;
-      margin-bottom: 1px;
       bottom: ${space.controls};
       height: 288px;
       text-align: center;
       width: 100%;
+      border-left: 1px solid ${colour.grey};
+      border-top: 1px solid ${colour.grey};
     }
 
   }
@@ -41,7 +42,7 @@ const MenuItem = styled.li`
   height: 24px;
   font-size: ${font.base};
   color: ${props => props.active ? colour.defaultbg : colour.blue};
-  background-color: ${props => props.active ? colour.blue : colour.defaultbg};
+  background-color: ${props => props.active ? colour.blue : colour.lightbg};
 `
 
 const SelectedItem = styled.div`
@@ -50,8 +51,6 @@ const SelectedItem = styled.div`
   width: 100%;
   height: calc(100% - ${font.base});
   margin-top: ${font.base};
-
-
 `
 
 const SpeedControl = ({ processRate, processRates, handleClick, visible, enabled }) => (
