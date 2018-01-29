@@ -22,6 +22,10 @@ const Controls = styled.div`
     1px solid ${colour.grey};
     background-color: ${colour.lightbg};
   `}
+  ${media.desktop`
+    1px solid ${colour.grey};
+    background-color: ${colour.lightbg};
+  `}
 
   display: flex;
   flex-direction: row;

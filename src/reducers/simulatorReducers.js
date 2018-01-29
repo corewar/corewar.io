@@ -26,7 +26,7 @@ const initialState = {
   maxTasks: 8000,
 
   instructions: [],
-  processRate: 1,
+  processRate: 5,
   processRates: [1, 2, 5, 12, 30, 75, 200, 500, 2000],
   currentCoreOption: 1,
   coreOptions: [

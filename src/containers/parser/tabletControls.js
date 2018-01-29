@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Octicon from 'react-octicon'
 
-import Controls from '../../components/styledComponents/mobile/controls'
+import Controls from '../../components/styledComponents/tablet/controls'
 import Button from '../../components/styledComponents/button'
 import ParseStatusButton from '../../components/styledComponents/parseStatusButton'
 
