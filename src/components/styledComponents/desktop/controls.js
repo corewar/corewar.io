@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { colour } from '../../../styles/theme'
 
 const Controls = styled.div`
-  grid-column: 1 / 4;
+  grid-column: 1 / 5;
   height: 100%;
   background-color: ${colour.lightbg};
   border-bottom: 1px solid ${colour.grey};
