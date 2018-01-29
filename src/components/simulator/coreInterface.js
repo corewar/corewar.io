@@ -31,7 +31,7 @@ const CanvasWrapper = styled.section`
     ${media.tablet`min-width: 400px;`}
     ${media.phone`min-width: 400px;`}
 
-    border: 1px solid ${colour.grey};
+    border: 1px solid ${colour.lightbg};
   }
 
   canvas {

@@ -43,6 +43,11 @@ const MenuItem = styled.li`
   font-size: ${font.base};
   color: ${props => props.active ? colour.defaultbg : colour.blue};
   background-color: ${props => props.active ? colour.blue : colour.lightbg};
+
+  &:hover {
+    color: ${colour.defaultbg};
+    background-color: ${colour.blue};
+  }
 `
 
 const SelectedItem = styled.div`
