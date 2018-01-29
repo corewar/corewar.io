@@ -12,7 +12,7 @@ const Controls = styled.div`
   ${media.tablet`grid-row-start: 2;`}
   ${media.phone`grid-row-start: 4;`}
 
-
+  border: none;
 
   ${media.phone`
     1px solid ${colour.grey};

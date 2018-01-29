@@ -13,7 +13,23 @@ const WarriorContainer = styled.div`
   grid-template-rows: repeat(2, 1fr);
   color: ${colour.white};
   font-size: ${font.small};
-  padding: ${space.s};
+  height: 100%;
+  overflow-y: auto;
+
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: ${space.xs};
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: ${space.xs};
+    background-color: ${colour.blue};
+  }
 `
 
 const WarriorWrapper = styled.div`
@@ -64,7 +80,7 @@ class Warriors extends Component {
       {parseResults && parseResults.map((result, i) => {
         const taskCount = this.state.tasks.get(i)
         return <WarriorWrapper key={`${result.warrior}_${i}`}>
-          <img src={`data:image/svg+xml;base64,${getIdenticonSvg(`${result.warrior}_${i}`, i)}`} />
+          <img src={`data:image/svg+xml;base64,${getIdenticonSvg(result.warrior, i)}`} />
           <WarriorControls>{result.metaData.name}</WarriorControls>
           <TaskCountDisplay>{taskCount ? taskCount : 0 }</TaskCountDisplay>
           <div></div>
@@ -84,7 +100,7 @@ const getIdenticonSvg = (warrior, i) => {
   const hash = sha.getHash('HEX')
 
   const options = {
-    size: 30,
+    size: 40,
     foreground: hexToRgbA(colour.warrior[i]),
     background: [0,0,0,0],
     margin: 0,
