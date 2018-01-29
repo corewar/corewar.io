@@ -8,23 +8,24 @@ import {
   getCoreInstructions
 } from '../../actions/simulatorActions'
 
-const CoreContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, parseResults }) => (
+const CoreContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, parseResults, maxTasks }) => (
     <CoreInterface
       coreSize={coreSize}
       getCoreInstructions={getCoreInstructions}
       isRunning={isRunning}
       isInitialised={isInitialised}
       parseResults={parseResults}
+      maxTasks={maxTasks}
       init={init}
       />
 )
 
 const mapStateToProps = state => ({
   coreSize: state.simulator.coreSize,
-  getCoreInstructions: state.simulator.getCoreInstructions,
   isRunning: state.simulator.isRunning,
   isInitialised: state.simulator.isInitialised,
-  parseResults: state.parser.parseResults
+  parseResults: state.parser.parseResults,
+  maxTasks: state.simulator.maxTasks
 })
 
 export default connect(

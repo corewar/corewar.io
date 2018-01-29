@@ -18,7 +18,7 @@ const CanvasWrapper = styled.section`
   ${media.phone`min-height: 400px;`}
 
   display: grid;
-  grid-template-rows: 130px 1fr;
+  grid-template-rows: 65px 1fr;
 
   #canvasContainer {
     position: relative;
@@ -41,9 +41,9 @@ const CanvasWrapper = styled.section`
   }
 `
 
-const CoreInterface = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, parseResults }) => (
+const CoreInterface = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, parseResults, maxTasks }) => (
   <CanvasWrapper>
-    <Warriors parseResults={parseResults}/>
+    <Warriors parseResults={parseResults} maxTasks={maxTasks} />
     <ErrorBoundary>
       <CanvasCore
         init={init}

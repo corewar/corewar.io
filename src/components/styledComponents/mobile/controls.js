@@ -12,13 +12,17 @@ const Controls = styled.div`
   ${media.tablet`grid-row-start: 2;`}
   ${media.phone`grid-row-start: 4;`}
 
-
+  border: none;
 
   ${media.phone`
     1px solid ${colour.grey};
     background-color: ${colour.lightbg};
   `}
   ${media.tablet`
+    1px solid ${colour.grey};
+    background-color: ${colour.lightbg};
+  `}
+  ${media.desktop`
     1px solid ${colour.grey};
     background-color: ${colour.lightbg};
   `}

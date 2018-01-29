@@ -12,17 +12,17 @@ import {
 
 const TabletControls = ({ addWarrior, currentParseResult }) => (
   <Controls>
-  <ParseStatusButton
-    enabled={hasNoErrors(currentParseResult)}
-    messages={currentParseResult.messages}
-    handleClick={() => { console.log('disabled clicked me') }} disabled>
-    <Octicon mega name="issue-opened"/>
-  </ParseStatusButton>
-  <Button
-    enabled={hasNoErrors(currentParseResult)}
-    handleClick={addWarrior}>
-    <Octicon mega name="chevron-right"/>
-  </Button>
+    <ParseStatusButton
+      enabled={hasNoErrors(currentParseResult)}
+      messages={currentParseResult.messages}
+      handleClick={() => { console.log('disabled clicked me') }} disabled>
+      <Octicon mega name="issue-opened"/>
+    </ParseStatusButton>
+    <Button
+      enabled={hasNoErrors(currentParseResult)}
+      handleClick={addWarrior}>
+      <Octicon mega name="chevron-right"/>
+    </Button>
   </Controls>
 )
 

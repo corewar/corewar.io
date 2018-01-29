@@ -7,7 +7,6 @@ const Controls = styled.div`
   height: 100%;
   background-color: ${colour.lightbg};
   border-left: 1px solid ${colour.grey};
-
   display: flex;
   flex-direction: column;
 `

@@ -13,7 +13,23 @@ const WarriorContainer = styled.div`
   grid-template-rows: repeat(2, 1fr);
   color: ${colour.white};
   font-size: ${font.small};
-  padding: ${space.s};
+  height: 100%;
+  overflow-y: auto;
+
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: ${space.xs};
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: ${space.xs};
+    background-color: ${colour.blue};
+  }
 `
 
 const WarriorWrapper = styled.div`
@@ -28,9 +44,24 @@ const WarriorControls = styled.div`
 `
 
 const TaskCountDisplay = styled.div`
+  margin-top: calc(${space.xs} + ${space.xs});
   padding: ${space.xs};
   text-align: center;
 `
+
+const TaskBar = styled.div`
+  margin: ${space.xs};
+  height: calc(100% - ${space.xs} - ${space.xs});
+  ${props => `background-color: ${colour.warrior[props.warriorIndex]};`}
+  ${props => `width: ${getWidth(props.tasks, props.maxTasks)}%;`}
+`
+
+const getWidth = (tasks, maxTasks) => {
+  if(tasks === 0) {
+    return 0
+  }
+  return Math.floor(tasks / maxTasks * 100)
+}
 
 class Warriors extends Component {
 
@@ -59,15 +90,15 @@ class Warriors extends Component {
   }
 
   render() {
-    const { parseResults } = this.props
+    const { parseResults, maxTasks } = this.props
     return <WarriorContainer>
       {parseResults && parseResults.map((result, i) => {
         const taskCount = this.state.tasks.get(i)
         return <WarriorWrapper key={`${result.warrior}_${i}`}>
-          <img src={`data:image/svg+xml;base64,${getIdenticonSvg(`${result.warrior}_${i}`, i)}`} />
+          <img src={`data:image/svg+xml;base64,${getIdenticonSvg(result.warrior, i)}`} />
           <WarriorControls>{result.metaData.name}</WarriorControls>
           <TaskCountDisplay>{taskCount ? taskCount : 0 }</TaskCountDisplay>
-          <div></div>
+          <TaskBar tasks={taskCount} maxTasks={maxTasks} warriorIndex={i}></TaskBar>
         </WarriorWrapper>
       }
       )}
@@ -84,7 +115,7 @@ const getIdenticonSvg = (warrior, i) => {
   const hash = sha.getHash('HEX')
 
   const options = {
-    size: 30,
+    size: 40,
     foreground: hexToRgbA(colour.warrior[i]),
     background: [0,0,0,0],
     margin: 0,
