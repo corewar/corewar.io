@@ -7,7 +7,7 @@ import { IExecutionContext } from "../interface/IExecutionContext";
 export interface IDecoderTestConfig {
     core: string[],
     ip: number,
-    e: string[]
+    e: any[]
 }
 
 function buildContext(testConfig: IDecoderTestConfig): IExecutionContext {

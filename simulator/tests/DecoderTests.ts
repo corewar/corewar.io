@@ -122,4 +122,32 @@ describe("Decoder", () => {
             expect(actual).to.be.equal("Unknown modifier: undefined");
         });
     });
+
+    Helper.runTest([
+        { core: ["DAT.I"], ip: 0, e: [OpcodeType.DAT] },
+        { core: ["MOV.I"], ip: 0,e: [OpcodeType.MOV] },
+        { core: ["ADD.I"], ip: 0,e: [OpcodeType.ADD] },
+        { core: ["SUB.I"], ip: 0,e: [OpcodeType.SUB] },
+        { core: ["MUL.I"], ip: 0,e: [OpcodeType.MUL] },
+        { core: ["DIV.I"], ip: 0,e: [OpcodeType.DIV] },
+        { core: ["MOD.I"], ip: 0,e: [OpcodeType.MOD] },
+        { core: ["JMP.I"], ip: 0,e: [OpcodeType.JMP] },
+        { core: ["JMZ.I"], ip: 0,e: [OpcodeType.JMZ] },
+        { core: ["JMN.I"], ip: 0,e: [OpcodeType.JMN] },
+        { core: ["DJN.I"], ip: 0,e: [OpcodeType.DJN] },
+        { core: ["CMP.I"], ip: 0,e: [OpcodeType.CMP] },
+        { core: ["SEQ.I"], ip: 0,e: [OpcodeType.SEQ] },
+        { core: ["SNE.I"], ip: 0,e: [OpcodeType.SNE] },
+        { core: ["SLT.I"], ip: 0,e: [OpcodeType.SLT] },
+        { core: ["SPL.I"], ip: 0,e: [OpcodeType.SPL] },
+        { core: ["NOP.I"], ip: 0,e: [OpcodeType.NOP] }
+    ],
+        (context, expectation) => {
+            it("selects correct executive command for " + TestHelper.instructionToString(context.instruction), () => {
+
+                const actual = decoder.decode(context);
+
+                expect(actual.command).to.be.equal(executive.commandTable[expectation]);
+            });
+        });
 });
