@@ -1,20 +1,75 @@
 import React from 'react'
+import styled from 'styled-components'
 
-const SpeedControl = ({ processRate, processRates, handleClick }) => (
-  <div className="simulatorControl">
-    <span className="tooltip">set speed</span>
-    <div className="optionDropdown text">
-      <span className="text">{`${processRate} x`}</span>
+import { font, colour, space } from '../../styles/theme'
+
+const Container = styled.div`
+  ${props => !props.visible && `display: none;`};
+  color: ${props => props.enabled ? `${colour.white}` : `${colour.grey}`};
+  font-size: ${font.small};
+  width: 100%;
+  text-align: center;
+  position: relative;
+  height: 100%;
+  font-size: ${font.base};
+
+  ul {
+    display: none;
+  }
+
+
+  &:hover {
+    cursor: ${props => props.enabled && `pointer`};
+    color: ${props => props.enabled && `${colour.blue}`};
+
+    ul {
+      position: absolute;
+      display: block;
+      bottom: ${space.controls};
+      height: 288px;
+      text-align: center;
+      width: 100%;
+      border-left: 1px solid ${colour.grey};
+      border-top: 1px solid ${colour.grey};
+    }
+
+  }
+`
+
+const MenuItem = styled.li`
+  padding-top: ${space.s};
+  display: block;
+  height: 24px;
+  font-size: ${font.base};
+  color: ${props => props.active ? colour.defaultbg : colour.blue};
+  background-color: ${props => props.active ? colour.blue : colour.lightbg};
+
+  &:hover {
+    color: ${colour.defaultbg};
+    background-color: ${colour.blue};
+  }
+`
+
+const SelectedItem = styled.div`
+  display: inline-block;
+  font-size: ${font.base};
+  width: 100%;
+  height: calc(100% - ${font.base});
+  margin-top: ${font.base};
+`
+
+const SpeedControl = ({ processRate, processRates, handleClick, visible, enabled }) => (
+  <Container visible={visible} enabled={enabled}>
+      <SelectedItem>{`${processRate} x`}</SelectedItem>
       <ul>
         {processRates && processRates.map(rate => (
-          <li
+          <MenuItem
             key={rate}
-            className={rate === processRate ? `active` : ``}
-            onClick={() => handleClick(rate)}>{rate} x</li>
+            active={rate === processRate}
+            onClick={() => handleClick(rate)}>{rate} x</MenuItem>
         ))}
       </ul>
-    </div>
-  </div>
+  </Container>
 )
 
 export default SpeedControl

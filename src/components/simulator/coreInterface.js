@@ -18,7 +18,7 @@ const CanvasWrapper = styled.section`
   ${media.phone`min-height: 400px;`}
 
   display: grid;
-  grid-template-rows: 65px 1fr;
+  grid-template-rows: 75px 1fr;
 
   #canvasContainer {
     position: relative;
@@ -31,7 +31,7 @@ const CanvasWrapper = styled.section`
     ${media.tablet`min-width: 400px;`}
     ${media.phone`min-width: 400px;`}
 
-    border: 1px solid ${colour.grey};
+    border: 1px solid ${colour.lightbg};
   }
 
   canvas {

@@ -15,6 +15,7 @@ const WarriorContainer = styled.div`
   font-size: ${font.small};
   height: 100%;
   overflow-y: auto;
+  padding-top: ${space.s};
 
 
   ::-webkit-scrollbar-track {
