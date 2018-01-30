@@ -173,6 +173,21 @@ describe("Executive", () => {
     Helper.runTest([
         { i: "DJN.A", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13, i: "DAT.F $49, $0" } },
         { i: "DJN.A", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0, i: "DAT.F $0, $0" } },
+        { i: "DJN.B", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13, i: "DAT.F $0, $49" } },
+        { i: "DJN.B", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 0, i: "DAT.F $0, $0" } },
+        { i: "DJN.AB", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13, i: "DAT.F $0, $49" } },
+        { i: "DJN.AB", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 0, i: "DAT.F $0, $0" } },
+        { i: "DJN.BA", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13, i: "DAT.F $49, $0" } },
+        { i: "DJN.BA", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0, i: "DAT.F $0, $0" } },
+        { i: "DJN.F", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 13, i: "DAT.F $0, $49" } },
+        { i: "DJN.F", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 13, i: "DAT.F $49, $0" } },
+        { i: "DJN.F", a: "13: DAT.F $0, $0", b: "DAT.F $1, $1", e: { ip: 0, i: "DAT.F $0, $0" } },
+        { i: "DJN.X", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 13, i: "DAT.F $0, $49" } },
+        { i: "DJN.X", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 13, i: "DAT.F $49, $0" } },
+        { i: "DJN.X", a: "13: DAT.F $0, $0", b: "DAT.F $1, $1", e: { ip: 0, i: "DAT.F $0, $0" } },
+        { i: "DJN.I", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 13, i: "DAT.F $0, $49" } },
+        { i: "DJN.I", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 13, i: "DAT.F $49, $0" } },
+        { i: "DJN.I", a: "13: DAT.F $0, $0", b: "DAT.F $1, $1", e: { ip: 0, i: "DAT.F $0, $0" } }
     ], (context: IExecutionContext, expectation: any) => {
 
         it("correctly executes " + TestHelper.instructionToString(context.instruction), () => {
