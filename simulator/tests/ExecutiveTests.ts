@@ -124,7 +124,7 @@ describe("Executive", () => {
         { i: "JMP.F", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
         { i: "JMP.X", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
         { i: "JMP.I", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
-        
+
         { i: "JMZ.A", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
         { i: "JMZ.A", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0 } },
         { i: "JMZ.B", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
@@ -142,7 +142,7 @@ describe("Executive", () => {
         { i: "JMZ.I", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
         { i: "JMZ.I", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0 } },
         { i: "JMZ.I", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 0 } },
-        
+
         { i: "JMN.A", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 13 } },
         { i: "JMN.A", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 0 } },
         { i: "JMN.B", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 13 } },
@@ -285,6 +285,41 @@ describe("Executive", () => {
             this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context]);
 
             expect(context.task.instructionPointer).to.be.equal(expectation.ip);
+        });
+    });
+
+    Helper.runTest([
+        { i: "SPL.A", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 2, e: { taskCount: 3, taskIndex: 1, maxTasks: 10 } },
+        { i: "SPL.B", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 2, e: { taskCount: 3, taskIndex: 1, maxTasks: 10 } },
+        { i: "SPL.AB", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 2, e: { taskCount: 3, taskIndex: 1, maxTasks: 10 } },
+        { i: "SPL.BA", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 2, e: { taskCount: 3, taskIndex: 1, maxTasks: 10 } },
+        { i: "SPL.F", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 2, e: { taskCount: 3, taskIndex: 1, maxTasks: 10 } },
+        { i: "SPL.X", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 2, e: { taskCount: 3, taskIndex: 1, maxTasks: 10 } },
+        { i: "SPL.I", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 2, e: { taskCount: 3, taskIndex: 1, maxTasks: 10 } },
+        { i: "SPL.A", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 2, e: { taskCount: 2, taskIndex: 0, maxTasks: 2 } },
+    ], (context: IExecutionContext, expectation: any) => {
+        it("correctly executes " + TestHelper.instructionToString(context.instruction), () => {
+
+            this.executive.initialise(expectation);
+            this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context]);
+
+            expect(context.warrior.tasks.length).to.be.equal(expectation.taskCount);
+            expect(context.warrior.taskIndex).to.be.equal(expectation.taskIndex);
+            expect(context.warrior.tasks[context.warrior.taskIndex].instructionPointer).to.be.equal(0);
+            
+            if (expectation.taskCount === expectation.maxTasks) {
+                return;
+            }
+
+            expect(context.warrior.tasks[0].instructionPointer).to.be.equal(13);
+
+            expect(publisher.queue).to.have.been.calledWith({
+                type: MessageType.TaskCount,
+                payload: {
+                    warriorId: context.warrior.id,
+                    taskCount: expectation.taskCount
+                }
+            });
         });
     });
 

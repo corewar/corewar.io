@@ -19,6 +19,7 @@ interface IExecutiveTestConfig {
     a: string,
     b: string,
     taskCount?: number;
+    maxTasks?: number;
     e: any
 }
 
@@ -34,7 +35,7 @@ export function runTest(testConfig: IExecutiveTestConfig[], testMethod: (IExecut
 export function buildContext(testConfig: IExecutiveTestConfig): IExecutionContext {
 
     const options = Object.assign({}, Defaults);
-    options.maxTasks = 100;
+    options.maxTasks = testConfig.maxTasks || 100;
     options.coresize = 50;
 
     const instruction = TestHelper.parseInstruction(0, testConfig.i);
