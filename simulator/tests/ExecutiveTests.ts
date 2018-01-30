@@ -143,6 +143,24 @@ describe("Executive", () => {
         { i: "JMZ.I", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0 } },
         { i: "JMZ.I", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 0 } },
         
+        { i: "JMN.A", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 13 } },
+        { i: "JMN.A", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 0 } },
+        { i: "JMN.B", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 13 } },
+        { i: "JMN.B", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 0 } },
+        { i: "JMN.AB", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 13 } },
+        { i: "JMN.AB", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 0 } },
+        { i: "JMN.BA", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 13 } },
+        { i: "JMN.BA", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 0 } },
+        { i: "JMN.F", a: "13: DAT.F $0, $0", b: "DAT.F $1, $1", e: { ip: 13 } },
+        { i: "JMN.F", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 0 } },
+        { i: "JMN.F", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0 } },
+        { i: "JMN.X", a: "13: DAT.F $0, $0", b: "DAT.F $1, $1", e: { ip: 13 } },
+        { i: "JMN.X", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 0 } },
+        { i: "JMN.X", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0 } },
+        { i: "JMN.I", a: "13: DAT.F $0, $0", b: "DAT.F $1, $1", e: { ip: 13 } },
+        { i: "JMN.I", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 0 } },
+        { i: "JMN.I", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0 } },
+
         
     ], (context: IExecutionContext, expectation: any) => {
 
