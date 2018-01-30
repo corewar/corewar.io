@@ -12,12 +12,14 @@ import { IExecutive } from "../interface/IExecutive";
 import { ModeType } from "../interface/IOperand";
 import Defaults from "../Defaults";
 import { Decoder } from "../Decoder";
+import { IWarrior } from "../interface/IWarrior";
 
 interface IExecutiveTestConfig {
     i: string,
     a: string,
     b: string,
-    e: string
+    taskCount?: number;
+    e: any
 }
 
 export function runTest(testConfig: IExecutiveTestConfig[], testMethod: (IExecutionContext, string) => void) {
@@ -51,6 +53,9 @@ function buildContext(testConfig: IExecutiveTestConfig): IExecutionContext {
         return address;
     });
 
+    const warrior = buildWarrior(testConfig);
+    const taskIndex = 1;
+
     return {
         core: core,
         instruction: instruction,
@@ -58,11 +63,20 @@ function buildContext(testConfig: IExecutiveTestConfig): IExecutionContext {
         aInstruction: aInstruction,
         bInstruction: bInstruction,
         operands: operands,
-        task: TestHelper.buildTask(),
-        taskIndex: 2,
-        warrior: TestHelper.buildWarrior(7),
+        task: warrior.tasks[taskIndex],
+        taskIndex: taskIndex,
+        warrior: warrior,
         warriorIndex: 1
     };
+}
+
+function buildWarrior(testConfig: IExecutiveTestConfig): IWarrior {
+    const warrior = TestHelper.buildWarrior(7);
+    warrior.tasks = [];
+    for (let i = 0; i < (testConfig.taskCount || 3); i++) {
+        warrior.tasks.push(TestHelper.buildTask());
+    }
+    return warrior;
 }
 
 function buildOperands(

@@ -10,6 +10,7 @@ import { Executive } from "../Executive";
 import { IPublisher } from "../interface/IPublisher";
 import { OpcodeType } from "../interface/IInstruction";
 import { IExecutionContext } from "../interface/IExecutionContext";
+import { MessageType } from "../interface/IMessage";
 
 describe("Executive", () => {
 
@@ -28,16 +29,28 @@ describe("Executive", () => {
         this.executive = new Executive(publisher);
     });
 
-    // Helper.runTest([
-    //     { i: "DAT.I", a: "DAT.I $0, $0", b: "DAT.I $0, $0", e: "DAT.I $0, $0" }
-    // ], (context: IExecutionContext) => {
-    //     it("removes the current task from the queue when the DAT instruction is executed", () => {
+    Helper.runTest([
+        { i: "DAT.I", a: "DAT.I $0, $0", b: "DAT.I $0, $0", taskCount: 3, e: { taskIndex: 1, taskCount: 2 } },
+        { i: "DAT.I", a: "DAT.I $0, $0", b: "DAT.I $0, $0", taskCount: 2, e: { taskIndex: 0, taskCount: 1 } },
+        { i: "DIV.A", a: "DAT.I $0, $0", b: "DAT.I $1, $1", taskCount: 3, e: { taskIndex: 1, taskCount: 2 } },
+        { i: "MOD.A", a: "DAT.I $0, $0", b: "DAT.I $1, $1", taskCount: 3, e: { taskIndex: 1, taskCount: 2 } }
+    ], (context: IExecutionContext, expectation: any) => {
+        it("removes the current task from the queue when " + TestHelper.instructionToString(context.instruction) + " is executed", () => {
 
-    //         this.executive.commandTable[context.instruction.opcode].apply(this.exec, [context]);
+            this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context]);
 
-
-    //     });
-    // });
+            expect(context.warrior.tasks.length).to.be.equal(expectation.taskCount);
+            expect(context.warrior.taskIndex).to.be.equal(expectation.taskIndex);
+            
+            expect(publisher.queue).to.have.been.calledWith({
+                type: MessageType.TaskCount, 
+                payload: {
+                    warriorId: context.warrior.id,
+                    taskCount: expectation.taskCount
+                }
+            });
+        });
+    });
 
     Helper.runTest([
         { i: "MOV.A", a: "NOP.A $1, $2", b: "DAT.F #3, #4", e: "DAT.F #1, #4" },
@@ -97,7 +110,7 @@ describe("Executive", () => {
 
         it("correctly executes " + TestHelper.instructionToString(context.instruction), () => {
 
-            this.executive.commandTable[context.instruction.opcode].apply(this.exec, [context]);
+            this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context]);
 
             const expected = TestHelper.parseInstruction(0, expectation);
 
