@@ -117,7 +117,33 @@ describe("Executive", () => {
     });
 
     Helper.runTest([
-        { i: "JMP.A", a: "13: DAT.F $13, $0", b: "DAT.F $0, $0", e: { ip: 13 } }
+        { i: "JMP.A", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
+        { i: "JMP.B", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
+        { i: "JMP.AB", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
+        { i: "JMP.BA", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
+        { i: "JMP.F", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
+        { i: "JMP.X", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
+        { i: "JMP.I", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
+        
+        { i: "JMZ.A", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
+        { i: "JMZ.A", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0 } },
+        { i: "JMZ.B", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
+        { i: "JMZ.B", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 0 } },
+        { i: "JMZ.AB", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
+        { i: "JMZ.AB", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 0 } },
+        { i: "JMZ.BA", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
+        { i: "JMZ.BA", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0 } },
+        { i: "JMZ.F", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
+        { i: "JMZ.F", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0 } },
+        { i: "JMZ.F", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 0 } },
+        { i: "JMZ.X", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
+        { i: "JMZ.X", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0 } },
+        { i: "JMZ.X", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 0 } },
+        { i: "JMZ.I", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
+        { i: "JMZ.I", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0 } },
+        { i: "JMZ.I", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 0 } },
+        
+        
     ], (context: IExecutionContext, expectation: any) => {
 
         it("correctly executes " + TestHelper.instructionToString(context.instruction), () => {
