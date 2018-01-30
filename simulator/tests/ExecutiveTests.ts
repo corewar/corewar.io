@@ -202,9 +202,31 @@ describe("Executive", () => {
     });
 
     Helper.runTest([
-        { i: "SEQ.A", a: "DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 1 } },
-        { i: "SEQ.A", a: "DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0 } },
-        { i: "SEQ.A", a: "DAT.F $1, $0", b: "DAT.F $0, $0", e: { ip: 0 } },
+        { i: "SEQ.A", a: "DAT.F $0, $2", b: "DAT.F $0, $3", e: { ip: 1 } },
+        { i: "SEQ.A", a: "DAT.F $0, $2", b: "DAT.F $1, $3", e: { ip: 0 } },
+        { i: "SEQ.A", a: "DAT.F $1, $2", b: "DAT.F $0, $3", e: { ip: 0 } },
+        { i: "SEQ.B", a: "DAT.F $2, $0", b: "DAT.F $3, $0", e: { ip: 1 } },
+        { i: "SEQ.B", a: "DAT.F $2, $0", b: "DAT.F $3, $1", e: { ip: 0 } },
+        { i: "SEQ.B", a: "DAT.F $2, $1", b: "DAT.F $3, $0", e: { ip: 0 } },
+        { i: "SEQ.AB", a: "DAT.F $0, $2", b: "DAT.F $3, $0", e: { ip: 1 } },
+        { i: "SEQ.AB", a: "DAT.F $0, $2", b: "DAT.F $3, $1", e: { ip: 0 } },
+        { i: "SEQ.AB", a: "DAT.F $1, $2", b: "DAT.F $3, $0", e: { ip: 0 } },
+        { i: "SEQ.BA", a: "DAT.F $2, $0", b: "DAT.F $0, $3", e: { ip: 1 } },
+        { i: "SEQ.BA", a: "DAT.F $2, $0", b: "DAT.F $1, $3", e: { ip: 0 } },
+        { i: "SEQ.BA", a: "DAT.F $2, $1", b: "DAT.F $0, $3", e: { ip: 0 } },
+        { i: "SEQ.F", a: "DAT.F $0, $1", b: "DAT.F $0, $1", e: { ip: 1 } },
+        { i: "SEQ.F", a: "DAT.F $1, $1", b: "DAT.F $0, $1", e: { ip: 0 } },
+        { i: "SEQ.F", a: "DAT.F $0, $2", b: "DAT.F $0, $1", e: { ip: 0 } },
+        { i: "SEQ.X", a: "DAT.F $0, $1", b: "DAT.F $1, $0", e: { ip: 1 } },
+        { i: "SEQ.X", a: "DAT.F $1, $1", b: "DAT.F $1, $0", e: { ip: 0 } },
+        { i: "SEQ.X", a: "DAT.F $0, $2", b: "DAT.F $1, $0", e: { ip: 0 } },
+        { i: "SEQ.I", a: "DAT.F $0, $1", b: "DAT.F $0, $1", e: { ip: 1 } },
+        { i: "SEQ.I", a: "MOV.F $0, $1", b: "DAT.F $0, $1", e: { ip: 0 } },
+        { i: "SEQ.I", a: "DAT.A $0, $1", b: "DAT.F $0, $1", e: { ip: 0 } },
+        { i: "SEQ.I", a: "DAT.F #0, $1", b: "DAT.F $0, $1", e: { ip: 0 } },
+        { i: "SEQ.I", a: "DAT.F $0, @1", b: "DAT.F $0, $1", e: { ip: 0 } },
+        { i: "SEQ.I", a: "DAT.F $1, $1", b: "DAT.F $0, $1", e: { ip: 0 } },
+        { i: "SEQ.I", a: "DAT.F $0, $2", b: "DAT.F $0, $1", e: { ip: 0 } },
     ], (context: IExecutionContext, expectation: any) => {
 
         it("correctly executes " + TestHelper.instructionToString(context.instruction), () => {
