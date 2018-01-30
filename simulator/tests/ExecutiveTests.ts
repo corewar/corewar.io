@@ -41,9 +41,9 @@ describe("Executive", () => {
 
             expect(context.warrior.tasks.length).to.be.equal(expectation.taskCount);
             expect(context.warrior.taskIndex).to.be.equal(expectation.taskIndex);
-            
+
             expect(publisher.queue).to.have.been.calledWith({
-                type: MessageType.TaskCount, 
+                type: MessageType.TaskCount,
                 payload: {
                     warriorId: context.warrior.id,
                     taskCount: expectation.taskCount
@@ -115,6 +115,18 @@ describe("Executive", () => {
             const expected = TestHelper.parseInstruction(0, expectation);
 
             expect(context.core.setAt).to.have.been.calledWith(context.task, context.bInstruction.address, expected);
+        });
+    });
+
+    Helper.runTest([
+        { i: "NOP.A", a: "DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 3, e: {} }
+    ], (context: IExecutionContext, expectation: string) => {
+        it("NOP instruction does not modify core or warrior tasks", () => {
+
+            this.executive.commandTable[OpcodeType.NOP].apply(this.executive, [context]);
+
+            expect(context.core.setAt).not.to.have.been.called;
+            expect(context.warrior.tasks.length).to.be.equal(3);
         });
     });
 });

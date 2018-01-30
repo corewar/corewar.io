@@ -31,7 +31,7 @@ export function runTest(testConfig: IExecutiveTestConfig[], testMethod: (IExecut
     });
 }
 
-function buildContext(testConfig: IExecutiveTestConfig): IExecutionContext {
+export function buildContext(testConfig: IExecutiveTestConfig): IExecutionContext {
 
     const options = Object.assign({}, Defaults);
     options.maxTasks = 100;
