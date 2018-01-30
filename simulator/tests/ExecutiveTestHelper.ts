@@ -33,15 +33,26 @@ function buildContext(testConfig: IExecutiveTestConfig): IExecutionContext {
 
     const options = Object.assign({}, Defaults);
     options.maxTasks = 100;
-    options.coresize = 3;
+    options.coresize = 50;
 
     const instruction = TestHelper.parseInstruction(0, testConfig.i);
     const aInstruction = TestHelper.parseInstruction(0, testConfig.a);
     const bInstruction = TestHelper.parseInstruction(0, testConfig.b);
     const operands = buildOperands(instruction, aInstruction, bInstruction);
 
+    const core = TestHelper.buildCore(options.coresize);
+
+    const wrapStub = <sinon.stub>core.wrap;
+    wrapStub.callsFake((address: number) => {
+        address = address % options.coresize;
+        if (address < 0) {
+            address += options.coresize;
+        }
+        return address;
+    });
+
     return {
-        core: TestHelper.buildCore(options.coresize),
+        core: core,
         instruction: instruction,
         instructionPointer: 1,
         aInstruction: aInstruction,
@@ -59,7 +70,7 @@ function buildOperands(
     aInstruction: IInstruction,
     bInstruction: IInstruction): IOperandPair[] {
 
-    switch(instruction.modifier){
+    switch (instruction.modifier) {
 
         case ModifierType.A:
             return [{ source: aInstruction.aOperand, destination: bInstruction.aOperand }];
