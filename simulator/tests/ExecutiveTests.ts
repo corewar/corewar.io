@@ -96,8 +96,6 @@ describe("Executive", () => {
         { i: "DIV.X", a: "NOP.A $2, $4", b: "DAT.F #8, #12", e: "DAT.F #2, #6" },
         { i: "DIV.I", a: "NOP.A $2, $4", b: "DAT.F #8, #12", e: "DAT.F #4, #3" },
         { i: "DIV.F", a: "NOP.A $3, $7", b: "DAT.F #1, #22", e: "DAT.F #0, #3" },
-        //TODO test rounding
-        //TODO test divide by zero in separate test
 
         { i: "MOD.A", a: "NOP.A $2, $4", b: "DAT.F #9, #14", e: "DAT.F #1, #14" },
         { i: "MOD.B", a: "NOP.A $2, $4", b: "DAT.F #9, #14", e: "DAT.F #9, #2" },
@@ -119,8 +117,20 @@ describe("Executive", () => {
     });
 
     Helper.runTest([
+        { i: "JMP.A", a: "13: DAT.F $13, $0", b: "DAT.F $0, $0", e: { ip: 13 } }
+    ], (context: IExecutionContext, expectation: any) => {
+
+        it("correctly executes " + TestHelper.instructionToString(context.instruction), () => {
+
+            this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context]);
+
+            expect(context.task.instructionPointer).to.be.equal(expectation.ip);
+        });
+    });
+
+    Helper.runTest([
         { i: "NOP.A", a: "DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 3, e: {} }
-    ], (context: IExecutionContext, expectation: string) => {
+    ], (context: IExecutionContext, expectation: any) => {
         it("NOP instruction does not modify core or warrior tasks", () => {
 
             this.executive.commandTable[OpcodeType.NOP].apply(this.executive, [context]);

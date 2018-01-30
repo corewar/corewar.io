@@ -226,6 +226,12 @@ export default class TestHelper {
 
     public static parseInstruction(address: number, line: string): IInstruction {
 
+        const lineNumberParts = line.split(": ");
+        if (lineNumberParts.length == 2) {
+            address = parseInt(lineNumberParts[0]);
+            line = lineNumberParts[1];
+        }
+
         const parts = line.split(" ");
         const command = parts[0].split(".");
         const opcode = command[0];
