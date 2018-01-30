@@ -202,6 +202,20 @@ describe("Executive", () => {
     });
 
     Helper.runTest([
+        { i: "SEQ.A", a: "DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 1 } },
+        { i: "SEQ.A", a: "DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0 } },
+        { i: "SEQ.A", a: "DAT.F $1, $0", b: "DAT.F $0, $0", e: { ip: 0 } },
+    ], (context: IExecutionContext, expectation: any) => {
+
+        it("correctly executes " + TestHelper.instructionToString(context.instruction), () => {
+
+            this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context]);
+
+            expect(context.task.instructionPointer).to.be.equal(expectation.ip);
+        });
+    });
+
+    Helper.runTest([
         { i: "NOP.A", a: "DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 3, e: {} }
     ], (context: IExecutionContext, expectation: any) => {
         it("NOP instruction does not modify core or warrior tasks", () => {

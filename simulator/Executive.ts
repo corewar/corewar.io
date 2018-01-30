@@ -196,7 +196,7 @@ export class Executive implements IExecutive {
 
         context.operands.forEach(p => {
 
-            if (p.source !== p.destination) {
+            if (p.source.address !== p.destination.address) {
                 branch = false;
             }
         });
@@ -234,7 +234,7 @@ export class Executive implements IExecutive {
 
         context.operands.forEach(p => {
 
-            if (p.source !== p.destination) {
+            if (p.source.address !== p.destination.address) {
                 branch = true;
             }
         });
@@ -268,7 +268,7 @@ export class Executive implements IExecutive {
 
         context.operands.forEach(p => {
 
-            if (p.source >= p.destination) {
+            if (p.source.address >= p.destination.address) {
                 branch = false;
             }
         });
