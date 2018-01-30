@@ -171,7 +171,7 @@ export class Executive implements IExecutive {
 
         context.operands.forEach(p => {
 
-            const a = context.core.wrap(p.source.address - 1);
+            const a = context.core.wrap(p.destination.address - 1);
             p.destination.address = a;
 
             if (a !== 0) {

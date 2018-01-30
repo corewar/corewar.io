@@ -160,8 +160,6 @@ describe("Executive", () => {
         { i: "JMN.I", a: "13: DAT.F $0, $0", b: "DAT.F $1, $1", e: { ip: 13 } },
         { i: "JMN.I", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 0 } },
         { i: "JMN.I", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0 } },
-
-        
     ], (context: IExecutionContext, expectation: any) => {
 
         it("correctly executes " + TestHelper.instructionToString(context.instruction), () => {
@@ -169,6 +167,22 @@ describe("Executive", () => {
             this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context]);
 
             expect(context.task.instructionPointer).to.be.equal(expectation.ip);
+        });
+    });
+
+    Helper.runTest([
+        { i: "DJN.A", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13, i: "DAT.F $49, $0" } },
+        { i: "DJN.A", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0, i: "DAT.F $0, $0" } },
+    ], (context: IExecutionContext, expectation: any) => {
+
+        it("correctly executes " + TestHelper.instructionToString(context.instruction), () => {
+
+            this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context]);
+
+            const expected = TestHelper.parseInstruction(0, expectation.i);
+
+            expect(context.task.instructionPointer).to.be.equal(expectation.ip);
+            expect(context.core.setAt).to.have.been.calledWith(context.task, context.bInstruction.address, expected);
         });
     });
 
