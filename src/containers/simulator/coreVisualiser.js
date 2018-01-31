@@ -1,24 +1,32 @@
 import React from 'react'
+import styled from 'styled-components'
 import { connect } from 'react-redux'
 
 import CoreLocation from './../../components/simulator/coreLocation'
 
-import './coreVisualiser.css'
+import { space, colour } from '../../styles/theme'
 
-const CoreVisuliser = ({ coreInfo }) => (
+const InstructionWrapper = styled.section`
+  display: grid;
+  margin-top: ${space.m};
+  margin-bottom: ${space.m};
+  border: 1px solid ${colour.grey};
+`
 
-  <section id="coreVisualiser">
-    {coreInfo && coreInfo.map(info => (
+const CoreVisuliser = ({ instructions }) => (
+
+  <InstructionWrapper>
+    {instructions && instructions.map(info => (
       <CoreLocation
         key={info.instruction.address}
         instruction={info.instruction}
         warriorId={info.access.warriorId}/>
     ))}
-  </section>
+  </InstructionWrapper>
 )
 
 const mapStateToProps = state => ({
-  instructions: state.simulator.instructions
+  instructions: state.simulator.coreInfo
 })
 
 export default connect(

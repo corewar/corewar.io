@@ -1,18 +1,46 @@
 import React from 'react'
+import styled from 'styled-components'
 
 import { ModifierType, ModeType, OpcodeType } from './../../helpers/coreEnums'
 
-import './coreLocation.css'
+import { colour, font, space } from '../../styles/theme'
+
+const Location = styled.div`
+  flex: 1;
+  border-bottom: 1px solid ${colour.grey};
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  color: ${colour.white};
+  font-family: ${font.code};
+  padding: ${space.s};
+`
+
+const Instruction = styled.div`
+  grid-column: 1 / 3;
+`
+
+const AOp = styled.span`
+  text-align: right;
+`
+
+const BOp = styled.span`
+  text-align: right;
+`
 
 const CoreLocation = ({ instruction, warriorId }) => (
-  <div className={`coreLocation ${instruction.isCurrent ? `current` : ``}` }>
-    <span className={warriorId != null ? `coreLocation_${warriorId}` : ``}>{serialise(instruction)}</span>
-  </div>
-)
-
-const serialise = (instruction) => (
-  `${serialiseOpcode(instruction)}.${serialiseModifier(instruction)}
-  ${serialiseOperand(instruction.aOperand)},${serialiseOperand(instruction.bOperand)}`
+  <Location>
+    <Instruction>
+      {`${serialiseOpcode(instruction)}.${serialiseModifier(instruction)}`}
+    </Instruction>
+    <AOp>
+      {`${serialiseOperand(instruction.aOperand)}`}
+    </AOp>
+    <BOp>
+      {`${serialiseOperand(instruction.bOperand)}`}
+    </BOp>
+  </Location>
 )
 
 const serialiseOpcode = (instruction) => {

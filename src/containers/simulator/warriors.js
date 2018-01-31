@@ -50,6 +50,10 @@ const WarriorControls = styled.div`
   span:hover {
     cursor: pointer;
   }
+
+  .octicon {
+    color: ${colour.grey};
+  }
 `
 
 const TaskCountDisplay = styled.div`
