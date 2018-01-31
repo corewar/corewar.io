@@ -16,10 +16,9 @@ const DesktopLayout = () => (
   <DesktopGrid>
     <SiteHeader isAuthenticated={false}/>
     <Main>
-      <Route exact path='/' component={CompleteInterface} />
-      <Route exact path='/src' component={CompleteInterface} />
-      <Route exact path='/output' component={CompleteInterface} />
-      <Route exact path='/core' component={CompleteInterface} />
+      <Route path='/app/src' component={CompleteInterface} />
+      <Route path='/app/output' component={CompleteInterface} />
+      <Route path='/app/core' component={CompleteInterface} />
     </Main>
   </DesktopGrid>
 )

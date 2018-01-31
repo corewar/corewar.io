@@ -153,8 +153,8 @@ class CanvasCore extends Component {
 
     this.lastCoordinates = {
       x: coordinate.x,
-      y: coordinate.y,
-      wh: this.cellSize
+      y: coordinate.y - 1,
+      wh: this.cellSize + 2
     }
 
   }

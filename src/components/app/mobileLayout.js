@@ -26,20 +26,18 @@ const MobileLayout = () => (
     <SiteHeader isAuthenticated={false}/>
     <Container>
       <NavBar>
-        <TabLink to='/src'>src</TabLink>
-        <TabLink to='/output'>output</TabLink>
-        <TabLink to='/core'>core</TabLink>
+        <TabLink to='/app/src'>src</TabLink>
+        <TabLink to='/app/output'>output</TabLink>
+        <TabLink to='/app/core'>core</TabLink>
       </NavBar>
       <Main>
-        <Route exact path='/' component={InputInterface} />
-        <Route exact path='/src' component={InputInterface} />
-        <Route exact path='/output' component={OutputInterface} />
-        <Route exact path='/core' component={CoreContainer} />
+        <Route exact path='/app/src' component={InputInterface} />
+        <Route exact path='/app/output' component={OutputInterface} />
+        <Route exact path='/app/core' component={CoreContainer} />
       </Main>
-      <Route exact path='/' component={MobileControls} />
-      <Route exact path='/src' component={MobileControls} />
-      <Route exact path='/output' component={MobileControls} />
-      <Route exact path='/core' component={SimulatorControls} />
+      <Route exact path='/app/src' component={MobileControls} />
+      <Route exact path='/app/output' component={MobileControls} />
+      <Route exact path='/app/core' component={SimulatorControls} />
     </Container>
   </MobileGrid>
 )

@@ -22,10 +22,9 @@ const TabletLayout = () => (
   <TabletGrid>
     <SiteHeader isAuthenticated={false}/>
     <Container>
-      <Route exact path='/' component={ParserWrapper} />
-      <Route exact path='/src' component={ParserWrapper} />
-      <Route exact path='/output' component={ParserWrapper} />
-      <Route exact path='/core' component={CoreWrapper} />
+      <Route exact path='/app/src' component={ParserWrapper} />
+      <Route exact path='/app/output' component={ParserWrapper} />
+      <Route exact path='/app/core' component={CoreWrapper} />
     </Container>
   </TabletGrid>
 )
