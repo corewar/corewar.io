@@ -10,6 +10,7 @@ import CoreContainer from '../../containers/simulator/coreContainer'
 import Button from '../styledComponents/button'
 import ParseStatusButton from '../styledComponents/parseStatusButton'
 import SimulatorControls from '../../containers/simulator/simulatorControls'
+import CoreVisuliser from '../../containers/simulator/coreVisualiser'
 
 import { space } from '../../styles/theme'
 
@@ -28,7 +29,7 @@ import {
 
 const DesktopContainer = styled.section`
   display: grid;
-  grid-template-columns: 5fr 1fr 4fr 1px;
+  grid-template-columns: 5fr 0.75fr 4fr 1px;
   grid-template-rows: ${space.header} 1fr;
   grid-column-gap: ${space.m};
 `
@@ -67,7 +68,7 @@ const CompleteInterface = ({ redcode, parse, currentParseResult,
         {currentParseResult.warrior}
       </CompiledOutput>
     </ParserGrid>
-    <div></div>
+    <CoreVisuliser />
     <CoreWrapper>
       <CoreContainer
         coreSize={coreSize}
