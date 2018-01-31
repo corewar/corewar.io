@@ -68,6 +68,7 @@ export class Executive implements IExecutive {
 
         if (context.instruction.modifier === ModifierType.I) {
 
+            context.aInstruction.address = context.bInstruction.address;
             context.core.setAt(context.task, context.bInstruction.address, context.aInstruction);
             return;
         }

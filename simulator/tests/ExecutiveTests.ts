@@ -59,7 +59,7 @@ describe("Executive", () => {
         { i: "MOV.BA", a: "NOP.A $1, $2", b: "DAT.F #3, #4", e: "DAT.F #2, #4" },
         { i: "MOV.F", a: "NOP.A $1, $2", b: "DAT.F #3, #4", e: "DAT.F #1, #2" },
         { i: "MOV.X", a: "NOP.A $1, $2", b: "DAT.F #3, #4", e: "DAT.F #2, #1" },
-        { i: "MOV.I", a: "NOP.A $1, $2", b: "DAT.F #3, #4", e: "NOP.A $1, $2" },
+        { i: "MOV.I", a: "12: NOP.A $1, $2", b: "10: DAT.F #3, #4", e: "10: NOP.A $1, $2" },
 
         { i: "ADD.A", a: "NOP.A $1, $2", b: "DAT.F #3, #4", e: "DAT.F #4, #4" },
         { i: "ADD.B", a: "NOP.A $1, $2", b: "DAT.F #3, #4", e: "DAT.F #3, #6" },
@@ -115,6 +115,20 @@ describe("Executive", () => {
             expect(context.core.setAt).to.have.been.calledWith(context.task, context.bInstruction.address, expected);
         });
     });
+
+    // Helper.runTest([
+    //     { i: "MOV.I", a: "10: NOP.A $1, $2", b: "12: DAT.F #3, #4", e: "12: NOP.A $1, $2" }
+    // ], (context: IExecutionContext, expectation: string) => {
+
+    //     it("maintains correct address for b instruction when executing MOV.I", () => {
+
+    //         this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context]);
+
+    //         const expected = TestHelper.parseInstruction(0, expectation);
+
+    //         expect(context.core.setAt).to.have.been.calledWith(sinon.any, context.bInstruction.address, expected);
+    //     });
+    // });
 
     Helper.runTest([
         { i: "JMP.A", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", e: { ip: 13 } },
