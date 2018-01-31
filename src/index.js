@@ -34,7 +34,7 @@ render(
     <ConnectedRouter history={history}>
       <Wrapper>
         <Route exact path='/' component={Landing} />
-        <Route exact path='/app' component={App} />
+        <Route path='/app' component={App} />
       </Wrapper>
     </ConnectedRouter>
   </Provider>,
