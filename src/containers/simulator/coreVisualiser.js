@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import CoreLocation from './../../components/simulator/coreLocation'
 
-import { space, colour } from '../../styles/theme'
+import { colour } from '../../styles/theme'
 
 const InstructionWrapper = styled.section`
   display: grid;

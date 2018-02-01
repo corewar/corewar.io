@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import { space } from '../../../styles/theme'
-import { media } from '../../../styles/mediaQuery'
 
 const Container = styled.div`
   grid-row-start: 2;

@@ -7,7 +7,6 @@ import * as PubSub from 'pubsub-js'
 import Octicon from 'react-octicon'
 
 import { colour, space, font } from '../../styles/theme'
-import { removeWarrior } from '../../actions/parserActions';
 
 const WarriorContainer = styled.div`
   display: grid;
@@ -108,7 +107,7 @@ class Warriors extends Component {
       {parseResults && parseResults.map((result, i) => {
         const taskCount = this.state.tasks.get(i)
         return <WarriorWrapper key={`${result.warrior}_${i}`}>
-          <img src={`data:image/svg+xml;base64,${getIdenticonSvg(result.warrior, i)}`} />
+          <img src={`data:image/svg+xml;base64,${getIdenticonSvg(result.warrior, i)}`} alt={`result.metaData.name avatar`} />
           <WarriorControls>{result.metaData.name}<Octicon name="trashcan" onClick={() => removeWarrior(i)} /></WarriorControls>
           <TaskCountDisplay>{taskCount ? taskCount : 0 }</TaskCountDisplay>
           <TaskBar tasks={taskCount} maxTasks={maxTasks} warriorIndex={i}></TaskBar>
