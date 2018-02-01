@@ -1,5 +1,5 @@
 import React from 'react'
-import { Media } from 'react-media'
+import Media from 'react-media'
 
 import MobileLayout from '../../components/app/mobileLayout'
 import TabletLayout from '../../components/app/tabletLayout'
