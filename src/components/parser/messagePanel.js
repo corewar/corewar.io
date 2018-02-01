@@ -1,11 +1,24 @@
 import React from 'react'
+import styled from 'styled-components'
 
-import './messagePanel.css'
+import { colour } from '../../styles/theme'
+
+const ParseMessageWrapper = styled.div`
+
+  display: none;
+  position: absolute;
+  bottom: 0;
+  height: 0;
+  width: 100%;
+  background-color: ${colour.lightbg};
+  border-top: 1px solid ${colour.grey};
+
+`
+
 
 const MessagePanel = ({ messages }) => (
 
-  <section className="messagePanel">
-    <span className="sectionSubTitle">parse result</span>
+  <ParseMessageWrapper>
     <ul>
     {
       messages && messages.map((msg) => (
@@ -13,7 +26,7 @@ const MessagePanel = ({ messages }) => (
       ))
     }
     </ul>
-  </section>
+  </ParseMessageWrapper>
 
 )
 
