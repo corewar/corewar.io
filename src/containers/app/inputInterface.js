@@ -8,17 +8,18 @@ import {
   parse
 } from '../../actions/parserActions'
 
-const InputInterface = ({ redcode, parse }) => (
+const InputInterface = ({ redcode, parse, currentParseResult }) => (
   <div>
-  <SourceCodeTextArea
-    value={redcode}
-    handleChange={e => parse(e.target.value)} />
-  <MessagePanel />
+    <SourceCodeTextArea
+      value={redcode}
+      handleChange={e => parse(e.target.value)} />
+    <MessagePanel messages={currentParseResult && currentParseResult.messages} />
   </div>
 )
 
 const mapStateToProps = state => ({
-  redcode: state.parser.redcode
+  redcode: state.parser.redcode,
+  currentParseResult: state.parser.currentParseResult
 })
 
 export default connect(
