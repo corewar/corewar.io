@@ -8,9 +8,9 @@ import { space, colour } from '../../styles/theme'
 
 const InstructionWrapper = styled.section`
   display: grid;
-  margin-top: ${space.m};
-  margin-bottom: ${space.m};
-  border: 1px solid ${colour.grey};
+  border-left: 1px solid ${colour.grey};
+  border-right: 1px solid ${colour.grey};
+
 `
 
 const CoreVisuliser = ({ instructions }) => (
