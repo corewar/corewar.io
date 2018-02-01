@@ -35,7 +35,7 @@ const ParserInterface = ({ redcode, parse, currentParseResult, addWarrior }) => 
       </CompiledOutput>
     </ParserGrid>
     <TabletControls />
-    <MessagePanel />
+    <MessagePanel messages={currentParseResult.messages} />
   </ParserContainer>
 )
 
