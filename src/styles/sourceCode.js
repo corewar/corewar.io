@@ -27,6 +27,7 @@ export const sourceCode = props => `
 
   ::-webkit-scrollbar {
     width: ${space.xs};
+    height: ${space.xs};
     background-color: transparent;
   }
 

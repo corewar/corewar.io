@@ -15,6 +15,10 @@ const Location = styled.div`
   color: ${colour.white};
   font-family: ${font.code};
   padding: ${space.s};
+
+  :last-child {
+    border-bottom: none;
+  }
 `
 
 const Instruction = styled.div`

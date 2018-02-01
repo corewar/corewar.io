@@ -2,11 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 
 import CanvasCore from './canvasCore'
-import FontAwesomeButton from '../simulator/fontAwesomeButton'
 import ErrorBoundary from './../app/errorBoundary'
 import Warriors from '../../containers/simulator/warriors'
 
-import { colour, space } from  '../../styles/theme'
+import { colour } from  '../../styles/theme'
 import { media } from  '../../styles/mediaQuery'
 
 const CanvasWrapper = styled.section`
