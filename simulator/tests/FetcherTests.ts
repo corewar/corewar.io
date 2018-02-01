@@ -9,12 +9,12 @@ import Defaults from "../Defaults";
 import { IOptions } from "../interface/IOptions";
 import { ITask } from "../interface/ITask";
 import { Fetcher } from "../Fetcher";
-import DataHelper from "./DataHelper";
+import TestHelper from "./TestHelper";
 
 describe("Fetcher",() => {
 
-    var imp = DataHelper.buildInstruction(3, OpcodeType.MOV, ModifierType.I, ModeType.Direct, 0, ModeType.Direct, 1);
-    var dat = DataHelper.buildInstruction(0, OpcodeType.DAT, ModifierType.F, ModeType.Direct, 0, ModeType.Direct, 0);
+    var imp = TestHelper.buildInstruction(3, OpcodeType.MOV, ModifierType.I, ModeType.Direct, 0, ModeType.Direct, 1);
+    var dat = TestHelper.buildInstruction(0, OpcodeType.DAT, ModifierType.F, ModeType.Direct, 0, ModeType.Direct, 0);
 
     var state: IState;
     var core: ICore;
@@ -49,20 +49,20 @@ describe("Fetcher",() => {
 
     it("fetches the next warrior's, next task's, next instruction",() => {
 
-        var expectedWarrior = DataHelper.buildWarrior();
+        var expectedWarrior = TestHelper.buildWarrior();
 
         state.warriors = [
-            DataHelper.buildWarrior(),
+            TestHelper.buildWarrior(),
             expectedWarrior
         ];
         state.warriorIndex = 1;
 
-        var expectedTask = DataHelper.buildTask();
+        var expectedTask = TestHelper.buildTask();
 
         expectedWarrior.tasks = [
-            DataHelper.buildTask(),
+            TestHelper.buildTask(),
             expectedTask,
-            DataHelper.buildTask()
+            TestHelper.buildTask()
         ];
         expectedWarrior.taskIndex = 1;
 
@@ -92,21 +92,21 @@ describe("Fetcher",() => {
 
     it("advances the correct warrior index, task index and instruction pointer",() => {
 
-        var expectedWarrior = DataHelper.buildWarrior();
+        var expectedWarrior = TestHelper.buildWarrior();
 
         state.warriors = [
-            DataHelper.buildWarrior(),
+            TestHelper.buildWarrior(),
             expectedWarrior,
-            DataHelper.buildWarrior()
+            TestHelper.buildWarrior()
         ];
         state.warriorIndex = 1;
 
-        var expectedTask = DataHelper.buildTask();
+        var expectedTask = TestHelper.buildTask();
 
         expectedWarrior.tasks = [
-            DataHelper.buildTask(),
+            TestHelper.buildTask(),
             expectedTask,
-            DataHelper.buildTask()
+            TestHelper.buildTask()
         ];
         expectedWarrior.taskIndex = 1;
 
@@ -126,20 +126,20 @@ describe("Fetcher",() => {
 
     it("wraps the warrior index, task index and instruction pointer",() => {
 
-        var expectedWarrior = DataHelper.buildWarrior();
+        var expectedWarrior = TestHelper.buildWarrior();
 
         state.warriors = [
-            DataHelper.buildWarrior(),
-            DataHelper.buildWarrior(),
+            TestHelper.buildWarrior(),
+            TestHelper.buildWarrior(),
             expectedWarrior
         ];
         state.warriorIndex = 2;
 
-        var expectedTask = DataHelper.buildTask();
+        var expectedTask = TestHelper.buildTask();
 
         expectedWarrior.tasks = [
-            DataHelper.buildTask(),
-            DataHelper.buildTask(),
+            TestHelper.buildTask(),
+            TestHelper.buildTask(),
             expectedTask
         ];
         expectedWarrior.taskIndex = 2;
@@ -160,12 +160,12 @@ describe("Fetcher",() => {
 
     it("executes in the context of the next warrior if the current warrior has no tasks", () => {
 
-        var validWarrior = DataHelper.buildWarrior();
+        var validWarrior = TestHelper.buildWarrior();
         validWarrior.tasks = [
-            DataHelper.buildTask()
+            TestHelper.buildTask()
         ]
 
-        var deadWarrior = DataHelper.buildWarrior();
+        var deadWarrior = TestHelper.buildWarrior();
         deadWarrior.tasks = [];
 
         state.warriors = [
@@ -184,22 +184,22 @@ describe("Fetcher",() => {
 
     it(".getNextExecution returns new warrior's id and execution address", () => {
 
-        const expectedWarrior = DataHelper.buildWarrior();
+        const expectedWarrior = TestHelper.buildWarrior();
 
         state.warriors = [
-            DataHelper.buildWarrior(),
+            TestHelper.buildWarrior(),
             expectedWarrior,
-            DataHelper.buildWarrior()
+            TestHelper.buildWarrior()
         ];
         state.warriorIndex = 1;
 
-        const expectedTask = DataHelper.buildTask();
+        const expectedTask = TestHelper.buildTask();
 
         expectedWarrior.tasks = [
-            DataHelper.buildTask(),
-            DataHelper.buildTask(),
+            TestHelper.buildTask(),
+            TestHelper.buildTask(),
             expectedTask,
-            DataHelper.buildTask()
+            TestHelper.buildTask()
         ];
         expectedWarrior.taskIndex = 2;
 

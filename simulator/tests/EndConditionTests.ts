@@ -7,7 +7,7 @@ import { IWarrior } from "../interface/IWarrior";
 import { IState } from "../interface/IState";
 import Defaults from "../Defaults";
 import { EndCondition } from "../EndCondition";
-import DataHelper from "./DataHelper";
+import TestHelper from "./TestHelper";
 import { MessageType } from "../interface/IMessage";
 import { IPublisher } from "../interface/IPublisher";
 

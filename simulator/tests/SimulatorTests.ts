@@ -18,7 +18,7 @@ import { IEndCondition } from "../interface/IEndCondition";
 import Defaults from "../Defaults";
 import { OpcodeType, ModifierType } from "../interface/IInstruction";
 import { ModeType } from "../interface/IOperand";
-import DataHelper from "./DataHelper";
+import TestHelper from "./TestHelper";
 import { IOptionValidator } from "../interface/IOptionValidator";
 import { MessageType } from "../interface/IMessage";
 import { IPublisher } from "../interface/IPublisher";
@@ -70,7 +70,8 @@ describe("Simulator", () => {
             task: {
                 warrior: new Warrior(),
                 instructionPointer: 0
-            }
+            },
+            operands: []
         };
 
         (<sinon.stub>fetcher.fetch).returns(context);

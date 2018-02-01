@@ -13,7 +13,7 @@ import { ModeType } from "../interface/IOperand";
 import { IParseResult } from "../../parser/interface/IParseResult";
 import { IToken, TokenCategory } from "../../parser/interface/IToken";
 import { WarriorLoader } from "../WarriorLoader";
-import DataHelper from "./DataHelper";
+import TestHelper from "./TestHelper";
 import { IPublisher } from "../interface/IPublisher";
 import { MessageType } from "../interface/IMessage";
 
@@ -21,7 +21,7 @@ import { MessageType } from "../interface/IMessage";
 
 describe("WarriorLoader", () => {
 
-    var instruction = DataHelper.instruction;
+    var instruction = TestHelper.instruction;
 
     var testTokens = instruction("DAT", ".A", "$", 0, "$", 1)
         .concat(instruction("MOV", ".B", "#", 2, "#", 3))
@@ -118,7 +118,7 @@ describe("WarriorLoader", () => {
 
     it("Creates a single process for the warrior", () => {
 
-        var parseResult: IParseResult = DataHelper.buildParseResult([]);
+        var parseResult: IParseResult = TestHelper.buildParseResult([]);
         var core = buildCore(0);
 
         var loader = new WarriorLoader(core, this.publisher);
@@ -135,18 +135,18 @@ describe("WarriorLoader", () => {
             {
                 category: TokenCategory.Preprocessor,
                 lexeme: "ORG",
-                position: DataHelper.position
+                position: TestHelper.position
             }, {
                 category: TokenCategory.Number,
                 lexeme: "4",
-                position: DataHelper.position
+                position: TestHelper.position
             }, {
                 category: TokenCategory.EOL,
                 lexeme: "\n",
-                position: DataHelper.position
+                position: TestHelper.position
             }
         ];
-        var parseResult: IParseResult = DataHelper.buildParseResult(tokens);
+        var parseResult: IParseResult = TestHelper.buildParseResult(tokens);
 
         var core = buildCore(10);
 
@@ -158,7 +158,7 @@ describe("WarriorLoader", () => {
 
     it("Loads the warrior into the core at the specified address", () => {
 
-        var tokens = DataHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        var tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
         var core = buildCore(30);
 
         var loader = new WarriorLoader(core, this.publisher);
@@ -182,7 +182,7 @@ describe("WarriorLoader", () => {
         var core = buildCore(20);
 
         var loader = new WarriorLoader(core, this.publisher);
-        loader.load(0, DataHelper.buildParseResult(testTokens), 0);
+        loader.load(0, TestHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).opcode).to.be.equal(OpcodeType.DAT);
         expect(core.readAt(null, 1).opcode).to.be.equal(OpcodeType.MOV);
@@ -208,7 +208,7 @@ describe("WarriorLoader", () => {
         var core = buildCore(20);
 
         var loader = new WarriorLoader(core, this.publisher);
-        loader.load(0, DataHelper.buildParseResult(testTokens), 0);
+        loader.load(0, TestHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).modifier).to.be.equal(ModifierType.A);
         expect(core.readAt(null, 1).modifier).to.be.equal(ModifierType.B);
@@ -234,7 +234,7 @@ describe("WarriorLoader", () => {
         var core = buildCore(20);
 
         var loader = new WarriorLoader(core, this.publisher);
-        loader.load(0, DataHelper.buildParseResult(testTokens), 0);
+        loader.load(0, TestHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).aOperand.mode).to.be.equal(ModeType.Direct);
         expect(core.readAt(null, 1).aOperand.mode).to.be.equal(ModeType.Immediate);
@@ -260,7 +260,7 @@ describe("WarriorLoader", () => {
         var core = buildCore(20);
 
         var loader = new WarriorLoader(core, this.publisher);
-        loader.load(0, DataHelper.buildParseResult(testTokens), 0);
+        loader.load(0, TestHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).aOperand.address).to.be.equal(0);
         expect(core.readAt(null, 1).aOperand.address).to.be.equal(2);
@@ -286,7 +286,7 @@ describe("WarriorLoader", () => {
         var core = buildCore(20);
 
         var loader = new WarriorLoader(core, this.publisher);
-        loader.load(0, DataHelper.buildParseResult(testTokens), 0);
+        loader.load(0, TestHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).bOperand.mode).to.be.equal(ModeType.Direct);
         expect(core.readAt(null, 1).bOperand.mode).to.be.equal(ModeType.Immediate);
@@ -312,7 +312,7 @@ describe("WarriorLoader", () => {
         var core = buildCore(20);
 
         var loader = new WarriorLoader(core, this.publisher);
-        loader.load(0, DataHelper.buildParseResult(testTokens), 0);
+        loader.load(0, TestHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).bOperand.address).to.be.equal(1);
         expect(core.readAt(null, 1).bOperand.address).to.be.equal(3);
@@ -335,7 +335,7 @@ describe("WarriorLoader", () => {
 
     it("Correctly sets the startAddress property of the warrior", () => {
 
-        var tokens = DataHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        var tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
 
         var core = buildCore(5);
 
@@ -349,7 +349,7 @@ describe("WarriorLoader", () => {
 
         const expected = 73;
 
-        var tokens = DataHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        var tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
 
         var core = buildCore(5);
 
@@ -361,7 +361,7 @@ describe("WarriorLoader", () => {
 
     it("Raises core access events for the newly created task", () => {
 
-        var tokens = DataHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        var tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
         var core = buildCore(0);
 
         var loader = new WarriorLoader(core, this.publisher);
@@ -374,7 +374,7 @@ describe("WarriorLoader", () => {
 
         const expected = 8;
 
-        var tokens = DataHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        var tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
         var core = buildCore(0);
 
         var loader = new WarriorLoader(core, this.publisher);
@@ -394,7 +394,7 @@ describe("WarriorLoader", () => {
 
         const expectedId = 5;
         const core = buildCore(0);
-        const tokens = DataHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
         const loader = new WarriorLoader(core, this.publisher);
 
         loader.load(0, tokens, expectedId);

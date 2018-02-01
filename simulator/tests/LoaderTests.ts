@@ -11,7 +11,7 @@ import { IParseResult } from "../../parser/interface/IParseResult";
 import { Warrior } from "../Warrior";
 import { Loader } from "../Loader";
 import Defaults from "../Defaults";
-import DataHelper from "./DataHelper";
+import TestHelper from "./TestHelper";
 
 describe("Loader",() => {
 
@@ -56,9 +56,9 @@ describe("Loader",() => {
     it("Loads each warrior specified into core",() => {
 
         var warriors = [
-            DataHelper.buildParseResult([]),
-            DataHelper.buildParseResult([]),
-            DataHelper.buildParseResult([])
+            TestHelper.buildParseResult([]),
+            TestHelper.buildParseResult([]),
+            TestHelper.buildParseResult([])
         ];
 
         var loadSpy = sinon.stub();
@@ -80,9 +80,9 @@ describe("Loader",() => {
     it("Returns the warriors which have been loaded into core",() => {
 
         var warriorsIn = [
-            DataHelper.buildParseResult([]),
-            DataHelper.buildParseResult([]),
-            DataHelper.buildParseResult([])
+            TestHelper.buildParseResult([]),
+            TestHelper.buildParseResult([]),
+            TestHelper.buildParseResult([])
         ];
 
         var warriorsOut = [
@@ -127,8 +127,8 @@ describe("Loader",() => {
             });
 
         var warriors = [
-            DataHelper.buildParseResult([]),
-            DataHelper.buildParseResult([])
+            TestHelper.buildParseResult([]),
+            TestHelper.buildParseResult([])
         ];
 
         core.wrap = wrapTo(30);
@@ -154,9 +154,9 @@ describe("Loader",() => {
             });
 
         var warriors = [
-            DataHelper.buildParseResult([]),
-            DataHelper.buildParseResult([]),
-            DataHelper.buildParseResult([])
+            TestHelper.buildParseResult([]),
+            TestHelper.buildParseResult([]),
+            TestHelper.buildParseResult([])
         ];
 
         core.wrap = wrapTo(30);
@@ -183,9 +183,9 @@ describe("Loader",() => {
             });
 
         var warriors = [
-            DataHelper.buildParseResult([]),
-            DataHelper.buildParseResult([]),
-            DataHelper.buildParseResult([])
+            TestHelper.buildParseResult([]),
+            TestHelper.buildParseResult([]),
+            TestHelper.buildParseResult([])
         ];
 
         core.wrap = wrapTo(30);
@@ -212,9 +212,9 @@ describe("Loader",() => {
             });
 
         var warriors = [
-            DataHelper.buildParseResult([]),
-            DataHelper.buildParseResult([]),
-            DataHelper.buildParseResult([])
+            TestHelper.buildParseResult([]),
+            TestHelper.buildParseResult([]),
+            TestHelper.buildParseResult([])
         ];
 
         core.wrap = wrapTo(30);
@@ -241,9 +241,9 @@ describe("Loader",() => {
             });
 
         var warriors = [
-            DataHelper.buildParseResult([]),
-            DataHelper.buildParseResult([]),
-            DataHelper.buildParseResult([])
+            TestHelper.buildParseResult([]),
+            TestHelper.buildParseResult([]),
+            TestHelper.buildParseResult([])
         ];
 
         core.wrap = wrapTo(30);
@@ -260,9 +260,9 @@ describe("Loader",() => {
     it("Assigns a unique id to each warrior", () => {
 
         var warriors = [
-            DataHelper.buildParseResult([]),
-            DataHelper.buildParseResult([]),
-            DataHelper.buildParseResult([])
+            TestHelper.buildParseResult([]),
+            TestHelper.buildParseResult([]),
+            TestHelper.buildParseResult([])
         ];
 
         var loadSpy = sinon.stub();

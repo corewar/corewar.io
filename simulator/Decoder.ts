@@ -3,14 +3,15 @@ import { IExecutive } from "./interface/IExecutive";
 import { IOperand } from "./interface/IOperand";
 import { ITask } from "./interface/ITask";
 import { ICore } from "./interface/ICore";
-import { IExecutionContext } from "./interface/IExecutionContext";
-import { ModifierType } from "./interface/IInstruction";
+import { IExecutionContext, IOperandPair } from "./interface/IExecutionContext";
+import { IInstruction, ModifierType } from "./interface/IInstruction";
+import * as clone from "clone";
 
 export class Decoder implements IDecoder {
 
     private executive: IExecutive;
 
-    private modeTable: ((task: ITask, ip: number, operand: IOperand, core: ICore) => number)[] = [
+    private modeTable: ((task: ITask, ip: number, operand: IOperand, core: ICore) => IInstruction)[] = [
         this.immediate,         // #
         this.direct,            // $
         this.aIndirect,         // *
@@ -31,88 +32,155 @@ export class Decoder implements IDecoder {
         var aAccessor = this.modeTable[context.instruction.aOperand.mode];
         var bAccessor = this.modeTable[context.instruction.bOperand.mode];
 
-        context.aPointer = aAccessor(
+        context.aInstruction = aAccessor(
             context.task,
             context.instructionPointer,
             context.instruction.aOperand,
             context.core);
 
-        context.bPointer = bAccessor(
+        context.bInstruction = bAccessor(
             context.task,
             context.instructionPointer,
             context.instruction.bOperand,
             context.core);
 
         context.command = this.executive.commandTable[
-            context.instruction.opcode * ModifierType.Count + context.instruction.modifier
+            context.instruction.opcode
         ];
+
+        context.operands = this.decodeModifier(context);
 
         return context;
     }
 
+    private decodeModifier(context: IExecutionContext): IOperandPair[] {
+
+        switch (context.instruction.modifier) {
+
+            case ModifierType.A:
+                return [{
+                    source: context.aInstruction.aOperand,
+                    destination: context.bInstruction.aOperand
+                }];
+            case ModifierType.B:
+                return [{
+                    source: context.aInstruction.bOperand,
+                    destination: context.bInstruction.bOperand
+                }];
+            case ModifierType.AB:
+                return [{
+                    source: context.aInstruction.aOperand,
+                    destination: context.bInstruction.bOperand
+                }];
+            case ModifierType.BA:
+                return [{
+                    source: context.aInstruction.bOperand,
+                    destination: context.bInstruction.aOperand
+                }];
+            case ModifierType.F:
+                return [{
+                    source: context.aInstruction.aOperand,
+                    destination: context.bInstruction.aOperand
+                }, {
+                    source: context.aInstruction.bOperand,
+                    destination: context.bInstruction.bOperand
+                }];
+            case ModifierType.X:
+                return [{
+                    source: context.aInstruction.aOperand,
+                    destination: context.bInstruction.bOperand
+                }, {
+                    source: context.aInstruction.bOperand,
+                    destination: context.bInstruction.aOperand
+                }];
+            case ModifierType.I:
+                return [{
+                    source: context.aInstruction.aOperand,
+                    destination: context.bInstruction.aOperand
+                }, {
+                    source: context.aInstruction.bOperand,
+                    destination: context.bInstruction.bOperand
+                }];
+            default:
+                throw "Unknown modifier: " + context.instruction.modifier;
+        }
+    }
+
     private immediate(task: ITask, ip: number, operand: IOperand, core: ICore) {
-        return ip;
+
+        const address = ip;
+
+        return clone(core.getAt(address));
     }
 
     private direct(task: ITask, ip: number, operand: IOperand, core: ICore) {
-        return ip + operand.address;
+
+        const address = ip + operand.address;
+
+        return clone(core.getAt(address));
     }
 
     private aIndirect(task: ITask, ip: number, operand: IOperand, core: ICore) {
 
-        var ipa = ip + operand.address;
+        const ipa = ip + operand.address;
 
-        return ipa + core.readAt(task, ipa).aOperand.address;
+        const address = ipa + core.readAt(task, ipa).aOperand.address;
+
+        return clone(core.getAt(address));
     }
 
     private bIndirect(task: ITask, ip: number, operand: IOperand, core: ICore) {
 
-        var ipa = ip + operand.address;
+        const ipa = ip + operand.address;
 
-        return ipa + core.readAt(task, ipa).bOperand.address;
+        const address = ipa + core.readAt(task, ipa).bOperand.address;
+
+        return clone(core.getAt(address));
     }
 
     private aPreDecrement(task: ITask, ip: number, operand: IOperand, core: ICore) {
 
-        var ipa = ip + operand.address;
+        const ipa = ip + operand.address;
 
-        var instruction = core.readAt(task, ipa);
+        const instruction = core.readAt(task, ipa);
 
-        var value = instruction.aOperand.address;
+        let value = instruction.aOperand.address;
 
-        var result = ipa + --value;
+        const address = ipa + --value;
 
         instruction.aOperand.address = value;
         core.setAt(task, ipa, instruction);
 
-        return result;
+        return clone(core.getAt(address));
     }
 
     private bPreDecrement(task: ITask, ip: number, operand: IOperand, core: ICore) {
 
-        var ipa = ip + operand.address;
+        const ipa = ip + operand.address;
 
-        var instruction = core.readAt(task, ipa);
+        const instruction = core.readAt(task, ipa);
 
-        var value = instruction.bOperand.address;
+        let value = instruction.bOperand.address;
 
-        var result = ipa + --value;
+        const address = ipa + --value;
 
         instruction.bOperand.address = value;
         core.setAt(task, ipa, instruction);
 
-        return result;
+        return clone(core.getAt(address));
     }
 
     private aPostIncrement(task: ITask, ip: number, operand: IOperand, core: ICore) {
 
-        var ipa = ip + operand.address;
+        const ipa = ip + operand.address;
 
-        var instruction = core.readAt(task, ipa);
+        const instruction = core.readAt(task, ipa);
 
-        var value = instruction.aOperand.address;
+        let value = instruction.aOperand.address;
 
-        var result = ipa + value++;
+        const address = ipa + value++;
+
+        const result = clone(core.getAt(address));
 
         instruction.aOperand.address = value;
         core.setAt(task, ipa, instruction);
@@ -122,13 +190,15 @@ export class Decoder implements IDecoder {
 
     private bPostIncrement(task: ITask, ip: number, operand: IOperand, core: ICore) {
 
-        var ipa = ip + operand.address;
+        const ipa = ip + operand.address;
 
-        var instruction = core.readAt(task, ipa);
+        const instruction = core.readAt(task, ipa);
 
-        var value = instruction.bOperand.address;
+        let value = instruction.bOperand.address;
 
-        var result = ipa + value++;
+        const address = ipa + value++;
+
+        const result = clone(core.getAt(address));
 
         instruction.bOperand.address = value;
         core.setAt(task, ipa, instruction);
