@@ -103,6 +103,8 @@ describe("Simulator", () => {
         publisher = {
             queue: sinon.stub(),
             publish: sinon.stub(),
+            republish: sinon.stub(),
+            clear: sinon.stub(),
             setPublishProvider: sinon.stub()
         };
 
@@ -469,4 +471,11 @@ describe("Simulator", () => {
             }
         });
     });
+
+    it("clears Publisher on initialise", () => {
+
+        simulator.initialise(clone(Defaults), []);
+
+        expect(publisher.clear).to.have.been.called;
+    })
 });

@@ -70,6 +70,8 @@ export class Simulator implements ISimulator {
 
     public initialise(options: IOptions, warriors: IParseResult[]) {
 
+        this.publisher.clear();
+
         this.initState();
 
         const defaultedOptions = Object.assign({}, Defaults, options);
