@@ -1,7 +1,6 @@
-; Fairy1.s
-;
-; by Keiji-Kawashima
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	3
 SPL.B	$-1,	$0
 DAT.F	#0,	#509

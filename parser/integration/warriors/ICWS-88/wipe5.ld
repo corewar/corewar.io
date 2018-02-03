@@ -1,6 +1,6 @@
-;Wipe 5
-;by Anonymous
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	1
 DAT.F	#0,	#0
 MOV.I	$-2,	$53
@@ -65,7 +65,6 @@ DAT.F	#0,	#1
 DAT.F	#0,	#1
 DAT.F	#0,	#1
 DAT.F	#0,	#1
-;
 DAT.F	#0,	#1
 DAT.F	#0,	#1
 DAT.F	#0,	#1

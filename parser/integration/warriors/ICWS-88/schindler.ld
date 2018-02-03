@@ -1,6 +1,6 @@
-;      SCHINDLR.S
-;      MICHAEL SCHINDLER
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 JMP.B	$24,	$0
 DAT.F	#0,	#0

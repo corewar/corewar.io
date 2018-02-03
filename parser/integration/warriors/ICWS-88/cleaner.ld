@@ -1,7 +1,6 @@
-; Cleaner.s
-;
-; Pen
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	3
 DAT.F	#0,	#0
 SPL.B	$0,	$0

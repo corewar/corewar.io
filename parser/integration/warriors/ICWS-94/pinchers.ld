@@ -1,4 +1,4 @@
-;redcode
+;redcode-94
 ;name Pinchers
 ;author Richard Hendricks
 ORG	0

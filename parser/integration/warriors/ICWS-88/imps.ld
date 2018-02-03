@@ -1,7 +1,6 @@
-; IMPS.S
-;
-; T. Takebayashi
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 SPL.B	$3,	$0
 ADD.AB	#2,	$-1

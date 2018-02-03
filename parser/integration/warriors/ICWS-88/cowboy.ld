@@ -1,13 +1,8 @@
-;Cowboy
-;by Eugene P. Lilitko
-;Union of Soviet Socialist Republics
-;
-;The snare for the opponent's processes.
-;Bison commits suicide when all 64 processes are captured.
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	13
 DAT.F	#0,	#0
-;
 DAT.F	#0,	#0
 MOV.I	$27,	$21
 SUB.AB	#1,	$6
@@ -18,17 +13,8 @@ MOV.I	$1,	$-3
 DAT.F	#0,	#0
 DAT.F	#0,	#64
 JMP.B	$-8,	$0
-;
-;Welcome to the snare!
-;
 JMP.B	<0,	$0
 JMP.B	@0,	$0
-;
-;
-;The main code.  Traps are set, inviting the opponent to jump
-;into the snare.  When the bison are captured, SWITCH is changed
-;to the instructions of SUCCESS.
-;
 MOV.I	$17,	$10
 MOV.AB	#575,	$29
 MOV.AB	#64,	$-6
@@ -40,10 +26,6 @@ MOV.I	$-8,	@-9
 ADD.AB	#7,	$-10
 SUB.AB	#7,	$-10
 DJN.B	$-4,	$20
-;
-;All right! There are bison in the snare.  The captured bison invite free
-;bison into the trap.  Cowboy must help them!
-;
 MOV.I	$-16,	$-24
 MOV.I	$-17,	$17
 MOV.I	$-26,	<-26
@@ -51,12 +33,6 @@ JMZ.B	$-1,	$15
 JMP.B	$-4,	$0
 MOV.I	$-15,	$0
 DJN.B	$-4,	$20
-;
-;The defense process.  Build a set of pickets, test for a breach of the
-;pickets, and switch to defensive action when the pickets are breached.
-;Defense occurs when Cowboy is copied to a new place in memory, and the
-;copy begins operating properly.
-;
 MOV.AB	#638,	$-3
 MOV.AB	#-638,	$9
 MOV.AB	#25,	$-23
@@ -77,5 +53,4 @@ MOV.I	@-46,	<-19
 DJN.B	$-1,	$-47
 MOV.I	$-25,	$-44
 ADD.AB	#11,	$-22
-;
 JMP.B	@-23,	$0

@@ -34,7 +34,7 @@ MOV.AB	#3248,	$38
 SNE.X	$3677,	$3873
 SEQ.X	$3774,	$3970
 MOV.AB	#3640,	$35
-JMN.B	$34,	$34	; Get out early if found something.
+JMN.B	$34,	$34
 SNE.X	$4065,	$4261
 SEQ.X	$4162,	$4358
 MOV.AB	#4032,	$31
@@ -65,25 +65,20 @@ MOV.AB	#7168,	$7
 SNE.X	$7566,	$7762
 SEQ.X	$7663,	$7859
 MOV.AB	#7560,	$4
-JMN.B	$3,	$3	; Quick-bomb if found something.
-JMP.B	$13,	$0	; Execute regular code, because nothing found.
+JMN.B	$3,	$3
+JMP.B	$13,	$0
 ADD.AB	#98,	$1
-JMZ.F	$-1,	$0	; Goto the location where we found something.
-MOV.B	$-1,	$6	; Save this value for use in backward bomb.
+JMZ.F	$-1,	$0
+MOV.B	$-1,	$6
 MOV.I	$10,	>-2
 MOV.I	$10,	@-3
 ADD.AB	#5,	$-4
 JMN.F	$-3,	@-5
-SUB.AB	#12,	$1	; Don't re-bomb over forward-scan.
+SUB.AB	#12,	$1
 MOV.I	$6,	$0
 MOV.I	$4,	<-1
 SUB.AB	#5,	$-2
 JMN.F	$-3,	@-3
-; Regular warrior starts here.
-; The first instruction should be labeled "warrior".
-; Must include the code for a two-line bomb.
-; (Or, of course, you are welcome to use a different bomb,
-;  such as a single DAT statement.)
-JMP.B	#0,	<-100	; Replace this with your own code.
+JMP.B	#0,	<-100
 SPL.B	#0,	$0
 JMP.B	$-1,	$0

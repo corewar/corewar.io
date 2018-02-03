@@ -1,7 +1,6 @@
-;      CANCER.S
-;      Thomas Gettys
-;      1987
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	2
 JMP.B	$2,	$0
 JMP.B	$-1,	$0

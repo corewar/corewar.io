@@ -1,9 +1,7 @@
-;redcode-94 quiet
+;redcode-94
 ;name Scimitar
-;kill Scimitar
 ;author P.Kline
 ;strategy bomber
-;macro
 ORG	1
 JMP.B	$6,	$0
 MOV.I	$4,	@1

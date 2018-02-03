@@ -1,6 +1,6 @@
-;      DR. FROG.S
-;      OGI OGAS
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	3
 MOV.AB	#-3,	@2
 DJN.B	$-1,	$1

@@ -1,6 +1,5 @@
-;redcode-94 verbose
+;redcode-94
 ;name B-Panama X
-;kill test
 ;author Steven Morrell
 ;strategy  Better Stone / Silk (?) Paper
 ORG	6
@@ -33,7 +32,6 @@ SPL.B	$1,	$0
 MOV.I	$2,	<-1
 DJN.F	$-2,	>-6
 DAT.F	<2667,	<5334
-;macro
 DAT.F	<70,	<2667
 DAT.F	<69,	<2667
 DAT.F	<68,	<2667

@@ -9,9 +9,6 @@
 ;strategy       now kills previous copies and does some
 ;strategy       selftesting
 ;strategy v1.3: bigger and more lethal, I hope
-;kill
-;assert CORESIZE==8000
-;macro
 ORG	0
 SPL.B	$1,	<-98
 MOV.I	$-1,	$0

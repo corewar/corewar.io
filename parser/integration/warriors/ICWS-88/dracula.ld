@@ -1,6 +1,6 @@
-;      DRACULA.S
-;      MARTIN  STENT
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 MOV.I	$12,	@10
 SUB.AB	#4,	$9

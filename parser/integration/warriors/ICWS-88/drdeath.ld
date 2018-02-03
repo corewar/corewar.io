@@ -1,7 +1,6 @@
-;Dr. Death
-;by A. K. Dewdney
-;Canada
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 SPL.B	$6,	$0
 SPL.B	$10,	$0
@@ -32,7 +31,6 @@ SPL.B	$-20,	$0
 SUB.AB	#1,	$16
 JMZ.B	$2,	$15
 SPL.B	$-20,	$0
-;
 SUB.AB	#1,	$14
 JMZ.B	$2,	$13
 SPL.B	$-18,	$0

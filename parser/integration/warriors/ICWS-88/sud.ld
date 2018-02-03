@@ -1,7 +1,6 @@
-;SUD
-;by Giovanni Ciraulo
-;Italy
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	18
 DAT.F	#0,	#0
 DAT.F	#0,	#0

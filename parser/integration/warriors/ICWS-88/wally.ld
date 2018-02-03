@@ -1,7 +1,6 @@
-;Wally
-;by Gaylan D. Wallis
-;United States of America
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 MOV.I	$9,	@10
 MOV.I	$7,	<9

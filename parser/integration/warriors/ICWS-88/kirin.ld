@@ -1,7 +1,6 @@
-; Kirin.s
-;
-; by Eiji-Kako
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	4
 DAT.F	#0,	#4096
 DAT.F	#0,	#9003

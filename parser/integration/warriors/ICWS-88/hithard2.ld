@@ -1,7 +1,6 @@
-;Hit Hard 2
-;by Jon Newman
-;United States of America
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 MOV.AB	#4,	$9
 MOV.AB	#11,	$9

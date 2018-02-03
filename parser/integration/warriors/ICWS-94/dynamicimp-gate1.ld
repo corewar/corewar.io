@@ -1,4 +1,4 @@
-;redcode
+;redcode-94
 ;name Dynamic Imp-gate
 ;author Richard Hendricks
 ORG	0

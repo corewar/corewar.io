@@ -1,6 +1,6 @@
-;      PHAGE.S
-;      NORIO SUZUKI
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 MOV.I	<7,	<11
 DJN.B	$-1,	$11

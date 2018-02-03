@@ -1,7 +1,6 @@
-; W2.s
-;
-; Douglas McDaniels
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	4
 DAT.F	#0,	#0
 DAT.F	#0,	#0

@@ -1,6 +1,6 @@
-;      FERRET
-;      ROBERT REED III
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 MOV.AB	#4908,	$9
 CMP.I	<3,	<8

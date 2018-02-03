@@ -1,6 +1,6 @@
-;      JUMPER.S
-;      PAOLO   MONTRASIO
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	2
 DAT.F	#0,	#0
 SPL.B	$8,	$0

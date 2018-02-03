@@ -1,6 +1,6 @@
-;      MINIDPLS.S
-;      JON NEWMAN
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 MOV.AB	#-2,	<2
 JMP.B	$-1,	$0

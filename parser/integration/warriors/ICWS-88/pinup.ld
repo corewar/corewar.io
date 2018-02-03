@@ -1,7 +1,6 @@
-; PinUp.s
-;
-; T. Takebayashi
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	1
 DAT.F	#0,	#20
 MOV.AB	#-16,	$15

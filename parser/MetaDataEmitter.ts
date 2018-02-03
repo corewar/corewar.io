@@ -74,6 +74,10 @@ export class MetaDataEmitter implements IPass {
 
         strategy.split("\n").forEach(s => {
 
+            if (s.trim() === "") {
+                return;
+            }
+
             this.emitComment(";strategy " + s);
         });
     }

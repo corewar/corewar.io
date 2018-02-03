@@ -1,5 +1,5 @@
 ;redcode-94
-;name   Single Vector
+;name Single Vector
 ;author T.Hsu
 ORG	1
 DAT.F	$0,	#8005

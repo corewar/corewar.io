@@ -1,7 +1,6 @@
-;Asi-R
-;by Paolo Montrasio
-;Italy
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 MOV.AB	#-11,	$10
 CMP.I	<18,	<9

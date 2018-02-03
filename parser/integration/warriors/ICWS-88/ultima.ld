@@ -1,6 +1,6 @@
-;      ULTIMA RATIO REGUM (URR.S)
-;      LASZLO KISS
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 MOV.I	$8,	<11
 MOV.I	$8,	<10
