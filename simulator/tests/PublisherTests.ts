@@ -168,6 +168,7 @@ describe("Publisher", () => {
 
         publisher.clear();
 
-        expect(strategy.clear).to.have.callCount(strategies.length);
+        // *2 because there is a publish and a republish clone of each strategy
+        expect(strategy.clear).to.have.callCount(strategies.length * 2);
     });
 });

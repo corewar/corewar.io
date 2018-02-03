@@ -58,7 +58,7 @@ export class Publisher implements IPublisher {
             return;
         }
 
-        this.publishStrategies
+        strategies
             .forEach(s => {
                 
                 var message = s.dequeue();
@@ -77,6 +77,11 @@ export class Publisher implements IPublisher {
     public clear(): void {
 
         this.publishStrategies
+            .forEach(s => {
+                s.clear();
+            });
+
+        this.republishStrategies
             .forEach(s => {
                 s.clear();
             });
