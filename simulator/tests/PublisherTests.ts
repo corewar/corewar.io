@@ -9,6 +9,14 @@ import { MessageType } from "../interface/IMessage";
 
 describe("Publisher", () => {
 
+    function buildStrategy() {
+        return {
+            queue: sinon.stub(),
+            dequeue: sinon.stub(),
+            clear: sinon.stub()
+        };
+    }
+
     it("can be called when the publish provider has not been specified", () => {
 
         const publisher = new Publisher([]);
@@ -33,14 +41,8 @@ describe("Publisher", () => {
 
     it("queues messages with the relevant publish strategy", () => {
 
-        const unexpected = {
-            queue: sinon.stub(),
-            dequeue: sinon.stub()
-        };
-        const expectedStrategy = {
-            queue: sinon.stub(),
-            dequeue: sinon.stub()
-        };
+        const unexpected = buildStrategy();
+        const expectedStrategy = buildStrategy();
 
         const expectedPayload = {
             type: MessageType.TaskCount,
@@ -78,12 +80,12 @@ describe("Publisher", () => {
         const roundStartMessages = { type: MessageType.RoundStart, payload: [{}] };
 
         const strategies = [
-            { dequeue: sinon.stub().returns(coreAccessMessages), queue: sinon.stub() },
-            { dequeue: sinon.stub().returns(runProgressMessages), queue: sinon.stub() },
-            { dequeue: sinon.stub().returns(roundEndMessages), queue: sinon.stub() },
-            { dequeue: sinon.stub().returns(taskCountMessages), queue: sinon.stub() },
-            { dequeue: sinon.stub().returns(initialiseMessages), queue: sinon.stub() },
-            { dequeue: sinon.stub().returns(roundStartMessages), queue: sinon.stub() }
+            { dequeue: sinon.stub().returns(coreAccessMessages), queue: sinon.stub(), clear: sinon.stub() },
+            { dequeue: sinon.stub().returns(runProgressMessages), queue: sinon.stub(), clear: sinon.stub() },
+            { dequeue: sinon.stub().returns(roundEndMessages), queue: sinon.stub(), clear: sinon.stub() },
+            { dequeue: sinon.stub().returns(taskCountMessages), queue: sinon.stub(), clear: sinon.stub() },
+            { dequeue: sinon.stub().returns(initialiseMessages), queue: sinon.stub(), clear: sinon.stub() },
+            { dequeue: sinon.stub().returns(roundStartMessages), queue: sinon.stub(), clear: sinon.stub() }
         ];
 
         const provider = { publishSync: sinon.stub() };
