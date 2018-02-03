@@ -29,7 +29,7 @@ describe("PerKeyStrategy", () => {
         });
     });
 
-    it("returns null if dequeued a second time without queueing", () => {
+    it("returns the same queued message if dequeued a second time without queueing", () => {
 
         const strategy = new PerKeyStrategy(p => p.address);
 
@@ -38,7 +38,10 @@ describe("PerKeyStrategy", () => {
         strategy.queue(message);
         strategy.dequeue();
 
-        expect(strategy.dequeue()).to.be.null;
+        expect(strategy.dequeue()).to.be.deep.equal({
+            type: MessageType.CoreAccess,
+            payload: [ message.payload ]
+        });
     });
 
     it("returns a payload for each unique address", () => {

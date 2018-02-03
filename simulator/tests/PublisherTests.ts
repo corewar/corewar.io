@@ -6,6 +6,7 @@ chai.use(sinonChai);
 
 import { Publisher } from "../Publisher";
 import { MessageType } from "../interface/IMessage";
+import { start } from "repl";
 
 describe("Publisher", () => {
 
@@ -64,13 +65,14 @@ describe("Publisher", () => {
         publisher.queue(expectedPayload);
 
         expect(expectedStrategy.queue).to.have.been.calledWith(expectedPayload);
+        expect(expectedStrategy.queue).to.have.callCount(2);
 
         expect(expectedStrategy.dequeue).not.to.have.been.called;
         expect(unexpected.queue).not.to.have.been.called;
         expect(unexpected.dequeue).not.to.have.been.called;
     });
 
-    it("publishes all queued messages by dequeueing all strategies", () => {
+    it("publishes all queued messages by dequeueing and clearing all strategies", () => {
 
         const coreAccessMessages = { type: MessageType.CoreAccess, payload: [{}] };
         const runProgressMessages = { type: MessageType.RunProgress, payload: [{}] };
@@ -101,6 +103,47 @@ describe("Publisher", () => {
         expect(provider.publishSync).to.have.been.calledWith("TASK_COUNT", taskCountMessages.payload);
         expect(provider.publishSync).to.have.been.calledWith("CORE_INITIALISE", initialiseMessages.payload);
         expect(provider.publishSync).to.have.been.calledWith("ROUND_START", roundStartMessages.payload);
+
+        strategies.forEach(s => {
+            expect(s.clear).to.have.been.called;
+        })
+    });
+
+    it("republishes all queued messages by dequeueing all strategies but NOT clearing them", () => {
+
+        const coreAccessMessages = { type: MessageType.CoreAccess, payload: [{}] };
+        const runProgressMessages = { type: MessageType.RunProgress, payload: [{}] };
+        const roundEndMessages = { type: MessageType.RoundEnd, payload: [{}] };
+        const taskCountMessages = { type: MessageType.TaskCount, payload: [{ a: "a" }, { b: "b" }] };
+        const initialiseMessages = { type: MessageType.CoreInitialise, payload: [{}] };
+        const roundStartMessages = { type: MessageType.RoundStart, payload: [{}] };
+
+        const strategies = [
+            { dequeue: sinon.stub().returns(coreAccessMessages), queue: sinon.stub(), clear: sinon.stub() },
+            { dequeue: sinon.stub().returns(runProgressMessages), queue: sinon.stub(), clear: sinon.stub() },
+            { dequeue: sinon.stub().returns(roundEndMessages), queue: sinon.stub(), clear: sinon.stub() },
+            { dequeue: sinon.stub().returns(taskCountMessages), queue: sinon.stub(), clear: sinon.stub() },
+            { dequeue: sinon.stub().returns(initialiseMessages), queue: sinon.stub(), clear: sinon.stub() },
+            { dequeue: sinon.stub().returns(roundStartMessages), queue: sinon.stub(), clear: sinon.stub() }
+        ];
+
+        const provider = { publishSync: sinon.stub() };
+
+        const publisher = new Publisher(strategies);
+        publisher.setPublishProvider(provider);
+
+        publisher.republish();
+
+        expect(provider.publishSync).to.have.been.calledWith("CORE_ACCESS", coreAccessMessages.payload);
+        expect(provider.publishSync).to.have.been.calledWith("RUN_PROGRESS", runProgressMessages.payload);
+        expect(provider.publishSync).to.have.been.calledWith("ROUND_END", roundEndMessages.payload);
+        expect(provider.publishSync).to.have.been.calledWith("TASK_COUNT", taskCountMessages.payload);
+        expect(provider.publishSync).to.have.been.calledWith("CORE_INITIALISE", initialiseMessages.payload);
+        expect(provider.publishSync).to.have.been.calledWith("ROUND_START", roundStartMessages.payload);
+
+        strategies.forEach(s => {
+            expect(s.clear).not.to.have.been.called;
+        })
     });
 
     it("clears all strategies when .clear is called", () => {

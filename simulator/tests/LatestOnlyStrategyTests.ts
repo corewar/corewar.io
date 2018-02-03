@@ -26,7 +26,7 @@ describe("LatestOnlyStrategy", () => {
         expect(strategy.dequeue()).to.be.deep.equal(expected);
     });
 
-    it("returns null if dequeued a second time without queueing", () => {
+    it("returns same message if dequeued a second time without queueing", () => {
 
         const strategy = new LatestOnlyStrategy();
 
@@ -35,7 +35,7 @@ describe("LatestOnlyStrategy", () => {
         strategy.queue(message);
         strategy.dequeue();
 
-        expect(strategy.dequeue()).to.be.null;
+        expect(strategy.dequeue()).to.be.deep.equal(message);
     });
 
     it("returns null if cleared and then dequeued", () => {
