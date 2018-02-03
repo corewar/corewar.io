@@ -1,6 +1,6 @@
-; Big-raidar
-; For notes about how this works, see Dewdney's first article,
-;   or the "raidar" program.
+;redcode-86
+;name Nameless
+;author Blameless
 ORG	3
 DAT.F	#0,	#0
 DAT.F	#0,	#0

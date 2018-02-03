@@ -1,6 +1,6 @@
-;;; TARGET
-;;; A sitting duck, just perfect to test those bombing programs.
-;;; See also: HOSER
+;redcode-86
+;name Nameless
+;author Blameless
 ORG	0
 CMP.I	$0,	$1
 CMP.I	$0,	$1

@@ -1,5 +1,6 @@
-; Chang1: Runner-up of the First Core War Tournament
-; 	  by Morrison J. Chang
+;redcode-86
+;name Nameless
+;author Blameless
 ORG	3
 MOV.AB	#0,	$-1
 JMP.B	$-1,	$0

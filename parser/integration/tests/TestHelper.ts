@@ -19,6 +19,7 @@ import { IllegalCommandCheck } from "../../IllegalCommandCheck";
 import { LoadFileSerialiser } from "../../LoadFileSerialiser";
 import { TestLoader } from "./TestLoader";
 import { MetaDataCollector } from "../../MetaDataCollector";
+import { MetaDataEmitter } from "../../MetaDataEmitter";
 
 export class TestHelper {
     private static failedIndex(name: string, a: string, b: string) {
@@ -77,7 +78,8 @@ export class TestHelper {
                         new DefaultPass(),
                         new OrgPass(),
                         new SyntaxCheck(),
-                        new IllegalCommandCheck());
+                        new IllegalCommandCheck(),
+                        new MetaDataEmitter());
 
                     var result = parser.parse(
                         warrior.redcode,

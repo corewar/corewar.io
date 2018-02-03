@@ -1,23 +1,18 @@
-; This is RAIDAR, a program suggested by A.K. Dewdney's original Scientific
-; American article about Core War.  A slower and more clumsy version of this
-; program, called BIG-RAIDAR, is also supplied; BIG-RAIDAR is slower to move,
-; but has a higher chance of stepping on opponents and is easier to watch.
-; Picket width is 32
-; Inner distance (btwn picket edge and program edge) is 164
-; Program width is 25 (Not including leading 3 data lines)
-; On panic, program jumps 400
+;redcode-86
+;name Nameless
+;author Blameless
 ORG	3
 DAT.F	#0,	#0
 DAT.F	#0,	#0
 DAT.F	#0,	#0
 MOV.AB	#33,	$-1
 MOV.AB	#-163,	$-4
-MOV.AB	#223,	$-4	; 165 + dist targ2->end-of-prog + 1 + 32
+MOV.AB	#223,	$-4
 MOV.AB	#42,	<-6
 MOV.AB	#42,	<-6
 DJN.B	$-2,	$-6
 MOV.AB	#-163,	$-9
-MOV.AB	#223,	$-9	; ditto as above
+MOV.AB	#223,	$-9
 MOV.AB	#33,	$-9
 CMP.AB	#42,	<-12
 JMP.B	$5,	$0

@@ -1,4 +1,5 @@
-;;; HOSER: A program guaranteed to leave your other program alone as you
-;;; 	   test it.
+;redcode-86
+;name Nameless
+;author Blameless
 ORG	0
 JMP.B	$0,	$0
