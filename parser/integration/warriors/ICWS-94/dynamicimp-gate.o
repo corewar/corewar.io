@@ -1,8 +1,0 @@
-Program "Dynamic Imp-gate" (length 3) by "Richard Hendricks"
-
-       ORG      START
-START  SPL.B  $     2, $     0     
-       JMP.B  $     0, <    -3     
-       JMP.B  $     0, <    -1     
-
-Dynamic Imp-gate by Richard Hendricks scores 0
