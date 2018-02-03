@@ -53,4 +53,12 @@ export class Publisher implements IPublisher {
                 );
             });
     }
+
+    public clear(): void {
+
+        this.publishStrategies
+            .forEach(s => {
+                s.clear();
+            });
+    }
 }

@@ -102,4 +102,29 @@ describe("Publisher", () => {
         expect(provider.publishSync).to.have.been.calledWith("CORE_INITIALISE", initialiseMessages.payload);
         expect(provider.publishSync).to.have.been.calledWith("ROUND_START", roundStartMessages.payload);
     });
+
+    it("clears all strategies when .clear is called", () => {
+
+        const strategy = buildStrategy();
+
+        const expectedPayload = {
+            type: MessageType.TaskCount,
+            payload: {}
+        };
+
+        const strategies = [
+            strategy,
+            strategy,
+            strategy,
+            strategy,
+            strategy,
+            strategy
+        ];
+
+        const publisher = new Publisher(strategies);
+
+        publisher.clear();
+
+        expect(strategy.clear).to.have.callCount(strategies.length);
+    });
 });

@@ -5,5 +5,6 @@ export interface IPublisher {
     
     queue(message: IMessage): void;
     publish(): void;
+    clear(): void;
     setPublishProvider(publishProvider: IPublishProvider): void;
 }
