@@ -20,11 +20,7 @@ describe("Executive", () => {
 
     beforeEach(() => {
 
-        publisher = {
-            queue: sinon.stub(),
-            publish: sinon.stub(),
-            setPublishProvider: sinon.stub()
-        };
+        publisher = TestHelper.buildPublisher();
 
         this.executive = new Executive(publisher);
     });

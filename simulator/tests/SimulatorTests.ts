@@ -100,13 +100,7 @@ describe("Simulator", () => {
             validate: sinon.stub()
         };
 
-        publisher = {
-            queue: sinon.stub(),
-            publish: sinon.stub(),
-            republish: sinon.stub(),
-            clear: sinon.stub(),
-            setPublishProvider: sinon.stub()
-        };
+        publisher = TestHelper.buildPublisher();
 
         simulator = new Simulator(
             core,
