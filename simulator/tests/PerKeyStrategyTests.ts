@@ -58,4 +58,16 @@ describe("PerKeyStrategy", () => {
             payload: [payload1, payload2, payload3]
         });
     });
+
+    it("returns null if cleared and then dequeued", () => {
+
+        const strategy = new PerKeyStrategy(p => p.address);
+
+        const message = { type: MessageType.CoreAccess, payload: { address: 1 } };
+
+        strategy.queue(message);
+        strategy.clear();
+
+        expect(strategy.dequeue()).to.be.null;
+    });
 });

@@ -34,4 +34,9 @@ export class PerKeyStrategy implements IPublishStrategy {
             payload: payloads
         };
     }
+
+    public clear(): void {
+
+        this.payloads = {};
+    }
 }
