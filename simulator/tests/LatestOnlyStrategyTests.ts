@@ -37,4 +37,16 @@ describe("LatestOnlyStrategy", () => {
 
         expect(strategy.dequeue()).to.be.null;
     });
+
+    it("returns null if cleared and then dequeued", () => {
+
+        const strategy = new LatestOnlyStrategy();
+
+        const unexpected = { type: MessageType.CoreAccess, payload: {} };
+
+        strategy.queue(unexpected);
+        strategy.clear();
+
+        expect(strategy.dequeue()).to.be.null;
+    });
 });
