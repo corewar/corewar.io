@@ -2,11 +2,13 @@ import { IMessage, MessageType } from "./interface/IMessage";
 import { IPublisher } from "./interface/IPublisher";
 import { IPublishProvider } from "./interface/IPublishProvider";
 import { IPublishStrategy } from "./interface/IPublishStrategy";
+import * as clone from "clone";
 
 export class Publisher implements IPublisher {
 
     private publishProvider: IPublishProvider;
     private publishStrategies: IPublishStrategy[];
+    private republishStrategies: IPublishStrategy[];
 
     private typeDictionary = [
         "CORE_ACCESS",
@@ -20,7 +22,8 @@ export class Publisher implements IPublisher {
 
     constructor(strategies: IPublishStrategy[]) {
 
-        this.publishStrategies = strategies;
+        this.publishStrategies = strategies.map(s => clone(s));
+        this.republishStrategies = strategies.map(s => clone(s));
     }
 
     public setPublishProvider(publishProvider: IPublishProvider): void {
@@ -31,9 +34,25 @@ export class Publisher implements IPublisher {
     public queue(message: IMessage): void {
 
         this.publishStrategies[message.type].queue(message);
+        this.republishStrategies[message.type].queue(message);
     }
 
     public publish(): void {
+
+        this.doPublish(this.publishStrategies);
+
+        this.publishStrategies
+            .forEach(s => {
+                s.clear();
+            });
+    }
+
+    public republish(): void {
+
+        this.doPublish(this.republishStrategies);
+    }
+
+    private doPublish(strategies: IPublishStrategy[]) {
 
         if (!this.publishProvider) {
             return;
@@ -41,6 +60,7 @@ export class Publisher implements IPublisher {
 
         this.publishStrategies
             .forEach(s => {
+                
                 var message = s.dequeue();
 
                 if (!message) {
