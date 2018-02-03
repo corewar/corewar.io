@@ -74,10 +74,10 @@ export class Parser implements IParser {
         var context = this.scanner.scan(document, options);
 
         if (this.noErrors(context)) {
-            context = this.filter.process(context, options);
+            context = this.metaDataCollector.process(context, options);
         }
         if (this.noErrors(context)) {
-            context = this.metaDataCollector.process(context, options);
+            context = this.filter.process(context, options);
         }
         if (options.standard === Standard.ICWS94draft) {
             if (this.noErrors(context)) {

@@ -37,7 +37,7 @@ describe("Parser",() => {
     var calls: string[];
 
     var expected94Calls = [
-        "scan", "filter", "metaDataCollector", "for", "equCollector",
+        "scan", "metaDataCollector", "filter", "for", "equCollector",
         "equAnalyser", "equEmitter", "labelCollector", "labelEmitter",
         "maths", "org", "default", "syntax"
     ];
@@ -152,8 +152,8 @@ describe("Parser",() => {
         expect(calls.length).to.be.equal(13);
 
         expect(calls[0]).to.be.equal("scan");
-        expect(calls[1]).to.be.equal("filter");
-        expect(calls[2]).to.be.equal("metaDataCollector");
+        expect(calls[1]).to.be.equal("metaDataCollector");
+        expect(calls[2]).to.be.equal("filter");
         expect(calls[3]).to.be.equal("equCollector");
         expect(calls[4]).to.be.equal("equAnalyser");
         expect(calls[5]).to.be.equal("equEmitter");
@@ -175,8 +175,8 @@ describe("Parser",() => {
         expect(calls.length).to.be.equal(13);
 
         expect(calls[0]).to.be.equal("scan");
-        expect(calls[1]).to.be.equal("filter");
-        expect(calls[2]).to.be.equal("metaDataCollector");
+        expect(calls[1]).to.be.equal("metaDataCollector");
+        expect(calls[2]).to.be.equal("filter");
         expect(calls[3]).to.be.equal("equCollector");
         expect(calls[4]).to.be.equal("equAnalyser");
         expect(calls[5]).to.be.equal("equEmitter");
@@ -315,11 +315,11 @@ describe("Parser",() => {
         expect(calls).to.deep.equal(expected94Calls.slice(0, 4));
     });
 
-    it("Does not call for pass if metadata collector pass fails",() => {
+    it("Does not call for pass if filter pass fails",() => {
 
         var options = Parser.DefaultOptions;
 
-        errorIn(metaDataCollector, "metaDataCollector");
+        errorIn(filter, "filter");
 
         context.messages = [];
         calls = [];
@@ -329,11 +329,11 @@ describe("Parser",() => {
         expect(calls).to.deep.equal(expected94Calls.slice(0, 3));
     });
     
-    it("Does not call meta data collector collector if filter pass fails",() => {
+    it("Does not call filter pass if metadata collector pass fails",() => {
         
         var options = Parser.DefaultOptions;
 
-        errorIn(filter, "filter");
+        errorIn(metaDataCollector, "metaDataCollector");
 
         context.messages = [];
         calls = [];

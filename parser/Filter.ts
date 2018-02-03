@@ -7,30 +7,31 @@ export class Filter extends PassBase {
     /// <summary>
     /// Filters superfluous tokens from the token stream.
     /// Removes any empty lines and anything after the END preprocessor command
+    /// Removes comments
     /// </summary>
     public processLine() {
 
         // Remove empty lines from stream
         // Remove anything after END from stream
+        // Remove comments
 
         var line: IToken[];
         var next = this.stream.peek();
 
         switch (next.category) {
             case TokenCategory.EOL:
+            case TokenCategory.Comment:
                 this.processEmptyLine();
                 break;
             case TokenCategory.Preprocessor:
                 if (next.lexeme === "END") {
                     this.processEnd();
                 } else {
-                    line = this.stream.readToEOL();
-                    this.context.emit(line);
+                    this.processCommentLine();
                 }
                 break;
             default:
-                line = this.stream.readToEOL();
-                this.context.emit(line);
+                this.processCommentLine();
                 break;
         }
     }
@@ -42,8 +43,14 @@ export class Filter extends PassBase {
 
     private processEnd() {
 
-        var line = this.stream.readToEOL();
-        this.context.emit(line);
+        this.processCommentLine();
         this.stream.position = this.stream.tokens.length;
+    }
+
+    private processCommentLine() {
+
+        let line = this.stream.readToEOL();
+        line = line.filter(t => t.category !== TokenCategory.Comment);
+        this.context.emit(line);
     }
 }
