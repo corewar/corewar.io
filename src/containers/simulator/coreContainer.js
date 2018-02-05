@@ -5,14 +5,15 @@ import CoreInterface from '../../components/simulator/coreInterface'
 
 import {
   init,
-  getCoreInstructions
+  getCoreInstructions,
+  republish
 } from '../../actions/simulatorActions'
 
 import {
   removeWarrior
 } from '../../actions/parserActions'
 
-const CoreContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, parseResults, maxTasks, removeWarrior }) => (
+const CoreContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, republish, parseResults, maxTasks, removeWarrior }) => (
     <CoreInterface
       coreSize={coreSize}
       getCoreInstructions={getCoreInstructions}
@@ -20,6 +21,7 @@ const CoreContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised
       isInitialised={isInitialised}
       parseResults={parseResults}
       maxTasks={maxTasks}
+      republish={republish}
       init={init}
       removeWarrior={removeWarrior}
       />
@@ -37,6 +39,7 @@ export default connect(
   mapStateToProps,
   {
     init,
+    republish,
     getCoreInstructions,
     removeWarrior
   }

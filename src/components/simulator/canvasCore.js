@@ -12,10 +12,20 @@ class CanvasCore extends Component {
 
     this.getCoreInstructions = props.getCoreInstructions
     this.reset = props.init
+    this.republish = props.republish
 
     this.messages = []
     this.lastCoordinates = null
     this.hasLoaded = false
+
+    this.state = {
+      height: 0,
+      width: 0
+    }
+
+    // oddly needs to happen here as unmount can happen AFTER a new instance has mounted :s
+    PubSub.unsubscribe('CORE_ACCESS')
+    PubSub.unsubscribe('RESET_CORE')
 
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
       this.messages = this.messages.concat(data)
@@ -26,44 +36,26 @@ class CanvasCore extends Component {
       this.init()
     })
 
-    this.state = {
-      height: 0,
-      width: 0
-    }
-
   }
-
-  componentDidUpdate(prevProps) {
-    // if we got a new set of core options and the coreSize changed we need to redraw
-    // the grid with new cell sizes
-    if(this.props.coreSize !== prevProps.coreSize || !this.hasLoaded) {
-      // this.cellSize = this.calculateCellSize()
-      // this.cellsWide = Math.floor(this.containerWidth / this.cellSize)
-      // this.cellsHigh = Math.floor(this.containerHeight / this.cellSize)
-      // this.renderGrid()
-      this.hasLoaded = true
-      this.init()
-      this.reset()
-    }
-  }
-
-  // debounce(callback, wait, context = this) {
-  //   let timeout = null
-  //   let callbackArgs = null
-
-  //   const later = () => callback.apply(context, callbackArgs)
-
-  //   return function() {
-  //     callbackArgs = arguments
-  //     clearTimeout(timeout)
-  //     timeout = setTimeout(later, wait)
-  //   }
-  // }
 
   init() {
 
+    this.calculateCoreDimensions()
+
+    this.renderGrid()
+
+    this.republish()
+
+  }
+
+  calculateCoreDimensions() {
     const width = this.canvasContainer.clientWidth
     const height = this.canvasContainer.clientHeight
+
+    // we get a brief period of zero values when switching display mode, during unmount/mount
+    if(width === 0 && height === 0) {
+      return
+    }
 
     this.setState({
       width: width,
@@ -76,9 +68,6 @@ class CanvasCore extends Component {
     this.cellSize = this.calculateCellSize()
     this.cellsWide = Math.floor(this.containerWidth / this.cellSize)
     this.cellsHigh = Math.floor(this.containerHeight / this.cellSize)
-
-    this.renderGrid()
-
   }
 
   componentDidMount() {
@@ -87,15 +76,23 @@ class CanvasCore extends Component {
 
     this.interactiveCanvas.addEventListener("click", e => this.canvasClick(e))
 
-    //window.addEventListener('resize', this.debounce(this.init, 1000))
+    window.addEventListener('resize', () => this.redraw())
 
     window.requestAnimationFrame(() => this.renderMessages())
 
   }
 
-  componentWillUnmount() {
-    PubSub.unsubscribe('CORE_ACCESS')
-    PubSub.unsubscribe('RESET_CORE')
+  componentDidUpdate(prevProps) {
+    // if we got a new set of core options and the coreSize changed we need to redraw
+    // the grid with new cell sizes
+    if(this.props.coreSize !== prevProps.coreSize || !this.hasLoaded) {
+      this.hasLoaded = true
+      this.init()
+    }
+  }
+
+  redraw() {
+    this.init()
   }
 
   renderGrid() {
@@ -193,7 +190,6 @@ class CanvasCore extends Component {
             break
         default:
             throw Error("Cannot render unknown CoreAccessType: " + event.accessType)
-            return
     }
   }
 
@@ -266,8 +262,6 @@ class CanvasCore extends Component {
   }
 
   calculateCellSize() {
-
-    const maxDimension = this.containerWidth > this.containerHeight ? this.containerWidth : this.containerHeight
 
     const area = this.containerWidth * this.containerHeight
     const n = this.props.coreSize
@@ -445,7 +439,9 @@ class CanvasCore extends Component {
 
 CanvasCore.PropTypes = {
   coreSize: PropTypes.number.isRequired,
-  getCoreInstructions: PropTypes.func
+  getCoreInstructions: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired,
+  republish: PropTypes.func.isRequired
 }
 
 export default CanvasCore
