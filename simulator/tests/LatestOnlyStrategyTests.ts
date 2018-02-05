@@ -26,7 +26,7 @@ describe("LatestOnlyStrategy", () => {
         expect(strategy.dequeue()).to.be.deep.equal(expected);
     });
 
-    it("returns null if dequeued a second time without queueing", () => {
+    it("returns same message if dequeued a second time without queueing", () => {
 
         const strategy = new LatestOnlyStrategy();
 
@@ -34,6 +34,18 @@ describe("LatestOnlyStrategy", () => {
 
         strategy.queue(message);
         strategy.dequeue();
+
+        expect(strategy.dequeue()).to.be.deep.equal(message);
+    });
+
+    it("returns null if cleared and then dequeued", () => {
+
+        const strategy = new LatestOnlyStrategy();
+
+        const unexpected = { type: MessageType.CoreAccess, payload: {} };
+
+        strategy.queue(unexpected);
+        strategy.clear();
 
         expect(strategy.dequeue()).to.be.null;
     });

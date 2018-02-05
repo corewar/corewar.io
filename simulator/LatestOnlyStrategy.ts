@@ -22,8 +22,12 @@ export class LatestOnlyStrategy implements IPublishStrategy {
         }
 
         const message = this.message;
-        this.message = null;
 
         return message;
+    }
+
+    public clear(): void {
+
+        this.message = null;
     }
 }

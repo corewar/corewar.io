@@ -10,6 +10,7 @@ import { ModeType } from "../interface/IOperand";
 import { IInstruction } from "../interface/IInstruction";
 import { ICore } from "../interface/ICore";
 import { IOptions } from "../interface/IOptions";
+import { IPublisher } from "../interface/IPublisher";
 
 "use strict";
 
@@ -19,6 +20,17 @@ export default class TestHelper {
         line: 1,
         char: 1
     };
+
+    public static buildPublisher(): IPublisher {
+
+        return {
+            queue: sinon.stub(),
+            publish: sinon.stub(),
+            republish: sinon.stub(),
+            clear: sinon.stub(),
+            setPublishProvider: sinon.stub()
+        };
+    }
 
     public static buildParseResult(tokens: IToken[]): IParseResult {
         return {

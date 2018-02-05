@@ -13,6 +13,7 @@ import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore"
 import Defaults from "../Defaults";
 import { MessageType } from "../interface/IMessage";
 import { IPublisher } from "../interface/IPublisher";
+import TestHelper from "./TestHelper";
 
 describe("Core", () => {
 
@@ -51,11 +52,7 @@ describe("Core", () => {
 
     beforeEach(() => {
 
-        publisher = {
-            queue: sinon.stub(),
-            publish: sinon.stub(),
-            setPublishProvider: sinon.stub()
-        };
+        publisher = TestHelper.buildPublisher();
     });
 
     it("Initialises core to the required size and provides accessor methods", () => {

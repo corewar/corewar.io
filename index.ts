@@ -127,12 +127,7 @@ class Api {
         this.simulator.initialise(options, parseResults);
     }
 
-    public getAt(address: number): ICoreLocation {
-
-        return clone(this.core.getWithInfoAt(address));
-    }
-
-    public step(steps?: number) : boolean {
+    public step(steps?: number): boolean {
 
         return this.simulator.step(steps);
     }
@@ -147,14 +142,20 @@ class Api {
         return this.parser.parse(redcode);
     }
 
-    public serialise(tokens: IToken[]) : string {
+    public serialise(tokens: IToken[]): string {
 
         return this.serialiser.serialise(tokens);
     }
 
-    public getWithInfoAt(address: number) : ICoreLocation {
+    //TODO I think we should rename this to getAt
+    public getWithInfoAt(address: number): ICoreLocation {
 
-        return this.core.getWithInfoAt(address);
+        return clone(this.core.getWithInfoAt(address));
+    }
+
+    public republish(): void {
+
+        this.publisher.republish();
     }
 }
 

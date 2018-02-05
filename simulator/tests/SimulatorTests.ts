@@ -100,11 +100,7 @@ describe("Simulator", () => {
             validate: sinon.stub()
         };
 
-        publisher = {
-            queue: sinon.stub(),
-            publish: sinon.stub(),
-            setPublishProvider: sinon.stub()
-        };
+        publisher = TestHelper.buildPublisher();
 
         simulator = new Simulator(
             core,
@@ -469,4 +465,11 @@ describe("Simulator", () => {
             }
         });
     });
+
+    it("clears Publisher on initialise", () => {
+
+        simulator.initialise(clone(Defaults), []);
+
+        expect(publisher.clear).to.have.been.called;
+    })
 });
