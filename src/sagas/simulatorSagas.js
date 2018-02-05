@@ -16,6 +16,8 @@ import {
   RUN_ENDED,
   FINISH_REQUESTED,
   START_REQUESTED,
+  REPUBLISH,
+  REPUBLISH_REQUESTED,
   GET_CORE_INSTRUCTIONS,
   GET_CORE_INSTRUCTIONS_REQUESTED,
   SET_CORE_FOCUS,
@@ -108,6 +110,13 @@ export function* renderCoreSaga() {
 
 export function* pauseSaga() {
   yield put({ type: PAUSE })
+}
+
+export function* republishSaga() {
+
+  yield call([corewar, corewar.republish])
+
+  yield put({ type: REPUBLISH })
 }
 
 export function* getCoreOptionsFromState() {
@@ -231,6 +240,7 @@ export const simulatorWatchers = [
   takeEvery(PAUSE_REQUESTED, pauseSaga),
   takeLatest(FINISH_REQUESTED, finishSaga),
   takeLatest(RUN_REQUESTED, runSaga),
+  takeLatest(REPUBLISH_REQUESTED, republishSaga),
   takeLatest(SET_CORE_OPTIONS_REQUESTED, setCoreOptionsSaga),
   takeLatest(GET_CORE_INSTRUCTIONS_REQUESTED, getCoreInstructionsSaga),
   takeLatest(SET_PROCESS_RATE_REQUESTED, setProcessRateSaga),

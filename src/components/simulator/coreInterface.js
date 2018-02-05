@@ -40,12 +40,13 @@ const CanvasWrapper = styled.section`
   }
 `
 
-const CoreInterface = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, parseResults, maxTasks, removeWarrior }) => (
+const CoreInterface = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, parseResults, maxTasks, removeWarrior, republish }) => (
   <CanvasWrapper>
     <Warriors parseResults={parseResults} maxTasks={maxTasks} removeWarrior={removeWarrior} />
     <ErrorBoundary>
       <CanvasCore
         init={init}
+        republish={republish}
         coreSize={coreSize}
         getCoreInstructions={getCoreInstructions}
         isRunning={isRunning}
