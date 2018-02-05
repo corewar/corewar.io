@@ -27,11 +27,14 @@ export class PerKeyStrategy implements IPublishStrategy {
             return null;
         }
 
-        this.payloads = {};
-
         return {
             type: this.type,
             payload: payloads
         };
+    }
+
+    public clear(): void {
+
+        this.payloads = {};
     }
 }

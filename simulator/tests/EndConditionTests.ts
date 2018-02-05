@@ -55,11 +55,7 @@ describe("EndCondition", () => {
     let publisher: IPublisher;
 
     beforeEach(() => {
-        publisher = {
-            queue: sinon.stub(),
-            publish: sinon.stub(),
-            setPublishProvider: sinon.stub()
-        };
+        publisher = TestHelper.buildPublisher();
     });
 
     it("returns false if there are multiple active warriors and the maximum number of cycles has not elapsed", () => {

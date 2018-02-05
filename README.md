@@ -22,23 +22,38 @@ The corewar variable will initialise a new instance of the Api class ready for u
 
 ## API
 
-At the moment, the API exposed is still in flux, we anticipate the following endpoints.
+The API exposes the following functions and pubsub events:
 
-### parse(document: string, options?: IParseOptions): IParseResult
+### parse(redcode: string): IParseResult
 
-Parse a redcode document and return an IParse result which consists of the tokenised program and any associated messages.
+Parse a redcode document and return an IParseResult which consists of the tokenised program and any associated messages.
 
-### initialiseSimulator(standardId: number, parseResult: IParseResult)
+### initialiseSimulator(options: IOptions, parseResults: IParseResult[], messageProvider: IPublishProvider)
 
-Setup the simulator for a specific standard and parseResult (parsed redcode)
+Setup the simulator for a specific standard and parseResult (parsed redcode).
+Allows a pubsub provider to be specified to receive Events (see below).
 
-### step()
+### step(steps?: number): boolean
 
-Step the simulator forward one cycle
+Step the simulator forward number of cycles specified by steps (default 1).
+Returns false if the round has ended.
 
 ### run()
 
 Run the simulator to the end of the match
+
+### getWithInfoAt(address: number): ICoreLocation
+
+Return the instruction at the specified core address.
+
+### serialise(tokens: IToken[]): string
+
+Serialises the array of tokens to a single, human readable string.
+
+### republish(): void
+
+Trigger a resending of all pubsub messages for the current round.
+This can be used to build up a picture of the current state of the simulator from scratch.
 
 ## Events
 
