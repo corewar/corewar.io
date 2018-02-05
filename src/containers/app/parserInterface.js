@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 import SourceCodeTextArea from '../../components/styledComponents/sourceCodeTextArea'
 import CompiledOutput from '../../components/styledComponents/compiledOutput'
-import TabletControls from '../parser/tabletControls'
 import MessagePanel from '../../components/parser/messagePanel'
 
 import { space } from '../../styles/theme'
@@ -34,7 +33,6 @@ const ParserInterface = ({ redcode, parse, currentParseResult, addWarrior }) => 
         {currentParseResult.warrior}
       </CompiledOutput>
     </ParserGrid>
-    <TabletControls />
     <MessagePanel messages={currentParseResult.messages} />
   </ParserContainer>
 )

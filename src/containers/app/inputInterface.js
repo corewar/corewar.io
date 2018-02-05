@@ -1,20 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 
 import SourceCodeTextArea from '../../components/styledComponents/sourceCodeTextArea'
 import MessagePanel from '../../components/parser/messagePanel'
+import { space } from '../../styles/theme'
 
 import {
   parse
 } from '../../actions/parserActions'
 
+const StyledInput = styled.div`
+  height: 100%;
+`
+
 const InputInterface = ({ redcode, parse, currentParseResult }) => (
-  <div>
+  <StyledInput>
     <SourceCodeTextArea
       value={redcode}
       handleChange={e => parse(e.target.value)} />
     <MessagePanel messages={currentParseResult && currentParseResult.messages} />
-  </div>
+  </StyledInput>
 )
 
 const mapStateToProps = state => ({

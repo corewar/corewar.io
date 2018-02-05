@@ -9,6 +9,7 @@ import Core from '../styledComponents/tablet/core'
 import Container from '../styledComponents/tablet/container'
 import CoreContainer from '../../containers/simulator/coreContainer'
 import SimulatorControls from '../../containers/simulator/simulatorControls'
+import MobileControls from '../../containers/parser/mobileControls'
 
 import { space } from '../../styles/theme'
 
@@ -22,24 +23,29 @@ const TabletLayout = () => (
   <TabletGrid>
     <SiteHeader isAuthenticated={false}/>
     <Container>
-      <Route exact path='/app/src' component={ParserWrapper} />
-      <Route exact path='/app/output' component={ParserWrapper} />
-      <Route exact path='/app/core' component={CoreWrapper} />
+      <Main>
+        <Route exact path='/app/src' component={ParserInterface} />
+        <Route exact path='/app/output' component={ParserInterface} />
+        <Route exact path='/app/core' component={CoreContainer} />
+      </Main>
+      <Route exact path='/app/src' component={MobileControls} />
+      <Route exact path='/app/output' component={MobileControls} />
+      <Route exact path='/app/core' component={SimulatorControls} />
     </Container>
   </TabletGrid>
 )
 
-const ParserWrapper = () => (
-  <Main>
-    <ParserInterface />
-  </Main>
-)
+// const ParserWrapper = () => (
+//   <Main>
+//     <ParserInterface />
+//   </Main>
+// )
 
-const CoreWrapper = () => (
-  <Core>
-    <CoreContainer />
-    <SimulatorControls />
-  </Core>
-)
+// const CoreWrapper = () => (
+//   <Core>
+//     <CoreContainer />
+//     <SimulatorControls />
+//   </Core>
+// )
 
 export default TabletLayout
