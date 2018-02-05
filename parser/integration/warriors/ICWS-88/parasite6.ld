@@ -1,5 +1,6 @@
-; Parasite6.s
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	1
 DAT.F	#0,	#4096
 JMN.B	$13,	@-1

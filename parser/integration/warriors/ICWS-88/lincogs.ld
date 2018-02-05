@@ -1,7 +1,6 @@
-; LinCoGs
-; Mark A.Durham
-; October 5, 1987
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 ADD.AB	#4,	$9
 JMP.B	$3,	$0

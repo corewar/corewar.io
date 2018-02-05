@@ -1,9 +1,6 @@
-;redcode
+;redcode-94
 ;name RotLD TNG
 ;author Nandor Sieben
-;Return of the Living Dead The Next Generation
-;assert MAXPROCESSES > 60
-;assert VERSION >= 60
 ORG	0
 SPL.B	$16,	$0
 SPL.B	$8,	$0

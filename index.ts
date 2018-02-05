@@ -51,6 +51,7 @@ import * as clone from "clone";
 import { ICoreLocation } from "./simulator/interface/ICoreLocation";
 import { LatestOnlyStrategy } from "./simulator/LatestOnlyStrategy";
 import { PerKeyStrategy } from "./simulator/PerKeyStrategy";
+import { MetaDataEmitter } from "./parser/MetaDataEmitter";
 
 class Api {
 
@@ -82,7 +83,8 @@ class Api {
             new DefaultPass(),
             new OrgPass(),
             new SyntaxCheck(),
-            new IllegalCommandCheck());
+            new IllegalCommandCheck(),
+            new MetaDataEmitter());
 
         this.publisher = new Publisher([
             new PerKeyStrategy(p => p.address),

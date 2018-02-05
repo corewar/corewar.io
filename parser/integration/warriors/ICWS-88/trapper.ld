@@ -1,6 +1,6 @@
-;      TRAPPER.S
-;      FRED B. WADE
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 JMP.B	$3,	$0
 DAT.F	#0,	#0

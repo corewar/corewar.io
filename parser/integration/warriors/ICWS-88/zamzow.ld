@@ -1,6 +1,6 @@
-;      ZAMZOW.S
-;      J. P. ZAMZOW
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 JMP.B	$7,	$0
 DAT.F	#0,	#0

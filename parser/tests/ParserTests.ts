@@ -31,15 +31,16 @@ describe("Parser",() => {
     var orgPass: IPass;
     var syntaxCheck: IPass;
     var illegalCommandCheck: IPass;
+    var metaDataEmitter: IPass;
 
     var parser: Parser;
 
     var calls: string[];
 
     var expected94Calls = [
-        "scan", "filter", "metaDataCollector", "for", "equCollector",
+        "scan", "metaDataCollector", "filter", "for", "equCollector",
         "equAnalyser", "equEmitter", "labelCollector", "labelEmitter",
-        "maths", "org", "default", "syntax"
+        "maths", "org", "default", "syntax", "metaDataEmitter"
     ];
 
     beforeEach(() => {
@@ -61,6 +62,7 @@ describe("Parser",() => {
         orgPass = fakePass("org");
         syntaxCheck = fakePass("syntax");
         illegalCommandCheck = fakePass("illegal");
+        metaDataEmitter = fakePass("metaDataEmitter");
 
         parser = new Parser(
             scanner,
@@ -76,7 +78,8 @@ describe("Parser",() => {
             defaultPass,
             orgPass,
             syntaxCheck,
-            illegalCommandCheck);
+            illegalCommandCheck,
+            metaDataEmitter);
     });
 
     function fakeScanner(name: string): IScanner {
@@ -138,7 +141,7 @@ describe("Parser",() => {
 
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(13);
+        expect(calls.length).to.be.equal(14);
 
         expect(calls).to.deep.equal(expected94Calls);
     });
@@ -149,11 +152,11 @@ describe("Parser",() => {
 
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(13);
+        expect(calls.length).to.be.equal(14);
 
         expect(calls[0]).to.be.equal("scan");
-        expect(calls[1]).to.be.equal("filter");
-        expect(calls[2]).to.be.equal("metaDataCollector");
+        expect(calls[1]).to.be.equal("metaDataCollector");
+        expect(calls[2]).to.be.equal("filter");
         expect(calls[3]).to.be.equal("equCollector");
         expect(calls[4]).to.be.equal("equAnalyser");
         expect(calls[5]).to.be.equal("equEmitter");
@@ -164,6 +167,7 @@ describe("Parser",() => {
         expect(calls[10]).to.be.equal("default");
         expect(calls[11]).to.be.equal("syntax");
         expect(calls[12]).to.be.equal("illegal");
+        expect(calls[13]).to.be.equal("metaDataEmitter");
     });
 
     it("Calls passes in correct order under ICWS'86",() => {
@@ -172,11 +176,11 @@ describe("Parser",() => {
 
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(13);
+        expect(calls.length).to.be.equal(14);
 
         expect(calls[0]).to.be.equal("scan");
-        expect(calls[1]).to.be.equal("filter");
-        expect(calls[2]).to.be.equal("metaDataCollector");
+        expect(calls[1]).to.be.equal("metaDataCollector");
+        expect(calls[2]).to.be.equal("filter");
         expect(calls[3]).to.be.equal("equCollector");
         expect(calls[4]).to.be.equal("equAnalyser");
         expect(calls[5]).to.be.equal("equEmitter");
@@ -187,8 +191,9 @@ describe("Parser",() => {
         expect(calls[10]).to.be.equal("default");
         expect(calls[11]).to.be.equal("syntax");
         expect(calls[12]).to.be.equal("illegal");
+        expect(calls[13]).to.be.equal("metaDataEmitter");
     });
-
+    
     it("Does not call syntax check if default pass fails",() => {
 
         var options = Parser.DefaultOptions;
@@ -199,8 +204,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(12);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 12));
+        expect(calls.length).to.be.equal(13);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 12).concat("metaDataEmitter"));
     });
 
     it("Does not call default pass check if org pass fails",() => {
@@ -213,8 +218,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(11);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 11));
+        expect(calls.length).to.be.equal(12);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 11).concat("metaDataEmitter"));
     });
 
     it("Does not call org pass if maths pass fails",() => {
@@ -227,8 +232,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(10);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 10));
+        expect(calls.length).to.be.equal(11);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 10).concat("metaDataEmitter"));
     });
 
     it("Does not call maths pass if label emitter fails",() => {
@@ -241,8 +246,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(9);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 9));
+        expect(calls.length).to.be.equal(10);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 9).concat("metaDataEmitter"));
     });
 
     it("Does not call label emitter if label collector fails",() => {
@@ -255,8 +260,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(8);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 8));
+        expect(calls.length).to.be.equal(9);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 8).concat("metaDataEmitter"));
     });
 
     it("Does not call label collector if equ emitter fails",() => {
@@ -269,8 +274,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(7);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 7));
+        expect(calls.length).to.be.equal(8);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 7).concat("metaDataEmitter"));
     });
 
     it("Does not call equ emitter if equ analyser fails",() => {
@@ -283,8 +288,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(6);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 6));
+        expect(calls.length).to.be.equal(7);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 6).concat("metaDataEmitter"));
     });
 
     it("Does not call equ analyser if equ collector fails",() => {
@@ -297,8 +302,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(5);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 5));
+        expect(calls.length).to.be.equal(6);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 5).concat("metaDataEmitter"));
     });
 
     it("Does not call equ collector if for pass fails",() => {
@@ -311,12 +316,26 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(4);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 4));
+        expect(calls.length).to.be.equal(5);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 4).concat("metaDataEmitter"));
     });
 
-    it("Does not call for pass if metadata collector pass fails",() => {
+    it("Does not call for pass if filter pass fails",() => {
 
+        var options = Parser.DefaultOptions;
+
+        errorIn(filter, "filter");
+
+        context.messages = [];
+        calls = [];
+        parser.parse("MOV 0, 1", options);
+
+        expect(calls.length).to.be.equal(4);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 3).concat("metaDataEmitter"));
+    });
+    
+    it("Does not call filter pass if metadata collector pass fails",() => {
+        
         var options = Parser.DefaultOptions;
 
         errorIn(metaDataCollector, "metaDataCollector");
@@ -326,21 +345,7 @@ describe("Parser",() => {
         parser.parse("MOV 0, 1", options);
 
         expect(calls.length).to.be.equal(3);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 3));
-    });
-    
-    it("Does not call meta data collector collector if filter pass fails",() => {
-        
-        var options = Parser.DefaultOptions;
-
-        errorIn(filter, "filter");
-
-        context.messages = [];
-        calls = [];
-        parser.parse("MOV 0, 1", options);
-
-        expect(calls.length).to.be.equal(2);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 2));
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 2).concat("metaDataEmitter"));
     });
 
     it("Does not call filter pass if scan fails",() => {
@@ -357,8 +362,8 @@ describe("Parser",() => {
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(1);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 1));
+        expect(calls.length).to.be.equal(2);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 1).concat("metaDataEmitter"));
     });
 
     it("Does call all passes regardless of raised warnings",() => {
@@ -382,13 +387,14 @@ describe("Parser",() => {
         warningIn(orgPass, "org");
         warningIn(defaultPass, "default");
         warningIn(syntaxCheck, "syntax");
+        warningIn(metaDataEmitter, "metaDataEmitter");
 
         context.messages = [];
         calls = [];
         parser.parse("MOV 0, 1", options);
 
-        expect(calls.length).to.be.equal(13);
-        expect(calls).to.deep.equal(expected94Calls.slice(0, 13));
+        expect(calls.length).to.be.equal(14);
+        expect(calls).to.deep.equal(expected94Calls.slice(0, 14));
     });
 
     it("Passes supplied options to each pass",() => {
@@ -417,6 +423,7 @@ describe("Parser",() => {
         expect(orgPass.process).to.have.been.calledWith(context, expected);
         expect(defaultPass.process).to.have.been.calledWith(context, expected);
         expect(syntaxCheck.process).to.have.been.calledWith(context, expected);
+        expect(metaDataEmitter.process).to.have.been.calledWith(context, expected);
     });
 
     it("Returns context tokens, messages and metaData in ParserResult",() => {

@@ -1,7 +1,6 @@
-;Death.s
-;by Mark A. Durham: July 21, 1988
-;United States of America
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 DJN.B	$0,	<7
 JMN.B	$-1,	$9

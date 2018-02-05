@@ -1,7 +1,6 @@
-;Slaver
-;by Gerald Frost
-;United States of America
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	7
 MOV.I	$3,	$-2
 JMP.B	$-1,	<-3

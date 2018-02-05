@@ -1,5 +1,6 @@
-;;; JUGGERNAUT: A program which moves through memory by copying itself.
-;;; See also: GEMINI
+;redcode-86
+;name Nameless
+;author Blameless
 ORG	2
 DAT.F	#0,	#7
 DAT.F	#0,	#13

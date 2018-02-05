@@ -1,6 +1,6 @@
-;      ROLLER.S
-;      M. PALUDAN
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 JMZ.B	$0,	<7
 CMP.I	$6,	@6

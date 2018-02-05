@@ -1,7 +1,6 @@
-;;; This is not intended to be a complete battle program.  Its only purpose
-;;; is to demonstrate a program's self-copying ability.
-;;;
-;;; See also: JUGGERNAUT.
+;redcode-86
+;name Nameless
+;author Blameless
 ORG	2
 DAT.F	#0,	#7
 DAT.F	#0,	#106

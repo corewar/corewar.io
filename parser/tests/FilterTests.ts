@@ -10,7 +10,7 @@ import { TestHelper } from "./TestHelper";
 
 describe("Filter", () => {
 
-    it("Does not modify tokens if no empty lines or END found", () => {
+    it("Does not modify tokens if no empty lines, comments or END found", () => {
 
         var context = new Context();
 
@@ -19,10 +19,6 @@ describe("Filter", () => {
                 category: TokenCategory.Comma,
                 position: { line: 1, char: 1 },
                 lexeme: ","
-            }, {
-                category: TokenCategory.Comment,
-                position: { line: 1, char: 1 },
-                lexeme: "; thsifdsakl dsj sdkljf s"
             }, {
                 category: TokenCategory.EOL,
                 position: { line: 1, char: 1 },
@@ -71,7 +67,7 @@ describe("Filter", () => {
         var pass = new Filter();
         var actual = pass.process(context, Parser.DefaultOptions);
 
-        expect(actual.tokens.length).to.be.equal(12);
+        expect(actual.tokens.length).to.be.equal(11);
         expect(actual.messages.length).to.be.equal(0);
 
         for (var i = 0; i < tokens.length; i++) {
@@ -86,6 +82,30 @@ describe("Filter", () => {
         var line3 = TestHelper.instruction(3, "", "ADD", ".BA", "#", "7", "", "", "", "");
 
         var expected = line1.concat(line3);
+
+        var context = new Context();
+        context.tokens = line1.concat(line2).concat(line3);
+
+        var pass = new Filter();
+        var actual = pass.process(context, Parser.DefaultOptions);
+
+        expect(actual.tokens.length).to.be.equal(expected.length);
+        expect(actual.messages.length).to.be.equal(0);
+
+        for (var i = 0; i < expected.length; i++) {
+
+            expect(actual.tokens[i]).to.deep.equal(expected[i]);
+        }
+    });
+
+    it("Removes comments from the output", () => {
+
+        var line1 = TestHelper.instruction(1, "", "MOV", "", "", "1", ",", "", "2", "; this is a comment");
+        var line2 = TestHelper.comment(2, "; comment on a line by itself");
+        var line3 = TestHelper.instruction(3, "", "ADD", ".BA", "#", "7", "", "", "", "");
+
+        var expected = line1.concat(line3);
+        expected.splice(4, 1); // Expect everything but the comments
 
         var context = new Context();
         context.tokens = line1.concat(line2).concat(line3);

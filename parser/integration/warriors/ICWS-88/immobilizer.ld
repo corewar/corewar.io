@@ -1,7 +1,6 @@
-;Immobilizer
-;by Bram Cohen
-;United States of America
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 SPL.B	$5,	$0
 JMP.B	$17,	$0

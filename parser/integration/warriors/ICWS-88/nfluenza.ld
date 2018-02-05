@@ -1,6 +1,6 @@
-;      NFLUENZA.S
-;      MORRISON CHANG
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 JMP.B	$4,	$0
 MOV.AB	#0,	$-2

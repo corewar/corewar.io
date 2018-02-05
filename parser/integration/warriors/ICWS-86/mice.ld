@@ -1,5 +1,6 @@
-; MICE:  Winner of the First Core War Tournament
-;	 by Chip Wendell
+;redcode-86
+;name Nameless
+;author Blameless
 ORG	1
 DAT.F	#0,	#0
 MOV.AB	#12,	$-1

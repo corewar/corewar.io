@@ -1,6 +1,6 @@
-;      PLAGUE.S
-;      R. PALUDAN
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 SPL.B	$13,	$0
 SPL.B	$12,	$0

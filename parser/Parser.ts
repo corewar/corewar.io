@@ -23,6 +23,7 @@ export class Parser implements IParser {
     private orgPass: IPass;
     private syntaxCheck: IPass;
     private illegalCommandCheck: IPass;
+    private metaDataEmitter: IPass;
 
     public static DefaultOptions: IParseOptions = {
         standard: Standard.ICWS94draft,
@@ -43,7 +44,8 @@ export class Parser implements IParser {
         defaultPass: IPass,
         orgPass: IPass,
         syntaxCheck: IPass,
-        illegalCommandCheck: IPass) {
+        illegalCommandCheck: IPass,
+        metaDataEmitter: IPass) {
 
         this.scanner = scanner;
         this.filter = filter;
@@ -59,6 +61,7 @@ export class Parser implements IParser {
         this.orgPass = orgPass;
         this.syntaxCheck = syntaxCheck;
         this.illegalCommandCheck = illegalCommandCheck;
+        this.metaDataEmitter = metaDataEmitter;
     }
 
     private noErrors(context: IContext): boolean {
@@ -74,10 +77,10 @@ export class Parser implements IParser {
         var context = this.scanner.scan(document, options);
 
         if (this.noErrors(context)) {
-            context = this.filter.process(context, options);
+            context = this.metaDataCollector.process(context, options);
         }
         if (this.noErrors(context)) {
-            context = this.metaDataCollector.process(context, options);
+            context = this.filter.process(context, options);
         }
         if (options.standard === Standard.ICWS94draft) {
             if (this.noErrors(context)) {
@@ -115,7 +118,8 @@ export class Parser implements IParser {
             if (this.noErrors(context)) {
                 context = this.illegalCommandCheck.process(context, options);
             }
-        }
+        }        
+        context = this.metaDataEmitter.process(context, options);
 
         return {
             metaData: context.metaData,

@@ -1,11 +1,9 @@
-;Sieve
-;by Dirk Wolff-Klammer
-;West Germany
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	1
 DAT.F	#0,	#0
 MOV.I	<9,	$16
-;
 JMZ.B	$6,	$8
 MOV.AB	#16,	$-3
 MOV.I	@-4,	<13

@@ -1,6 +1,6 @@
-;      MINIDSPR.S
-;      JON NEWMAN
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	4
 MOV.AB	#-3,	<3
 MOV.AB	#-3,	<2

@@ -1,3 +1,6 @@
+;redcode-94
+;name Nameless
+;author Blameless
 ORG	5
 DAT.F	#0,	#-1
 SUB.AB	#5,	$-1

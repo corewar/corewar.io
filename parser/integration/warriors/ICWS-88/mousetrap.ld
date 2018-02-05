@@ -1,6 +1,6 @@
-;      MOUSETRP.S
-;      BILL HAMAKER
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 MOV.AB	#-10,	@18
 SUB.F	$17,	@17

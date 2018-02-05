@@ -1,7 +1,6 @@
-;Dude
-;by John R. Perry
-;United States of America
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	4
 MOV.AB	#0,	$-1
 JMP.B	$-1,	$0

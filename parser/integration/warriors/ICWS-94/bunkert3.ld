@@ -1,6 +1,5 @@
 ;redcode-94
 ;name Bunker t3
-;kill Bunker
 ;author P.Kline
 ;strategy self-repair pair
 ORG	2
@@ -17,7 +16,7 @@ MOV.I	<-9,	<-8
 MOV.I	<-10,	<-9
 MOV.I	<-11,	<-10
 MOV.I	<-12,	<-11
-SPL.B	$1,	$0	; create 11 processes
+SPL.B	$1,	$0
 MOV.I	$-1,	$0
 SPL.B	$1,	$0
 MOV.I	$-1,	$0
@@ -43,15 +42,15 @@ DAT.F	$0,	$0
 DAT.F	$0,	$0
 DAT.F	$0,	$0
 DAT.F	$0,	$0
-SUB.A	#0,	#4000	; reset counter after fix
-SUB.BA	}6,	$-1	; sum partner's b-operands
-JMN.A	$3,	$-2	; they should total to zero
-MOV.I	$6,	>-20	; slow core-clear
-JMP.B	$-3,	{3	; go again, reset pointer
-MOV.I	$5,	{2	; zap partner's code
-SPL.B	$-6,	$1000	; reset self while partner dies
-MOV.I	<3993,	{3993	; repair partner's code
-JMP.B	$3992,	#2964	; restart partner
-DAT.F	<2667,	#50	; core-clear bomb
-DAT.F	#11,	#4011	; repair pointers
+SUB.A	#0,	#4000
+SUB.BA	}6,	$-1
+JMN.A	$3,	$-2
+MOV.I	$6,	>-20
+JMP.B	$-3,	{3
+MOV.I	$5,	{2
+SPL.B	$-6,	$1000
+MOV.I	<3993,	{3993
+JMP.B	$3992,	#2964
+DAT.F	<2667,	#50
+DAT.F	#11,	#4011
 DAT.F	$0,	$0

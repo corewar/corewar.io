@@ -1,6 +1,6 @@
-;      OGRE.S
-;      JOHN KIPLING LEWIS
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 JMP.B	$3,	$0
 JMP.B	$0,	$0

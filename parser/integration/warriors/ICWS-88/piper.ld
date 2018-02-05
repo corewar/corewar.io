@@ -1,5 +1,6 @@
-;      PIPER.S
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	0
 ADD.AB	#65,	$9
 MOV.I	$8,	@9

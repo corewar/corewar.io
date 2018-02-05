@@ -1,7 +1,6 @@
-;Fydgitr
-;by Kenneth W. Clapp
-;United States of America
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	29
 DAT.F	#0,	#0
 DAT.F	#0,	#0
@@ -51,10 +50,8 @@ DAT.F	#0,	#1
 DAT.F	#0,	#1
 DAT.F	#0,	#1
 DAT.F	#0,	#1
-;
 DAT.F	#0,	#1
 DAT.F	#0,	#1
 DAT.F	#0,	#1
 DAT.F	#0,	#1
-;
 DAT.F	#0,	#1

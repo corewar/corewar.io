@@ -1,7 +1,6 @@
-;Wasp Nest
-;by Alexander Burtzev
-;Union of Soviet Socialist Republics
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	20
 MOV.I	$19,	<18
 MOV.I	$9,	<17
@@ -25,7 +24,6 @@ JMP.B	$-1,	$0
 JMP.B	$-1,	$0
 MOV.AB	#-223,	$-1
 MOV.AB	#0,	$-12
-;
 ADD.AB	#-1407,	$-4
 SPL.B	$10,	$0
 SPL.B	$10,	$0

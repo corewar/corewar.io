@@ -1,6 +1,6 @@
-;      KWC72C.S
-;      KENNETH CLAPP
-;
+;redcode-88
+;name Nameless
+;author Blameless
 ORG	26
 DAT.F	#0,	#0
 DAT.F	#0,	#0

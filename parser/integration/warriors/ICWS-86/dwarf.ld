@@ -1,4 +1,6 @@
-;;; DWARF, as originally described by A.K. Dewdney.
+;redcode-86
+;name Nameless
+;author Blameless
 ORG	1
 DAT.F	#0,	#0
 ADD.AB	#5,	$-1

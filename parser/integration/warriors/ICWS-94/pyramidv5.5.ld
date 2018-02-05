@@ -2,9 +2,6 @@
 ;name Pyramid v5.5
 ;author Michael Constant
 ;strategy  quick-vamp -> vampire
-;macro
-
-; ----------- Quick-Scan Parameters (see diagrams at end of program) -------
 ORG	2
 SPL.B	$91,	$0
 JMP.B	#0,	<-15
