@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { colour } from '../../../styles/theme'
+import { colour } from './theme'
 
 const Controls = styled.div`
   grid-column: 1 / 5;

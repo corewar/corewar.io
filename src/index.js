@@ -14,7 +14,7 @@ import 'typeface-anonymous-pro'
 
 import './cssreset.css'
 
-import { font, colour } from './styles/theme'
+import { font, colour } from './features/common/theme'
 
 const Wrapper = styled.div`
   min-width: 360px;

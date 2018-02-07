@@ -2,7 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 
-import SiteHeader from './siteHeader'
+import SiteHeader from '../topbar/siteHeader'
 import ParserInterface from '../parser/combinedContainer'
 import SimulatorContainer from '../simulator/simulatorContainer'
 import SimulatorControls from '../simulator/controlsContainer'

@@ -2,8 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 
-import SiteHeader from './siteHeader'
-
+import SiteHeader from '../topbar/siteHeader'
 import TabLink from '../topbar/tabLink'
 
 import InputInterface from '../parser/inputContainer'
