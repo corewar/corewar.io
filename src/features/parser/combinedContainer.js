@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
-import SourceCodeTextArea from '../../components/styledComponents/sourceCodeTextArea'
-import CompiledOutput from '../../components/styledComponents/compiledOutput'
+import SourceCodeTextArea from './sourceCodeTextArea'
+import CompiledOutput from './compiledOutput'
 import MessagePanel from './messagePanel'
 
 import { space } from '../../styles/theme'

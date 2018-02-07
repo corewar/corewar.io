@@ -2,14 +2,41 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Octicon from 'react-octicon'
+import styled from 'styled-components'
 
-import Controls from '../../components/styledComponents/mobile/controls'
-import Button from  '../../components/styledComponents/button'
-import ParseStatusButton from  '../../components/styledComponents/parseStatusButton'
+import Button from  '../common/button'
+import ParseStatusButton from  '.parseStatusButton'
+
+import { media } from  '../common/mediaQuery'
+import { colour, space } from '../common/theme'
 
 import {
   addWarrior
-} from './../../actions/parserActions'
+} from './actions'
+
+const Controls = styled.div`
+
+  grid-row-start: 2;
+  border: none;
+
+  ${media.phone`
+    border-top: 1px solid ${colour.grey};
+    background-color: ${colour.lightbg};
+    grid-row-start: 4;
+  `}
+  ${media.tablet`
+    border-top: 1px solid ${colour.grey};
+    background-color: ${colour.lightbg};
+  `}
+  ${media.desktop`
+    border-top: 1px solid ${colour.grey};
+    background-color: ${colour.lightbg};
+  `}
+
+  display: flex;
+  flex-direction: row;
+  height: calc(${space.controls} - 1px);
+`
 
 const MobileControls = ({ addWarrior, currentParseResult }) => (
   <Controls>

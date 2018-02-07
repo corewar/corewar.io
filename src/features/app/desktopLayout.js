@@ -4,12 +4,19 @@ import styled from 'styled-components'
 
 import SiteHeader from '../topbar/siteHeader'
 import CompleteInterface from './appContainer'
-import Main from '../../components/styledComponents/desktop/main'
+
+import { colour, space } from '../common/theme'
 
 const DesktopGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 48px 1fr;
+`
+
+const Main = styled.main`
+  grid-row-start: 2;
+  height: calc(100vh - ${space.header});
+  background-color: ${colour.defaultbg};
 `
 
 const DesktopLayout = () => (
