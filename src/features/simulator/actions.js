@@ -1,5 +1,5 @@
 
-import { action } from './creator'
+import { action } from '../../actions/creator'
 
 export const INIT = 'simulator/INIT'
 export const STEP = 'simulator/STEP'

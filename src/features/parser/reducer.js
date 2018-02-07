@@ -2,7 +2,7 @@ import {
   PARSE,
   ADD_WARRIOR,
   REMOVE_WARRIOR
-} from './../actions/parserActions'
+} from './actions'
 
 // state
 const initialState = {

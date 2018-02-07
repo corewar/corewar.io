@@ -1,4 +1,4 @@
-import { action } from './creator'
+import { action } from '../../actions/creator'
 
 export const PARSE = 'parser/PARSE'
 export const ADD_WARRIOR = 'parser/ADD_WARRIOR'

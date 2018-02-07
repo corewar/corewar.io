@@ -1,5 +1,5 @@
 import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
-import { insertItem, removeItem } from './../helpers/arrayHelpers'
+import { insertItem, removeItem } from '../../helpers/arrayHelpers'
 
 import { corewar } from 'corewar'
 
@@ -10,10 +10,10 @@ import {
   ADD_WARRIOR_REQUESTED,
   REMOVE_WARRIOR,
   REMOVE_WARRIOR_REQUESTED
-} from './../actions/parserActions'
+} from './actions'
 
-import { getParserState } from './../reducers/parserReducers'
-import { pauseSaga, getCoreOptionsFromState, initialiseCore } from './simulatorSagas'
+import { getParserState } from './reducer'
+import { pauseSaga, getCoreOptionsFromState, initialiseCore } from '../simulator/sagas'
 
 // sagas
 export function* parseSaga({ redcode }) {

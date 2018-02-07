@@ -25,11 +25,11 @@ import {
   SET_PROCESS_RATE_REQUESTED,
   SET_CORE_OPTIONS,
   SET_CORE_OPTIONS_REQUESTED
-} from './../actions/simulatorActions'
+} from './actions'
 
-import { getParserState } from './../reducers/parserReducers'
-import { getSimulatorState } from './../reducers/simulatorReducers'
-import { getCoreOptions } from './coreOptions'
+import { getParserState } from '../parser/reducer'
+import { getSimulatorState } from './reducers'
+import { getCoreOptions } from '../../sagas/coreOptions'
 
 // oddities
 const roundProgressChannel = channel()

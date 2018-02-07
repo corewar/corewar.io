@@ -1,9 +1,9 @@
 import React from 'react'
 import Media from 'react-media'
 
-import MobileLayout from '../../components/app/mobileLayout'
-import TabletLayout from '../../components/app/tabletLayout'
-import DesktopLayout from '../../components/app/desktopLayout'
+import MobileLayout from './mobileLayout'
+import TabletLayout from './tabletLayout'
+import DesktopLayout from './desktopLayout'
 
 import { sizes } from '../../styles/mediaQuery'
 

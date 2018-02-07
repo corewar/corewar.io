@@ -9,7 +9,7 @@ import {
   SET_CORE_FOCUS,
   SET_PROCESS_RATE,
   SET_CORE_OPTIONS
-} from './../actions/simulatorActions'
+} from './actions'
 
 // state
 const initialState = {
