@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { sourceCode } from '../../styles/sourceCode'
+import { sourceCode } from '../common/sourceCode'
 
 import { space } from '../common/theme'
 

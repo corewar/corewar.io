@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 import Octicon from 'react-octicon'
 
-import SourceCodeTextArea from '../styledComponents/sourceCodeTextArea'
+import SourceCodeTextArea from '../parser/sourceCodeTextArea'
 import CompiledOutput from '../parser/compiledOutput'
 import Controls from '../common/headerControls'
 import SimulatorContainer from '../simulator/simulatorContainer'

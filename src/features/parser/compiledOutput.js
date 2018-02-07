@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
-import { sourceCode } from '../../styles/sourceCode'
-
+import { sourceCode } from '../common/sourceCode'
 import { colour, space } from '../common/theme'
 
 const CompiledOutput = styled.pre`

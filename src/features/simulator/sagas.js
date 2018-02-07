@@ -28,7 +28,7 @@ import {
 } from './actions'
 
 import { getParserState } from '../parser/reducer'
-import { getSimulatorState } from './reducers'
+import { getSimulatorState } from './reducer'
 import { getCoreOptions } from '../../sagas/coreOptions'
 
 // oddities

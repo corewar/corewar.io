@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import * as PubSub from 'pubsub-js'
 
-import { colour } from '../../styles/theme'
+import { colour } from '../common/theme'
 
 class CanvasCore extends Component {
 

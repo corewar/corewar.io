@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import CanvasCore from './canvasCore'
-import ErrorBoundary from './../app/errorBoundary'
+import Core from './core'
+import ErrorBoundary from '../common/errorBoundary'
 import Warriors from './warriors'
 
 import { colour } from  '../common/theme'
@@ -44,7 +44,7 @@ const CoreInterface = ({ coreSize, getCoreInstructions, isRunning, isInitialised
   <CanvasWrapper>
     <Warriors parseResults={parseResults} maxTasks={maxTasks} removeWarrior={removeWarrior} />
     <ErrorBoundary>
-      <CanvasCore
+      <Core
         init={init}
         republish={republish}
         coreSize={coreSize}

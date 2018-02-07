@@ -4,19 +4,28 @@ import styled from 'styled-components'
 
 import SiteHeader from './siteHeader'
 import ParserInterface from '../parser/combinedContainer'
-import Main from '../styledComponents/tablet/main'
-import Core from '../styledComponents/tablet/core'
-import Container from '../styledComponents/tablet/container'
 import SimulatorContainer from '../simulator/simulatorContainer'
 import SimulatorControls from '../simulator/controlsContainer'
 import MobileControls from '../parser/controlsContainer'
 
-import { space } from '../common/theme'
+import { colour, space } from '../common/theme'
 
 const TabletGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: ${space.header} 1fr;
+`
+
+const Main = styled.main`
+  height: calc(100vh - ${space.controls} - ${space.header});
+  background-color: ${colour.defaultbg};
+`
+
+const Container = styled.div`
+  grid-row-start: 2;
+  display: grid;
+  grid-template-rows: 1fr ${space.controls};
+  grid-template-columns: 1fr;
 `
 
 const TabletLayout = () => (
