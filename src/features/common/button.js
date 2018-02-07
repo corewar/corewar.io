@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import { colour } from '../../styles/theme'
+import { colour } from './theme'
 
 const Button = styled.button.attrs({
   onClick: props => props.enabled ? props.handleClick : null

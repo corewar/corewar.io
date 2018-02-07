@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { colour, space, font } from '../../styles/theme'
-import { media } from '../../styles/mediaQuery'
+import { colour, space, font } from '../common/theme'
+import { media } from '../common/mediaQuery'
 
 const ParseMessageWrapper = styled.div`
   ${props => props.messages && props.messages.length > 0 ? `display: block;` : `display: none;`}

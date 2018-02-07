@@ -4,16 +4,16 @@ import styled from 'styled-components'
 import Octicon from 'react-octicon'
 
 import SourceCodeTextArea from '../styledComponents/sourceCodeTextArea'
-import CompiledOutput from '../styledComponents/compiledOutput'
-import Controls from '../styledComponents/desktop/controls'
+import CompiledOutput from '../parser/compiledOutput'
+import Controls from '../common/headerControls'
 import SimulatorContainer from '../simulator/simulatorContainer'
 import Button from '../common/button'
-import ParseStatusButton from '../styledComponents/parseStatusButton'
+import ParseStatusButton from '../parser/parseStatusButton'
 import SimulatorControls from '../simulator/controlsContainer'
 import Instructions from '../simulator/instructions'
 import MessagePanel from '../parser/messagePanel'
 
-import { space } from '../../styles/theme'
+import { space } from '../common/theme'
 
 import {
   parse,

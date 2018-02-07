@@ -11,7 +11,7 @@ import SimulatorContainer from '../simulator/simulatorContainer'
 import SimulatorControls from '../simulator/controlsContainer'
 import MobileControls from '../parser/controlsContainer'
 
-import { space } from '../../styles/theme'
+import { space } from '../common/theme'
 
 const TabletGrid = styled.div`
   display: grid;

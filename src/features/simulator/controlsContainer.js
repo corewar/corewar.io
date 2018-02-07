@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import FontAwesomeButton from './fontAwesomeButton'
-import Controls from '../../components/styledComponents/mobile/controls'
+import Controls from '../common/controls'
 import SpeedControl from './speedControl'
 
 import {

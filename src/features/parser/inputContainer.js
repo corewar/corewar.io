@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import SourceCodeTextArea from './sourceCodeTextArea'
 import MessagePanel from './messagePanel'
-import { space } from '../../styles/theme'
+import { space } from '../common/theme'
 
 import {
   parse

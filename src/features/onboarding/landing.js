@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Octicon from 'react-octicon'
 
-import { colour, font, space } from '../../styles/theme'
+import { colour, font, space } from '../common/theme'
 
 import ChipHead from '../../img/corewarx12.gif'
 

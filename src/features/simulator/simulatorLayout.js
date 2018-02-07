@@ -5,8 +5,8 @@ import CanvasCore from './canvasCore'
 import ErrorBoundary from './../app/errorBoundary'
 import Warriors from './warriors'
 
-import { colour } from  '../../styles/theme'
-import { media } from  '../../styles/mediaQuery'
+import { colour } from  '../common/theme'
+import { media } from  '../common/mediaQuery'
 
 const CanvasWrapper = styled.section`
 

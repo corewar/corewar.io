@@ -1,6 +1,6 @@
 import Button from './button'
 
-import { colour } from '../../styles/theme'
+import { colour } from '../common/theme'
 
 const ParseStatusButton = Button.extend`
   ${props => props.messages !== null && `color: ${getStatusColour(props.messages)}`};

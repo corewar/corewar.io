@@ -5,10 +5,10 @@ import styled from 'styled-components'
 import Logo from './logo'
 import Login from './login'
 import UserInfo from './userInfo'
-import TabLink from '../styledComponents/tabLink'
+import TabLink from './tabLink'
 
-import { media } from '../../styles/mediaQuery'
-import { colour } from '../../styles/theme'
+import { media } from '../common/mediaQuery'
+import { colour } from '../common/theme'
 
 const Header = styled.header`
   display: grid;

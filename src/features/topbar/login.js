@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { colour, space } from '../../styles/theme'
-import { media } from '../../styles/mediaQuery'
+import { colour, space } from '../common/theme'
+import { media } from '../common/mediaQuery'
 
 import UserInfo from './userInfo'
-import HeaderLink from '../styledComponents/headerLink'
+import HeaderLink from './headerLink'
 
 const LoginModule = styled.div`
 

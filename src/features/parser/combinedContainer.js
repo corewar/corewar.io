@@ -6,7 +6,7 @@ import SourceCodeTextArea from './sourceCodeTextArea'
 import CompiledOutput from './compiledOutput'
 import MessagePanel from './messagePanel'
 
-import { space } from '../../styles/theme'
+import { space } from '../common/theme'
 
 import {
   parse

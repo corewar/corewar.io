@@ -6,7 +6,7 @@ import { List } from 'immutable'
 import * as PubSub from 'pubsub-js'
 import Octicon from 'react-octicon'
 
-import { colour, space, font } from '../../styles/theme'
+import { colour, space, font } from '../common/theme'
 
 const WarriorContainer = styled.div`
   display: grid;

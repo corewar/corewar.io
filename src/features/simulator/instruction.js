@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { ModifierType, ModeType, OpcodeType } from './../../helpers/coreEnums'
 
-import { colour, font, space } from '../../styles/theme'
+import { colour, font, space } from '../common/theme'
 
 const Location = styled.div`
   flex: 1;

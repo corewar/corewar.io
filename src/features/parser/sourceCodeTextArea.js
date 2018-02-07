@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { sourceCode } from '../../styles/sourceCode'
 
-import { space } from '../../styles/theme'
+import { space } from '../common/theme'
 
 const SourceCodeTextArea = styled.textarea.attrs({
   // we can define static props

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-import { colour } from '../../styles/theme'
+import { colour } from '../common/theme'
 
 const HeaderLink = styled(Link)`
   color: ${colour.white};

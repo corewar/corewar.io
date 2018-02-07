@@ -5,7 +5,7 @@ import MobileLayout from './mobileLayout'
 import TabletLayout from './tabletLayout'
 import DesktopLayout from './desktopLayout'
 
-import { sizes } from '../../styles/mediaQuery'
+import { sizes } from '../common/mediaQuery'
 
 const App = () => (
   <div>

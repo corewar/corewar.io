@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { font, colour, space } from '../../styles/theme'
+import { font, colour, space } from '../common/theme'
 
 const Container = styled.div`
   ${props => !props.visible && `display: none;`};
@@ -16,7 +16,6 @@ const Container = styled.div`
   ul {
     display: none;
   }
-
 
   &:hover {
     cursor: ${props => props.enabled && `pointer`};

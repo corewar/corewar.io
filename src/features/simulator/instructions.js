@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
-import CoreLocation from './../../components/simulator/coreLocation'
+import CoreLocation from './instruction'
 
-import { colour } from '../../styles/theme'
+import { colour } from '../common/theme'
 
 const InstructionWrapper = styled.section`
   display: grid;

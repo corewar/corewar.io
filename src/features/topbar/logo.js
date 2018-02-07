@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { colour, font, space } from '../../styles/theme'
+import { colour, font, space } from '../common/theme'
 
 const SiteName = styled.div`
   background-color: ${colour.blue};
@@ -28,7 +28,8 @@ const Logo = ({ siteName, siteDomain }) => (
 )
 
 Logo.PropTypes = {
-  logoText: PropTypes.string.isRequired
+  siteName: PropTypes.string.isRequired,
+  siteDomain: PropTypes.string.isRequired
 }
 
 export default Logo
