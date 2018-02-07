@@ -6,11 +6,11 @@ import Octicon from 'react-octicon'
 import SourceCodeTextArea from '../styledComponents/sourceCodeTextArea'
 import CompiledOutput from '../styledComponents/compiledOutput'
 import Controls from '../styledComponents/desktop/controls'
-import CoreContainer from '../../containers/simulator/coreContainer'
+import SimulatorContainer from '../simulator/simulatorContainer'
 import Button from '../styledComponents/button'
 import ParseStatusButton from '../styledComponents/parseStatusButton'
-import SimulatorControls from '../../containers/simulator/simulatorControls'
-import CoreVisuliser from '../../containers/simulator/coreVisualiser'
+import SimulatorControls from '../simulator/controlsContainer'
+import Instructions from '../simulator/instructions'
 import MessagePanel from '../parser/messagePanel'
 
 import { space } from '../../styles/theme'
@@ -18,7 +18,7 @@ import { space } from '../../styles/theme'
 import {
   parse,
   addWarrior
-} from '../../actions/parserActions'
+} from '../parser/actions'
 
 import {
   step,
@@ -26,7 +26,7 @@ import {
   run,
   pause,
   getCoreInstructions
-} from '../../actions/simulatorActions'
+} from '../simulator/actions'
 
 const DesktopContainer = styled.section`
   display: grid;
@@ -71,9 +71,9 @@ const CompleteInterface = ({ redcode, parse, currentParseResult,
       </CompiledOutput>
       <MessagePanel messages={currentParseResult.messages} />
     </ParserGrid>
-    <CoreVisuliser />
+    <Instructions />
     <CoreWrapper>
-      <CoreContainer
+      <SimulatorContainer
         coreSize={coreSize}
         getCoreInstructions={getCoreInstructions}
         isRunning={isRunning}

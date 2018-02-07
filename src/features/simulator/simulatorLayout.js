@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import CanvasCore from './canvasCore'
 import ErrorBoundary from './../app/errorBoundary'
-import Warriors from '../../containers/simulator/warriors'
+import Warriors from './warriors'
 
 import { colour } from  '../../styles/theme'
 import { media } from  '../../styles/mediaQuery'

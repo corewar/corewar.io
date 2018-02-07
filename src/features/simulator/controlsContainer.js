@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import FontAwesomeButton from '../../components/simulator/fontAwesomeButton'
+import FontAwesomeButton from './fontAwesomeButton'
 import Controls from '../../components/styledComponents/mobile/controls'
-import SpeedControl from '../../components/simulator/speedControl'
+import SpeedControl from './speedControl'
 
 import {
   init,
@@ -11,7 +11,7 @@ import {
   run,
   pause,
   setProcessRate
-} from '../../actions/simulatorActions'
+} from './actions'
 
 const SimulatorControls = ({ isRunning, isInitialised, run, pause, step, init, processRate, processRates, setProcessRate }) => (
   <Controls>

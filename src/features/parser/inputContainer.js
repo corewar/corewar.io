@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 
 import SourceCodeTextArea from '../../components/styledComponents/sourceCodeTextArea'
-import MessagePanel from '../../components/parser/messagePanel'
+import MessagePanel from './messagePanel'
 import { space } from '../../styles/theme'
 
 import {
   parse
-} from '../../actions/parserActions'
+} from './actions'
 
 const StyledInput = styled.div`
   height: 100%;

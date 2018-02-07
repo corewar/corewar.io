@@ -2,8 +2,8 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 
-import SiteHeader from '../../components/app/siteHeader'
-import CompleteInterface from '../../components/app/completeInterface'
+import SiteHeader from '../topbar/siteHeader'
+import CompleteInterface from './appContainer'
 import Main from '../../components/styledComponents/desktop/main'
 
 const DesktopGrid = styled.div`

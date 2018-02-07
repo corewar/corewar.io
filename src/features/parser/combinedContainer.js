@@ -4,13 +4,13 @@ import styled from 'styled-components'
 
 import SourceCodeTextArea from '../../components/styledComponents/sourceCodeTextArea'
 import CompiledOutput from '../../components/styledComponents/compiledOutput'
-import MessagePanel from '../../components/parser/messagePanel'
+import MessagePanel from './messagePanel'
 
 import { space } from '../../styles/theme'
 
 import {
   parse
-} from '../../actions/parserActions'
+} from './actions'
 
 const ParserGrid = styled.section`
   display: flex;

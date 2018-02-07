@@ -1,20 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import CoreInterface from '../../components/simulator/coreInterface'
+import SimulatorLayout from './simulatorLayout'
 
 import {
   init,
   getCoreInstructions,
   republish
-} from '../../actions/simulatorActions'
+} from './actions'
 
 import {
   removeWarrior
-} from '../../actions/parserActions'
+} from '../parser/actions'
 
-const CoreContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, republish, parseResults, maxTasks, removeWarrior }) => (
-    <CoreInterface
+const SimulatorContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, republish, parseResults, maxTasks, removeWarrior }) => (
+    <SimulatorLayout
       coreSize={coreSize}
       getCoreInstructions={getCoreInstructions}
       isRunning={isRunning}
@@ -43,6 +43,6 @@ export default connect(
     getCoreInstructions,
     removeWarrior
   }
-)(CoreContainer)
+)(SimulatorContainer)
 
-export { CoreContainer as PureCoreContainer }
+export { SimulatorContainer as PureSimulatorContainer }
