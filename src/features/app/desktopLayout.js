@@ -3,15 +3,10 @@ import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 
 import SiteHeader from '../topbar/siteHeader'
-import CompleteInterface from './appContainer'
+import AppContainer from './appContainer'
+import RootGrid from '../common/rootGrid'
 
 import { colour, space } from '../common/theme'
-
-const DesktopGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 48px 1fr;
-`
 
 const Main = styled.main`
   grid-row-start: 2;
@@ -20,14 +15,14 @@ const Main = styled.main`
 `
 
 const DesktopLayout = () => (
-  <DesktopGrid>
+  <RootGrid>
     <SiteHeader isAuthenticated={false}/>
     <Main>
-      <Route path='/app/src' component={CompleteInterface} />
-      <Route path='/app/output' component={CompleteInterface} />
-      <Route path='/app/core' component={CompleteInterface} />
+      <Route path='/app/src' component={AppContainer} />
+      <Route path='/app/output' component={AppContainer} />
+      <Route path='/app/core' component={AppContainer} />
     </Main>
-  </DesktopGrid>
+  </RootGrid>
 )
 
 export default DesktopLayout

@@ -11,6 +11,8 @@ import SimulatorContainer from '../simulator/simulatorContainer'
 import MobileControls from '../parser/controlsContainer'
 import SimulatorControls from '../simulator/controlsContainer'
 
+import RootGrid from '../common/rootGrid'
+
 import { colour, space } from '../common/theme'
 
 // TODO: topbar feature?
@@ -18,12 +20,6 @@ const NavBar = styled.div`
   grid-row-start: 2;
   display: flex;
   text-align: center;
-`
-
-const MobileGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 48px 1fr;
 `
 
 const Container = styled.div`
@@ -40,7 +36,7 @@ const Main = styled.main`
 `
 
 const MobileLayout = () => (
-  <MobileGrid>
+  <RootGrid>
     <SiteHeader isAuthenticated={false}/>
     <Container>
       <NavBar>
@@ -57,7 +53,7 @@ const MobileLayout = () => (
       <Route exact path='/app/output' component={MobileControls} />
       <Route exact path='/app/core' component={SimulatorControls} />
     </Container>
-  </MobileGrid>
+  </RootGrid>
 )
 
 export default MobileLayout

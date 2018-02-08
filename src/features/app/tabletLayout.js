@@ -8,13 +8,9 @@ import SimulatorContainer from '../simulator/simulatorContainer'
 import SimulatorControls from '../simulator/controlsContainer'
 import MobileControls from '../parser/controlsContainer'
 
-import { colour, space } from '../common/theme'
+import RootGrid from '../common/rootGrid'
 
-const TabletGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: ${space.header} 1fr;
-`
+import { colour, space } from '../common/theme'
 
 const Main = styled.main`
   height: calc(100vh - ${space.controls} - ${space.header});
@@ -29,7 +25,7 @@ const Container = styled.div`
 `
 
 const TabletLayout = () => (
-  <TabletGrid>
+  <RootGrid>
     <SiteHeader isAuthenticated={false}/>
     <Container>
       <Main>
@@ -41,7 +37,7 @@ const TabletLayout = () => (
       <Route exact path='/app/output' component={MobileControls} />
       <Route exact path='/app/core' component={SimulatorControls} />
     </Container>
-  </TabletGrid>
+  </RootGrid>
 )
 
 export default TabletLayout
