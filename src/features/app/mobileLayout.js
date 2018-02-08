@@ -2,7 +2,6 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 
-import SiteHeader from '../topbar/siteHeader'
 import TabLink from '../topbar/tabLink'
 
 import InputInterface from '../parser/inputContainer'
@@ -10,8 +9,6 @@ import OutputInterface from '../parser/outputContainer'
 import SimulatorContainer from '../simulator/simulatorContainer'
 import ParserControls from '../parser/controlsContainer'
 import SimulatorControls from '../simulator/controlsContainer'
-
-import RootGrid from '../common/rootGrid'
 
 import { colour, space } from '../common/theme'
 
@@ -35,24 +32,21 @@ const Main = styled.main`
 `
 
 const MobileLayout = () => (
-  <RootGrid>
-    <SiteHeader isAuthenticated={false}/>
-    <Container>
-      <NavBar>
-        <TabLink to='/app/src'>src</TabLink>
-        <TabLink to='/app/output'>output</TabLink>
-        <TabLink to='/app/core'>core</TabLink>
-      </NavBar>
-      <Main>
-        <Route exact path='/app/src' component={InputInterface} />
-        <Route exact path='/app/output' component={OutputInterface} />
-        <Route exact path='/app/core' component={SimulatorContainer} />
-      </Main>
-      <Route exact path='/app/src' component={ParserControls} />
-      <Route exact path='/app/output' component={ParserControls} />
-      <Route exact path='/app/core' component={SimulatorControls} />
-    </Container>
-  </RootGrid>
+  <Container>
+    <NavBar>
+      <TabLink to='/app/src'>src</TabLink>
+      <TabLink to='/app/output'>output</TabLink>
+      <TabLink to='/app/core'>core</TabLink>
+    </NavBar>
+    <Main>
+      <Route exact path='/app/src' component={InputInterface} />
+      <Route exact path='/app/output' component={OutputInterface} />
+      <Route exact path='/app/core' component={SimulatorContainer} />
+    </Main>
+    <Route exact path='/app/src' component={ParserControls} />
+    <Route exact path='/app/output' component={ParserControls} />
+    <Route exact path='/app/core' component={SimulatorControls} />
+  </Container>
 )
 
 export default MobileLayout

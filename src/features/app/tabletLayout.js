@@ -2,13 +2,10 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 
-import SiteHeader from '../topbar/siteHeader'
 import ParserInterface from '../parser/combinedContainer'
 import SimulatorContainer from '../simulator/simulatorContainer'
 import SimulatorControls from '../simulator/controlsContainer'
 import ParserControls from '../parser/controlsContainer'
-
-import RootGrid from '../common/rootGrid'
 
 import { colour, space } from '../common/theme'
 
@@ -25,19 +22,16 @@ const Container = styled.div`
 `
 
 const TabletLayout = () => (
-  <RootGrid>
-    <SiteHeader isAuthenticated={false}/>
-    <Container>
-      <Main>
-        <Route exact path='/app/src' component={ParserInterface} />
-        <Route exact path='/app/output' component={ParserInterface} />
-        <Route exact path='/app/core' component={SimulatorContainer} />
-      </Main>
-      <Route exact path='/app/src' component={ParserControls} />
-      <Route exact path='/app/output' component={ParserControls} />
-      <Route exact path='/app/core' component={SimulatorControls} />
-    </Container>
-  </RootGrid>
+  <Container>
+    <Main>
+      <Route exact path='/app/src' component={ParserInterface} />
+      <Route exact path='/app/output' component={ParserInterface} />
+      <Route exact path='/app/core' component={SimulatorContainer} />
+    </Main>
+    <Route exact path='/app/src' component={ParserControls} />
+    <Route exact path='/app/output' component={ParserControls} />
+    <Route exact path='/app/core' component={SimulatorControls} />
+  </Container>
 )
 
 export default TabletLayout

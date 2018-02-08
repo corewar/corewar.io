@@ -5,10 +5,14 @@ import MobileLayout from './mobileLayout'
 import TabletLayout from './tabletLayout'
 import DesktopLayout from './desktopLayout'
 
+import SiteHeader from '../topbar/siteHeader'
+import RootGrid from '../common/rootGrid'
+
 import { sizes } from '../common/mediaQuery'
 
 const App = () => (
-  <div>
+  <RootGrid>
+    <SiteHeader isAuthenticated={false}/>
     <Media
       query={{ maxWidth: sizes.phone }}
       render={() => <MobileLayout />}
@@ -23,7 +27,7 @@ const App = () => (
       query={{ minWidth: sizes.desktop }}
       render={() => <DesktopLayout />}
     />
-  </div>
+  </RootGrid>
 )
 
 export default App
