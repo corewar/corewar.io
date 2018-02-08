@@ -9,20 +9,19 @@ import ParserControls from '../parser/controlsContainer'
 
 import { colour, space } from '../common/theme'
 
-const Main = styled.main`
-  height: calc(100vh - ${space.controls} - ${space.header});
-  background-color: ${colour.defaultbg};
-`
-
-const Container = styled.div`
-  grid-row-start: 2;
+const TabletGrid = styled.div`
   display: grid;
   grid-template-rows: 1fr ${space.controls};
   grid-template-columns: 1fr;
 `
 
+const Main = styled.main`
+  height: calc(100vh - ${space.controls} - ${space.header});
+  background-color: ${colour.defaultbg};
+`
+
 const TabletLayout = () => (
-  <Container>
+  <TabletGrid>
     <Main>
       <Route exact path='/app/src' component={ParserInterface} />
       <Route exact path='/app/output' component={ParserInterface} />
@@ -31,7 +30,7 @@ const TabletLayout = () => (
     <Route exact path='/app/src' component={ParserControls} />
     <Route exact path='/app/output' component={ParserControls} />
     <Route exact path='/app/core' component={SimulatorControls} />
-  </Container>
+  </TabletGrid>
 )
 
 export default TabletLayout

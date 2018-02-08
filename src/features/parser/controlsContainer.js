@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Octicon from 'react-octicon'
-import styled from 'styled-components'
 
 import Button from  '../common/button'
 import Controls from  '../common/controls'
@@ -11,7 +10,6 @@ import ParseStatusButton from  './parseStatusButton'
 import {
   addWarrior
 } from './actions'
-
 
 const MobileControls = ({ addWarrior, currentParseResult }) => (
   <Controls>

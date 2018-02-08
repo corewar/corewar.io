@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Logo from './logo'
 import Login from './login'
 import UserInfo from './userInfo'
-import TabLink from './tabLink'
+import TabLink from '../common/tabLink'
 
 import { media } from '../common/mediaQuery'
 import { colour } from '../common/theme'

@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 import SourceCodeTextArea from './sourceCodeTextArea'
 import MessagePanel from './messagePanel'
-import { space } from '../common/theme'
 
 import {
   parse
@@ -14,7 +13,7 @@ const StyledInput = styled.div`
   height: 100%;
 `
 
-const InputInterface = ({ redcode, parse, currentParseResult }) => (
+const InputContainer = ({ redcode, parse, currentParseResult }) => (
   <StyledInput>
     <SourceCodeTextArea
       value={redcode}
@@ -33,6 +32,6 @@ export default connect(
   {
     parse
   }
-)(InputInterface)
+)(InputContainer)
 
-export { InputInterface as PureInputInterface }
+export { InputContainer as PureInputContainer }

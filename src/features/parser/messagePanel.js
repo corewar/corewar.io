@@ -30,10 +30,6 @@ const MessageRow = styled.div`
   font-family: ${font.code};
 `
 
-const StyledMessageText = styled.span`
-  color: ${colour.white};
-`
-
 const ColouredMessageText = styled.span`
  ${props => !props.type && `color: ${colour.white};`}
  ${props => props.type === 0 && `color: ${colour.error};`}

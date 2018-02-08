@@ -6,17 +6,17 @@ import AppContainer from './appContainer'
 
 import { colour, space } from '../common/theme'
 
-const Main = styled.main`
+const DesktopGrid = styled.div`
   height: calc(100vh - ${space.header});
   background-color: ${colour.defaultbg};
 `
 
 const DesktopLayout = () => (
-  <Main>
+  <DesktopGrid>
     <Route path='/app/src' component={AppContainer} />
     <Route path='/app/output' component={AppContainer} />
     <Route path='/app/core' component={AppContainer} />
-  </Main>
+  </DesktopGrid>
 )
 
 export default DesktopLayout
