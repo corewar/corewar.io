@@ -8,7 +8,7 @@ import TabLink from '../topbar/tabLink'
 import InputInterface from '../parser/inputContainer'
 import OutputInterface from '../parser/outputContainer'
 import SimulatorContainer from '../simulator/simulatorContainer'
-import MobileControls from '../parser/controlsContainer'
+import ParserControls from '../parser/controlsContainer'
 import SimulatorControls from '../simulator/controlsContainer'
 
 import RootGrid from '../common/rootGrid'
@@ -23,7 +23,6 @@ const NavBar = styled.div`
 `
 
 const Container = styled.div`
-  grid-row-start: 2;
   display: grid;
   grid-template-rows: ${space.s} ${space.header} 1fr ${space.controls};
   grid-template-columns: 1fr;
@@ -49,8 +48,8 @@ const MobileLayout = () => (
         <Route exact path='/app/output' component={OutputInterface} />
         <Route exact path='/app/core' component={SimulatorContainer} />
       </Main>
-      <Route exact path='/app/src' component={MobileControls} />
-      <Route exact path='/app/output' component={MobileControls} />
+      <Route exact path='/app/src' component={ParserControls} />
+      <Route exact path='/app/output' component={ParserControls} />
       <Route exact path='/app/core' component={SimulatorControls} />
     </Container>
   </RootGrid>

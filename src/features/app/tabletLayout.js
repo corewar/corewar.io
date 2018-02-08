@@ -6,7 +6,7 @@ import SiteHeader from '../topbar/siteHeader'
 import ParserInterface from '../parser/combinedContainer'
 import SimulatorContainer from '../simulator/simulatorContainer'
 import SimulatorControls from '../simulator/controlsContainer'
-import MobileControls from '../parser/controlsContainer'
+import ParserControls from '../parser/controlsContainer'
 
 import RootGrid from '../common/rootGrid'
 
@@ -33,8 +33,8 @@ const TabletLayout = () => (
         <Route exact path='/app/output' component={ParserInterface} />
         <Route exact path='/app/core' component={SimulatorContainer} />
       </Main>
-      <Route exact path='/app/src' component={MobileControls} />
-      <Route exact path='/app/output' component={MobileControls} />
+      <Route exact path='/app/src' component={ParserControls} />
+      <Route exact path='/app/output' component={ParserControls} />
       <Route exact path='/app/core' component={SimulatorControls} />
     </Container>
   </RootGrid>

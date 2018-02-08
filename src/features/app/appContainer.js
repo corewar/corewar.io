@@ -59,8 +59,8 @@ const CompleteInterface = ({ redcode, parse, currentParseResult,
         enabled={hasNoErrors(currentParseResult)}
         messages={currentParseResult.messages}
         handleClick={() => { console.log('disabled clicked me') }}>
-      <Octicon mega name="issue-opened"/>
-    </ParseStatusButton>
+          <Octicon mega name="issue-opened"/>
+      </ParseStatusButton>
     </Controls>
     <ParserGrid>
       <SourceCodeTextArea desktop
