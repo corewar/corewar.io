@@ -5,8 +5,8 @@ import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import { Route } from 'react-router-dom'
 import store, { history } from './store'
-import App from './containers/app'
-import Landing from './components/app/landing'
+import App from './features/app/app'
+import Landing from './features/onboarding/landing'
 import styled from 'styled-components'
 
 import 'typeface-lato'
@@ -14,7 +14,7 @@ import 'typeface-anonymous-pro'
 
 import './cssreset.css'
 
-import { font, colour } from './styles/theme'
+import { font, colour } from './features/common/theme'
 
 const Wrapper = styled.div`
   min-width: 360px;
