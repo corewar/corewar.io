@@ -30,8 +30,6 @@ export function* parseSaga({ redcode }) {
 
 export function* addWarriorSaga() {
 
-  console.log('add warrior')
-
   yield call(pauseSaga)
 
   const data = yield call(getCoreOptionsFromState)
