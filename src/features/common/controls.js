@@ -11,7 +11,7 @@ const Controls = styled.div`
   ${media.phone`
     border-top: 1px solid ${colour.grey};
     background-color: ${colour.lightbg};
-    grid-row-start: 4;
+    grid-row-start: 2;
   `}
   ${media.tablet`
     border-top: 1px solid ${colour.grey};

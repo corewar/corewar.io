@@ -1,25 +1,24 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import styled from 'styled-components'
 
+import MobilePage from '../common/mobilePage'
 import SourceCodeTextArea from './sourceCodeTextArea'
 import MessagePanel from './messagePanel'
+import ControlsContainer from '../parser/controlsContainer'
+
 
 import {
   parse
 } from './actions'
 
-const StyledInput = styled.div`
-  height: 100%;
-`
-
 const InputContainer = ({ redcode, parse, currentParseResult }) => (
-  <StyledInput>
+  <MobilePage>
     <SourceCodeTextArea
       value={redcode}
       handleChange={e => parse(e.target.value)} />
+    <ControlsContainer />
     <MessagePanel messages={currentParseResult && currentParseResult.messages} />
-  </StyledInput>
+  </MobilePage>
 )
 
 const mapStateToProps = state => ({

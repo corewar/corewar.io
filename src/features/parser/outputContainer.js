@@ -1,12 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import MobilePage from '../common/mobilePage'
 import CompiledOutput from './compiledOutput'
+import ControlsContainer from './controlsContainer'
 
 const OutputInterface = ({ currentParseResult }) => (
-  <CompiledOutput mobile>
-    {currentParseResult.warrior}
-  </CompiledOutput>
+  <MobilePage>
+    <CompiledOutput mobile>
+      {currentParseResult.warrior}
+    </CompiledOutput>
+    <ControlsContainer />
+  </MobilePage>
 )
 
 const mapStateToProps = state => ({

@@ -8,12 +8,13 @@ export const sourceCode = props => `
   background-color: transparent;
   padding: ${space.m};
   width: calc(100% - ${space.m} - ${space.m});
-  height: calc(100% - ${space.m} - ${space.m});
+  height: calc(100% - ${space.m} - ${space.m} - ${space.controls});
   border: none;
   caret-color: ${colour.white};
   color: ${colour.white};
   resize: none;
   overflow-y: scroll;
+  overflow-x: scroll;
   white-space: pre-wrap;
   word-break: keep-all;
 
@@ -27,7 +28,7 @@ export const sourceCode = props => `
 
   ::-webkit-scrollbar {
     width: ${space.xs};
-    height: ${space.xs};
+    height: 0;
     background-color: transparent;
   }
 
