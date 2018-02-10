@@ -18,6 +18,8 @@ class CanvasCore extends Component {
     this.lastCoordinates = null
     this.hasLoaded = false
 
+    this.sprites = []
+
     this.state = {
       height: 0,
       width: 0
@@ -41,6 +43,8 @@ class CanvasCore extends Component {
   init() {
 
     this.calculateCoreDimensions()
+
+    this.buildSprites()
 
     this.renderGrid()
 
@@ -95,16 +99,103 @@ class CanvasCore extends Component {
     this.init()
   }
 
+  buildSprites() {
+
+    colour.warrior.forEach(c => {
+
+      const sprites = []
+      sprites.push(this.prerenderRead(c))
+      sprites.push(this.prerenderWrite(c))
+      sprites.push(this.prerenderExecute(c))
+
+      this.sprites.push(sprites)
+    })
+  }
+
+  buildSprite() {
+
+    const canvas = document.createElement('canvas')
+    canvas.width = this.cellSize
+    canvas.height = this.cellSize
+
+    const context = canvas.getContext('2d')
+    context.fillStyle = colour.defaultbg
+    context.fillRect(0, 0, canvas.width, canvas.height)
+    //context.setTransform(1, 0, 0, 1, -0.5, -0.5)
+
+    return { canvas, context }
+  }
+
+  prerenderRead(colour) {
+
+    const sprite = this.buildSprite()
+
+    const hSize = this.cellSize / 2
+    const radius = this.cellSize / 8
+
+    const context = sprite.context
+
+    context.fillStyle = colour
+    context.strokeStyle = colour
+
+    context.beginPath()
+    context.arc(hSize, hSize, radius, 0, 2 * Math.PI, false)
+    context.fill()
+
+    return sprite
+  }
+
+  prerenderWrite(colour) {
+
+    const sprite = this.buildSprite()
+
+    const x0 = 0
+    const y0 = 0
+
+    const x1 = x0 + this.cellSize
+    const y1 = y0 + this.cellSize
+
+    const context = sprite.context
+
+    context.fillStyle = colour
+    context.strokeStyle = colour
+
+    context.beginPath()
+    context.moveTo(x0, y0)
+    context.lineTo(x1, y1)
+    context.moveTo(x0, y1)
+    context.lineTo(x1, y0)
+    context.moveTo(x0, y0)
+    context.stroke()
+
+    return sprite
+  }
+
+  prerenderExecute(colour) {
+
+    const sprite = this.buildSprite()
+
+    const context = sprite.context
+
+    context.fillStyle = colour
+    context.strokeStyle = colour
+    context.fillRect(0, 0, this.cellSize, this.cellSize)
+
+    //this.renderCurrentTask(coordinate)
+
+    return sprite
+  }
+
   renderGrid() {
-    this.clearCanvas()
+    // this.clearCanvas()
 
-    this.clearInteractiveCanvas()
+    // this.clearInteractiveCanvas()
 
-    this.fillGridArea()
+    // this.fillGridArea()
 
-    this.renderGridLines()
+    // this.renderGridLines()
 
-    this.greyOutExtraCells()
+    // this.greyOutExtraCells()
   }
 
   addressToScreenCoordinate(address) {
@@ -174,74 +265,73 @@ class CanvasCore extends Component {
 
     const warriorId = event.warriorId
 
-    const colour = this.getColour(warriorId)
-    this.coreContext.fillStyle = colour
-    this.coreContext.strokeStyle = colour
+    const sprite = this.sprites[warriorId][event.accessType]
+    this.coreContext.drawImage(sprite.canvas, coordinate.x, coordinate.y)
 
-    switch (event.accessType) {
-        case 0:
-            this.renderRead(coordinate)
-            break
-        case 1:
-            this.renderWrite(coordinate)
-            break
-        case 2:
-            this.renderExecute(coordinate)
-            break
-        default:
-            throw Error("Cannot render unknown CoreAccessType: " + event.accessType)
-    }
+    // switch (event.accessType) {
+    //     case 0:
+    //         this.renderRead(coordinate)
+    //         break
+    //     case 1:
+    //         this.renderWrite(coordinate)
+    //         break
+    //     case 2:
+    //         this.renderExecute(coordinate)
+    //         break
+    //     default:
+    //         throw Error("Cannot render unknown CoreAccessType: " + event.accessType)
+    // }
   }
 
-  renderExecute(coordinate) {
+  // renderExecute(coordinate) {
 
-    this.coreContext.fillRect(
-        coordinate.x,
-        coordinate.y,
-        this.cellSize,
-        this.cellSize)
+  //   this.coreContext.fillRect(
+  //       coordinate.x,
+  //       coordinate.y,
+  //       this.cellSize,
+  //       this.cellSize)
 
-    this.renderCurrentTask(coordinate)
+  //   this.renderCurrentTask(coordinate)
 
-  }
+  // }
 
-  renderRead(coordinate) {
+  // renderRead(coordinate) {
 
-    const hSize = this.cellSize / 2
-    const radius = this.cellSize / 8
+  //   const hSize = this.cellSize / 2
+  //   const radius = this.cellSize / 8
 
-    const centre = {
-        x: coordinate.x + hSize,
-        y: coordinate.y + hSize
-    }
+  //   const centre = {
+  //       x: coordinate.x + hSize,
+  //       y: coordinate.y + hSize
+  //   }
 
-    this.coreContext.beginPath()
-    this.coreContext.arc(centre.x, centre.y, radius, 0, 2 * Math.PI, false)
-    this.coreContext.fill()
-  }
+  //   this.coreContext.beginPath()
+  //   this.coreContext.arc(centre.x, centre.y, radius, 0, 2 * Math.PI, false)
+  //   this.coreContext.fill()
+  // }
 
-  renderWrite(coordinate) {
+  // renderWrite(coordinate) {
 
-    const x0 = coordinate.x
-    const y0 = coordinate.y
+  //   const x0 = coordinate.x
+  //   const y0 = coordinate.y
 
-    const x1 = x0 + this.cellSize
-    const y1 = y0 + this.cellSize
+  //   const x1 = x0 + this.cellSize
+  //   const y1 = y0 + this.cellSize
 
-    this.coreContext.beginPath()
-    this.coreContext.moveTo(x0, y0)
-    this.coreContext.lineTo(x1, y1)
-    this.coreContext.moveTo(x0, y1)
-    this.coreContext.lineTo(x1, y0)
-    this.coreContext.moveTo(x0, y0)
-    this.coreContext.stroke()
-  }
+  //   this.coreContext.beginPath()
+  //   this.coreContext.moveTo(x0, y0)
+  //   this.coreContext.lineTo(x1, y1)
+  //   this.coreContext.moveTo(x0, y1)
+  //   this.coreContext.lineTo(x1, y0)
+  //   this.coreContext.moveTo(x0, y0)
+  //   this.coreContext.stroke()
+  // }
 
   clearCanvas() {
 
     this.coreContext.setTransform(1, 0, 0, 1, 0, 0)
     this.coreContext.clearRect(0, 0, this.containerWidth, this.containerHeight)
-    this.coreContext.setTransform(1, 0, 0, 1, 0.5, 0.5)
+    //this.coreContext.setTransform(1, 0, 0, 1, 0.5, 0.5)
 
   }
 
