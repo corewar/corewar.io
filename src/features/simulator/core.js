@@ -102,6 +102,7 @@ class CanvasCore extends Component {
 
   buildSprites() {
 
+    this.sprites = [];
     this.cellSprite = this.prerenderCell()
 
     colour.warrior.forEach(c => {
