@@ -183,7 +183,6 @@ class CanvasCore extends Component {
     context.lineTo(x1, y1)
     context.moveTo(x0, y1)
     context.lineTo(x1, y0)
-    //context.moveTo(x0, y0)
     context.stroke()
 
     return sprite
@@ -199,6 +198,7 @@ class CanvasCore extends Component {
     context.strokeStyle = colour
     context.fillRect(1, 1, this.cellSize - 1, this.cellSize - 1)
 
+    //TODO current task rendering needs redoing anyway so removing for now...
     //this.renderCurrentTask(coordinate)
 
     return sprite
@@ -215,20 +215,6 @@ class CanvasCore extends Component {
         }
       }
     }
-
-    // // this.clearCanvas()
-
-    // // this.clearInteractiveCanvas()
-
-    // // this.fillGridArea()
-
-    // this.coreContext.setTransform(1, 0, 0, 1, 0.5, 0.5)
-
-    // this.renderGridLines()
-
-    // this.greyOutExtraCells()
-
-    // this.coreContext.setTransform(1, 0, 0, 1, 0, 0)
   }
 
   addressToScreenCoordinate(address) {
@@ -300,88 +286,6 @@ class CanvasCore extends Component {
 
     const sprite = this.sprites[warriorId][event.accessType]
     this.coreContext.drawImage(sprite.canvas, coordinate.x, coordinate.y)
-
-    // switch (event.accessType) {
-    //     case 0:
-    //         this.renderRead(coordinate)
-    //         break
-    //     case 1:
-    //         this.renderWrite(coordinate)
-    //         break
-    //     case 2:
-    //         this.renderExecute(coordinate)
-    //         break
-    //     default:
-    //         throw Error("Cannot render unknown CoreAccessType: " + event.accessType)
-    // }
-  }
-
-  // renderExecute(coordinate) {
-
-  //   this.coreContext.fillRect(
-  //       coordinate.x,
-  //       coordinate.y,
-  //       this.cellSize,
-  //       this.cellSize)
-
-  //   this.renderCurrentTask(coordinate)
-
-  // }
-
-  // renderRead(coordinate) {
-
-  //   const hSize = this.cellSize / 2
-  //   const radius = this.cellSize / 8
-
-  //   const centre = {
-  //       x: coordinate.x + hSize,
-  //       y: coordinate.y + hSize
-  //   }
-
-  //   this.coreContext.beginPath()
-  //   this.coreContext.arc(centre.x, centre.y, radius, 0, 2 * Math.PI, false)
-  //   this.coreContext.fill()
-  // }
-
-  // renderWrite(coordinate) {
-
-  //   const x0 = coordinate.x
-  //   const y0 = coordinate.y
-
-  //   const x1 = x0 + this.cellSize
-  //   const y1 = y0 + this.cellSize
-
-  //   this.coreContext.beginPath()
-  //   this.coreContext.moveTo(x0, y0)
-  //   this.coreContext.lineTo(x1, y1)
-  //   this.coreContext.moveTo(x0, y1)
-  //   this.coreContext.lineTo(x1, y0)
-  //   this.coreContext.moveTo(x0, y0)
-  //   this.coreContext.stroke()
-  // }
-
-  clearCanvas() {
-
-    this.coreContext.setTransform(1, 0, 0, 1, 0, 0)
-    this.coreContext.clearRect(0, 0, this.containerWidth, this.containerHeight)
-    //this.coreContext.setTransform(1, 0, 0, 1, 0.5, 0.5)
-
-  }
-
-  clearInteractiveCanvas() {
-    this.interactiveContext.setTransform(1, 0, 0, 1, 0, 0)
-    this.interactiveContext.clearRect(0, 0, this.containerWidth, this.containerHeight)
-    this.interactiveContext.setTransform(1, 0, 0, 1, 0.5, 0.5)
-  }
-
-  fillGridArea() {
-
-    const width = this.cellsWide * this.cellSize
-    const height = this.cellsHigh * this.cellSize
-
-    this.coreContext.fillStyle = colour.defaultbg
-    this.coreContext.fillRect(0, 0, width, height)
-
   }
 
   calculateCellSize() {
@@ -405,73 +309,6 @@ class CanvasCore extends Component {
     const cellsHigh = Math.floor(this.containerHeight / cellSize)
 
     return cellsWide * cellsHigh >= this.props.coreSize
-  }
-
-  renderGridLines() {
-
-    this.coreContext.beginPath()
-    this.renderVerticalLines()
-    this.renderHorizontalLines()
-
-    this.coreContext.strokeStyle = colour.grey
-    this.coreContext.stroke()
-  }
-
-  renderHorizontalLines() {
-
-    const gridWidth = this.cellsWide * this.cellSize
-    const gridHeight = this.cellsHigh * this.cellSize
-
-    for (let y = 0; y <= gridHeight; y += this.cellSize) {
-
-      this.coreContext.moveTo(0, y)
-      this.coreContext.lineTo(gridWidth, y)
-    }
-  }
-
-  renderVerticalLines() {
-
-    const gridWidth = this.cellsWide * this.cellSize
-    const gridHeight = this.cellsHigh * this.cellSize
-
-    for (let x = 0; x <= gridWidth; x += this.cellSize) {
-
-      this.coreContext.moveTo(x, 0)
-      this.coreContext.lineTo(x, gridHeight)
-    }
-  }
-
-  greyOutExtraCells() {
-
-    const cellsDrawn = this.cellsWide * this.cellsHigh
-    let extraCellsDrawn = cellsDrawn - this.props.coreSize
-
-    if (extraCellsDrawn === 0) {
-      return
-    }
-
-    const gridWidth = this.cellsWide * this.cellSize
-    const gridHeight = this.cellsHigh * this.cellSize
-
-    const maxX = gridWidth - this.cellSize
-    const maxY = gridHeight - this.cellSize
-
-    let x = maxX
-    let y = maxY
-
-    this.coreContext.fillStyle = colour.defaultbg
-
-    while (extraCellsDrawn-- > 0) {
-
-      this.coreContext.fillRect(x + 1, y + 1, this.cellSize + 1, this.cellSize + 1)
-
-      x -= this.cellSize
-
-      if (x < 0) {
-        x = maxX
-        y -= this.cellSize
-      }
-    }
   }
 
   getRelativeCoordinates(event) {
