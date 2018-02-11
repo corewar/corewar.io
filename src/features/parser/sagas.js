@@ -10,7 +10,9 @@ import {
   ADD_WARRIOR_REQUESTED,
   REMOVE_WARRIOR,
   REMOVE_WARRIOR_REQUESTED,
-  SHOW_MESSAGES
+  SHOW_MESSAGES,
+  HIDE_MESSAGES,
+  ADD_NOTIFICATION
 } from './actions'
 
 import { getParserState } from './reducer'
@@ -27,6 +29,8 @@ export function* parseSaga({ redcode }) {
 
   if(result.messages.find(x => x.type === 0)){
     yield put({ type: SHOW_MESSAGES })
+  } else {
+    yield put({ type: HIDE_MESSAGES})
   }
 
   yield put({ type: PARSE, result, redcode })
@@ -44,6 +48,8 @@ export function* addWarriorSaga() {
   const result = yield call(insertItem, data.parseResults.length, data.parseResults, currentParseResult)
 
   yield put({ type: ADD_WARRIOR, result })
+
+  yield put({ type: ADD_NOTIFICATION, msg: 'Warrior Added' })
 
   yield call(initialiseCore, data.options, result)
 

@@ -3,8 +3,11 @@ import {
   ADD_WARRIOR,
   REMOVE_WARRIOR,
   SHOW_MESSAGES,
-  HIDE_MESSAGES
+  HIDE_MESSAGES,
+  ADD_NOTIFICATION
 } from './actions'
+
+import { insertItem } from '../../helpers/arrayHelpers'
 
 // state
 const initialState = {
@@ -14,7 +17,8 @@ const initialState = {
   standardId: 2, // TODO: what's the best standard to use as a default?
   redcode: '',
   warrior: '',
-  displayMessages: false
+  displayMessages: false,
+  notifications: []
 }
 
 // selectors
@@ -54,6 +58,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         displayMessages: false
+      }
+
+    case ADD_NOTIFICATION:
+      return {
+        ...state,
+        notifications: insertItem(0, state.notifications, action.msg)
       }
 
     default:
