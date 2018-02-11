@@ -1,8 +1,31 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import * as PubSub from 'pubsub-js'
+import styled from 'styled-components'
 
 import { colour } from '../common/theme'
+import { media } from  '../common/mediaQuery'
+
+const CanvasWrapper = styled.section`
+
+  position: relative;
+
+  ${media.desktop`min-height: 500px;`}
+  ${media.tablet`min-height: 400px;`}
+  ${media.phone`min-height: 400px;`}
+
+  ${media.desktop`min-width: 500px;`}
+  ${media.tablet`min-width: 400px;`}
+  ${media.phone`min-width: 400px;`}
+
+  border: 1px solid ${colour.lightbg};
+
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+`
 
 class CanvasCore extends Component {
 
@@ -371,8 +394,8 @@ class CanvasCore extends Component {
 
   render() {
 
-    return <div id="canvasContainer"
-      ref={(canvasContainer) => {
+    return <CanvasWrapper
+      innerRef={(canvasContainer) => {
         if (canvasContainer == null) { return }
         this.canvasContainer = canvasContainer
       }}>
@@ -394,7 +417,7 @@ class CanvasCore extends Component {
         height={this.state.height}
         width={this.state.width}
       ></canvas>
-    </div>
+    </CanvasWrapper>
   }
 
 }

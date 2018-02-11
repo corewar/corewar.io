@@ -14,6 +14,7 @@ export const sourceCode = props => `
   color: ${colour.white};
   resize: none;
   overflow-y: scroll;
+  overflow-x: scroll;
   white-space: pre-wrap;
   word-break: keep-all;
 
@@ -27,7 +28,7 @@ export const sourceCode = props => `
 
   ::-webkit-scrollbar {
     width: ${space.xs};
-    height: ${space.xs};
+    height: 0;
     background-color: transparent;
   }
 

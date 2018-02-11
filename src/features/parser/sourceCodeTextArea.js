@@ -15,7 +15,7 @@ const SourceCodeTextArea = styled.textarea.attrs({
   onChange: props => props.handleChange
 })`
   ${sourceCode};
-  height: ${props => props.desktop && `calc(100vh - ${space.m} - ${space.m} - ${space.header} - ${space.header})`};
+  ${props => props.desktop && `height: calc(100vh - ${space.m} - ${space.m} - ${space.header} - ${space.header})`};
 `
 
 export default SourceCodeTextArea

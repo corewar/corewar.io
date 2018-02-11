@@ -4,44 +4,33 @@ import styled from 'styled-components'
 import Core from './core'
 import ErrorBoundary from '../common/errorBoundary'
 import Warriors from './warriors'
+import ControlsContainer from './controlsContainer'
 
-import { colour } from  '../common/theme'
+import { space } from  '../common/theme'
 import { media } from  '../common/mediaQuery'
 
-const CanvasWrapper = styled.section`
+const SimulatorGrid = styled.section`
 
-  height: 100%;
+  ${props => props.mobile && `grid-row-start: 3;`}
+  ${props => props.mobile && `height: calc(100vh - ${space.s} - ${space.header} - ${space.controls});`}
+
+  ${props => props.tablet && `grid-row-start: 2;`}
+  ${props => props.tablet && `height: calc(100vh - ${space.controls});`}
+
   position: relative;
 
   ${media.tablet`min-height: 400px;`}
   ${media.phone`min-height: 400px;`}
 
   display: grid;
-  grid-template-rows: 75px 1fr;
-
-  #canvasContainer {
-    position: relative;
-
-    ${media.desktop`min-height: 500px;`}
-    ${media.tablet`min-height: 400px;`}
-    ${media.phone`min-height: 400px;`}
-
-    ${media.desktop`min-width: 500px;`}
-    ${media.tablet`min-width: 400px;`}
-    ${media.phone`min-width: 400px;`}
-
-    border: 1px solid ${colour.lightbg};
-  }
-
-  canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+  grid-template-rows: 75px 1fr ${space.controls};
 `
 
-const CoreInterface = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, parseResults, maxTasks, removeWarrior, republish }) => (
-  <CanvasWrapper>
+SimulatorGrid.displayName = `SimulatorGrid`
+
+const SimulatorLayout = ({ coreSize, getCoreInstructions, isRunning, isInitialised,
+  init, parseResults, maxTasks, removeWarrior, republish, tablet, mobile }) => (
+  <SimulatorGrid mobile={mobile} tablet={tablet}>
     <Warriors parseResults={parseResults} maxTasks={maxTasks} removeWarrior={removeWarrior} />
     <ErrorBoundary>
       <Core
@@ -53,7 +42,8 @@ const CoreInterface = ({ coreSize, getCoreInstructions, isRunning, isInitialised
         isInitialised={isInitialised}
         />
     </ErrorBoundary>
-  </CanvasWrapper>
+    <ControlsContainer />
+  </SimulatorGrid>
 )
 
-export default CoreInterface
+export default SimulatorLayout

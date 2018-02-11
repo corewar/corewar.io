@@ -9,7 +9,6 @@ import Controls from '../common/headerControls'
 import SimulatorContainer from '../simulator/simulatorContainer'
 import Button from '../common/button'
 import ParseStatusButton from '../parser/parseStatusButton'
-import SimulatorControls from '../simulator/controlsContainer'
 import Instructions from '../simulator/instructions'
 import MessagePanel from '../parser/messagePanel'
 
@@ -42,11 +41,6 @@ const ParserGrid = styled.section`
   height: calc(100vh - ${space.header} - ${space.header});
 `
 
-const CoreWrapper = styled.div`
-  display: grid;
-  grid-template-rows: 1fr ${space.controls};
-`
-
 const CompleteInterface = ({ redcode, parse, currentParseResult,
   coreSize, getCoreInstructions, isRunning, isInitialised, addWarrior,
   run, pause, step, init }) => (
@@ -59,8 +53,8 @@ const CompleteInterface = ({ redcode, parse, currentParseResult,
         enabled={hasNoErrors(currentParseResult)}
         messages={currentParseResult.messages}
         handleClick={() => { console.log('disabled clicked me') }}>
-      <Octicon mega name="issue-opened"/>
-    </ParseStatusButton>
+          <Octicon mega name="issue-opened"/>
+      </ParseStatusButton>
     </Controls>
     <ParserGrid>
       <SourceCodeTextArea desktop
@@ -72,7 +66,7 @@ const CompleteInterface = ({ redcode, parse, currentParseResult,
       <MessagePanel messages={currentParseResult.messages} />
     </ParserGrid>
     <Instructions />
-    <CoreWrapper>
+
       <SimulatorContainer
         coreSize={coreSize}
         getCoreInstructions={getCoreInstructions}
@@ -83,8 +77,7 @@ const CompleteInterface = ({ redcode, parse, currentParseResult,
         step={step}
         init={init}
         />
-      <SimulatorControls />
-    </CoreWrapper>
+
   </DesktopContainer>
 )
 

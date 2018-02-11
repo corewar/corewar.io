@@ -13,18 +13,23 @@ import {
   removeWarrior
 } from '../parser/actions'
 
-const SimulatorContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, republish, parseResults, maxTasks, removeWarrior }) => (
-    <SimulatorLayout
-      coreSize={coreSize}
-      getCoreInstructions={getCoreInstructions}
-      isRunning={isRunning}
-      isInitialised={isInitialised}
-      parseResults={parseResults}
-      maxTasks={maxTasks}
-      republish={republish}
-      init={init}
-      removeWarrior={removeWarrior}
-      />
+
+const SimulatorContainer = ({ coreSize, getCoreInstructions, isRunning,
+  isInitialised, init, republish, parseResults,
+  maxTasks, removeWarrior, tablet, mobile }) => (
+  <SimulatorLayout
+    tablet={tablet}
+    mobile={mobile}
+    coreSize={coreSize}
+    getCoreInstructions={getCoreInstructions}
+    isRunning={isRunning}
+    isInitialised={isInitialised}
+    parseResults={parseResults}
+    maxTasks={maxTasks}
+    republish={republish}
+    init={init}
+    removeWarrior={removeWarrior}
+    />
 )
 
 const mapStateToProps = state => ({

@@ -5,13 +5,11 @@ import { colour, space } from './theme'
 
 const Controls = styled.div`
 
-  grid-row-start: 2;
   border: none;
 
   ${media.phone`
     border-top: 1px solid ${colour.grey};
     background-color: ${colour.lightbg};
-    grid-row-start: 4;
   `}
   ${media.tablet`
     border-top: 1px solid ${colour.grey};
