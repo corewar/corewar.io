@@ -1,7 +1,10 @@
 import {
   PARSE,
   ADD_WARRIOR,
-  REMOVE_WARRIOR
+  REMOVE_WARRIOR,
+  TOGGLE_MESSAGES,
+  SHOW_MESSAGES,
+  HIDE_MESSAGES
 } from './actions'
 
 // state
@@ -11,7 +14,8 @@ const initialState = {
   parseResults: [],
   standardId: 2, // TODO: what's the best standard to use as a default?
   redcode: '',
-  warrior: ''
+  warrior: '',
+  displayMessages: false
 }
 
 // selectors
@@ -39,6 +43,19 @@ export default (state = initialState, action) => {
       return {
         ...state,
         parseResults: action.result
+      }
+
+    case SHOW_MESSAGES:
+      console.log('show')
+      return {
+        ...state,
+        displayMessages: true
+      }
+
+    case HIDE_MESSAGES:
+      return {
+        ...state,
+        displayMessages: false
       }
 
     default:
