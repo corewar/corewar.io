@@ -48,7 +48,7 @@ const AppContainer = ({ redcode, parse, currentParseResult,
   run, pause, step, init, hideMessages, showMessages, displayMessages }) => (
   <DesktopContainer>
     <Controls>
-      <Button onClick={addWarrior} enabled={hasNoErrors(currentParseResult)}>
+      <Button handleClick={addWarrior} enabled={hasNoErrors(currentParseResult)}>
         <Octicon mega name="chevron-right"/>
       </Button>
       <ParseStatusButton

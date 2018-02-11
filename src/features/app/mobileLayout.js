@@ -8,7 +8,7 @@ import InputContainer from '../parser/inputContainer'
 import OutputContainer from '../parser/outputContainer'
 import SimulatorContainer from '../simulator/simulatorContainer'
 
-import { colour, space } from '../common/theme'
+import { space } from '../common/theme'
 
 const MobileGrid = styled.div`
   display: grid;

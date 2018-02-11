@@ -18,8 +18,8 @@ const Button = styled.button.attrs({
   }
 `
 
-// Button.propTypes = {
-//   handleClick: PropTypes.func.required
-// }
+Button.propTypes = {
+  handleClick: PropTypes.func.required
+}
 
 export default Button
