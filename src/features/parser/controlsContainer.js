@@ -8,15 +8,16 @@ import Controls from  '../common/controls'
 import ParseStatusButton from  './parseStatusButton'
 
 import {
-  addWarrior
+  addWarrior,
+  showMessages
 } from './actions'
 
-const MobileControls = ({ addWarrior, currentParseResult }) => (
+const MobileControls = ({ addWarrior, currentParseResult, showMessages }) => (
   <Controls>
     <ParseStatusButton
-      enabled={hasNoErrors(currentParseResult)}
+      enabled={true}
       messages={currentParseResult.messages}
-      handleClick={() => { console.log('disabled clicked me') }}>
+      handleClick={showMessages}>
       <Octicon mega name="issue-opened"/>
     </ParseStatusButton>
     <Button
@@ -46,7 +47,8 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    addWarrior
+    addWarrior,
+    showMessages
   }
 )(MobileControls)
 

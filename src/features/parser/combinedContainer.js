@@ -11,7 +11,8 @@ import ControlsContainer from '../parser/controlsContainer'
 import { space } from '../common/theme'
 
 import {
-  parse
+  parse,
+  hideMessages
 } from './actions'
 
 const ParserGrid = styled.section`
@@ -19,7 +20,7 @@ const ParserGrid = styled.section`
   height: calc(100vh - ${space.header} - ${space.controls});
 `
 
-const ParserInterface = ({ redcode, parse, currentParseResult, addWarrior }) => (
+const ParserInterface = ({ redcode, parse, currentParseResult, addWarrior, hideMessages, displayMessages }) => (
   <MobilePage tablet>
     <ParserGrid>
       <SourceCodeTextArea
@@ -30,19 +31,25 @@ const ParserInterface = ({ redcode, parse, currentParseResult, addWarrior }) => 
       </CompiledOutput>
     </ParserGrid>
     <ControlsContainer />
-    <MessagePanel messages={currentParseResult.messages} />
+    <MessagePanel
+      messages={currentParseResult.messages}
+      hideMessages={hideMessages}
+      show={displayMessages} />
   </MobilePage>
 )
 
+
 const mapStateToProps = state => ({
   redcode: state.parser.redcode,
-  currentParseResult: state.parser.currentParseResult
+  currentParseResult: state.parser.currentParseResult,
+  displayMessages: state.parser.displayMessages
 })
 
 export default connect(
   mapStateToProps,
   {
-    parse
+    parse,
+    hideMessages
   }
 )(ParserInterface)
 
