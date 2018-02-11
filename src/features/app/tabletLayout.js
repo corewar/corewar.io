@@ -8,6 +8,7 @@ import SimulatorControls from '../simulator/controlsContainer'
 import ParserControls from '../parser/controlsContainer'
 
 import { colour, space } from '../common/theme'
+import simulatorContainer from '../simulator/simulatorContainer';
 
 const TabletGrid = styled.div`
   display: grid;
@@ -15,21 +16,23 @@ const TabletGrid = styled.div`
   grid-template-columns: 1fr;
 `
 
-const Main = styled.main`
-  height: calc(100vh - ${space.controls} - ${space.header});
-  background-color: ${colour.defaultbg};
-`
+const PropsRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => {
+    console.log(props)
+    return <Component {...props}/>
+  }}/>
+)
 
-const TabletLayout = () => (
+// const Main = styled.main`
+//   height: calc(100vh - ${space.controls} - ${space.header});
+//   background-color: ${colour.defaultbg};
+// `
+
+const TabletLayout = (props) => (
   <TabletGrid>
-    <Main>
-      <Route exact path='/app/src' component={ParserInterface} />
-      <Route exact path='/app/output' component={ParserInterface} />
-      <Route exact path='/app/core' component={SimulatorContainer} />
-    </Main>
-    <Route exact path='/app/src' component={ParserControls} />
-    <Route exact path='/app/output' component={ParserControls} />
-    <Route exact path='/app/core' component={SimulatorControls} />
+    <Route exact path='/app/src' component={ParserInterface} />
+    <Route exact path='/app/output' component={ParserInterface} />
+    <Route exact path='/app/core' render={() => <SimulatorContainer tablet />} />
   </TabletGrid>
 )
 

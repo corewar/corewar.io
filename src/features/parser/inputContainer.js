@@ -6,13 +6,12 @@ import SourceCodeTextArea from './sourceCodeTextArea'
 import MessagePanel from './messagePanel'
 import ControlsContainer from '../parser/controlsContainer'
 
-
 import {
   parse
 } from './actions'
 
 const InputContainer = ({ redcode, parse, currentParseResult }) => (
-  <MobilePage>
+  <MobilePage mobile>
     <SourceCodeTextArea
       value={redcode}
       handleChange={e => parse(e.target.value)} />

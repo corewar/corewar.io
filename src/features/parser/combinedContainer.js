@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import SourceCodeTextArea from './sourceCodeTextArea'
 import CompiledOutput from './compiledOutput'
 import MessagePanel from './messagePanel'
+import MobilePage from '../common/mobilePage'
+import ControlsContainer from '../parser/controlsContainer'
 
 import { space } from '../common/theme'
 
@@ -14,17 +16,17 @@ import {
 
 const ParserGrid = styled.section`
   display: flex;
-  height: calc(100vh - ${space.header});
+  height: calc(100vh - ${space.header} - ${space.controls});
 `
 
-const ParserContainer = styled.section`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-`
+// const ParserContainer = styled.section`
+//   display: grid;
+//   grid-template-columns: 1fr;
+//   grid-template-rows: 1fr;
+// `
 
 const ParserInterface = ({ redcode, parse, currentParseResult, addWarrior }) => (
-  <ParserContainer>
+  <MobilePage tablet>
     <ParserGrid>
       <SourceCodeTextArea
         value={redcode}
@@ -33,8 +35,9 @@ const ParserInterface = ({ redcode, parse, currentParseResult, addWarrior }) => 
         {currentParseResult.warrior}
       </CompiledOutput>
     </ParserGrid>
+    <ControlsContainer />
     <MessagePanel messages={currentParseResult.messages} />
-  </ParserContainer>
+  </MobilePage>
 )
 
 const mapStateToProps = state => ({

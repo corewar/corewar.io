@@ -40,6 +40,8 @@ const CanvasWrapper = styled.section`
   }
 `
 
+CanvasWrapper.displayName = `CanvasWrapper`
+
 const CoreInterface = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, parseResults, maxTasks, removeWarrior, republish }) => (
   <CanvasWrapper>
     <Warriors parseResults={parseResults} maxTasks={maxTasks} removeWarrior={removeWarrior} />

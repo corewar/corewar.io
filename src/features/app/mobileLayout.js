@@ -21,7 +21,7 @@ const MobileLayout = () => (
     <NavBar />
     <Route exact path='/app/src' component={InputContainer} />
     <Route exact path='/app/output' component={OutputContainer} />
-    <Route exact path='/app/core' component={SimulatorContainer} />
+    <Route exact path='/app/core' render={() => <SimulatorContainer mobile />} />
   </MobileGrid>
 )
 

@@ -15,8 +15,8 @@ import {
   removeWarrior
 } from '../parser/actions'
 
-const SimulatorContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, republish, parseResults, maxTasks, removeWarrior }) => (
-  <MobilePage>
+const SimulatorContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, republish, parseResults, maxTasks, removeWarrior, tablet, mobile }) => (
+  <MobilePage tablet={tablet} mobile={mobile}>
     <SimulatorLayout
       coreSize={coreSize}
       getCoreInstructions={getCoreInstructions}

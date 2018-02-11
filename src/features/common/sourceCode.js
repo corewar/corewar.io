@@ -8,7 +8,7 @@ export const sourceCode = props => `
   background-color: transparent;
   padding: ${space.m};
   width: calc(100% - ${space.m} - ${space.m});
-  height: calc(100% - ${space.m} - ${space.m} - ${space.controls});
+  height: calc(100% - ${space.m} - ${space.m});
   border: none;
   caret-color: ${colour.white};
   color: ${colour.white};

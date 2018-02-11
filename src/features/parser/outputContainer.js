@@ -6,7 +6,7 @@ import CompiledOutput from './compiledOutput'
 import ControlsContainer from './controlsContainer'
 
 const OutputInterface = ({ currentParseResult }) => (
-  <MobilePage>
+  <MobilePage mobile>
     <CompiledOutput mobile>
       {currentParseResult.warrior}
     </CompiledOutput>
