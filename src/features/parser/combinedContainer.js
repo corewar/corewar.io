@@ -19,12 +19,6 @@ const ParserGrid = styled.section`
   height: calc(100vh - ${space.header} - ${space.controls});
 `
 
-// const ParserContainer = styled.section`
-//   display: grid;
-//   grid-template-columns: 1fr;
-//   grid-template-rows: 1fr;
-// `
-
 const ParserInterface = ({ redcode, parse, currentParseResult, addWarrior }) => (
   <MobilePage tablet>
     <ParserGrid>

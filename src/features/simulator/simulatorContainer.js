@@ -1,9 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import MobilePage from '../common/mobilePage'
 import SimulatorLayout from './simulatorLayout'
-import ControlsContainer from './controlsContainer'
 
 import {
   init,
@@ -15,21 +13,23 @@ import {
   removeWarrior
 } from '../parser/actions'
 
-const SimulatorContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, republish, parseResults, maxTasks, removeWarrior, tablet, mobile }) => (
-  <MobilePage tablet={tablet} mobile={mobile}>
-    <SimulatorLayout
-      coreSize={coreSize}
-      getCoreInstructions={getCoreInstructions}
-      isRunning={isRunning}
-      isInitialised={isInitialised}
-      parseResults={parseResults}
-      maxTasks={maxTasks}
-      republish={republish}
-      init={init}
-      removeWarrior={removeWarrior}
-      />
-    <ControlsContainer />
-  </MobilePage>
+
+const SimulatorContainer = ({ coreSize, getCoreInstructions, isRunning,
+  isInitialised, init, republish, parseResults,
+  maxTasks, removeWarrior, tablet, mobile }) => (
+  <SimulatorLayout
+    tablet={tablet}
+    mobile={mobile}
+    coreSize={coreSize}
+    getCoreInstructions={getCoreInstructions}
+    isRunning={isRunning}
+    isInitialised={isInitialised}
+    parseResults={parseResults}
+    maxTasks={maxTasks}
+    republish={republish}
+    init={init}
+    removeWarrior={removeWarrior}
+    />
 )
 
 const mapStateToProps = state => ({
