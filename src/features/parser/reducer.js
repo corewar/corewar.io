@@ -2,7 +2,6 @@ import {
   PARSE,
   ADD_WARRIOR,
   REMOVE_WARRIOR,
-  TOGGLE_MESSAGES,
   SHOW_MESSAGES,
   HIDE_MESSAGES
 } from './actions'
@@ -46,7 +45,6 @@ export default (state = initialState, action) => {
       }
 
     case SHOW_MESSAGES:
-      console.log('show')
       return {
         ...state,
         displayMessages: true

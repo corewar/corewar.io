@@ -4,7 +4,6 @@ import FontAwesome from 'react-fontawesome'
 
 import { colour, space, font } from '../common/theme'
 import { media } from '../common/mediaQuery'
-import FontAwesomeButton from '../simulator/fontAwesomeButton'
 
 const ParseMessageWrapper = styled.div`
   ${props =>  props.show ? `display: block;` : `display: none;`}
