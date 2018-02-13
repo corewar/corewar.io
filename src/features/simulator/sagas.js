@@ -30,6 +30,8 @@ import {
 import { getParserState } from '../parser/reducer'
 import { getSimulatorState } from './reducer'
 import { getCoreOptions } from '../../sagas/coreOptions'
+import notification from '../notifications/notification';
+import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from '../parser/actions';
 
 // oddities
 const roundProgressChannel = channel()
@@ -218,6 +220,7 @@ function* watchRoundEndChannel() {
     yield put(action)
   }
 }
+
 
 export const sendRoundProgress = (msg, data) => {
   roundProgressChannel.put({

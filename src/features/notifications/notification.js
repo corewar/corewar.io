@@ -23,15 +23,15 @@ const NotificationWrapper = styled.div`
 `
 
 const NotficationItem = styled.div`
-  width: 100%;
-  background-color: #fff;
+  margin-bottom: ${space.s};
+  margin-top: ${space.s};
 `
 
 const Notification = ({ notifications }) => (
 
   <NotificationWrapper notifications={notifications}>
     {notifications && notifications.map((msg, i) => (
-      <div key={`${msg}_${i}`}>{msg}</div>
+      <NotficationItem key={`${msg}_${i}`}>{msg}</NotficationItem>
     ))}
   </NotificationWrapper>
 
