@@ -1,8 +1,9 @@
 import { channel, delay } from 'redux-saga'
 import { call, put, takeEvery, takeLatest, select, take, fork } from 'redux-saga/effects'
-
-import { corewar } from 'corewar'
 import * as PubSub from 'pubsub-js'
+import { corewar } from 'corewar'
+
+import { postToast } from '../notifications/sagas'
 
 import {
   INIT,
@@ -30,8 +31,6 @@ import {
 import { getParserState } from '../parser/reducer'
 import { getSimulatorState } from './reducer'
 import { getCoreOptions } from '../../sagas/coreOptions'
-import notification from '../notifications/notification';
-import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from '../parser/actions';
 
 // oddities
 const roundProgressChannel = channel()
@@ -218,6 +217,8 @@ function* watchRoundEndChannel() {
     yield call(pauseSaga)
     const action = yield take(roundEndChannel)
     yield put(action)
+    console.log(action)
+    yield call(postToast, action)
   }
 }
 

@@ -1,7 +1,7 @@
-import { delay } from 'redux-saga'
 import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
-import { insertItem, removeItem } from '../../helpers/arrayHelpers'
 
+import { insertItem, removeItem } from '../../helpers/arrayHelpers'
+import { postToast } from '../notifications/sagas'
 import { corewar } from 'corewar'
 
 import {
@@ -13,8 +13,6 @@ import {
   REMOVE_WARRIOR_REQUESTED,
   SHOW_MESSAGES,
   HIDE_MESSAGES,
-  ADD_NOTIFICATION,
-  REMOVE_NOTIFICATION
 } from './actions'
 
 import { getParserState } from './reducer'
@@ -55,18 +53,6 @@ export function* addWarriorSaga() {
 
   yield call(initialiseCore, data.options, result)
 
-}
-
-function* postToast(msg) {
-
-  yield put({
-    type: ADD_NOTIFICATION,
-    msg
-  })
-
-  yield call(delay, 2000)
-
-  yield put({ type: REMOVE_NOTIFICATION })
 }
 
 export function* removeWarriorSaga({ index }) {
