@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 
 import { space } from '../common/theme'
@@ -11,6 +12,7 @@ const NotificationWrapper = styled.div`
   bottom: ${space.controls};
   right: 0;
   width: 50%;
+  max-width: 300px;
   min-height: 30px;
   line-height: 30px;
   height: auto;
@@ -20,6 +22,7 @@ const NotificationWrapper = styled.div`
   text-align: center;
   padding: ${space.s};
   margin-bottom: ${space.s};
+  z-index: 100;
 `
 
 const NotficationItem = styled.div`
@@ -27,7 +30,7 @@ const NotficationItem = styled.div`
   margin-top: ${space.s};
 `
 
-const Notification = ({ notifications }) => (
+const NotificationContainer = ({ notifications }) => (
 
   <NotificationWrapper notifications={notifications}>
     {notifications && notifications.map((msg, i) => (
@@ -37,4 +40,13 @@ const Notification = ({ notifications }) => (
 
 )
 
-export default Notification
+const mapStateToProps = state => ({
+  notifications: state.notification.notifications
+})
+
+export default connect(
+  mapStateToProps,
+  {}
+)(NotificationContainer)
+
+export { NotificationContainer as PureNotificationContainer }

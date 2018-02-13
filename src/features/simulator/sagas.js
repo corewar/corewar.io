@@ -217,8 +217,7 @@ function* watchRoundEndChannel() {
     yield call(pauseSaga)
     const action = yield take(roundEndChannel)
     yield put(action)
-    console.log(action)
-    yield call(postToast, action)
+    yield call(postToast, `Round Over: ${action.data.outcome}`)
   }
 }
 

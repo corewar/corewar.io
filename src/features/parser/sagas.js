@@ -65,7 +65,7 @@ export function* removeWarriorSaga({ index }) {
 
   yield put({ type: REMOVE_WARRIOR, result })
 
-  yield call(postToast, 'Warrior Added')
+  yield call(postToast, 'Warrior Removed')
 
   yield call(initialiseCore, data.options, result)
 
