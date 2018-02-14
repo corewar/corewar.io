@@ -1,14 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
+import FontAwesome from 'react-fontawesome'
 
 import { colour, space, font } from '../common/theme'
 import { media } from '../common/mediaQuery'
 
 const ParseMessageWrapper = styled.div`
-  ${props => props.messages && props.messages.length > 0 ? `display: block;` : `display: none;`}
+  ${props =>  props.show ? `display: block;` : `display: none;`}
   position: absolute;
   bottom: 0;
   min-height: 100px;
+  max-height: 40%;
+  overflow-y: hidden;
   height: auto;
   width: calc(50% - 5px);
   border-right: 1px solid ${colour.grey};
@@ -37,9 +40,21 @@ const ColouredMessageText = styled.span`
  ${props => props.type === 2 && `color: ${colour.info};`}
 `
 
-const MessagePanel = ({ messages }) => (
+const CloseButton = styled.div`
+  position: absolute;
+  right: ${space.s};
+  top: ${space.s};
+  &:hover {
+    cursor: pointer;
+  }
+`
 
-  <ParseMessageWrapper messages={messages}>
+const MessagePanel = ({ messages, hideMessages, show }) => (
+
+  <ParseMessageWrapper messages={messages} show={show} onClick={hideMessages}>
+    <CloseButton>
+      <FontAwesome name={`times`} />
+    </CloseButton>
     <MessageRow>
       <span>line</span>
       <span>char</span>

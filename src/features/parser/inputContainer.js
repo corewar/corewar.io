@@ -7,28 +7,34 @@ import MessagePanel from './messagePanel'
 import ControlsContainer from '../parser/controlsContainer'
 
 import {
-  parse
+  parse,
+  hideMessages
 } from './actions'
 
-const InputContainer = ({ redcode, parse, currentParseResult }) => (
+const InputContainer = ({ redcode, parse, currentParseResult, hideMessages, displayMessages }) => (
   <MobilePage mobile>
     <SourceCodeTextArea
       value={redcode}
       handleChange={e => parse(e.target.value)} />
     <ControlsContainer />
-    <MessagePanel messages={currentParseResult && currentParseResult.messages} />
+    <MessagePanel
+      hideMessages={hideMessages}
+      messages={currentParseResult && currentParseResult.messages}
+      show={displayMessages} />
   </MobilePage>
 )
 
 const mapStateToProps = state => ({
   redcode: state.parser.redcode,
-  currentParseResult: state.parser.currentParseResult
+  currentParseResult: state.parser.currentParseResult,
+  displayMessages: state.parser.displayMessages
 })
 
 export default connect(
   mapStateToProps,
   {
-    parse
+    parse,
+    hideMessages
   }
 )(InputContainer)
 

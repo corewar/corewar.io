@@ -16,7 +16,9 @@ import { space } from '../common/theme'
 
 import {
   parse,
-  addWarrior
+  addWarrior,
+  hideMessages,
+  showMessages
 } from '../parser/actions'
 
 import {
@@ -41,18 +43,18 @@ const ParserGrid = styled.section`
   height: calc(100vh - ${space.header} - ${space.header});
 `
 
-const CompleteInterface = ({ redcode, parse, currentParseResult,
+const AppContainer = ({ redcode, parse, currentParseResult,
   coreSize, getCoreInstructions, isRunning, isInitialised, addWarrior,
-  run, pause, step, init }) => (
+  run, pause, step, init, hideMessages, showMessages, displayMessages }) => (
   <DesktopContainer>
     <Controls>
-      <Button onClick={addWarrior} enabled={hasNoErrors(currentParseResult)}>
+      <Button handleClick={addWarrior} enabled={hasNoErrors(currentParseResult)}>
         <Octicon mega name="chevron-right"/>
       </Button>
       <ParseStatusButton
-        enabled={hasNoErrors(currentParseResult)}
+        enabled={true}
         messages={currentParseResult.messages}
-        handleClick={() => { console.log('disabled clicked me') }}>
+        handleClick={showMessages}>
           <Octicon mega name="issue-opened"/>
       </ParseStatusButton>
     </Controls>
@@ -63,20 +65,23 @@ const CompleteInterface = ({ redcode, parse, currentParseResult,
       <CompiledOutput desktop>
         {currentParseResult.warrior}
       </CompiledOutput>
-      <MessagePanel messages={currentParseResult.messages} />
+      <MessagePanel
+        messages={currentParseResult.messages}
+        hideMessages={hideMessages}
+        show={displayMessages}
+        />
     </ParserGrid>
     <Instructions />
-
-      <SimulatorContainer
-        coreSize={coreSize}
-        getCoreInstructions={getCoreInstructions}
-        isRunning={isRunning}
-        isInitialised={isInitialised}
-        run={run}
-        pause={pause}
-        step={step}
-        init={init}
-        />
+    <SimulatorContainer
+      coreSize={coreSize}
+      getCoreInstructions={getCoreInstructions}
+      isRunning={isRunning}
+      isInitialised={isInitialised}
+      run={run}
+      pause={pause}
+      step={step}
+      init={init}
+      />
 
   </DesktopContainer>
 )
@@ -91,7 +96,8 @@ const mapStateToProps = state => ({
   coreSize: state.simulator.coreSize,
   getCoreInstructions: state.simulator.getCoreInstructions,
   isRunning: state.simulator.isRunning,
-  isInitialised: state.simulator.isInitialised
+  isInitialised: state.simulator.isInitialised,
+  displayMessages: state.parser.displayMessages
 })
 
 export default connect(
@@ -103,8 +109,10 @@ export default connect(
     parse,
     step,
     addWarrior,
-    getCoreInstructions
+    getCoreInstructions,
+    hideMessages,
+    showMessages
   }
-)(CompleteInterface)
+)(AppContainer)
 
-export { CompleteInterface as PureCompleteInterface }
+export { AppContainer as PureAppContainer }
