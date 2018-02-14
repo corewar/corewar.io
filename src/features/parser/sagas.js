@@ -1,7 +1,7 @@
 import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 
 import { insertItem, removeItem } from '../../helpers/arrayHelpers'
-import { postToast } from '../notifications/sagas'
+import { toast } from '../notifications/sagas'
 import { corewar } from 'corewar'
 
 import {
@@ -49,7 +49,7 @@ export function* addWarriorSaga() {
 
   yield put({ type: ADD_WARRIOR, result })
 
-  yield call(postToast, 'Warrior Added')
+  yield call(toast, 'Warrior Added')
 
   yield call(initialiseCore, data.options, result)
 
@@ -65,7 +65,7 @@ export function* removeWarriorSaga({ index }) {
 
   yield put({ type: REMOVE_WARRIOR, result })
 
-  yield call(postToast, 'Warrior Removed')
+  yield call(toast, 'Warrior Removed')
 
   yield call(initialiseCore, data.options, result)
 

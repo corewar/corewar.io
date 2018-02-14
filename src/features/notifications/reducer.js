@@ -20,15 +20,13 @@ export default (state = initialState, action) => {
     case ADD_NOTIFICATION:
       return {
         ...state,
-        notifications: insertItem(state.notifications.length - 1, state.notifications, action.msg)
+        notifications: insertItem(state.notifications.length - 1, state.notifications, action.content)
       }
 
     case REMOVE_NOTIFICATION:
-      const c = removeItem(0, state.notifications)
-      console.log(c)
       return {
         ...state,
-        notifications: c
+        notifications: removeItem(0, state.notifications)
       }
 
     default:

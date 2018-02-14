@@ -33,8 +33,10 @@ const NotficationItem = styled.div`
 const NotificationContainer = ({ notifications }) => (
 
   <NotificationWrapper notifications={notifications}>
-    {notifications && notifications.map((msg, i) => (
-      <NotficationItem key={`${msg}_${i}`}>{msg}</NotficationItem>
+    {notifications && notifications.map((content, i) => (
+      <NotficationItem key={`${content}_${i}`}>
+        {content}
+      </NotficationItem>
     ))}
   </NotificationWrapper>
 

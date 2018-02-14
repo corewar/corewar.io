@@ -7,9 +7,9 @@ import {
 } from './actions'
 
 
-export function* postToast(msg) {
+export function* toast(content) {
 
-  yield put({ type: ADD_NOTIFICATION, msg })
+  yield put({ type: ADD_NOTIFICATION, content })
 
   yield call(delay, 2000)
 

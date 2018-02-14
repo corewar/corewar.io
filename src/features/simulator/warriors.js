@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Identicon from 'identicon.js'
-import jssha from 'jssha'
 import { List } from 'immutable'
 import * as PubSub from 'pubsub-js'
 import Octicon from 'react-octicon'
+import { getIdenticon } from '../common/identicon'
 
 import { colour, space, font } from '../common/theme'
 
@@ -108,7 +107,7 @@ class Warriors extends Component {
       {parseResults && parseResults.map((result, i) => {
         const taskCount = this.state.tasks.get(i)
         return <WarriorWrapper key={`${result.warrior}_${i}`}>
-          <img src={`data:image/svg+xml;base64,${getIdenticonSvg(result.warrior, i)}`} alt={`result.metaData.name avatar`} />
+          <img src={`data:image/svg+xml;base64,${getIdenticon(result.warrior, i)}`} alt={`result.metaData.name avatar`} />
           <WarriorControls>{result.metaData.name}<Octicon name="trashcan" onClick={() => removeWarrior(i)} /></WarriorControls>
           <TaskCountDisplay>{taskCount ? taskCount : 0 }</TaskCountDisplay>
           <TaskBar tasks={taskCount} maxTasks={maxTasks} warriorIndex={i}></TaskBar>
@@ -119,33 +118,6 @@ class Warriors extends Component {
   }
 }
 
-const getIdenticonSvg = (warrior, i) => {
-
-  var sha = new jssha("SHA-512", "TEXT");
-
-  sha.update(warrior)
-
-  const hash = sha.getHash('HEX')
-
-  const options = {
-    size: 40,
-    foreground: hexToRgbA(colour.warrior[i]),
-    background: [0,0,0,0],
-    margin: 0,
-    format: 'svg'
-  }
-
-  return new Identicon(hash, options)
-}
-
-const hexToRgbA = (hex) => {
-
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-
-  return [r, g, b, 255]
-}
 
 Warriors.displayName = 'Warriors'
 
