@@ -8,7 +8,7 @@ import Octicon from 'react-octicon'
 
 import { colour, space, font } from '../common/theme'
 
-const WarriorContainer = styled.div`
+const WarriorGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: ${space.s};
@@ -34,6 +34,7 @@ const WarriorContainer = styled.div`
     background-color: ${colour.blue};
   }
 `
+
 const WarriorWrapper = styled.div`
   padding: ${space.xs};
   display: grid;
@@ -103,7 +104,7 @@ class Warriors extends Component {
 
   render() {
     const { parseResults, maxTasks, removeWarrior } = this.props
-    return <WarriorContainer>
+    return <WarriorGrid>
       {parseResults && parseResults.map((result, i) => {
         const taskCount = this.state.tasks.get(i)
         return <WarriorWrapper key={`${result.warrior}_${i}`}>
@@ -114,7 +115,7 @@ class Warriors extends Component {
         </WarriorWrapper>
       }
       )}
-    </WarriorContainer>
+    </WarriorGrid>
   }
 }
 
