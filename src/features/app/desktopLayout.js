@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 
 import AppContainer from './appContainer'
+import NotificationContainer from '../notifications/notificationContainer'
 
 import { colour, space } from '../common/theme'
 
@@ -13,6 +14,7 @@ const DesktopGrid = styled.div`
 
 const DesktopLayout = () => (
   <DesktopGrid>
+    <NotificationContainer />
     <Route path='/app/src' component={AppContainer} />
     <Route path='/app/output' component={AppContainer} />
     <Route path='/app/core' component={AppContainer} />

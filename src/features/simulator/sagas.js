@@ -1,8 +1,11 @@
+import React from 'react'
 import { channel, delay } from 'redux-saga'
 import { call, put, takeEvery, takeLatest, select, take, fork } from 'redux-saga/effects'
-
-import { corewar } from 'corewar'
 import * as PubSub from 'pubsub-js'
+import { corewar } from 'corewar'
+
+import { toast } from '../notifications/sagas'
+import { getIdenticon } from '../common/identicon'
 
 import {
   INIT,
@@ -216,8 +219,19 @@ function* watchRoundEndChannel() {
     yield call(pauseSaga)
     const action = yield take(roundEndChannel)
     yield put(action)
+    const { parseResults } = yield select(getParserState)
+
+    const content = <div>
+      {action.data.outcome === "WIN" &&
+        <img style={{ marginRight: `10px` }} src={`data:image/svg+xml;base64,${getIdenticon(parseResults[action.data.winnerId].warrior, action.data.winnerId, 20)}`}/>
+      }
+      {`Round Over: ${action.data.outcome}`}
+    </div>
+
+    yield call(toast, content)
   }
 }
+
 
 export const sendRoundProgress = (msg, data) => {
   roundProgressChannel.put({

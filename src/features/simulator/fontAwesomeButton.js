@@ -7,8 +7,8 @@ import { colour, font } from '../common/theme'
 const Container = styled.div.attrs({
   onClick: props => props.enabled ? props.handleClick : null
 })`
-  ${props => !props.visible && `display: none;`};
-  color: ${props => props.enabled ? `${colour.white}` : `${colour.grey}`};
+  ${props => !props.visible && `display: none;`}
+  ${props => props.enabled ? `color: ${colour.white};` : `color: ${colour.grey};`}
   font-size: ${font.small};
   width: 100%;
   text-align: center;
