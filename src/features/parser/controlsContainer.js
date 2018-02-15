@@ -10,8 +10,8 @@ import ParseStatusButton from  './parseStatusButton'
 
 import {
   addWarrior,
-  loadWarrior,
-  showMessages
+  showMessages,
+  toggleFileManager
 } from './actions'
 
 const ButtonText = styled.span`
@@ -25,11 +25,11 @@ const ButtonGrid = styled.div`
   grid-template-columns: 1fr;
 `
 
-const MobileControls = ({ addWarrior, currentParseResult, showMessages, loadWarrior }) => (
+const MobileControls = ({ addWarrior, currentParseResult, showMessages, toggleFileManager }) => (
   <Controls>
     <Button
       enabled={true}
-      handleClick={loadWarrior}>
+      handleClick={toggleFileManager}>
       <ButtonGrid>
         <Octicon name="file-directory"/>
         <ButtonText>manage files</ButtonText>
@@ -76,8 +76,8 @@ export default connect(
   mapStateToProps,
   {
     addWarrior,
-    loadWarrior,
-    showMessages
+    showMessages,
+    toggleFileManager
   }
 )(MobileControls)
 

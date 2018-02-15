@@ -3,7 +3,8 @@ import {
   ADD_WARRIOR,
   REMOVE_WARRIOR,
   SHOW_MESSAGES,
-  HIDE_MESSAGES
+  HIDE_MESSAGES,
+  TOGGLE_FILE_MANAGER
 } from './actions'
 
 // state
@@ -14,7 +15,8 @@ const initialState = {
   standardId: 2, // TODO: what's the best standard to use as a default?
   redcode: '',
   warrior: '',
-  displayMessages: false
+  displayMessages: false,
+  displayFileManager: false
 }
 
 // selectors
@@ -54,6 +56,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         displayMessages: false
+      }
+
+    case TOGGLE_FILE_MANAGER:
+      return {
+        ...state,
+        displayFileManager: !state.displayFileManager
       }
 
     default:
