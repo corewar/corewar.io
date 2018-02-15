@@ -7,6 +7,7 @@ import CompiledOutput from './compiledOutput'
 import MessagePanel from './messagePanel'
 import MobilePage from '../common/mobilePage'
 import ControlsContainer from '../parser/controlsContainer'
+import FileManagerContainer from '../file-manager/fileManagerContainer'
 
 import { space } from '../common/theme'
 
@@ -31,6 +32,7 @@ const ParserInterface = ({ redcode, parse, currentParseResult, addWarrior, hideM
       </CompiledOutput>
     </ParserGrid>
     <ControlsContainer />
+    <FileManagerContainer />
     <MessagePanel
       messages={currentParseResult.messages}
       hideMessages={hideMessages}

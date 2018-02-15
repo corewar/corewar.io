@@ -40,6 +40,7 @@ const FileManagerGrid = styled.section`
     margin-top: ${space.l};
     padding-bottom: ${space.s};
     padding-top: ${space.s};
+    margin-right: ${space.s};
     height: ${space.m};
     border-bottom: 2px solid transparent;
 
@@ -52,11 +53,6 @@ const FileManagerGrid = styled.section`
 
 
 `
-
-const SlideIn = props => {
-
-
-}
 
 const FileManager = ({ show }) => (
   <FileManagerGrid show={show}>
