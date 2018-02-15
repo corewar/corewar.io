@@ -24,14 +24,30 @@ const FileManagerGrid = styled.section`
 
   color: ${colour.grey};
 
+  span {
+    margin: ${space.m};
+    margin-top: ${space.l};
+    width: 100%;
+    border-bottom: ${colour.grey};
+  }
+
   ul {
     margin: ${space.m};
   }
 
   ul li {
-    margin: ${space.m};
-    width: 100%;
-    height: ${space.l};
+    margin-left: ${space.m};
+    margin-top: ${space.l};
+    padding-bottom: ${space.s};
+    padding-top: ${space.s};
+    height: ${space.m};
+    border-bottom: 2px solid transparent;
+
+    &:hover {
+      border-bottom: 2px solid ${colour.blue};
+      cursor: pointer;
+      color: ${colour.white};
+    }
   }
 
 
@@ -44,11 +60,13 @@ const SlideIn = props => {
 
 const FileManager = ({ show }) => (
   <FileManagerGrid show={show}>
-    /dougajmcdonald
+
+    <span>/ dougajmcdonald</span>
     <ul>
-      <li>file1.red</li>
-      <li>file2.red</li>
-      <li>file3.red</li>
+      <li>imp.red</li>
+      <li>vampire.red</li>
+      <li>paper.red</li>
+      <li>stone.red</li>
     </ul>
   </FileManagerGrid>
 )
