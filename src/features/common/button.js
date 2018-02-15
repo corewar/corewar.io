@@ -12,6 +12,7 @@ const Button = styled.button.attrs({
   background-color: transparent;
   width: 100%;
   height: 100%;
+  font-size: 1.5em;
 
   &:hover {
     ${props => props.enabled && `cursor: pointer`};

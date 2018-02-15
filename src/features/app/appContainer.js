@@ -17,6 +17,7 @@ import { space } from '../common/theme'
 import {
   parse,
   addWarrior,
+  loadWarrior,
   hideMessages,
   showMessages
 } from '../parser/actions'
@@ -43,20 +44,47 @@ const ParserGrid = styled.section`
   height: calc(100vh - ${space.header} - ${space.header});
 `
 
+const ButtonText = styled.span`
+  display: inline-block;
+  font-size: 0.5em;
+`
+
+const ButtonGrid = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr;
+`
+
 const AppContainer = ({ redcode, parse, currentParseResult,
-  coreSize, getCoreInstructions, isRunning, isInitialised, addWarrior,
+  coreSize, getCoreInstructions, isRunning, isInitialised, addWarrior, loadWarrior,
   run, pause, step, init, hideMessages, showMessages, displayMessages }) => (
   <DesktopContainer>
     <Controls>
-      <Button handleClick={addWarrior} enabled={hasNoErrors(currentParseResult)}>
-        <Octicon mega name="chevron-right"/>
+      <Button
+        enabled={true}
+        handleClick={loadWarrior}>
+        <ButtonGrid>
+          <Octicon name="file-directory"/>
+          <ButtonText>manage files</ButtonText>
+        </ButtonGrid>
       </Button>
       <ParseStatusButton
         enabled={true}
         messages={currentParseResult.messages}
         handleClick={showMessages}>
-          <Octicon mega name="issue-opened"/>
+        <ButtonGrid>
+          <Octicon name="terminal"/>
+          <ButtonText>console</ButtonText>
+        </ButtonGrid>
       </ParseStatusButton>
+      <Button
+        enabled={hasNoErrors(currentParseResult)}
+        handleClick={addWarrior}>
+        <ButtonGrid>
+          <Octicon name="git-commit"/>
+          <ButtonText>add to core</ButtonText>
+        </ButtonGrid>
+      </Button>
     </Controls>
     <ParserGrid>
       <SourceCodeTextArea desktop
@@ -109,6 +137,7 @@ export default connect(
     parse,
     step,
     addWarrior,
+    loadWarrior,
     getCoreInstructions,
     hideMessages,
     showMessages

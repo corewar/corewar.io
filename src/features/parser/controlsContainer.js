@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Octicon from 'react-octicon'
+import styled from 'styled-components'
 
 import Button from  '../common/button'
 import Controls from  '../common/controls'
@@ -9,21 +10,47 @@ import ParseStatusButton from  './parseStatusButton'
 
 import {
   addWarrior,
+  loadWarrior,
   showMessages
 } from './actions'
 
-const MobileControls = ({ addWarrior, currentParseResult, showMessages }) => (
+const ButtonText = styled.span`
+  display: inline-block;
+  font-size: 0.5em;
+`
+
+const ButtonGrid = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr;
+`
+
+const MobileControls = ({ addWarrior, currentParseResult, showMessages, loadWarrior }) => (
   <Controls>
+    <Button
+      enabled={true}
+      handleClick={loadWarrior}>
+      <ButtonGrid>
+        <Octicon name="file-directory"/>
+        <ButtonText>manage files</ButtonText>
+      </ButtonGrid>
+    </Button>
     <ParseStatusButton
       enabled={true}
       messages={currentParseResult.messages}
       handleClick={showMessages}>
-      <Octicon mega name="issue-opened"/>
+      <ButtonGrid>
+        <Octicon name="terminal"/>
+        <ButtonText>console</ButtonText>
+      </ButtonGrid>
     </ParseStatusButton>
     <Button
       enabled={hasNoErrors(currentParseResult)}
       handleClick={addWarrior}>
-      <Octicon mega name="chevron-right"/>
+      <ButtonGrid>
+        <Octicon name="git-commit"/>
+        <ButtonText>add to core</ButtonText>
+      </ButtonGrid>
     </Button>
   </Controls>
 )
@@ -34,6 +61,7 @@ const hasNoErrors = (currentParseResult) => (
 
 MobileControls.PropTypes = {
   addWarrior: PropTypes.func,
+  loadWarrior: PropTypes.func,
   currentParseResult: PropTypes.shape({
     warrior: PropTypes.string,
     messages: PropTypes.array
@@ -48,6 +76,7 @@ export default connect(
   mapStateToProps,
   {
     addWarrior,
+    loadWarrior,
     showMessages
   }
 )(MobileControls)

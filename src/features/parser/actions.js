@@ -15,3 +15,4 @@ export const addWarrior = () => action(ADD_WARRIOR_REQUESTED)
 export const removeWarrior = index => action(REMOVE_WARRIOR_REQUESTED, { index })
 export const showMessages = () => action(SHOW_MESSAGES)
 export const hideMessages = () => action(HIDE_MESSAGES)
+export const loadWarrior = () => { console.log('load warrior') }
