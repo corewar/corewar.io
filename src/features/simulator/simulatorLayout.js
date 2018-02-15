@@ -29,9 +29,9 @@ const SimulatorGrid = styled.section`
 SimulatorGrid.displayName = `SimulatorGrid`
 
 const SimulatorLayout = ({ coreSize, getCoreInstructions, isRunning, isInitialised,
-  init, parseResults, maxTasks, removeWarrior, republish, tablet, mobile }) => (
+  init, files, maxTasks, removeWarrior, loadWarrior, republish, tablet, mobile }) => (
   <SimulatorGrid mobile={mobile} tablet={tablet}>
-    <Warriors parseResults={parseResults} maxTasks={maxTasks} removeWarrior={removeWarrior} />
+    <Warriors files={files} maxTasks={maxTasks} removeWarrior={removeWarrior} loadWarrior={loadWarrior} />
     <ErrorBoundary>
       <Core
         init={init}

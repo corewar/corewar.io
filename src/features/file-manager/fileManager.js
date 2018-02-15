@@ -51,7 +51,6 @@ const FileManagerGrid = styled.section`
     }
   }
 
-
 `
 
 const FileManager = ({ show, files }) => (

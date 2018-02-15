@@ -13,7 +13,9 @@ import {
   REMOVE_WARRIOR_REQUESTED,
   SHOW_MESSAGES,
   HIDE_MESSAGES,
-  SET_FILES
+  SET_FILES,
+  LOAD_WARRIOR_REQUESTED,
+  LOAD_WARRIOR
 } from './actions'
 
 import { getParserState } from './reducer'
@@ -53,15 +55,15 @@ export function* addWarriorSaga() {
 
   const { currentParseResult, redcode } = yield select(getParserState)
 
-  const result = yield call(insertItem, data.parseResults.length, data.parseResults, currentParseResult)
+  const parseResult = { ...currentParseResult, redcode }
 
-  console.log(result)
+  const result = yield call(insertItem, data.parseResults.length, data.parseResults, parseResult)
 
   const files = result.map((res, i) => ({
     guid: guid(),
     name: `${res.metaData.name} (${i})`,
     author: res.metaData.author,
-    redcode: redcode,
+    redcode: res.redcode,
     output: res.warrior
   }))
 
@@ -72,6 +74,16 @@ export function* addWarriorSaga() {
   yield call(toast, 'Warrior Added')
 
   yield call(initialiseCore, data.options, result)
+
+}
+
+export function* loadWarriorSaga({ guid }) {
+
+  const { files } = yield select(getParserState)
+
+  const redcode = files.find(x => x.guid === guid).redcode
+
+  yield put({ type: LOAD_WARRIOR, redcode })
 
 }
 
@@ -104,5 +116,6 @@ export function* removeWarriorSaga({ index }) {
 export const parserWatchers = [
   takeLatest(PARSE_REQUESTED, parseSaga),
   takeEvery(ADD_WARRIOR_REQUESTED, addWarriorSaga),
-  takeEvery(REMOVE_WARRIOR_REQUESTED, removeWarriorSaga)
+  takeEvery(REMOVE_WARRIOR_REQUESTED, removeWarriorSaga),
+  takeEvery(LOAD_WARRIOR_REQUESTED, loadWarriorSaga)
 ]

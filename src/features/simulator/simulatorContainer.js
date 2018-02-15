@@ -10,13 +10,15 @@ import {
 } from './actions'
 
 import {
-  removeWarrior
+  removeWarrior,
+  loadWarrior
 } from '../parser/actions'
+import { loadavg } from 'os';
 
 
 const SimulatorContainer = ({ coreSize, getCoreInstructions, isRunning,
-  isInitialised, init, republish, parseResults,
-  maxTasks, removeWarrior, tablet, mobile }) => (
+  isInitialised, init, republish, files,
+  maxTasks, removeWarrior, loadWarrior, tablet, mobile }) => (
   <SimulatorLayout
     tablet={tablet}
     mobile={mobile}
@@ -24,11 +26,13 @@ const SimulatorContainer = ({ coreSize, getCoreInstructions, isRunning,
     getCoreInstructions={getCoreInstructions}
     isRunning={isRunning}
     isInitialised={isInitialised}
-    parseResults={parseResults}
+    files={files}
     maxTasks={maxTasks}
     republish={republish}
     init={init}
+    files={files}
     removeWarrior={removeWarrior}
+    loadWarrior={loadWarrior}
     />
 )
 
@@ -36,7 +40,7 @@ const mapStateToProps = state => ({
   coreSize: state.simulator.coreSize,
   isRunning: state.simulator.isRunning,
   isInitialised: state.simulator.isInitialised,
-  parseResults: state.parser.parseResults,
+  files: state.parser.files,
   maxTasks: state.simulator.maxTasks
 })
 
@@ -46,7 +50,8 @@ export default connect(
     init,
     republish,
     getCoreInstructions,
-    removeWarrior
+    removeWarrior,
+    loadWarrior
   }
 )(SimulatorContainer)
 

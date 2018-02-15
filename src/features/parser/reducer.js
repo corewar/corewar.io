@@ -5,7 +5,8 @@ import {
   SHOW_MESSAGES,
   HIDE_MESSAGES,
   TOGGLE_FILE_MANAGER,
-  SET_FILES
+  SET_FILES,
+  LOAD_WARRIOR
 } from './actions'
 
 // state
@@ -50,6 +51,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         files: action.files
+      }
+
+    case LOAD_WARRIOR:
+      return {
+        ...state,
+        redcode: action.redcode
       }
 
     case SHOW_MESSAGES:

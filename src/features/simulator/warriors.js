@@ -39,6 +39,10 @@ const WarriorWrapper = styled.div`
   display: grid;
   grid-template-columns: 40px 1fr;
   grid-template-rows: 1fr 20px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 const WarriorControls = styled.div`
@@ -102,13 +106,13 @@ class Warriors extends Component {
   }
 
   render() {
-    const { parseResults, maxTasks, removeWarrior } = this.props
+    const { files, maxTasks, removeWarrior, loadWarrior } = this.props
     return <WarriorGrid>
-      {parseResults && parseResults.map((result, i) => {
+      {files && files.map((file, i) => {
         const taskCount = this.state.tasks.get(i)
-        return <WarriorWrapper key={`${result.warrior}_${i}`}>
-          <img src={`data:image/svg+xml;base64,${getIdenticon(result.warrior, i)}`} alt={`result.metaData.name avatar`} />
-          <WarriorControls>{result.metaData.name}<Octicon name="trashcan" onClick={() => removeWarrior(i)} /></WarriorControls>
+        return <WarriorWrapper key={`${file.guid}_${i}`} onClick={() => loadWarrior(file.guid)}>
+          <img src={`data:image/svg+xml;base64,${getIdenticon(file.output, i)}`} alt={`${file.name} avatar`} />
+          <WarriorControls>{file.name}<Octicon name="trashcan" onClick={() => removeWarrior(i)} /></WarriorControls>
           <TaskCountDisplay>{taskCount ? taskCount : 0 }</TaskCountDisplay>
           <TaskBar tasks={taskCount} maxTasks={maxTasks} warriorIndex={i}></TaskBar>
         </WarriorWrapper>
