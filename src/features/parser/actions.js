@@ -6,6 +6,7 @@ export const REMOVE_WARRIOR = 'parser/REMOVE_WARRIOR'
 export const SHOW_MESSAGES = 'parser/SHOW_MESSAGES'
 export const HIDE_MESSAGES = 'parser/HIDE_MESSAGES'
 export const TOGGLE_FILE_MANAGER = 'parser/TOGGLE_FILE_MANAGER'
+export const SET_FILES = 'parser/SET_FILES'
 
 export const PARSE_REQUESTED = 'parser/PARSE_REQUESTED'
 export const ADD_WARRIOR_REQUESTED = 'parser/ADD_WARRIOR_REQUESTED'

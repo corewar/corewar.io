@@ -4,14 +4,15 @@ import {
   REMOVE_WARRIOR,
   SHOW_MESSAGES,
   HIDE_MESSAGES,
-  TOGGLE_FILE_MANAGER
+  TOGGLE_FILE_MANAGER,
+  SET_FILES
 } from './actions'
 
 // state
 const initialState = {
-  isParsing: false,
   currentParseResult: {},
   parseResults: [],
+  files: [],
   standardId: 2, // TODO: what's the best standard to use as a default?
   redcode: '',
   warrior: '',
@@ -30,8 +31,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         currentParseResult: action.result,
-        redcode: action.redcode,
-        isParsing: false
+        redcode: action.redcode
       }
 
     case ADD_WARRIOR:
@@ -44,6 +44,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         parseResults: action.result
+      }
+
+    case SET_FILES:
+      return {
+        ...state,
+        files: action.files
       }
 
     case SHOW_MESSAGES:

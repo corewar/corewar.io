@@ -6,12 +6,16 @@ import { space } from '../common/theme'
 
 import FileManager from './fileManager'
 
-const FileManagerContainer = ({ displayFileManager }) => (
-  <FileManager show={displayFileManager} />
+const FileManagerContainer = ({ displayFileManager, files }) => (
+  <FileManager
+    show={displayFileManager}
+    files={files}
+    />
 )
 
 const mapStateToProps = state => ({
-  displayFileManager: state.parser.displayFileManager
+  displayFileManager: state.parser.displayFileManager,
+  files: state.parser.files
 })
 
 export default connect(
