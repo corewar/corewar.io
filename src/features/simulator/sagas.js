@@ -223,7 +223,10 @@ function* watchRoundEndChannel() {
 
     const content = <div>
       {action.data.outcome === "WIN" &&
-        <img style={{ marginRight: `10px` }} src={`data:image/svg+xml;base64,${getIdenticon(parseResults[action.data.winnerId].warrior, action.data.winnerId, 20)}`}/>
+        <img
+          style={{ marginRight: `10px` }}
+          src={`data:image/svg+xml;base64,${getIdenticon(parseResults[action.data.winnerId].warrior, action.data.winnerId, 20)}`}
+          alt={`winner icon`}/>
       }
       {`Round Over: ${action.data.outcome}`}
     </div>

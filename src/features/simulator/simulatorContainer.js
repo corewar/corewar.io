@@ -13,7 +13,6 @@ import {
   removeWarrior,
   loadWarrior
 } from '../parser/actions'
-import { loadavg } from 'os';
 
 
 const SimulatorContainer = ({ coreSize, getCoreInstructions, isRunning,
@@ -30,7 +29,6 @@ const SimulatorContainer = ({ coreSize, getCoreInstructions, isRunning,
     maxTasks={maxTasks}
     republish={republish}
     init={init}
-    files={files}
     removeWarrior={removeWarrior}
     loadWarrior={loadWarrior}
     />

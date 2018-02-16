@@ -1,8 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import styled from 'styled-components'
-
-import { space } from '../common/theme'
 
 import FileManager from './fileManager'
 
