@@ -11,13 +11,14 @@ import Button from '../common/button'
 import ParseStatusButton from '../parser/parseStatusButton'
 import Instructions from '../simulator/instructions'
 import MessagePanel from '../parser/messagePanel'
+import FileManagerContainer from '../file-manager/fileManagerContainer'
 
 import { space } from '../common/theme'
 
 import {
   parse,
   addWarrior,
-  loadWarrior,
+  toggleFileManager,
   hideMessages,
   showMessages
 } from '../parser/actions'
@@ -56,13 +57,13 @@ const ButtonGrid = styled.div`
 `
 
 const AppContainer = ({ redcode, parse, currentParseResult,
-  coreSize, getCoreInstructions, isRunning, isInitialised, addWarrior, loadWarrior,
+  coreSize, getCoreInstructions, isRunning, isInitialised, addWarrior, toggleFileManager,
   run, pause, step, init, hideMessages, showMessages, displayMessages }) => (
   <DesktopContainer>
     <Controls>
       <Button
         enabled={true}
-        handleClick={loadWarrior}>
+        handleClick={toggleFileManager}>
         <ButtonGrid>
           <Octicon name="file-directory"/>
           <ButtonText>manage files</ButtonText>
@@ -110,7 +111,7 @@ const AppContainer = ({ redcode, parse, currentParseResult,
       step={step}
       init={init}
       />
-
+    <FileManagerContainer />
   </DesktopContainer>
 )
 
@@ -137,7 +138,7 @@ export default connect(
     parse,
     step,
     addWarrior,
-    loadWarrior,
+    toggleFileManager,
     getCoreInstructions,
     hideMessages,
     showMessages

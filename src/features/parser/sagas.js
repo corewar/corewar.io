@@ -55,9 +55,9 @@ export function* addWarriorSaga() {
 
   const { currentParseResult, redcode } = yield select(getParserState)
 
-  const parseResult = { ...currentParseResult, redcode }
+  const warriorFile = { ...currentParseResult, redcode }
 
-  const result = yield call(insertItem, data.parseResults.length, data.parseResults, parseResult)
+  const result = yield call(insertItem, data.parseResults.length, data.parseResults, warriorFile)
 
   const files = result.map((res, i) => ({
     guid: guid(),
@@ -81,6 +81,8 @@ export function* loadWarriorSaga({ guid }) {
 
   const { files } = yield select(getParserState)
 
+  console.log(files)
+
   const redcode = files.find(x => x.guid === guid).redcode
 
   yield put({ type: LOAD_WARRIOR, redcode })
@@ -98,6 +100,7 @@ export function* removeWarriorSaga({ index }) {
   const files = result.map((res, i) => ({
     name: `${res.metaData.name} (${i})`,
     author: res.metaData.author,
+    redcode: res.redcode,
     output: res.warrior
   }))
 
