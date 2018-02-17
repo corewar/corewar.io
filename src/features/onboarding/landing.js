@@ -18,6 +18,12 @@ const PageWrapper = styled.div`
   font-size: ${font.large};
 `
 
+const Header = styled.header`
+  grid-column: 2 / 4;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`
+
 const LandingWrapper = styled.div`
 
   grid-row-start: 2;
@@ -27,7 +33,7 @@ const LandingWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: calc(100vh - ${space.xl});
   width: 100vw;
   font-size: ${font.xxlarge};
   font-weight: 200;
@@ -83,18 +89,22 @@ const ButtonWrapper = styled.div`
 
 const Intro = styled.section`
   grid-row-start: ${props => props.row};
-  grid-column: 2 / 4;
+  grid-column: 1 / 5;
   grid-column-gap: ${space.l};
   min-height: 100vh;
   height: auto;
 
   display: grid;
   grid-template-rows: 100px 1fr;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 10% 1fr 1fr 10%;
+  padding-top: ${space.l};
+  padding-bottom: ${space.l};
+
+  ${props => props.row % 2 === 0 ? `background-color: ${colour.darkbg};` : `background-color: ${colour.lightbg};`}
 `
 
 const CenterHeader = styled.h2`
-  grid-column: 1 / 3;
+  grid-column: 2 / 4;
   font-size: ${font.xlarge};
   font-family: ${font.code};
   text-align: center;
@@ -105,12 +115,7 @@ const PrimaryIntro = styled.p`
   font-weight: 200;
   line-height: 1.3em;
   font-size: ${font.large};
-`
-
-const PrimaryImage = styled.img`
-  -moz-box-shadow:    inset 0 0 50px #000000;
-  -webkit-box-shadow: inset 0 0 50px #000000;
-  box-shadow:         inset 0 0 50px #000000;
+  grid-column-start: 2;
 `
 
 const ImageWrapper = styled.div`
@@ -124,11 +129,21 @@ const Footer = styled.footer`
   grid-column: 1 / 5;
 `
 
+const Github = styled.div`
+  color: ${colour.grey};
+  padding: ${space.m};
+  text-align: right;
+`
+
 class Landing extends React.Component{
 
   render() {
     const { history } = this.props
     return <PageWrapper>
+      <Header>
+        <div></div>
+        <Github><a href={`https://github.com/gareththegeek/corewar`}><Octicon name="mark-github" mega /></a></Github>
+      </Header>
       <LandingWrapper>
         <h1>corewar<span>.io</span></h1>
         <Octicon name="chevron-down" />
@@ -189,7 +204,9 @@ class Landing extends React.Component{
         </PrimaryIntro>
         <ImageWrapper />
       </Intro>
-      <Footer />
+      <Footer>
+       &copy; 2018 @gareththegeek &amp; @dougajmcdonald
+      </Footer>
     </PageWrapper>
   }
 }
