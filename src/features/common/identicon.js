@@ -3,13 +3,18 @@ import jssha from 'jssha'
 
 import { colour } from './theme'
 
-export const getIdenticon = (warrior, i, size) => {
+export const createHash = (input) => {
 
-  var sha = new jssha("SHA-512", "TEXT");
+  const sha = new jssha('SHA-512', 'TEXT')
 
-  sha.update(warrior)
+  sha.update(input)
 
-  const hash = sha.getHash('HEX')
+  return sha.getHash('HEX')
+}
+
+export const getIdenticon = (compiled, i, size) => {
+
+  const hash = createHash(compiled)
 
   const options = {
     size: size ? size : 40,

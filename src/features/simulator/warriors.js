@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { List } from 'immutable'
 import * as PubSub from 'pubsub-js'
 import Octicon from 'react-octicon'
-import { getIdenticon } from '../common/identicon'
 
 import { colour, space, font } from '../common/theme'
 
@@ -110,11 +109,11 @@ class Warriors extends Component {
     return <WarriorGrid>
       {warriors && warriors.map((warrior, i) => {
         const taskCount = this.state.tasks.get(i)
-        return <WarriorWrapper key={`${warrior.guid}_${i}`}>
+        return <WarriorWrapper key={`${warrior.hash}_${i}`}>
           <img
-            src={`data:image/svg+xml;base64,${getIdenticon(warrior.compiled, i)}`}
+            src={`data:image/svg+xml;base64,${warrior.icon}`}
             alt={`${warrior.metaData.name} avatar`}
-            onClick={() => loadWarrior(warrior.guid)} />
+            onClick={() => loadWarrior(warrior.hash)} />
           <WarriorControls>
             {warrior.metaData.name}
             <Octicon name="trashcan" onClick={() => removeWarrior(i)} />

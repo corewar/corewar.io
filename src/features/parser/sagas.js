@@ -1,6 +1,7 @@
 import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 
 import { insertItem, removeItem } from '../../helpers/arrayHelpers'
+import { createHash, getIdenticon } from '../common/identicon'
 import { toast } from '../notifications/sagas'
 import { corewar } from 'corewar'
 
@@ -21,11 +22,6 @@ import { PAUSE } from '../simulator/actions'
 import { getParserState } from './reducer'
 import { getCoreOptionsFromState, initialiseCore } from '../simulator/sagas'
 
-const guid = () => {
-  const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-  return `${s4() + s4()}-${s4()}-${s4()}-${s4()}-${s4() + s4() + s4()}`;
-}
-
 // sagas
 export function* parseSaga({ source }) {
 
@@ -33,9 +29,9 @@ export function* parseSaga({ source }) {
 
   const compiled = yield call([corewar, corewar.serialise], parseResult.tokens)
 
-  const uuid = guid()
+  const hash = createHash(compiled)
 
-  const currentWarrior = { ...parseResult, compiled, source, guid: uuid }
+  const currentWarrior = { ...parseResult, compiled, source, hash }
 
   if(currentWarrior.messages.find(x => x.type === 0)){
     yield put({ type: SHOW_MESSAGES })
@@ -55,7 +51,9 @@ export function* addWarriorSaga() {
 
   const { warriors, currentWarrior } = yield select(getParserState)
 
-  const warriorList = yield call(insertItem, warriors.length, warriors, currentWarrior)
+  const icon = getIdenticon(currentWarrior.compiled, warriors.length)
+
+  const warriorList = yield call(insertItem, warriors.length, warriors, { ...currentWarrior, icon })
 
   yield put({ type: SET_WARRIORS, warriors: warriorList })
 
@@ -64,11 +62,11 @@ export function* addWarriorSaga() {
   yield call(toast, 'Warrior Added')
 }
 
-export function* loadWarriorSaga({ guid }) {
+export function* loadWarriorSaga({ hash }) {
 
   const { warriors } = yield select(getParserState)
 
-  const warrior = warriors.find(x => x.guid === guid)
+  const warrior = warriors.find(x => x.hash === hash)
 
   yield put({ type: LOAD_WARRIOR, warrior })
 
