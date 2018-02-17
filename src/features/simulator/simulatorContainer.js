@@ -10,28 +10,35 @@ import {
 } from './actions'
 
 import {
-  removeWarrior
+  removeWarrior,
+  loadWarrior
 } from '../parser/actions'
 
-const SimulatorContainer = ({ coreSize, getCoreInstructions, isRunning, isInitialised, init, republish, parseResults, maxTasks, removeWarrior }) => (
-    <SimulatorLayout
-      coreSize={coreSize}
-      getCoreInstructions={getCoreInstructions}
-      isRunning={isRunning}
-      isInitialised={isInitialised}
-      parseResults={parseResults}
-      maxTasks={maxTasks}
-      republish={republish}
-      init={init}
-      removeWarrior={removeWarrior}
-      />
+
+const SimulatorContainer = ({ coreSize, getCoreInstructions, isRunning,
+  isInitialised, init, republish, warriors,
+  maxTasks, removeWarrior, loadWarrior, tablet, mobile }) => (
+  <SimulatorLayout
+    tablet={tablet}
+    mobile={mobile}
+    coreSize={coreSize}
+    getCoreInstructions={getCoreInstructions}
+    isRunning={isRunning}
+    isInitialised={isInitialised}
+    warriors={warriors}
+    maxTasks={maxTasks}
+    republish={republish}
+    init={init}
+    removeWarrior={removeWarrior}
+    loadWarrior={loadWarrior}
+    />
 )
 
 const mapStateToProps = state => ({
   coreSize: state.simulator.coreSize,
   isRunning: state.simulator.isRunning,
   isInitialised: state.simulator.isInitialised,
-  parseResults: state.parser.parseResults,
+  warriors: state.parser.warriors,
   maxTasks: state.simulator.maxTasks
 })
 
@@ -41,7 +48,8 @@ export default connect(
     init,
     republish,
     getCoreInstructions,
-    removeWarrior
+    removeWarrior,
+    loadWarrior
   }
 )(SimulatorContainer)
 

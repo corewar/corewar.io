@@ -3,10 +3,10 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { expect } from 'chai'
 
-import MessagePanel from './../../components/parser/messagePanel'
+import Console from './../../components/parser/console'
 
 it('renders without crashing', () => {
-  shallow(<MessagePanel />)
+  shallow(<Console />)
 });
 
 it('renders no list items if there are no messages', () => {
@@ -15,7 +15,7 @@ it('renders no list items if there are no messages', () => {
     messages: null
   }
 
-  const wrapper = shallow(<MessagePanel {...parseResults}/>)
+  const wrapper = shallow(<Console {...parseResults}/>)
 
   expect(wrapper.find('li')).to.have.length(0)
 });
@@ -29,7 +29,7 @@ it('renders as many list items as there are messages', () => {
     ]
   }
 
-  const wrapper = shallow(<MessagePanel {...parseResults}/>)
+  const wrapper = shallow(<Console {...parseResults}/>)
 
   expect(wrapper.find('li')).to.have.length(2)
 })
@@ -42,7 +42,7 @@ it('renders the error prefix is the message type is an error', () => {
     ]
   }
 
-  const wrapper = shallow(<MessagePanel {...parseResults}/>)
+  const wrapper = shallow(<Console {...parseResults}/>)
 
   expect(wrapper.find('li').text()).to.contain('ERROR')
 })
@@ -55,7 +55,7 @@ it('renders the warning prefix is the message type is warning', () => {
     ]
   }
 
-  const wrapper = shallow(<MessagePanel {...parseResults}/>)
+  const wrapper = shallow(<Console {...parseResults}/>)
 
   expect(wrapper.find('li').text()).to.contain('WARNING')
 })
@@ -69,7 +69,7 @@ it('renders the info prefix is the message type is info', () => {
       ]
     }
 
-    const wrapper = shallow(<MessagePanel {...parseResults}/>)
+    const wrapper = shallow(<Console {...parseResults}/>)
 
     expect(wrapper.find('li').text()).to.contain('INFO')
   })

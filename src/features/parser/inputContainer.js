@@ -1,36 +1,41 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import styled from 'styled-components'
 
+import MobilePage from '../common/mobilePage'
 import SourceCodeTextArea from './sourceCodeTextArea'
-import MessagePanel from './messagePanel'
+import Console from './console'
+import FileManagerContainer from '../fileManager/fileManagerContainer'
+import ControlsContainer from '../parser/controlsContainer'
 
 import {
-  parse
+  parse,
+  hideMessages
 } from './actions'
 
-const StyledInput = styled.div`
-  height: 100%;
-`
-
-const InputContainer = ({ redcode, parse, currentParseResult }) => (
-  <StyledInput>
+const InputContainer = ({ parse, currentWarrior, hideMessages, displayMessages }) => (
+  <MobilePage mobile>
     <SourceCodeTextArea
-      value={redcode}
+      value={currentWarrior.source}
       handleChange={e => parse(e.target.value)} />
-    <MessagePanel messages={currentParseResult && currentParseResult.messages} />
-  </StyledInput>
+    <ControlsContainer />
+    <FileManagerContainer />
+    <Console
+      hideMessages={hideMessages}
+      messages={currentWarrior && currentWarrior.messages}
+      show={displayMessages} />
+  </MobilePage>
 )
 
 const mapStateToProps = state => ({
-  redcode: state.parser.redcode,
-  currentParseResult: state.parser.currentParseResult
+  currentWarrior: state.parser.currentWarrior,
+  displayMessages: state.parser.displayMessages
 })
 
 export default connect(
   mapStateToProps,
   {
-    parse
+    parse,
+    hideMessages
   }
 )(InputContainer)
 

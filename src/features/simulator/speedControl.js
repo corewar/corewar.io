@@ -28,8 +28,7 @@ const Container = styled.div`
       height: 288px;
       text-align: center;
       width: 100%;
-      border-left: 1px solid ${colour.grey};
-      border-top: 1px solid ${colour.grey};
+      margin-bottom: -1px;
     }
 
   }

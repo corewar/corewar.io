@@ -20,30 +20,30 @@ describe('when testing the parse controls', () => {
     expect(wrapper.find(ControlButton)).to.have.length(1)
   })
 
-  it('control button is not enabled if there is no currentParseResult', () => {
+  it('control button is not enabled if there is no currentWarrior', () => {
 
-    const wrapper = mount(<PureParseControls currentParseResult={null} />)
+    const wrapper = mount(<PureParseControls currentWarrior={null} />)
 
     expect(!wrapper.find(ControlButton).props().enabled)
   })
 
   it('control button is not enabled if there is no warrior', () => {
 
-    const wrapper = mount(<PureParseControls currentParseResult={{ warrior: null }} />)
+    const wrapper = mount(<PureParseControls currentWarrior={{ warrior: null }} />)
 
     expect(!wrapper.find(ControlButton).props().enabled)
   })
 
   it('control button is not enabled if there is a warrior bu it has errors', () => {
 
-    const wrapper = mount(<PureParseControls currentParseResult={{ warrior: '', messages: ['parse error'] }} />)
+    const wrapper = mount(<PureParseControls currentWarrior={{ warrior: '', messages: ['parse error'] }} />)
 
     expect(!wrapper.find(ControlButton).props().enabled)
   })
 
   it('control button is enabled if there is a correctly parsed warrior', () => {
 
-    const wrapper = mount(<PureParseControls currentParseResult={{ warrior: '', messages: [] }} />)
+    const wrapper = mount(<PureParseControls currentWarrior={{ warrior: '', messages: [] }} />)
 
     expect(wrapper.find(ControlButton).props().enabled)
   })

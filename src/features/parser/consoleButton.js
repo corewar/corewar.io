@@ -2,11 +2,13 @@ import Button from '../common/button'
 
 import { colour } from '../common/theme'
 
-const ParseStatusButton = Button.extend`
-  ${props => props.messages !== null && `color: ${getStatusColour(props.messages)}`};
+const ConsoleButton = Button.extend`
+  ${props => props.messages !== null && `.octicon {
+    color: ${getStatusColour(props.messages)};
+  }`};
 `
 
-ParseStatusButton.displayName = 'ParseStatusButton'
+ConsoleButton.displayName = 'ConsoleButton'
 
 const getStatusColour = (messages) => {
   const worst = getWorstMessage(messages)
@@ -26,4 +28,4 @@ const getWorstMessage = (messages) => {
   return messages && messages.length > 0 ? messages.map(x => x.type).reduce((a, b) => Math.min(a, b)) : null
 }
 
-export default ParseStatusButton
+export default ConsoleButton

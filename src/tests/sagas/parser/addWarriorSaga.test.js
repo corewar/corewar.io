@@ -11,7 +11,7 @@ import {
 import { insertItem, removeItem } from '../../../helpers/arrayHelpers'
 import { addWarriorSaga } from '../../../sagas/parserSagas'
 import { getParserState } from '../../../reducers/parserReducers'
-import { pauseSaga, getCoreOptionsFromState, initialiseCore } from '../../../sagas/simulatorSagas'
+import { getCoreOptionsFromState, initialiseCore } from '../../../sagas/simulatorSagas'
 
 describe('when adding warriors', () => {
 
@@ -26,12 +26,12 @@ describe('when adding warriors', () => {
       }
     }
 
-    const currentParseResult = 3
+    const currentWarrior = 3
 
     const result = [1, 2, 3]
 
     expect(saga.next().value).to.deep.equal(
-      call(pauseSaga))
+      put({ type: PAUSE }))
 
     expect(saga.next().value).to.deep.equal(
       call(getCoreOptionsFromState))
@@ -39,8 +39,8 @@ describe('when adding warriors', () => {
     expect(saga.next(data).value).to.deep.equal(
       select(getParserState))
 
-    expect(saga.next({ currentParseResult }).value).to.deep.equal(
-      call(insertItem, data.parseResults.length, data.parseResults, currentParseResult))
+    expect(saga.next({ currentWarrior }).value).to.deep.equal(
+      call(insertItem, data.parseResults.length, data.parseResults, currentWarrior))
 
     expect(saga.next(result).value).to.deep.equal(
       put({ type: ADD_WARRIOR, result })

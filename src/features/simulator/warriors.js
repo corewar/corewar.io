@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Identicon from 'identicon.js'
-import jssha from 'jssha'
 import { List } from 'immutable'
 import * as PubSub from 'pubsub-js'
 import Octicon from 'react-octicon'
 
 import { colour, space, font } from '../common/theme'
 
-const WarriorContainer = styled.div`
+import { insertItem, removeItem } from '../../helpers/arrayHelpers'
+
+const WarriorGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: ${space.s};
@@ -34,11 +34,16 @@ const WarriorContainer = styled.div`
     background-color: ${colour.blue};
   }
 `
+
 const WarriorWrapper = styled.div`
   padding: ${space.xs};
   display: grid;
   grid-template-columns: 40px 1fr;
   grid-template-rows: 1fr 20px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 const WarriorControls = styled.div`
@@ -68,28 +73,26 @@ const TaskBar = styled.div`
   ${props => `width: ${getWidth(props.tasks, props.maxTasks)}%;`}
 `
 
-const getWidth = (tasks, maxTasks) => {
-  if(tasks === 0) {
-    return 0
-  }
-  return Math.floor(tasks / maxTasks * 100)
-}
-
 class Warriors extends Component {
 
   constructor(props) {
     super(props)
 
     this.state = {
-      tasks: List()
+      tasks: []
     }
+
+    PubSub.subscribe('CORE_INITIALISE', (msg, data) => {
+      this.setState({ tasks: [] })
+    })
 
     PubSub.subscribe('TASK_COUNT', (msg, data) => {
 
-      let newTasks = []
+      let newTasks = this.state.tasks
 
       data.forEach((item) => {
-        newTasks = this.state.tasks.splice(item.warriorId, 1, item.taskCount)
+        newTasks = removeItem(item.warriorId, newTasks)
+        newTasks = insertItem(item.warriorId, newTasks, item.taskCount)
       })
 
       this.setState({ tasks: newTasks })
@@ -102,48 +105,35 @@ class Warriors extends Component {
   }
 
   render() {
-    const { parseResults, maxTasks, removeWarrior } = this.props
-    return <WarriorContainer>
-      {parseResults && parseResults.map((result, i) => {
-        const taskCount = this.state.tasks.get(i)
-        return <WarriorWrapper key={`${result.warrior}_${i}`}>
-          <img src={`data:image/svg+xml;base64,${getIdenticonSvg(result.warrior, i)}`} alt={`result.metaData.name avatar`} />
-          <WarriorControls>{result.metaData.name}<Octicon name="trashcan" onClick={() => removeWarrior(i)} /></WarriorControls>
+    const { warriors, maxTasks, removeWarrior, loadWarrior } = this.props
+    return <WarriorGrid>
+      {warriors && warriors.map((warrior, i) => {
+        const taskCount = this.state.tasks[i]
+        return <WarriorWrapper key={`${warrior.hash}_${i}`}>
+          <img
+            src={`data:image/svg+xml;base64,${warrior.icon}`}
+            alt={`${warrior.metaData.name} avatar`}
+            onClick={() => loadWarrior(warrior.hash)} />
+          <WarriorControls>
+            {warrior.metaData.name}
+            <Octicon name="trashcan" onClick={() => removeWarrior(i)} />
+          </WarriorControls>
           <TaskCountDisplay>{taskCount ? taskCount : 0 }</TaskCountDisplay>
           <TaskBar tasks={taskCount} maxTasks={maxTasks} warriorIndex={i}></TaskBar>
         </WarriorWrapper>
       }
       )}
-    </WarriorContainer>
+    </WarriorGrid>
   }
 }
 
-const getIdenticonSvg = (warrior, i) => {
+const getWidth = (tasks, maxTasks) => {
 
-  var sha = new jssha("SHA-512", "TEXT");
-
-  sha.update(warrior)
-
-  const hash = sha.getHash('HEX')
-
-  const options = {
-    size: 40,
-    foreground: hexToRgbA(colour.warrior[i]),
-    background: [0,0,0,0],
-    margin: 0,
-    format: 'svg'
+  if(!tasks) {
+    return 0
   }
 
-  return new Identicon(hash, options)
-}
-
-const hexToRgbA = (hex) => {
-
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-
-  return [r, g, b, 255]
+  return Math.floor(tasks / maxTasks * 100)
 }
 
 Warriors.displayName = 'Warriors'

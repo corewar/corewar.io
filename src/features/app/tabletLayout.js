@@ -2,34 +2,20 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 
-import ParserInterface from '../parser/combinedContainer'
+import ParserContainer from '../parser/combinedContainer'
 import SimulatorContainer from '../simulator/simulatorContainer'
-import SimulatorControls from '../simulator/controlsContainer'
-import ParserControls from '../parser/controlsContainer'
-
-import { colour, space } from '../common/theme'
+import NotificationContainer from '../notifications/notificationContainer'
 
 const TabletGrid = styled.div`
-  display: grid;
-  grid-template-rows: 1fr ${space.controls};
-  grid-template-columns: 1fr;
+  height: calc(100vh - 48px);
 `
 
-const Main = styled.main`
-  height: calc(100vh - ${space.controls} - ${space.header});
-  background-color: ${colour.defaultbg};
-`
-
-const TabletLayout = () => (
+const TabletLayout = (props) => (
   <TabletGrid>
-    <Main>
-      <Route exact path='/app/src' component={ParserInterface} />
-      <Route exact path='/app/output' component={ParserInterface} />
-      <Route exact path='/app/core' component={SimulatorContainer} />
-    </Main>
-    <Route exact path='/app/src' component={ParserControls} />
-    <Route exact path='/app/output' component={ParserControls} />
-    <Route exact path='/app/core' component={SimulatorControls} />
+    <NotificationContainer />
+    <Route exact path='/app/src' component={ParserContainer} />
+    <Route exact path='/app/output' component={ParserContainer} />
+    <Route exact path='/app/core' render={() => <SimulatorContainer tablet />} />
   </TabletGrid>
 )
 

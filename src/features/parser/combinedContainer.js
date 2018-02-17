@@ -4,48 +4,54 @@ import styled from 'styled-components'
 
 import SourceCodeTextArea from './sourceCodeTextArea'
 import CompiledOutput from './compiledOutput'
-import MessagePanel from './messagePanel'
+import Console from './console'
+import MobilePage from '../common/mobilePage'
+import ControlsContainer from '../parser/controlsContainer'
+import FileManagerContainer from '../fileManager/fileManagerContainer'
 
 import { space } from '../common/theme'
 
 import {
-  parse
+  parse,
+  hideMessages
 } from './actions'
 
 const ParserGrid = styled.section`
   display: flex;
-  height: calc(100vh - ${space.header});
+  height: calc(100vh - ${space.header} - ${space.controls});
 `
 
-const ParserContainer = styled.section`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-`
-
-const ParserInterface = ({ redcode, parse, currentParseResult, addWarrior }) => (
-  <ParserContainer>
+const ParserInterface = ({ redcode, parse, currentWarrior, addWarrior, hideMessages, displayMessages }) => (
+  <MobilePage tablet>
     <ParserGrid>
       <SourceCodeTextArea
         value={redcode}
         handleChange={e => parse(e.target.value)} />
       <CompiledOutput tablet>
-        {currentParseResult.warrior}
+        {currentWarrior.output}
       </CompiledOutput>
     </ParserGrid>
-    <MessagePanel messages={currentParseResult.messages} />
-  </ParserContainer>
+    <ControlsContainer />
+    <FileManagerContainer />
+    <Console
+      messages={currentWarrior.messages}
+      hideMessages={hideMessages}
+      show={displayMessages} />
+  </MobilePage>
 )
+
 
 const mapStateToProps = state => ({
   redcode: state.parser.redcode,
-  currentParseResult: state.parser.currentParseResult
+  currentWarrior: state.parser.currentWarrior,
+  displayMessages: state.parser.displayMessages
 })
 
 export default connect(
   mapStateToProps,
   {
-    parse
+    parse,
+    hideMessages
   }
 )(ParserInterface)
 

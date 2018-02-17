@@ -12,14 +12,19 @@ const Button = styled.button.attrs({
   background-color: transparent;
   width: 100%;
   height: 100%;
+  font-size: 1.5em;
+  transition: 0.5s;
 
   &:hover {
     ${props => props.enabled && `cursor: pointer`};
+    transition: 0.5s;
+    ${props => props.enabled && `background-color: ${colour.defaultbg}`};
+    ${props => props.enabled && `color: ${colour.lightgrey}`};
   }
 `
 
-// Button.propTypes = {
-//   handleClick: PropTypes.func.required
-// }
+Button.propTypes = {
+  handleClick: PropTypes.func
+}
 
 export default Button

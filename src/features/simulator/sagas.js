@@ -1,8 +1,11 @@
+import React from 'react'
 import { channel, delay } from 'redux-saga'
 import { call, put, takeEvery, takeLatest, select, take, fork } from 'redux-saga/effects'
-
-import { corewar } from 'corewar'
 import * as PubSub from 'pubsub-js'
+import { corewar } from 'corewar'
+
+import { toast } from '../notifications/sagas'
+import { getIdenticon } from '../common/identicon'
 
 import {
   INIT,
@@ -11,7 +14,6 @@ import {
   RUN,
   RUN_REQUESTED,
   PAUSE,
-  PAUSE_REQUESTED,
   RUN_PROGRESS,
   RUN_ENDED,
   FINISH_REQUESTED,
@@ -39,11 +41,11 @@ const runChannel = channel()
 // sagas
 export function* initSaga() {
 
-  yield call(pauseSaga)
+  yield put({ type: PAUSE })
 
   const data = yield call(getCoreOptionsFromState)
 
-  yield call(initialiseCore, data.options, data.parseResults)
+  yield call(initialiseCore, data.options, data.warriors)
 
 }
 
@@ -76,7 +78,7 @@ export function* runSaga() {
   const data = yield call(getCoreOptionsFromState)
 
   if(data.result.outcome) {
-    yield call(initialiseCore, data.options, data.parseResults)
+    yield call(initialiseCore, data.options, data.warriors)
   }
 
   yield put({ type: RUN })
@@ -108,10 +110,6 @@ export function* renderCoreSaga() {
   }
 }
 
-export function* pauseSaga() {
-  yield put({ type: PAUSE })
-}
-
 export function* republishSaga() {
 
   yield call([corewar, corewar.republish])
@@ -121,12 +119,12 @@ export function* republishSaga() {
 
 export function* getCoreOptionsFromState() {
 
-  const { standardId, parseResults } = yield select(getParserState)
+  const { standardId, warriors } = yield select(getParserState)
   const { coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks, roundResult } = yield select(getSimulatorState)
 
   return {
     result: roundResult,
-    parseResults: parseResults,
+    warriors: warriors,
     options: {
       standard: standardId,
       coresize: coreSize,
@@ -138,11 +136,11 @@ export function* getCoreOptionsFromState() {
   }
 }
 
-export function* initialiseCore(options, parseResults) {
+export function* initialiseCore(options, warriors) {
 
   yield call(PubSub.publishSync, 'RESET_CORE')
 
-  yield call([corewar, corewar.initialiseSimulator], options, parseResults, PubSub)
+  yield call([corewar, corewar.initialiseSimulator], options, warriors, PubSub)
 
   yield put({ type: INIT })
 
@@ -153,7 +151,7 @@ export function* finishSaga() {
   const data = yield call(getCoreOptionsFromState)
 
   if(data.result.outcome) {
-    yield call(initialiseCore, data.options, data.parseResults)
+    yield call(initialiseCore, data.options, data.warriors)
   }
 
   yield call([corewar, corewar.run])
@@ -182,17 +180,17 @@ function* setProcessRateSaga({ rate }) {
 
   yield put({ type: SET_PROCESS_RATE, rate })
 
-  const { isInitialised, isRunning } = yield select(getSimulatorState)
+  // const { isInitialised, isRunning } = yield select(getSimulatorState)
 
-  if(!isInitialised || !isRunning) {
-    return
-  }
+  // if(!isInitialised || !isRunning) {
+  //   return
+  // }
 
 }
 
 function* setCoreOptionsSaga({ id }) {
 
-  yield call(pauseSaga)
+  yield put({ type: PAUSE })
 
   yield call(PubSub.publishSync, 'RESET_CORE')
 
@@ -213,11 +211,25 @@ function* watchRoundProgressChannel() {
 
 function* watchRoundEndChannel() {
   while(true) {
-    yield call(pauseSaga)
+    yield put({ type: PAUSE })
     const action = yield take(roundEndChannel)
     yield put(action)
+    const { warriors } = yield select(getParserState)
+
+    const content = <div>
+      {action.data.outcome === "WIN" &&
+        <img
+          style={{ marginRight: `10px`, marginTop: `10px` }}
+          src={`data:image/svg+xml;base64,${getIdenticon(warriors[action.data.winnerId].compiled, action.data.winnerId, 20)}`}
+          alt={`winner icon`}/>
+      }
+      {`Round Over: ${action.data.outcome}`}
+    </div>
+
+    yield call(toast, content)
   }
 }
+
 
 export const sendRoundProgress = (msg, data) => {
   roundProgressChannel.put({
@@ -237,7 +249,6 @@ export const sendRoundEnd = (msg, data) => {
 export const simulatorWatchers = [
   takeLatest(INIT_REQUESTED, initSaga),
   takeEvery(STEP_REQUESTED, stepSaga),
-  takeEvery(PAUSE_REQUESTED, pauseSaga),
   takeLatest(FINISH_REQUESTED, finishSaga),
   takeLatest(RUN_REQUESTED, runSaga),
   takeLatest(REPUBLISH_REQUESTED, republishSaga),

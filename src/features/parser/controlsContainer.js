@@ -2,51 +2,82 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Octicon from 'react-octicon'
+import styled from 'styled-components'
 
 import Button from  '../common/button'
 import Controls from  '../common/controls'
-import ParseStatusButton from  './parseStatusButton'
+import ConsoleButton from  './consoleButton'
 
 import {
-  addWarrior
+  addWarrior,
+  showMessages,
+  toggleFileManager
 } from './actions'
 
-const MobileControls = ({ addWarrior, currentParseResult }) => (
+const ButtonText = styled.span`
+  display: inline-block;
+  font-size: 0.5em;
+`
+
+const ButtonGrid = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr;
+`
+
+const MobileControls = ({ addWarrior, currentWarrior, showMessages, toggleFileManager }) => (
   <Controls>
-    <ParseStatusButton
-      enabled={hasNoErrors(currentParseResult)}
-      messages={currentParseResult.messages}
-      handleClick={() => { console.log('disabled clicked me') }}>
-      <Octicon mega name="issue-opened"/>
-    </ParseStatusButton>
     <Button
-      enabled={hasNoErrors(currentParseResult)}
+      enabled={hasNoErrors(currentWarrior)}
       handleClick={addWarrior}>
-      <Octicon mega name="chevron-right"/>
+      <ButtonGrid>
+        <Octicon name="git-commit"/>
+        <ButtonText>add to core</ButtonText>
+      </ButtonGrid>
     </Button>
+    <Button
+      enabled={true}
+      handleClick={toggleFileManager}>
+      <ButtonGrid>
+        <Octicon name="file-directory"/>
+        <ButtonText>manage files</ButtonText>
+      </ButtonGrid>
+    </Button>
+    <ConsoleButton
+      enabled={true}
+      messages={currentWarrior.messages}
+      handleClick={showMessages}>
+      <ButtonGrid>
+        <Octicon name="terminal"/>
+        <ButtonText>console</ButtonText>
+      </ButtonGrid>
+    </ConsoleButton>
   </Controls>
 )
 
-const hasNoErrors = (currentParseResult) => (
-  currentParseResult.warrior && currentParseResult.messages.filter(x => x.type === 0).length === 0
+const hasNoErrors = (currentWarrior) => (
+  currentWarrior.compiled && currentWarrior.messages.filter(x => x.type === 0).length === 0
 )
 
 MobileControls.PropTypes = {
   addWarrior: PropTypes.func,
-  currentParseResult: PropTypes.shape({
-    warrior: PropTypes.string,
+  loadWarrior: PropTypes.func,
+  currentWarrior: PropTypes.shape({
+    compiled: PropTypes.string,
     messages: PropTypes.array
   }).isRequired
 }
 
 const mapStateToProps = state => ({
-  currentParseResult: state.parser.currentParseResult
+  currentWarrior: state.parser.currentWarrior
 })
 
 export default connect(
   mapStateToProps,
   {
-    addWarrior
+    addWarrior,
+    showMessages,
+    toggleFileManager
   }
 )(MobileControls)
 
