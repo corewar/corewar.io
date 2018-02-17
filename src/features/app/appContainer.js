@@ -8,7 +8,7 @@ import CompiledOutput from '../parser/compiledOutput'
 import Controls from '../common/headerControls'
 import SimulatorContainer from '../simulator/simulatorContainer'
 import Button from '../common/button'
-import ParseStatusButton from '../parser/parseStatusButton'
+import ConsoleButton from '../parser/consoleButton'
 import Instructions from '../simulator/instructions'
 import MessagePanel from '../parser/messagePanel'
 import FileManagerContainer from '../fileManager/fileManagerContainer'
@@ -77,7 +77,7 @@ const AppContainer = ({ parse, currentWarrior,
           <ButtonText>manage files</ButtonText>
         </ButtonGrid>
       </Button>
-      <ParseStatusButton
+      <ConsoleButton
         enabled={true}
         messages={currentWarrior.messages}
         handleClick={showMessages}>
@@ -85,7 +85,7 @@ const AppContainer = ({ parse, currentWarrior,
           <Octicon name="terminal"/>
           <ButtonText>console</ButtonText>
         </ButtonGrid>
-      </ParseStatusButton>
+      </ConsoleButton>
     </Controls>
     <ParserGrid>
       <SourceCodeTextArea desktop

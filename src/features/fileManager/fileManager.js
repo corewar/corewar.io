@@ -61,7 +61,7 @@ const FileManagerGrid = styled.section`
 
 const FileManager = ({ show, files, handleClick }) => (
   <FileManagerGrid show={show}>
-    <span>/ dougajmcdonald</span>
+    <span>/ root</span>
     <ul>
       {files.map((file, i) => (
         <li

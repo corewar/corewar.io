@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 import Button from  '../common/button'
 import Controls from  '../common/controls'
-import ParseStatusButton from  './parseStatusButton'
+import ConsoleButton from  './consoleButton'
 
 import {
   addWarrior,
@@ -28,23 +28,6 @@ const ButtonGrid = styled.div`
 const MobileControls = ({ addWarrior, currentWarrior, showMessages, toggleFileManager }) => (
   <Controls>
     <Button
-      enabled={true}
-      handleClick={toggleFileManager}>
-      <ButtonGrid>
-        <Octicon name="file-directory"/>
-        <ButtonText>manage files</ButtonText>
-      </ButtonGrid>
-    </Button>
-    <ParseStatusButton
-      enabled={true}
-      messages={currentWarrior.messages}
-      handleClick={showMessages}>
-      <ButtonGrid>
-        <Octicon name="terminal"/>
-        <ButtonText>console</ButtonText>
-      </ButtonGrid>
-    </ParseStatusButton>
-    <Button
       enabled={hasNoErrors(currentWarrior)}
       handleClick={addWarrior}>
       <ButtonGrid>
@@ -52,6 +35,23 @@ const MobileControls = ({ addWarrior, currentWarrior, showMessages, toggleFileMa
         <ButtonText>add to core</ButtonText>
       </ButtonGrid>
     </Button>
+    <Button
+      enabled={true}
+      handleClick={toggleFileManager}>
+      <ButtonGrid>
+        <Octicon name="file-directory"/>
+        <ButtonText>manage files</ButtonText>
+      </ButtonGrid>
+    </Button>
+    <ConsoleButton
+      enabled={true}
+      messages={currentWarrior.messages}
+      handleClick={showMessages}>
+      <ButtonGrid>
+        <Octicon name="terminal"/>
+        <ButtonText>console</ButtonText>
+      </ButtonGrid>
+    </ConsoleButton>
   </Controls>
 )
 
