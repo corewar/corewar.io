@@ -360,7 +360,9 @@ class CanvasCore extends Component {
       return
     }
 
-    this.clearInteractiveCanvas()
+    //this.clearInteractiveCanvas()
+
+    this.interactiveContext.clearRect(0, 0, this.state.width, this.state.height)
 
     const point = this.getRelativeCoordinates(e)
 
