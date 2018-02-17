@@ -61,6 +61,14 @@ const AppContainer = ({ parse, currentWarrior,
   run, pause, step, init, hideMessages, showMessages, displayMessages }) => (
   <DesktopContainer>
     <Controls>
+    <Button
+        enabled={hasNoErrors(currentWarrior)}
+        handleClick={addWarrior}>
+        <ButtonGrid>
+          <Octicon name="git-commit"/>
+          <ButtonText>add to core</ButtonText>
+        </ButtonGrid>
+      </Button>
       <Button
         enabled={true}
         handleClick={toggleFileManager}>
@@ -78,14 +86,6 @@ const AppContainer = ({ parse, currentWarrior,
           <ButtonText>console</ButtonText>
         </ButtonGrid>
       </ParseStatusButton>
-      <Button
-        enabled={hasNoErrors(currentWarrior)}
-        handleClick={addWarrior}>
-        <ButtonGrid>
-          <Octicon name="git-commit"/>
-          <ButtonText>add to core</ButtonText>
-        </ButtonGrid>
-      </Button>
     </Controls>
     <ParserGrid>
       <SourceCodeTextArea desktop

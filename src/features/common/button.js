@@ -13,9 +13,13 @@ const Button = styled.button.attrs({
   width: 100%;
   height: 100%;
   font-size: 1.5em;
+  transition: 0.5s;
 
   &:hover {
     ${props => props.enabled && `cursor: pointer`};
+    transition: 0.5s;
+    ${props => props.enabled && `background-color: ${colour.defaultbg}`};
+    ${props => props.enabled && `color: ${colour.lightgrey}`};
   }
 `
 
