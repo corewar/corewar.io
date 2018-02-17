@@ -59,10 +59,9 @@ export function* addWarriorSaga() {
 
   yield put({ type: SET_WARRIORS, warriors: warriorList })
 
-  yield call(toast, 'Warrior Added')
-
   yield call(initialiseCore, data.options, warriorList)
 
+  yield call(toast, 'Warrior Added')
 }
 
 export function* loadWarriorSaga({ guid }) {
@@ -87,10 +86,9 @@ export function* removeWarriorSaga({ index }) {
 
   yield put({ type: SET_WARRIORS, warriors: warriorList })
 
-  yield call(toast, 'Warrior Removed')
-
   yield call(initialiseCore, data.options, warriorList)
 
+  yield call(toast, 'Warrior Removed')
 }
 
 
