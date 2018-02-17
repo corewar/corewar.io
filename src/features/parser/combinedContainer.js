@@ -21,20 +21,20 @@ const ParserGrid = styled.section`
   height: calc(100vh - ${space.header} - ${space.controls});
 `
 
-const ParserInterface = ({ redcode, parse, currentParseResult, addWarrior, hideMessages, displayMessages }) => (
+const ParserInterface = ({ redcode, parse, currentWarrior, addWarrior, hideMessages, displayMessages }) => (
   <MobilePage tablet>
     <ParserGrid>
       <SourceCodeTextArea
         value={redcode}
         handleChange={e => parse(e.target.value)} />
       <CompiledOutput tablet>
-        {currentParseResult.warrior}
+        {currentWarrior.output}
       </CompiledOutput>
     </ParserGrid>
     <ControlsContainer />
     <FileManagerContainer />
     <MessagePanel
-      messages={currentParseResult.messages}
+      messages={currentWarrior.messages}
       hideMessages={hideMessages}
       show={displayMessages} />
   </MobilePage>
@@ -43,7 +43,7 @@ const ParserInterface = ({ redcode, parse, currentParseResult, addWarrior, hideM
 
 const mapStateToProps = state => ({
   redcode: state.parser.redcode,
-  currentParseResult: state.parser.currentParseResult,
+  currentWarrior: state.parser.currentWarrior,
   displayMessages: state.parser.displayMessages
 })
 

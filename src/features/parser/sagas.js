@@ -7,13 +7,11 @@ import { corewar } from 'corewar'
 import {
   PARSE,
   PARSE_REQUESTED,
-  ADD_WARRIOR,
   ADD_WARRIOR_REQUESTED,
-  REMOVE_WARRIOR,
   REMOVE_WARRIOR_REQUESTED,
   SHOW_MESSAGES,
   HIDE_MESSAGES,
-  SET_FILES,
+  SET_WARRIORS,
   LOAD_WARRIOR_REQUESTED,
   LOAD_WARRIOR
 } from './actions'
@@ -29,21 +27,23 @@ const guid = () => {
 }
 
 // sagas
-export function* parseSaga({ redcode }) {
+export function* parseSaga({ source }) {
 
-  let result = yield call([corewar, corewar.parse], redcode)
+  const parseResult = yield call([corewar, corewar.parse], source)
 
-  const warrior = yield call([corewar, corewar.serialise], result.tokens)
+  const compiled = yield call([corewar, corewar.serialise], parseResult.tokens)
 
-  result.warrior = warrior;
+  const guid = guid()
 
-  if(result.messages.find(x => x.type === 0)){
+  const currentWarrior = { ...parseResult, compiled, source, guid }
+
+  if(currentWarrior.messages.find(x => x.type === 0)){
     yield put({ type: SHOW_MESSAGES })
   } else {
     yield put({ type: HIDE_MESSAGES})
   }
 
-  yield put({ type: PARSE, result, redcode })
+  yield put({ type: PARSE, currentWarrior })
 
 }
 
@@ -53,37 +53,25 @@ export function* addWarriorSaga() {
 
   const data = yield call(getCoreOptionsFromState)
 
-  const { currentParseResult, redcode } = yield select(getParserState)
+  const { warriors, currentWarrior } = yield select(getParserState)
 
-  const warriorFile = { ...currentParseResult, redcode }
+  const warriorList = yield call(insertItem, warriors.length, warriors, currentWarrior)
 
-  const result = yield call(insertItem, data.parseResults.length, data.parseResults, warriorFile)
-
-  const files = result.map((res, i) => ({
-    guid: guid(),
-    name: `${res.metaData.name} (${i})`,
-    author: res.metaData.author,
-    redcode: res.redcode,
-    output: res.warrior
-  }))
-
-  yield put({ type: ADD_WARRIOR, result })
-
-  yield put({ type: SET_FILES, files })
+  yield put({ type: SET_WARRIORS, warriorList })
 
   yield call(toast, 'Warrior Added')
 
-  yield call(initialiseCore, data.options, result)
+  yield call(initialiseCore, data.options, warriorList)
 
 }
 
 export function* loadWarriorSaga({ guid }) {
 
-  const { files } = yield select(getParserState)
+  const { warriors } = yield select(getParserState)
 
-  const redcode = files.find(x => x.guid === guid).redcode
+  const warrior = warriors.find(x => x.guid === guid)
 
-  yield put({ type: LOAD_WARRIOR, redcode })
+  yield put({ type: LOAD_WARRIOR, warrior })
 
 }
 
@@ -93,22 +81,15 @@ export function* removeWarriorSaga({ index }) {
 
   const data = yield call(getCoreOptionsFromState)
 
-  const result = yield call(removeItem, index, data.parseResults)
+  const { warriors } = yield select(getParserState)
 
-  const files = result.map((res, i) => ({
-    name: `${res.metaData.name} (${i})`,
-    author: res.metaData.author,
-    redcode: res.redcode,
-    output: res.warrior
-  }))
+  const warriorList = yield call(removeItem, index, warriors)
 
-  yield put({ type: REMOVE_WARRIOR, result })
-
-  yield put({ type: SET_FILES, files })
+  yield put({ type: SET_WARRIORS, warriorList })
 
   yield call(toast, 'Warrior Removed')
 
-  yield call(initialiseCore, data.options, result)
+  yield call(initialiseCore, data.options, warriorList)
 
 }
 

@@ -26,7 +26,7 @@ describe('when adding warriors', () => {
       }
     }
 
-    const currentParseResult = 3
+    const currentWarrior = 3
 
     const result = [1, 2, 3]
 
@@ -39,8 +39,8 @@ describe('when adding warriors', () => {
     expect(saga.next(data).value).to.deep.equal(
       select(getParserState))
 
-    expect(saga.next({ currentParseResult }).value).to.deep.equal(
-      call(insertItem, data.parseResults.length, data.parseResults, currentParseResult))
+    expect(saga.next({ currentWarrior }).value).to.deep.equal(
+      call(insertItem, data.parseResults.length, data.parseResults, currentWarrior))
 
     expect(saga.next(result).value).to.deep.equal(
       put({ type: ADD_WARRIOR, result })

@@ -1,22 +1,17 @@
 import {
   PARSE,
-  ADD_WARRIOR,
-  REMOVE_WARRIOR,
   SHOW_MESSAGES,
   HIDE_MESSAGES,
   TOGGLE_FILE_MANAGER,
-  SET_FILES,
+  SET_WARRIORS,
   LOAD_WARRIOR
 } from './actions'
 
 // state
 const initialState = {
-  currentParseResult: {},
-  parseResults: [],
-  files: [],
+  currentWarrior: {},
+  warriors: [],
   standardId: 2, // TODO: what's the best standard to use as a default?
-  redcode: '',
-  warrior: '',
   displayMessages: false,
   displayFileManager: false
 }
@@ -31,32 +26,19 @@ export default (state = initialState, action) => {
     case PARSE:
       return {
         ...state,
-        currentParseResult: action.result,
-        redcode: action.redcode
+        currentWarrior: action.currentWarrior
       }
 
-    case ADD_WARRIOR:
+    case SET_WARRIORS:
       return {
         ...state,
-        parseResults: action.result
-      }
-
-    case REMOVE_WARRIOR:
-      return {
-        ...state,
-        parseResults: action.result
-      }
-
-    case SET_FILES:
-      return {
-        ...state,
-        files: action.files
+        warriors: action.warriors
       }
 
     case LOAD_WARRIOR:
       return {
         ...state,
-        redcode: action.redcode
+        currentWarrior: action.warrior
       }
 
     case SHOW_MESSAGES:

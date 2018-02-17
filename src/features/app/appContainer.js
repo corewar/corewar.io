@@ -56,7 +56,7 @@ const ButtonGrid = styled.div`
   grid-template-columns: 1fr;
 `
 
-const AppContainer = ({ redcode, parse, currentParseResult,
+const AppContainer = ({ redcode, parse, currentWarrior,
   coreSize, getCoreInstructions, isRunning, isInitialised, addWarrior, toggleFileManager,
   run, pause, step, init, hideMessages, showMessages, displayMessages }) => (
   <DesktopContainer>
@@ -71,7 +71,7 @@ const AppContainer = ({ redcode, parse, currentParseResult,
       </Button>
       <ParseStatusButton
         enabled={true}
-        messages={currentParseResult.messages}
+        messages={currentWarrior.messages}
         handleClick={showMessages}>
         <ButtonGrid>
           <Octicon name="terminal"/>
@@ -79,7 +79,7 @@ const AppContainer = ({ redcode, parse, currentParseResult,
         </ButtonGrid>
       </ParseStatusButton>
       <Button
-        enabled={hasNoErrors(currentParseResult)}
+        enabled={hasNoErrors(currentWarrior)}
         handleClick={addWarrior}>
         <ButtonGrid>
           <Octicon name="git-commit"/>
@@ -92,10 +92,10 @@ const AppContainer = ({ redcode, parse, currentParseResult,
         value={redcode}
         handleChange={e => parse(e.target.value)} />
       <CompiledOutput desktop>
-        {currentParseResult.warrior}
+        {currentWarrior.compiled}
       </CompiledOutput>
       <MessagePanel
-        messages={currentParseResult.messages}
+        messages={currentWarrior.messages}
         hideMessages={hideMessages}
         show={displayMessages}
         />
@@ -115,13 +115,13 @@ const AppContainer = ({ redcode, parse, currentParseResult,
   </DesktopContainer>
 )
 
-const hasNoErrors = (currentParseResult) => (
-  currentParseResult.warrior && currentParseResult.messages.filter(x => x.type === 0).length === 0
+const hasNoErrors = (currentWarrior) => (
+  currentWarrior.compiled && currentWarrior.messages.filter(x => x.type === 0).length === 0
 )
 
 const mapStateToProps = state => ({
   redcode: state.parser.redcode,
-  currentParseResult: state.parser.currentParseResult,
+  currentWarrior: state.parser.currentWarrior,
   coreSize: state.simulator.coreSize,
   getCoreInstructions: state.simulator.getCoreInstructions,
   isRunning: state.simulator.isRunning,

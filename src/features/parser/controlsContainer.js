@@ -25,7 +25,7 @@ const ButtonGrid = styled.div`
   grid-template-columns: 1fr;
 `
 
-const MobileControls = ({ addWarrior, currentParseResult, showMessages, toggleFileManager }) => (
+const MobileControls = ({ addWarrior, currentWarrior, showMessages, toggleFileManager }) => (
   <Controls>
     <Button
       enabled={true}
@@ -37,7 +37,7 @@ const MobileControls = ({ addWarrior, currentParseResult, showMessages, toggleFi
     </Button>
     <ParseStatusButton
       enabled={true}
-      messages={currentParseResult.messages}
+      messages={currentWarrior.messages}
       handleClick={showMessages}>
       <ButtonGrid>
         <Octicon name="terminal"/>
@@ -45,7 +45,7 @@ const MobileControls = ({ addWarrior, currentParseResult, showMessages, toggleFi
       </ButtonGrid>
     </ParseStatusButton>
     <Button
-      enabled={hasNoErrors(currentParseResult)}
+      enabled={hasNoErrors(currentWarrior)}
       handleClick={addWarrior}>
       <ButtonGrid>
         <Octicon name="git-commit"/>
@@ -55,21 +55,21 @@ const MobileControls = ({ addWarrior, currentParseResult, showMessages, toggleFi
   </Controls>
 )
 
-const hasNoErrors = (currentParseResult) => (
-  currentParseResult.warrior && currentParseResult.messages.filter(x => x.type === 0).length === 0
+const hasNoErrors = (currentWarrior) => (
+  currentWarrior.compiled && currentWarrior.messages.filter(x => x.type === 0).length === 0
 )
 
 MobileControls.PropTypes = {
   addWarrior: PropTypes.func,
   loadWarrior: PropTypes.func,
-  currentParseResult: PropTypes.shape({
-    warrior: PropTypes.string,
+  currentWarrior: PropTypes.shape({
+    compiled: PropTypes.string,
     messages: PropTypes.array
   }).isRequired
 }
 
 const mapStateToProps = state => ({
-  currentParseResult: state.parser.currentParseResult
+  currentWarrior: state.parser.currentWarrior
 })
 
 export default connect(

@@ -124,12 +124,12 @@ export function* republishSaga() {
 
 export function* getCoreOptionsFromState() {
 
-  const { standardId, parseResults } = yield select(getParserState)
+  const { standardId, warriors } = yield select(getParserState)
   const { coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks, roundResult } = yield select(getSimulatorState)
 
   return {
     result: roundResult,
-    parseResults: parseResults,
+    warriors: warriors,
     options: {
       standard: standardId,
       coresize: coreSize,

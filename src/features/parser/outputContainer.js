@@ -6,10 +6,10 @@ import CompiledOutput from './compiledOutput'
 import ControlsContainer from './controlsContainer'
 import FileManagerContainer from '../file-manager/fileManagerContainer'
 
-const OutputInterface = ({ currentParseResult }) => (
+const OutputInterface = ({ currentWarrior }) => (
   <MobilePage mobile>
     <CompiledOutput mobile>
-      {currentParseResult.warrior}
+      {currentWarrior.compiled}
     </CompiledOutput>
     <FileManagerContainer />
     <ControlsContainer />
@@ -17,7 +17,7 @@ const OutputInterface = ({ currentParseResult }) => (
 )
 
 const mapStateToProps = state => ({
-  currentParseResult: state.parser.currentParseResult
+  currentWarrior: state.parser.currentWarrior
 })
 
 export default connect(

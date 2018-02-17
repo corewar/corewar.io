@@ -112,7 +112,7 @@ class Warriors extends Component {
         const taskCount = this.state.tasks.get(i)
         return <WarriorWrapper key={`${file.guid}_${i}`}>
           <img
-            src={`data:image/svg+xml;base64,${getIdenticon(file.output, i)}`} alt={`${file.name} avatar`}
+            src={`data:image/svg+xml;base64,${getIdenticon(file.compiled, i)}`} alt={`${file.name} avatar`}
             onClick={() => loadWarrior(file.guid)} />
           <WarriorControls>{file.name}<Octicon name="trashcan" onClick={() => removeWarrior(i)} /></WarriorControls>
           <TaskCountDisplay>{taskCount ? taskCount : 0 }</TaskCountDisplay>
@@ -123,7 +123,6 @@ class Warriors extends Component {
     </WarriorGrid>
   }
 }
-
 
 Warriors.displayName = 'Warriors'
 
