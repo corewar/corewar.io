@@ -78,7 +78,7 @@ export function* runSaga() {
   const data = yield call(getCoreOptionsFromState)
 
   if(data.result.outcome) {
-    yield call(initialiseCore, data.options, data.parseResults)
+    yield call(initialiseCore, data.options, data.warriors)
   }
 
   yield put({ type: RUN })
@@ -214,13 +214,13 @@ function* watchRoundEndChannel() {
     yield put({ type: PAUSE })
     const action = yield take(roundEndChannel)
     yield put(action)
-    const { parseResults } = yield select(getParserState)
+    const { warriors } = yield select(getParserState)
 
     const content = <div>
       {action.data.outcome === "WIN" &&
         <img
-          style={{ marginRight: `10px` }}
-          src={`data:image/svg+xml;base64,${getIdenticon(parseResults[action.data.winnerId].warrior, action.data.winnerId, 20)}`}
+          style={{ marginRight: `10px`, marginTop: `10px` }}
+          src={`data:image/svg+xml;base64,${getIdenticon(warriors[action.data.winnerId].compiled, action.data.winnerId, 20)}`}
           alt={`winner icon`}/>
       }
       {`Round Over: ${action.data.outcome}`}

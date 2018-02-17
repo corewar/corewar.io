@@ -16,6 +16,8 @@ import {
   LOAD_WARRIOR
 } from './actions'
 
+import { PAUSE } from '../simulator/actions'
+
 import { getParserState } from './reducer'
 import { getCoreOptionsFromState, initialiseCore } from '../simulator/sagas'
 
