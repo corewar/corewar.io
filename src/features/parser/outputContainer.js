@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import MobilePage from '../common/mobilePage'
 import CompiledOutput from './compiledOutput'
 import ControlsContainer from './controlsContainer'
-import FileManagerContainer from '../file-manager/fileManagerContainer'
+import FileManagerContainer from '../fileManager/fileManagerContainer'
 
 const OutputInterface = ({ currentWarrior }) => (
   <MobilePage mobile>

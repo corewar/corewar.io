@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import MobilePage from '../common/mobilePage'
 import SourceCodeTextArea from './sourceCodeTextArea'
 import MessagePanel from './messagePanel'
-import FileManagerContainer from '../file-manager/fileManagerContainer'
+import FileManagerContainer from '../fileManager/fileManagerContainer'
 import ControlsContainer from '../parser/controlsContainer'
 
 import {

@@ -11,7 +11,7 @@ import Button from '../common/button'
 import ParseStatusButton from '../parser/parseStatusButton'
 import Instructions from '../simulator/instructions'
 import MessagePanel from '../parser/messagePanel'
-import FileManagerContainer from '../file-manager/fileManagerContainer'
+import FileManagerContainer from '../fileManager/fileManagerContainer'
 
 import { space } from '../common/theme'
 

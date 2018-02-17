@@ -6,7 +6,7 @@ import { media } from '../common/mediaQuery'
 
 const FileManagerGrid = styled.section`
 
-  ${props => props.show ? `left: 0;` : `left: -200px;`};
+  ${props => props.show ? `left: 0;` : `left: -201px;`};
 
   transition: 0.5s;
   position: absolute;
