@@ -8,15 +8,17 @@ import CompiledOutput from '../parser/compiledOutput'
 import Controls from '../common/headerControls'
 import SimulatorContainer from '../simulator/simulatorContainer'
 import Button from '../common/button'
-import ParseStatusButton from '../parser/parseStatusButton'
+import ConsoleButton from '../parser/consoleButton'
 import Instructions from '../simulator/instructions'
-import MessagePanel from '../parser/messagePanel'
+import Console from '../parser/console'
+import FileManagerContainer from '../fileManager/fileManagerContainer'
 
 import { space } from '../common/theme'
 
 import {
   parse,
   addWarrior,
+  toggleFileManager,
   hideMessages,
   showMessages
 } from '../parser/actions'
@@ -43,30 +45,57 @@ const ParserGrid = styled.section`
   height: calc(100vh - ${space.header} - ${space.header});
 `
 
-const AppContainer = ({ redcode, parse, currentParseResult,
-  coreSize, getCoreInstructions, isRunning, isInitialised, addWarrior,
+const ButtonText = styled.span`
+  display: inline-block;
+  font-size: 0.5em;
+`
+
+const ButtonGrid = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr;
+`
+
+const AppContainer = ({ parse, currentWarrior,
+  coreSize, getCoreInstructions, isRunning, isInitialised, addWarrior, toggleFileManager,
   run, pause, step, init, hideMessages, showMessages, displayMessages }) => (
   <DesktopContainer>
     <Controls>
-      <Button handleClick={addWarrior} enabled={hasNoErrors(currentParseResult)}>
-        <Octicon mega name="chevron-right"/>
+    <Button
+        enabled={hasNoErrors(currentWarrior)}
+        handleClick={addWarrior}>
+        <ButtonGrid>
+          <Octicon name="git-commit"/>
+          <ButtonText>add to core</ButtonText>
+        </ButtonGrid>
       </Button>
-      <ParseStatusButton
+      <Button
         enabled={true}
-        messages={currentParseResult.messages}
+        handleClick={toggleFileManager}>
+        <ButtonGrid>
+          <Octicon name="file-directory"/>
+          <ButtonText>manage files</ButtonText>
+        </ButtonGrid>
+      </Button>
+      <ConsoleButton
+        enabled={true}
+        messages={currentWarrior.messages}
         handleClick={showMessages}>
-          <Octicon mega name="issue-opened"/>
-      </ParseStatusButton>
+        <ButtonGrid>
+          <Octicon name="terminal"/>
+          <ButtonText>console</ButtonText>
+        </ButtonGrid>
+      </ConsoleButton>
     </Controls>
     <ParserGrid>
       <SourceCodeTextArea desktop
-        value={redcode}
+        value={currentWarrior.source}
         handleChange={e => parse(e.target.value)} />
       <CompiledOutput desktop>
-        {currentParseResult.warrior}
+        {currentWarrior.compiled}
       </CompiledOutput>
-      <MessagePanel
-        messages={currentParseResult.messages}
+      <Console
+        messages={currentWarrior.messages}
         hideMessages={hideMessages}
         show={displayMessages}
         />
@@ -82,17 +111,16 @@ const AppContainer = ({ redcode, parse, currentParseResult,
       step={step}
       init={init}
       />
-
+    <FileManagerContainer />
   </DesktopContainer>
 )
 
-const hasNoErrors = (currentParseResult) => (
-  currentParseResult.warrior && currentParseResult.messages.filter(x => x.type === 0).length === 0
+const hasNoErrors = (currentWarrior) => (
+  currentWarrior.compiled && currentWarrior.messages.filter(x => x.type === 0).length === 0
 )
 
 const mapStateToProps = state => ({
-  redcode: state.parser.redcode,
-  currentParseResult: state.parser.currentParseResult,
+  currentWarrior: state.parser.currentWarrior,
   coreSize: state.simulator.coreSize,
   getCoreInstructions: state.simulator.getCoreInstructions,
   isRunning: state.simulator.isRunning,
@@ -109,6 +137,7 @@ export default connect(
     parse,
     step,
     addWarrior,
+    toggleFileManager,
     getCoreInstructions,
     hideMessages,
     showMessages

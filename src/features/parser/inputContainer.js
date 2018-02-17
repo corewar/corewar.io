@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 
 import MobilePage from '../common/mobilePage'
 import SourceCodeTextArea from './sourceCodeTextArea'
-import MessagePanel from './messagePanel'
+import Console from './console'
+import FileManagerContainer from '../fileManager/fileManagerContainer'
 import ControlsContainer from '../parser/controlsContainer'
 
 import {
@@ -11,22 +12,22 @@ import {
   hideMessages
 } from './actions'
 
-const InputContainer = ({ redcode, parse, currentParseResult, hideMessages, displayMessages }) => (
+const InputContainer = ({ parse, currentWarrior, hideMessages, displayMessages }) => (
   <MobilePage mobile>
     <SourceCodeTextArea
-      value={redcode}
+      value={currentWarrior.source}
       handleChange={e => parse(e.target.value)} />
     <ControlsContainer />
-    <MessagePanel
+    <FileManagerContainer />
+    <Console
       hideMessages={hideMessages}
-      messages={currentParseResult && currentParseResult.messages}
+      messages={currentWarrior && currentWarrior.messages}
       show={displayMessages} />
   </MobilePage>
 )
 
 const mapStateToProps = state => ({
-  redcode: state.parser.redcode,
-  currentParseResult: state.parser.currentParseResult,
+  currentWarrior: state.parser.currentWarrior,
   displayMessages: state.parser.displayMessages
 })
 

@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { List } from 'immutable'
 import * as PubSub from 'pubsub-js'
 import Octicon from 'react-octicon'
-import { getIdenticon } from '../common/identicon'
 
 import { colour, space, font } from '../common/theme'
 
@@ -39,6 +38,10 @@ const WarriorWrapper = styled.div`
   display: grid;
   grid-template-columns: 40px 1fr;
   grid-template-rows: 1fr 20px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 const WarriorControls = styled.div`
@@ -102,13 +105,19 @@ class Warriors extends Component {
   }
 
   render() {
-    const { parseResults, maxTasks, removeWarrior } = this.props
+    const { warriors, maxTasks, removeWarrior, loadWarrior } = this.props
     return <WarriorGrid>
-      {parseResults && parseResults.map((result, i) => {
+      {warriors && warriors.map((warrior, i) => {
         const taskCount = this.state.tasks.get(i)
-        return <WarriorWrapper key={`${result.warrior}_${i}`}>
-          <img src={`data:image/svg+xml;base64,${getIdenticon(result.warrior, i)}`} alt={`result.metaData.name avatar`} />
-          <WarriorControls>{result.metaData.name}<Octicon name="trashcan" onClick={() => removeWarrior(i)} /></WarriorControls>
+        return <WarriorWrapper key={`${warrior.hash}_${i}`}>
+          <img
+            src={`data:image/svg+xml;base64,${warrior.icon}`}
+            alt={`${warrior.metaData.name} avatar`}
+            onClick={() => loadWarrior(warrior.hash)} />
+          <WarriorControls>
+            {warrior.metaData.name}
+            <Octicon name="trashcan" onClick={() => removeWarrior(i)} />
+          </WarriorControls>
           <TaskCountDisplay>{taskCount ? taskCount : 0 }</TaskCountDisplay>
           <TaskBar tasks={taskCount} maxTasks={maxTasks} warriorIndex={i}></TaskBar>
         </WarriorWrapper>
@@ -117,7 +126,6 @@ class Warriors extends Component {
     </WarriorGrid>
   }
 }
-
 
 Warriors.displayName = 'Warriors'
 

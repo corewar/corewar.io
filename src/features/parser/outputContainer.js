@@ -4,18 +4,20 @@ import { connect } from 'react-redux'
 import MobilePage from '../common/mobilePage'
 import CompiledOutput from './compiledOutput'
 import ControlsContainer from './controlsContainer'
+import FileManagerContainer from '../fileManager/fileManagerContainer'
 
-const OutputInterface = ({ currentParseResult }) => (
+const OutputInterface = ({ currentWarrior }) => (
   <MobilePage mobile>
     <CompiledOutput mobile>
-      {currentParseResult.warrior}
+      {currentWarrior.compiled}
     </CompiledOutput>
+    <FileManagerContainer />
     <ControlsContainer />
   </MobilePage>
 )
 
 const mapStateToProps = state => ({
-  currentParseResult: state.parser.currentParseResult
+  currentWarrior: state.parser.currentWarrior
 })
 
 export default connect(

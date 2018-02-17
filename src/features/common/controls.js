@@ -6,6 +6,8 @@ import { colour, space } from './theme'
 const Controls = styled.div`
 
   border: none;
+  padding-left: 1em;
+  padding-right: 1em;
 
   ${media.phone`
     border-top: 1px solid ${colour.grey};

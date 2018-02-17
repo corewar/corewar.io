@@ -5,6 +5,7 @@ export const colour = {
   'darkbg': '#131518',
   'defaultbg': '#1A1D22',
   'lightbg': '#292C33',
+  'lightgrey': '#B5BAD0',
   'grey': '#828282',
   'error': '#EB5757',
   'warning': '#F2C94C',

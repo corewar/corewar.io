@@ -18,7 +18,7 @@ describe('when testing the parser reducers', () => {
 
     expect(result).to.deep.equal({
       isParsing: false,
-      currentParseResult: {},
+      currentWarrior: {},
       parseResults: [],
       standardId: 2,
       redcode: '',
@@ -38,7 +38,7 @@ describe('when testing the parser reducers', () => {
     const result = parserReducer([], action)
 
     expect(result).to.deep.equal({
-      currentParseResult: 'parseResult',
+      currentWarrior: 'parseResult',
       redcode: 'redcode',
       isParsing: false
     })

@@ -1,74 +1,96 @@
 import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 
 import { insertItem, removeItem } from '../../helpers/arrayHelpers'
+import { createHash, getIdenticon } from '../common/identicon'
 import { toast } from '../notifications/sagas'
 import { corewar } from 'corewar'
 
 import {
   PARSE,
   PARSE_REQUESTED,
-  ADD_WARRIOR,
   ADD_WARRIOR_REQUESTED,
-  REMOVE_WARRIOR,
   REMOVE_WARRIOR_REQUESTED,
   SHOW_MESSAGES,
   HIDE_MESSAGES,
+  SET_WARRIORS,
+  LOAD_WARRIOR_REQUESTED,
+  LOAD_WARRIOR
 } from './actions'
 
+import { PAUSE } from '../simulator/actions'
+
 import { getParserState } from './reducer'
-import { pauseSaga, getCoreOptionsFromState, initialiseCore } from '../simulator/sagas'
+import { getCoreOptionsFromState, initialiseCore } from '../simulator/sagas'
 
 // sagas
-export function* parseSaga({ redcode }) {
+export function* parseSaga({ source }) {
 
-  let result = yield call([corewar, corewar.parse], redcode)
+  const parseResult = yield call([corewar, corewar.parse], source)
 
-  const warrior = yield call([corewar, corewar.serialise], result.tokens)
+  const compiled = yield call([corewar, corewar.serialise], parseResult.tokens)
 
-  result.warrior = warrior;
+  const hash = createHash(compiled)
 
-  if(result.messages.find(x => x.type === 0)){
+  const currentWarrior = { ...parseResult, compiled, source, hash }
+
+  if(currentWarrior.messages.find(x => x.type === 0)){
     yield put({ type: SHOW_MESSAGES })
   } else {
     yield put({ type: HIDE_MESSAGES})
   }
 
-  yield put({ type: PARSE, result, redcode })
+  yield put({ type: PARSE, currentWarrior })
 
 }
 
 export function* addWarriorSaga() {
 
-  yield call(pauseSaga)
+  yield put({ type: PAUSE })
 
   const data = yield call(getCoreOptionsFromState)
 
-  const { currentParseResult } = yield select(getParserState)
+  const { warriors, currentWarrior } = yield select(getParserState)
 
-  const result = yield call(insertItem, data.parseResults.length, data.parseResults, currentParseResult)
+  const icon = getIdenticon(currentWarrior.compiled, warriors.length)
 
-  yield put({ type: ADD_WARRIOR, result })
+  const warriorList = yield call(insertItem, warriors.length, warriors, { ...currentWarrior, icon })
+
+  yield put({ type: SET_WARRIORS, warriors: warriorList })
+
+  yield call(initialiseCore, data.options, warriorList)
 
   yield call(toast, 'Warrior Added')
+}
 
-  yield call(initialiseCore, data.options, result)
+export function* loadWarriorSaga({ hash }) {
+
+  const { warriors } = yield select(getParserState)
+
+  const warrior = warriors.find(x => x.hash === hash)
+
+  yield put({ type: LOAD_WARRIOR, warrior })
 
 }
 
 export function* removeWarriorSaga({ index }) {
 
-  yield call(pauseSaga)
+  yield put({ type: PAUSE })
 
   const data = yield call(getCoreOptionsFromState)
 
-  const result = yield call(removeItem, index, data.parseResults);
+  const { warriors } = yield select(getParserState)
 
-  yield put({ type: REMOVE_WARRIOR, result })
+  const warriorList = yield call(removeItem, index, warriors)
+
+  const newIcons = warriorList.map((warrior, i) =>
+    ({ ...warrior, icon: getIdenticon(warrior.compiled, i) })
+  )
+
+  yield put({ type: SET_WARRIORS, warriors: newIcons })
+
+  yield call(initialiseCore, data.options, newIcons)
 
   yield call(toast, 'Warrior Removed')
-
-  yield call(initialiseCore, data.options, result)
-
 }
 
 
@@ -76,5 +98,6 @@ export function* removeWarriorSaga({ index }) {
 export const parserWatchers = [
   takeLatest(PARSE_REQUESTED, parseSaga),
   takeEvery(ADD_WARRIOR_REQUESTED, addWarriorSaga),
-  takeEvery(REMOVE_WARRIOR_REQUESTED, removeWarriorSaga)
+  takeEvery(REMOVE_WARRIOR_REQUESTED, removeWarriorSaga),
+  takeEvery(LOAD_WARRIOR_REQUESTED, loadWarriorSaga)
 ]
