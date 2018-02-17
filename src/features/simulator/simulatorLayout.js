@@ -6,7 +6,7 @@ import ErrorBoundary from '../common/errorBoundary'
 import Warriors from './warriors'
 import ControlsContainer from './controlsContainer'
 
-import { space } from  '../common/theme'
+import { space, colour } from  '../common/theme'
 import { media } from  '../common/mediaQuery'
 
 const SimulatorGrid = styled.section`
@@ -24,6 +24,7 @@ const SimulatorGrid = styled.section`
 
   display: grid;
   grid-template-rows: 75px 1fr ${space.controls};
+  background-color: ${colour.defaultbg};
 `
 
 SimulatorGrid.displayName = `SimulatorGrid`
