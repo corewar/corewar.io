@@ -62,8 +62,8 @@ const FileManager = ({ show, warriors }) => (
   <FileManagerGrid show={show}>
     <span>/ dougajmcdonald</span>
     <ul>
-      {warriors.map(warrior => (
-        <li key={warrior.guid}>{warrior.name}</li>
+      {warriors.map((warrior, i) => (
+        <li key={`${warrior.guid}_${i}`}>{warrior.metaData.name}</li>
       ))}
     </ul>
   </FileManagerGrid>
