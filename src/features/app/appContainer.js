@@ -56,7 +56,7 @@ const ButtonGrid = styled.div`
   grid-template-columns: 1fr;
 `
 
-const AppContainer = ({ redcode, parse, currentWarrior,
+const AppContainer = ({ parse, currentWarrior,
   coreSize, getCoreInstructions, isRunning, isInitialised, addWarrior, toggleFileManager,
   run, pause, step, init, hideMessages, showMessages, displayMessages }) => (
   <DesktopContainer>
@@ -89,7 +89,7 @@ const AppContainer = ({ redcode, parse, currentWarrior,
     </Controls>
     <ParserGrid>
       <SourceCodeTextArea desktop
-        value={redcode}
+        value={currentWarrior.source}
         handleChange={e => parse(e.target.value)} />
       <CompiledOutput desktop>
         {currentWarrior.compiled}
@@ -120,7 +120,6 @@ const hasNoErrors = (currentWarrior) => (
 )
 
 const mapStateToProps = state => ({
-  redcode: state.parser.redcode,
   currentWarrior: state.parser.currentWarrior,
   coreSize: state.simulator.coreSize,
   getCoreInstructions: state.simulator.getCoreInstructions,

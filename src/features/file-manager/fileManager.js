@@ -58,13 +58,12 @@ const FileManagerGrid = styled.section`
 
 `
 
-const FileManager = ({ show, files }) => (
+const FileManager = ({ show, warriors }) => (
   <FileManagerGrid show={show}>
-
     <span>/ dougajmcdonald</span>
     <ul>
-      {files.map(file => (
-        <li key={file.guid}>{file.name}</li>
+      {warriors.map(warrior => (
+        <li key={warrior.guid}>{warrior.name}</li>
       ))}
     </ul>
   </FileManagerGrid>

@@ -3,16 +3,16 @@ import { connect } from 'react-redux'
 
 import FileManager from './fileManager'
 
-const FileManagerContainer = ({ displayFileManager, files }) => (
+const FileManagerContainer = ({ displayFileManager, warriors }) => (
   <FileManager
     show={displayFileManager}
-    files={files}
+    warriors={warriors}
     />
 )
 
 const mapStateToProps = state => ({
   displayFileManager: state.parser.displayFileManager,
-  files: state.parser.files
+  warriors: state.parser.warriors
 })
 
 export default connect(

@@ -16,7 +16,7 @@ import {
 
 
 const SimulatorContainer = ({ coreSize, getCoreInstructions, isRunning,
-  isInitialised, init, republish, files,
+  isInitialised, init, republish, warriors,
   maxTasks, removeWarrior, loadWarrior, tablet, mobile }) => (
   <SimulatorLayout
     tablet={tablet}
@@ -25,7 +25,7 @@ const SimulatorContainer = ({ coreSize, getCoreInstructions, isRunning,
     getCoreInstructions={getCoreInstructions}
     isRunning={isRunning}
     isInitialised={isInitialised}
-    files={files}
+    warriors={warriors}
     maxTasks={maxTasks}
     republish={republish}
     init={init}
@@ -38,7 +38,7 @@ const mapStateToProps = state => ({
   coreSize: state.simulator.coreSize,
   isRunning: state.simulator.isRunning,
   isInitialised: state.simulator.isInitialised,
-  files: state.parser.files,
+  warriors: state.parser.warriors,
   maxTasks: state.simulator.maxTasks
 })
 

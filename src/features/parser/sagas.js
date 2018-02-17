@@ -19,11 +19,16 @@ import {
 import { getParserState } from './reducer'
 import { pauseSaga, getCoreOptionsFromState, initialiseCore } from '../simulator/sagas'
 
+// const guid = () => {
+//   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+//     var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8)
+//     return v.toString(16)
+//   })
+// }
+
 const guid = () => {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8)
-    return v.toString(16)
-  })
+  const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+  return `${s4() + s4()}-${s4()}-${s4()}-${s4()}-${s4() + s4() + s4()}`;
 }
 
 // sagas
@@ -33,9 +38,9 @@ export function* parseSaga({ source }) {
 
   const compiled = yield call([corewar, corewar.serialise], parseResult.tokens)
 
-  const guid = guid()
+  const uuid = guid()
 
-  const currentWarrior = { ...parseResult, compiled, source, guid }
+  const currentWarrior = { ...parseResult, compiled, source, guid: uuid }
 
   if(currentWarrior.messages.find(x => x.type === 0)){
     yield put({ type: SHOW_MESSAGES })
@@ -57,7 +62,7 @@ export function* addWarriorSaga() {
 
   const warriorList = yield call(insertItem, warriors.length, warriors, currentWarrior)
 
-  yield put({ type: SET_WARRIORS, warriorList })
+  yield put({ type: SET_WARRIORS, warriors: warriorList })
 
   yield call(toast, 'Warrior Added')
 
@@ -85,7 +90,7 @@ export function* removeWarriorSaga({ index }) {
 
   const warriorList = yield call(removeItem, index, warriors)
 
-  yield put({ type: SET_WARRIORS, warriorList })
+  yield put({ type: SET_WARRIORS, warriors: warriorList })
 
   yield call(toast, 'Warrior Removed')
 

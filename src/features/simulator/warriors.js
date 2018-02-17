@@ -106,15 +106,19 @@ class Warriors extends Component {
   }
 
   render() {
-    const { files, maxTasks, removeWarrior, loadWarrior } = this.props
+    const { warriors, maxTasks, removeWarrior, loadWarrior } = this.props
     return <WarriorGrid>
-      {files && files.map((file, i) => {
+      {warriors && warriors.map((warrior, i) => {
         const taskCount = this.state.tasks.get(i)
-        return <WarriorWrapper key={`${file.guid}_${i}`}>
+        return <WarriorWrapper key={`${warrior.guid}_${i}`}>
           <img
-            src={`data:image/svg+xml;base64,${getIdenticon(file.compiled, i)}`} alt={`${file.name} avatar`}
-            onClick={() => loadWarrior(file.guid)} />
-          <WarriorControls>{file.name}<Octicon name="trashcan" onClick={() => removeWarrior(i)} /></WarriorControls>
+            src={`data:image/svg+xml;base64,${getIdenticon(warrior.compiled, i)}`}
+            alt={`${warrior.metaData.name} avatar`}
+            onClick={() => loadWarrior(warrior.guid)} />
+          <WarriorControls>
+            {warrior.metaData.name}
+            <Octicon name="trashcan" onClick={() => removeWarrior(i)} />
+          </WarriorControls>
           <TaskCountDisplay>{taskCount ? taskCount : 0 }</TaskCountDisplay>
           <TaskBar tasks={taskCount} maxTasks={maxTasks} warriorIndex={i}></TaskBar>
         </WarriorWrapper>
