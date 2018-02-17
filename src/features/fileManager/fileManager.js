@@ -46,7 +46,8 @@ const FileManagerGrid = styled.section`
     padding-bottom: ${space.s};
     padding-top: ${space.s};
     margin-right: ${space.s};
-    height: ${space.m};
+    min-height: ${space.m};
+    height: auto;
     border-bottom: 2px solid transparent;
 
     &:hover {
@@ -58,12 +59,16 @@ const FileManagerGrid = styled.section`
 
 `
 
-const FileManager = ({ show, warriors }) => (
+const FileManager = ({ show, files, handleClick }) => (
   <FileManagerGrid show={show}>
     <span>/ dougajmcdonald</span>
     <ul>
-      {warriors.map((warrior, i) => (
-        <li key={`${warrior.guid}_${i}`}>{warrior.metaData.name}</li>
+      {files.map((file, i) => (
+        <li
+          key={`${file.name}_${i}`}
+          onClick={() => handleClick(file.source)}>
+          {file.name}
+        </li>
       ))}
     </ul>
   </FileManagerGrid>

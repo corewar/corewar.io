@@ -7,10 +7,13 @@ import {
   LOAD_WARRIOR
 } from './actions'
 
+import { defaultWarriors } from '../../helpers/defaultWarriors'
+
 // state
 const initialState = {
   currentWarrior: {},
   warriors: [],
+  warriorLibrary: defaultWarriors,
   standardId: 2, // TODO: what's the best standard to use as a default?
   displayMessages: false,
   displayFileManager: false

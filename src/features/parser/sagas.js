@@ -82,9 +82,13 @@ export function* removeWarriorSaga({ index }) {
 
   const warriorList = yield call(removeItem, index, warriors)
 
-  yield put({ type: SET_WARRIORS, warriors: warriorList })
+  const newIcons = warriorList.map((warrior, i) =>
+    ({ ...warrior, icon: getIdenticon(warrior.compiled, i) })
+  )
 
-  yield call(initialiseCore, data.options, warriorList)
+  yield put({ type: SET_WARRIORS, warriors: newIcons })
+
+  yield call(initialiseCore, data.options, newIcons)
 
   yield call(toast, 'Warrior Removed')
 }
