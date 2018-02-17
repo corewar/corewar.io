@@ -4,7 +4,6 @@ import { put, call } from 'redux-saga/effects'
 
 import {
   runSaga,
-  pauseSaga,
   getCoreOptionsFromState,
   initialiseCore
 } from '../../../sagas/simulatorSagas'

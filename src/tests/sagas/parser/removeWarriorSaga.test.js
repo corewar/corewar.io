@@ -11,7 +11,7 @@ import {
 
 import { removeWarriorSaga } from '../../../sagas/parserSagas'
 import { removeItem } from '../../../helpers/arrayHelpers'
-import { pauseSaga, getCoreOptionsFromState, initialiseCore } from '../../../sagas/simulatorSagas'
+import { getCoreOptionsFromState, initialiseCore } from '../../../sagas/simulatorSagas'
 
 describe('when removing warriors', () => {
 
@@ -31,7 +31,7 @@ describe('when removing warriors', () => {
   it('should remove the warrior at the index', () => {
 
     expect(saga.next().value).to.deep.equal(
-      call(pauseSaga))
+      put({ type: PAUSE }))
 
     expect(saga.next().value).to.deep.equal(
       call(getCoreOptionsFromState))

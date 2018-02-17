@@ -17,7 +17,7 @@ import {
 } from './actions'
 
 import { getParserState } from './reducer'
-import { pauseSaga, getCoreOptionsFromState, initialiseCore } from '../simulator/sagas'
+import { getCoreOptionsFromState, initialiseCore } from '../simulator/sagas'
 
 const guid = () => {
   const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
@@ -47,7 +47,7 @@ export function* parseSaga({ source }) {
 
 export function* addWarriorSaga() {
 
-  yield call(pauseSaga)
+  yield put({ type: PAUSE })
 
   const data = yield call(getCoreOptionsFromState)
 
@@ -75,7 +75,7 @@ export function* loadWarriorSaga({ guid }) {
 
 export function* removeWarriorSaga({ index }) {
 
-  yield call(pauseSaga)
+  yield put({ type: PAUSE })
 
   const data = yield call(getCoreOptionsFromState)
 

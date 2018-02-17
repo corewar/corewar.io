@@ -14,7 +14,6 @@ import {
   RUN,
   RUN_REQUESTED,
   PAUSE,
-  PAUSE_REQUESTED,
   RUN_PROGRESS,
   RUN_ENDED,
   FINISH_REQUESTED,
@@ -42,7 +41,7 @@ const runChannel = channel()
 // sagas
 export function* initSaga() {
 
-  yield call(pauseSaga)
+  yield put({ type: PAUSE })
 
   const data = yield call(getCoreOptionsFromState)
 
@@ -109,10 +108,6 @@ export function* renderCoreSaga() {
       }
     }
   }
-}
-
-export function* pauseSaga() {
-  yield put({ type: PAUSE })
 }
 
 export function* republishSaga() {
@@ -195,7 +190,7 @@ function* setProcessRateSaga({ rate }) {
 
 function* setCoreOptionsSaga({ id }) {
 
-  yield call(pauseSaga)
+  yield put({ type: PAUSE })
 
   yield call(PubSub.publishSync, 'RESET_CORE')
 
@@ -216,7 +211,7 @@ function* watchRoundProgressChannel() {
 
 function* watchRoundEndChannel() {
   while(true) {
-    yield call(pauseSaga)
+    yield put({ type: PAUSE })
     const action = yield take(roundEndChannel)
     yield put(action)
     const { parseResults } = yield select(getParserState)
@@ -254,7 +249,6 @@ export const sendRoundEnd = (msg, data) => {
 export const simulatorWatchers = [
   takeLatest(INIT_REQUESTED, initSaga),
   takeEvery(STEP_REQUESTED, stepSaga),
-  takeEvery(PAUSE_REQUESTED, pauseSaga),
   takeLatest(FINISH_REQUESTED, finishSaga),
   takeLatest(RUN_REQUESTED, runSaga),
   takeLatest(REPUBLISH_REQUESTED, republishSaga),
