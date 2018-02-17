@@ -45,7 +45,7 @@ export function* initSaga() {
 
   const data = yield call(getCoreOptionsFromState)
 
-  yield call(initialiseCore, data.options, data.parseResults)
+  yield call(initialiseCore, data.options, data.warriors)
 
 }
 
@@ -136,11 +136,11 @@ export function* getCoreOptionsFromState() {
   }
 }
 
-export function* initialiseCore(options, parseResults) {
+export function* initialiseCore(options, warriors) {
 
   yield call(PubSub.publishSync, 'RESET_CORE')
 
-  yield call([corewar, corewar.initialiseSimulator], options, parseResults, PubSub)
+  yield call([corewar, corewar.initialiseSimulator], options, warriors, PubSub)
 
   yield put({ type: INIT })
 
@@ -151,7 +151,7 @@ export function* finishSaga() {
   const data = yield call(getCoreOptionsFromState)
 
   if(data.result.outcome) {
-    yield call(initialiseCore, data.options, data.parseResults)
+    yield call(initialiseCore, data.options, data.warriors)
   }
 
   yield call([corewar, corewar.run])
@@ -180,11 +180,11 @@ function* setProcessRateSaga({ rate }) {
 
   yield put({ type: SET_PROCESS_RATE, rate })
 
-  const { isInitialised, isRunning } = yield select(getSimulatorState)
+  // const { isInitialised, isRunning } = yield select(getSimulatorState)
 
-  if(!isInitialised || !isRunning) {
-    return
-  }
+  // if(!isInitialised || !isRunning) {
+  //   return
+  // }
 
 }
 
