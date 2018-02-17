@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { space, colour } from '../common/theme'
+import { space, colour, font } from '../common/theme'
 import { media } from '../common/mediaQuery'
 
 const FileManagerGrid = styled.section`
@@ -20,8 +20,6 @@ const FileManagerGrid = styled.section`
 
   background-color: ${colour.lightbg};
   border-right: 1px solid ${colour.grey};
-
-
 
   ${media.phone`margin-bottom: ${space.controls};`}
   ${media.tablet`margin-bottom: ${space.controls};`}
@@ -49,6 +47,7 @@ const FileManagerGrid = styled.section`
     min-height: ${space.m};
     height: auto;
     border-bottom: 2px solid transparent;
+    font-size: ${font.small};
 
     &:hover {
       border-bottom: 2px solid ${colour.blue};
