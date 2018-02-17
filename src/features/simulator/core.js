@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import * as PubSub from 'pubsub-js'
 import styled from 'styled-components'
 
+import throttle from '../../helpers/throttle'
+
 import { colour } from '../common/theme'
 import { media } from  '../common/mediaQuery'
 
@@ -104,7 +106,7 @@ class CanvasCore extends Component {
 
     this.interactiveCanvas.addEventListener("click", e => this.canvasClick(e))
 
-    window.addEventListener('resize', () => this.redraw())
+    window.addEventListener('resize', throttle(() => this.redraw(), 200))
 
     window.requestAnimationFrame(() => this.renderMessages())
 
