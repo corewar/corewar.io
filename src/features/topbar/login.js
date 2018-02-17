@@ -31,7 +31,7 @@ const Login = ({ isAuthenticated }) => (
     {isAuthenticated ?
       <UserInfo /> :
       <LinkContainer>
-        <HeaderLink to='/'>login</HeaderLink> / <HeaderLink to='/'>sign up</HeaderLink>
+        <HeaderLink to='/'>log in</HeaderLink> / <HeaderLink to='/'>sign up</HeaderLink>
       </LinkContainer>
     }
   </LoginModule>

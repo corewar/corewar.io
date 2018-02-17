@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import Octicon from 'react-octicon'
-import scrollToComponent from 'react-scroll-to-component'
 
 import { colour, font, space } from '../common/theme'
+import { media } from '../common/mediaQuery'
 
 import Simulator from '../../img/corewarx12.gif'
 import Imp from '../../img/imp.png'
@@ -12,7 +12,8 @@ import ImpSimulator from '../../img/impx1.gif'
 const PageWrapper = styled.div`
   display: grid;
   grid-template-columns: 10% 40% 40% 10%;
-  grid-template-rows: ${space.xl} 1fr 1fr 1fr 1fr 1fr ${space.xl};
+  grid-template-rows: ${space.xl} 1fr 1fr 1fr 1fr 1fr 100px;
+  grid-row-gap: ${space.l};
   color: ${colour.white};
   font-size: ${font.large};
 `
@@ -20,7 +21,7 @@ const PageWrapper = styled.div`
 const LandingWrapper = styled.div`
 
   grid-row-start: 2;
-  grid-columns: 2 / 4;
+  grid-column: 1 / 4;
 
   display: flex;
   flex-direction: column;
@@ -54,6 +55,13 @@ const SuperButton = styled.button`
   width: 300px;
   height: 80px;
   margin: ${space.l};
+  transition: 0.5s;
+
+
+  ${media.tablet`width: 200px;`}
+  ${media.tablet`height: 50px;`}
+  ${media.tablet`font-size: ${font.base};`}
+  ${media.tablet`padding: ${space.s};`}
 
   &:focus {
     outline: none;
@@ -61,6 +69,10 @@ const SuperButton = styled.button`
 
   &:hover {
     cursor: pointer;
+    transition: 0.5s;
+    background-color: ${colour.defaultbg};
+    border: 1px solid ${colour.grey};
+    color: ${colour.grey};
   }
 `
 
@@ -72,7 +84,9 @@ const ButtonWrapper = styled.div`
 const Intro = styled.section`
   grid-row-start: ${props => props.row};
   grid-column: 2 / 4;
-  height: 100vh;
+  grid-column-gap: ${space.l};
+  min-height: 100vh;
+  height: auto;
 
   display: grid;
   grid-template-rows: 100px 1fr;
@@ -90,12 +104,24 @@ const PrimaryIntro = styled.p`
   margin-top: ${space.xl};
   font-weight: 200;
   line-height: 1.3em;
+  font-size: ${font.large};
 `
 
 const PrimaryImage = styled.img`
   -moz-box-shadow:    inset 0 0 50px #000000;
   -webkit-box-shadow: inset 0 0 50px #000000;
   box-shadow:         inset 0 0 50px #000000;
+`
+
+const ImageWrapper = styled.div`
+  border: 1px solid ${colour.white};
+`
+
+const Footer = styled.footer`
+  background-color: ${colour.lightbg};
+  width: 100%;
+  grid-row-start: 7;
+  grid-column: 1 / 5;
 `
 
 class Landing extends React.Component{
@@ -108,7 +134,7 @@ class Landing extends React.Component{
         <Octicon name="chevron-down" />
         <ButtonWrapper>
           <SuperButton onClick={() => history.push('/app/src')}>play</SuperButton>
-          <SuperButton onClick={() => scrollToComponent(this.Learn)}>learn</SuperButton>
+          <SuperButton onClick={() => {}}>learn</SuperButton>
         </ButtonWrapper>
       </LandingWrapper>
       <Intro row={3} innerRef={(intro) => { this.Learn = intro }}>
@@ -124,12 +150,12 @@ class Landing extends React.Component{
           Build your arsenal of programs and learn to code whilst completing unique challenges and competing
           against your friends or other members of the community.
         </PrimaryIntro>
-        <PrimaryImage src={Simulator} />
+        <ImageWrapper />
       </Intro>
 
       <Intro row={4}>
         <CenterHeader>Write your code</CenterHeader>
-        <PrimaryImage width={315} src={Imp} />
+        <ImageWrapper />
         <PrimaryIntro>
           Write your warrior with a simple by expansive set of commands.
           <br/>
@@ -143,7 +169,7 @@ class Landing extends React.Component{
 
       <Intro row={5}>
         <CenterHeader>See it run</CenterHeader>
-        <PrimaryImage src={ImpSimulator} />
+        <ImageWrapper />
         <PrimaryIntro>
           Load your code into our simulator and see it run live before you eyes
           <br/>
@@ -161,8 +187,9 @@ class Landing extends React.Component{
           Then submit your program into one of our community hills to test yourself against
           other players to see how well it fares in the wild.
         </PrimaryIntro>
-        <PrimaryImage src={Simulator} />
+        <ImageWrapper />
       </Intro>
+      <Footer />
     </PageWrapper>
   }
 }
