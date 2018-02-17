@@ -5,7 +5,7 @@ import FontAwesome from 'react-fontawesome'
 import { colour, space, font } from '../common/theme'
 import { media } from '../common/mediaQuery'
 
-const ParseMessageWrapper = styled.div`
+const ConsoleWrapper = styled.div`
   ${props =>  props.show ? `display: block;` : `display: none;`}
   position: absolute;
   bottom: 0;
@@ -49,9 +49,9 @@ const CloseButton = styled.div`
   }
 `
 
-const MessagePanel = ({ messages, hideMessages, show }) => (
+const Console = ({ messages, hideMessages, show }) => (
 
-  <ParseMessageWrapper messages={messages} show={show} onClick={hideMessages}>
+  <ConsoleWrapper messages={messages} show={show} onClick={hideMessages}>
     <CloseButton>
       <FontAwesome name={`times`} />
     </CloseButton>
@@ -71,7 +71,7 @@ const MessagePanel = ({ messages, hideMessages, show }) => (
         </MessageRow>
       ))
     }
-  </ParseMessageWrapper>
+  </ConsoleWrapper>
 
 )
 
@@ -88,4 +88,4 @@ const messageTypeToString = (messageType) => {
   }
 }
 
-export default MessagePanel
+export default Console

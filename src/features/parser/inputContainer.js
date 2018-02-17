@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import MobilePage from '../common/mobilePage'
 import SourceCodeTextArea from './sourceCodeTextArea'
-import MessagePanel from './messagePanel'
+import Console from './console'
 import FileManagerContainer from '../fileManager/fileManagerContainer'
 import ControlsContainer from '../parser/controlsContainer'
 
@@ -19,7 +19,7 @@ const InputContainer = ({ parse, currentWarrior, hideMessages, displayMessages }
       handleChange={e => parse(e.target.value)} />
     <ControlsContainer />
     <FileManagerContainer />
-    <MessagePanel
+    <Console
       hideMessages={hideMessages}
       messages={currentWarrior && currentWarrior.messages}
       show={displayMessages} />

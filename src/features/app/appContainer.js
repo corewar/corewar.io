@@ -10,7 +10,7 @@ import SimulatorContainer from '../simulator/simulatorContainer'
 import Button from '../common/button'
 import ConsoleButton from '../parser/consoleButton'
 import Instructions from '../simulator/instructions'
-import MessagePanel from '../parser/messagePanel'
+import Console from '../parser/console'
 import FileManagerContainer from '../fileManager/fileManagerContainer'
 
 import { space } from '../common/theme'
@@ -94,7 +94,7 @@ const AppContainer = ({ parse, currentWarrior,
       <CompiledOutput desktop>
         {currentWarrior.compiled}
       </CompiledOutput>
-      <MessagePanel
+      <Console
         messages={currentWarrior.messages}
         hideMessages={hideMessages}
         show={displayMessages}

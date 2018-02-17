@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import SourceCodeTextArea from './sourceCodeTextArea'
 import CompiledOutput from './compiledOutput'
-import MessagePanel from './messagePanel'
+import Console from './console'
 import MobilePage from '../common/mobilePage'
 import ControlsContainer from '../parser/controlsContainer'
 import FileManagerContainer from '../fileManager/fileManagerContainer'
@@ -33,7 +33,7 @@ const ParserInterface = ({ redcode, parse, currentWarrior, addWarrior, hideMessa
     </ParserGrid>
     <ControlsContainer />
     <FileManagerContainer />
-    <MessagePanel
+    <Console
       messages={currentWarrior.messages}
       hideMessages={hideMessages}
       show={displayMessages} />
