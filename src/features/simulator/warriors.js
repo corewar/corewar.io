@@ -6,6 +6,8 @@ import Octicon from 'react-octicon'
 
 import { colour, space, font } from '../common/theme'
 
+import { insertItem, removeItem } from '../../helpers/arrayHelpers'
+
 const WarriorGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -71,28 +73,26 @@ const TaskBar = styled.div`
   ${props => `width: ${getWidth(props.tasks, props.maxTasks)}%;`}
 `
 
-const getWidth = (tasks, maxTasks) => {
-  if(tasks === 0) {
-    return 0
-  }
-  return Math.floor(tasks / maxTasks * 100)
-}
-
 class Warriors extends Component {
 
   constructor(props) {
     super(props)
 
     this.state = {
-      tasks: List()
+      tasks: []
     }
+
+    PubSub.subscribe('CORE_INITIALISE', (msg, data) => {
+      this.setState({ tasks: [] })
+    })
 
     PubSub.subscribe('TASK_COUNT', (msg, data) => {
 
-      let newTasks = []
+      let newTasks = this.state.tasks
 
       data.forEach((item) => {
-        newTasks = this.state.tasks.splice(item.warriorId, 1, item.taskCount)
+        newTasks = removeItem(item.warriorId, newTasks)
+        newTasks = insertItem(item.warriorId, newTasks, item.taskCount)
       })
 
       this.setState({ tasks: newTasks })
@@ -108,7 +108,7 @@ class Warriors extends Component {
     const { warriors, maxTasks, removeWarrior, loadWarrior } = this.props
     return <WarriorGrid>
       {warriors && warriors.map((warrior, i) => {
-        const taskCount = this.state.tasks.get(i)
+        const taskCount = this.state.tasks[i]
         return <WarriorWrapper key={`${warrior.hash}_${i}`}>
           <img
             src={`data:image/svg+xml;base64,${warrior.icon}`}
@@ -125,6 +125,15 @@ class Warriors extends Component {
       )}
     </WarriorGrid>
   }
+}
+
+const getWidth = (tasks, maxTasks) => {
+
+  if(!tasks) {
+    return 0
+  }
+
+  return Math.floor(tasks / maxTasks * 100)
 }
 
 Warriors.displayName = 'Warriors'
