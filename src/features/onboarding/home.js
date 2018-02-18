@@ -7,7 +7,7 @@ import { media } from '../common/mediaQuery'
 
 const HomeGrid = styled.main`
   display: grid;
-  grid-template-rows: ${space.header} 50vh 1fr 200px 1fr 100px;
+  grid-template-rows: ${space.header} 52vh 1fr 250px 1fr 100px;
   color: ${colour.white};
 `
 
@@ -25,7 +25,7 @@ const Hero = styled.section`
   align-items: center;
   font-size: ${font.xxlarge};
   font-weight: 200;
-  margin-top: ${space.xl};
+  margin-top: ${space.l};
 
   span {
     font-weight: 300;
@@ -35,8 +35,10 @@ const Hero = styled.section`
     font-size: ${font.xxlarge};
     color: ${colour.blue};
     margin: ${space.xl};
+    margin-bottom: ${space.s};
     padding-left: ${space.l};
   }
+
 `
 
 const Features = styled.section`
@@ -47,6 +49,8 @@ const Features = styled.section`
   border-top: 1px solid ${colour.lightbg};
   margin-left: ${space.xl};
   margin-right: ${space.xl};
+  margin-bottom: ${space.l};
+  margin-top: ${space.m};
 `
 
 const Feature = styled.div`
@@ -100,6 +104,8 @@ const Feature = styled.div`
     ${media.desktop`margin-left: ${space.s};`};
     ${media.desktop`margin-right: ${space.s};`};
 
+    min-height: 80px;
+
   }
 `
 
@@ -127,8 +133,33 @@ const PrimaryButton = FeatureButton.extend`
 `
 
 const Prospect = styled.section`
-  height: 200px;
+  height: 250px;
   background-color: ${colour.coral};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: ${font.xlarge};
+  margin-bottom: ${space.xl};
+
+  h2 {
+    margin: ${space.l};
+  }
+
+  .octicon {
+    font-size: ${font.xxlarge};
+    color: ${colour.blue};
+    margin: ${space.m};
+    padding-left: ${space.l};
+  }
+`
+
+const Footer = styled.footer`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: ${colour.lightbg};
 `
 
 const Home = () => (
@@ -164,7 +195,32 @@ const Home = () => (
       </Feature>
     </Features>
     <Prospect>
+      <h2>What best describes you?</h2>
+      <Octicon name="person" />
     </Prospect>
+    <Features>
+      <Feature>
+        <Octicon name="mortar-board" />
+        <h3>experienced player</h3>
+        <p>I’ve played corewar before and understand the instructions and concepts</p>
+        <PrimaryButton>Play Now</PrimaryButton>
+      </Feature>
+      <Feature>
+        <Octicon name="law" />
+        <h3>new to the game</h3>
+        <p>I’ve done some coding before but never played corewar</p>
+        <FeatureButton>Learn more</FeatureButton>
+      </Feature>
+      <Feature>
+      <Octicon name="unverified" />
+        <h3>total beginner</h3>
+        <p>I’ve never done any coding or heard of corewar</p>
+        <FeatureButton>Is it for me?</FeatureButton>
+      </Feature>
+    </Features>
+    <Footer>
+      &copy; 2018
+    </Footer>
   </HomeGrid>
 )
 
