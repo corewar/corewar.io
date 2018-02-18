@@ -7,7 +7,7 @@ import { media } from '../common/mediaQuery'
 
 const HomeGrid = styled.main`
   display: grid;
-  grid-template-rows: ${space.header} 52vh 1fr 250px 1fr 100px;
+  grid-template-rows: ${space.header} 52vh 1fr 250px 1fr 250px 1fr 100px;
   color: ${colour.white};
 `
 
@@ -34,7 +34,7 @@ const Hero = styled.section`
   .octicon {
     font-size: ${font.xxlarge};
     color: ${colour.blue};
-    margin: ${space.xl};
+    margin: ${space.l};
     margin-bottom: ${space.s};
     padding-left: ${space.l};
   }
@@ -109,7 +109,7 @@ const Feature = styled.div`
   }
 `
 
-const FeatureButton = styled.button`
+const FeatureButton = styled.a`
   border: 2px solid ${colour.white};
   border-radius: 5px;
   margin: ${space.m};
@@ -119,6 +119,8 @@ const FeatureButton = styled.button`
   min-width: 200px;
   color: ${colour.white};
   font-weight: bold;
+  text-align: center;
+  text-decoration: none;
 
   :hover {
     color: ${colour.coral};
@@ -132,7 +134,9 @@ const PrimaryButton = FeatureButton.extend`
   color: ${colour.darkbg};
 `
 
-const Prospect = styled.section`
+const Prospect = styled.section.attrs({
+  id: props => props.id
+})`
   height: 250px;
   background-color: ${colour.coral};
   display: flex;
@@ -179,22 +183,22 @@ const Home = () => (
         <Octicon name="rocket" />
         <h3>play corewar</h3>
         <p>Enjoy a slice of coding history by playing and learning the classic game corewar</p>
-        <PrimaryButton>Play Now</PrimaryButton>
+        <PrimaryButton href="/app/src">Play Now</PrimaryButton>
       </Feature>
       <Feature>
         <Octicon name="device-mobile" />
         <h3>on any device</h3>
         <p>Our web platform gives the ability to play where and when you want on any system with no installs</p>
-        <FeatureButton>Learn more</FeatureButton>
+        <FeatureButton href="#who-are-you">Learn more</FeatureButton>
       </Feature>
       <Feature>
       <Octicon name="megaphone" />
         <h3>in new ways</h3>
         <p>We have a fully featured roadmap bringing new ideas to the well established corewar player</p>
-        <FeatureButton>View Roadmap</FeatureButton>
+        <FeatureButton href="#roadmap">View Roadmap</FeatureButton>
       </Feature>
     </Features>
-    <Prospect>
+    <Prospect id={`who-are-you`}>
       <h2>What best describes you?</h2>
       <Octicon name="person" />
     </Prospect>
@@ -203,7 +207,7 @@ const Home = () => (
         <Octicon name="mortar-board" />
         <h3>experienced player</h3>
         <p>I’ve played corewar before and understand the instructions and concepts</p>
-        <PrimaryButton>Play Now</PrimaryButton>
+        <PrimaryButton href="/app/src">Play Now</PrimaryButton>
       </Feature>
       <Feature>
         <Octicon name="law" />
@@ -218,6 +222,13 @@ const Home = () => (
         <FeatureButton>Is it for me?</FeatureButton>
       </Feature>
     </Features>
+    <Prospect id={`roadmap`}>
+      <h2>The roadmap</h2>
+      <Octicon name="milestone" />
+    </Prospect>
+    <div>
+      TODO: roadmap
+    </div>
     <Footer>
       &copy; 2018
     </Footer>
