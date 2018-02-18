@@ -7,7 +7,7 @@ import { media } from '../common/mediaQuery'
 
 const HomeGrid = styled.main`
   display: grid;
-  grid-template-rows: ${space.header} 1fr 200px 1fr 200px 1fr 100px;
+  grid-template-rows: ${space.header} 50vh 1fr 200px 1fr 100px;
   color: ${colour.white};
 `
 
@@ -50,13 +50,15 @@ const Features = styled.section`
 `
 
 const Feature = styled.div`
+
   border-right: 1px solid ${colour.lightbg};
+  ${media.tablet`border-right: none;`};
+  ${media.tablet`border-bottom: 1px solid ${colour.lightbg};`};
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   flex: 1;
-  height: 300px;
+  min-height: 300px;
   margin-top: ${space.l};
 
   :last-child {
@@ -81,6 +83,7 @@ const Feature = styled.div`
 
   h3 {
     margin: ${space.m};
+    ${media.tablet`margin: ${space.s}`};
     font-size: ${font.xlarge};
     color: ${colour.lightgrey};
   }
@@ -93,9 +96,11 @@ const Feature = styled.div`
     text-align: center;
     margin-left: ${space.xl};
     margin-right: ${space.xl};
+
+    ${media.desktop`margin-left: ${space.s};`};
+    ${media.desktop`margin-right: ${space.s};`};
+
   }
-
-
 `
 
 const FeatureButton = styled.button`
@@ -119,6 +124,11 @@ const FeatureButton = styled.button`
 const PrimaryButton = FeatureButton.extend`
   background: ${colour.white};
   color: ${colour.darkbg};
+`
+
+const Prospect = styled.section`
+  height: 200px;
+  background-color: ${colour.coral};
 `
 
 const Home = () => (
@@ -153,6 +163,8 @@ const Home = () => (
         <FeatureButton>View Roadmap</FeatureButton>
       </Feature>
     </Features>
+    <Prospect>
+    </Prospect>
   </HomeGrid>
 )
 
