@@ -127,8 +127,54 @@ const Feature = styled.div`
     ${media.desktop`margin-right: ${space.s};`};
 
     min-height: 80px;
-
   }
+
+  :hover {
+    cursor: pointer;
+    .guidance {
+      opacity: 1;
+      transition: 0.5s;
+    }
+  }
+`
+
+const Guidance = styled.div.attrs({
+  className: 'guidance'
+})`
+  opacity: 0;
+  ${media.phone`opacity: 1;`}
+  transition: 0.5s;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin: ${space.l};
+
+  .octicon.octicon-hubot {
+    color: ${colour.white};
+    font-size: ${font.xlarge};
+    padding: ${space.m};
+  }
+`
+const SpeechArrow = styled.div`
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+
+  border-right: 10px solid  ${colour.defaultbg};
+`
+
+const SpeechBubble = styled.div`
+  border-radius: 10px;
+  background-color: ${colour.defaultbg};
+  min-height: 100px;
+  margin-right: ${space.l};
+  padding: ${space.m};
+  line-height: 1.5em;
+  text-align: center;
+  color: ${colour.white};
+  font-family: ${font.code};
 `
 
 const FeatureButton = styled.a`
@@ -293,25 +339,41 @@ const Home = () => (
         <h3>experienced player</h3>
         <p>I’ve played corewar before and understand the instructions and concepts</p>
         <PrimaryButton href='/app/src'>Play Now</PrimaryButton>
-        <Octicon name='hubot' />
-        <p>You should head over to the app and follow the tutorial to explore the features</p>
+        <Guidance>
+          <Octicon name='hubot' />
+          <SpeechArrow />
+          <SpeechBubble>
+            You should head over to the app and follow the tutorial to explore the features
+          </SpeechBubble>
+        </Guidance>
       </Feature>
       <Feature>
         <Octicon name='law' />
         <h3>new to the game</h3>
         <p>I’ve done some coding before but never played corewar</p>
         <FeatureButton>Learn more</FeatureButton>
-        <Octicon name='hubot' />
-        <p>
-          You should take a look at the app and run through the tutorial, then follow some of our
-          guides to get a better idea of what corewar is all about
-        </p>
+        <Guidance>
+          <Octicon name='hubot' />
+          <SpeechArrow />
+          <SpeechBubble>
+            You should take a look at the app and run through the tutorial, then follow some of our
+            guides to get a better idea of what corewar is all about
+          </SpeechBubble>
+        </Guidance>
       </Feature>
       <Feature>
       <Octicon name='unverified' />
         <h3>total beginner</h3>
         <p>I’ve never done any coding or heard of corewar</p>
         <FeatureButton>Is it for me?</FeatureButton>
+        <Guidance>
+          <Octicon name='hubot' />
+          <SpeechArrow />
+          <SpeechBubble>
+            We're not going to tell fibs, corewar can be tricky. However if you start with the simple
+            intro guide and stick with it, you can learn a lot and enjoy the world of corewar
+          </SpeechBubble>
+        </Guidance>
       </Feature>
     </Features>
     <Prospect id={`roadmap`}>
