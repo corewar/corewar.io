@@ -152,7 +152,7 @@ const Guidance = styled.div.attrs({
 
   .octicon.octicon-hubot {
     color: ${colour.white};
-    font-size: ${font.xlarge};
+    font-size: 72px;
     padding: ${space.m};
   }
 `
@@ -168,13 +168,16 @@ const SpeechArrow = styled.div`
 const SpeechBubble = styled.div`
   border-radius: 10px;
   background-color: ${colour.defaultbg};
-  min-height: 100px;
+  min-height: 200px;
   margin-right: ${space.l};
   padding: ${space.m};
   line-height: 1.5em;
   text-align: center;
   color: ${colour.white};
   font-family: ${font.code};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `
 
 const FeatureButton = styled.a`
