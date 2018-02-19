@@ -6,7 +6,7 @@ import { ConnectedRouter } from 'react-router-redux'
 import { Route } from 'react-router-dom'
 import store, { history } from './store'
 import App from './features/app/app'
-import Landing from './features/onboarding/landing'
+import Home from './features/onboarding/home'
 import styled from 'styled-components'
 
 import 'typeface-lato'
@@ -33,7 +33,7 @@ render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Wrapper>
-        <Route exact path='/' component={Landing} />
+        <Route exact path='/' component={Home} />
         <Route path='/app' component={App} />
       </Wrapper>
     </ConnectedRouter>

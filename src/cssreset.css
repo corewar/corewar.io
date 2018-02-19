@@ -48,3 +48,19 @@ table {
 }
 
 
+
+::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+::-webkit-scrollbar {
+	width: 4px;
+	height: 0;
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	background-color: #56CCF2;
+}
+

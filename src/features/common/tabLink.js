@@ -19,6 +19,7 @@ const BaseLink = styled(NavLink)`
 const TabLink = styledProperty(BaseLink, 'activeClassName')`
   background-color: ${colour.defaultbg};
   color: ${colour.white};
+  outline: none;
 `
 
 TabLink.displayName = 'TabLink'
