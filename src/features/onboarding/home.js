@@ -16,6 +16,22 @@ const Header = styled.header`
   flex-direction: row-reverse;
   margin-left: ${space.xl};
   margin-right: ${space.xl};
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  a {
+    color: ${colour.white};
+    display: inline-block;
+    min-width: 100px;
+    text-decoration: none;
+    font-weight: 400;
+
+  }
 `
 
 const Hero = styled.section`
@@ -166,13 +182,61 @@ const Footer = styled.footer`
   background-color: ${colour.lightbg};
 `
 
+const Roadmap = styled.section`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+`
+
+const RoadmapItem = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  grid-template-rows: 80px 1fr;
+  min-height: 200px;
+
+`
+
+const Timeline = styled.div`
+  background-color: ${colour.white};
+  border-radius: 5px;
+  width: 5px;
+  height: 100%;
+  grid-column-start: 2;
+  margin-left: calc(50% - 5px);
+`
+
+const IconWrapper = styled.div`
+  grid-column-start: 2;
+  grid-row-start: 1;
+  justify-self: center;
+  align-self: center;
+
+  .octicon {
+    ${props => props.colour && `color: ${props.colour};`}
+    font-size: ${font.xlarge};
+    text-align: center;
+  }
+`
+
+const RoadmapText = styled.div`
+  ${props => props.left && `justify-self: end; text-align: right;`}
+  ${props => props.right && `justify-self: start;`}
+  grid-row: 1 / 3;
+  font-size: ${font.large};
+  width: 350px;
+  align-self: center;
+  color: ${colour.lightgrey};
+`
+
 const Home = () => (
   <HomeGrid>
     <Header>
-      <a href={``}>play</a>
-      <a href={``}>learn</a>
-      <a href={``}>features</a>
-      <a href={`https://github.com/gareththegeek/corewar`}>code</a>
+      <nav>
+        <a href={`/app/src`}>play</a>
+        <a href={`#who-are-you`}>learn</a>
+        <a href={`#roadmap`}>features</a>
+        <a href={`https://github.com/gareththegeek/corewar`}>code</a>
+      </nav>
     </Header>
     <Hero>
       <h1>corewar<span>.io</span></h1>
@@ -226,9 +290,37 @@ const Home = () => (
       <h2>The roadmap</h2>
       <Octicon name="milestone" />
     </Prospect>
-    <div>
-      TODO: roadmap
-    </div>
+    <Roadmap>
+      <RoadmapItem>
+        <RoadmapText left>The idea to develop corewar as a modern web app is concieved</RoadmapText>
+        <IconWrapper colour={colour.warrior[2]}>
+          <Octicon name="light-bulb" />
+        </IconWrapper>
+        <RoadmapText right>November 2017</RoadmapText>
+        <Timeline />
+      </RoadmapItem>
+
+      <RoadmapItem>
+        <RoadmapText left>March 2018</RoadmapText>
+        <IconWrapper colour={colour.blue}>
+          <Octicon name="calendar" />
+        </IconWrapper>
+        <RoadmapText right>Public beta, allowing players to experience the initial feature set</RoadmapText>
+        <Timeline />
+      </RoadmapItem>
+
+      <RoadmapItem>
+        <RoadmapText left>
+          We are now actively listening for user feedback whilst we build
+          the next set of features but here’s what we had in mind
+        </RoadmapText>
+        <IconWrapper colour={colour.warrior[3]}>
+          <Octicon name="megaphone" />
+        </IconWrapper>
+        <RoadmapText right>Today</RoadmapText>
+        <Timeline />
+      </RoadmapItem>
+    </Roadmap>
     <Footer>
       &copy; 2018
     </Footer>
