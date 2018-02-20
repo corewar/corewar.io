@@ -16,23 +16,36 @@ const HomeGrid = styled.main`
 const Header = styled.header`
   display: flex;
   flex-direction: row-reverse;
-  margin-left: ${space.xl};
-  margin-right: ${space.xl};
+  margin: 0 ${space.xl};
+  ${media.phone`margin: 0;`}
 
   nav {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    ${media.phone`justify-content: center;`}
     align-items: center;
+    width: 100%;
   }
 
   a {
-    color: ${colour.white};
+    color: ${colour.grey};
+    padding-bottom: ${space.s};
+    margin: 0 ${space.s};
+    ${media.phone`margin: 0;`}
     display: inline-block;
-    min-width: 100px;
+    min-width: 80px;
     text-decoration: none;
     font-weight: 400;
     text-align: center;
+    border-bottom: 2px solid transparent;
+    transition: 0.5s;
+  }
+
+  a:hover {
+    border-bottom: 2px solid ${colour.blue};
+    colour: ${colour.white};
+    transition: 0.5s;
   }
 `
 
@@ -482,7 +495,7 @@ const Home = () => (
     <Prospect>
       <h2>Check out the app</h2>
       <Octicon name='beaker' />
-      <PrimaryButton>
+      <PrimaryButton href='/app/src'>
         Play Now
       </PrimaryButton>
     </Prospect>
