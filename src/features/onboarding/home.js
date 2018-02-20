@@ -42,6 +42,7 @@ const Hero = styled.section`
   justify-content: center;
   align-items: center;
   font-size: ${font.xxlarge};
+  ${media.phone`font-size: ${font.xlarge}`}
   font-weight: 200;
   margin-top: ${space.l};
 
@@ -55,6 +56,7 @@ const Hero = styled.section`
 
   .octicon {
     font-size: ${font.xxlarge};
+    ${media.tablet`font-size: ${font.xlarge};`}
     color: ${colour.blue};
     margin: ${space.l};
     margin-bottom: ${space.s};
@@ -68,10 +70,8 @@ const Features = styled.section`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  margin-left: ${space.xl};
-  margin-right: ${space.xl};
-  margin-bottom: ${space.l};
-  margin-top: ${space.m};
+  margin: ${space.m} ${space.xl} ${space.l} ${space.xl};
+  ${media.phone`margin: ${space.m};`}
 `
 
 const Feature = styled.div`
@@ -109,7 +109,7 @@ const Feature = styled.div`
   h3 {
     margin: ${space.m};
     ${media.tablet`margin: ${space.s}`};
-    font-size: ${font.xlarge};
+    font-size: ${font.large};
     color: ${colour.lightgrey};
   }
 
@@ -142,17 +142,18 @@ const Guidance = styled.div.attrs({
   className: 'guidance'
 })`
   opacity: 0;
-  ${media.phone`opacity: 1;`}
+  ${media.tablet`opacity: 1;`}
   transition: 0.5s;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   margin: ${space.l};
+  ${media.phone`margin: ${space.m};`}
 
   .octicon.octicon-hubot {
     color: ${colour.white};
-    font-size: 72px;
+    font-size: ${font.xlarge};
     padding: ${space.m};
   }
 `
@@ -192,17 +193,20 @@ const FeatureButton = styled.a`
   font-weight: bold;
   text-align: center;
   text-decoration: none;
+  transition: 0.2s;
 
   :hover {
     color: ${colour.coral};
     background-color: ${colour.lightbg};
     cursor: pointer;
+    transition: 0.2s;
   }
 `
 
 const PrimaryButton = FeatureButton.extend`
   background: ${colour.white};
   color: ${colour.darkbg};
+  transition: 0.2s;
 `
 
 const Prospect = styled.section.attrs({
@@ -214,7 +218,7 @@ const Prospect = styled.section.attrs({
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: ${font.xlarge};
+  font-size: ${font.large};
 
   h2 {
     margin: ${space.l};
