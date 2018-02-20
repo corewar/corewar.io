@@ -246,10 +246,19 @@ const Prospect = styled.section.attrs({
 
 const Footer = styled.footer`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   background-color: ${colour.lightbg};
+  font-weight: 200;
+  font-size: ${font.base};
+  font-family: ${font.code};
+
+  a {
+    color: ${colour.blue};
+    display: inline-block;
+    padding: 0 ${space.m};
+  }
 `
 
 const Roadmap = styled.section`
@@ -500,7 +509,7 @@ const Home = () => (
       </PrimaryButton>
     </Prospect>
     <Footer>
-      &copy; 2018
+      &copy; 2018 <a href='http://www.corewar.io'>www.corewar.io</a> - crafted with love by <a href='https://github.com/gareththegeek'>@gareththegeek</a> &amp; <a href='https://github.com/dougajmcdonald/'>@dougajmcdonald</a>
     </Footer>
   </HomeGrid>
 )
