@@ -16,23 +16,36 @@ const HomeGrid = styled.main`
 const Header = styled.header`
   display: flex;
   flex-direction: row-reverse;
-  margin-left: ${space.xl};
-  margin-right: ${space.xl};
+  margin: 0 ${space.xl};
+  ${media.phone`margin: 0;`}
 
   nav {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    ${media.phone`justify-content: center;`}
     align-items: center;
+    width: 100%;
   }
 
   a {
-    color: ${colour.white};
+    color: ${colour.grey};
+    padding-bottom: ${space.s};
+    margin: 0 ${space.s};
+    ${media.phone`margin: 0;`}
     display: inline-block;
-    min-width: 100px;
+    min-width: 80px;
     text-decoration: none;
     font-weight: 400;
     text-align: center;
+    border-bottom: 2px solid transparent;
+    transition: 0.5s;
+  }
+
+  a:hover {
+    border-bottom: 2px solid ${colour.blue};
+    colour: ${colour.white};
+    transition: 0.5s;
   }
 `
 
@@ -42,6 +55,7 @@ const Hero = styled.section`
   justify-content: center;
   align-items: center;
   font-size: ${font.xxlarge};
+  ${media.phone`font-size: ${font.xlarge}`}
   font-weight: 200;
   margin-top: ${space.l};
 
@@ -55,6 +69,7 @@ const Hero = styled.section`
 
   .octicon {
     font-size: ${font.xxlarge};
+    ${media.tablet`font-size: ${font.xlarge};`}
     color: ${colour.blue};
     margin: ${space.l};
     margin-bottom: ${space.s};
@@ -68,10 +83,8 @@ const Features = styled.section`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  margin-left: ${space.xl};
-  margin-right: ${space.xl};
-  margin-bottom: ${space.l};
-  margin-top: ${space.m};
+  margin: ${space.m} ${space.xl} ${space.l} ${space.xl};
+  ${media.phone`margin: ${space.m};`}
 `
 
 const Feature = styled.div`
@@ -109,7 +122,7 @@ const Feature = styled.div`
   h3 {
     margin: ${space.m};
     ${media.tablet`margin: ${space.s}`};
-    font-size: ${font.xlarge};
+    font-size: ${font.large};
     color: ${colour.lightgrey};
   }
 
@@ -142,17 +155,18 @@ const Guidance = styled.div.attrs({
   className: 'guidance'
 })`
   opacity: 0;
-  ${media.phone`opacity: 1;`}
+  ${media.tablet`opacity: 1;`}
   transition: 0.5s;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   margin: ${space.l};
+  ${media.phone`margin: ${space.m};`}
 
   .octicon.octicon-hubot {
     color: ${colour.white};
-    font-size: 72px;
+    font-size: ${font.xlarge};
     padding: ${space.m};
   }
 `
@@ -192,17 +206,20 @@ const FeatureButton = styled.a`
   font-weight: bold;
   text-align: center;
   text-decoration: none;
+  transition: 0.2s;
 
   :hover {
     color: ${colour.coral};
     background-color: ${colour.lightbg};
     cursor: pointer;
+    transition: 0.2s;
   }
 `
 
 const PrimaryButton = FeatureButton.extend`
   background: ${colour.white};
   color: ${colour.darkbg};
+  transition: 0.2s;
 `
 
 const Prospect = styled.section.attrs({
@@ -214,7 +231,7 @@ const Prospect = styled.section.attrs({
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: ${font.xlarge};
+  font-size: ${font.large};
 
   h2 {
     margin: ${space.l};
@@ -229,10 +246,19 @@ const Prospect = styled.section.attrs({
 
 const Footer = styled.footer`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   background-color: ${colour.lightbg};
+  font-weight: 200;
+  font-size: ${font.base};
+  font-family: ${font.code};
+
+  a {
+    color: ${colour.blue};
+    display: inline-block;
+    padding: 0 ${space.m};
+  }
 `
 
 const Roadmap = styled.section`
@@ -478,12 +504,12 @@ const Home = () => (
     <Prospect>
       <h2>Check out the app</h2>
       <Octicon name='beaker' />
-      <PrimaryButton>
+      <PrimaryButton href='/app/src'>
         Play Now
       </PrimaryButton>
     </Prospect>
     <Footer>
-      &copy; 2018
+      &copy; 2018 <a href='http://www.corewar.io'>www.corewar.io</a> - crafted with love by <a href='https://github.com/gareththegeek'>@gareththegeek</a> &amp; <a href='https://github.com/dougajmcdonald/'>@dougajmcdonald</a>
     </Footer>
   </HomeGrid>
 )

@@ -45,6 +45,6 @@ export const font = {
   small: '12px',
   base: '16px',
   large: '24px',
-  xlarge: '28px',
+  xlarge: '48px',
   xxlarge: '96px'
 }
