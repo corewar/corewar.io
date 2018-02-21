@@ -142,7 +142,7 @@ const Prospect = styled.section.attrs({
   id: props => props.id
 })`
   min-height: 250px;
-  background-color: ${colour.coral};
+  background-color: ${colour.lightbg};
   display: flex;
   flex-direction: column;
   justify-content: center;
