@@ -4,10 +4,12 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import { Route } from 'react-router-dom'
+import styled from 'styled-components'
 import store, { history } from './store'
+
 import App from './features/app/app'
 import Home from './features/onboarding/home'
-import styled from 'styled-components'
+import SignUpContainer from './features/signup/signupContainer'
 
 import 'typeface-lato'
 import 'typeface-anonymous-pro'
@@ -34,6 +36,7 @@ render(
     <ConnectedRouter history={history}>
       <Wrapper>
         <Route exact path='/' component={Home} />
+        <Route exact path='/sign-up' component={SignUpContainer} />
         <Route path='/app' component={App} />
       </Wrapper>
     </ConnectedRouter>

@@ -5,77 +5,15 @@ import Octicon from 'react-octicon'
 import { colour, font, space } from '../common/theme'
 import { media } from '../common/mediaQuery'
 
+import SiteNav from '../common/siteNav'
+import HeroLogo from '../common/heroLogo'
+import FeatureButton from '../common/featureButton'
+
 const HomeGrid = styled.main`
   display: grid;
   grid-template-rows: ${space.header} 52vh auto 250px auto 250px 1fr auto 100px;
   grid-template-columns: 100%;
   color: ${colour.white};
-  font-smooth: always;
-`
-
-const Header = styled.header`
-  display: flex;
-  flex-direction: row-reverse;
-  margin: 0 ${space.xl};
-  ${media.phone`margin: 0;`}
-
-  nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    ${media.phone`justify-content: center;`}
-    align-items: center;
-    width: 100%;
-  }
-
-  a {
-    color: ${colour.grey};
-    padding-bottom: ${space.s};
-    margin: 0 ${space.s};
-    ${media.phone`margin: 0;`}
-    display: inline-block;
-    min-width: 80px;
-    text-decoration: none;
-    font-weight: 400;
-    text-align: center;
-    border-bottom: 2px solid transparent;
-    transition: 0.5s;
-  }
-
-  a:hover {
-    border-bottom: 2px solid ${colour.blue};
-    colour: ${colour.white};
-    transition: 0.5s;
-  }
-`
-
-const Hero = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: ${font.xxlarge};
-  ${media.phone`font-size: ${font.xlarge}`}
-  font-weight: 200;
-  margin-top: ${space.l};
-
-  border-bottom: 1px solid ${colour.lightbg};
-  margin-left: ${space.xl};
-  margin-right: ${space.xl};
-
-  span {
-    font-weight: 300;
-  }
-
-  .octicon {
-    font-size: ${font.xxlarge};
-    ${media.tablet`font-size: ${font.xlarge};`}
-    color: ${colour.blue};
-    margin: ${space.l};
-    margin-bottom: ${space.s};
-    padding-left: ${space.l};
-  }
-
 `
 
 const Features = styled.section`
@@ -194,28 +132,6 @@ const SpeechBubble = styled.div`
   justify-content: center;
 `
 
-const FeatureButton = styled.a`
-  border: 2px solid ${colour.white};
-  border-radius: 5px;
-  margin: ${space.m};
-  padding: ${space.m};
-  background: none;
-  display: inline-block;
-  min-width: 200px;
-  color: ${colour.white};
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  transition: 0.2s;
-
-  :hover {
-    color: ${colour.coral};
-    background-color: ${colour.lightbg};
-    cursor: pointer;
-    transition: 0.2s;
-  }
-`
-
 const PrimaryButton = FeatureButton.extend`
   background: ${colour.white};
   color: ${colour.darkbg};
@@ -293,7 +209,7 @@ const IconWrapper = styled.div`
 
   .octicon {
     ${props => props.colour && `color: ${props.colour};`}
-    font-size: ${font.xlarge};
+    font-size: ${font.large};
     text-align: center;
   }
 `
@@ -326,18 +242,8 @@ const TimelineDivider = styled.div`
 
 const Home = () => (
   <HomeGrid>
-    <Header>
-      <nav>
-        <a href={`/app/src`}>play</a>
-        <a href={`#who-are-you`}>learn</a>
-        <a href={`#roadmap`}>features</a>
-        <a href={`https://github.com/gareththegeek/corewar`}>code</a>
-      </nav>
-    </Header>
-    <Hero>
-      <h1>corewar<span>.io</span></h1>
-      <Octicon name='chevron-down' />
-    </Hero>
+    <SiteNav />
+    <HeroLogo />
     <Features>
       <Feature>
         <Octicon name='rocket' />
