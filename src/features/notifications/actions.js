@@ -1,2 +1,2 @@
-export const ADD_NOTIFICATION = 'parser/ADD_NOTIFICATION'
-export const REMOVE_NOTIFICATION = 'parser/REMOVE_NOTIFICATION'
+export const ADD_NOTIFICATION = 'notifications/ADD_NOTIFICATION'
+export const REMOVE_NOTIFICATION = 'notifications/REMOVE_NOTIFICATION'

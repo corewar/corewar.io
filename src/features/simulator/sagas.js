@@ -177,15 +177,7 @@ function* getCoreInstructionsSaga({ address }) {
 }
 
 function* setProcessRateSaga({ rate }) {
-
   yield put({ type: SET_PROCESS_RATE, rate })
-
-  // const { isInitialised, isRunning } = yield select(getSimulatorState)
-
-  // if(!isInitialised || !isRunning) {
-  //   return
-  // }
-
 }
 
 function* setCoreOptionsSaga({ id }) {
