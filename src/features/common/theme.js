@@ -35,7 +35,8 @@ export const space = {
 export const icon = {
   color: '#f2f2f2',
   base: '12px',
-  large: '20px'
+  large: '20px',
+  xlarge: '72px'
 }
 
 export const font = {

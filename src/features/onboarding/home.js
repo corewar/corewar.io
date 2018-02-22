@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Octicon from 'react-octicon'
 
-import { colour, font, space } from '../common/theme'
+import { colour, font, space, icon } from '../common/theme'
 import { media } from '../common/mediaQuery'
 
 import SiteNav from '../common/siteNav'
@@ -11,7 +11,7 @@ import FeatureButton from '../common/featureButton'
 
 const HomeGrid = styled.main`
   display: grid;
-  grid-template-rows: ${space.header} 52vh auto 250px auto 250px 1fr auto 100px;
+  grid-template-rows: ${space.header} 52vh auto 200px auto 200px auto 200px 1fr auto 100px;
   grid-template-columns: 100%;
   color: ${colour.white};
 `
@@ -37,18 +37,23 @@ const Feature = styled.div`
   min-height: 200px;
   margin-top: ${space.l};
 
+  :first-child {
+    .octicon {
+      color: ${colour.warrior[1]};
+    }
+    li .octicon {
+      color: ${colour.white};
+    }
+  }
+
   :last-child {
     border: none;
 
     .octicon {
       color: ${colour.warrior[4]};
     }
-
-  }
-
-  :first-child {
-    .octicon {
-      color: ${colour.warrior[1]};
+    li .octicon {
+      color: ${colour.white};
     }
   }
 
@@ -61,6 +66,7 @@ const Feature = styled.div`
     margin: ${space.m};
     ${media.tablet`margin: ${space.s}`};
     font-size: ${font.large};
+    font-weight: 300;
     color: ${colour.lightgrey};
   }
 
@@ -85,6 +91,22 @@ const Feature = styled.div`
     .guidance {
       opacity: 1;
       transition: 0.5s;
+    }
+  }
+
+  ul {
+    margin: ${space.m};
+
+    li {
+      margin: ${space.s};
+      font-weight: 300;
+      line-height: ${font.large};
+
+      .octicon {
+        font-size: ${font.base};
+        margin-right: ${space.m};
+        color: ${colour.white};
+      }
     }
   }
 `
@@ -136,12 +158,13 @@ const PrimaryButton = FeatureButton.extend`
   background: ${colour.white};
   color: ${colour.darkbg};
   transition: 0.2s;
+  font-weight: bold;
 `
 
 const Prospect = styled.section.attrs({
   id: props => props.id
 })`
-  min-height: 250px;
+  min-height: 200px;
   background-color: ${colour.lightbg};
   display: flex;
   flex-direction: column;
@@ -151,10 +174,11 @@ const Prospect = styled.section.attrs({
 
   h2 {
     margin: ${space.l};
+    font-weight: 300;
   }
 
   .octicon {
-    font-size: ${font.xxlarge};
+    font-size: ${icon.xlarge};
     color: ${colour.blue};
     margin: ${space.m};
   }
@@ -189,6 +213,7 @@ const RoadmapItem = styled.div`
   grid-template-columns: 1fr 80px 1fr;
   grid-template-rows: 80px 1fr;
   min-height: 200px;
+  font-weight: 300;
 
 `
 
@@ -220,7 +245,7 @@ const RoadmapText = styled.div`
   grid-row: 1 / 3;
   font-size: ${font.base};
 
-  line-height: 1.5em;
+  line-height: ${font.large};
 
   max-width: 350px;
   align-self: center;
@@ -237,6 +262,8 @@ const TimelineDivider = styled.div`
 
   h3 {
     text-align: center;
+    font-weight: 300;
+    line-height: ${font.xlarge};
   }
 `
 
@@ -247,19 +274,19 @@ const Home = () => (
     <Features>
       <Feature>
         <Octicon name='rocket' />
-        <h3>play corewar</h3>
+        <h3>Play corewar</h3>
         <p>Enjoy a slice of coding history by playing and learning the classic game corewar</p>
         <PrimaryButton href='/app/src'>Play Now</PrimaryButton>
       </Feature>
       <Feature>
         <Octicon name='device-mobile' />
-        <h3>on any device</h3>
+        <h3>On any device</h3>
         <p>Our web platform gives the ability to play where and when you want on any system with no installs</p>
         <FeatureButton href='#who-are-you'>Learn more</FeatureButton>
       </Feature>
       <Feature>
       <Octicon name='megaphone' />
-        <h3>in new ways</h3>
+        <h3>In new ways</h3>
         <p>We have a fully featured roadmap bringing new ideas to the well established corewar player</p>
         <FeatureButton href='#roadmap'>View Roadmap</FeatureButton>
       </Feature>
@@ -271,7 +298,7 @@ const Home = () => (
     <Features>
       <Feature>
         <Octicon name='mortar-board' />
-        <h3>experienced player</h3>
+        <h3>Experienced player</h3>
         <p>I’ve played corewar before and understand the instructions and concepts</p>
         <PrimaryButton href='/app/src'>Play Now</PrimaryButton>
         <Guidance>
@@ -284,7 +311,7 @@ const Home = () => (
       </Feature>
       <Feature>
         <Octicon name='law' />
-        <h3>new to the game</h3>
+        <h3>New to the game</h3>
         <p>I’ve done some coding before but never played corewar</p>
         <FeatureButton>Learn more</FeatureButton>
         <Guidance>
@@ -298,7 +325,7 @@ const Home = () => (
       </Feature>
       <Feature>
       <Octicon name='unverified' />
-        <h3>total beginner</h3>
+        <h3>Total beginner</h3>
         <p>I’ve never done any coding or heard of corewar</p>
         <FeatureButton>Is it for me?</FeatureButton>
         <Guidance>
@@ -309,6 +336,39 @@ const Home = () => (
             intro guide and stick with it, you can learn a lot and enjoy the world of corewar
           </SpeechBubble>
         </Guidance>
+      </Feature>
+    </Features>
+    <Prospect id={`features`}>
+      <h2>Features</h2>
+      <Octicon name='tasklist' />
+    </Prospect>
+    <Features>
+      <Feature>
+        <Octicon name='terminal' />
+        <h3>Redcode parser</h3>
+        <ul>
+          <li><Octicon name='check' />Parses redcode to '88 and '94 standards</li>
+          <li><Octicon name='check' />Console output for parser errors</li>
+          <li><Octicon name='check' />File manager to load example warriors</li>
+        </ul>
+      </Feature>
+      <Feature>
+        <Octicon name='bug' />
+        <h3>Core simulator</h3>
+        <ul>
+          <li><Octicon name='check' />Core visualation</li>
+          <li><Octicon name='check' />Unique warrior icons</li>
+          <li><Octicon name='check' />Basic core debugger</li>
+        </ul>
+      </Feature>
+      <Feature>
+      <Octicon name='globe' />
+        <h3>Web based</h3>
+        <ul>
+          <li><Octicon name='check' />Multi device</li>
+          <li><Octicon name='check' />Multi platform</li>
+          <li><Octicon name='check' />No install</li>
+        </ul>
       </Feature>
     </Features>
     <Prospect id={`roadmap`}>

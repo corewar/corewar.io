@@ -10,15 +10,15 @@ const FeatureButton = styled.a`
   background: none;
   display: inline-block;
   min-width: 200px;
-  color: ${colour.white};
-  font-weight: bold;
+  color: ${colour.lightgrey};
+  font-weight: 300;
   text-align: center;
   text-decoration: none;
   transition: 0.2s;
 
   :hover {
-    color: ${colour.coral};
     background-color: ${colour.lightbg};
+    color: ${colour.white};
     cursor: pointer;
     transition: 0.2s;
   }
