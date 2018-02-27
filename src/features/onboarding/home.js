@@ -380,7 +380,7 @@ const Home = () => (
         Learn more
       </FeatureButton>
     </CallToAction>
-    <Tagline>
+    <Tagline id={`features`}>
       <h2>
         Corewar is a coding game where you write and battle programs against other players.
         Write your warriors and parse them online with our redcode parser, load them into our core
