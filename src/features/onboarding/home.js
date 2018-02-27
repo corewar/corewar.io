@@ -28,6 +28,7 @@ const CallToAction = styled.div`
   align-items: center;
   align-content: center;
   min-height: 150px;
+  margin-bottom: ${space.xl};
 `
 
 const Features = styled.section`
@@ -303,10 +304,6 @@ const Tagline = styled.section`
   }
 `
 
-const SimulatorRow = styled.section`
-
-`
-
 const Simulator = styled.section`
   display: flex;
   flex-direction: row;
@@ -333,15 +330,36 @@ const FeatureDescription = styled.div`
   font-size: ${font.large};
   ${media.phone`font-size: ${font.base};`}
   line-height: ${font.xlarge};
+  ${media.phone`line-height: ${font.large};`}
   margin: ${space.xl};
   ${media.phone`margin: ${space.m};`}
+  ${media.tablet`margin: ${space.m};`}
+  ${media.desktop`margin: ${space.m};`}
   font-weight: 300;
   flex: 0.4;
   ${media.phone`flex: 1;`}
+  ${media.tablet`flex: 1;`}
+  ${media.desktop`flex: 1;`}
 `
 
 const FeatureImageWrapper = styled.div`
   flex: 0.4;
+  display: flex;
+  justify-content: center;
+  ${media.desktop`
+    flex: 1;
+    img {
+      width: 100%;
+      height: 100%;
+
+    }
+  `}
+  ${media.tablet`
+    flex: 1;
+    img {
+      width: calc(100vw - ${space.xl} - ${space.xl});
+    }
+  `}
   ${media.phone`
     flex: 1;
     img {
@@ -373,7 +391,7 @@ const Home = () => (
       <FeatureDescription>
         Load warriors into our customisable core simulator to hone your techniques.
         Debug your own code by inspecting the core, and test yourself against other
-        warriors in preparation for entering the challenge of our live hills.
+        warriors.
       </FeatureDescription>
       <FeatureImageWrapper>
         <img src={SimulatorImage} />
@@ -430,7 +448,7 @@ const Home = () => (
         <Octicon name='law' />
         <h3>New to the game</h3>
         <p>I’ve done some coding before but never played corewar</p>
-        <FeatureButton>Learn more</FeatureButton>
+        <FeatureButton href='/learn'>View Tutorial</FeatureButton>
         <Guidance>
           <Octicon name='hubot' />
           <SpeechArrow />

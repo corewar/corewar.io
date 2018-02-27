@@ -53,6 +53,7 @@ const Features = styled.section`
   justify-content: center;
   margin-left: ${space.xl};
   ${media.phone`display: none;`}
+  ${media.tablet`display: none;`}
 `
 
 const Feature = styled.div`
