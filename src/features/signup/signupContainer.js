@@ -21,7 +21,6 @@ const SignUpGrid = styled.main`
   grid-template-rows: ${space.header} auto auto;
   grid-template-columns: 100%;
   color: ${colour.white};
-  colour: ${colour.white};
 `
 
 const Content = styled.div`
