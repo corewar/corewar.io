@@ -10,8 +10,8 @@ import {
   PARSE_REQUESTED,
   ADD_WARRIOR_REQUESTED,
   REMOVE_WARRIOR_REQUESTED,
-  SHOW_MESSAGES,
-  HIDE_MESSAGES,
+  SHOW_CONSOLE,
+  HIDE_CONSOLE,
   SET_WARRIORS,
   LOAD_WARRIOR_REQUESTED,
   LOAD_WARRIOR
@@ -34,9 +34,9 @@ export function* parseSaga({ source }) {
   const currentWarrior = { ...parseResult, compiled, source, hash }
 
   if(currentWarrior.messages.find(x => x.type === 0)){
-    yield put({ type: SHOW_MESSAGES })
+    yield put({ type: SHOW_CONSOLE })
   } else {
-    yield put({ type: HIDE_MESSAGES})
+    yield put({ type: HIDE_CONSOLE })
   }
 
   yield put({ type: PARSE, currentWarrior })

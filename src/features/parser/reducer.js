@@ -1,7 +1,8 @@
 import {
   PARSE,
-  SHOW_MESSAGES,
-  HIDE_MESSAGES,
+  TOGGLE_CONSOLE,
+  HIDE_CONSOLE,
+  SHOW_CONSOLE,
   TOGGLE_FILE_MANAGER,
   SET_WARRIORS,
   LOAD_WARRIOR
@@ -15,7 +16,7 @@ const initialState = {
   warriors: [],
   warriorLibrary: defaultWarriors,
   standardId: 2, // TODO: what's the best standard to use as a default?
-  displayMessages: false,
+  displayConsole: false,
   displayFileManager: false
 }
 
@@ -45,16 +46,23 @@ export default (state = initialState, action) => {
         currentWarrior: action.warrior
       }
 
-    case SHOW_MESSAGES:
+    case TOGGLE_CONSOLE:
       return {
         ...state,
-        displayMessages: true
+        displayConsole: !state.displayConsole
       }
 
-    case HIDE_MESSAGES:
+    case HIDE_CONSOLE:
+      console.log('hide')
       return {
         ...state,
-        displayMessages: false
+        displayConsole: false
+      }
+
+    case SHOW_CONSOLE:
+      return {
+        ...state,
+        displayConsole: true
       }
 
     case TOGGLE_FILE_MANAGER:

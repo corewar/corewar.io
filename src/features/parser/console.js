@@ -49,11 +49,11 @@ const CloseButton = styled.div`
   }
 `
 
-const Console = ({ messages, hideMessages, show }) => (
+const Console = ({ messages, hideConsole, show }) => (
 
-  <ConsoleWrapper messages={messages} show={show} onClick={hideMessages}>
+  <ConsoleWrapper messages={messages} show={show}>
     <CloseButton>
-      <FontAwesome name={`times`} />
+      <FontAwesome name={`times`} onClick={hideConsole} />
     </CloseButton>
     <MessageRow>
       <span>line</span>
