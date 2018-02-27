@@ -11,9 +11,20 @@ import FeatureButton from '../common/featureButton'
 
 const HomeGrid = styled.main`
   display: grid;
-  grid-template-rows: ${space.header} 52vh auto 200px auto 200px auto 200px 1fr auto 100px;
+  grid-template-rows: ${space.header} 50vh auto auto auto 200px auto 200px auto 200px 1fr auto 100px;
   grid-template-columns: 100%;
   color: ${colour.white};
+  background-color: ${colour.darkbg};
+`
+
+const CallToAction = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  min-height: 150px;
 `
 
 const Features = styled.section`
@@ -267,10 +278,46 @@ const TimelineDivider = styled.div`
   }
 `
 
+const Tagline = styled.section`
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background-color: ${colour.defaultbg};
+  min-height: 300px;
+
+  h2 {
+    width: 50%;
+    ${media.phone`width: 60%;`}
+    font-weight: 300;
+    line-height: ${font.xlarge};
+    color: ${colour.blue};
+    font-size: ${font.large};
+    ${media.phone`font-size: ${font.base};`}
+    margin: ${space.m};
+  }
+`
+
 const Home = () => (
   <HomeGrid>
     <SiteNav />
     <HeroLogo />
+    <CallToAction>
+      <PrimaryButton href='/app/src'>
+        Play Now
+      </PrimaryButton>
+      <FeatureButton href='/learn'>
+        Learn more
+      </FeatureButton>
+    </CallToAction>
+    <Tagline>
+      <h2>
+        Corewar is a coding game where you write and battle programs against other players.
+        Write your warriors and parse them online with our redcode parser, load them into our core
+        simulator to fine tune your strategy and then enter our live online hills to test your skill.
+      </h2>
+    </Tagline>
     <Features>
       <Feature>
         <Octicon name='rocket' />
@@ -320,20 +367,6 @@ const Home = () => (
           <SpeechBubble>
             You should take a look at the app and run through the tutorial, then follow some of our
             guides to get a better idea of what corewar is all about
-          </SpeechBubble>
-        </Guidance>
-      </Feature>
-      <Feature>
-      <Octicon name='unverified' />
-        <h3>Total beginner</h3>
-        <p>I’ve never done any coding or heard of corewar</p>
-        <FeatureButton>Is it for me?</FeatureButton>
-        <Guidance>
-          <Octicon name='hubot' />
-          <SpeechArrow />
-          <SpeechBubble>
-            We're not going to tell fibs, corewar can be tricky. However if you start with the simple
-            intro guide and stick with it, you can learn a lot and enjoy the world of corewar
           </SpeechBubble>
         </Guidance>
       </Feature>
