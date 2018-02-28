@@ -203,6 +203,7 @@ const Prospect = styled.section.attrs({
 const Footer = styled.footer`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   background-color: ${colour.lightbg};
