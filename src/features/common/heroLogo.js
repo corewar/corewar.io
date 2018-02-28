@@ -60,11 +60,13 @@ const Feature = styled.div`
 
   border-right: 1px solid ${colour.lightbg};
   ${media.tablet`border-right: none;`};
+  ${media.desktop`border-right: none;`};
   ${media.tablet`border-bottom: 1px solid ${colour.lightbg}; padding-bottom: ${space.l};`};
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: ${space.l};
+  ${media.desktop`margin-top: ${space.s};`};
 
   :first-child {
     .octicon {
