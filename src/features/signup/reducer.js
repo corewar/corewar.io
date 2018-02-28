@@ -15,7 +15,6 @@ export default (state = initialState, action) => {
   switch (action.type) {
 
     case SUBSCRIPTION_RESPONSE:
-      console.log('reducer', action.message)
       return {
         ...state,
         signupMessage: action.message

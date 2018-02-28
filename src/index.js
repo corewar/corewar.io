@@ -10,6 +10,8 @@ import store, { history } from './store'
 import App from './features/app/app'
 import Home from './features/onboarding/home'
 import SignUpContainer from './features/signup/signupContainer'
+import TutorialContainer from './features/tutorial/tutorialContainer'
+
 
 import 'typeface-lato'
 import 'typeface-anonymous-pro'
@@ -37,6 +39,7 @@ render(
       <Wrapper>
         <Route exact path='/' component={Home} />
         <Route exact path='/sign-up' component={SignUpContainer} />
+        <Route exact path='/learn' component={TutorialContainer} />
         <Route path='/app' component={App} />
       </Wrapper>
     </ConnectedRouter>

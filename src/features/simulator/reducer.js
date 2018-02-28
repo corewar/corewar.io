@@ -19,10 +19,10 @@ const initialState = {
   focus: null,
   roundResult: {},
 
-  coreSize: 90000,
+  coreSize: 128,
   cyclesBeforeTie: 80000,
-  minSeparation: 100,
-  instructionLimit: 100,
+  minSeparation: 1,
+  instructionLimit: 1,
   maxTasks: 8000,
 
   instructions: [],
