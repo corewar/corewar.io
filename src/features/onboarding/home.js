@@ -14,7 +14,7 @@ import ParserImage from '../../img/redcode.gif'
 
 const HomeGrid = styled.main`
   display: grid;
-  grid-template-rows: ${space.header} 50vh auto auto auto auto auto 200px auto 200px auto 200px 1fr auto 100px;
+  grid-template-rows: ${space.header} 50vh auto auto auto auto auto auto auto auto 100px;
   grid-template-columns: 100%;
   color: ${colour.white};
   background-color: ${colour.darkbg};
@@ -45,6 +45,7 @@ const Feature = styled.div`
   border-right: 1px solid ${colour.lightbg};
   ${media.tablet`border-right: none;`};
   ${media.tablet`border-bottom: 1px solid ${colour.lightbg}; padding-bottom: ${space.l};`};
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -179,8 +180,8 @@ const PrimaryButton = FeatureButton.extend`
 const Prospect = styled.section.attrs({
   id: props => props.id
 })`
-  min-height: 200px;
-  background-color: ${colour.lightbg};
+  min-height: 250px;
+  background-color: ${colour.defaultbg};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -202,9 +203,10 @@ const Prospect = styled.section.attrs({
 const Footer = styled.footer`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: ${colour.lightbg};
+  background-color: ${colour.defaultbg};
   font-weight: 200;
   font-size: ${font.base};
   font-family: ${font.code};
@@ -295,6 +297,8 @@ const Tagline = styled.section`
   h2 {
     width: 50%;
     ${media.phone`width: 60%;`}
+    ${media.tablet`width: 75%;`}
+    ${media.desktop`width: 75%;`}
     font-weight: 300;
     line-height: ${font.xlarge};
     color: ${colour.blue};
@@ -323,7 +327,7 @@ const Parser = styled.section`
   justify-content: center;
   margin: ${space.xl} 0;
   padding: ${space.l};
-  background-color: ${colour.lightbg};
+  background-color: ${colour.defaultbg};
 `
 
 const FeatureDescription = styled.div`
@@ -406,7 +410,7 @@ const Home = () => (
         Quickly and easily add and remove warriors from the core to test and battle locally.
       </FeatureDescription>
     </Parser>
-    <Features>
+    {/* <Features>
       <Feature>
         <Octicon name='rocket' />
         <h3>Play corewar</h3>
@@ -425,11 +429,11 @@ const Home = () => (
         <p>We have a fully featured roadmap bringing new ideas to the well established corewar player</p>
         <FeatureButton href='#roadmap'>View Roadmap</FeatureButton>
       </Feature>
-    </Features>
-    <Prospect id={`who-are-you`}>
+    </Features> */}
+    {/* <Prospect id={`who-are-you`}>
       <h2>What best describes you?</h2>
       <Octicon name='person' />
-    </Prospect>
+    </Prospect> */}
     <Features>
       <Feature>
         <Octicon name='mortar-board' />
