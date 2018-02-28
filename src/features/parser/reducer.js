@@ -29,6 +29,7 @@ export default (state = initialState, action) => {
     case PARSE:
       return {
         ...state,
+        displayFileManager: false,
         currentWarrior: action.currentWarrior
       }
 
