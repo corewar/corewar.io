@@ -180,8 +180,8 @@ const PrimaryButton = FeatureButton.extend`
 const Prospect = styled.section.attrs({
   id: props => props.id
 })`
-  min-height: 200px;
-  background-color: ${colour.lightbg};
+  min-height: 250px;
+  background-color: ${colour.defaultbg};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -206,7 +206,7 @@ const Footer = styled.footer`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: ${colour.lightbg};
+  background-color: ${colour.defaultbg};
   font-weight: 200;
   font-size: ${font.base};
   font-family: ${font.code};
@@ -327,7 +327,7 @@ const Parser = styled.section`
   justify-content: center;
   margin: ${space.xl} 0;
   padding: ${space.l};
-  background-color: ${colour.lightbg};
+  background-color: ${colour.defaultbg};
 `
 
 const FeatureDescription = styled.div`
