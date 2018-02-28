@@ -13,7 +13,7 @@ import { space } from '../common/theme'
 
 import {
   parse,
-  hideMessages
+  hideConsole
 } from './actions'
 
 const ParserGrid = styled.section`
@@ -21,7 +21,7 @@ const ParserGrid = styled.section`
   height: calc(100vh - ${space.header} - ${space.controls});
 `
 
-const ParserInterface = ({ redcode, parse, currentWarrior, addWarrior, hideMessages, displayMessages }) => (
+const ParserInterface = ({ redcode, parse, currentWarrior, addWarrior, hideConsole, displayConsole }) => (
   <MobilePage tablet>
     <ParserGrid>
       <SourceCodeTextArea
@@ -35,8 +35,8 @@ const ParserInterface = ({ redcode, parse, currentWarrior, addWarrior, hideMessa
     <FileManagerContainer />
     <Console
       messages={currentWarrior.messages}
-      hideMessages={hideMessages}
-      show={displayMessages} />
+      hideConsole={hideConsole}
+      show={displayConsole} />
   </MobilePage>
 )
 
@@ -44,14 +44,14 @@ const ParserInterface = ({ redcode, parse, currentWarrior, addWarrior, hideMessa
 const mapStateToProps = state => ({
   redcode: state.parser.redcode,
   currentWarrior: state.parser.currentWarrior,
-  displayMessages: state.parser.displayMessages
+  displayConsole: state.parser.displayConsole
 })
 
 export default connect(
   mapStateToProps,
   {
     parse,
-    hideMessages
+    hideConsole
   }
 )(ParserInterface)
 

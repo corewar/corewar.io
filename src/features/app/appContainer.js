@@ -19,8 +19,8 @@ import {
   parse,
   addWarrior,
   toggleFileManager,
-  hideMessages,
-  showMessages
+  hideConsole,
+  toggleConsole
 } from '../parser/actions'
 
 import {
@@ -58,7 +58,7 @@ const ButtonGrid = styled.div`
 
 const AppContainer = ({ parse, currentWarrior,
   coreSize, getCoreInstructions, isRunning, isInitialised, addWarrior, toggleFileManager,
-  run, pause, step, init, hideMessages, showMessages, displayMessages }) => (
+  run, pause, step, init, toggleConsole, hideConsole, displayConsole }) => (
   <DesktopContainer>
     <Controls>
     <Button
@@ -80,7 +80,7 @@ const AppContainer = ({ parse, currentWarrior,
       <ConsoleButton
         enabled={true}
         messages={currentWarrior.messages}
-        handleClick={showMessages}>
+        handleClick={toggleConsole}>
         <ButtonGrid>
           <Octicon name="terminal"/>
           <ButtonText>console</ButtonText>
@@ -96,8 +96,8 @@ const AppContainer = ({ parse, currentWarrior,
       </CompiledOutput>
       <Console
         messages={currentWarrior.messages}
-        hideMessages={hideMessages}
-        show={displayMessages}
+        hideConsole={hideConsole}
+        show={displayConsole}
         />
     </ParserGrid>
     <Instructions />
@@ -125,7 +125,7 @@ const mapStateToProps = state => ({
   getCoreInstructions: state.simulator.getCoreInstructions,
   isRunning: state.simulator.isRunning,
   isInitialised: state.simulator.isInitialised,
-  displayMessages: state.parser.displayMessages
+  displayConsole: state.parser.displayConsole
 })
 
 export default connect(
@@ -139,8 +139,8 @@ export default connect(
     addWarrior,
     toggleFileManager,
     getCoreInstructions,
-    hideMessages,
-    showMessages
+    hideConsole,
+    toggleConsole
   }
 )(AppContainer)
 

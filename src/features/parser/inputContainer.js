@@ -9,10 +9,10 @@ import ControlsContainer from '../parser/controlsContainer'
 
 import {
   parse,
-  hideMessages
+  hideConsole
 } from './actions'
 
-const InputContainer = ({ parse, currentWarrior, hideMessages, displayMessages }) => (
+const InputContainer = ({ parse, currentWarrior, hideConsole, displayConsole }) => (
   <MobilePage mobile>
     <SourceCodeTextArea
       value={currentWarrior.source}
@@ -20,22 +20,22 @@ const InputContainer = ({ parse, currentWarrior, hideMessages, displayMessages }
     <ControlsContainer />
     <FileManagerContainer />
     <Console
-      hideMessages={hideMessages}
+      hideConsole={hideConsole}
       messages={currentWarrior && currentWarrior.messages}
-      show={displayMessages} />
+      show={displayConsole} />
   </MobilePage>
 )
 
 const mapStateToProps = state => ({
   currentWarrior: state.parser.currentWarrior,
-  displayMessages: state.parser.displayMessages
+  displayConsole: state.parser.displayConsole
 })
 
 export default connect(
   mapStateToProps,
   {
     parse,
-    hideMessages
+    hideConsole
   }
 )(InputContainer)
 

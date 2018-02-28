@@ -10,7 +10,7 @@ import ConsoleButton from  './consoleButton'
 
 import {
   addWarrior,
-  showMessages,
+  toggleConsole,
   toggleFileManager
 } from './actions'
 
@@ -25,7 +25,7 @@ const ButtonGrid = styled.div`
   grid-template-columns: 1fr;
 `
 
-const MobileControls = ({ addWarrior, currentWarrior, showMessages, toggleFileManager }) => (
+const MobileControls = ({ addWarrior, currentWarrior, toggleConsole, toggleFileManager }) => (
   <Controls>
     <Button
       enabled={hasNoErrors(currentWarrior)}
@@ -46,7 +46,7 @@ const MobileControls = ({ addWarrior, currentWarrior, showMessages, toggleFileMa
     <ConsoleButton
       enabled={true}
       messages={currentWarrior.messages}
-      handleClick={showMessages}>
+      handleClick={toggleConsole}>
       <ButtonGrid>
         <Octicon name="terminal"/>
         <ButtonText>console</ButtonText>
@@ -76,7 +76,7 @@ export default connect(
   mapStateToProps,
   {
     addWarrior,
-    showMessages,
+    toggleConsole,
     toggleFileManager
   }
 )(MobileControls)
