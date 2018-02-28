@@ -28,7 +28,7 @@ export function* subscribeSaga({ email }) {
     if(msg.includes('is already subscribed to list')) {
       msg = 'Thanks for the enthusiasm but it looks like you are already signed up to our list'
     }
-    yield put({ type: SUBSCRIPTION_RESPONSE, message: error.msg })
+    yield put({ type: SUBSCRIPTION_RESPONSE, message: msg })
   }
 }
 
