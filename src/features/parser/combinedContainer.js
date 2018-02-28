@@ -28,7 +28,7 @@ const ParserInterface = ({ redcode, parse, currentWarrior, addWarrior, hideMessa
         value={redcode}
         handleChange={e => parse(e.target.value)} />
       <CompiledOutput tablet>
-        {currentWarrior.output}
+        {currentWarrior.compiled}
       </CompiledOutput>
     </ParserGrid>
     <ControlsContainer />

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 
 import { colour, space, font } from '../common/theme'
+import { media } from '../common/mediaQuery'
 
 import SiteNav from '../common/siteNav'
 import HeroLogo from '../common/heroLogo'
@@ -17,7 +18,7 @@ const SignUpGrid = styled.main`
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-rows: ${space.header} 0.4fr 1fr;
+  grid-template-rows: ${space.header} auto auto;
   grid-template-columns: 100%;
   color: ${colour.white};
   colour: ${colour.white};
@@ -28,11 +29,13 @@ const Content = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: ${space.xl};
   padding-top: ${space.l};
 
   h1 {
     font-size: ${font.large};
     width: 50%;
+    ${media.tablet`width: 80%;`}
     text-align: center;
     color: ${colour.blue};
     font-family: ${font.code};
@@ -50,8 +53,9 @@ const Form = styled.form`
   display: grid;
   grid-template-rows: repeat(3, 0.5fr 1fr);
   grid-template-columns: 100%;
-  margin: ${space.l};
+  margin: ${space.xl};
   width: 30%;
+  ${media.tablet`width: 80%;`}
 
   label {
     color: ${colour.grey};
