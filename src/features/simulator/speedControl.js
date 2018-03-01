@@ -7,7 +7,7 @@ const Container = styled.div`
   ${props => !props.visible && `display: none;`};
   color: ${props => props.enabled ? `${colour.white}` : `${colour.grey}`};
   font-size: ${font.small};
-  width: 100%;
+  flex: 1;
   text-align: center;
   position: relative;
   height: 100%;
