@@ -398,12 +398,12 @@ const Home = () => (
         warriors.
       </FeatureDescription>
       <FeatureImageWrapper>
-        <img src={SimulatorImage} />
+        <img src={SimulatorImage} alt={`Animated core simulator example`} />
       </FeatureImageWrapper>
     </Simulator>
     <Parser>
       <FeatureImageWrapper>
-        <img src={ParserImage} />
+        <img src={ParserImage} alt={`Animated parser usage example`} />
       </FeatureImageWrapper>
       <FeatureDescription>
         Write and parse your warriors in our online editor and receive realtime feedback on parser errors.

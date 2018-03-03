@@ -2,8 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import Octicon from 'react-octicon'
 
-import FeatureButton from '../common/featureButton'
-
 import { colour, space, font } from '../common/theme'
 import { media } from '../common/mediaQuery'
 
@@ -37,13 +35,6 @@ const Logo = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-`
-
-const PrimaryButton = FeatureButton.extend`
-  background: ${colour.white};
-  color: ${colour.darkbg};
-  transition: 0.2s;
-  font-weight: bold;
 `
 
 const Features = styled.section`

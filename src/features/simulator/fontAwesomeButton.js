@@ -1,8 +1,7 @@
 import React from 'react'
-import FontAwesome from 'react-fontawesome'
 import styled from 'styled-components'
 
-import { colour, font } from '../common/theme'
+import { colour } from '../common/theme'
 
 const Container = styled.div.attrs({
   onClick: props => props.enabled ? props.handleClick : null
