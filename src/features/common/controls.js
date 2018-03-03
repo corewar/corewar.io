@@ -14,15 +14,15 @@ const Controls = styled.div`
   // border-right: 1px solid ${colour.grey};
 
   ${media.phone`
-    border-top: 1px solid ${colour.grey};
+    border-top: 1px solid ${colour.lightbg};
 
   `}
   ${media.tablet`
-    border-top: 1px solid ${colour.grey};
+    border-top: 1px solid ${colour.lightbg};
 
   `}
   ${media.desktop`
-    border-top: 1px solid ${colour.grey};
+    border-top: 1px solid ${colour.lightbg};
   `}
 
   display: flex;

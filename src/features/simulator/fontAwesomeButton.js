@@ -14,38 +14,51 @@ const Container = styled.div.attrs({
   justify-content: center;
   ${props => !props.visible && `display: none;`}
   ${props => props.enabled ? `color: ${colour.lightgrey};` : `color: ${colour.grey};`}
-  font-size: ${font.base};
+  font-size: 20px;
 
-  i.fa.fa-stack-1x {
-    ${props => props.enabled ? `color: ${colour.lightgrey};` : `color: ${colour.grey};`}
-  }
 
-  i.fa.fa-stack-2x {
-    color: transparent;
-    box-shadow: 0 0 2px ${colour.lightgrey};
+  span {
+    border: 1px solid ${colour.coral};
+    width: 2em;
+    height: 2em;
     border-radius: 50%;
   }
 
+  i {
+    color: ${colour.grey};
+    margin: 0.5em 0 0 0.5em;
+  }
+
+  .fa-play {
+    padding-left: 0.15em;
+  }
+
+  .fa-step-forward {
+    padding-left: 0.2em;
+  }
+
+  .fa-undo {
+    padding-left: 0.05em;
+  }
+
   &:hover {
-    cursor: ${props => props.enabled && `pointer`};
-    color: ${props => props.enabled && `${colour.blue}`};
-
-    i.fa.fa-stack-1x {
-      color: ${props => props.enabled && `${colour.defaultbg}`};
-    }
-
-    i.fa.fa-stack-2x {
-      color: ${props => props.enabled && `${colour.white}`};
-    }
+    ${props => props.enabled && `
+      cursor: pointer;
+      span {
+        background-color: ${colour.coral};
+      }
+      i {
+        color: ${colour.white};
+      }
+    `}
   }
 
 `
 
 const FontAwesomeButton = ({ visible, enabled, handleClick, iconName }) => (
   <Container visible={visible} enabled={enabled} handleClick={handleClick}>
-    <span class="fa-stack">
-      <i class="fa fa-circle fa-stack-2x"></i>
-      <i class={`fa fa-${iconName} fa-stack-1x fa-inverse`}></i>
+    <span>
+      <i className={`fa fa-${iconName}`}></i>
     </span>
   </Container>
 )

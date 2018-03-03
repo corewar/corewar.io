@@ -8,9 +8,8 @@ import { colour } from '../common/theme'
 
 const InstructionWrapper = styled.section`
   display: grid;
-  border-left: 1px solid ${colour.grey};
-  border-right: 1px solid ${colour.grey};
-
+  border-left: 1px solid ${colour.lightbg};
+  border-right: 1px solid ${colour.lightbg};
 `
 
 const CoreVisuliser = ({ instructions }) => (
