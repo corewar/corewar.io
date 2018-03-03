@@ -11,7 +11,7 @@ const NavBarGrid = styled.div`
 
 const NavBar = () => (
   <NavBarGrid>
-    <TabLink to='/app/src'>src</TabLink>
+    <TabLink to='/app/src'>source</TabLink>
     <TabLink to='/app/output'>output</TabLink>
     <TabLink to='/app/core'>core</TabLink>
   </NavBarGrid>
