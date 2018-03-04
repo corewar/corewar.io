@@ -9,9 +9,6 @@ const Controls = styled.div`
   padding-left: 1em;
   padding-right: 1em;
   background-color: ${colour.defaultbg};
-  // border-top: 1px solid ${colour.grey};
-  // border-left: 1px solid ${colour.grey};
-  // border-right: 1px solid ${colour.grey};
 
   ${media.phone`
     border-top: 1px solid ${colour.lightbg};

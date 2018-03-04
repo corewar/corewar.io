@@ -47,17 +47,6 @@ const ParserGrid = styled.section`
   height: calc(100vh - ${space.header} - ${space.header});
 `
 
-const ButtonText = styled.span`
-  display: inline-block;
-  font-size: 0.5em;
-`
-
-const ButtonGrid = styled.div`
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr;
-`
-
 const AppContainer = ({ parse, currentWarrior,
   coreSize, getCoreInstructions, isRunning, isInitialised, addWarrior, toggleFileManager,
   toggleSettings, run, pause, step, init, toggleConsole, hideConsole, displayConsole }) => (
@@ -68,31 +57,19 @@ const AppContainer = ({ parse, currentWarrior,
         handleClick={addWarrior}
         iconName={`plus`}
         buttonText={`add`} />
-      <Button
-        enabled={true}
-        handleClick={toggleFileManager}>
-        <ButtonGrid>
-          <Octicon name="file-directory"/>
-          <ButtonText>files</ButtonText>
-        </ButtonGrid>
-      </Button>
-      <ConsoleButton
-        enabled={true}
-        messages={currentWarrior.messages}
-        handleClick={toggleConsole}>
-        <ButtonGrid>
-          <Octicon name="terminal"/>
-          <ButtonText>console</ButtonText>
-        </ButtonGrid>
-      </ConsoleButton>
-      <Button
-        enabled={true}
-        handleClick={toggleSettings}>
-        <ButtonGrid>
-          <Octicon name="gear"/>
-          <ButtonText>settings</ButtonText>
-        </ButtonGrid>
-      </Button>
+      <OcticonButton
+        handleClick={toggleFileManager}
+        iconName={`file-directory`}
+        buttonText={`files`} />
+      <OcticonButton
+        handleClick={toggleConsole}
+        iconName={`terminal`}
+        buttonText={`console`}
+        />
+      <OcticonButton
+        handleClick={toggleSettings}
+        iconName={`gear`}
+        buttonText={`settings`} />
     </Controls>
     <ParserGrid>
       <SourceCodeTextArea desktop

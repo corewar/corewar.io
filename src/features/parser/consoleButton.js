@@ -1,8 +1,9 @@
-import Button from '../common/button'
+import OcticonButton from '../common/octiconButton'
+import styled from 'styled-components'
 
 import { colour } from '../common/theme'
 
-const ConsoleButton = Button.extend`
+const ConsoleButton = styled(OcticonButton)`
   ${props => props.messages !== null && `.octicon {
     color: ${getStatusColour(props.messages)};
   }`};

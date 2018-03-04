@@ -2,8 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Octicon from 'react-octicon'
 
-import FontAwesomeButton from './fontAwesomeButton'
-import OcticonButton from '../common/octiconButton'
+import FontAwesomeButton from '../common/fontAwesomeButton'
 import Controls from '../common/controls'
 import SpeedControl from './speedControl'
 
