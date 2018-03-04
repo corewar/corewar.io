@@ -16,7 +16,7 @@ const initialState = {
 }
 
 // selectors
-export const getTutorialState = state => state.tutorial
+export const getDocumentationState = state => state.documentation
 
 // reducer
 export default (state = initialState, action) => {
