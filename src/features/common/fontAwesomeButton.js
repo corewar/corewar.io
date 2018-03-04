@@ -40,6 +40,10 @@ const Container = styled.div.attrs({
     padding-left: 0.05em;
   }
 
+  .fa-cog {
+    padding-left: 0.05em;
+  }
+
   &:hover {
     ${props => props.enabled && `
       cursor: pointer;
