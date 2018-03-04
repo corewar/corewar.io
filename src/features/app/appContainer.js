@@ -12,6 +12,7 @@ import ConsoleButton from '../parser/consoleButton'
 import Instructions from '../simulator/instructions'
 import Console from '../parser/console'
 import FileManagerContainer from '../fileManager/fileManagerContainer'
+import SettingsMenuContainer from '../settingsMenu/settingsMenuContainer'
 
 import { space } from '../common/theme'
 
@@ -28,6 +29,7 @@ import {
   init,
   run,
   pause,
+  toggleSettings,
   getCoreInstructions
 } from '../simulator/actions'
 
@@ -58,15 +60,15 @@ const ButtonGrid = styled.div`
 
 const AppContainer = ({ parse, currentWarrior,
   coreSize, getCoreInstructions, isRunning, isInitialised, addWarrior, toggleFileManager,
-  run, pause, step, init, toggleConsole, hideConsole, displayConsole }) => (
+  toggleSettings, run, pause, step, init, toggleConsole, hideConsole, displayConsole }) => (
   <DesktopContainer>
     <Controls>
-    <Button
+      <Button
         enabled={hasNoErrors(currentWarrior)}
         handleClick={addWarrior}>
         <ButtonGrid>
-          <Octicon name="git-commit"/>
-          <ButtonText>add to core</ButtonText>
+          <Octicon name="plus"/>
+          <ButtonText>add</ButtonText>
         </ButtonGrid>
       </Button>
       <Button
@@ -74,7 +76,7 @@ const AppContainer = ({ parse, currentWarrior,
         handleClick={toggleFileManager}>
         <ButtonGrid>
           <Octicon name="file-directory"/>
-          <ButtonText>manage files</ButtonText>
+          <ButtonText>files</ButtonText>
         </ButtonGrid>
       </Button>
       <ConsoleButton
@@ -86,6 +88,14 @@ const AppContainer = ({ parse, currentWarrior,
           <ButtonText>console</ButtonText>
         </ButtonGrid>
       </ConsoleButton>
+      <Button
+        enabled={true}
+        handleClick={toggleSettings}>
+        <ButtonGrid>
+          <Octicon name="gear"/>
+          <ButtonText>settings</ButtonText>
+        </ButtonGrid>
+      </Button>
     </Controls>
     <ParserGrid>
       <SourceCodeTextArea desktop
@@ -112,6 +122,7 @@ const AppContainer = ({ parse, currentWarrior,
       init={init}
       />
     <FileManagerContainer />
+    <SettingsMenuContainer />
   </DesktopContainer>
 )
 
@@ -138,6 +149,7 @@ export default connect(
     step,
     addWarrior,
     toggleFileManager,
+    toggleSettings,
     getCoreInstructions,
     hideConsole,
     toggleConsole

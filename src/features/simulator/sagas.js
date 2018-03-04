@@ -31,7 +31,7 @@ import {
 
 import { getParserState } from '../parser/reducer'
 import { getSimulatorState } from './reducer'
-import { getCoreOptions } from '../../sagas/coreOptions'
+import { getCoreOptions } from '../../helpers/coreOptions'
 
 // oddities
 const roundProgressChannel = channel()
@@ -194,7 +194,7 @@ function* setCoreOptionsSaga({ id }) {
 
   yield put({ type: SET_CORE_OPTIONS, coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks, id })
 
-  yield put({ type: INIT })
+  yield call(initSaga)
 
 }
 
