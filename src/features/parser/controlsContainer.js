@@ -31,8 +31,8 @@ const MobileControls = ({ addWarrior, currentWarrior, toggleConsole, toggleFileM
       enabled={hasNoErrors(currentWarrior)}
       handleClick={addWarrior}>
       <ButtonGrid>
-        <Octicon name="git-commit"/>
-        <ButtonText>add to core</ButtonText>
+        <Octicon name="plus"/>
+        <ButtonText>add</ButtonText>
       </ButtonGrid>
     </Button>
     <Button
@@ -40,7 +40,7 @@ const MobileControls = ({ addWarrior, currentWarrior, toggleConsole, toggleFileM
       handleClick={toggleFileManager}>
       <ButtonGrid>
         <Octicon name="file-directory"/>
-        <ButtonText>manage files</ButtonText>
+        <ButtonText>files</ButtonText>
       </ButtonGrid>
     </Button>
     <ConsoleButton
