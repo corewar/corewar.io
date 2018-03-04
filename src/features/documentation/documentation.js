@@ -60,6 +60,7 @@ const DocumentationNav = styled.nav`
   .active {
     color: ${colour.white};
     text-decoration: underline;
+    text-decoration-color: ${colour.coral};
   }
 `
 
