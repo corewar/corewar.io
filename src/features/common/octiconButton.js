@@ -15,7 +15,7 @@ const ButtonGrid = styled.div`
   grid-template-columns: 1fr;
 `
 
-const OcticonButton = ({ enabled = true, handleClick, iconName, buttonText, className }) => (
+const OcticonButton = ({ enabled = true, handleClick, iconName, buttonText }) => (
   <Button
     enabled={enabled}
     handleClick={handleClick}>
