@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 import SiteNav from '../common/siteNav'
@@ -38,6 +38,31 @@ const Lede = styled.section`
   }
 `
 
+const DocumentationNav = styled.nav`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    color: ${colour.lightgrey};
+    font-size: ${font.large};
+    font-weight: 300;
+    text-decoration: none;
+    margin: ${space.m};
+
+    :hover {
+      text-decoration: underline;
+    }
+  }
+
+  .active {
+    color: ${colour.white};
+    text-decoration: underline;
+  }
+`
+
 const Documentation = () => (
   <DocumentationGrid>
     <SiteNav />
@@ -45,6 +70,10 @@ const Documentation = () => (
     <Lede>
       <h2>Explore the documentation to learn the concepts and techniques of corewar</h2>
     </Lede>
+    <DocumentationNav>
+      <NavLink to='/learn/1'>1. Concepts</NavLink>
+      <NavLink to='/learn/2'>2. Imp Tutorial</NavLink>
+    </DocumentationNav>
     <Route exact path={`/learn/1`} component={Concepts} />
     <Route exact path={`/learn/2`} component={ImpTutorialContainer} />
   </DocumentationGrid>
