@@ -7,7 +7,7 @@ import { colour, font, space } from '../common/theme'
 
 const Location = styled.div`
   flex: 1;
-  border-bottom: 1px solid ${colour.grey};
+  border-bottom: 1px solid ${colour.lightbg};
 
   display: grid;
   grid-template-columns: 1fr 1fr;
