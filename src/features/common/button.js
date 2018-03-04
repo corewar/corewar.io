@@ -10,8 +10,8 @@ const Button = styled.button.attrs({
   border: none;
   outline: none;
   background-color: transparent;
-  width: 100%;
-  height: 100%;
+  flex: 1;
+
   font-size: 1.5em;
   transition: 0.5s;
 

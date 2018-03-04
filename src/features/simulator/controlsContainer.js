@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Octicon from 'react-octicon'
 
 import FontAwesomeButton from './fontAwesomeButton'
+import OcticonButton from '../common/octiconButton'
 import Controls from '../common/controls'
 import SpeedControl from './speedControl'
 
@@ -10,16 +12,19 @@ import {
   step,
   run,
   pause,
-  setProcessRate
+  setProcessRate,
+  toggleSettings
 } from './actions'
 
-const SimulatorControls = ({ isRunning, isInitialised, run, pause, step, init, processRate, processRates, setProcessRate }) => (
+const SimulatorControls = ({ isRunning, isInitialised, init, run, pause, step,
+  processRate, processRates, setProcessRate, toggleSettings, mobile, tablet }) => (
   <Controls>
-    <FontAwesomeButton visible={!isRunning} enabled={isInitialised} iconName="play" handleClick={run} />
-    <FontAwesomeButton visible={isRunning} enabled={isRunning} iconName="pause" handleClick={pause} />
-    <FontAwesomeButton visible={true} enabled={isInitialised && !isRunning} iconName="step-forward" handleClick={step} />
-    <FontAwesomeButton visible={true} enabled={true} iconName="undo" handleClick={init} />
-    <SpeedControl visible={true} enabled={true} handleClick={setProcessRate} processRate={processRate} processRates={processRates} />
+    <FontAwesomeButton visible={!isRunning} enabled={isInitialised} iconName={`play`} handleClick={run} />
+    <FontAwesomeButton visible={isRunning} enabled={isRunning} iconName={`pause`} handleClick={pause} />
+    <FontAwesomeButton enabled={isInitialised && !isRunning} iconName={`step-forward`} handleClick={step} />
+    <FontAwesomeButton iconName={`undo`} handleClick={init} />
+    <FontAwesomeButton visible={mobile || tablet} iconName={`cog`} handleClick={toggleSettings} />
+    <SpeedControl handleClick={setProcessRate} processRate={processRate} processRates={processRates} />
   </Controls>
 )
 
@@ -39,7 +44,8 @@ export default connect(
     step,
     run,
     pause,
-    setProcessRate
+    setProcessRate,
+    toggleSettings
   }
 )(SimulatorControls)
 

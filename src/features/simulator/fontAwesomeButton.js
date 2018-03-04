@@ -54,7 +54,7 @@ const Container = styled.div.attrs({
 
 `
 
-const FontAwesomeButton = ({ visible, enabled, handleClick, iconName }) => (
+const FontAwesomeButton = ({ visible = true, enabled = true, handleClick, iconName }) => (
   <Container visible={visible} enabled={enabled} handleClick={handleClick}>
     <span>
       <i className={`fa fa-${iconName}`}></i>

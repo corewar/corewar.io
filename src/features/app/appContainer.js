@@ -12,7 +12,7 @@ import ConsoleButton from '../parser/consoleButton'
 import Instructions from '../simulator/instructions'
 import Console from '../parser/console'
 import FileManagerContainer from '../fileManager/fileManagerContainer'
-import SettingsMenuContainer from '../settingsMenu/settingsMenuContainer'
+import OcticonButton from '../common/octiconButton'
 
 import { space } from '../common/theme'
 
@@ -63,14 +63,11 @@ const AppContainer = ({ parse, currentWarrior,
   toggleSettings, run, pause, step, init, toggleConsole, hideConsole, displayConsole }) => (
   <DesktopContainer>
     <Controls>
-      <Button
+      <OcticonButton
         enabled={hasNoErrors(currentWarrior)}
-        handleClick={addWarrior}>
-        <ButtonGrid>
-          <Octicon name="plus"/>
-          <ButtonText>add</ButtonText>
-        </ButtonGrid>
-      </Button>
+        handleClick={addWarrior}
+        iconName={`plus`}
+        buttonText={`add`} />
       <Button
         enabled={true}
         handleClick={toggleFileManager}>
@@ -120,9 +117,10 @@ const AppContainer = ({ parse, currentWarrior,
       pause={pause}
       step={step}
       init={init}
+      mobile={false}
+      tablet={false}
       />
     <FileManagerContainer />
-    <SettingsMenuContainer />
   </DesktopContainer>
 )
 
