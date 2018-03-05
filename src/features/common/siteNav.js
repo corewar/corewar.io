@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { colour, font, space } from '../common/theme'
+import { colour, space } from '../common/theme'
 import { media } from '../common/mediaQuery'
 
 const Header = styled.header`

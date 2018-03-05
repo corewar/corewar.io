@@ -7,7 +7,6 @@ import { media } from '../common/mediaQuery'
 
 import SiteNav from '../common/siteNav'
 import HeroLogo from '../common/heroLogo'
-import FeatureButton from '../common/featureButton'
 
 import {
   moveImp

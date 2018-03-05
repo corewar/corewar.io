@@ -17,7 +17,7 @@ const SimulatorControls = ({ isRunning, isInitialised, run, pause, step, init, p
   <Controls>
     <FontAwesomeButton visible={!isRunning} enabled={isInitialised} iconName="play" handleClick={run} />
     <FontAwesomeButton visible={isRunning} enabled={isRunning} iconName="pause" handleClick={pause} />
-    <FontAwesomeButton visible={true} enabled={!isRunning} iconName="step-forward" handleClick={step} />
+    <FontAwesomeButton visible={true} enabled={isInitialised && !isRunning} iconName="step-forward" handleClick={step} />
     <FontAwesomeButton visible={true} enabled={true} iconName="undo" handleClick={init} />
     <SpeedControl visible={true} enabled={true} handleClick={setProcessRate} processRate={processRate} processRates={processRates} />
   </Controls>

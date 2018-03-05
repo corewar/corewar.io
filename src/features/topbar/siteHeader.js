@@ -33,7 +33,7 @@ const SiteHeader = ({ isAuthenticated }) => (
   <Header>
     <Logo siteName='corewar' siteDomain='.io' />
     <Nav>
-      <TabLink to='/app/src'>src</TabLink>
+      <TabLink to='/app/src'>source</TabLink>
       <TabLink to='/app/core'>core</TabLink>
     </Nav>
     {isAuthenticated ? <UserInfo /> : <Login />}

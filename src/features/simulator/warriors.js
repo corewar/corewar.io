@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { List } from 'immutable'
 import * as PubSub from 'pubsub-js'
 import Octicon from 'react-octicon'
 

@@ -1,4 +1,3 @@
-import { delay } from 'redux-saga'
 import { takeEvery, call, put } from 'redux-saga/effects'
 import $ from 'jquery'
 

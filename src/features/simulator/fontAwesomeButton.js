@@ -1,28 +1,64 @@
 import React from 'react'
-import FontAwesome from 'react-fontawesome'
 import styled from 'styled-components'
 
-import { colour, font } from '../common/theme'
+import { colour } from '../common/theme'
 
 const Container = styled.div.attrs({
   onClick: props => props.enabled ? props.handleClick : null
 })`
+
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   ${props => !props.visible && `display: none;`}
-  ${props => props.enabled ? `color: ${colour.white};` : `color: ${colour.grey};`}
-  font-size: ${font.small};
-  width: 100%;
-  text-align: center;
-  margin-top: ${font.small};
+  ${props => props.enabled ? `color: ${colour.lightgrey};` : `color: ${colour.grey};`}
+  font-size: 20px;
+
+
+  span {
+    border: 1px solid ${colour.coral};
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+  }
+
+  i {
+    color: ${colour.grey};
+    margin: 0.5em 0 0 0.5em;
+  }
+
+  .fa-play {
+    padding-left: 0.15em;
+  }
+
+  .fa-step-forward {
+    padding-left: 0.2em;
+  }
+
+  .fa-undo {
+    padding-left: 0.05em;
+  }
 
   &:hover {
-    cursor: ${props => props.enabled && `pointer`};
-    color: ${props => props.enabled && `${colour.blue}`};
+    ${props => props.enabled && `
+      cursor: pointer;
+      span {
+        background-color: ${colour.coral};
+      }
+      i {
+        color: ${colour.white};
+      }
+    `}
   }
+
 `
 
 const FontAwesomeButton = ({ visible, enabled, handleClick, iconName }) => (
   <Container visible={visible} enabled={enabled} handleClick={handleClick}>
-    <FontAwesome name={iconName} size="2x" />
+    <span>
+      <i className={`fa fa-${iconName}`}></i>
+    </span>
   </Container>
 )
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { colour, font, space } from '../common/theme'
+import { colour, space } from '../common/theme'
 
 const FeatureButton = styled.a`
   border: 2px solid ${colour.white};
