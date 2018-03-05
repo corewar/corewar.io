@@ -4,9 +4,10 @@ import styled from 'styled-components'
 import { space, colour, font } from '../common/theme'
 import { media } from '../common/mediaQuery'
 
-const FileManagerGrid = styled.section`
+const SettingsMenuGrid = styled.section`
 
-  ${props => props.show ? `left: 0;` : `left: -201px;`};
+  ${props => props.show && media.tablet ? `right: 0;` : `right: -200px;`};
+  ${props => props.show && media.designer ? `right: -${space.m};` : `right: -216px;`};
 
   transition: 0.5s;
   position: absolute;
@@ -19,6 +20,7 @@ const FileManagerGrid = styled.section`
   grid-template-rows: ${space.header} 1fr;
 
   background-color: ${colour.lightbg};
+  border-left: 1px solid ${colour.lightbg};
 
   ${media.phone`margin-bottom: ${space.controls};`}
   ${media.tablet`margin-bottom: ${space.controls};`}
@@ -37,12 +39,20 @@ const FileManagerGrid = styled.section`
     margin: ${space.m};
   }
 
+  li.active {
+    color: ${colour.white};
+    border-left: 2px solid ${colour.blue};
+  }
+
   ul li {
     margin-left: ${space.m};
     margin-top: ${space.m};
+    margin-right: ${space.s};
+
     padding-bottom: ${space.s};
     padding-top: ${space.s};
-    margin-right: ${space.s};
+    padding-left: ${space.s};
+
     min-height: ${space.m};
     height: auto;
     border-bottom: 2px solid transparent;
@@ -57,19 +67,20 @@ const FileManagerGrid = styled.section`
 
 `
 
-const FileManager = ({ show, files, handleClick }) => (
-  <FileManagerGrid show={show}>
-    <span>/ root</span>
+const SettingsMenu = ({ show, options, handleClick, currentSelection }) => (
+  <SettingsMenuGrid show={show}>
+    <span>/ settings</span>
     <ul>
-      {files.map((file, i) => (
+      {options.map((option, i) => (
         <li
-          key={`${file.name}_${i}`}
-          onClick={() => handleClick(file.source)}>
-          {file.name}
+          className={option.id === currentSelection ? `active` : ``}
+          key={`${option.name}_${i}`}
+          onClick={() => handleClick(option.id)}>
+          {option.name}
         </li>
       ))}
     </ul>
-  </FileManagerGrid>
+  </SettingsMenuGrid>
 )
 
-export default FileManager
+export default SettingsMenu

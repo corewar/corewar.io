@@ -1,12 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import Octicon from 'react-octicon'
-import styled from 'styled-components'
 
-import Button from  '../common/button'
+import OcticonButton from  '../common/octiconButton'
 import Controls from  '../common/controls'
-import ConsoleButton from  './consoleButton'
 
 import {
   addWarrior,
@@ -14,44 +11,22 @@ import {
   toggleFileManager
 } from './actions'
 
-const ButtonText = styled.span`
-  display: inline-block;
-  font-size: 0.5em;
-`
-
-const ButtonGrid = styled.div`
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr;
-`
-
 const MobileControls = ({ addWarrior, currentWarrior, toggleConsole, toggleFileManager }) => (
   <Controls>
-    <Button
+    <OcticonButton
       enabled={hasNoErrors(currentWarrior)}
-      handleClick={addWarrior}>
-      <ButtonGrid>
-        <Octicon name="git-commit"/>
-        <ButtonText>add to core</ButtonText>
-      </ButtonGrid>
-    </Button>
-    <Button
+      handleClick={addWarrior}
+      iconName={`plus`}
+      buttonText={`add`} />
+    <OcticonButton
+      handleClick={toggleFileManager}
+      iconName={`file-directory`}
+      buttonText={`files`} />
+    <OcticonButton
       enabled={true}
-      handleClick={toggleFileManager}>
-      <ButtonGrid>
-        <Octicon name="file-directory"/>
-        <ButtonText>manage files</ButtonText>
-      </ButtonGrid>
-    </Button>
-    <ConsoleButton
-      enabled={true}
-      messages={currentWarrior.messages}
-      handleClick={toggleConsole}>
-      <ButtonGrid>
-        <Octicon name="terminal"/>
-        <ButtonText>console</ButtonText>
-      </ButtonGrid>
-    </ConsoleButton>
+      handleClick={toggleConsole}
+      iconName={`terminal`}
+      buttonText={`console`} />
   </Controls>
 )
 

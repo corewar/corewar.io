@@ -8,7 +8,8 @@ import {
   GET_CORE_INSTRUCTIONS,
   SET_CORE_FOCUS,
   SET_PROCESS_RATE,
-  SET_CORE_OPTIONS
+  SET_CORE_OPTIONS,
+  TOGGLE_SETTINGS
 } from './actions'
 
 // state
@@ -19,13 +20,14 @@ const initialState = {
   focus: null,
   roundResult: {},
 
-  coreSize: 128,
+  coreSize: 8000,
   cyclesBeforeTie: 80000,
-  minSeparation: 1,
-  instructionLimit: 1,
+  minSeparation: 100,
+  instructionLimit: 100,
   maxTasks: 8000,
 
   instructions: [],
+  displaySettings: false,
   processRate: 1,
   processRates: [1, 2, 5, 12, 30, 75, 200, 500, 2000],
   currentCoreOption: 1,
@@ -112,6 +114,12 @@ export default (state = initialState, action) => {
         minSeparation: action.minSeparation,
         instructionLimit: action.instructionLimit,
         maxTasks: action.maxTasks
+      }
+
+    case TOGGLE_SETTINGS:
+      return {
+        ...state,
+        displaySettings: !state.displaySettings
       }
 
     default:

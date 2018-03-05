@@ -56,7 +56,7 @@ const SelectedItem = styled.div`
   margin-top: ${font.base};
 `
 
-const SpeedControl = ({ processRate, processRates, handleClick, visible, enabled }) => (
+const SpeedControl = ({ processRate, processRates, handleClick, visible = true, enabled = true }) => (
   <Container visible={visible} enabled={enabled}>
       <SelectedItem>{`${processRate} x`}</SelectedItem>
       <ul>

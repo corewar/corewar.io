@@ -12,6 +12,7 @@ import ConsoleButton from '../parser/consoleButton'
 import Instructions from '../simulator/instructions'
 import Console from '../parser/console'
 import FileManagerContainer from '../fileManager/fileManagerContainer'
+import OcticonButton from '../common/octiconButton'
 
 import { space } from '../common/theme'
 
@@ -28,6 +29,7 @@ import {
   init,
   run,
   pause,
+  toggleSettings,
   getCoreInstructions
 } from '../simulator/actions'
 
@@ -45,47 +47,29 @@ const ParserGrid = styled.section`
   height: calc(100vh - ${space.header} - ${space.header});
 `
 
-const ButtonText = styled.span`
-  display: inline-block;
-  font-size: 0.5em;
-`
-
-const ButtonGrid = styled.div`
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr;
-`
-
 const AppContainer = ({ parse, currentWarrior,
   coreSize, getCoreInstructions, isRunning, isInitialised, addWarrior, toggleFileManager,
-  run, pause, step, init, toggleConsole, hideConsole, displayConsole }) => (
+  toggleSettings, run, pause, step, init, toggleConsole, hideConsole, displayConsole }) => (
   <DesktopContainer>
     <Controls>
-    <Button
+      <OcticonButton
         enabled={hasNoErrors(currentWarrior)}
-        handleClick={addWarrior}>
-        <ButtonGrid>
-          <Octicon name="git-commit"/>
-          <ButtonText>add to core</ButtonText>
-        </ButtonGrid>
-      </Button>
-      <Button
-        enabled={true}
-        handleClick={toggleFileManager}>
-        <ButtonGrid>
-          <Octicon name="file-directory"/>
-          <ButtonText>manage files</ButtonText>
-        </ButtonGrid>
-      </Button>
-      <ConsoleButton
-        enabled={true}
-        messages={currentWarrior.messages}
-        handleClick={toggleConsole}>
-        <ButtonGrid>
-          <Octicon name="terminal"/>
-          <ButtonText>console</ButtonText>
-        </ButtonGrid>
-      </ConsoleButton>
+        handleClick={addWarrior}
+        iconName={`plus`}
+        buttonText={`add`} />
+      <OcticonButton
+        handleClick={toggleFileManager}
+        iconName={`file-directory`}
+        buttonText={`files`} />
+      <OcticonButton
+        handleClick={toggleConsole}
+        iconName={`terminal`}
+        buttonText={`console`}
+        />
+      <OcticonButton
+        handleClick={toggleSettings}
+        iconName={`gear`}
+        buttonText={`settings`} />
     </Controls>
     <ParserGrid>
       <SourceCodeTextArea desktop
@@ -110,6 +94,8 @@ const AppContainer = ({ parse, currentWarrior,
       pause={pause}
       step={step}
       init={init}
+      mobile={false}
+      tablet={false}
       />
     <FileManagerContainer />
   </DesktopContainer>
@@ -138,6 +124,7 @@ export default connect(
     step,
     addWarrior,
     toggleFileManager,
+    toggleSettings,
     getCoreInstructions,
     hideConsole,
     toggleConsole

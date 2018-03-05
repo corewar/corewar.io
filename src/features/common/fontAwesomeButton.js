@@ -40,6 +40,10 @@ const Container = styled.div.attrs({
     padding-left: 0.05em;
   }
 
+  .fa-cog {
+    padding-left: 0.05em;
+  }
+
   &:hover {
     ${props => props.enabled && `
       cursor: pointer;
@@ -54,7 +58,7 @@ const Container = styled.div.attrs({
 
 `
 
-const FontAwesomeButton = ({ visible, enabled, handleClick, iconName }) => (
+const FontAwesomeButton = ({ visible = true, enabled = true, handleClick, iconName }) => (
   <Container visible={visible} enabled={enabled} handleClick={handleClick}>
     <span>
       <i className={`fa fa-${iconName}`}></i>

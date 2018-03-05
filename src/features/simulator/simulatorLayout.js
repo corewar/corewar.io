@@ -5,6 +5,7 @@ import Core from './core'
 import ErrorBoundary from '../common/errorBoundary'
 import Warriors from './warriors'
 import ControlsContainer from './controlsContainer'
+import SettingsMenuContainer from '../settingsMenu/settingsMenuContainer'
 
 import { space, colour } from  '../common/theme'
 import { media } from  '../common/mediaQuery'
@@ -43,7 +44,8 @@ const SimulatorLayout = ({ coreSize, getCoreInstructions, isRunning, isInitialis
         isInitialised={isInitialised}
         />
     </ErrorBoundary>
-    <ControlsContainer />
+    <ControlsContainer mobile={mobile} tablet={tablet} />
+    <SettingsMenuContainer />
   </SimulatorGrid>
 )
 

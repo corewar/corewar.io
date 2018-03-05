@@ -6,12 +6,12 @@ import { colour } from './theme'
 const Button = styled.button.attrs({
   onClick: props => props.enabled ? props.handleClick : null
 })`
-  color: ${props => !props.enabled ? colour.grey : colour.white };
+  color: ${props => !props.enabled ? colour.grey : colour.lightgrey };
   border: none;
   outline: none;
   background-color: transparent;
-  width: 100%;
-  height: 100%;
+  flex: 1;
+
   font-size: 1.5em;
   transition: 0.5s;
 
@@ -19,7 +19,7 @@ const Button = styled.button.attrs({
     ${props => props.enabled && `cursor: pointer`};
     transition: 0.5s;
     ${props => props.enabled && `background-color: ${colour.defaultbg}`};
-    ${props => props.enabled && `color: ${colour.lightgrey}`};
+    ${props => props.enabled && `color: ${colour.white}`};
   }
 `
 
