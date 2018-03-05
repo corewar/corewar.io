@@ -40,9 +40,7 @@
     "styled-property": "^1.0.2",
     "tape": "^4.8.0",
     "typeface-anonymous-pro": "0.0.44",
-    "typeface-lato": "0.0.44",
-    "typeface-roboto-condensed": "0.0.45",
-    "typeface-roboto-slab": "0.0.44"
+    "typeface-lato": "0.0.44"
   },
   "scripts": {
     "start": "react-scripts start",

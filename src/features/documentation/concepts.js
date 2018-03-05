@@ -23,7 +23,22 @@ const Concepts = () => (
     </p>
     <h3>1.1 Corewar.io</h3>
     <p>
-      The corewar.io app allows you to write, debug and battle your warriors on our online platform.
+      Corewar.io allows you to write, debug and battle your warriors on our online platform. We noticed that whilst
+      there are many Corewar implementations they all tend to ask the user to download specific programs and these
+      programs tend to be operating system specific. Corewar.io allows you to play Corewar without any downloads on
+      any platform, including mobile and tablet devices.
+    </p>
+    <p>
+      At the moment we are in a public beta stage for the parser and simulator features where we will be gathering
+      feedback and ideas to improve the system going forwards.
+    </p>
+    <p>
+      In the near future we will be adding features from our <a href='/#roadmap'>Roadmap</a> including:
+      <ul>
+        <li>User logins allowing you to save and load your users accross sessions</li>
+        <li>Online hills with real time result reports</li>
+        <li>Personalised hills where you control the entrants, allowing you to play with your friends</li>
+      </ul>
     </p>
   </DocumentationContent>
 )
