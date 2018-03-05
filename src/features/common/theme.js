@@ -42,6 +42,7 @@ export const icon = {
 export const font = {
   default: `Lato, verdana, sans-serif`,
   code: `Anonymous Pro, courier new, mono`,
+  documentation: `Bitter, georgia, 'times new roman'`,
   xsmall: '10px',
   small: '12px',
   base: '16px',

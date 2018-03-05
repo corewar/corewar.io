@@ -12,7 +12,6 @@ import Home from './features/onboarding/home'
 import SignUpContainer from './features/signup/signupContainer'
 import Documentation from './features/documentation/documentation'
 
-
 import 'typeface-lato'
 import 'typeface-anonymous-pro'
 

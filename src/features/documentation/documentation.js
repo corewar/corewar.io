@@ -44,6 +44,7 @@ const DocumentationNav = styled.nav`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  margin-bottom: ${space.l};
 
   a {
     color: ${colour.lightgrey};

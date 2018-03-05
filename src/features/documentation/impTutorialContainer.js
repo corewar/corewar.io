@@ -84,7 +84,7 @@ export const ImpTutorialContainer = ({ moveImp, impCells, impIndex }) => (
       So we can see the imp writing and executing instructions, but what exactly are the instructions?
       Fortunately our Imp is a very simple program and consists of just a single instruction.
     </p>
-    <h3>MOV 0, 1</h3>
+    <pre>MOV 0, 1</pre>
     <p>
       The instruction above, each time its executed will MOV (MOVE) the instruction at position 0 (the current address)
       to position 1 (the next address)
