@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
-import CoreLocation from './instruction'
+import Instruction from './instruction'
+import RoundProgress from './roundProgress'
 
 import { colour } from '../common/theme'
 
@@ -12,11 +13,11 @@ const InstructionWrapper = styled.section`
   border-right: 1px solid ${colour.lightbg};
 `
 
-const CoreVisuliser = ({ instructions }) => (
-
+const CoreVisuliser = ({ instructions, runProgress }) => (
   <InstructionWrapper>
+    <RoundProgress runProgress={runProgress} />
     {instructions && instructions.map(info => (
-      <CoreLocation
+      <Instruction
         key={info.instruction.address}
         instruction={info.instruction}
         warriorId={info.access.warriorId}/>
@@ -25,7 +26,8 @@ const CoreVisuliser = ({ instructions }) => (
 )
 
 const mapStateToProps = state => ({
-  instructions: state.simulator.coreInfo
+  instructions: state.simulator.coreInfo,
+  runProgress: state.simulator.runProgress
 })
 
 export default connect(

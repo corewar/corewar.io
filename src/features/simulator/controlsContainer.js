@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Octicon from 'react-octicon'
 
 import FontAwesomeButton from '../common/fontAwesomeButton'
 import Controls from '../common/controls'
