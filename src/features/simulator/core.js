@@ -20,8 +20,6 @@ const CanvasWrapper = styled.section`
   ${media.tablet`min-width: 400px;`}
   ${media.phone`min-width: 400px;`}
 
-  // border: 1px solid ${colour.lightbg};
-
   canvas {
     position: absolute;
     top: 0;
@@ -230,6 +228,8 @@ class CanvasCore extends Component {
   }
 
   renderGrid() {
+
+    this.coreContext.clearRect(0, 0, this.containerWidth, this.containerHeight)
 
     let i = 0;
     for (let y = 0; y < this.cellsHigh * this.cellSize; y += this.cellSize) {
