@@ -6,6 +6,7 @@ import SourceCodeTextArea from './sourceCodeTextArea'
 import Console from './console'
 import FileManagerContainer from '../fileManager/fileManagerContainer'
 import ControlsContainer from '../parser/controlsContainer'
+import WarriorManagerContainer from '../warriorManager/warriorManagerContainer'
 
 import {
   parse,
@@ -14,6 +15,7 @@ import {
 
 const InputContainer = ({ parse, currentWarrior, hideConsole, displayConsole }) => (
   <MobilePage mobile>
+    <WarriorManagerContainer />
     <SourceCodeTextArea
       value={currentWarrior.source}
       handleChange={e => parse(e.target.value)} />

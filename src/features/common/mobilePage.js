@@ -14,6 +14,7 @@ const MobilePage = styled.main`
 
   display: grid;
   grid-template-rows: 1fr ${space.controls};
+  grid-template-columns: ${space.sidebar} 1fr;
 `
 
 export default MobilePage

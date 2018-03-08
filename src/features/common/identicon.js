@@ -12,12 +12,12 @@ export const createHash = (input) => {
   return sha.getHash('HEX')
 }
 
-export const getIdenticon = (compiled, i, size) => {
+export const getIdenticon = (compiled, i, size = 40) => {
 
   const hash = createHash(compiled)
 
   const options = {
-    size: size ? size : 40,
+    size: size,
     foreground: hexToRgbA(colour.warrior[i]),
     background: [0,0,0,0],
     margin: 0,

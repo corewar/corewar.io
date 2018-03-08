@@ -22,6 +22,8 @@ const Controls = styled.div`
     border-top: 1px solid ${colour.lightbg};
   `}
 
+  grid-column: 1 / 3;
+
   display: flex;
   flex-direction: row;
   justify-content: space-around;

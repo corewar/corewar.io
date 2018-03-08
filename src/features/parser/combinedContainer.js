@@ -8,6 +8,7 @@ import Console from './console'
 import MobilePage from '../common/mobilePage'
 import ControlsContainer from '../parser/controlsContainer'
 import FileManagerContainer from '../fileManager/fileManagerContainer'
+import WarriorManagerContainer from '../warriorManager/warriorManagerContainer'
 
 import { space } from '../common/theme'
 
@@ -23,6 +24,7 @@ const ParserGrid = styled.section`
 
 const ParserInterface = ({ redcode, parse, currentWarrior, addWarrior, hideConsole, displayConsole }) => (
   <MobilePage tablet>
+    <WarriorManagerContainer />
     <ParserGrid>
       <SourceCodeTextArea
         value={redcode}
