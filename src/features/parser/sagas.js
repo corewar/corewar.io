@@ -14,7 +14,8 @@ import {
   HIDE_CONSOLE,
   SET_WARRIORS,
   LOAD_WARRIOR_REQUESTED,
-  LOAD_WARRIOR
+  LOAD_WARRIOR,
+  SET_CURRENT_FILE_INDEX
 } from './actions'
 
 import { PAUSE } from '../simulator/actions'
@@ -53,6 +54,8 @@ export function* addWarriorSaga() {
 
   const icon = getIdenticon(currentWarrior.compiled, warriors.length)
 
+  yield put({ type: SET_CURRENT_FILE_INDEX, fileIndex: warriors.length })
+
   const warriorList = yield call(insertItem, warriors.length, warriors, { ...currentWarrior, icon })
 
   yield put({ type: SET_WARRIORS, warriors: warriorList })
@@ -62,11 +65,13 @@ export function* addWarriorSaga() {
   yield call(toast, 'Warrior Added')
 }
 
-export function* loadWarriorSaga({ hash }) {
+export function* loadWarriorSaga({ hash, i }) {
 
   const { warriors } = yield select(getParserState)
 
   const warrior = warriors.find(x => x.hash === hash)
+
+  yield put({ type: SET_CURRENT_FILE_INDEX, fileIndex: i })
 
   yield put({ type: LOAD_WARRIOR, warrior })
 
@@ -79,6 +84,12 @@ export function* removeWarriorSaga({ index }) {
   const data = yield call(getCoreOptionsFromState)
 
   const { warriors } = yield select(getParserState)
+
+  if(index === warriors.length) {
+    console.log('yup')
+    console.log(index - 1)
+    yield put({ type: SET_CURRENT_FILE_INDEX, fileIndex: index - 1 })
+  }
 
   const warriorList = yield call(removeItem, index, warriors)
 

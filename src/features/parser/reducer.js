@@ -5,13 +5,15 @@ import {
   SHOW_CONSOLE,
   TOGGLE_FILE_MANAGER,
   SET_WARRIORS,
-  LOAD_WARRIOR
+  LOAD_WARRIOR,
+  SET_CURRENT_FILE_INDEX
 } from './actions'
 
 import { defaultWarriors } from '../../helpers/defaultWarriors'
 
 // state
 const initialState = {
+  currentFileIndex: 0,
   currentWarrior: {},
   warriors: [],
   warriorLibrary: defaultWarriors,
@@ -34,6 +36,12 @@ export default (state = initialState, action) => {
         currentWarrior: action.currentWarrior
       }
 
+    case SET_CURRENT_FILE_INDEX:
+      return {
+        ...state,
+        currentFileIndex: action.fileIndex
+      }
+
     case SET_WARRIORS:
       return {
         ...state,
@@ -53,7 +61,6 @@ export default (state = initialState, action) => {
       }
 
     case HIDE_CONSOLE:
-      console.log('hide')
       return {
         ...state,
         displayConsole: false
