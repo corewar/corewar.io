@@ -15,6 +15,8 @@ import {
   SET_WARRIORS,
   LOAD_WARRIOR_REQUESTED,
   LOAD_WARRIOR,
+  TOGGLE_WARRIOR_REQUESTED,
+  TOGGLE_WARRIOR,
   SET_CURRENT_FILE_INDEX
 } from './actions'
 
@@ -32,7 +34,7 @@ export function* parseSaga({ source }) {
 
   const hash = createHash(compiled)
 
-  const currentWarrior = { ...parseResult, compiled, source, hash }
+  const currentWarrior = { ...parseResult, compiled, source, hash, active: true }
 
   if(currentWarrior.messages.find(x => x.type === 0)){
     yield put({ type: SHOW_CONSOLE })
@@ -77,6 +79,19 @@ export function* loadWarriorSaga({ hash, i }) {
 
 }
 
+export function* toggleWarriorSaga({ i }) {
+
+  const { warriors } = yield select(getParserState)
+
+  const warrior = warriors[i]
+
+  const removedList = yield call(removeItem, i, warriors)
+  const warriorList = yield call(insertItem, i, removedList, { ...warrior, active: !warrior.active })
+
+  yield put({ type: SET_WARRIORS, warriors: warriorList })
+
+}
+
 export function* removeWarriorSaga({ index }) {
 
   yield put({ type: PAUSE })
@@ -108,5 +123,6 @@ export const parserWatchers = [
   takeLatest(PARSE_REQUESTED, parseSaga),
   takeEvery(ADD_WARRIOR_REQUESTED, addWarriorSaga),
   takeEvery(REMOVE_WARRIOR_REQUESTED, removeWarriorSaga),
-  takeEvery(LOAD_WARRIOR_REQUESTED, loadWarriorSaga)
+  takeEvery(LOAD_WARRIOR_REQUESTED, loadWarriorSaga),
+  takeEvery(TOGGLE_WARRIOR_REQUESTED, toggleWarriorSaga)
 ]
