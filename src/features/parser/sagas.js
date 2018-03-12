@@ -86,8 +86,6 @@ export function* removeWarriorSaga({ index }) {
   const { warriors } = yield select(getParserState)
 
   if(index === warriors.length) {
-    console.log('yup')
-    console.log(index - 1)
     yield put({ type: SET_CURRENT_FILE_INDEX, fileIndex: index - 1 })
   }
 

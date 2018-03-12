@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
-import { space } from '../common/theme'
+import { space, colour } from '../common/theme'
 
 const NotificationWrapper = styled.div`
 
@@ -13,12 +13,10 @@ const NotificationWrapper = styled.div`
   right: 0;
   width: 50%;
   max-width: 300px;
-  min-height: 30px;
-  line-height: 30px;
-  height: auto;
 
-  background-color: #fff;
-  color: #000;
+
+  background-color: ${colour.lightbg};
+  color: ${colour.blue};
   text-align: center;
   padding: ${space.s};
   margin-bottom: ${space.s};
@@ -28,6 +26,8 @@ const NotificationWrapper = styled.div`
 const NotficationItem = styled.div`
   margin-bottom: ${space.s};
   margin-top: ${space.s};
+  line-height: ${space.m};
+  height: ${space.m};
 `
 
 const NotificationContainer = ({ notifications }) => (
