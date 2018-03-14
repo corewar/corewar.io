@@ -36,8 +36,10 @@ const WarriorWrapper = styled.div`
     height: ${space.m};
   }
 
-  .octicon-heart {
-    ${props => props.active ? `color: ${colour.blue};` : `color: ${colour.coral};`}
+  .octicon-primitive-dot {
+    ${props => props.active ? `color: ${colour.success};` : `color: ${colour.error};`}
+    font-size: ${font.large};
+    padding-left: ${space.s};
   }
 `
 
@@ -73,7 +75,7 @@ const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWar
         key={`${warrior.hash}_${i}`}
         onClick={() => loadWarrior(warrior.hash, i)}
         current={currentFileIndex === i}
-        active={!warrior.hasErrors}>
+        active={!warrior.hasErrors && warrior.active}>
         {i > 0 && <Octicon name={`x`} onClick={() => removeWarrior(i)} />}
         {warrior.icon &&
           <img
@@ -83,7 +85,7 @@ const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWar
         }
         <WarriorName>{warrior.metaData.name}</WarriorName>
         <Octicon
-          name={`heart`}
+          name={`primitive-dot`}
           onClick={() => toggleWarrior(i)}/>
       </WarriorWrapper>
     ))}

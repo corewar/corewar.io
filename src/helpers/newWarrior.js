@@ -5,9 +5,10 @@ const blankSource = ''
 const icon = getIdenticon(blankSource, 0)
 
 const newWarrior = {
+  active: true,
   source: blankSource,
   compiled: '',
-  hasErrors: false,
+  hasErrors: true,
   hash: '',
   icon: icon,
   metaData: {

@@ -52,7 +52,7 @@ export function* parseWarriorSaga({ source }) {
 
   const parseResult = yield call([corewar, corewar.parse], source)
 
-  const hasErrors = parseResult.messages.find(x => x.type === 0)
+  const hasErrors = parseResult.messages.find(x => x.type === 0) !== undefined
 
   const compiled = yield call([corewar, corewar.serialise], parseResult.tokens)
 
@@ -62,26 +62,22 @@ export function* parseWarriorSaga({ source }) {
 
   const icon = getIdenticon(compiled, currentFileIndex)
 
-  const currentWarrior = { ...parseResult, compiled, source, hash, icon, hasErrors }
+  const currentWarrior = { ...parseResult, compiled, source, hash, icon, hasErrors, active: warriors[currentFileIndex].active }
 
   yield put({ type: PARSE, currentWarrior })
 
+  const warriorList = yield call(replaceItem, currentFileIndex, warriors, currentWarrior)
+
+  yield put({ type: SET_WARRIORS, warriors: warriorList })
+
+  const data = yield call(getCoreOptionsFromState)
+
+  yield call(initialiseCore, data.options, warriorList.filter(x => !x.hasErrors && x.active))
+
   if(hasErrors){
-
     yield put({ type: SHOW_CONSOLE })
-
   } else {
-
     yield put({ type: HIDE_CONSOLE })
-
-    const warriorList = yield call(replaceItem, currentFileIndex, warriors, currentWarrior)
-
-    yield put({ type: SET_WARRIORS, warriors: warriorList })
-
-    const data = yield call(getCoreOptionsFromState)
-
-    yield call(initialiseCore, data.options, warriorList.filter(x => !x.hasErrors))
-
   }
 
 }
@@ -129,10 +125,16 @@ export function* toggleWarriorSaga({ i }) {
   const warrior = warriors[i]
 
   const removedList = yield call(removeItem, i, warriors)
-  // TODO: prevent toggle, or even option to toggle if there are errors?
+  // // TODO: prevent toggle, or even option to toggle if there are errors?
+  // const hasErrors = warrior.hasErrors
+  // const activeIntent = !warrior.active
   const warriorList = yield call(insertItem, i, removedList, { ...warrior, active: !warrior.active })
 
   yield put({ type: SET_WARRIORS, warriors: warriorList })
+
+  const data = yield call(getCoreOptionsFromState)
+
+  yield call(initialiseCore, data.options, warriorList.filter(x => !x.hasErrors && x.active))
 
 }
 
