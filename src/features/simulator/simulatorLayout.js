@@ -26,7 +26,8 @@ const SimulatorGrid = styled.section`
 
   display: grid;
   grid-template-rows: 1fr ${space.controls};
-  grid-template-columns: ${space.sidebar} 1fr;
+  grid-template-columns: 1fr;
+  ${media.tablet`grid-template-columns: ${space.sidebar} 1fr;`}
   background-color: ${colour.defaultbg};
 `
 

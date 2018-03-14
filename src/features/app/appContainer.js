@@ -50,11 +50,6 @@ const AppContainer = ({ parse, currentWarrior,
   <DesktopContainer>
     <Controls>
       <OcticonButton
-        enabled={hasNoErrors(currentWarrior)}
-        handleClick={addWarrior}
-        iconName={`plus`}
-        buttonText={`add`} />
-      <OcticonButton
         handleClick={toggleFileManager}
         iconName={`file-directory`}
         buttonText={`files`} />
@@ -98,9 +93,6 @@ const AppContainer = ({ parse, currentWarrior,
   </DesktopContainer>
 )
 
-const hasNoErrors = (currentWarrior) => (
-  currentWarrior.compiled && currentWarrior.messages.filter(x => x.type === 0).length === 0
-)
 
 const mapStateToProps = state => ({
   currentWarrior: state.parser.currentWarrior,
