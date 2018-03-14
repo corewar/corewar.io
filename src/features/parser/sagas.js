@@ -50,7 +50,6 @@ export function* parseWarriorSaga({ source }) {
 
   yield put({ type: PAUSE })
 
-  // parse the warrior
   const parseResult = yield call([corewar, corewar.parse], source)
 
   const hasErrors = parseResult.messages.find(x => x.type === 0)
@@ -65,7 +64,8 @@ export function* parseWarriorSaga({ source }) {
 
   const currentWarrior = { ...parseResult, compiled, source, hash, icon, hasErrors }
 
-  // check for errors / messages
+  yield put({ type: PARSE, currentWarrior })
+
   if(hasErrors){
     yield put({ type: SHOW_CONSOLE })
   } else {
@@ -80,7 +80,6 @@ export function* parseWarriorSaga({ source }) {
     yield call(initialiseCore, data.options, warriorList.filter(x => !x.hasErrors))
   }
 
-  yield put({ type: PARSE, currentWarrior })
 
 }
 

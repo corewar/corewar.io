@@ -5,11 +5,11 @@ import MobilePage from '../common/mobilePage'
 import CompiledOutput from './compiledOutput'
 import ControlsContainer from './controlsContainer'
 import FileManagerContainer from '../fileManager/fileManagerContainer'
-import WarriorPanel from '../common/warriorPanel'
+import WarriorManagerContainer from '../warriorManager/warriorManagerContainer'
 
 const OutputInterface = ({ currentWarrior }) => (
   <MobilePage mobile>
-    <WarriorPanel />
+    <WarriorManagerContainer />
     <CompiledOutput mobile>
       {currentWarrior.compiled}
     </CompiledOutput>
