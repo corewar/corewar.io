@@ -17,7 +17,7 @@ import {
 const WarriorWrapper = styled.div`
   ${props => props.current && `background-color: ${colour.lightbg};`}
   min-height: 40px;
-  height: 100px;
+  height: 120px;
   display: grid;
   grid-template-columns: 1fr;
   justify-items: center;
@@ -29,7 +29,14 @@ const WarriorWrapper = styled.div`
     cursor: pointer;
   }
 
-  .octicon-broadcast {
+  .octicon-x {
+    color: ${colour.grey};
+    text-align: right;
+    width: 100%;
+    height: ${space.m};
+  }
+
+  .octicon-heart {
     ${props => props.active ? `color: ${colour.blue};` : `color: ${colour.coral};`}
   }
 `
@@ -41,12 +48,18 @@ const WarriorName = styled.span`
 
 const NewButton = styled.div`
   width: 100%;
+  height: ${space.controls};
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
+  text-align: center;
   color: ${colour.white};
+
+  :hover {
+    cursor: pointer;
+  }
 `
 
 const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWarrior,
@@ -61,17 +74,17 @@ const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWar
         onClick={() => loadWarrior(warrior.hash, i)}
         current={currentFileIndex === i}
         active={!warrior.hasErrors}>
-        <WarriorName>{warrior.metaData.name}</WarriorName>
+        {i > 0 && <Octicon name={`x`} onClick={() => removeWarrior(i)} />}
         {warrior.icon &&
           <img
             src={`data:image/svg+xml;base64,${warrior.icon}`}
             alt={`${warrior.metaData.name} avatar`}
             size={20} />
         }
+        <WarriorName>{warrior.metaData.name}</WarriorName>
         <Octicon
-          name={`broadcast`}
+          name={`heart`}
           onClick={() => toggleWarrior(i)}/>
-        {i > 0 && <Octicon name={`x`} onClick={() => removeWarrior(i)} />}
       </WarriorWrapper>
     ))}
   </WarriorPanel>

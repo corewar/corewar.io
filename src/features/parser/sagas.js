@@ -67,8 +67,11 @@ export function* parseWarriorSaga({ source }) {
   yield put({ type: PARSE, currentWarrior })
 
   if(hasErrors){
+
     yield put({ type: SHOW_CONSOLE })
+
   } else {
+
     yield put({ type: HIDE_CONSOLE })
 
     const warriorList = yield call(replaceItem, currentFileIndex, warriors, currentWarrior)
@@ -78,8 +81,8 @@ export function* parseWarriorSaga({ source }) {
     const data = yield call(getCoreOptionsFromState)
 
     yield call(initialiseCore, data.options, warriorList.filter(x => !x.hasErrors))
-  }
 
+  }
 
 }
 
@@ -91,15 +94,11 @@ export function* addWarriorSaga() {
 
   const { warriors, currentWarrior } = yield select(getParserState)
 
-  console.log('add', warriors)
-
   const icon = getIdenticon(currentWarrior.compiled, warriors.length)
 
-  yield put({ type: SET_CURRENT_FILE_INDEX, fileIndex: warriors.length })
+  yield put({ type: SET_CURRENT_FILE_INDEX, currentFileIndex: warriors.length })
 
   const warriorList = yield call(insertItem, warriors.length, warriors, { ...currentWarrior, icon })
-
-  console.log('add', warriorList)
 
   yield put({ type: SET_WARRIORS, warriors: warriorList })
 
@@ -114,7 +113,7 @@ export function* loadWarriorSaga({ hash, i }) {
 
   const warrior = warriors.find(x => x.hash === hash)
 
-  yield put({ type: SET_CURRENT_FILE_INDEX, fileIndex: i })
+  yield put({ type: SET_CURRENT_FILE_INDEX, currentFileIndex: i })
 
   yield put({ type: LOAD_WARRIOR, warrior })
 
@@ -143,10 +142,16 @@ export function* removeWarriorSaga({ index }) {
 
   const data = yield call(getCoreOptionsFromState)
 
-  const { warriors } = yield select(getParserState)
+  const { warriors, currentFileIndex } = yield select(getParserState)
 
-  if(index === warriors.length) {
-    yield put({ type: SET_CURRENT_FILE_INDEX, fileIndex: index - 1 })
+  console.log('removalindex', index)
+  console.log('currentFileIndex', currentFileIndex)
+  console.log('warriorLength - pre', warriors.length)
+
+  if(index === warriors.length - 1) {
+    const newIndex = index - 1
+    console.log('doing it', newIndex)
+    yield put({ type: SET_CURRENT_FILE_INDEX, currentFileIndex: newIndex })
   }
 
   const warriorList = yield call(removeItem, index, warriors)
