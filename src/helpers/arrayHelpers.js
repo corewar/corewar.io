@@ -13,15 +13,8 @@ export const removeItem = (index, array) => {
 
 export const replaceItem = (index, array, item) => {
 
-    return array.map((el, i) => {
-      if(i !== index) {
-        return el;
-      }
-
-      return {
-        ...el,
-        ...item
-      }
-    })
+    const removedList = removeItem(index, array)
+    const addedList = insertItem(index, removedList, item)
+    return addedList
 
 }

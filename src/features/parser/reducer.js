@@ -11,11 +11,24 @@ import {
 
 import { defaultWarriors } from '../../helpers/defaultWarriors'
 
+const defaultFile = {
+  source: '',
+  compiled: '',
+  hasErrors: false,
+  hash: '',
+  icon: null,
+  metaData: {
+    name: 'new file',
+    author: 'anonymous'
+  },
+  tokens: []
+}
+
 // state
 const initialState = {
   currentFileIndex: 0,
-  currentWarrior: {},
-  warriors: [],
+  currentWarrior: defaultFile,
+  warriors: [defaultFile],
   warriorLibrary: defaultWarriors,
   standardId: 2, // TODO: what's the best standard to use as a default?
   displayConsole: false,

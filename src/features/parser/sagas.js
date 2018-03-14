@@ -1,6 +1,6 @@
 import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 
-import { insertItem, removeItem } from '../../helpers/arrayHelpers'
+import { insertItem, removeItem, replaceItem } from '../../helpers/arrayHelpers'
 import { createHash, getIdenticon } from '../common/identicon'
 import { toast } from '../notifications/sagas'
 import { corewar } from 'corewar'
@@ -46,6 +46,44 @@ export function* parseSaga({ source }) {
 
 }
 
+export function* parseWarriorSaga({ source }) {
+
+  yield put({ type: PAUSE })
+
+  // parse the warrior
+  const parseResult = yield call([corewar, corewar.parse], source)
+
+  const hasErrors = parseResult.messages.find(x => x.type === 0)
+
+  const compiled = yield call([corewar, corewar.serialise], parseResult.tokens)
+
+  const hash = createHash(compiled)
+
+  const { warriors, currentFileIndex } = yield select(getParserState)
+
+  const icon = getIdenticon(compiled, currentFileIndex)
+
+  const currentWarrior = { ...parseResult, compiled, source, hash, icon, hasErrors }
+
+  // check for errors / messages
+  if(hasErrors){
+    yield put({ type: SHOW_CONSOLE })
+  } else {
+    yield put({ type: HIDE_CONSOLE })
+
+    const warriorList = yield call(replaceItem, currentFileIndex, warriors, currentWarrior)
+
+    yield put({ type: SET_WARRIORS, warriors: warriorList })
+
+    const data = yield call(getCoreOptionsFromState)
+
+    yield call(initialiseCore, data.options, warriorList.filter(x => !x.hasErrors))
+  }
+
+  yield put({ type: PARSE, currentWarrior })
+
+}
+
 export function* addWarriorSaga() {
 
   yield put({ type: PAUSE })
@@ -54,11 +92,15 @@ export function* addWarriorSaga() {
 
   const { warriors, currentWarrior } = yield select(getParserState)
 
+  console.log('add', warriors)
+
   const icon = getIdenticon(currentWarrior.compiled, warriors.length)
 
   yield put({ type: SET_CURRENT_FILE_INDEX, fileIndex: warriors.length })
 
   const warriorList = yield call(insertItem, warriors.length, warriors, { ...currentWarrior, icon })
+
+  console.log('add', warriorList)
 
   yield put({ type: SET_WARRIORS, warriors: warriorList })
 
@@ -81,11 +123,15 @@ export function* loadWarriorSaga({ hash, i }) {
 
 export function* toggleWarriorSaga({ i }) {
 
+  // TODO: need to differentiate between warriors in and out of the core
+  // files & warriors?
+  // warriors { active: t/f }?
   const { warriors } = yield select(getParserState)
 
   const warrior = warriors[i]
 
   const removedList = yield call(removeItem, i, warriors)
+  // TODO: prevent toggle, or even option to toggle if there are errors?
   const warriorList = yield call(insertItem, i, removedList, { ...warrior, active: !warrior.active })
 
   yield put({ type: SET_WARRIORS, warriors: warriorList })
@@ -120,7 +166,7 @@ export function* removeWarriorSaga({ index }) {
 
 // watchers
 export const parserWatchers = [
-  takeLatest(PARSE_REQUESTED, parseSaga),
+  takeLatest(PARSE_REQUESTED, parseWarriorSaga),
   takeEvery(ADD_WARRIOR_REQUESTED, addWarriorSaga),
   takeEvery(REMOVE_WARRIOR_REQUESTED, removeWarriorSaga),
   takeEvery(LOAD_WARRIOR_REQUESTED, loadWarriorSaga),
