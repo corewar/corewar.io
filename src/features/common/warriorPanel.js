@@ -9,6 +9,10 @@ const WarriorPanel = styled.section`
   flex-direction: column;
   flex-wrap: wrap;
   align-items: flex-start;
+
+  .octicon {
+    padding-left: 4px;
+  }
 `
 
 export default WarriorPanel
