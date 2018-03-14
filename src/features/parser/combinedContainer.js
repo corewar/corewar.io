@@ -22,12 +22,12 @@ const ParserGrid = styled.section`
   height: calc(100vh - ${space.header} - ${space.controls});
 `
 
-const ParserInterface = ({ redcode, parse, currentWarrior, addWarrior, hideConsole, displayConsole }) => (
+const ParserInterface = ({ parse, currentWarrior, addWarrior, hideConsole, displayConsole }) => (
   <MobilePage tablet>
     <WarriorManagerContainer />
     <ParserGrid>
       <SourceCodeTextArea
-        value={redcode}
+        value={currentWarrior.source}
         handleChange={e => parse(e.target.value)} />
       <CompiledOutput tablet>
         {currentWarrior.compiled}
