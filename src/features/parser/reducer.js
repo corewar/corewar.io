@@ -38,7 +38,6 @@ export default (state = initialState, action) => {
       }
 
     case SET_CURRENT_FILE_INDEX:
-      console.log('file index', action.currentFileIndex)
       return {
         ...state,
         currentFileIndex: action.currentFileIndex

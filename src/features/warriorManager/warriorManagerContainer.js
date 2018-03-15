@@ -73,12 +73,12 @@ const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWar
     {warriors.map((warrior,i) => (
       <WarriorWrapper
         key={`${warrior.hash}_${i}`}
-        onClick={() => loadWarrior(warrior.hash, i)}
         current={currentFileIndex === i}
         active={!warrior.hasErrors && warrior.active}>
         {i > 0 && <Octicon name={`x`} onClick={() => removeWarrior(i)} />}
         {warrior.icon &&
           <img
+            onClick={() => loadWarrior(warrior.hash, i)}
             src={`data:image/svg+xml;base64,${warrior.icon}`}
             alt={`${warrior.metaData.name} avatar`}
             size={20} />

@@ -146,17 +146,12 @@ export function* removeWarriorSaga({ index }) {
 
   const { warriors, currentFileIndex } = yield select(getParserState)
 
-  console.log('removalindex', index)
-  console.log('currentFileIndex', currentFileIndex)
-  console.log('warriorLength - pre', warriors.length)
+  const warriorList = yield call(removeItem, index, warriors)
 
-  if(index === warriors.length - 1) {
+  if(index === warriorList.length) {
     const newIndex = index - 1
-    console.log('doing it', newIndex)
     yield put({ type: SET_CURRENT_FILE_INDEX, currentFileIndex: newIndex })
   }
-
-  const warriorList = yield call(removeItem, index, warriors)
 
   const newIcons = warriorList.map((warrior, i) =>
     ({ ...warrior, icon: getIdenticon(warrior.compiled, i) })
