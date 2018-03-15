@@ -117,24 +117,21 @@ export function* loadWarriorSaga({ hash, i }) {
 
 export function* toggleWarriorSaga({ i }) {
 
-  // TODO: need to differentiate between warriors in and out of the core
-  // files & warriors?
-  // warriors { active: t/f }?
   const { warriors } = yield select(getParserState)
 
   const warrior = warriors[i]
 
-  const removedList = yield call(removeItem, i, warriors)
-  // // TODO: prevent toggle, or even option to toggle if there are errors?
-  // const hasErrors = warrior.hasErrors
-  // const activeIntent = !warrior.active
-  const warriorList = yield call(insertItem, i, removedList, { ...warrior, active: !warrior.active })
+  const updatedList = yield call(replaceItem, i, warriors, { ...warrior, active: !warrior.active })
 
-  yield put({ type: SET_WARRIORS, warriors: warriorList })
+  yield put({ type: SET_WARRIORS, warriors: updatedList })
 
   const data = yield call(getCoreOptionsFromState)
 
-  yield call(initialiseCore, data.options, warriorList.filter(x => !x.hasErrors && x.active))
+  const activeList =  updatedList.filter(x => !x.hasErrors && x.active)
+
+  console.log(activeList)
+
+  yield call(initialiseCore, data.options, activeList)
 
 }
 

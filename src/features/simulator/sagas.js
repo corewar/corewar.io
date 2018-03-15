@@ -140,13 +140,9 @@ export function* initialiseCore(options, warriors) {
 
   yield call(PubSub.publishSync, 'RESET_CORE')
 
-  if(warriors.length > 0) {
+  yield call([corewar, corewar.initialiseSimulator], options, warriors, PubSub)
 
-    yield call([corewar, corewar.initialiseSimulator], options, warriors, PubSub)
-
-    yield put({ type: INIT })
-
-  }
+  yield put({ type: INIT })
 
 }
 
