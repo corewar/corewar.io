@@ -2,7 +2,7 @@ import { getIdenticon } from '../features/common/identicon'
 
 const blankSource = ''
 
-const icon = getIdenticon(blankSource, 0)
+const icon = getIdenticon(blankSource, 0, 20)
 
 const newWarrior = {
   active: true,

@@ -26,26 +26,6 @@ import { getParserState } from './reducer'
 import { getCoreOptionsFromState, initialiseCore } from '../simulator/sagas'
 
 // sagas
-export function* parseSaga({ source }) {
-
-  const parseResult = yield call([corewar, corewar.parse], source)
-
-  const compiled = yield call([corewar, corewar.serialise], parseResult.tokens)
-
-  const hash = createHash(compiled)
-
-  const currentWarrior = { ...parseResult, compiled, source, hash, active: true }
-
-  if(currentWarrior.messages.find(x => x.type === 0)){
-    yield put({ type: SHOW_CONSOLE })
-  } else {
-    yield put({ type: HIDE_CONSOLE })
-  }
-
-  yield put({ type: PARSE, currentWarrior })
-
-}
-
 export function* parseWarriorSaga({ source }) {
 
   yield put({ type: PAUSE })
@@ -60,7 +40,7 @@ export function* parseWarriorSaga({ source }) {
 
   const { warriors, currentFileIndex } = yield select(getParserState)
 
-  const icon = getIdenticon(compiled, currentFileIndex)
+  const icon = getIdenticon(compiled, currentFileIndex, 20)
 
   const currentWarrior = { ...parseResult, compiled, source, hash, icon, hasErrors, active: warriors[currentFileIndex].active }
 
@@ -90,7 +70,7 @@ export function* addWarriorSaga() {
 
   const { warriors, currentWarrior } = yield select(getParserState)
 
-  const icon = getIdenticon(currentWarrior.compiled, warriors.length)
+  const icon = getIdenticon(currentWarrior.compiled, warriors.length, 20)
 
   yield put({ type: SET_CURRENT_FILE_INDEX, currentFileIndex: warriors.length })
 
@@ -151,7 +131,7 @@ export function* removeWarriorSaga({ index }) {
   }
 
   const newIcons = warriorList.map((warrior, i) =>
-    ({ ...warrior, icon: getIdenticon(warrior.compiled, i) })
+    ({ ...warrior, icon: getIdenticon(warrior.compiled, i, 20) })
   )
 
   yield put({ type: SET_WARRIORS, warriors: newIcons })

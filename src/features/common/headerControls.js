@@ -9,7 +9,7 @@ const Controls = styled.div`
   text-align: center;
 
   display: grid;
-  grid-template-columns: repeat(10, 1fr)
+  grid-template-columns: 100px 100px 1fr 100px
 `
 
 export default Controls

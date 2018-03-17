@@ -10,6 +10,7 @@ import Instructions from '../simulator/instructions'
 import Console from '../parser/console'
 import FileManagerContainer from '../fileManager/fileManagerContainer'
 import OcticonButton from '../common/octiconButton'
+import WarriorManagerContainer from '../warriorManager/warriorManagerContainer'
 
 import { space } from '../common/theme'
 
@@ -58,6 +59,7 @@ const AppContainer = ({ parse, currentWarrior,
         iconName={`terminal`}
         buttonText={`console`}
         />
+      <WarriorManagerContainer />
       <OcticonButton
         handleClick={toggleSettings}
         iconName={`gear`}

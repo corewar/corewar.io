@@ -6,6 +6,7 @@ import Octicon from 'react-octicon'
 import WarriorPanel from '../common/warriorPanel'
 
 import { colour, font, space } from '../common/theme'
+import { media } from '../common/mediaQuery'
 
 import {
   removeWarrior,
@@ -15,15 +16,36 @@ import {
 } from '../parser/actions'
 
 const WarriorWrapper = styled.div`
-  ${props => props.current && `background-color: ${colour.lightbg};`}
-  min-height: 40px;
-  height: 120px;
+
+  ${props => props.current && media.tablet`background-color: ${colour.lightbg};`}
+  ${props => props.current && `border-bottom: 2px solid ${colour.coral};`}
+
+  height: 100%;
+  min-width: 120px;
+  width: auto;
   display: grid;
-  grid-template-columns: 1fr;
-  justify-items: center;
-  width: 100%;
-  padding: ${space.s} 0;
-  border-bottom: 1px solid ${colour.lightbg};
+  grid-template-rows: 1fr;
+  grid-template-columns: 30px 1fr 20px 20px;
+  grid-column-gap: ${space.s};
+  padding-left: ${space.s};
+  align-items: center;
+  border-left: 1px solid ${colour.defaultbg};
+  border-right: 1px solid ${colour.defaultbg};
+  position: relative;
+
+  ${media.tablet`
+    min-width: 100%;
+    min-height: 40px;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 30px 20px 20px;
+    grid-row-gap: ${space.s};
+    justify-items: center;
+    padding: ${space.l} 0 ${space.s} 0;
+    border-bottom: 1px solid ${colour.lightbg};
+  `}
+
 
   :hover {
     cursor: pointer;
@@ -34,6 +56,9 @@ const WarriorWrapper = styled.div`
     text-align: right;
     width: 100%;
     height: ${space.m};
+    position: absolute;
+    top: 2px;
+    right: 1px;
   }
 
   .octicon-primitive-dot {
@@ -49,8 +74,11 @@ const WarriorName = styled.span`
 `
 
 const NewButton = styled.div`
-  width: 100%;
-  height: ${space.controls};
+  width: 100px;
+  ${media.tablet`
+    height: ${space.controls};
+    width: 100%;
+  `}
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,7 +103,7 @@ const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWar
         key={`${warrior.hash}_${i}`}
         current={currentFileIndex === i}
         active={!warrior.hasErrors && warrior.active}>
-        {i > 0 && <Octicon name={`x`} onClick={() => removeWarrior(i)} />}
+
         {warrior.icon &&
           <img
             onClick={() => loadWarrior(warrior.hash, i)}
@@ -87,6 +115,7 @@ const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWar
         <Octicon
           name={`primitive-dot`}
           onClick={() => toggleWarrior(i)}/>
+        {<Octicon name={`x`} onClick={() => removeWarrior(i)} />}
       </WarriorWrapper>
     ))}
   </WarriorPanel>
