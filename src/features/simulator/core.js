@@ -133,6 +133,7 @@ class CanvasCore extends Component {
 
       this.sprites.push(sprites)
     })
+
   }
 
   buildSprite() {

@@ -18,7 +18,7 @@ import {
 
 const WarriorWrapper = styled.div`
 
-  ${props => props.current && media.tablet`background-color: ${colour.lightbg};`}
+  ${props => props.current && media.desktop`background-color: ${colour.lightbg};`}
   ${props => props.current && `border-bottom: 2px solid ${colour.blue};`}
 
   height: calc(100% - 2px);
@@ -32,7 +32,7 @@ const WarriorWrapper = styled.div`
   border-left: 1px solid ${colour.defaultbg};
   position: relative;
 
-  ${media.tablet`
+  ${media.desktop`
     min-width: 100%;
     min-height: 40px;
     height: 100px;
@@ -74,7 +74,7 @@ const WarriorName = styled.span`
   padding: ${space.m} ${space.s};
   word-break: break-word;
   text-align: center;
-  ${media.tablet`
+  ${media.desktop`
     padding: 0 ${space.xs} 0 ${space.xs};
   `}
 
@@ -87,7 +87,7 @@ const NewButton = styled.div`
   display: flex;
   width: 100px;
   border-left: 2px solid ${colour.defaultbg};
-  ${media.tablet`
+  ${media.desktop`
     border: none;
     height: ${space.controls};
     width: 100%;
@@ -109,7 +109,7 @@ const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWar
   toggleWarrior, removeWarrior, currentFileIndex }) => (
   <WarriorPanel>
     <Media
-      query={{ maxWidth: sizes.tablet }}
+      query={{ maxWidth: sizes.desktop }}
       render={() => <NewButton onClick={addWarrior}>
         <Octicon name={`plus`} />
       </NewButton>}

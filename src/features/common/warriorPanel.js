@@ -5,8 +5,13 @@ import { media } from '../common/mediaQuery'
 
 const WarriorPanel = styled.section`
 
-  ${media.tablet`
-    height: calc(100vh - ${space.controls} - ${space.controls} - ${space.s} - ${space.controls});
+
+
+  ${media.desktop`
+    height: calc(100vh - ${space.controls} - ${space.controls});
+  `}
+  ${media.phone`
+     height: calc(100vh - ${space.controls} - ${space.controls} - ${space.s} - ${space.controls});
   `}
 
   border-right: 1px solid ${colour.lightbg};
@@ -15,7 +20,7 @@ const WarriorPanel = styled.section`
   flex-direction: row;
   flex-wrap: wrap;
 
-  ${media.tablet`
+  ${media.desktop`
     flex-direction: column;
     align-items: flex-start;
   `}
