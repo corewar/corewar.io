@@ -295,10 +295,6 @@ class CanvasCore extends Component {
     return y * this.cellsWide + x
   }
 
-  getColour(warriorId) {
-    return colour.warrior[warriorId]
-  }
-
   renderCell(event) {
 
     const coordinate = this.addressToScreenCoordinate(event.address)
