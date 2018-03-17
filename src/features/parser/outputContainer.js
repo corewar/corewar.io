@@ -5,9 +5,11 @@ import MobilePage from '../common/mobilePage'
 import CompiledOutput from './compiledOutput'
 import ControlsContainer from './controlsContainer'
 import FileManagerContainer from '../fileManager/fileManagerContainer'
+import WarriorManagerContainer from '../warriorManager/warriorManagerContainer'
 
 const OutputInterface = ({ currentWarrior }) => (
   <MobilePage mobile>
+    <WarriorManagerContainer />
     <CompiledOutput mobile>
       {currentWarrior.compiled}
     </CompiledOutput>

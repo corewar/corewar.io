@@ -6,6 +6,7 @@ import ErrorBoundary from '../common/errorBoundary'
 import Warriors from './warriors'
 import ControlsContainer from './controlsContainer'
 import SettingsMenuContainer from '../settingsMenu/settingsMenuContainer'
+import WarriorManagerContainer from '../warriorManager/warriorManagerContainer'
 
 import { space, colour } from  '../common/theme'
 import { media } from  '../common/mediaQuery'
@@ -24,7 +25,9 @@ const SimulatorGrid = styled.section`
   ${media.phone`min-height: 400px;`}
 
   display: grid;
-  grid-template-rows: 75px 1fr ${space.controls};
+  grid-template-rows: 1fr ${space.controls};
+  grid-template-columns: 1fr;
+  ${media.tablet`grid-template-columns: ${space.sidebar} 1fr;`}
   background-color: ${colour.defaultbg};
 `
 
@@ -33,7 +36,7 @@ SimulatorGrid.displayName = `SimulatorGrid`
 const SimulatorLayout = ({ coreSize, getCoreInstructions, isRunning, isInitialised,
   init, warriors, maxTasks, removeWarrior, loadWarrior, republish, tablet, mobile }) => (
   <SimulatorGrid mobile={mobile} tablet={tablet}>
-    <Warriors warriors={warriors} maxTasks={maxTasks} removeWarrior={removeWarrior} loadWarrior={loadWarrior} />
+    {(mobile || tablet) && <WarriorManagerContainer /> }
     <ErrorBoundary>
       <Core
         init={init}

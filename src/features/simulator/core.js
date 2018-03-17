@@ -104,7 +104,7 @@ class CanvasCore extends Component {
 
     this.interactiveCanvas.addEventListener("click", e => this.canvasClick(e))
 
-    window.addEventListener('resize', throttle(() => this.redraw(), 200))
+    window.addEventListener('resize', throttle(() => this.init(), 200))
 
     window.requestAnimationFrame(() => this.renderMessages())
 
@@ -117,10 +117,6 @@ class CanvasCore extends Component {
       this.hasLoaded = true
       this.init()
     }
-  }
-
-  redraw() {
-    this.init()
   }
 
   buildSprites() {
@@ -137,6 +133,7 @@ class CanvasCore extends Component {
 
       this.sprites.push(sprites)
     })
+
   }
 
   buildSprite() {
@@ -297,10 +294,6 @@ class CanvasCore extends Component {
     const y = Math.floor(point.y / this.cellSize)
 
     return y * this.cellsWide + x
-  }
-
-  getColour(warriorId) {
-    return colour.warrior[warriorId]
   }
 
   renderCell(event) {

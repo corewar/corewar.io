@@ -14,11 +14,6 @@ import {
 const MobileControls = ({ addWarrior, currentWarrior, toggleConsole, toggleFileManager }) => (
   <Controls>
     <OcticonButton
-      enabled={hasNoErrors(currentWarrior)}
-      handleClick={addWarrior}
-      iconName={`plus`}
-      buttonText={`add`} />
-    <OcticonButton
       handleClick={toggleFileManager}
       iconName={`file-directory`}
       buttonText={`files`} />
@@ -28,10 +23,6 @@ const MobileControls = ({ addWarrior, currentWarrior, toggleConsole, toggleFileM
       iconName={`terminal`}
       buttonText={`console`} />
   </Controls>
-)
-
-const hasNoErrors = (currentWarrior) => (
-  currentWarrior.compiled && currentWarrior.messages.filter(x => x.type === 0).length === 0
 )
 
 MobileControls.PropTypes = {

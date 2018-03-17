@@ -10,6 +10,7 @@ import Instructions from '../simulator/instructions'
 import Console from '../parser/console'
 import FileManagerContainer from '../fileManager/fileManagerContainer'
 import OcticonButton from '../common/octiconButton'
+import WarriorManagerContainer from '../warriorManager/warriorManagerContainer'
 
 import { space } from '../common/theme'
 
@@ -50,11 +51,6 @@ const AppContainer = ({ parse, currentWarrior,
   <DesktopContainer>
     <Controls>
       <OcticonButton
-        enabled={hasNoErrors(currentWarrior)}
-        handleClick={addWarrior}
-        iconName={`plus`}
-        buttonText={`add`} />
-      <OcticonButton
         handleClick={toggleFileManager}
         iconName={`file-directory`}
         buttonText={`files`} />
@@ -63,6 +59,12 @@ const AppContainer = ({ parse, currentWarrior,
         iconName={`terminal`}
         buttonText={`console`}
         />
+      <OcticonButton
+        handleClick={addWarrior}
+        iconName={`plus`}
+        buttonText={`new file`}
+        />
+      <WarriorManagerContainer />
       <OcticonButton
         handleClick={toggleSettings}
         iconName={`gear`}
@@ -98,9 +100,6 @@ const AppContainer = ({ parse, currentWarrior,
   </DesktopContainer>
 )
 
-const hasNoErrors = (currentWarrior) => (
-  currentWarrior.compiled && currentWarrior.messages.filter(x => x.type === 0).length === 0
-)
 
 const mapStateToProps = state => ({
   currentWarrior: state.parser.currentWarrior,

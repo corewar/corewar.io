@@ -29,7 +29,8 @@ export const space = {
   xl: '64px',
   xxl: '128px',
   header: '48px',
-  controls: '48px'
+  controls: '48px',
+  sidebar: '64px'
 }
 
 export const icon = {

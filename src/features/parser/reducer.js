@@ -5,15 +5,18 @@ import {
   SHOW_CONSOLE,
   TOGGLE_FILE_MANAGER,
   SET_WARRIORS,
-  LOAD_WARRIOR
+  LOAD_WARRIOR,
+  SET_CURRENT_FILE_INDEX
 } from './actions'
 
 import { defaultWarriors } from '../../helpers/defaultWarriors'
+import newWarrior from '../../helpers/newWarrior'
 
 // state
 const initialState = {
-  currentWarrior: {},
-  warriors: [],
+  currentFileIndex: 0,
+  currentWarrior: newWarrior,
+  warriors: [newWarrior],
   warriorLibrary: defaultWarriors,
   standardId: 2, // TODO: what's the best standard to use as a default?
   displayConsole: false,
@@ -32,6 +35,12 @@ export default (state = initialState, action) => {
         ...state,
         displayFileManager: false,
         currentWarrior: action.currentWarrior
+      }
+
+    case SET_CURRENT_FILE_INDEX:
+      return {
+        ...state,
+        currentFileIndex: action.currentFileIndex
       }
 
     case SET_WARRIORS:
@@ -53,7 +62,6 @@ export default (state = initialState, action) => {
       }
 
     case HIDE_CONSOLE:
-      console.log('hide')
       return {
         ...state,
         displayConsole: false
