@@ -59,6 +59,11 @@ const AppContainer = ({ parse, currentWarrior,
         iconName={`terminal`}
         buttonText={`console`}
         />
+      <OcticonButton
+        handleClick={addWarrior}
+        iconName={`plus`}
+        buttonText={`new file`}
+        />
       <WarriorManagerContainer />
       <OcticonButton
         handleClick={toggleSettings}

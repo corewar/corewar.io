@@ -2,11 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import Octicon from 'react-octicon'
+import Media from 'react-media'
 
 import WarriorPanel from '../common/warriorPanel'
 
 import { colour, font, space } from '../common/theme'
-import { media } from '../common/mediaQuery'
+import { media, sizes } from '../common/mediaQuery'
 
 import {
   removeWarrior,
@@ -18,19 +19,17 @@ import {
 const WarriorWrapper = styled.div`
 
   ${props => props.current && media.tablet`background-color: ${colour.lightbg};`}
-  ${props => props.current && `border-bottom: 2px solid ${colour.coral};`}
+  ${props => props.current && `border-bottom: 2px solid ${colour.blue};`}
 
-  height: 100%;
+  height: calc(100% - 2px);
   min-width: 120px;
   width: auto;
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 30px 1fr 20px 20px;
-  grid-column-gap: ${space.s};
+  grid-template-columns: 30px 1fr 30px 30px;
   padding-left: ${space.s};
   align-items: center;
   border-left: 1px solid ${colour.defaultbg};
-  border-right: 1px solid ${colour.defaultbg};
   position: relative;
 
   ${media.tablet`
@@ -39,23 +38,20 @@ const WarriorWrapper = styled.div`
     height: 100px;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 30px 20px 20px;
     grid-row-gap: ${space.s};
     justify-items: center;
-    padding: ${space.l} 0 ${space.s} 0;
+    padding: ${space.m} 0 ${space.s} 0;
     border-bottom: 1px solid ${colour.lightbg};
   `}
 
-
-  :hover {
+  img:hover {
     cursor: pointer;
   }
 
   .octicon-x {
     color: ${colour.grey};
     text-align: right;
-    width: 100%;
-    height: ${space.m};
+    height: ${space.s};
     position: absolute;
     top: 2px;
     right: 1px;
@@ -65,21 +61,38 @@ const WarriorWrapper = styled.div`
     ${props => props.active ? `color: ${colour.success};` : `color: ${colour.error};`}
     font-size: ${font.large};
     padding-left: ${space.s};
+
+    :hover {
+      cursor: pointer;
+    }
   }
 `
 
 const WarriorName = styled.span`
   color: ${colour.white};
   font-size: ${font.small};
+  padding: ${space.m} ${space.s};
+  word-break: break-word;
+  text-align: center;
+  ${media.tablet`
+    padding: 0 ${space.xs} 0 ${space.xs};
+  `}
+
+  :hover {
+    cursor: pointer;
+  }
 `
 
 const NewButton = styled.div`
+  display: flex;
   width: 100px;
+  border-left: 2px solid ${colour.defaultbg};
   ${media.tablet`
+    border: none;
     height: ${space.controls};
     width: 100%;
   `}
-  display: flex;
+
   align-items: center;
   justify-content: center;
   flex-direction: row;
@@ -95,9 +108,12 @@ const NewButton = styled.div`
 const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWarrior,
   toggleWarrior, removeWarrior, currentFileIndex }) => (
   <WarriorPanel>
-    <NewButton onClick={addWarrior}>
-      <Octicon name={`plus`} />
-    </NewButton>
+    <Media
+      query={{ maxWidth: sizes.tablet }}
+      render={() => <NewButton onClick={addWarrior}>
+        <Octicon name={`plus`} />
+      </NewButton>}
+    />
     {warriors.map((warrior,i) => (
       <WarriorWrapper
         key={`${warrior.hash}_${i}`}
@@ -111,7 +127,10 @@ const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWar
             alt={`${warrior.metaData.name} avatar`}
             size={20} />
         }
-        <WarriorName>{warrior.metaData.name}</WarriorName>
+        <WarriorName
+          onClick={() => loadWarrior(warrior.hash, i)}>
+          {warrior.metaData.name}
+        </WarriorName>
         <Octicon
           name={`primitive-dot`}
           onClick={() => toggleWarrior(i)}/>
