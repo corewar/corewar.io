@@ -104,7 +104,7 @@ class CanvasCore extends Component {
 
     this.interactiveCanvas.addEventListener("click", e => this.canvasClick(e))
 
-    window.addEventListener('resize', throttle(() => this.redraw(), 200))
+    window.addEventListener('resize', throttle(() => this.init(), 200))
 
     window.requestAnimationFrame(() => this.renderMessages())
 
@@ -117,10 +117,6 @@ class CanvasCore extends Component {
       this.hasLoaded = true
       this.init()
     }
-  }
-
-  redraw() {
-    this.init()
   }
 
   buildSprites() {
