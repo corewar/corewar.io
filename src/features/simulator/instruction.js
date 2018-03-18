@@ -12,7 +12,7 @@ const Location = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(2, 1fr);
-  color: ${colour.white};
+  ${props => props.warriorId !== undefined ? `color: ${colour.warrior[props.warriorId]};` : `color: ${colour.white};`}
   font-family: ${font.code};
   font-size: ${font.small};
   padding: ${space.s};
@@ -22,7 +22,7 @@ const Location = styled.div`
   }
 `
 
-const Instruction = styled.div`
+const InstructionText = styled.div`
   grid-column: 1 / 3;
 `
 
@@ -34,11 +34,11 @@ const BOp = styled.span`
   text-align: right;
 `
 
-const CoreLocation = ({ instruction, warriorId }) => (
-  <Location>
-    <Instruction>
+const Instruction = ({ instruction, warriorId }) => (
+  <Location warriorId={warriorId}>
+    <InstructionText>
       {`${serialiseOpcode(instruction)}.${serialiseModifier(instruction)}`}
-    </Instruction>
+    </InstructionText>
     <AOp>
       {`${serialiseOperand(instruction.aOperand)}`}
     </AOp>
@@ -140,4 +140,4 @@ const serialiseAddress = (address) => (
   address.toString()
 )
 
-export default CoreLocation
+export default Instruction
