@@ -76,7 +76,7 @@ class RoundProgress extends Component{
     return (<RoundStatusWrapper>
       <span>Round status</span>
       <ProgressBar runProgress={runProgress} />
-      <span>Task counts</span>
+      <span>Tasks</span>
       {warriors && warriors.map((warrior, i) => {
         const taskCount = this.state.tasks[i]
         return <Fragment key={`warrior_${i}`}>
