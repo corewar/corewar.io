@@ -12,6 +12,7 @@ export const colour = {
   'warning': '#F2C94C',
   'info': '#56CCF2',
   'success': '#6FCF97',
+  'notification': 'rgba(86, 204, 242, 0.7)',
   warrior: [
     '#56CCF2',
     '#EB5757',
