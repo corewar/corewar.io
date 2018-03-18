@@ -33,11 +33,13 @@
     "react-scripts": "1.0.17",
     "react-scroll-to-component": "^1.0.2",
     "react-test-renderer": "^16.2.0",
+    "react-transition-group": "^2.2.1",
     "redux": "^3.7.2",
     "redux-saga": "^0.16.0",
     "sinon": "^4.4.6",
     "styled-components": "^3.2.3",
     "styled-property": "^1.0.2",
+    "styled-transition-group": "^1.0.0",
     "tape": "^4.9.0",
     "typeface-anonymous-pro": "0.0.44",
     "typeface-lato": "0.0.44"
