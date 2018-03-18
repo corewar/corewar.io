@@ -11,14 +11,14 @@ const InstructionWrapper = styled.section`
   display: grid;
   border-left: 1px solid ${colour.lightbg};
   border-right: 1px solid ${colour.lightbg};
+`
 
-  span {
-    color: ${colour.white};
-    text-align: center;
-    padding: ${space.m};
-    line-height: 1.2em;
-    font-size: ${font.small};
-  }
+const DefaultText = styled.span`
+  color: ${colour.white};
+  text-align: center;
+  padding: ${space.m};
+  line-height: 1.2em;
+  font-size: ${font.small};
 `
 
 const CoreVisuliser = ({ instructions, runProgress }) => (
@@ -29,7 +29,7 @@ const CoreVisuliser = ({ instructions, runProgress }) => (
         key={info.instruction.address}
         instruction={info.instruction}
         warriorId={info.access.warriorId}/>
-    ) : <span>Click on a core address</span>}
+    ) : <DefaultText>Click on a core address</DefaultText>}
   </InstructionWrapper>
 )
 
