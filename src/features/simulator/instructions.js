@@ -21,9 +21,12 @@ const DefaultText = styled.span`
   font-size: ${font.small};
 `
 
-const CoreVisuliser = ({ instructions, runProgress }) => (
+const CoreVisuliser = ({ instructions, runProgress, warriors, maxTasks }) => (
   <InstructionWrapper>
-    <RoundProgress runProgress={runProgress} />
+    <RoundProgress
+      warriors={warriors}
+      maxTasks={maxTasks}
+      runProgress={runProgress} />
     {instructions ? instructions.map(info =>
       <Instruction
         key={info.instruction.address}
@@ -35,7 +38,9 @@ const CoreVisuliser = ({ instructions, runProgress }) => (
 
 const mapStateToProps = state => ({
   instructions: state.simulator.coreInfo,
-  runProgress: state.simulator.runProgress
+  runProgress: state.simulator.runProgress,
+  maxTasks: state.simulator.maxTasks,
+  warriors: state.parser.warriors
 })
 
 export default connect(

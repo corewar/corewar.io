@@ -14,6 +14,7 @@ const Location = styled.div`
   grid-template-rows: repeat(2, 1fr);
   color: ${colour.white};
   font-family: ${font.code};
+  font-size: ${font.small};
   padding: ${space.s};
 
   :last-child {
