@@ -18,7 +18,7 @@ export const getIdenticon = (compiled, i, size = 40) => {
 
   const options = {
     size: size,
-    foreground: hexToRgbA(colour.warrior[i]),
+    foreground: hexToRgbA(colour.warrior[i] ? colour.warrior[i] : colour.white),
     background: [0,0,0,0],
     margin: 0,
     format: 'svg'

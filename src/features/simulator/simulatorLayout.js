@@ -3,7 +3,6 @@ import styled from 'styled-components'
 
 import Core from './core'
 import ErrorBoundary from '../common/errorBoundary'
-import Warriors from './warriors'
 import ControlsContainer from './controlsContainer'
 import SettingsMenuContainer from '../settingsMenu/settingsMenuContainer'
 import WarriorManagerContainer from '../warriorManager/warriorManagerContainer'
