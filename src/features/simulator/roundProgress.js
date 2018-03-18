@@ -79,8 +79,8 @@ class RoundProgress extends Component{
       <span>Task counts</span>
       {warriors && warriors.map((warrior, i) => {
         const taskCount = this.state.tasks[i]
-        return <Fragment>
-          <TaskCountDisplay>{taskCount ? taskCount : 0 }</TaskCountDisplay>
+        return <Fragment key={`warrior_${i}`}>
+          <TaskCountDisplay>{taskCount}</TaskCountDisplay>
           <TaskBar tasks={taskCount} maxTasks={maxTasks} warriorIndex={i}></TaskBar>
         </Fragment>
       })}
