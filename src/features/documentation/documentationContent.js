@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import { colour, space, font } from '../common/theme'
-import { media } from '../common/mediaQuery'
 
 const DocumentationContent = styled.section`
   background-color: ${colour.defaultbg};

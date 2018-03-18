@@ -16,7 +16,6 @@ import {
   LOAD_WARRIOR_REQUESTED,
   LOAD_WARRIOR,
   TOGGLE_WARRIOR_REQUESTED,
-  TOGGLE_WARRIOR,
   SET_CURRENT_FILE_INDEX
 } from './actions'
 
@@ -121,7 +120,7 @@ export function* removeWarriorSaga({ index }) {
 
   const data = yield call(getCoreOptionsFromState)
 
-  const { warriors, currentFileIndex } = yield select(getParserState)
+  const { warriors } = yield select(getParserState)
 
   const warriorList = yield call(removeItem, index, warriors)
 
