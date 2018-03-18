@@ -5,8 +5,6 @@ import { media } from '../common/mediaQuery'
 
 const WarriorPanel = styled.section`
 
-
-
   ${media.desktop`
     height: calc(100vh - ${space.controls} - ${space.controls});
   `}
@@ -19,6 +17,9 @@ const WarriorPanel = styled.section`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+
+  overflow-x: hidden;
+  overflow-y: hidden;
 
   ${media.desktop`
     flex-direction: column;
