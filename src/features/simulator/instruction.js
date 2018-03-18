@@ -13,6 +13,7 @@ const Location = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(2, 1fr);
   ${props => props.warriorId !== undefined ? `color: ${colour.warrior[props.warriorId]};` : `color: ${colour.white};`}
+  ${props => props.isFocussed && `border: 1px solid ${colour.white};`}
   font-family: ${font.code};
   font-size: ${font.small};
   padding: ${space.s};
@@ -34,8 +35,8 @@ const BOp = styled.span`
   text-align: right;
 `
 
-const Instruction = ({ instruction, warriorId }) => (
-  <Location warriorId={warriorId}>
+const Instruction = ({ instruction, warriorId, isFocussed }) => (
+  <Location warriorId={warriorId} isFocussed={isFocussed}>
     <InstructionText>
       {`${serialiseOpcode(instruction)}.${serialiseModifier(instruction)}`}
     </InstructionText>

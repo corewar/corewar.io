@@ -21,18 +21,19 @@ const DefaultText = styled.span`
   font-size: ${font.small};
 `
 
-const CoreVisuliser = ({ instructions, runProgress, warriors, maxTasks }) => (
+const CoreVisuliser = ({ instructions, runProgress, warriors, maxTasks, focus }) => (
   <InstructionWrapper>
     <RoundProgress
       warriors={warriors}
       maxTasks={maxTasks}
       runProgress={runProgress} />
-    {instructions ? instructions.map(info =>
-      <Instruction
-        key={info.instruction.address}
-        instruction={info.instruction}
-        warriorId={info.access.warriorId}/>
-    ) : <DefaultText>Click on a core address</DefaultText>}
+      {instructions ? instructions.map(info =>
+        <Instruction
+          key={info.instruction.address}
+          isFocussed={focus === info.instruction.address}
+          instruction={info.instruction}
+          warriorId={info.access.warriorId}/>)
+          : <DefaultText>Click on a core address</DefaultText>}
   </InstructionWrapper>
 )
 
@@ -40,6 +41,7 @@ const mapStateToProps = state => ({
   instructions: state.simulator.coreInfo,
   runProgress: state.simulator.runProgress,
   maxTasks: state.simulator.maxTasks,
+  focus: state.simulator.focus,
   warriors: state.parser.warriors
 })
 
