@@ -13,5 +13,5 @@ export interface IWarrior {
 
     startAddress: number;
 
-    data: any;
+    data?: any;
 } 

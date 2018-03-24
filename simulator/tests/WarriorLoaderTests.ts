@@ -406,5 +406,26 @@ describe("WarriorLoader", () => {
                 taskCount: 1
             }
         });
-    })
+    });
+
+    it("clones and stores the IParseResult data against the new Warrior instance", () => {
+
+        const expected = {
+            foo: 'foo',
+            bar: x => {
+                return x;
+            }
+        };
+
+        const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const core = buildCore(0);
+
+        tokens.data = expected;
+
+        const loader = new WarriorLoader(core, this.publisher);
+        
+        const actual = loader.load(0, tokens, 0);
+
+        expect(actual.data).to.be.deep.equal(expected);
+    });
 });
