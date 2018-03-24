@@ -15,6 +15,8 @@ import { Warrior } from "./Warrior";
 import { IPublisher } from "./interface/IPublisher";
 import { MessageType } from "./interface/IMessage";
 
+import * as clone from "clone";
+
 export class WarriorLoader implements IWarriorLoader {
 
     private address: number;
@@ -41,6 +43,7 @@ export class WarriorLoader implements IWarriorLoader {
         this.warrior.name = result.metaData.name;
         this.warrior.author = result.metaData.author;
         this.warrior.strategy = result.metaData.strategy;
+        this.warrior.data = clone(result.data);
         
         this.loadProcess(address);
 
