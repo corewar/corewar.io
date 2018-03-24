@@ -225,12 +225,17 @@ export class WarriorLoader implements IWarriorLoader {
         this.warrior.startAddress = startAddress;
         this.warrior.taskIndex = 0;
 
+        const payload =  {
+            warriorId: this.warrior.id,
+            taskCount: 1
+        };
+        if (this.warrior.data) {
+            payload["warriorData"] = this.warrior.data;
+        }
+
         this.publisher.queue({
             type: MessageType.TaskCount,
-            payload: {
-                warriorId: this.warrior.id,
-                taskCount: 1
-            }
+            payload
         });
     }
 }

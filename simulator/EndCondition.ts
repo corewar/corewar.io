@@ -13,7 +13,7 @@ export class EndCondition implements IEndCondition {
         this.publisher = publisher;
     }
 
-    private publishRoundEnd(outcome: string, winnerId: number = null) {
+    private publishRoundEnd(outcome: string, winner: IWarrior = null) {
 
         this.publisher.queue({
             type: MessageType.RunProgress,
@@ -22,12 +22,17 @@ export class EndCondition implements IEndCondition {
             }
         });
 
+        const payload =  {
+            winnerId: winner && winner.id,
+            outcome
+        };
+        if (winner && winner.data) {
+            payload["winnerData"] = winner.data;
+        }
+
         this.publisher.queue({
             type: MessageType.RoundEnd,
-            payload: {
-                winnerId,
-                outcome
-            }
+            payload
         });
     }
 
@@ -61,7 +66,7 @@ export class EndCondition implements IEndCondition {
                 return true;
             }
         } else if (liveWarriors.length === 1) {
-            this.publishRoundEnd('WIN', liveWarriors[0].id);
+            this.publishRoundEnd('WIN', liveWarriors[0]);
             return true;
         }
 
