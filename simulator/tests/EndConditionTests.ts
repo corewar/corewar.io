@@ -192,6 +192,34 @@ describe("EndCondition", () => {
         });
     });
 
+    it("includes warrior data in round end message if a warrior wins", () => {
+
+        const state = buildState();
+
+        const expected = {
+            foo: "foo",
+            bar: x => x + 1
+        };
+
+        state.warriors[0].id = 5;
+        state.warriors[1].id = 7;
+        state.warriors[1].data = expected;
+        state.warriors[0].tasks = [];
+
+        const endCondition = new EndCondition(publisher);
+
+        endCondition.check(state);
+
+        expect(publisher.queue).to.have.been.calledWith({
+            type: MessageType.RoundEnd,
+            payload: {
+                winnerId: 7,
+                winnerData: expected,
+                outcome: 'WIN'
+            }
+        });
+    });
+
     it("publishes round end message if single warrior round ends", () => {
 
         const state = buildState();
