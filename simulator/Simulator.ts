@@ -68,6 +68,14 @@ export class Simulator implements ISimulator {
         });
     }
 
+    private publishNextExecution() {
+        
+        this.publisher.queue({
+            type: MessageType.NextExecution,
+            payload: this.fetcher.getNextExecution(this.state)
+        });
+    }
+
     public initialise(options: IOptions, warriors: IParseResult[]) {
 
         this.publisher.clear();
@@ -85,6 +93,8 @@ export class Simulator implements ISimulator {
         this.state.warriors = this.loader.load(warriors, defaultedOptions);
 
         this.publishInitialise(this.state);
+
+        this.publishNextExecution();
 
         this.publisher.publish();
     }
@@ -128,10 +138,7 @@ export class Simulator implements ISimulator {
             }
         }
 
-        this.publisher.queue({
-            type: MessageType.NextExecution,
-            payload: this.fetcher.getNextExecution(this.state)
-        });
+        this.publishNextExecution();
 
         return false;
     }
