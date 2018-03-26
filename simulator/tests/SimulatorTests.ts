@@ -355,6 +355,22 @@ describe("Simulator", () => {
         });
     });
 
+    it("should publish next execution message when initialised", () => {
+
+        const options = clone(Defaults);
+
+        const expected = {};
+
+        (<sinon.stub>fetcher.getNextExecution).returns(expected);
+
+        simulator.initialise(options, []);
+
+        expect(publisher.queue).to.have.been.calledWith({
+            type: MessageType.NextExecution,
+            payload: expected
+        });
+    });
+
     it("should repeatedly call step until end condition met when run called", () => {
 
         const preCheck = 1;
