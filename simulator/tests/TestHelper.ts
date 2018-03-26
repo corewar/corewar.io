@@ -73,9 +73,10 @@ export default class TestHelper {
         ];
     }
 
-    public static buildWarrior(id: number = 0): IWarrior {
+    public static buildWarrior(id: number = 0, data: any = null): IWarrior {
         return {
             id: id,
+            data: data,
             author: "",
             name: "",
             startAddress: 0,

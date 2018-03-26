@@ -31,6 +31,8 @@ Parse a redcode document and return an IParseResult which consists of the tokeni
 ### initialiseSimulator(options: IOptions, parseResults: IParseResult[], messageProvider: IPublishProvider)
 
 Setup the simulator for a specific standard and parseResult (parsed redcode).
+IParseResults are produced as output from the Parser module.
+Additional, data can be associated with a warrior when it is loaded into core by adding a data property to the parseResults given to the initialise function.
 Allows a pubsub provider to be specified to receive Events (see below).
 
 ### step(steps?: number): boolean
@@ -76,6 +78,7 @@ Published when a warrior reads to, writes from or executes within the core
 ```
 [{
   warriorId: number,      // Each warrior has a unique id
+  warriorData?: any,      // Any data supplied with this warrior's initial parse result
   accessType: AccessType, // AccessType can be 0=read, 1=write or 2=execute
   address: number         // Absolute address within the core
 }]
@@ -98,7 +101,8 @@ Published at the end of the round to indicate the outcome
 ```
 {
   winnerId: number,  // The unique id of the winning warrior or null
-  outcome: string     // Can be 'WIN', 'DRAW' or 'NONE'. 'NONE' indicates a single warrior battle
+  winnerData?: any,  // Any data supplied with this warrior's initial parse result
+  outcome: string    // Can be 'WIN', 'DRAW' or 'NONE'. 'NONE' indicates a single warrior battle
 }
 ```
 
@@ -109,6 +113,7 @@ Published whenever a warrior creates or loses a task.
 ```
 [{
   warriorId: number,  // The unique id of the warrior
+  warriorData?: any,  // Any data supplied with this warrior's initial parse result
   taskCount: number   // The warrior's current task count
 }]
 ```
@@ -120,6 +125,7 @@ Published once per call to step and indicates the next address which will be exe
 ```
 {
   warriorId: number,  // The unique id of the next warrior
+  warriorData?: any,  // Any data supplied with this warrior's initial parse result
   address: number     // The address in core at which the next warrior will execute
 }
 ```

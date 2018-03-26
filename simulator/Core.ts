@@ -48,6 +48,9 @@ export class Core implements ICore {
             accessType: accessType,
             address: address
         };
+        if (task && task.warrior.data) {
+            accessEventArgs["warriorData"] = task.warrior.data;
+        }
 
         this.locations[address].access = accessEventArgs;
 

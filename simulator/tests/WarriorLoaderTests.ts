@@ -406,5 +406,51 @@ describe("WarriorLoader", () => {
                 taskCount: 1
             }
         });
-    })
+    });
+
+    it("includes warrior data when publishing initial task count of 1", () => {
+
+        const expectedData = {
+            foo: "foo",
+            array: [ 1, 2, 3 ]
+        };
+        const expectedId = 5;
+        const core = buildCore(0);
+        const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const loader = new WarriorLoader(core, this.publisher);
+
+        tokens.data = expectedData;
+
+        loader.load(0, tokens, expectedId);
+
+        expect(this.publisher.queue).to.have.been.calledWith({
+            type: MessageType.TaskCount,
+            payload: {
+                warriorId: expectedId,
+                warriorData: expectedData,
+                taskCount: 1
+            }
+        });
+    });
+
+    it("clones and stores the IParseResult data against the new Warrior instance", () => {
+
+        const expected = {
+            foo: 'foo',
+            bar: x => {
+                return x;
+            }
+        };
+
+        const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const core = buildCore(0);
+
+        tokens.data = expected;
+
+        const loader = new WarriorLoader(core, this.publisher);
+        
+        const actual = loader.load(0, tokens, 0);
+
+        expect(actual.data).to.be.deep.equal(expected);
+    });
 });

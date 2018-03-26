@@ -5,6 +5,7 @@ import { IOptions } from "./interface/IOptions";
 import { MessageType } from "./interface/IMessage";
 import { IPublisher } from "./interface/IPublisher";
 import { IOperand } from "./interface/IOperand";
+import { IWarrior } from "./interface/IWarrior";
 
 export class Executive implements IExecutive {
 
@@ -42,14 +43,19 @@ export class Executive implements IExecutive {
         this.maxTasks = options.maxTasks;
     }
 
-    private publishTaskCount(warriorId: number, taskCount: number) {
+    private publishTaskCount(warrior: IWarrior, taskCount: number) {
+
+        const payload = {
+            warriorId: warrior.id,
+            taskCount
+        };
+        if (warrior.data) {
+            payload["warriorData"] = warrior.data;
+        }
 
         this.publisher.queue({
             type: MessageType.TaskCount,
-            payload: {
-                warriorId,
-                taskCount
-            }
+            payload
         });
     }
 
@@ -61,7 +67,7 @@ export class Executive implements IExecutive {
         // we just chomped off the last task
         context.warrior.taskIndex = ti % context.warrior.tasks.length;
 
-        this.publishTaskCount(context.warrior.id, context.warrior.tasks.length);
+        this.publishTaskCount(context.warrior, context.warrior.tasks.length);
     }
 
     private mov(context: IExecutionContext) {
@@ -290,7 +296,7 @@ export class Executive implements IExecutive {
             });
             context.warrior.taskIndex = (context.warrior.taskIndex + 1) % context.warrior.tasks.length;
 
-            this.publishTaskCount(context.warrior.id, context.warrior.tasks.length);
+            this.publishTaskCount(context.warrior, context.warrior.tasks.length);
         }
     }
 
