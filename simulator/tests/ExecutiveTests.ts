@@ -42,6 +42,7 @@ describe("Executive", () => {
                 type: MessageType.TaskCount,
                 payload: {
                     warriorId: context.warrior.id,
+                    warriorData: { data: "true" },
                     taskCount: expectation.taskCount
                 }
             });
@@ -327,6 +328,7 @@ describe("Executive", () => {
                 type: MessageType.TaskCount,
                 payload: {
                     warriorId: context.warrior.id,
+                    warriorData: { data: "true" },
                     taskCount: expectation.taskCount
                 }
             });

@@ -15,6 +15,8 @@ export class Warrior implements IWarrior {
 
     public startAddress: number;
 
+    public data: any;
+
     constructor() {
         this.id = 0;
         this.name = "";
@@ -23,5 +25,6 @@ export class Warrior implements IWarrior {
         this.taskIndex = 0;
         this.tasks = [];
         this.startAddress = 0;
+        this.data = null;
     }
 }

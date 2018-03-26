@@ -33,11 +33,12 @@ describe("Core", () => {
         };
     }
 
-    function buildTask(warriorId: number = 0): ITask {
+    function buildTask(warriorId: number = 0, data: any = null): ITask {
         return {
             instructionPointer: 0,
             warrior: {
                 id: warriorId,
+                data: data,
                 author: "",
                 name: "",
                 startAddress: 0,
@@ -262,6 +263,34 @@ describe("Core", () => {
         core.executeAt(task, 2);
 
         expect(publisher.queue).not.to.have.been.called;
+    });
+
+    it("includes warrior data if provided when triggering a core access event", () => {
+
+        const expected = {
+            foo: "foo",
+            bar: x => {
+                x = x + 1;
+                return x;
+            }
+        };
+
+        const task = buildTask(5, expected);
+
+        const core = new Core(publisher);
+        core.initialise(Object.assign({}, Defaults, { coresize: 4 }));
+
+        core.setAt(task, 2, buildInstruction());
+
+        expect(publisher.queue).to.have.been.calledWith({
+            type: MessageType.CoreAccess,
+            payload: {
+                warriorId: task.warrior.id,
+                warriorData: expected,
+                accessType: CoreAccessType.write,
+                address: 2
+            }
+        });
     });
 
     it(".getSize returns the size of the core", () => {

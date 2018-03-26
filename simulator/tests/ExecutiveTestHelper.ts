@@ -72,7 +72,7 @@ export function buildContext(testConfig: IExecutiveTestConfig): IExecutionContex
 }
 
 function buildWarrior(testConfig: IExecutiveTestConfig): IWarrior {
-    const warrior = TestHelper.buildWarrior(7);
+    const warrior = TestHelper.buildWarrior(7, { data: "true" });
     warrior.tasks = [];
     for (let i = 0; i < (testConfig.taskCount || 3); i++) {
         warrior.tasks.push(TestHelper.buildTask());

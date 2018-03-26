@@ -12,4 +12,6 @@ export interface IWarrior {
     tasks: ITask[];
 
     startAddress: number;
+
+    data?: any;
 } 

@@ -7,4 +7,5 @@ export interface IParseResult {
     metaData: IMetaData;
     tokens: IToken[];
     messages: IMessage[];
+    data?: any;
 } 
