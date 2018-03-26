@@ -25,6 +25,8 @@ export class DefaultPass extends PassBase {
 
         var instruction: IParseInstruction = this.readInstruction();
 
+        this.defaultModifier(instruction);
+
         if (instruction.aOperand.address === null) {
             // A address is mandatory, discard the rest of this line and leave for syntax check
             this.context.emit([
@@ -37,8 +39,6 @@ export class DefaultPass extends PassBase {
         }
 
         this.defaultBOperand(instruction);
-
-        this.defaultModifier(instruction);
 
         this.emitInstruction(instruction);
     }
