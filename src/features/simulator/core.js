@@ -38,10 +38,11 @@ class CanvasCore extends Component {
     this.republish = props.republish
 
     this.messages = []
-    this.lastCoordinates = null
+    this.nextExecutionAddress = null
     this.hasLoaded = false
 
-    this.cellSprite = null;
+    this.cellSprite = null
+    this.nextExecutionSprite = null
     this.sprites = []
 
     this.state = {
@@ -52,6 +53,7 @@ class CanvasCore extends Component {
     // oddly needs to happen here as unmount can happen AFTER a new instance has mounted :s
     PubSub.unsubscribe('CORE_ACCESS')
     PubSub.unsubscribe('RESET_CORE')
+    PubSub.unsubscribe('NEXT_EXECUTION')
 
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
       this.messages = this.messages.concat(data)
@@ -60,6 +62,10 @@ class CanvasCore extends Component {
     PubSub.subscribe('RESET_CORE', (msg, data) => {
       this.messages = []
       this.init()
+    })
+
+    PubSub.subscribe('NEXT_EXECUTION', (msg, data) => {
+      this.nextExecutionAddress = data.address
     })
 
   }
@@ -106,7 +112,10 @@ class CanvasCore extends Component {
 
     window.addEventListener('resize', throttle(() => this.init(), 200))
 
-    window.requestAnimationFrame(() => this.renderMessages())
+    window.requestAnimationFrame(() => {
+      this.renderMessages()
+      this.renderNextExecution()
+    })
 
   }
 
@@ -123,6 +132,7 @@ class CanvasCore extends Component {
 
     this.sprites = [];
     this.cellSprite = this.prerenderCell()
+    this.nextExecutionSprite = this.prerenderExecute("#fff")
 
     colour.warrior.forEach(c => {
 
@@ -218,9 +228,6 @@ class CanvasCore extends Component {
     context.strokeStyle = colour
     context.fillRect(1, 1, this.cellSize - 1, this.cellSize - 1)
 
-    //TODO current task rendering needs redoing anyway so removing for now...
-    //this.renderCurrentTask(coordinate)
-
     return sprite
   }
 
@@ -258,34 +265,20 @@ class CanvasCore extends Component {
 
     this.messages = []
 
-    window.requestAnimationFrame(() => this.renderMessages())
+    window.requestAnimationFrame(() => {
+      this.renderMessages()
+      this.renderNextExecution()
+    })
   }
 
-  renderCurrentTask(coordinate) {
+  renderNextExecution() {
 
-    if (this.lastCoordinates) {
-
-      this.interactiveContext.clearRect(
-        this.lastCoordinates.x,
-        this.lastCoordinates.y,
-        this.lastCoordinates.wh,
-        this.lastCoordinates.wh)
+    if (!this.nextExecutionAddress) {
+      return
     }
 
-    this.interactiveContext.fillStyle = colour.white
-
-    this.interactiveContext.fillRect(
-      coordinate.x,
-      coordinate.y,
-      this.cellSize,
-      this.cellSize)
-
-    this.lastCoordinates = {
-      x: coordinate.x,
-      y: coordinate.y - 1,
-      wh: this.cellSize + 2
-    }
-
+    const coordinate = this.addressToScreenCoordinate(this.nextExecutionAddress)
+    this.coreContext.drawImage(this.nextExecutionSprite.canvas, coordinate.x, coordinate.y)
   }
 
   screenCoordinateToAddress(point) {
