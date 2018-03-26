@@ -20,6 +20,7 @@ import { LoadFileSerialiser } from "../../LoadFileSerialiser";
 import { TestLoader } from "./TestLoader";
 import { MetaDataCollector } from "../../MetaDataCollector";
 import { MetaDataEmitter } from "../../MetaDataEmitter";
+import { ITestWarrior } from "./ITestWarrior";
 
 export class TestHelper {
     private static failedIndex(name: string, a: string, b: string) {
@@ -53,6 +54,34 @@ export class TestHelper {
         }
     }
 
+    public static testWarriorParse(redcode: string, standard: Standard, ) {
+
+        const expression = new Expression();
+
+        const parser = new Parser(
+            new Scanner(),
+            new Filter(),
+            new MetaDataCollector(),
+            new ForPass(expression),
+            new PreprocessCollector(),
+            new PreprocessAnalyser(),
+            new PreprocessEmitter(),
+            new LabelCollector(),
+            new LabelEmitter(),
+            new MathsProcessor(expression),
+            new DefaultPass(),
+            new OrgPass(),
+            new SyntaxCheck(),
+            new IllegalCommandCheck(),
+            new MetaDataEmitter());
+
+        return parser.parse(
+            redcode,
+            Object.assign(Parser.DefaultOptions, {
+                standard: standard
+            }));
+    }
+
     public static testWarriorList(path: string, names: string[], standard: Standard, allowMessages: boolean = false) {
 
         var loader = new TestLoader();
@@ -62,30 +91,7 @@ export class TestHelper {
                 let remaining = warriors.length;
                 warriors.forEach((warrior) => {
 
-                    var expression = new Expression();
-
-                    var parser = new Parser(
-                        new Scanner(),
-                        new Filter(),
-                        new MetaDataCollector(),
-                        new ForPass(expression),
-                        new PreprocessCollector(),
-                        new PreprocessAnalyser(),
-                        new PreprocessEmitter(),
-                        new LabelCollector(),
-                        new LabelEmitter(),
-                        new MathsProcessor(expression),
-                        new DefaultPass(),
-                        new OrgPass(),
-                        new SyntaxCheck(),
-                        new IllegalCommandCheck(),
-                        new MetaDataEmitter());
-
-                    var result = parser.parse(
-                        warrior.redcode,
-                        Object.assign(Parser.DefaultOptions, {
-                            standard: standard
-                        }));
+                    const result = TestHelper.testWarriorParse(warrior.redcode, standard);
 
                     var serialiser = new LoadFileSerialiser();
 

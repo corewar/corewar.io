@@ -820,7 +820,7 @@ describe("DefaultPass", () => {
 
     it("Should emit only opcode, modifier and a addressing mode if a operand address is missing", () => {
 
-        var tokens: IToken[] = TestHelper.instruction(1, "", "MOV", ".AB", "$", "", ",", "", "34", "; sdaflkj dsj kflaj fisfsd a");
+        var tokens: IToken[] = TestHelper.instruction(1, "", "MOV", "", "$", "", ",", "", "34", "; sdaflkj dsj kflaj fisfsd a");
 
         var context = new Context();
         context.tokens = tokens.slice();
@@ -835,7 +835,7 @@ describe("DefaultPass", () => {
         expect(actual.tokens[0].lexeme).to.be.equal("MOV");
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
-        expect(actual.tokens[1].lexeme).to.be.equal(".AB");
+        expect(actual.tokens[1].lexeme).to.be.equal(".I");
 
         expect(actual.tokens[2].category).to.be.equal(TokenCategory.Mode);
         expect(actual.tokens[2].lexeme).to.be.equal("$");
