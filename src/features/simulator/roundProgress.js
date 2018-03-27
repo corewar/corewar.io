@@ -72,7 +72,7 @@ class RoundProgress extends Component{
   }
 
   render() {
-    const { warriors, runProgress, taskCount, maxTasks } = this.props
+    const { warriors, runProgress, maxTasks } = this.props
     return (<RoundStatusWrapper>
       <span>Round status</span>
       <ProgressBar runProgress={runProgress} />
