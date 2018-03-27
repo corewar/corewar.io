@@ -51,7 +51,11 @@ export function* parseWarriorSaga({ source }) {
 
   const data = yield call(getCoreOptionsFromState)
 
-  yield call(initialiseCore, data.options, warriorList.filter(x => !x.hasErrors && x.active))
+  const validWarriors = warriorList.filter(x => !x.hasErrors && x.active)
+
+  if(validWarriors.length > 0) {
+    yield call(initialiseCore, data.options, validWarriors)
+  }
 
   if(hasErrors){
     yield put({ type: SHOW_CONSOLE })
