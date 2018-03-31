@@ -3,7 +3,7 @@ import { guid } from '../helpers/guid'
 
 const blankSource = ''
 
-const icon = getIdenticon(blankSource, 0, 20)
+//const icon = getIdenticon(blankSource, 0, 20)
 
 const newWarrior = {
   active: true,
@@ -18,7 +18,7 @@ const newWarrior = {
     id: guid(),
     hasErrors: true,
     hash: '',
-    icon: icon
+    icon: null
   }
 }
 

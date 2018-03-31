@@ -123,7 +123,6 @@ const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWar
         key={`${warrior.data.hash}_${i}`}
         current={currentWarrior.data.id === warrior.data.id}
         active={!warrior.data.hasErrors && warrior.data.active}>
-
         {warrior.data.icon &&
           <img
             onClick={() => loadWarrior(warrior.data.id)}

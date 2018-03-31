@@ -23,9 +23,15 @@ export const replaceItemByKey = (key, value, array, item) => {
 
   const initialIndex = array.indexOf(item)
   const removedList = removeItemByKey(key, value, array)
+  return insertItem(initialIndex, removedList, item)
+
+}
+
+export const replaceById = (id, array, item) => {
+  const initialIndex = array.indexOf(item)
+  const removedList = removeById(id, array)
   const addedList = insertItem(initialIndex, removedList, item)
   return addedList
-
 }
 
 export const removeItemByKey = (key, value, array) => {

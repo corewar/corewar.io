@@ -1,6 +1,6 @@
 import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 
-import { insertItem, removeItem, replaceItem, removeById } from '../../helpers/arrayHelpers'
+import { insertItem, removeItem, replaceItem, removeById, replaceItemByKey, replaceById } from '../../helpers/arrayHelpers'
 import { createHash, getIdenticon } from '../common/identicon'
 import { toast } from '../notifications/sagas'
 import { corewar } from 'corewar'
@@ -17,7 +17,8 @@ import {
   SET_WARRIORS,
   LOAD_WARRIOR_REQUESTED,
   LOAD_WARRIOR,
-  TOGGLE_WARRIOR_REQUESTED
+  TOGGLE_WARRIOR_REQUESTED,
+  SET_COLOURS
 } from './actions'
 
 import { PAUSE } from '../simulator/actions'
@@ -38,17 +39,21 @@ export function* parseWarriorSaga({ source }) {
 
   const hash = createHash(compiled)
 
-  const { warriors, currentFileIndex } = yield select(getParserState)
+  const { warriors, currentWarrior } = yield select(getParserState)
 
-  const icon = getIdenticon(compiled, currentFileIndex, 20)
+  const colour = yield call(getColour, currentWarrior.data.id)
 
-  const data = { hash, icon, hasErrors, active: warriors[currentFileIndex].active }
+  const icon = getIdenticon(compiled, colour.hex, 20)
 
-  const currentWarrior = { ...parseResult, source, compiled, data }
+  const data = { ...currentWarrior.data, hash, icon, hasErrors }
 
-  yield put({ type: SET_CURRENT_WARRIOR, currentWarrior })
+  const updatedWarrior = { ...parseResult, source, compiled, data }
 
-  const warriorList = yield call(replaceItem, currentFileIndex, warriors, currentWarrior)
+  console.log('updated w', updatedWarrior)
+
+  yield put({ type: SET_CURRENT_WARRIOR, currentWarrior: updatedWarrior })
+
+  const warriorList = yield call(replaceById, currentWarrior.data.id, warriors, updatedWarrior)
 
   yield put({ type: SET_WARRIORS, warriors: warriorList })
 
@@ -67,17 +72,56 @@ export function* parseWarriorSaga({ source }) {
 
 }
 
+function* takeColour(id) {
+
+  const { colours } = yield select(getParserState)
+
+  const nextAvailable = colours.filter(x => x.id === null)[0]
+
+  nextAvailable.id = id
+
+  const updatedColours = replaceItemByKey('hex', nextAvailable.hex, colours, nextAvailable)
+
+  yield put({ type: SET_COLOURS, colours: updatedColours })
+
+  return nextAvailable
+
+}
+
+function* getColour(id) {
+  const { colours } = yield select(getParserState)
+  return colours.find(x => x.id === id)
+}
+
+function* releaseColour(id) {
+
+  const assignedColour = yield call(getColour, id)
+
+  assignedColour.id = null
+
+  const { colours } = yield select(getParserState)
+
+  const updatedColours = replaceItemByKey('hex', assignedColour.hex, colours, assignedColour)
+
+  yield put({ type: SET_COLOURS, colours: updatedColours })
+
+}
+
 export function* addWarriorSaga() {
 
   yield put({ type: PAUSE })
 
   const { options } = yield call(getCoreOptionsFromState)
 
-  const { warriors } = yield select(getParserState)
+  const { warriors, colours } = yield select(getParserState)
 
-  const icon = getIdenticon(newWarrior.compiled, warriors.length, 20)
+  const id = guid()
 
-  const currentWarrior = { ...newWarrior, data: { ...newWarrior.data, id: guid(), icon}}
+  const colour = yield call(takeColour, id)
+
+  const icon = getIdenticon(newWarrior.compiled, colour.hex, 20)
+
+  const currentWarrior = { ...newWarrior, data: { ...newWarrior.data, id: id, icon, active: true }}
 
   yield put({ type: SET_CURRENT_WARRIOR, currentWarrior })
 
@@ -139,6 +183,8 @@ export function* removeWarriorSaga({ id }) {
   }
 
   const warriorList = yield call(removeById, id, warriors)
+
+  yield call(releaseColour, id)
 
   // const newIcons = warriorList.map((warrior, i) =>
   //   ({ ...warrior, icon: getIdenticon(warrior.compiled, i, 20) })

@@ -6,6 +6,7 @@ export const HIDE_CONSOLE = 'parser/HIDE_CONSOLE'
 export const SHOW_CONSOLE = 'parser/SHOW_CONSOLE'
 export const TOGGLE_FILE_MANAGER = 'parser/TOGGLE_FILE_MANAGER'
 export const SET_WARRIORS = 'parser/SET_WARRIORS'
+export const SET_COLOURS = 'parser/SET_COLOURS'
 export const LOAD_WARRIOR = 'parser/LOAD_WARRIOR'
 export const TOGGLE_WARRIOR = 'parser/TOGGLE_WARRIOR'
 

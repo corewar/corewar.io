@@ -5,21 +5,24 @@ import {
   SHOW_CONSOLE,
   TOGGLE_FILE_MANAGER,
   SET_WARRIORS,
-  LOAD_WARRIOR
+  LOAD_WARRIOR,
+  SET_COLOURS
 } from './actions'
 
 import { defaultWarriors } from '../../helpers/defaultWarriors'
 import newWarrior from '../../helpers/newWarrior'
+import { colour } from '../common/theme'
 
 // state
 const initialState = {
   currentFileIndex: 0,
   currentWarrior: newWarrior,
-  warriors: [newWarrior],
+  warriors: [],
   warriorLibrary: defaultWarriors,
   standardId: 2, // TODO: what's the best standard to use as a default?
   displayConsole: false,
-  displayFileManager: false
+  displayFileManager: false,
+  colours: colour.warrior
 }
 
 // selectors
@@ -40,6 +43,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         warriors: action.warriors
+      }
+
+    case SET_COLOURS:
+      return {
+        ...state,
+        colours: action.colours
       }
 
     case LOAD_WARRIOR:

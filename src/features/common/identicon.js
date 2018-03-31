@@ -12,13 +12,13 @@ export const createHash = (input) => {
   return sha.getHash('HEX')
 }
 
-export const getIdenticon = (compiled, i, size = 40) => {
+export const getIdenticon = (compiled, colour, size = 40) => {
 
   const hash = createHash(compiled)
 
   const options = {
     size: size,
-    foreground: hexToRgbA(colour.warrior[i] ? colour.warrior[i] : colour.white),
+    foreground: hexToRgbA(colour),
     background: [0,0,0,0],
     margin: 0,
     format: 'svg'
