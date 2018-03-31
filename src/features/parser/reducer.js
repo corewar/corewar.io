@@ -10,13 +10,13 @@ import {
 } from './actions'
 
 import { defaultWarriors } from '../../helpers/defaultWarriors'
-import newWarrior from '../../helpers/newWarrior'
+import blankWarrior from '../../helpers/blankWarrior'
 import { colour } from '../common/theme'
 
 // state
 const initialState = {
   currentFileIndex: 0,
-  currentWarrior: newWarrior,
+  currentWarrior: blankWarrior,
   warriors: [],
   warriorLibrary: defaultWarriors,
   standardId: 2, // TODO: what's the best standard to use as a default?

@@ -1,8 +1,6 @@
 import Identicon from 'identicon.js'
 import jssha from 'jssha'
 
-import { colour } from './theme'
-
 export const createHash = (input) => {
 
   const sha = new jssha('SHA-512', 'TEXT')

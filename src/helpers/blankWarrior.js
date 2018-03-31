@@ -1,11 +1,8 @@
-import { getIdenticon } from '../features/common/identicon'
 import { guid } from '../helpers/guid'
 
 const blankSource = ''
 
-//const icon = getIdenticon(blankSource, 0, 20)
-
-const newWarrior = {
+const blankWarrior = {
   active: true,
   source: blankSource,
   compiled: '',
@@ -22,4 +19,4 @@ const newWarrior = {
   }
 }
 
-export default newWarrior
+export default blankWarrior

@@ -1,11 +1,11 @@
 import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 
-import { insertItem, removeItem, replaceItem, removeById, replaceItemByKey, replaceById } from '../../helpers/arrayHelpers'
+import { insertItem, removeById, replaceItemByKey, replaceById } from '../../helpers/arrayHelpers'
 import { createHash, getIdenticon } from '../common/identicon'
 import { toast } from '../notifications/sagas'
 import { corewar } from 'corewar'
 import { guid } from '../../helpers/guid'
-import newWarrior from '../../helpers/newWarrior'
+import blankWarrior from '../../helpers/blankWarrior'
 
 import {
   SET_CURRENT_WARRIOR,
@@ -70,15 +70,15 @@ export function* addWarriorSaga() {
 
   yield put({ type: PAUSE })
 
-  const { warriors, colours } = yield select(getParserState)
+  const { warriors } = yield select(getParserState)
 
   const id = guid()
 
   const colour = yield call(takeColour, id)
 
-  const icon = getIdenticon(newWarrior.compiled, colour.hex, 20)
+  const icon = getIdenticon(blankWarrior.compiled, colour.hex, 20)
 
-  const currentWarrior = { ...newWarrior, data: { ...newWarrior.data, id: id, icon, active: true }}
+  const currentWarrior = { ...blankWarrior, data: { ...blankWarrior.data, id, icon, active: true }}
 
   yield put({ type: SET_CURRENT_WARRIOR, currentWarrior })
 
