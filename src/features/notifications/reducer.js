@@ -3,7 +3,7 @@ import {
   HIDE_NOTIFICATION
 } from './actions'
 
-import { insertItem, removeItemByKey, replaceItemByKey } from '../../helpers/arrayHelpers'
+import { insertItem, replaceItemByKey } from '../../helpers/arrayHelpers'
 
 // state
 const initialState = {

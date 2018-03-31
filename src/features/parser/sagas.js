@@ -1,12 +1,14 @@
 import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 
-import { insertItem, removeItem, replaceItem } from '../../helpers/arrayHelpers'
+import { insertItem, removeItem, replaceItem, removeById } from '../../helpers/arrayHelpers'
 import { createHash, getIdenticon } from '../common/identicon'
 import { toast } from '../notifications/sagas'
 import { corewar } from 'corewar'
+import { guid } from '../../helpers/guid'
+import newWarrior from '../../helpers/newWarrior'
 
 import {
-  PARSE,
+  SET_CURRENT_WARRIOR,
   PARSE_REQUESTED,
   ADD_WARRIOR_REQUESTED,
   REMOVE_WARRIOR_REQUESTED,
@@ -15,8 +17,7 @@ import {
   SET_WARRIORS,
   LOAD_WARRIOR_REQUESTED,
   LOAD_WARRIOR,
-  TOGGLE_WARRIOR_REQUESTED,
-  SET_CURRENT_FILE_INDEX
+  TOGGLE_WARRIOR_REQUESTED
 } from './actions'
 
 import { PAUSE } from '../simulator/actions'
@@ -41,20 +42,21 @@ export function* parseWarriorSaga({ source }) {
 
   const icon = getIdenticon(compiled, currentFileIndex, 20)
 
-  const currentWarrior = { ...parseResult, compiled, source, hash, icon, hasErrors, active: warriors[currentFileIndex].active }
+  const data = { hash, icon, hasErrors, active: warriors[currentFileIndex].active }
 
-  yield put({ type: PARSE, currentWarrior })
+  const currentWarrior = { ...parseResult, source, compiled, data }
+
+  yield put({ type: SET_CURRENT_WARRIOR, currentWarrior })
 
   const warriorList = yield call(replaceItem, currentFileIndex, warriors, currentWarrior)
 
   yield put({ type: SET_WARRIORS, warriors: warriorList })
 
-  const data = yield call(getCoreOptionsFromState)
-
-  const validWarriors = warriorList.filter(x => !x.hasErrors && x.active)
+  const validWarriors = warriorList.filter(x => !x.data.hasErrors && x.data.active)
 
   if(validWarriors.length > 0) {
-    yield call(initialiseCore, data.options, validWarriors)
+    const { options } = yield call(getCoreOptionsFromState)
+    yield call(initialiseCore, options, validWarriors)
   }
 
   if(hasErrors){
@@ -69,30 +71,36 @@ export function* addWarriorSaga() {
 
   yield put({ type: PAUSE })
 
-  const data = yield call(getCoreOptionsFromState)
+  const { options } = yield call(getCoreOptionsFromState)
 
-  const { warriors, currentWarrior } = yield select(getParserState)
+  const { warriors } = yield select(getParserState)
 
-  const icon = getIdenticon(currentWarrior.compiled, warriors.length, 20)
+  const icon = getIdenticon(newWarrior.compiled, warriors.length, 20)
 
-  yield put({ type: SET_CURRENT_FILE_INDEX, currentFileIndex: warriors.length })
+  const currentWarrior = { ...newWarrior, data: { ...newWarrior.data, id: guid(), icon}}
 
-  const warriorList = yield call(insertItem, warriors.length, warriors, { ...currentWarrior, icon })
+  yield put({ type: SET_CURRENT_WARRIOR, currentWarrior })
+
+  const warriorList = yield call(insertItem, warriors.length, warriors, currentWarrior)
 
   yield put({ type: SET_WARRIORS, warriors: warriorList })
 
-  yield call(initialiseCore, data.options, warriorList)
+  const validWarriors = warriorList.filter(x => !x.data.hasErrors && x.data.active)
+
+  if(validWarriors.length > 0) {
+    yield call(initialiseCore, options, validWarriors)
+  }
 
   yield call(toast, 'Warrior Added')
 }
 
-export function* loadWarriorSaga({ hash, i }) {
+export function* loadWarriorSaga({ id }) {
 
   const { warriors } = yield select(getParserState)
 
-  const warrior = warriors.find(x => x.hash === hash)
+  const warrior = warriors.find(x => x.data.id === id)
 
-  yield put({ type: SET_CURRENT_FILE_INDEX, currentFileIndex: i })
+  yield put({ type: SET_CURRENT_WARRIOR, currentWarrior: warrior })
 
   yield put({ type: LOAD_WARRIOR, warrior })
 
@@ -118,28 +126,27 @@ export function* toggleWarriorSaga({ i }) {
 
 }
 
-export function* removeWarriorSaga({ index }) {
+export function* removeWarriorSaga({ id }) {
 
   yield put({ type: PAUSE })
 
-  const data = yield call(getCoreOptionsFromState)
+  const { options } = yield call(getCoreOptionsFromState)
 
   const { warriors } = yield select(getParserState)
 
-  const warriorList = yield call(removeItem, index, warriors)
-
-  if(index === warriorList.length) {
-    const newIndex = index - 1
-    yield put({ type: SET_CURRENT_FILE_INDEX, currentFileIndex: newIndex })
+  if(id === warriors[warriors.length - 1].data.id) {
+    yield put({ type: SET_CURRENT_WARRIOR, currentWarrior: warriors[warriors.length - 2] })
   }
 
-  const newIcons = warriorList.map((warrior, i) =>
-    ({ ...warrior, icon: getIdenticon(warrior.compiled, i, 20) })
-  )
+  const warriorList = yield call(removeById, id, warriors)
 
-  yield put({ type: SET_WARRIORS, warriors: newIcons })
+  // const newIcons = warriorList.map((warrior, i) =>
+  //   ({ ...warrior, icon: getIdenticon(warrior.compiled, i, 20) })
+  // )
 
-  yield call(initialiseCore, data.options, newIcons)
+  yield put({ type: SET_WARRIORS, warriors: warriorList })
+
+  yield call(initialiseCore, options, warriorList)
 
   yield call(toast, 'Warrior Removed')
 }

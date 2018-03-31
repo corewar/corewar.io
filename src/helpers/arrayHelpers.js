@@ -31,3 +31,7 @@ export const replaceItemByKey = (key, value, array, item) => {
 export const removeItemByKey = (key, value, array) => {
   return array.filter(x => x[key] !== value)
 }
+
+export const removeById = (id, array) => {
+  return array.filter(x => x.data.id !== id)
+}

@@ -1,12 +1,11 @@
 import {
-  PARSE,
+  SET_CURRENT_WARRIOR,
   TOGGLE_CONSOLE,
   HIDE_CONSOLE,
   SHOW_CONSOLE,
   TOGGLE_FILE_MANAGER,
   SET_WARRIORS,
-  LOAD_WARRIOR,
-  SET_CURRENT_FILE_INDEX
+  LOAD_WARRIOR
 } from './actions'
 
 import { defaultWarriors } from '../../helpers/defaultWarriors'
@@ -30,17 +29,11 @@ export const getParserState = state => state.parser
 export default (state = initialState, action) => {
   switch (action.type) {
 
-    case PARSE:
+    case SET_CURRENT_WARRIOR:
       return {
         ...state,
         displayFileManager: false,
         currentWarrior: action.currentWarrior
-      }
-
-    case SET_CURRENT_FILE_INDEX:
-      return {
-        ...state,
-        currentFileIndex: action.currentFileIndex
       }
 
     case SET_WARRIORS:

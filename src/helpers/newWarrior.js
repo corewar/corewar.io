@@ -1,4 +1,5 @@
 import { getIdenticon } from '../features/common/identicon'
+import { guid } from '../helpers/guid'
 
 const blankSource = ''
 
@@ -8,14 +9,17 @@ const newWarrior = {
   active: true,
   source: blankSource,
   compiled: '',
-  hasErrors: true,
-  hash: '',
-  icon: icon,
   metaData: {
     name: 'Nameless',
     author: 'Blameless'
   },
-  tokens: []
+  tokens: [],
+  data: {
+    id: guid(),
+    hasErrors: true,
+    hash: '',
+    icon: icon
+  }
 }
 
 export default newWarrior

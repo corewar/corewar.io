@@ -57,6 +57,10 @@ const WarriorWrapper = styled.div`
     right: 1px;
   }
 
+  .octicon-x:hover {
+    cursor: pointer;
+  }
+
   .octicon-primitive-dot {
     ${props => props.active ? `color: ${colour.success};` : `color: ${colour.error};`}
     font-size: ${font.large};
@@ -114,27 +118,27 @@ const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWar
         <Octicon name={`plus`} />
       </NewButton>}
     />
-    {warriors.map((warrior,i) => (
+    {warriors.map((warrior, i) => (
       <WarriorWrapper
-        key={`${warrior.hash}_${i}`}
-        current={currentFileIndex === i}
-        active={!warrior.hasErrors && warrior.active}>
+        key={`${warrior.data.hash}_${i}`}
+        current={currentWarrior.data.id === warrior.data.id}
+        active={!warrior.data.hasErrors && warrior.data.active}>
 
-        {warrior.icon &&
+        {warrior.data.icon &&
           <img
-            onClick={() => loadWarrior(warrior.hash, i)}
-            src={`data:image/svg+xml;base64,${warrior.icon}`}
+            onClick={() => loadWarrior(warrior.data.id)}
+            src={`data:image/svg+xml;base64,${warrior.data.icon}`}
             alt={`${warrior.metaData.name} avatar`}
             size={20} />
         }
         <WarriorName
-          onClick={() => loadWarrior(warrior.hash, i)}>
+          onClick={() => loadWarrior(warrior.data.id)}>
           {warrior.metaData.name}
         </WarriorName>
         <Octicon
           name={`primitive-dot`}
           onClick={() => toggleWarrior(i)}/>
-        {<Octicon name={`x`} onClick={() => removeWarrior(i)} />}
+        {<Octicon name={`x`} onClick={() => removeWarrior(warrior.data.id)} />}
       </WarriorWrapper>
     ))}
   </WarriorPanel>
