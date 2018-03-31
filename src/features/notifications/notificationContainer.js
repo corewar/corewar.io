@@ -8,7 +8,6 @@ import { space, colour } from '../common/theme'
 import { media } from '../common/mediaQuery'
 
 const SlideInOut = transition.div`
-  // ${props => `top: calc(${space.controls} + ${space.controls} + ${space.s} + (${props.index} * 50px));`}
 
   position: relative;
 
