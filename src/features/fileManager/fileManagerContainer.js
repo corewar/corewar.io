@@ -1,15 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { parse } from '../parser/actions'
+import { loadFile } from '../parser/actions'
 
 import FileManager from './fileManager'
 
-const FileManagerContainer = ({ displayFileManager, warriorLibrary, parse }) => (
+const FileManagerContainer = ({ displayFileManager, warriorLibrary, loadFile }) => (
   <FileManager
     show={displayFileManager}
     files={warriorLibrary}
-    handleClick={parse}
+    handleClick={loadFile}
     />
 )
 
@@ -21,7 +21,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    parse
+    loadFile
   }
 )(FileManagerContainer)
 

@@ -14,9 +14,11 @@ export const PARSE_REQUESTED = 'parser/PARSE_REQUESTED'
 export const ADD_WARRIOR_REQUESTED = 'parser/ADD_WARRIOR_REQUESTED'
 export const REMOVE_WARRIOR_REQUESTED = 'parser/REMOVE_WARRIOR_REQUESTED'
 export const LOAD_WARRIOR_REQUESTED = 'parser/LOAD_WARRIOR_REQUESTED'
+export const LOAD_FILE_REQUESTED = 'parser/LOAD_FILE_REQUESTED'
 export const TOGGLE_WARRIOR_REQUESTED = 'parser/TOGGLE_WARRIOR_REQUESTED'
 
 export const parse = source => action(PARSE_REQUESTED, { source })
+export const loadFile = source => action(LOAD_FILE_REQUESTED, { source })
 export const addWarrior = () => action(ADD_WARRIOR_REQUESTED)
 export const removeWarrior = id => action(REMOVE_WARRIOR_REQUESTED, { id })
 export const toggleConsole = () => action(TOGGLE_CONSOLE)

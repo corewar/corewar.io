@@ -17,6 +17,7 @@ import {
   SET_WARRIORS,
   LOAD_WARRIOR_REQUESTED,
   LOAD_WARRIOR,
+  LOAD_FILE_REQUESTED,
   TOGGLE_WARRIOR_REQUESTED,
   SET_COLOURS
 } from './actions'
@@ -65,41 +66,6 @@ export function* parseWarriorSaga({ source }) {
 
 }
 
-function* takeColour(id) {
-
-  const { colours } = yield select(getParserState)
-
-  const nextAvailable = colours.filter(x => x.id === null)[0]
-
-  nextAvailable.id = id
-
-  const updatedColours = replaceItemByKey('hex', nextAvailable.hex, colours, nextAvailable)
-
-  yield put({ type: SET_COLOURS, colours: updatedColours })
-
-  return nextAvailable
-
-}
-
-function* getColour(id) {
-  const { colours } = yield select(getParserState)
-  return colours.find(x => x.id === id)
-}
-
-function* releaseColour(id) {
-
-  const assignedColour = yield call(getColour, id)
-
-  assignedColour.id = null
-
-  const { colours } = yield select(getParserState)
-
-  const updatedColours = replaceItemByKey('hex', assignedColour.hex, colours, assignedColour)
-
-  yield put({ type: SET_COLOURS, colours: updatedColours })
-
-}
-
 export function* addWarriorSaga() {
 
   yield put({ type: PAUSE })
@@ -123,32 +89,6 @@ export function* addWarriorSaga() {
   yield call(maybeInit, warriorList)
 
   yield call(toast, 'Warrior Added')
-}
-
-export function* loadWarriorSaga({ id }) {
-
-  const { warriors } = yield select(getParserState)
-
-  const warrior = warriors.find(x => x.data.id === id)
-
-  yield put({ type: SET_CURRENT_WARRIOR, currentWarrior: warrior })
-
-  yield put({ type: LOAD_WARRIOR, warrior })
-
-}
-
-export function* toggleWarriorSaga({ id }) {
-
-  const { warriors } = yield select(getParserState)
-
-  const warrior = warriors.find(x => x.data.id === id)
-
-  const warriorList = yield call(replaceById, id, warriors, { ...warrior, data: { ...warrior.data, active: !warrior.data.active }})
-
-  yield put({ type: SET_WARRIORS, warriors: warriorList })
-
-  yield call(maybeInit, warriorList)
-
 }
 
 export function* removeWarriorSaga({ id }) {
@@ -176,6 +116,44 @@ export function* removeWarriorSaga({ id }) {
   yield call(toast, 'Warrior Removed')
 }
 
+export function* toggleWarriorSaga({ id }) {
+
+  const { warriors } = yield select(getParserState)
+
+  const warrior = warriors.find(x => x.data.id === id)
+
+  const warriorList = yield call(replaceById, id, warriors, { ...warrior, data: { ...warrior.data, active: !warrior.data.active }})
+
+  yield put({ type: SET_WARRIORS, warriors: warriorList })
+
+  yield call(maybeInit, warriorList)
+
+}
+
+export function* loadWarriorSaga({ id }) {
+
+  const { warriors } = yield select(getParserState)
+
+  const warrior = warriors.find(x => x.data.id === id)
+
+  yield put({ type: SET_CURRENT_WARRIOR, currentWarrior: warrior })
+
+  yield put({ type: LOAD_WARRIOR, warrior })
+
+}
+
+export function* loadFileSaga({ source }) {
+  //TODO: there is a delay at the end of addWarrior (1000ms)
+  //which impacts on the parse speed, could improve this
+  yield call(addWarriorSaga)
+  yield call(parseWarriorSaga, { source })
+}
+
+
+
+
+
+// internal helper functions - not exported
 function* maybeInit(warriors) {
 
   const validWarriors = warriors.filter(x => !x.data.hasErrors && x.data.active)
@@ -187,6 +165,41 @@ function* maybeInit(warriors) {
 
 }
 
+function* getColour(id) {
+  const { colours } = yield select(getParserState)
+  return colours.find(x => x.id === id)
+}
+
+function* takeColour(id) {
+
+  const { colours } = yield select(getParserState)
+
+  const nextAvailable = colours.filter(x => x.id === null)[0]
+
+  nextAvailable.id = id
+
+  const updatedColours = replaceItemByKey('hex', nextAvailable.hex, colours, nextAvailable)
+
+  yield put({ type: SET_COLOURS, colours: updatedColours })
+
+  return nextAvailable
+
+}
+
+function* releaseColour(id) {
+
+  const assignedColour = yield call(getColour, id)
+
+  assignedColour.id = null
+
+  const { colours } = yield select(getParserState)
+
+  const updatedColours = replaceItemByKey('hex', assignedColour.hex, colours, assignedColour)
+
+  yield put({ type: SET_COLOURS, colours: updatedColours })
+
+}
+
 
 // watchers
 export const parserWatchers = [
@@ -194,5 +207,6 @@ export const parserWatchers = [
   takeEvery(ADD_WARRIOR_REQUESTED, addWarriorSaga),
   takeEvery(REMOVE_WARRIOR_REQUESTED, removeWarriorSaga),
   takeEvery(LOAD_WARRIOR_REQUESTED, loadWarriorSaga),
+  takeEvery(LOAD_FILE_REQUESTED, loadFileSaga),
   takeEvery(TOGGLE_WARRIOR_REQUESTED, toggleWarriorSaga)
 ]
