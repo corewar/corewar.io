@@ -45,11 +45,9 @@ export function* parseWarriorSaga({ source }) {
 
   const icon = getIdenticon(compiled, colour.hex, 20)
 
-  const data = { ...currentWarrior.data, hash, icon, hasErrors }
+  const data = { ...currentWarrior.data, hash, icon, hasErrors, colour }
 
   const updatedWarrior = { ...parseResult, source, compiled, data }
-
-  console.log('updated w', updatedWarrior)
 
   yield put({ type: SET_CURRENT_WARRIOR, currentWarrior: updatedWarrior })
 
@@ -163,8 +161,6 @@ export function* toggleWarriorSaga({ i }) {
   const data = yield call(getCoreOptionsFromState)
 
   const activeList =  updatedList.filter(x => !x.hasErrors && x.active)
-
-  console.log(activeList)
 
   yield call(initialiseCore, data.options, activeList)
 

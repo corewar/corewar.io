@@ -130,18 +130,18 @@ class CanvasCore extends Component {
 
   buildSprites() {
 
-    this.sprites = [];
+    this.sprites = {};
     this.cellSprite = this.prerenderCell()
     this.nextExecutionSprite = this.prerenderExecute("#fff")
 
     colour.warrior.forEach(c => {
 
-      const sprites = []
-      sprites.push(this.prerenderRead(c))
-      sprites.push(this.prerenderWrite(c))
-      sprites.push(this.prerenderExecute(c))
+      const colouredSprites = []
+      colouredSprites.push(this.prerenderRead(c.hex))
+      colouredSprites.push(this.prerenderWrite(c.hex))
+      colouredSprites.push(this.prerenderExecute(c.hex))
 
-      this.sprites.push(sprites)
+      this.sprites[c.hex] = colouredSprites
     })
 
   }
@@ -293,9 +293,15 @@ class CanvasCore extends Component {
 
     const coordinate = this.addressToScreenCoordinate(event.address)
 
-    const warriorId = event.warriorId
+    console.log('e', event)
 
-    const sprite = this.sprites[warriorId][event.accessType]
+    //const warriorId = event.warriorId
+
+    console.log(event.warriorData.colour.hex)
+    console.log(this.sprites)
+    console.log(this.sprites[event.warriorData.colour.hex])
+
+    const sprite = this.sprites[event.warriorData.colour.hex][event.accessType]
     this.coreContext.drawImage(sprite.canvas, coordinate.x, coordinate.y)
   }
 
