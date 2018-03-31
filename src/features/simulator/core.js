@@ -293,14 +293,6 @@ class CanvasCore extends Component {
 
     const coordinate = this.addressToScreenCoordinate(event.address)
 
-    console.log('e', event)
-
-    //const warriorId = event.warriorId
-
-    console.log(event.warriorData.colour.hex)
-    console.log(this.sprites)
-    console.log(this.sprites[event.warriorData.colour.hex])
-
     const sprite = this.sprites[event.warriorData.colour.hex][event.accessType]
     this.coreContext.drawImage(sprite.canvas, coordinate.x, coordinate.y)
   }

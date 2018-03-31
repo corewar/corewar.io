@@ -136,7 +136,7 @@ const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWar
         </WarriorName>
         <Octicon
           name={`primitive-dot`}
-          onClick={() => toggleWarrior(i)}/>
+          onClick={() => toggleWarrior(warrior.data.id)}/>
         {<Octicon name={`x`} onClick={() => removeWarrior(warrior.data.id)} />}
       </WarriorWrapper>
     ))}

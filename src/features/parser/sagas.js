@@ -55,12 +55,7 @@ export function* parseWarriorSaga({ source }) {
 
   yield put({ type: SET_WARRIORS, warriors: warriorList })
 
-  const validWarriors = warriorList.filter(x => !x.data.hasErrors && x.data.active)
-
-  if(validWarriors.length > 0) {
-    const { options } = yield call(getCoreOptionsFromState)
-    yield call(initialiseCore, options, validWarriors)
-  }
+  yield call(maybeInit, warriorList)
 
   if(hasErrors){
     yield put({ type: SHOW_CONSOLE })
@@ -109,8 +104,6 @@ export function* addWarriorSaga() {
 
   yield put({ type: PAUSE })
 
-  const { options } = yield call(getCoreOptionsFromState)
-
   const { warriors, colours } = yield select(getParserState)
 
   const id = guid()
@@ -127,11 +120,7 @@ export function* addWarriorSaga() {
 
   yield put({ type: SET_WARRIORS, warriors: warriorList })
 
-  const validWarriors = warriorList.filter(x => !x.data.hasErrors && x.data.active)
-
-  if(validWarriors.length > 0) {
-    yield call(initialiseCore, options, validWarriors)
-  }
+  yield call(maybeInit, warriorList)
 
   yield call(toast, 'Warrior Added')
 }
@@ -148,29 +137,23 @@ export function* loadWarriorSaga({ id }) {
 
 }
 
-export function* toggleWarriorSaga({ i }) {
+export function* toggleWarriorSaga({ id }) {
 
   const { warriors } = yield select(getParserState)
 
-  const warrior = warriors[i]
+  const warrior = warriors.find(x => x.data.id === id)
 
-  const updatedList = yield call(replaceItem, i, warriors, { ...warrior, active: !warrior.active })
+  const warriorList = yield call(replaceById, id, warriors, { ...warrior, data: { ...warrior.data, active: !warrior.data.active }})
 
-  yield put({ type: SET_WARRIORS, warriors: updatedList })
+  yield put({ type: SET_WARRIORS, warriors: warriorList })
 
-  const data = yield call(getCoreOptionsFromState)
-
-  const activeList =  updatedList.filter(x => !x.hasErrors && x.active)
-
-  yield call(initialiseCore, data.options, activeList)
+  yield call(maybeInit, warriorList)
 
 }
 
 export function* removeWarriorSaga({ id }) {
 
   yield put({ type: PAUSE })
-
-  const { options } = yield call(getCoreOptionsFromState)
 
   const { warriors } = yield select(getParserState)
 
@@ -188,9 +171,20 @@ export function* removeWarriorSaga({ id }) {
 
   yield put({ type: SET_WARRIORS, warriors: warriorList })
 
-  yield call(initialiseCore, options, warriorList)
+  yield call(maybeInit, warriorList)
 
   yield call(toast, 'Warrior Removed')
+}
+
+function* maybeInit(warriors) {
+
+  const validWarriors = warriors.filter(x => !x.data.hasErrors && x.data.active)
+
+  if(validWarriors.length > 0) {
+    const { options } = yield call(getCoreOptionsFromState)
+    yield call(initialiseCore, options, validWarriors)
+  }
+
 }
 
 
