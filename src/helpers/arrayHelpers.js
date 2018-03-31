@@ -13,8 +13,21 @@ export const removeItem = (index, array) => {
 
 export const replaceItem = (index, array, item) => {
 
-    const removedList = removeItem(index, array)
-    const addedList = insertItem(index, removedList, item)
-    return addedList
+  const removedList = removeItem(index, array)
+  const addedList = insertItem(index, removedList, item)
+  return addedList
 
+}
+
+export const replaceItemByKey = (key, value, array, item) => {
+
+  const initialIndex = array.indexOf(item)
+  const removedList = removeItemByKey(key, value, array)
+  const addedList = insertItem(initialIndex, removedList, item)
+  return addedList
+
+}
+
+export const removeItemByKey = (key, value, array) => {
+  return array.filter(x => x[key] !== value)
 }
