@@ -1,9 +1,9 @@
 import {
   ADD_NOTIFICATION,
-  REMOVE_NOTIFICATION
+  HIDE_NOTIFICATION
 } from './actions'
 
-import { insertItem, removeItem } from '../../helpers/arrayHelpers'
+import { insertItem, removeItemByKey, replaceItemByKey } from '../../helpers/arrayHelpers'
 
 // state
 const initialState = {
@@ -20,13 +20,13 @@ export default (state = initialState, action) => {
     case ADD_NOTIFICATION:
       return {
         ...state,
-        notifications: insertItem(state.notifications.length - 1, state.notifications, action.content)
+        notifications: insertItem(state.notifications.length, state.notifications, action.notification)
       }
 
-    case REMOVE_NOTIFICATION:
+    case HIDE_NOTIFICATION:
       return {
         ...state,
-        notifications: removeItem(0, state.notifications)
+        notifications: replaceItemByKey('id', action.notification.id, state.notifications, action.notification)
       }
 
     default:
