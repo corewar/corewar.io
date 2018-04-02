@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 import throttle from '../../helpers/throttle'
 
-import { colour } from '../common/theme'
+import { colour, space } from '../common/theme'
 import { media } from  '../common/mediaQuery'
 
 const CanvasWrapper = styled.section`
@@ -24,6 +24,7 @@ const CanvasWrapper = styled.section`
     position: absolute;
     top: 0;
     left: 0;
+    margin: ${space.s};
   }
 `
 
