@@ -14,11 +14,11 @@ export const colour = {
   'success': '#6FCF97',
   'notification': 'rgba(86, 204, 242, 0.7)',
   warrior: [
-    '#56CCF2',
-    '#EB5757',
-    '#F2C94C',
-    '#6FCF97',
-    '#BB6BD9'
+    { id: null, hex: '#56CCF2' },
+    { id: null, hex: '#EB5757' },
+    { id: null, hex: '#F2C94C' },
+    { id: null, hex: '#6FCF97' },
+    { id: null, hex: '#BB6BD9' }
   ]
 }
 

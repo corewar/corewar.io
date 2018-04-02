@@ -74,7 +74,7 @@ const NotificationContainer = ({ notifications }) => (
           timeout={2000}
           unmountOnExit>
             <NotificationItem>
-              {i} - {notifications.length} - {notification.content}
+              {notification.content}
             </NotificationItem>
           </SlideInOut>
       ))}

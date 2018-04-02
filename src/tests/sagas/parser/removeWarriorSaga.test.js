@@ -17,7 +17,7 @@ describe('when removing warriors', () => {
 
   const index = 1
 
-  const saga = removeWarriorSaga({ index })
+  const saga = removeWarriorSaga({ id })
 
   const data = {
     parseResults: [1, 2, 3],

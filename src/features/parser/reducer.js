@@ -1,26 +1,28 @@
 import {
-  PARSE,
+  SET_CURRENT_WARRIOR,
   TOGGLE_CONSOLE,
   HIDE_CONSOLE,
   SHOW_CONSOLE,
   TOGGLE_FILE_MANAGER,
   SET_WARRIORS,
   LOAD_WARRIOR,
-  SET_CURRENT_FILE_INDEX
+  SET_COLOURS
 } from './actions'
 
 import { defaultWarriors } from '../../helpers/defaultWarriors'
-import newWarrior from '../../helpers/newWarrior'
+import blankWarrior from '../../helpers/blankWarrior'
+import { colour } from '../common/theme'
 
 // state
 const initialState = {
   currentFileIndex: 0,
-  currentWarrior: newWarrior,
-  warriors: [newWarrior],
+  currentWarrior: blankWarrior,
+  warriors: [],
   warriorLibrary: defaultWarriors,
   standardId: 2, // TODO: what's the best standard to use as a default?
   displayConsole: false,
-  displayFileManager: false
+  displayFileManager: false,
+  colours: colour.warrior
 }
 
 // selectors
@@ -30,23 +32,23 @@ export const getParserState = state => state.parser
 export default (state = initialState, action) => {
   switch (action.type) {
 
-    case PARSE:
+    case SET_CURRENT_WARRIOR:
       return {
         ...state,
         displayFileManager: false,
         currentWarrior: action.currentWarrior
       }
 
-    case SET_CURRENT_FILE_INDEX:
-      return {
-        ...state,
-        currentFileIndex: action.currentFileIndex
-      }
-
     case SET_WARRIORS:
       return {
         ...state,
         warriors: action.warriors
+      }
+
+    case SET_COLOURS:
+      return {
+        ...state,
+        colours: action.colours
       }
 
     case LOAD_WARRIOR:
