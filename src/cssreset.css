@@ -47,6 +47,11 @@ table {
 	border-spacing: 0;
 }
 
+html {
+	width: 100%;
+	min-width: 450px !important;
+}
+
 ::-webkit-scrollbar-track {
 	background-color: transparent;
 }

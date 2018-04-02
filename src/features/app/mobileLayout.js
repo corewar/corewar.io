@@ -15,6 +15,7 @@ const MobileGrid = styled.div`
   display: grid;
   grid-template-rows: ${space.s} ${space.header} 1fr;
   grid-template-columns: 1fr;
+  min-width: 450px;
 `
 
 const MobileLayout = () => (
