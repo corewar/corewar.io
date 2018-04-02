@@ -17,19 +17,22 @@ const Container = styled.div.attrs({
 
 
   span {
-    border: 1px solid ${colour.coral};
     width: 2em;
     height: 2em;
     border-radius: 50%;
   }
 
   i {
-    color: ${colour.grey};
+    ${props => props.enabled ? `color: ${colour.lightgrey};` : `color: ${colour.grey};`}
     margin: 0.5em 0 0 0.5em;
   }
 
-  .fa-play {
+  .fa-play{
     padding-left: 0.15em;
+  }
+
+  .fa-pause  {
+    padding-left: 0.09em;
   }
 
   .fa-step-forward {
