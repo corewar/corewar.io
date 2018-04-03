@@ -207,7 +207,6 @@ function* watchRoundEndChannel() {
     const action = yield take(roundEndChannel)
     yield put(action)
     const { warriors } = yield select(getParserState)
-    console.log(action.data)
     const content = <div>
       {action.data.outcome === "WIN" &&
         <img

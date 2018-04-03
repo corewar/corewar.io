@@ -32,7 +32,7 @@ const CoreVisuliser = ({ instructions, runProgress, warriors, maxTasks, focus })
           key={info.instruction.address}
           isFocussed={focus === info.instruction.address}
           instruction={info.instruction}
-          warriorId={info.access.warriorId}/>)
+          colour={info.access.warriorData && info.access.warriorData.colour.hex}/>)
           : <DefaultText>Click on a core address</DefaultText>}
   </InstructionWrapper>
 )
