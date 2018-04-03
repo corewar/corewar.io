@@ -36,7 +36,7 @@ const TaskCountDisplay = styled.div`
 const TaskBar = styled.div`
   margin: ${space.xs};
   height: ${space.m};
-  ${props => `background-color: ${colour.warrior[props.warriorIndex]};`}
+  ${props => `background-color: ${props.colour};`}
   ${props => `width: ${getWidth(props.tasks, props.maxTasks)}%;`}
 `
 
@@ -81,7 +81,7 @@ class RoundProgress extends Component{
         const taskCount = this.state.tasks[i]
         return <Fragment key={`warrior_${i}`}>
           <TaskCountDisplay>{taskCount}</TaskCountDisplay>
-          <TaskBar tasks={taskCount} maxTasks={maxTasks} warriorIndex={i}></TaskBar>
+          <TaskBar tasks={taskCount} maxTasks={maxTasks} colour={warrior.data.colour && warrior.data.colour.hex}></TaskBar>
         </Fragment>
       })}
     </RoundStatusWrapper>)
