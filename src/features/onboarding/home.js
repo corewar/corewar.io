@@ -386,16 +386,14 @@ const Home = () => (
     </CallToAction>
     <Tagline id={`features`}>
       <h2>
-        Corewar is a coding game where you write and battle programs against other players.
-        Write your warriors and parse them online with our redcode parser, load them into our core
-        simulator to fine tune your strategy and then enter our live online hills to test your skill.
+        This is Corewar where players test their coding skills against each other, writing warriors which battle for control of the core.
+        Do you have what it takes to become the King of the Hill?
       </h2>
     </Tagline>
     <Simulator>
       <FeatureDescription>
-        Load warriors into our customisable core simulator to hone your techniques.
-        Debug your own code by inspecting the core, and test yourself against other
-        warriors.
+        Our interactive Corewar Simulator provides the battle ground for your warriors.
+        Play the game, inspect the core and debug your code from your web browser!
       </FeatureDescription>
       <FeatureImageWrapper>
         <img src={SimulatorImage} alt={`Animated core simulator example`} />
@@ -406,8 +404,8 @@ const Home = () => (
         <img src={ParserImage} alt={`Animated parser usage example`} />
       </FeatureImageWrapper>
       <FeatureDescription>
-        Write and parse your warriors in our online editor and receive realtime feedback on parser errors.
-        Quickly and easily add and remove warriors from the core to test and battle locally.
+        Our powerful Redcode editor makes it easy to write warriors and through real-time code analysis improve the quality of your programs.
+        The perfect canvas on which to craft your masterpiece.
       </FeatureDescription>
     </Parser>
     {/* <Features>
