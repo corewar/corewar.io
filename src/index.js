@@ -20,8 +20,7 @@ import './cssreset.css'
 import { font, colour } from './features/common/theme'
 
 const Wrapper = styled.div`
-  min-width: 450px;
-  overflow-x: hidden;
+  min-width: 360px;
   margin: 0;
   padding: 0;
   height: 100vh;

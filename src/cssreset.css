@@ -47,11 +47,6 @@ table {
 	border-spacing: 0;
 }
 
-html {
-	width: 100%;
-	min-width: 450px !important;
-}
-
 ::-webkit-scrollbar-track {
 	background-color: transparent;
 }
@@ -64,6 +59,6 @@ html {
 
 ::-webkit-scrollbar-thumb {
 	border-radius: 4px;
-	background-color: #56CCF2;
+	background-color: #292C33;
 }
 

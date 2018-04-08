@@ -6,8 +6,6 @@ import { colour, space } from './theme'
 const Controls = styled.div`
 
   border: none;
-  padding-left: 1em;
-  padding-right: 1em;
   background-color: ${colour.defaultbg};
 
   ${media.phone`
@@ -28,6 +26,7 @@ const Controls = styled.div`
   flex-direction: row;
   justify-content: space-around;
   height: calc(${space.controls} - 1px);
+  width: 100%;
 `
 
 export default Controls
