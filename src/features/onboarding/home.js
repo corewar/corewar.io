@@ -468,7 +468,7 @@ const Home = () => (
     <Roadmap>
       <RoadmapItem>
         <RoadmapText left>November 2017</RoadmapText>
-        <IconWrapper colour={colour.warrior[2]}>
+        <IconWrapper colour={colour.blue}>
           <Octicon name='light-bulb' />
         </IconWrapper>
         <RoadmapText right>The idea to develop corewar as a modern web app is concieved</RoadmapText>
@@ -488,7 +488,7 @@ const Home = () => (
         <RoadmapText left>
           Today
         </RoadmapText>
-        <IconWrapper colour={colour.warrior[3]}>
+        <IconWrapper colour={colour.blue}>
           <Octicon name='megaphone' />
         </IconWrapper>
         <RoadmapText right>
@@ -506,7 +506,7 @@ const Home = () => (
         <RoadmapText left>
           Log in &amp; Warrior Management
         </RoadmapText>
-        <IconWrapper colour={colour.warrior[2]}>
+        <IconWrapper colour={colour.blue}>
           <Octicon name='git-commit' />
         </IconWrapper>
         <RoadmapText right>
@@ -520,7 +520,7 @@ const Home = () => (
         <RoadmapText left>
           Live online hills
         </RoadmapText>
-        <IconWrapper colour={colour.coral}>
+        <IconWrapper colour={colour.blue}>
           <Octicon name='git-commit' />
         </IconWrapper>
         <RoadmapText right>
@@ -534,7 +534,7 @@ const Home = () => (
         <RoadmapText left>
           Private hills
         </RoadmapText>
-        <IconWrapper colour={colour.warrior[4]}>
+        <IconWrapper colour={colour.blue}>
           <Octicon name='git-commit' />
         </IconWrapper>
         <RoadmapText right>
