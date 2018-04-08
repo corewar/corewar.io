@@ -13,27 +13,12 @@ export const sourceCode = props => `
   caret-color: ${colour.white};
   color: ${colour.white};
   resize: none;
-  overflow-y: scroll;
-  overflow-x: scroll;
+  overflow-y: auto;
+  overflow-x: auto;
   white-space: pre-wrap;
   word-break: keep-all;
 
   &:focus {
     outline: none;
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-
-  ::-webkit-scrollbar {
-    width: ${space.xs};
-    height: 0;
-    background-color: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    border-radius: ${space.xs};
-    background-color: ${colour.blue};
   }
 `
