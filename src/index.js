@@ -27,6 +27,8 @@ const Wrapper = styled.div`
   font-family: ${font.default};
   font-size: ${font.base};
   background-color: ${colour.darkbg};
+  width: 100%;
+  overflow-x: hidden;
 `
 
 const target = document.querySelector('#root')
