@@ -52,7 +52,7 @@ const NotificationItem = styled.div`
   margin-bottom: ${space.s};
   margin-top: ${space.s};
   line-height: ${space.m};
-  height: ${space.m};
+  min-height: ${space.m};
 `
 
 const ToastWrapper = styled.div`

@@ -14,7 +14,7 @@ export function* toast(content) {
 
   const id = guid()
 
-  const notification = { id, show: true, content: content }
+  const notification = { id, show: true, content }
 
   yield put({ type: ADD_NOTIFICATION, notification})
 
