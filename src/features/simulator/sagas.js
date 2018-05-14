@@ -210,7 +210,7 @@ function* watchRoundEndChannel() {
     const content = <div>
       {action.data.outcome === "WIN" &&
         <img
-          style={{ marginRight: `10px`, marginTop: `10px` }}
+          style={{ marginRight: `10px` }}
           src={`data:image/svg+xml;base64,${getIdenticon(warriors[action.data.winnerId].compiled, action.data.winnerData.colour.hex, 20)}`}
           alt={`winner icon`}/>
       }
