@@ -182,7 +182,7 @@ export class WarriorLoader implements IWarriorLoader {
 
         var result: IOperand = {
             mode: 0,
-            address: parseInt(operand.address.lexeme, 10)
+            address: this.core.wrap(parseInt(operand.address.lexeme, 10))
         };
 
         switch (operand.mode.lexeme) {
