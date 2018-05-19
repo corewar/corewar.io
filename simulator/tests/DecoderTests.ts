@@ -54,7 +54,7 @@ describe("Decoder", () => {
         { core: ["NOP.I $1, $2", "ADD.AB {-1, {1", "DAT.F $0, $6"], ip: 1, e: ["NOP.I $0, $2", "ADD.AB {-1, {1"] },
         { core: ["NOP.I $2, $1", "ADD.AB <-1, <1", "DAT.F $5, $0"], ip: 1, e: ["NOP.I $2, $0", "ADD.AB <-1, <1"] },
         { core: ["NOP.I $1, $2", "ADD.AB }-1, }1", "DAT.F $0, $6"], ip: 1, e: ["ADD.AB }-1, }1", "DAT.F $0, $6"] },
-        { core: ["NOP.I $2, $0", "ADD.AB >-1, >1", "DAT.F $5, $-1"], ip: 1, e: ["NOP.I $2, $0", "ADD.AB >-1, >1"] },
+        { core: ["NOP.I $2, $0", "ADD.AB >-1, >1", "DAT.F $5, $-1"], ip: 1, e: ["NOP.I $2, $0", "ADD.AB >-1, >1"] }
     ],
         (context, expectation) => {
 

@@ -121,6 +121,9 @@ export default class TestHelper {
 
         const wrapStub = sinon.stub();
         wrapStub.callsFake((address: number) => {
+            address = address % size;
+            address = address >= 0 ? address : address + size;
+
             return address;
         });
 
