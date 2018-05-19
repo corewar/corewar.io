@@ -148,7 +148,7 @@ export class Decoder implements IDecoder {
 
         const address = ipa + --value;
 
-        instruction.aOperand.address = value;
+        instruction.aOperand.address = core.wrap(value);
         core.setAt(task, ipa, instruction);
 
         return clone(core.getAt(address));
@@ -164,7 +164,7 @@ export class Decoder implements IDecoder {
 
         const address = ipa + --value;
 
-        instruction.bOperand.address = value;
+        instruction.bOperand.address = core.wrap(value);
         core.setAt(task, ipa, instruction);
 
         return clone(core.getAt(address));
@@ -182,7 +182,7 @@ export class Decoder implements IDecoder {
 
         const result = clone(core.getAt(address));
 
-        instruction.aOperand.address = value;
+        instruction.aOperand.address = core.wrap(value);
         core.setAt(task, ipa, instruction);
 
         return result;
@@ -200,7 +200,7 @@ export class Decoder implements IDecoder {
 
         const result = clone(core.getAt(address));
 
-        instruction.bOperand.address = value;
+        instruction.bOperand.address = core.wrap(value);
         core.setAt(task, ipa, instruction);
 
         return result;
