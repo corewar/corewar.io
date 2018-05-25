@@ -42,6 +42,8 @@ class CanvasCore extends Component {
     this.nextExecutionAddress = null
     this.hasLoaded = false
 
+    this.inspectionAddress = null
+
     this.cellSprite = null
     this.nextExecutionSprite = null
     this.sprites = []
@@ -116,6 +118,7 @@ class CanvasCore extends Component {
     window.requestAnimationFrame(() => {
       this.renderMessages()
       this.renderNextExecution()
+      this.highlightClickPoint()
     })
 
   }
@@ -269,17 +272,20 @@ class CanvasCore extends Component {
     window.requestAnimationFrame(() => {
       this.renderMessages()
       this.renderNextExecution()
+      this.highlightClickPoint()
     })
   }
 
   renderNextExecution() {
+
+    this.interactiveContext.clearRect(0, 0, this.state.width, this.state.height)
 
     if (!this.nextExecutionAddress) {
       return
     }
 
     const coordinate = this.addressToScreenCoordinate(this.nextExecutionAddress)
-    this.coreContext.drawImage(this.nextExecutionSprite.canvas, coordinate.x, coordinate.y)
+    this.interactiveContext.drawImage(this.nextExecutionSprite.canvas, coordinate.x, coordinate.y)
   }
 
   screenCoordinateToAddress(point) {
@@ -345,40 +351,26 @@ class CanvasCore extends Component {
       return
     }
 
-    //this.clearInteractiveCanvas()
-
-    this.interactiveContext.clearRect(0, 0, this.state.width, this.state.height)
-
     const point = this.getRelativeCoordinates(e)
 
     const address = this.screenCoordinateToAddress(point)
 
-    this.highlightClickPoint(point, address)
+    this.inspectionAddress = address
 
     this.getCoreInstructions(address)
   }
 
-  highlightClickPoint(point, address) {
+  highlightClickPoint() {
+
+    const address = this.inspectionAddress
 
     const cell = this.addressToScreenCoordinate(address)
 
     const { x, y } = cell
 
-    //this.interactiveContext.beginPath()
-
     this.interactiveContext.strokeStyle = '#ffffff'
 
     this.interactiveContext.strokeRect(x, y, this.cellSize, this.cellSize)
-
-    // this.interactiveContext.moveTo(x, y)
-
-    // this.interactiveContext.lineTo(x + this.cellSize, y)
-    // this.interactiveContext.lineTo(x + this.cellSize, y + this.cellSize)
-    // this.interactiveContext.lineTo(x, y + this.cellSize)
-    // this.interactiveContext.lineTo(x, y)
-
-    //this.interactiveContext.stroke()
-
   }
 
   render() {
