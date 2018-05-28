@@ -10,6 +10,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "@sendgrid/mail": "^6.2.1",
     "chai": "^4.1.2",
     "corewar": "0.0.73",
     "enzyme-to-json": "^3.3.3",
@@ -21,6 +22,10 @@
     "jest-styled-components": "^4.10.0",
     "jquery": "^3.3.1",
     "jssha": "^2.3.1",
+    "koa": "^2.5.1",
+    "koa-body": "^1.7.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^4.0.3",
     "prop-types": "^15.6.1",
     "pubsub-js": "^1.6.0",
     "react": "^16.2.0",
