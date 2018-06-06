@@ -1,14 +1,14 @@
 const Koa = require('koa')
 const Router = require('koa-router')
-const KoaBody = require('koa-body')
+const bodyParser = require('koa-bodyparser')
 const serve = require('koa-static')
 const sgMail = require('@sendgrid/mail')
 
 const app = new Koa()
 const router = new Router()
 
-app.use(KoaBody({ jsonLimit: '10Kb' }))
-app.use(serve(__dirname + '/build/'))
+app.use(bodyParser())
+app.use(serve(__dirname))
 
 router.post('/api/email', (ctx, next) => {
 
@@ -30,8 +30,21 @@ router.post('/api/email', (ctx, next) => {
     feedback: ${feedback}`
   }
 
-  sgMail.send(msg)
+  sgMail.send(msg).then(() => {
+    //Celebrate
+    return 'Your feedback was gratefully received, thanks for your time.'
+  })
+  .catch(error => {
 
+    //Log friendly error
+    console.error(error.toString())
+
+    //Extract error msg
+    const {message, code, response} = error
+
+    //Extract response msg
+    const {headers, body} = response
+  })
 })
 
 app.use(router.routes())
