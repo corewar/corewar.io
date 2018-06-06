@@ -1,23 +1,23 @@
 import {
-  SUBSCRIPTION_RESPONSE
+  FEEDBACK_RESPONSE
 } from './actions'
 
 // state
 const initialState = {
-  signupMessage: ''
+  feedbackMessage: ''
 }
 
 // selectors
-export const getSignupState = state => state.signup
+export const getFeedbackState = state => state.feedback
 
 // reducer
 export default (state = initialState, action) => {
   switch (action.type) {
 
-    case SUBSCRIPTION_RESPONSE:
+    case FEEDBACK_RESPONSE:
       return {
         ...state,
-        signupMessage: action.message
+        feedbackMessage: action.message
       }
 
     default:

@@ -47,6 +47,7 @@ const SiteNav = () => (
       <a href={`/learn`}>learn</a>
       <a href={`/#features`}>features</a>
       <a href={`/sign-up`}>sign up</a>
+      <a href={`/contact-us`}>contact us</a>
       <a href={`https://github.com/gareththegeek/corewar`}>code</a>
     </nav>
   </Header>
