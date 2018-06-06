@@ -49,7 +49,7 @@ router.post('/api/email', (ctx, next) => {
 
 app.use(router.routes())
 
-const port = process.env.PORT || 5000;
+const port = process.env.port || 1337
 
 app.listen(port)
 
