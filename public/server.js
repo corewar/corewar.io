@@ -30,8 +30,9 @@ router.post('/api/email', (ctx, next) => {
     feedback: ${feedback}`
   }
 
-  sgMail.send(msg).then(() => {
+  return sgMail.send(msg).then(() => {
     //Celebrate
+    ctx.status = 200
     return 'Your feedback was gratefully received, thanks for your time.'
   })
   .catch(error => {
@@ -53,4 +54,4 @@ const port = process.env.port || 1337
 
 app.listen(port)
 
-console.log("Server running at http://localhost:%d", port);
+console.log("Server running at http://localhost:%d", port)
