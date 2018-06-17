@@ -33,18 +33,14 @@ test:
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
 
-deploy:
+deploy-client:
   steps:
 
+    # install client dependencies
     - script:
       name: install yarn
       code: |
         npm i -g yarn
-
-    - script:
-      name: yarn install
-      code: |
-        yarn install
 
     - script:
       name: install c-r-a
@@ -52,12 +48,33 @@ deploy:
         yarn global add create-react-app
 
     - script:
+      name: yarn install
+      code: |
+        yarn install
+
+    - script:
       name: build app
       code: |
         yarn build
 
+    # deploy built client from build/ folder
     - wercker-labs/azure-ftp-deploy:
       cwd: build/
+      publish-url: $publish_url
+      username: $username
+      password: $password
+
+deploy-server:
+
+  steps:
+    - script:
+      name: install depencencies
+      cwd: server/
+      code: |
+        yarn install
+
+    - wercker-labs/azure-ftp-deploy:
+      cwd: server/
       publish-url: $publish_url
       username: $username
       password: $password
