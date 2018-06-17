@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
     case FEEDBACK_RESPONSE:
       return {
         ...state,
-        feedbackMessage: action.message
+        feedbackMessage: action.message.message
       }
 
     default:
