@@ -33,7 +33,7 @@ router.post('/api/email', (ctx, next) => {
   return sgMail.send(msg).then(() => {
     //Celebrate
     ctx.status = 200
-    return 'Your feedback was gratefully received, thanks for your time.'
+    ctx.body = JSON.stringify({ "message": "Your feedback was gratefully received, thanks for your time." })
   })
   .catch(error => {
 

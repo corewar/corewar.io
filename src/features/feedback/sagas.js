@@ -14,7 +14,7 @@ const handleErrors = (response) => {
 
 const sendFeedback = payload => {
 
-  fetch('/api/email', {
+  return fetch('/api/email', {
     headers: {
       'content-type': 'application/json'
     },
