@@ -21,4 +21,8 @@ MOV.I $0, $1
 
 In addition to the opcode and operands from the input instruction, the parsed output contains the [modifier](modifiers) `.I` and the [addressing mode](addressing_modes) used for each operand (`$`).
 
-## 
+## Standards
+
+Redcode is specified according to a number of standards. The most recent (current) standard is [ICWS'94](http://www.koth.org/info/icws94.html). This document provides a very detailed description of redcode and the game of corewar.
+
+Older, legacy standards were created in 1986 and 1988. ICWS'94 is a superset of the functionality from the older standards and was designed to be backwards compatible. A warrior written to the 1988 spec should parse and execute correctly under the ICWS'94 standard.

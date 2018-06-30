@@ -37,7 +37,7 @@ DAT.F 1, <1 ; <--this instruction is executed
 DAT.F 1, 1
 ```
 
-The second instructions B operand would still be decremented giving:
+The second instruction's B operand would still be decremented, giving:
 
 ```
 DAT.F 1, <1 
