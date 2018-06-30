@@ -1,4 +1,4 @@
-COREWAR.IO
+Corewar.io
 ======================
 
 .. Guide to Corewar
@@ -6,18 +6,18 @@ COREWAR.IO
 .. toctree::
    :maxdepth: 2
    
-   corewar/intro
+   corewar/index
 
 .. Redcode Reference
 
 .. toctree::
    :maxdepth: 2
    
-   redcode/intro
+   redcode/index
 
 .. Developer Reference
 
 .. toctree::
    :maxdepth: 2
    
-   developer/intro
+   developer/index
