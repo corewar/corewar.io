@@ -17,12 +17,39 @@ export class MatchRunner implements IMatchRunner {
 
     run(match: IMatch): IMatchResult {
 
-        
+        for (let i = 0; i < match.warriors.length; i++) {
+            match.warriors[i].data.matchId = i;
+        }
+
+        const matchResult: IMatchResult = {
+            results: match.warriors.map(w => {
+                return {
+                    warriorMatchId: w.data.matchId,
+                    won: 0,
+                    drawn: 0,
+                    lost: 0
+                }
+            })
+        };
 
         for (let i = 0; i < match.rounds; i++) {
 
             this.simulator.initialise(match.options, match.warriors);
-            this.simulator.run();
+            const roundResult = this.simulator.run();
+
+            if (!roundResult) {
+                throw new Error("Round ended without returning a result");
+            }
+
+            matchResult.results.forEach(warriorMatchResult => {
+                if (roundResult.winnerId === warriorMatchResult.warriorMatchId) {
+                    warriorMatchResult.won += 1;
+                } else if (roundResult.outcome === "DRAW") {
+                    warriorMatchResult.drawn += 1;
+                } else {
+                    warriorMatchResult.lost += 1;
+                }
+            })
         }
 
         return null;

@@ -2,7 +2,7 @@ import { IWarrior } from "../../simulator/interface/IWarrior";
 
 export interface IWarriorResult {
 
-    warrior: IWarrior;
+    warriorMatchId: number;
     won: number;
     drawn: number;
     lost: number;
