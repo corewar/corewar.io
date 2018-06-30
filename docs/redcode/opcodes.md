@@ -15,7 +15,7 @@ The following `opcodes` can be used in Corewar
 * [djn](#djn-decrement-and-jump-if-not-zero)
 * [cmp](#seq-skip-if-equal)
 * [seq](#seq-skip-if-equal)
-* [sne](#sne-skip-not-equal)
+* [sne](#sne-skip-if-not-equal)
 * [slt](#slt-skip-if-less-than)
 * [spl](#spl-split)
 * [nop](#nop-no-operation)

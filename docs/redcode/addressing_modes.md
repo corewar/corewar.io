@@ -2,14 +2,14 @@
 
 The following addressing modes can be used in Corewar
 
-* [#](#immediate)
-* [$](#direct)
-* [*](#a-indirect)
-* [@](#b-indirect)
-* [{](#a-pre-decrement-indirect)
-* [}](#a-post-increment-indirect)
-* [<](#b-pre-decrement-indirect)
-* [>](#b-post-increment-indirect)
+* [#](#immediate) - Immediate
+* [$](#direct) - Direct
+* [*](#a-indirect) - A Indirect
+* [@](#b-indirect) - B Indirect
+* [{](#a-pre-decrement-indirect) - A Pre-decrement Indirect
+* [}](#a-post-increment-indirect) - A Post-increment Indirect
+* [<](#b-pre-decrement-indirect) - B Pre-decrement Indirect
+* [>](#b-post-increment-indirect) - B Post-increment Indirect
 
 ##Immediate
 
