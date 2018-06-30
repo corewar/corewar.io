@@ -1,4 +1,5 @@
-#Corewar.io
+Corewar.io
+==========
 
 Welcome to the docs for [corewar.io](https://corewar.io).
 
