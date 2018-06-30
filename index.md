@@ -9,7 +9,7 @@ Corewar Docs
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
+   intro intro
 
 
 Indices and tables
