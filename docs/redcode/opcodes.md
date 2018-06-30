@@ -55,6 +55,7 @@ The move instruction copies data from the [address](core#addresses) referenced b
 Which data is copied is determined by the instruction's [modifier](modifiers) as follows:
 
 |Modifier|Source|Destination|
+|---|---|---|
 |.a|A operand|A operand|
 |.b|B operand|B operand|
 |.ab|A operand|B operand|

@@ -5,6 +5,8 @@ pages:
 - Guide to Corewar: corewar/index.md
 - Redcode Reference:
    - Intro: redcode/index.md
+   - Core: redcode/core.md
+   - Warriors: redcode/warriors.md
    - Operands: redcode/operands.md
    - Opcodes: redcode/opcodes.md
    - Modifiers: redcode/modifiers.md
