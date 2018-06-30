@@ -4,6 +4,7 @@ Corewar.io
 Welcome to the docs for [corewar.io](https://corewar.io).
 
 The docs are grouped into three areas:
+
 * [Guide to Corewar](corewar/)
 * [Redcode Reference](redcode/)
 * [Developer Reference](developer/)
