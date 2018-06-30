@@ -1,6 +1,8 @@
 #Opcodes
 
-Opcodes are used to specify what operation should be performed when the instruction is executed. Different opcodes have different default [modifiers](modifiers) and some opcodes require only a single [operand](operand)
+Opcodes are used to specify what operation should be performed when the instruction is executed.
+
+Different opcodes have different default [modifiers](modifiers) and some opcodes require only a single [operand](operand).
 
 The following `opcodes` can be used in Corewar
 
