@@ -142,22 +142,24 @@ describe("Simulator", () => {
         expect(executeCalled).to.be.equal(true);
     });
 
-    it("step returns true if the end condition check returns true", () => {
+    it("step returns round result if the end condition check returns one", () => {
 
-        (<sinon.stub>endCondition.check).returns(true);
+        const expected = {};
 
-        var actual = simulator.step();
+        (<sinon.stub>endCondition.check).returns(expected);
 
-        expect(actual).to.be.equal(true);
+        const actual = simulator.step();
+
+        expect(actual).to.be.equal(expected);
     });
 
-    it("step returns false if the end condition check returns false", () => {
+    it("step returns null if the end condition check returns null", () => {
 
-        (<sinon.stub>endCondition.check).returns(false);
+        (<sinon.stub>endCondition.check).returns(null);
 
         var actual = simulator.step();
 
-        expect(actual).to.be.equal(false);
+        expect(actual).to.be.equal(null);
     });
 
     it("step increments the cycle number", () => {
