@@ -5,5 +5,8 @@ pages:
 - Guide to Corewar: corewar/index.md
   #- Sub pages go here: 
 - Redcode Reference: redcode/index.md
+  - Opcodes: redcode/opcodes.md
+  - Modifiers: redcode/modifiers.md
+  - Addressing Modes: redcode/addressing_modes.md
 - Developer Reference: developer/index.md
 theme: readthedocs
