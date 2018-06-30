@@ -3,8 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to corewar's documentation!
-===================================
+#Corewar Docs
 
 .. toctree::
    :maxdepth: 2
@@ -12,8 +11,7 @@ Welcome to corewar's documentation!
 
 
 
-Indices and tables
-==================
+#Indices and tables
 
 * :ref:`genindex`
 * :ref:`modindex`
