@@ -6,18 +6,18 @@ COREWAR.IO
 .. toctree::
    :maxdepth: 2
    
-   corewar-intro
+   corewar/intro
 
 .. Redcode Reference
 
 .. toctree::
    :maxdepth: 2
    
-   redcode-intro
+   redcode/intro
 
 .. Developer Reference
 
 .. toctree::
    :maxdepth: 2
    
-   developer-intro
+   developer/intro
