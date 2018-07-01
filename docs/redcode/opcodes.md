@@ -200,11 +200,45 @@ The default modifier for the `djn` opcode is [.b](modifiers#b).
 
 ##Seq - Skip if Equal
 
+The `cmp` opcode is an alias for `seq` used to support legacy [corewar standards](index#standards). `cmp` and `seq` work in exactly the same way within Corewar.
+
+The `seq` instruction compares the number(s) at the addresses specified by its source and destination [operands](operands) and if they are equal, increments the next address to be executed by the current [process](warriors#processes) by one - in effect skipping the next instruction. Skip instructions are commonly used to develop scanners which scan the [core](core) looking for other [warriors](warriors).
+
+The instruction's [modifier](modifiers) determines what at the two addresses is compared for equality. Importantly, using a modifier of [.i](modifiers#i) will compare the entire source and destination instructions. This means even if the instructions differ only by opcode, modifier or [addressing mode](addressing_modes), the next instruction will be skipped.
+
+The default modifier for the 'seq' opcode is [.i](modifiers#i).
+
 ##Sne - Skip if not Equal
+
+The `sne` instruction works in the same way as the [seq](opcodes#seq-skip-if-equal) instruction detailed above with the exception that the next instruction is skipped if the source and destination instructions are **not** equal.
+
+The default modifier for the 'sne' opcode is [.i](modifiers#i).
 
 ##Slt - Skip if Less Than
 
+The `slt` instruction compares the number(s) at the addresses specified by its source and destination [operands](operands). If the source number(s) are less than than the destination number(s), the next address to be executed by the current [process](warriors#processes) is incremented by one - in effect skipping the next instruction.
+
+The instruction's [modifier](modifiers) controls which operands are compared at the source and destination addresses according to the following table:
+
+|Modifier|Source|Destination|
+|---|---|---|
+|.a|A operand|A operand|
+|.b|B operand|B operand|
+|.ab|A operand|B operand|
+|.ba|B operand|A operand|
+|.f|A and B operands|A and B operands|
+|.x|A and B operands|B and A operands|
+|.i|A and B operands|A and B operands|
+
+We can see from this that the [.f](modifiers#f) and [.i](modifiers#i) modifiers are equivalent.
+
+If comparing both A and B operands (using .f, .x or .i), the instruction will not be skipped if **either** source number is greater than its corresponding destination number.
+
+The default modifier for the 'slt' opcode is [.b](modifiers#b).
+
 ##Spl - Split
+
+
 
 ##Nop - No Operation
 
