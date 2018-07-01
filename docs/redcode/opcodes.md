@@ -238,7 +238,32 @@ The default modifier for the 'slt' opcode is [.b](modifiers#b).
 
 ##Spl - Split
 
+The `spl` instruction spawns a new [process](warriors#processes) for the current [warrior](warriors) at the address specified by the A [operand](operands).
 
+The newly created process is added to the process queue **after** the currently executing process.
+
+Consider the following example:
+
+```
+a: spl c
+b: jmp 0
+c: jmp 0
+```
+
+The first instruction is executed, creating a second process at `c`. The next instruction to execute will be `b` (executed by the original process). Finally the new process will execute at `c`.
+
+[Modifiers](modifiers) have no effect on the `spl` instruction, the A operand is always used as the split address.
+
+The default [modifier](modifiers) for the `spl` opcode is `.b`. Only one operand needs to be specified for the `spl` instruction to be successfully parsed. If this is the case, the B operand is defaulted to 0.
+
+For example `spl 3` will be parsed as `SPL.B $3, $0`.
 
 ##Nop - No Operation
 
+The `nop` instruction does not perform any operation. The instruction takes a single cycle to execute as normal, and [addressing modes](addressing_modes) are evaluated as normal. One potential use of the `nop` instruction is to introduce a delay in execution when working on a [multi-process](warriors#processes) warrior.
+
+[Modifiers](modifiers) have no effect on the `nop` instruction.
+
+The default [modifier](modifiers) for the `nop` opcode is `.f`. Only one operand needs to be specified for the `nop` instruction to be successfully parsed. If this is the case, the B operand is defaulted to 0.
+
+For example `nop 8` will be parsed as `NOP.F $8, $0`.
