@@ -50,33 +50,83 @@ For example `dat 7` will be parsed as `DAT.F $0, $7`
 
 ##Mov - Move
 
-The move instruction copies data from the [address](core#addresses) referenced by the A [operand](operands) to the address referenced by the B operand.
+The `mov` instruction copies data from the [address](core#addresses) referenced by the A [operand](operands) to the address referenced by the B operand.
 
-Which data is copied is determined by the instruction's [modifier](modifiers) as follows:
-
-|Modifier|Source|Destination|
-|---|---|---|
-|.a|A operand|A operand|
-|.b|B operand|B operand|
-|.ab|A operand|B operand|
-|.ba|B operand|A operand|
-|.f|A and B operands|A and B operands|
-|.x|A and B operands|B and A operands|
-|.i|Whole instruction|Whole instruction|
+Which data is copied is determined by the instruction's [modifier](modifiers).
 
 The default modifier for the `mov` opcode is [.i](modifiers#i).
 
 ##Add - Add
 
+The `add` instruction adds the number(s) from the [address](core#addresses) referenced by the A [operand](operands) to the number(s) at the address referenced by the B operand.
+
+As with all operations in Corewar, the add operation uses mod maths, therefore the result of addition will be `(A + B) % CORESIZE`.
+
+Which data is added is determined by the instruction's [modifier](modifiers).
+
+The [.i](modifiers#i) modifier has the same effect as the [.f](modifiers#f) modifier.
+
+The default modifier for the `add` opcode is [.ab](modifiers#ab).
+
 ##Sub - Subtract
+
+The `sub` instruction subtracts the number(s) from the [address](core#addresses) referenced by the A [operand](operands) from the number(s) at the address referenced by the B operand.
+
+As with all operations in Corewar, the subtract operation uses mod maths, therefore the result of addition will be `(A - B) % CORESIZE`.
+
+Which data is subtracted is determined by the instruction's [modifier](modifiers).
+
+The [.i](modifiers#i) modifier has the same effect as the [.f](modifiers#f) modifier.
+
+The default modifier for the `sub` opcode is [.ab](modifiers#ab).
 
 ##Mul - Multiply
 
+The `mul` instruction multiplies the number(s) from the [address](core#addresses) referenced by the A [operand](operands) by the number(s) at the address referenced by the B operand.
+
+As with all operations in Corewar, the multiply operation uses mod maths, therefore the result of addition will be `(A * B) % CORESIZE`.
+
+Which data is multiplied is determined by the instruction's [modifier](modifiers).
+
+The [.i](modifiers#i) modifier has the same effect as the [.f](modifiers#f) modifier.
+
+The default modifier for the `mul` opcode is [.ab](modifiers#ab).
+
 ##Div - Divide
+
+The `div` instruction divides the number(s) from the [address](core#addresses) referenced by the B [operand](operands) by the number(s) at the address referenced by the A operand. The quotient of this division is always rounded down.
+
+As with all operations in Corewar, the divide operation uses mod maths, therefore the result of addition will be `floor(A / B) % CORESIZE`.
+
+Which data is divided is determined by the instruction's [modifier](modifiers).
+
+The [.i](modifiers#i) modifier has the same effect as the [.f](modifiers#f) modifier.
+
+The default modifier for the `div` opcode is [.ab](modifiers#ab).
+
+Dividing by zero is considered an illegal instruction in Corewar. The executing warrior's [process](warriors#processes) is removed from the process queue (terminated).
+
+Note that termination of the warrior's process happens after the [operand](operands) [addressing modes](addressing_modes) are evaluated.
 
 ##Mod - Modulo
 
+The `mod` instruction divides the number(s) from the [address](core#addresses) referenced by the B [operand](operands) by the number(s) at the address referenced by the A operand. The remainder from this division is stored at the destination.
+
+As with all operations in Corewar, the modulo operation uses mod maths, therefore the result of addition will be `(A % B) % CORESIZE`.
+
+Which data is divided is determined by the instruction's [modifier](modifiers).
+
+The [.i](modifiers#i) modifier has the same effect as the [.f](modifiers#f) modifier.
+
+The default modifier for the `mod` opcode is [.ab](modifiers#ab).
+
+Dividing by zero is considered an illegal instruction in Corewar. The executing warrior's [process](warriors#processes) is removed from the process queue (terminated).
+
+Note that termination of the warrior's process happens after the [operand](operands) [addressing modes](addressing_modes) are evaluated.
+
 ##Jmp - Jump
+
+
 
 ##Jmz - Jump if Zero
 
