@@ -72,7 +72,7 @@ The default modifier for the `add` opcode is [.ab](modifiers#ab).
 
 The `sub` instruction subtracts the number(s) from the [address](core#addresses) referenced by the A [operand](operands) from the number(s) at the address referenced by the B operand.
 
-As with all operations in Corewar, the subtract operation uses mod maths, therefore the result of addition will be `(A - B) % CORESIZE`.
+As with all operations in Corewar, the subtract operation uses mod maths, therefore the result of subtraction will be `(A - B) % CORESIZE`.
 
 Which data is subtracted is determined by the instruction's [modifier](modifiers).
 
@@ -84,7 +84,7 @@ The default modifier for the `sub` opcode is [.ab](modifiers#ab).
 
 The `mul` instruction multiplies the number(s) from the [address](core#addresses) referenced by the A [operand](operands) by the number(s) at the address referenced by the B operand.
 
-As with all operations in Corewar, the multiply operation uses mod maths, therefore the result of addition will be `(A * B) % CORESIZE`.
+As with all operations in Corewar, the multiply operation uses mod maths, therefore the result of multiplication will be `(A * B) % CORESIZE`.
 
 Which data is multiplied is determined by the instruction's [modifier](modifiers).
 
@@ -96,7 +96,7 @@ The default modifier for the `mul` opcode is [.ab](modifiers#ab).
 
 The `div` instruction divides the number(s) from the [address](core#addresses) referenced by the B [operand](operands) by the number(s) at the address referenced by the A operand. The quotient of this division is always rounded down.
 
-As with all operations in Corewar, the divide operation uses mod maths, therefore the result of addition will be `floor(A / B) % CORESIZE`.
+As with all operations in Corewar, the divide operation uses mod maths, therefore the result of division will be `floor(A / B) % CORESIZE`.
 
 Which data is divided is determined by the instruction's [modifier](modifiers).
 
@@ -112,7 +112,7 @@ Note that termination of the warrior's process happens after the [operand](opera
 
 The `mod` instruction divides the number(s) from the [address](core#addresses) referenced by the B [operand](operands) by the number(s) at the address referenced by the A operand. The remainder from this division is stored at the destination.
 
-As with all operations in Corewar, the modulo operation uses mod maths, therefore the result of addition will be `(A % B) % CORESIZE`.
+As with all operations in Corewar, the modulo operation uses mod maths, therefore the result of modulo will be `(A % B) % CORESIZE`.
 
 Which data is divided is determined by the instruction's [modifier](modifiers).
 
@@ -126,9 +126,36 @@ Note that termination of the warrior's process happens after the [operand](opera
 
 ##Jmp - Jump
 
+The `jmp` instruction changes the address of the next instruction which will be executed by the currently executing [process](warriors#processes). The most common usages of this opcode are to create a loop or to skip over a section of code.
 
+The `jmp` instruction will jump execution to the address given by the instruction's A [operand](operands). The B operand has no purpose within the `jmp` instruction. However the B operand will still be evaluated, see [addressing_modes](addressing_modes).
+
+[Modifiers](modifiers) have no effect on the `jmp` instruction, the A operand is always used as the jump address.
+
+The default modifier for the `jmp` opcode is [.b](modifiers#b). Only one operand needs to be specified for the `jmp` instruction to be successfully parsed. If this is the case, the B operand is defaulted to 0.
+
+For example `jmp 5` will be parsed as `JMP.B $5, $0`.
 
 ##Jmz - Jump if Zero
+
+The `jmz` instruction works in the same way as the [jmp](opcodes#jmp-jump) instruction detailed above with the exception that the jump is only performed if the number(s) at the address referenced by the B [operand](operands) is zero. This allows the `jmz` instruction to function like an `if` statement in a higher level language.
+
+The instruction's [modifier](modifiers) controls which operands are compared with zero at the destination address according to the following table:
+
+|Modifier|Destination|
+|---|---|
+|.a|A operand|
+|.b|B operand|
+|.ab|B operand|
+|.ba|A operand|
+|.f|A and B operands|
+|.x|A and B operands|
+|.i|A and B operands|
+
+We can see from this that [.a](modifiers#a) and [.ba](modifiers#ba) are equivalent, as are [.b](modifiers#b) and [.ab](modifiers#ab).
+We can also see that [.f](modifiers#f), [.x](modifiers#x) and [.i](modifiers#i) are equivalent.
+
+The default modifier for the `jmz` opcode is [.b](modifiers#b).
 
 ##Jmn - Jump if not Zero
 
