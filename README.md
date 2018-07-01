@@ -10,6 +10,10 @@ Currently this project contains a redcode parser and core simulator.
 
 In future we hope to include a corewar IDE with debugger, an interactive core simulation and a number of hills. The UI will be provided from this project https://github.com/gareththegeek/corewar-ui
 
+## Docs
+
+The docs are a work in progress and are currently hosted on [Read the Docs](http://corewar-docs.readthedocs.io/)
+
 ## Getting Started
 
 This project is published to NPM where it is intended to be used as a dependency for UI based projects who wish to use the corewar parser and simulator functionality.
