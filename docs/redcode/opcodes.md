@@ -200,7 +200,7 @@ The default modifier for the `djn` opcode is [.b](modifiers#b).
 
 ##Seq - Skip if Equal
 
-The `cmp` opcode is an alias for `seq` used to support legacy [corewar standards](index#standards). `cmp` and `seq` work in exactly the same way within Corewar.
+The `cmp` opcode is an alias for `seq` used to support legacy [corewar standards](./#standards). `cmp` and `seq` work in exactly the same way within Corewar.
 
 The `seq` instruction compares the number(s) at the addresses specified by its source and destination [operands](operands) and if they are equal, increments the next address to be executed by the current [process](warriors#processes) by one - in effect skipping the next instruction. Skip instructions are commonly used to develop scanners which scan the [core](core) looking for other [warriors](warriors).
 
