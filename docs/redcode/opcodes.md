@@ -155,7 +155,7 @@ The instruction's [modifier](modifiers) controls which operands are compared wit
 We can see from this that [.a](modifiers#a) and [.ba](modifiers#ba) are equivalent, as are [.b](modifiers#b) and [.ab](modifiers#ab).
 We can also see that [.f](modifiers#f), [.x](modifiers#x) and [.i](modifiers#i) are equivalent.
 
-Note that when comparing both A and B operands with zero, the jump will not be taken if **either** operand is non-zero.
+Note that when comparing both A and B operands with zero, the jump will **not** be taken if **either** operand is non-zero.
 
 ```
 dat 0, 1 ; <- won't jump if compared with jmz.f
@@ -170,7 +170,7 @@ The default modifier for the `jmz` opcode is [.b](modifiers#b).
 
 The `jmn` instruction works in the same way as the [jmz](opcodes#jmz-jump-if-zero) instruction detailed above with the exception that the jump is performed if the referenced number(s) are **not** zero.
 
-Note that when comparing both A and B operands with zero, the jump will not be taken if **either** operand is zero.
+Note that when comparing both A and B operands with zero, the jump will **not** be taken if **either** operand is zero.
 
 ```
 dat 0, 1 ; <- won't jump if compared with jmn.f
@@ -182,6 +182,21 @@ dat 0, 0 ; <- won't jump if compared with jmn.f
 The default modifier for the `jmn` opcode is [.b](modifiers#b).
 
 ##Djn - Decrement and Jump if not Zero
+
+The `djn` instruction works in a similar way to the [jmn](opcodes#jmn-jump-if-not-zero) instruction detailed above with one addition. Before comparing the destination instruction against zero, the number(s) at the destination instruction are decremented. One common use of this opcode is to create the equivalent of a simple `for` loop in higher level languages.
+
+Unlike the `jmn` intruction, the `djn` instruction **will** perform the jump if **either** operand is zero when using the [.f](modifiers#f), [.x](modifiers#x) and [.i](modifiers#i) modifiers.
+
+```
+dat 0, 1 ; <- will jump if compared with djn.f
+dat 1, 0 ; <- will jump if compared with djn.f
+dat 1, 1 ; <- will jump if compared with djn.f
+dat 0, 0 ; <- won't jump if compared with jmn.f
+```
+
+Decrement happens after the [addressing modes](addressing_modes) are evaluated and before the comparison against zero is made.
+
+The default modifier for the `djn` opcode is [.b](modifiers#b).
 
 ##Seq - Skip if Equal
 
