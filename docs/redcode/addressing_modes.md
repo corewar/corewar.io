@@ -116,7 +116,7 @@ dat   $1, $0
 
 Finally the move operation will be applied using the **copy** of the `dat` instruction from the `Source Register`:
 
-```
+```redcode
 mov.i }1, $1
 dat   $0, $0
 ```
