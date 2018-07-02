@@ -20,9 +20,9 @@ The following notional registers are used:
 
 The first step in execution is fetch. During this step the `simulator` determines the instruction to be executed by populating the `Instruction Register`.
 
-First, the current [warrior](warriors) is determined (see [warriors](warriors) for details).
+First, the current [warrior](../corewar/warriors) is determined (see [warriors](../corewar/warriors) for details).
 
-Next the current [process](warriors#processes) is determined for the current warrior (see [processes](processes) for details).
+Next the current [process](../corewar/warriors#processes) is determined for the current warrior (see [processes](processes) for details).
 
 The `instruction pointer` for the current process is determined.
 
@@ -44,7 +44,7 @@ The evaluated address from the `B` operand is used to retrieve and store an inst
 
 The final step in execution is execute.
 
-First the current [process's](warriors#processes) `instruction pointer` is incremented (so that the process will execute the next instruction in core when it is next executed).
+First the current [process's](../corewar/warriors#processes) `instruction pointer` is incremented (so that the process will execute the next instruction in core when it is next executed).
 
 Next the `Instruction Register` instruction's [opcode](opcodes) and [modifier](modifiers) are used to determine the operation to perform.
 

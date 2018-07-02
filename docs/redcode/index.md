@@ -1,7 +1,7 @@
 Redcode Reference
 =================
 
-Redcode is the languaged used to write [warriors](warriors) for the game Corewar.
+Redcode is the languaged used to write [warriors](../corewar/warriors) for the game Corewar.
 
 Redcode resembles assembly language, with each instruction being composed of an [opcode](opcodes) and two [operands](operands).
 
@@ -21,7 +21,7 @@ MOV.I $0, $1
 
 In addition to the opcode and operands from the input instruction, the parsed output contains the [modifier](modifiers) `.I` and the [addressing mode](addressing_modes) used for each operand (`$`).
 
-You can (but don't have to) specify the modifier and addressing modes in your source redcode.
+You can (but don't have to) specify the modifier and addressing modes in your source redcode. Using different modifiers and addressing modes allow you to change the behaviour of opcodes in interesting ways.
 
 ## Standards
 

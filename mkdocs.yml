@@ -3,11 +3,11 @@ repo_url: https://github.com/gareththegeek/corewar
 pages:
 - Home: index.md
 - Guide to Corewar: corewar/index.md
+   - Core: corewar/core.md
+   - Warriors: corewar/warriors.md
 - Redcode Reference:
    - Intro: redcode/index.md
    - Execution: redcode/execution.md
-   - Core: redcode/core.md
-   - Warriors: redcode/warriors.md
    - Operands: redcode/operands.md
    - Opcodes: redcode/opcodes.md
    - Modifiers: redcode/modifiers.md

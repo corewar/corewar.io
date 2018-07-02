@@ -26,7 +26,7 @@ The following `opcodes` can be used in Corewar
 
 ##Dat - Data
 
-If one of a warrior's [processes](warriors#processes) executes a `dat` instruction it is removed from the process queue i.e. terminated. This is the main way that [warriors](warriors) are killed within the game of Corewar.
+If one of a warrior's [processes](../corewar/warriors#processes) executes a `dat` instruction it is removed from the process queue i.e. terminated. This is the main way that [warriors](../corewar/warriors) are killed within the game of Corewar.
 
 Note that termination of the warrior's process happens after the [operand](operands) [addressing modes](addressing_modes) are evaluated. See [execution](execution) for details.
 
@@ -104,7 +104,7 @@ The [.i](modifiers#i) modifier has the same effect as the [.f](modifiers#f) modi
 
 The default modifier for the `div` opcode is [.ab](modifiers#ab).
 
-Dividing by zero is considered an illegal instruction in Corewar. The executing warrior's [process](warriors#processes) is removed from the process queue (terminated).
+Dividing by zero is considered an illegal instruction in Corewar. The executing warrior's [process](../corewar/warriors#processes) is removed from the process queue (terminated).
 
 Note that termination of the warrior's process happens after the [operand](operands) [addressing modes](addressing_modes) are evaluated. See [execution](execution) for details.
 
@@ -120,13 +120,13 @@ The [.i](modifiers#i) modifier has the same effect as the [.f](modifiers#f) modi
 
 The default modifier for the `mod` opcode is [.ab](modifiers#ab).
 
-Dividing by zero is considered an illegal instruction in Corewar. The executing warrior's [process](warriors#processes) is removed from the process queue (terminated).
+Dividing by zero is considered an illegal instruction in Corewar. The executing warrior's [process](../corewar/warriors#processes) is removed from the process queue (terminated).
 
 Note that termination of the warrior's process happens after the [operand](operands) [addressing modes](addressing_modes) are evaluated. See [execution](execution) for details.
 
 ##Jmp - Jump
 
-The `jmp` instruction changes the address of the next instruction which will be executed by the currently executing [process](warriors#processes). The most common usages of this opcode are to create a loop or to skip over a section of code.
+The `jmp` instruction changes the address of the next instruction which will be executed by the currently executing [process](../corewar/warriors#processes). The most common usages of this opcode are to create a loop or to skip over a section of code.
 
 The `jmp` instruction will jump execution to the address given by the instruction's A [operand](operands). The B operand has no purpose within the `jmp` instruction. However the B operand will still be evaluated, see [addressing_modes](addressing_modes).
 
@@ -202,7 +202,7 @@ The default modifier for the `djn` opcode is [.b](modifiers#b).
 
 The `cmp` opcode is an alias for `seq` used to support legacy [corewar standards](./#standards). `cmp` and `seq` work in exactly the same way within Corewar.
 
-The `seq` instruction compares the number(s) at the addresses specified by its source and destination [operands](operands) and if they are equal, increments the next address to be executed by the current [process](warriors#processes) by one - in effect skipping the next instruction. Skip instructions are commonly used to develop scanners which scan the [core](core) looking for other [warriors](warriors).
+The `seq` instruction compares the number(s) at the addresses specified by its source and destination [operands](operands) and if they are equal, increments the next address to be executed by the current [process](../corewar/warriors#processes) by one - in effect skipping the next instruction. Skip instructions are commonly used to develop scanners which scan the [core](core) looking for other [warriors](../corewar/warriors).
 
 The instruction's [modifier](modifiers) determines what at the two addresses is compared for equality. Importantly, using a modifier of [.i](modifiers#i) will compare the entire source and destination instructions. This means even if the instructions differ only by opcode, modifier or [addressing mode](addressing_modes), the next instruction will be skipped.
 
@@ -216,7 +216,7 @@ The default modifier for the 'sne' opcode is [.i](modifiers#i).
 
 ##Slt - Skip if Less Than
 
-The `slt` instruction compares the number(s) at the addresses specified by its source and destination [operands](operands). If the source number(s) are less than than the destination number(s), the next address to be executed by the current [process](warriors#processes) is incremented by one - in effect skipping the next instruction.
+The `slt` instruction compares the number(s) at the addresses specified by its source and destination [operands](operands). If the source number(s) are less than than the destination number(s), the next address to be executed by the current [process](../corewar/warriors#processes) is incremented by one - in effect skipping the next instruction.
 
 The instruction's [modifier](modifiers) controls which operands are compared at the source and destination addresses according to the following table:
 
@@ -238,7 +238,7 @@ The default modifier for the 'slt' opcode is [.b](modifiers#b).
 
 ##Spl - Split
 
-The `spl` instruction spawns a new [process](warriors#processes) for the current [warrior](warriors) at the address specified by the A [operand](operands).
+The `spl` instruction spawns a new [process](../corewar/warriors#processes) for the current [warrior](../corewar/warriors) at the address specified by the A [operand](operands).
 
 The newly created process is added to the process queue **after** the currently executing process.
 
@@ -260,7 +260,7 @@ For example `spl 3` will be parsed as `SPL.B $3, $0`.
 
 ##Nop - No Operation
 
-The `nop` instruction does not perform any operation. The instruction takes a single cycle to execute as normal, and [addressing modes](addressing_modes) are evaluated as normal. One potential use of the `nop` instruction is to introduce a delay in execution when working on a [multi-process](warriors#processes) warrior.
+The `nop` instruction does not perform any operation. The instruction takes a single cycle to execute as normal, and [addressing modes](addressing_modes) are evaluated as normal. One potential use of the `nop` instruction is to introduce a delay in execution when working on a [multi-process](../corewar/warriors#processes) warrior.
 
 [Modifiers](modifiers) have no effect on the `nop` instruction.
 
