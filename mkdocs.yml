@@ -2,7 +2,8 @@ site_name: Corewar.io Documentation
 repo_url: https://github.com/gareththegeek/corewar
 pages:
 - Home: index.md
-- Guide to Corewar: corewar/index.md
+- Guide to Corewar: 
+   - Intro: corewar/index.md
    - Core: corewar/core.md
    - Warriors: corewar/warriors.md
 - Redcode Reference:
