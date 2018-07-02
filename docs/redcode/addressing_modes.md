@@ -68,7 +68,7 @@ The B Indirect (`@`) addressing mode works in the same way as the [A Indirect](#
 
 The `@` addressing mode is used by the classic warrior `dwarf` to set the location where its bombs will fall:
 
-```
+```redcode
 add #4,  3
 mov  2, @2
 jmp -2
