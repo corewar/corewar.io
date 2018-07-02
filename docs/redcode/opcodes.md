@@ -32,14 +32,14 @@ Note that termination of the warrior's process happens after the [operand](opera
 
 For example if a warrior were to execute the first instruction of the following code block
 
-```
+```redcode
 DAT.F 1, <1 ; <--this instruction is executed
 DAT.F 1, 1
 ```
 
 The second instruction's B operand would still be decremented, giving:
 
-```
+```redcode
 DAT.F 1, <1 
 DAT.F 1, 0 ; <--this instruction was modified
 ```
@@ -157,7 +157,7 @@ We can also see that [.f](modifiers#f), [.x](modifiers#x) and [.i](modifiers#i) 
 
 Note that when comparing both A and B operands with zero, the jump will **not** be taken if **either** operand is non-zero.
 
-```
+```redcode
 dat 0, 1 ; <- won't jump if compared with jmz.f
 dat 1, 0 ; <- won't jump if compared with jmz.f
 dat 1, 1 ; <- won't jump if compared with jmz.f
@@ -172,7 +172,7 @@ The `jmn` instruction works in the same way as the [jmz](opcodes#jmz-jump-if-zer
 
 Note that when comparing both A and B operands with zero, the jump will **not** be taken if **either** operand is zero.
 
-```
+```redcode
 dat 0, 1 ; <- won't jump if compared with jmn.f
 dat 1, 0 ; <- won't jump if compared with jmn.f
 dat 1, 1 ; <- will jump if compared with jmn.f
@@ -187,7 +187,7 @@ The `djn` instruction works in a similar way to the [jmn](opcodes#jmn-jump-if-no
 
 Unlike the `jmn` intruction, the `djn` instruction **will** perform the jump if **either** operand is zero when using the [.f](modifiers#f), [.x](modifiers#x) and [.i](modifiers#i) modifiers.
 
-```
+```redcode
 dat 0, 1 ; <- will jump if compared with djn.f
 dat 1, 0 ; <- will jump if compared with djn.f
 dat 1, 1 ; <- will jump if compared with djn.f
@@ -244,7 +244,7 @@ The newly created process is added to the process queue **after** the currently 
 
 Consider the following example:
 
-```
+```redcode
 a: spl c
 b: jmp 0
 c: jmp 0

@@ -62,7 +62,7 @@ Understanding how instructions are evaluated and executed is vitally important t
 
 Consider the following redcode:
 
-```
+```redcode
 0000: mov.i >0, $0
 0001: dat.f $0, $0
 ```
@@ -75,7 +75,7 @@ When imaging how this first instruction will execute, your reasoning might be:
 
 Naively, you might therefore expect the core to look like this after the first instruction is executed:
 
-```
+```redcode
 0000: mov.i >0, $1
 0001: mov.i >0, $1
 ```
@@ -96,7 +96,7 @@ Next, during the [decode](#decode) stage, the `A` operand will be evaluated. The
 
 Following this the post-increment is applied to the `B` operand so the instruction in core looks like this:
 
-```
+```redcode
 0000: mov.i >0, $1
 0001: dat.f $0, $0
 ```
@@ -113,7 +113,7 @@ Now the instruction in the `Instruction Register` is executed. It copies the ins
 
 The resulting core looks like this:
 
-```
+```redcode
 0000: mov.i >0, $1
 0001: mov.i >0, $0
 ```

@@ -7,7 +7,7 @@ Redcode resembles assembly language, with each instruction being composed of an 
 
 For example
 
-```
+```redcode
 mov 0, 1
 ```
 
@@ -15,7 +15,7 @@ Here the [opcode](opcodes) is `mov` and the [operands](operands) are `0` and `1`
 
 In order to load your warrior into the game, the recode must be processed by a [Parser](parser). The Parsed output of the above instruction looks like this:
 
-```
+```redcode
 MOV.I $0, $1
 ```
 

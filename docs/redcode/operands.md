@@ -2,7 +2,7 @@
 
 Each redcode instruction contains two operands. An operand is composed of an [addressing mode](addressing_modes) and a number. The first operand is known as the `A` operand and the second as the `B` operand.
 
-```
+```redcode
 mov.i $1, #2
 ```
 In the above example, the A operand is `$1` and the B operand is `#2`.

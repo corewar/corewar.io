@@ -23,7 +23,7 @@ Operands with the immediate (`#`) addressing mode are always evaluated as an add
 
 For example, the follow example works just like the classic `imp` despite having a non-zero `A` operand. This can also make the imp more resilient as it will continue to function perfectly even if the `A` number is modified.
 
-```
+```redcode
 mov.i #123, $1
 ```
 
@@ -33,7 +33,7 @@ The direct (`$`) addressing mode provides a relative address from the executing 
 
 This is used in the classic `imp`.
 
-```
+```redcode
 mov.i $0, $1
 ```
 
@@ -49,7 +49,7 @@ Note the intermediate instruction's address is resolved relative to this interme
 
 Let's look at an example.
 
-```
+```redcode
 mov.i *1, $2
 dat    2, 0  ; <- 2 is used as a pointer
 dat    0, 0  ; <- this instruction will be overwritten
@@ -82,14 +82,14 @@ After this it executes `mov 2, @2` to copy the `dat` bomb to the address pointed
 
 The A Pre-decrement Indirect (`{`) addressing mode works in the same way as the [A Indirect](`*`) addressing mode detailed above with the addition that it **first** decrements the `A` number **before** using it as a pointer.
 
-```
+```redcode
 mov.i {1, $1
 dat   $0, $0
 ```
 
 The above example will first decrement the `A` number of the `dat` instruction before using the `dat` instruction's `A` number as a pointer.
 
-```
+```redcode
 mov.i  {1, $1
 dat   $-1, $0
 ```
@@ -100,7 +100,7 @@ After decrementing, the `A` number of the `dat` instruction will be `-1` and the
 
 The A Post-increment Indirect (`}`) addressing mode works in the same way as the [A Indirect](`*`) addressing mode detailed above with the addition that it increments the `A` number **after** using it as a pointer.
 
-```
+```redcode
 mov.i }1, $1
 dat   $0, $0
 ```
@@ -109,7 +109,7 @@ The above example will first use the `A` number of the `dat` instruction as a po
 
 After this has happened, the `dat` instruction's `A` number will be incremented to `1`.
 
-```
+```redcode
 mov.i  }1, $1
 dat   $1, $0
 ```
