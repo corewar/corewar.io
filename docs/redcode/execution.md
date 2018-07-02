@@ -14,7 +14,7 @@ The following notional registers are used:
 |Source Register|The source instruction|
 |Destination Register|The destination instruction|
 
-**Copies** of instructions are written to these registers. Therefore changes made to the original instructions in the [Core](core) after they are copied to a register, do not affect the data in the registers themselves.  This can be best explained with a few [examples](#examples).
+**Copies** of instructions are written to these registers. Therefore changes made to the original instructions in the [Core](core) after they are copied to a register, do not affect the data in the registers themselves.  This can be best explained with an [example](#example).
 
 #Fetch
 
@@ -54,9 +54,9 @@ Note that some opcodes (such as [jmp](opcodes#jmp-jump)) will modify the current
 
 Finally, the current warrior's active process is moved to the next process in the warrior's process list and the game's active warrior is moved to the next warrior in the game's list of active warriors.
 
-## Examples
+## Example
 
-Understanding how instructions are evaluated and executed is vitally important to writing correctly functioning warriors, unfortunately it is also something which can be very difficult for beginners to understand. Here are a few examples to aid understanding.
+Understanding how instructions are evaluated and executed is vitally important to writing correctly functioning warriors, unfortunately it is also something which can be very difficult for beginners to understand. Here is an example to aid understanding.
 
 ### The executing instruction is modified during evaluation of addressing modes
 
