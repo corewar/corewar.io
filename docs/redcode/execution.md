@@ -103,7 +103,7 @@ Following this the post-increment is applied to the `B` operand so the instructi
 
 However, the instruction in the `Source Register` is still `mov.i >0, $0`.
 
-Next the `B` operand will be evaluated using the direct (`$`) addressing mode. The `B` number is `1`, which references the following instruction (`dat.f $0, $0`). Therefore the `dat` instruction is copied to the `Destination Register`.
+Next the `B` operand will be evaluated using the direct (`$`) addressing mode. The `B` number is `1`, which references the second instruction (`dat.f $0, $0`). Therefore the `dat` instruction is copied to the `Destination Register`.
 
 |Instruction Register|Source Register|Destination Register|
 |---|---|---|
