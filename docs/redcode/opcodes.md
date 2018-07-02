@@ -28,7 +28,7 @@ The following `opcodes` can be used in Corewar
 
 If one of a warrior's [processes](warriors#processes) executes a `dat` instruction it is removed from the process queue i.e. terminated. This is the main way that [warriors](warriors) are killed within the game of Corewar.
 
-Note that termination of the warrior's process happens after the [operand](operands) [addressing modes](addressing_modes) are evaluated.
+Note that termination of the warrior's process happens after the [operand](operands) [addressing modes](addressing_modes) are evaluated. See [execution](execution) for details.
 
 For example if a warrior were to execute the first instruction of the following code block
 
@@ -106,7 +106,7 @@ The default modifier for the `div` opcode is [.ab](modifiers#ab).
 
 Dividing by zero is considered an illegal instruction in Corewar. The executing warrior's [process](warriors#processes) is removed from the process queue (terminated).
 
-Note that termination of the warrior's process happens after the [operand](operands) [addressing modes](addressing_modes) are evaluated.
+Note that termination of the warrior's process happens after the [operand](operands) [addressing modes](addressing_modes) are evaluated. See [execution](execution) for details.
 
 ##Mod - Modulo
 
@@ -122,7 +122,7 @@ The default modifier for the `mod` opcode is [.ab](modifiers#ab).
 
 Dividing by zero is considered an illegal instruction in Corewar. The executing warrior's [process](warriors#processes) is removed from the process queue (terminated).
 
-Note that termination of the warrior's process happens after the [operand](operands) [addressing modes](addressing_modes) are evaluated.
+Note that termination of the warrior's process happens after the [operand](operands) [addressing modes](addressing_modes) are evaluated. See [execution](execution) for details.
 
 ##Jmp - Jump
 
