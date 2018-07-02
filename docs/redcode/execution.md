@@ -88,7 +88,7 @@ During the [fetch](#fetch) stage, the instruction `mov.i >0, $0` will be copied 
 |---|---|---|
 |`0000: mov.i >0, $0`| | |
 
-Next, during the [decode](#decode) stage, the `A` operand will be evaluated. The addressing mode (`>`) means that the instruction pointed to by the B number will be used as the address of the `source instruction`. Therefore, the current instruction is copied to the `Source Register`.
+Next, during the [decode](#decode) stage, the `A` operand will be evaluated. The addressing mode (`>`) means that the instruction pointed to by the B number will be used as the address of the `source instruction`. The `B` number is `0`, therefore, the current instruction is copied to the `Source Register`.
 
 |Instruction Register|Source Register|Destination Register|
 |---|---|---|
