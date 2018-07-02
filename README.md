@@ -31,4 +31,3 @@ API documentation is include in the docs: [Read the Docs](http://corewar-docs.re
 ## Getting involved
 
 We'd love your feedback, input and PR's. We're a friendly bunch, please contact us through GitHub with questions, suggestions and issues.
-
