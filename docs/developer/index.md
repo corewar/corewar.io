@@ -118,8 +118,6 @@ Published once per call to step and indicates the next address which will be exe
 
 ## Testing
 
-[![wercker status](https://app.wercker.com/status/d6b4d4035c2ccc4e92f9ed40ae3f727d/m/master "wercker status")](https://app.wercker.com/project/byKey/d6b4d4035c2ccc4e92f9ed40ae3f727d)
-
 Corewar is extensively unit tested, run `npm test` to execute the tests and see the coverage.
 
 Unit test debugging is configured to run in `VS Code`
