@@ -1,4 +1,4 @@
-# Org and End Directives
+# ORG and END
 
 By default, warriors are loaded into core with the first instruction as the starting instruction.
 

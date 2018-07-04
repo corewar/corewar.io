@@ -14,7 +14,7 @@ pages:
    - Opcodes: redcode/opcodes.md
    - Modifiers: redcode/modifiers.md
    - Addressing Modes: redcode/addressing_modes.md
-   - Org and End: redcode/org.md
+   - ORG and END: redcode/org.md
    - Parser: redcode/parser.md
    - Labels: redcode/labels.md
    - Preprocessor: redcode/preprocessor.md
