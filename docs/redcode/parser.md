@@ -26,5 +26,14 @@ Which modifier is inserted as a default is dependant upon the instruction's [opc
 
 |Opcode|A-mode|B-mode|Default Modifier|
 |---|---|---|---|
-|`dat`|||`.f`|
-|`mov`|#||`.ab`|
+|`dat`|any|any|`.f`|
+|`mov``cmp`|#|any|`.ab`|
+||$@<>{}|#|`.b`|
+||$@<>{}|$@<>{}|`.i`|
+|`add``sub``mul``div``mod`|#|any|`.ab`|
+||$@<>{}|#|`.b`|
+||$@<>{}|$@<>{}|`.f`|
+|`slt`|#|any|`.ab`|
+||$@<>{}|any|`.b`|
+|`jmp``jmz``jmn``djn``spl``nop`|any|any|`.b`|
+
