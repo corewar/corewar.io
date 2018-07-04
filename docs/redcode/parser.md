@@ -59,15 +59,15 @@ Which modifier is inserted as a default is dependant upon the instruction's opco
 |Opcode|A-mode|B-mode|Default Modifier|
 |---|---|---|---|
 |`dat`|any|any|`.f`|
-|`mov``cmp`|#|any|`.ab`|
+|`mov` `cmp`|#|any|`.ab`|
 ||$@<>{}|#|`.b`|
 ||$@<>{}|$@<>{}|`.i`|
-|`add``sub``mul``div``mod`|#|any|`.ab`|
+|`add` `sub` `mul` `div` `mod`|#|any|`.ab`|
 ||$@<>{}|#|`.b`|
 ||$@<>{}|$@<>{}|`.f`|
 |`slt`|#|any|`.ab`|
 ||$@<>{}|any|`.b`|
-|`jmp``jmz``jmn``djn``spl``nop`|any|any|`.b`|
+|`jmp` `jmz` `jmn` `djn` `spl` `nop`|any|any|`.b`|
 
 ### ORG (Starting address)
 
