@@ -16,7 +16,7 @@ The following notional registers are used:
 
 **Copies** of instructions are written to these registers. Therefore changes made to the original instructions in the [Core](core) after they are copied to a register, do not affect the data in the registers themselves.  This can be best explained with an [example](#example).
 
-#Fetch
+##Fetch
 
 The first step in execution is fetch. During this step the `simulator` determines the instruction to be executed by populating the `Instruction Register`.
 
