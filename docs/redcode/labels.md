@@ -52,7 +52,7 @@ When this program is parsed, the parser will replace all references to the label
 DAT.F #4, #0
 ADD.AB $-1, $-1   ; <- here bmb was replaced with -1
 MOV.I $-2, @-2    ; <- here bmb was replaced with -2
-JMP.B $-2         ; <- here top was replaced with -2
+JMP.B $-2, $0     ; <- here top was replaced with -2
 ```
 
 Notice that on the `add` instruction, the refence to `bmb` was replaced with `-1` since the `dat` instruction is one position above the `add` instruction. However on the `mov` instruction `bmb` was replaced with `-2` since the `dat` instruction is two positions above the `mov` instruction.

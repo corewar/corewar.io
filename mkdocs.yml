@@ -19,5 +19,6 @@ pages:
    - Labels: redcode/labels.md
    - Preprocessor: redcode/preprocessor.md
    - Comments: redcode/comments.md
+   - Metadata: redcode/metadata.md
 - Developer Reference: developer/index.md
 theme: readthedocs
