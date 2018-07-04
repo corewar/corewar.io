@@ -35,7 +35,7 @@ my_label:
 b_13_
 ```
 
-Once a label if declared, it can be used throughout your redcode in place of an [operand's](operands) number as demonstrated below.
+Once a label is declared, it can be used throughout your redcode in place of an [operand's](operands) number as demonstrated below.
 
 ```redcode
 bmb: dat     #4, #0
@@ -56,3 +56,13 @@ JMP.B $-2         ; <- here top was replaced with -2
 ```
 
 Notice that on the `add` instruction, the refence to `bmb` was replaced with `-1` since the `dat` instruction is one position above the `add` instruction. However on the `mov` instruction `bmb` was replaced with `-2` since the `dat` instruction is two positions above the `mov` instruction.
+
+It is possible to define multiple labels for the same address, either by placing each label declaration on the same line or on multiple lines before the instruction they refer to:
+
+```redcode
+label:
+another:
+mov 0, 1
+```
+
+Here both `label` and `another` refer to the `mov` instruction's address.
