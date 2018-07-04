@@ -14,5 +14,8 @@ pages:
    - Modifiers: redcode/modifiers.md
    - Addressing Modes: redcode/addressing_modes.md
    - Parser: redcode/parser.md
+   - Labels: redcode/labels.md
+   - Preprocessor: redcode/preprocessor.md
+   - Comments: redcode/comments.md
 - Developer Reference: developer/index.md
 theme: readthedocs
