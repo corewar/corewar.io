@@ -59,7 +59,68 @@ Notice here that `mybmb` and `bmb` are equivalent.
 
 ## Mathematical Expressions
 
+Mathematical expressions can also be used within redcode. These are evaluated at parse time and replaced by the numeric result.
 
+These expressions can be placed in any [operand](operands) within your code or at the value of a [EQU](#equ) directive.
+
+Mathematical expressions can use the following operators:
+* + addition
+* - subtraction
+* * multiplication
+* / division
+* % modulo
+
+Multiplication and division operatiors have precendence (are evaluated first) over addition and subtraction.
+
+```
+5+2*3
+```
+
+For example, the above will be evaluated as 2*3=6, therefore 5+6 = **11**.
+
+Brackets `(` and `)` can be used to control the order that the expression is evaluated.
+
+```redcode
+add (4/2-1)*5, 1
+```
+
+The `A` operand in the above example will be evaluated to `5` so the parsed output will be:
+
+```redcode
+ADD.AB $5, $1
+```
+
+The following example uses a mathematical expression to set the value of a `constant`:
+
+```redcode
+myconst EQU (1+2)/2
+```
+
+This will be evaluated as:
+
+```redcode
+myconst EQU 1
+```
+
+Note that when using division, the result is always rounded towards zero.
+
+It is also possible to use [labels](labels) within mathematical expressions as follows:
+
+```redcode
+bmb dat 5, 5
+    dat 0, 0
+    mov bmb, bmb+1
+```
+
+This example will be parsed to:
+
+```redcode
+DAT.F #5, #5
+DAT.F #0, #0
+MOV.I $-2, $-1
+```
+
+The label `bmb` is replaced with `-2` since its address is two lower than the `mov` instruction. The `B` operand of the `mov` instruction is `bmb+1` which is therefore effectively `-2+1`, hence the parsed output for the `B` number of the `mov` instruction is `-1`.
 
 ## Special constants
 
