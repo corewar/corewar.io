@@ -72,7 +72,7 @@ const AppContainer = ({ parse, currentWarrior,
     </Controls>
     <ParserGrid>
       <SourceCodeTextArea desktop
-        value={currentWarrior && currentWarrior.source}
+        currentWarrior={currentWarrior}
         handleChange={e => parse(e.target.value)} />
       <CompiledOutput desktop>
         {currentWarrior && currentWarrior.compiled}

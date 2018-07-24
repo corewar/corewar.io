@@ -17,7 +17,7 @@ const InputContainer = ({ parse, currentWarrior, hideConsole, displayConsole }) 
   <MobilePage mobile>
     <WarriorManagerContainer />
     <SourceCodeTextArea
-      value={currentWarrior.source}
+      currentWarrior={currentWarrior}
       handleChange={e => parse(e.target.value)} />
     <ControlsContainer />
     <FileManagerContainer />

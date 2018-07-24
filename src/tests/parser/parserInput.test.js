@@ -4,38 +4,82 @@ import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import SourceCodeTextArea from './../../components/styledComponents/sourceCodeTextArea'
+import SourceCodeTextArea from '../../features/parser/sourceCodeTextArea'
 
-it('renders without crashing', () => {
-  shallow(<SourceCodeTextArea />)
-});
+describe('SourceCodeTextArea', () => {
 
-it('renders a textarea with the redcode as the default', () => {
+  it('renders without crashing', () => {
+    shallow(<SourceCodeTextArea currentWarrior={{}} handleChange={() => {}} />)
+  });
 
-  const props = {
-    redcode: 'MOV 0, 1'
-  }
+  it('renders placeholder text if there is no current warrior', () => {
 
-  const wrapper = shallow(<SourceCodeTextArea {...props}/>)
+    const expectedPlaceholder = 'enter your redcode'
 
-  expect(wrapper.find('textarea')).to.have.length(1)
-  expect(wrapper.find(SourceCodeTextArea).props().defaultValue).to.equal(props.redcode)
-});
+    const props = {
+      currentWarrior: {
+        source: 'MOV 0, 1'
+      },
+      handleChange: () => {}
+    }
 
-it('calls the handleChange when the onChange event fires', () => {
+    const wrapper = shallow(<SourceCodeTextArea {...props}/>)
 
-  const changeHandler = sinon.spy()
-  const expectedInput = 'some text'
+    expect(wrapper.find('textarea').props().placeholder).to.equal(expectedPlaceholder)
+  })
 
-  const props = {
-    redcode: '',
-    handleChange: changeHandler
-  }
+  it('renders a textarea with the currentWarrior.source if a warrior is present', () => {
 
-  const wrapper = mount(<SourceCodeTextArea {...props}/>)
+    const props = {
+      currentWarrior: {
+        source: 'MOV 0, 1'
+      },
+      handleChange: () => {}
+    }
 
-  wrapper.find('textarea').simulate('change', { target: { value: expectedInput } })
+    const wrapper = shallow(<SourceCodeTextArea {...props}/>)
 
-  expect(changeHandler.calledOnce)
-  expect(changeHandler.calledWith(expectedInput))
-});
+    expect(wrapper.find('textarea')).to.have.length(1)
+    expect(wrapper.find('textarea').props().value).to.equal(props.currentWarrior.source)
+  })
+
+  it('calls the handleChange when the onChange event fires if there is a current warrior', () => {
+
+    const changeHandler = sinon.spy()
+    const expectedInput = 'some text'
+
+    const props = {
+      handleChange: changeHandler,
+      currentWarrior: {
+        source: 'MOV 0, 1'
+      }
+    }
+
+    const wrapper = mount(<SourceCodeTextArea {...props}/>)
+
+    wrapper.find('textarea').simulate('change', { target: { value: expectedInput } })
+
+    console.log('last', changeHandler.args)
+
+    expect(changeHandler.calledOnce).to.equal(true)
+    expect(changeHandler.calledWith(expectedInput)).to.equal(true)
+  })
+
+  it('does not call the handleChange function if there is no current warrior', () => {
+
+    const changeHandler = sinon.spy()
+    const expectedInput = 'some text'
+
+    const props = {
+      handleChange: changeHandler
+    }
+
+    const wrapper = mount(<SourceCodeTextArea {...props}/>)
+
+    wrapper.find('textarea').simulate('change', { target: { value: expectedInput } })
+
+    expect(changeHandler.notCalled).to.equal(true)
+
+  })
+})
+
