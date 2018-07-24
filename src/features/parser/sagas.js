@@ -88,7 +88,6 @@ export function* addWarriorSaga() {
 
   yield call(maybeInit, warriorList)
 
-  yield call(toast, 'Warrior Added')
 }
 
 export function* removeWarriorSaga({ id }) {
@@ -148,10 +147,6 @@ export function* loadFileSaga({ source }) {
   yield call(addWarriorSaga)
   yield call(parseWarriorSaga, { source })
 }
-
-
-
-
 
 // internal helper functions - not exported
 function* maybeInit(warriors) {

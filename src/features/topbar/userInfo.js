@@ -7,7 +7,7 @@ const UserInfo = ({ username }) => (
   </div>
 )
 
-UserInfo.PropTypes = {
+UserInfo.propTypes = {
   username: PropTypes.string.isRequired
 }
 

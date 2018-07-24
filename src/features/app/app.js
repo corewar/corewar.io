@@ -25,19 +25,19 @@ class App extends React.Component {
 
   render() {
     return <RootGrid>
-      <SiteHeader isAuthenticated={false}/>
+      <SiteHeader isAuthenticated={false} history={this.props.history} />
       <Media
         query={{ maxWidth: sizes.phone }}
         render={() => <MobileLayout />}
-      />
+        />
       <Media
         query={{ minWidth: sizes.phone, maxWidth: sizes.desktop }}
         render={() => <TabletLayout />}
-      />
+        />
       <Media
         query={{ minWidth: sizes.desktop }}
         render={() => <DesktopLayout />}
-      />
+        />
     </RootGrid>
   }
 }

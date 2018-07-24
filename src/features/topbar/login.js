@@ -31,13 +31,14 @@ const Login = ({ isAuthenticated }) => (
     {isAuthenticated ?
       <UserInfo /> :
       <LinkContainer>
-        <HeaderLink to='/'>log in</HeaderLink> / <HeaderLink to='/sign-up'>sign up</HeaderLink>
+        {/* <HeaderLink to='/'>log in</HeaderLink> / */}
+        <HeaderLink to='/sign-up'>sign up</HeaderLink>
       </LinkContainer>
     }
   </LoginModule>
 )
 
-Login.PropTypes = {
+Login.propTypes = {
   isAuthenticated: PropTypes.bool
 }
 

@@ -25,7 +25,7 @@ const MobileControls = ({ addWarrior, currentWarrior, toggleConsole, toggleFileM
   </Controls>
 )
 
-MobileControls.PropTypes = {
+MobileControls.propTypes = {
   addWarrior: PropTypes.func,
   loadWarrior: PropTypes.func,
   currentWarrior: PropTypes.shape({

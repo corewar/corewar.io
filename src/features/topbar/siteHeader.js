@@ -21,7 +21,6 @@ const Header = styled.header`
 
 const Nav = styled.div`
   text-align: center;
-
   display: none;
   color: ${colour.white};
   ${media.tablet`display: flex;`}
@@ -29,9 +28,9 @@ const Nav = styled.div`
   ${media.phone`display: none;`}
 `
 
-const SiteHeader = ({ isAuthenticated }) => (
+const SiteHeader = ({ isAuthenticated, history }) => (
   <Header>
-    <Logo siteName='corewar' siteDomain='.io' />
+    <Logo siteName='corewar' siteDomain='.io' history={history} />
     <Nav>
       <TabLink to='/app/src'>source</TabLink>
       <TabLink to='/app/core'>core</TabLink>
@@ -40,7 +39,7 @@ const SiteHeader = ({ isAuthenticated }) => (
   </Header>
 )
 
-SiteHeader.PropTypes = {
+SiteHeader.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired
 }
 
