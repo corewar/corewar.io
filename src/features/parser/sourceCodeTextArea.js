@@ -23,8 +23,12 @@ const SourceCodeTextArea = styled.textarea.attrs({
 SourceCodeTextArea.propTypes = {
   currentWarrior: PropTypes.shape({
     source: PropTypes.string
-  }).isRequired,
-  handleChange: PropTypes.func.isRequired
+  }),
+  handleChange: PropTypes.func
+}
+
+SourceCodeTextArea.defaultProps = {
+  handleChange: () => {}
 }
 
 export default SourceCodeTextArea

@@ -12,12 +12,13 @@ describe('SourceCodeTextArea', () => {
     shallow(<SourceCodeTextArea currentWarrior={{}} handleChange={() => {}} />)
   });
 
-  it('renders placeholder text if there is a current warrior with no source', () => {
+  it('renders placeholder text if there is a current warrior with blank source', () => {
 
     const expectedPlaceholder = 'enter your redcode'
 
     const props = {
       currentWarrior: {
+        source: ''
       },
       handleChange: () => {}
     }
