@@ -47,6 +47,8 @@ describe('SourceCodeTextArea', () => {
 
     const changeHandler = sinon.spy()
     const expectedInput = 'some text'
+    const event = { target: { value: expectedInput } }
+
 
     const props = {
       handleChange: changeHandler,
@@ -55,14 +57,13 @@ describe('SourceCodeTextArea', () => {
       }
     }
 
-    const wrapper = mount(<SourceCodeTextArea {...props}/>)
+    const wrapper = shallow(<SourceCodeTextArea {...props}/>)
 
-    wrapper.find('textarea').simulate('change', { target: { value: expectedInput } })
+    wrapper.find('textarea').simulate('change', event)
 
-    console.log('last', changeHandler.args)
 
     expect(changeHandler.calledOnce).to.equal(true)
-    expect(changeHandler.calledWith(expectedInput)).to.equal(true)
+    expect(changeHandler.calledWith(event)).to.equal(true)
   })
 
   it('does not call the handleChange function if there is no current warrior', () => {
