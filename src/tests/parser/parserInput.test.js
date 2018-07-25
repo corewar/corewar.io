@@ -12,14 +12,26 @@ describe('SourceCodeTextArea', () => {
     shallow(<SourceCodeTextArea currentWarrior={{}} handleChange={() => {}} />)
   });
 
-  it('renders placeholder text if there is no current warrior', () => {
+  it('renders placeholder text if there is a current warrior with no source', () => {
 
     const expectedPlaceholder = 'enter your redcode'
 
     const props = {
       currentWarrior: {
-        source: 'MOV 0, 1'
       },
+      handleChange: () => {}
+    }
+
+    const wrapper = shallow(<SourceCodeTextArea {...props}/>)
+
+    expect(wrapper.find('textarea').props().placeholder).to.equal(expectedPlaceholder)
+  })
+
+  it('renders "add a new file" if there is no current warrior', () => {
+
+    const expectedPlaceholder = 'add a new file'
+
+    const props = {
       handleChange: () => {}
     }
 
@@ -75,7 +87,7 @@ describe('SourceCodeTextArea', () => {
       handleChange: changeHandler
     }
 
-    const wrapper = mount(<SourceCodeTextArea {...props}/>)
+    const wrapper = shallow(<SourceCodeTextArea {...props}/>)
 
     wrapper.find('textarea').simulate('change', { target: { value: expectedInput } })
 

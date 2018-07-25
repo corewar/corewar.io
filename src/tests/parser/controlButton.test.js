@@ -1,10 +1,10 @@
 
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { shallow } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import ControlButton from './../../components/parser/controlButton'
+import ControlButton from '../../features/parser/controlButton'
 import FontAwesome from 'react-fontawesome'
 
 it('renders without crashing', () => {
