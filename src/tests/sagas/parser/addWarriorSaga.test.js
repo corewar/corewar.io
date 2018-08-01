@@ -6,12 +6,16 @@ import { put, call, select } from 'redux-saga/effects'
 
 import {
   ADD_WARRIOR
-} from '../../../actions/parserActions'
+} from '../../../features/parser/actions'
 
-import { insertItem, removeItem } from '../../../helpers/arrayHelpers'
-import { addWarriorSaga } from '../../../sagas/parserSagas'
-import { getParserState } from '../../../reducers/parserReducers'
-import { getCoreOptionsFromState, initialiseCore } from '../../../sagas/simulatorSagas'
+import {
+  PAUSE
+} from '../../../features/simulator/actions'
+
+import { insertItem } from '../../../helpers/arrayHelpers'
+import { addWarriorSaga } from '../../../features/parser/sagas'
+import { getParserState } from '../../../features/parser/reducer'
+import { getCoreOptionsFromState, initialiseCore } from '../../../features/simulator/sagas'
 
 describe('when adding warriors', () => {
 

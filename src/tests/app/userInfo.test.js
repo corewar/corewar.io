@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { shallow } from 'enzyme'
-import UserInfo from './../../components/app/userInfo'
+import UserInfo from './../../features/topbar/userInfo'
 
 it('renders without crashing', () => {
   shallow(<UserInfo />)

@@ -3,7 +3,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { expect } from 'chai'
 
-import Logo from './../../components/app/logo'
+import Logo from './../../features/topbar/logo'
 
 it('renders without crashing', () => {
   shallow(<Logo />)

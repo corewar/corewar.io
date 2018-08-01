@@ -6,11 +6,11 @@ import { put, call } from 'redux-saga/effects'
 
 import {
   INIT
-} from '../../../actions/simulatorActions'
+} from '../../../features/simulator/actions'
 
 import {
   initialiseCore
-} from '../../../sagas/simulatorSagas'
+} from '../../../features/simulator/sagas'
 
 
 describe('when testing the init saga', () => {

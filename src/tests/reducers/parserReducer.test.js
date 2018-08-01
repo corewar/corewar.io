@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 
-import parserReducer from './../../reducers/parserReducers'
+import parserReducer from './../../features/parser/reducer'
 
 import {
   PARSE,

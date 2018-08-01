@@ -3,9 +3,9 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { expect } from 'chai'
 
-import Login from './../../components/app/login'
-import UserInfo from './../../components/app/userInfo'
-import HeaderLink from '../../components/styledComponents/headerLink'
+import Login from './../../features/topbar/login'
+import UserInfo from './../../features/topbar/userInfo'
+import HeaderLink from '../../features/topbar/headerLink'
 
 it('renders without crashing', () => {
   shallow(<Login />)

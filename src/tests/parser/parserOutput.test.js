@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import CompiledOutput from './../../components/styledComponents/compiledOutput'
+import CompiledOutput from './../../features/parser/compiledOutput'
 
 it('renders without crashing', () => {
   shallow(<CompiledOutput />)
@@ -13,12 +13,12 @@ it('renders without crashing', () => {
 it('renders a message when not parsing but parseResult not present', () => {
 
   const props = {
-    isParsing: false
+
   }
 
   const wrapper = shallow(<CompiledOutput {...props}/>)
 
-  expect(wrapper.find('pre').text()).to.equal('awaiting redcode')
+  expect(wrapper.find('pre').props().placeholder).to.equal('enter your redcode')
 });
 
 it('renders the warrior when not parsing and warrior is present', () => {
