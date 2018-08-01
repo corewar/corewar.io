@@ -13,6 +13,10 @@ const SiteName = styled.div`
   color: ${colour.darkbg};
   padding-left: ${space.m};
   padding-top: ${space.s};
+
+  :hover {
+    cursor: pointer;
+  }
 `
 
 const SiteDomain = styled.span`
@@ -20,14 +24,14 @@ const SiteDomain = styled.span`
   color: ${colour.white};
 `
 
-const Logo = ({ siteName, siteDomain }) => (
-  <SiteName>
+const Logo = ({ siteName, siteDomain, history }) => (
+  <SiteName onClick={() => history.push(`/`)}>
     {siteName}
     <SiteDomain>{siteDomain}</SiteDomain>
   </SiteName>
 )
 
-Logo.PropTypes = {
+Logo.propTypes = {
   siteName: PropTypes.string.isRequired,
   siteDomain: PropTypes.string.isRequired
 }

@@ -26,12 +26,14 @@ const ConsoleWrapper = styled.div`
   color: ${colour.grey};
 `
 
-const MessageRow = styled.div`
+export const MessageRow = styled.div`
   display: grid;
   grid-template-columns: 50px 50px 90px 1fr;
   padding: ${space.xs};
   font-family: ${font.code};
 `
+
+const RowHeader = MessageRow.extend``
 
 const ColouredMessageText = styled.span`
  ${props => !props.type && `color: ${colour.white};`}
@@ -55,12 +57,12 @@ const Console = ({ messages, hideConsole, show }) => (
     <CloseButton>
       <FontAwesome name={`times`} onClick={hideConsole} />
     </CloseButton>
-    <MessageRow>
+    <RowHeader>
       <span>line</span>
       <span>char</span>
       <span>type</span>
       <span>message</span>
-    </MessageRow>
+    </RowHeader>
     {
       messages && messages.map((msg, i) => (
         <MessageRow key={`${msg}_${i}`}>
@@ -75,7 +77,7 @@ const Console = ({ messages, hideConsole, show }) => (
 
 )
 
-const messageTypeToString = (messageType) => {
+const messageTypeToString = messageType => {
   switch (messageType) {
       case 0: //MessageType.Error
           return 'ERROR';

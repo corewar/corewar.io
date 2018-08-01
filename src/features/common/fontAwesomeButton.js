@@ -15,7 +15,6 @@ const Container = styled.div.attrs({
   ${props => props.enabled ? `color: ${colour.lightgrey};` : `color: ${colour.grey};`}
   font-size: 20px;
 
-
   span {
     width: 2em;
     height: 2em;

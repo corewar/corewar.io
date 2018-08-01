@@ -403,10 +403,10 @@ class CanvasCore extends Component {
 
 }
 
-CanvasCore.PropTypes = {
+CanvasCore.propTypes = {
   coreSize: PropTypes.number.isRequired,
   getCoreInstructions: PropTypes.func.isRequired,
-  reset: PropTypes.func.isRequired,
+  init: PropTypes.func.isRequired,
   republish: PropTypes.func.isRequired
 }
 

@@ -1,14 +1,14 @@
 
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { shallow } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import ControlButton from './../../components/parser/controlButton'
+import FontAwesomeButton from '../../features/common/fontAwesomeButton'
 import FontAwesome from 'react-fontawesome'
 
 it('renders without crashing', () => {
-  shallow(<ControlButton iconClass='plus' />)
+  shallow(<FontAwesomeButton iconClass='plus' />)
 });
 
 it('calls the clickHandler when the play button is clicked and is enabled', () => {
@@ -21,8 +21,8 @@ it('calls the clickHandler when the play button is clicked and is enabled', () =
     enabled: true
   }
 
-  const wrapper = shallow(<ControlButton {...props}/>)
-  wrapper.find(FontAwesome).simulate('click')
+  const wrapper = shallow(<FontAwesomeButton {...props}/>)
+  wrapper.simulate('click')
 
   expect(clickHandler.calledOnce)
 });
@@ -37,8 +37,8 @@ it('doesnt call the clickHandler when not enabled', () => {
     enabled: false
   }
 
-  const wrapper = shallow(<ControlButton {...props}/>)
-  wrapper.find(FontAwesome).simulate('click')
+  const wrapper = shallow(<FontAwesomeButton {...props}/>)
+  wrapper.simulate('click')
 
   expect(clickHandler.called).to.equal(false)
 });

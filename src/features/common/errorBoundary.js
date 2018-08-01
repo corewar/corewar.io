@@ -23,7 +23,7 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-ErrorBoundary.PropTypes = {
+ErrorBoundary.propTypes = {
   errorMessage: PropTypes.string
 }
 

@@ -10,15 +10,6 @@ const Header = styled.header`
   margin: 0 ${space.xl};
   ${media.phone`margin: 0;`}
 
-  nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    ${media.phone`justify-content: center;`}
-    align-items: center;
-    width: 100%;
-  }
-
   a {
     color: ${colour.grey};
     padding-bottom: ${space.s};
@@ -40,16 +31,25 @@ const Header = styled.header`
   }
 `
 
+const Nav = styled.nav`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  ${media.phone`justify-content: center;`}
+  align-items: center;
+  width: 100%;
+`
+
 const SiteNav = () => (
   <Header>
-    <nav>
+    <Nav>
       <a href={`/app/src`}>play</a>
       <a href={`/learn`}>learn</a>
       <a href={`/#features`}>features</a>
       <a href={`/sign-up`}>sign up</a>
       <a href={`/contact-us`}>contact us</a>
       <a href={`https://github.com/gareththegeek/corewar`}>code</a>
-    </nav>
+    </Nav>
   </Header>
 )
 
