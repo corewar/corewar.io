@@ -31,4 +31,6 @@ SourceCodeTextArea.defaultProps = {
   handleChange: () => {}
 }
 
+SourceCodeTextArea.displayName = 'SourceCodeTextArea'
+
 export default SourceCodeTextArea
