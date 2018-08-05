@@ -28,15 +28,15 @@ const ParserInterface = ({ parse, currentWarrior, hideConsole, displayConsole })
     <ParserGrid>
       <SourceCodeTextArea
         currentWarrior={currentWarrior}
-        handleChange={e => currentWarrior && parse(e.target.value)} />
+        handleChange={e => parse(e.target.value)} />
       <CompiledOutput tablet>
-        {currentWarrior && currentWarrior.compiled}
+        {currentWarrior.compiled}
       </CompiledOutput>
     </ParserGrid>
     <ControlsContainer />
     <FileManagerContainer />
     <Console
-      messages={currentWarrior && currentWarrior.messages}
+      messages={currentWarrior.messages}
       hideConsole={hideConsole}
       show={displayConsole} />
   </MobilePage>
