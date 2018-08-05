@@ -14,7 +14,7 @@ const SourceCodeTextArea = styled.textarea.attrs({
   spellCheck: 'false',
   value: props => props.currentWarrior ? props.currentWarrior.source : '',
   // or we can define dynamic ones
-  onChange: props => props.currentWarrior && props.currentWarrior.source ? props.handleChange : () => {}
+  onChange: props => props.currentWarrior ? props.handleChange : () => {}
 })`
   ${sourceCode};
   ${props => props.desktop && `height: calc(100vh - ${space.m} - ${space.m} - ${space.header} - ${space.header})`};
@@ -30,5 +30,7 @@ SourceCodeTextArea.propTypes = {
 SourceCodeTextArea.defaultProps = {
   handleChange: () => {}
 }
+
+SourceCodeTextArea.displayName = 'SourceCodeTextArea'
 
 export default SourceCodeTextArea
