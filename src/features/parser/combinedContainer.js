@@ -28,9 +28,9 @@ const ParserInterface = ({ parse, currentWarrior, hideConsole, displayConsole })
     <ParserGrid>
       <SourceCodeTextArea
         currentWarrior={currentWarrior}
-        handleChange={e => parse(e.target.value)} />
+        handleChange={e => currentWarrior && parse(e.target.value)} />
       <CompiledOutput tablet>
-        {currentWarrior.compiled}
+        {currentWarrior && currentWarrior.compiled}
       </CompiledOutput>
     </ParserGrid>
     <ControlsContainer />
