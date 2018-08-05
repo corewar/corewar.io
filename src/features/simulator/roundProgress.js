@@ -73,18 +73,20 @@ class RoundProgress extends Component{
 
   render() {
     const { warriors, runProgress, maxTasks } = this.props
-    return (<RoundStatusWrapper>
-      <span>Round status</span>
-      <ProgressBar runProgress={runProgress} />
-      <span>Tasks</span>
-      {warriors && warriors.map((warrior, i) => {
-        const taskCount = this.state.tasks[i]
-        return <Fragment key={`warrior_${i}`}>
-          <TaskCountDisplay>{taskCount}</TaskCountDisplay>
-          <TaskBar tasks={taskCount} maxTasks={maxTasks} colour={warrior.data.colour && warrior.data.colour.hex}></TaskBar>
-        </Fragment>
-      })}
-    </RoundStatusWrapper>)
+    return (
+      <RoundStatusWrapper>
+        <span>Round status</span>
+        <ProgressBar runProgress={runProgress} />
+        <span>Tasks</span>
+        {warriors && warriors.map((warrior, i) => {
+          const taskCount = this.state.tasks[i]
+          return <Fragment key={`warrior_${i}`}>
+            <TaskCountDisplay>{taskCount}</TaskCountDisplay>
+            <TaskBar tasks={taskCount} maxTasks={maxTasks} colour={warrior.data.colour && warrior.data.colour.hex}></TaskBar>
+          </Fragment>
+        })}
+      </RoundStatusWrapper>
+    )
   }
 }
 

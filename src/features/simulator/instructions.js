@@ -21,21 +21,21 @@ const DefaultText = styled.span`
   font-size: ${font.small};
 `
 
-const CoreVisuliser = ({ instructions, runProgress, warriors, maxTasks, focus }) => (
-  <InstructionWrapper>
-    <RoundProgress
-      warriors={warriors}
-      maxTasks={maxTasks}
-      runProgress={runProgress} />
-      {instructions ? instructions.map(info =>
-        <Instruction
-          key={info.instruction.address}
-          isFocussed={focus === info.instruction.address}
-          instruction={info.instruction}
-          colour={info.access.warriorData && info.access.warriorData.colour.hex}/>)
-          : <DefaultText>Click on a core address</DefaultText>}
-  </InstructionWrapper>
-)
+const CoreVisuliser = ({ instructions, runProgress, warriors, maxTasks, focus }) =>
+<InstructionWrapper>
+  <RoundProgress
+    warriors={warriors}
+    maxTasks={maxTasks}
+    runProgress={runProgress} />
+    {instructions ? instructions.map(info =>
+      <Instruction
+        key={info.instruction.address}
+        isFocussed={focus === info.instruction.address}
+        instruction={info.instruction}
+        colour={info.access.warriorData && info.access.warriorData.colour.hex}/>)
+        : <DefaultText>Click on a core address</DefaultText>}
+</InstructionWrapper>
+
 
 const mapStateToProps = state => ({
   instructions: state.simulator.coreInfo,
