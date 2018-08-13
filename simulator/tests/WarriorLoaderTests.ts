@@ -423,6 +423,7 @@ describe("WarriorLoader", () => {
             type: MessageType.TaskCount,
             payload: {
                 warriorId: expectedId,
+                warriorData: {},
                 taskCount: 1
             }
         });
