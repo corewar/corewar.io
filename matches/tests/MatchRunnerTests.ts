@@ -129,5 +129,18 @@ describe("MatchRunner", () => {
         expect(simulator.run).to.have.callCount(expected);
     });
 
+    it("throws and error is simulator does not return a result", () => {
 
+        const match: IMatch = {
+            rules: {
+                rounds: 1,
+                options: {}
+            },
+            warriors: []
+        };
+
+        (<sinon.stub>simulator.run).returns(null);
+
+        expect(matchRunner.run).to.throw();
+    })
 });
