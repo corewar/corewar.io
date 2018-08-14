@@ -92,6 +92,7 @@ class Api {
             new PerKeyStrategy(p => p.warriorId),
             new LatestOnlyStrategy(),
             new LatestOnlyStrategy(),
+            new LatestOnlyStrategy(),
             new LatestOnlyStrategy()
         ]);
 
