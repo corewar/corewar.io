@@ -5,21 +5,22 @@ var expect = chai.expect;
 chai.use(sinonChai);
 
 import { IMatch } from "../interface/IMatch";
-import { IParseResult } from "../../parser/interface/IParseResult";
 import TestHelper from "../../simulator/tests/TestHelper";
 import { IMatchRunner } from "../interface/IMatchRunner";
 import { MatchRunner } from "../MatchRunner";
-import { Simulator } from "../../simulator/Simulator";
 import { ISimulator } from "../../simulator/interface/ISimulator";
+import { IPublisher } from "../../simulator/interface/IPublisher";
+import { MessageType } from "../../simulator/interface/IMessage";
 
 describe("MatchRunner", () => {
 
     let matchRunner: IMatchRunner;
     let simulator: ISimulator;
+    let publisher: IPublisher;
 
     beforeEach(() => {
 
-        const publisher = TestHelper.buildPublisher();
+        publisher = TestHelper.buildPublisher();
 
         simulator = {
             initialise: sinon.stub(),
@@ -142,5 +143,34 @@ describe("MatchRunner", () => {
         (<sinon.stub>simulator.run).returns(null);
 
         expect(matchRunner.run).to.throw();
-    })
+    });
+
+    it("publishes match result message at end of match", () => {
+
+        publisher.queue = sinon.stub();
+        publisher.publish = sinon.stub();
+
+        const match: IMatch = {
+            rules: {
+                rounds: 3,
+                options: {}
+            },
+            warriors: [{ source: TestHelper.buildParseResult([]) }]
+        };
+
+        (<sinon.stub>simulator.run).returns({ 
+            outcome: "WIN", 
+            winnerData: { warriorMatchId: 0 }
+        });
+
+        const actual = matchRunner.run(match);
+
+        expect(publisher.queue).to.have.been.calledWith({
+            type: MessageType.MatchEnd,
+            payload: {
+                warriors: actual.warriors
+            }
+        });
+        expect(publisher.publish).to.have.been.called;
+    });
 });

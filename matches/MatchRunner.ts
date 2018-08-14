@@ -2,6 +2,8 @@ import { IMatchRunner } from "./interface/IMatchRunner";
 import { IMatch } from "./interface/IMatch";
 import { ISimulator } from "../simulator/interface/ISimulator";
 import { IPublisher } from "../simulator/interface/IPublisher";
+import { MessageType } from "../simulator/interface/IMessage";
+import * as clone from "clone";
 
 export class MatchRunner implements IMatchRunner {
 
@@ -12,6 +14,17 @@ export class MatchRunner implements IMatchRunner {
 
         this.simulator = simulator;
         this.publisher = publisher;
+    }
+
+    private publishEnd(warriors) {
+
+        this.publisher.queue({
+            type: MessageType.MatchEnd,
+            payload: {
+                warriors: clone(warriors)
+            }
+        });
+        this.publisher.publish();
     }
 
     run(match: IMatch): IMatch {
@@ -33,7 +46,7 @@ export class MatchRunner implements IMatchRunner {
             }
 
             if (roundResult.outcome === "WIN") {
-                
+
                 const winner = match.warriors
                     .find(w => w.warriorMatchId === roundResult.winnerData.warriorMatchId);
 
@@ -41,6 +54,8 @@ export class MatchRunner implements IMatchRunner {
             }
         }
 
-        return match;
+        this.publishEnd(match.warriors);
+
+        return clone(match);
     }
 }

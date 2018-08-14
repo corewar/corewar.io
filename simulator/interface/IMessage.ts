@@ -7,6 +7,7 @@ export enum MessageType {
     CoreInitialise,
     RoundStart,
     NextExecution,
+    MatchEnd,
     Count
 }
 
