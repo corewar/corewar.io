@@ -20,7 +20,7 @@ describe("MatchRunner", () => {
     beforeEach(() => {
 
         const publisher = TestHelper.buildPublisher();
-        
+
         simulator = {
             initialise: sinon.stub(),
             run: sinon.stub(),
@@ -57,7 +57,30 @@ describe("MatchRunner", () => {
         }
     });
 
-    it("runs the simulator once per round", () => {
+    it("intialises the simulator using the match's rules and warriors", () => {
+
+        const expectedOptions = {};
+
+        const expectedSource = TestHelper.buildParseResult([]);
+
+        const match: IMatch = {
+            rules: {
+                rounds: 1,
+                options: expectedOptions
+            },
+            warriors: [{
+                source: expectedSource
+            }]
+        };
+
+        matchRunner.run(match);
+
+        expect(simulator.initialise).to.have.been.calledWith(
+            expectedOptions,
+            [expectedSource]);
+    });
+
+    it("initialises and runs the simulator once per round", () => {
 
         const expected = 7;
 
@@ -71,6 +94,9 @@ describe("MatchRunner", () => {
 
         matchRunner.run(match);
 
+        expect(simulator.initialise).to.have.callCount(expected);
         expect(simulator.run).to.have.callCount(expected);
     });
+
+
 });
