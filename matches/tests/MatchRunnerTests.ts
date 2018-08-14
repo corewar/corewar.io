@@ -80,6 +80,37 @@ describe("MatchRunner", () => {
             [expectedSource]);
     });
 
+    it("records the number of wins for a warrior", () => {
+
+        const match: IMatch = {
+            rules: {
+                rounds: 5,
+                options: {}
+            },
+            warriors: [
+                { source: TestHelper.buildParseResult([]) },
+                { source: TestHelper.buildParseResult([]) }
+            ]
+        };
+
+        const id = 0;
+        const roundResults = [
+            { outcome: "WIN", winnerData: { warriorMatchId: id } },
+            { outcome: "WIN", winnerData: { warriorMatchId: id + 1 } },
+            { outcome: "WIN", winnerData: { warriorMatchId: id } },
+            { outcome: "DRAW" },
+            { outcome: "NONE" }
+        ];
+
+        roundResults.forEach((r, i) => (<sinon.stub>simulator.run).onCall(i).returns(r));
+
+        const actual = matchRunner.run(match);
+
+        expect(actual.warriors.length).to.be.equal(2);
+        expect(actual.warriors[0].wins).to.be.equal(2);
+        expect(actual.warriors[1].wins).to.be.equal(1);
+    });
+
     it("initialises and runs the simulator once per round", () => {
 
         const expected = 7;
