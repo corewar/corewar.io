@@ -9,15 +9,19 @@ import { IParseResult } from "../../parser/interface/IParseResult";
 import TestHelper from "../../simulator/tests/TestHelper";
 import { IMatchRunner } from "../interface/IMatchRunner";
 import { MatchRunner } from "../MatchRunner";
+import { Simulator } from "../../simulator/Simulator";
+import { ISimulator } from "../../simulator/interface/ISimulator";
 
 describe("MatchRunner", () => {
 
     let matchRunner: IMatchRunner;
+    let simulator: ISimulator;
 
     beforeEach(() => {
 
         const publisher = TestHelper.buildPublisher();
-        const simulator = {
+        
+        simulator = {
             initialise: sinon.stub(),
             run: sinon.stub(),
             step: sinon.stub(),
@@ -49,6 +53,24 @@ describe("MatchRunner", () => {
         expect(actual.warriors.length).to.be.equal(expected.length);
         for (let i = 0; i < expected.length; i++) {
             expect(actual.warriors[i].warriorMatchId).to.be.equal(expected[i]);
+            expect(actual.warriors[i].source.data.warriorMatchId).to.be.equal(expected[i]);
         }
+    });
+
+    it("runs the simulator once per round", () => {
+
+        const expected = 7;
+
+        const match: IMatch = {
+            rules: {
+                rounds: expected,
+                options: {}
+            },
+            warriors: [{ source: TestHelper.buildParseResult([]) }]
+        };
+
+        matchRunner.run(match);
+
+        expect(simulator.run).to.have.callCount(expected);
     });
 });
