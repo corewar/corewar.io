@@ -16,7 +16,7 @@ When parsing output the corewar.io parser will emit a stardards comment matching
 
 Allows the author to give a name to their warrior, for example `;name imp`.
 
-The corewar.io parser will insert a default name comment of `;name Nameless` if not name comment is found in the source redcode.
+The corewar.io parser will insert a default name comment of `;name Nameless` if no name comment is found in the source redcode.
 
 ## ;author
 
