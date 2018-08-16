@@ -27,6 +27,7 @@ FOR 0
 This is a multi-line comment
 It is a good place to explain a complex strategy
 or subtle nuance of the warrior's code
+ROF
 ```
 
 Because the `FOR` block has a count of zero, the entire thing is completely removed during parsing.
