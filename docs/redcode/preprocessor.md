@@ -173,17 +173,18 @@ The following C like operators can be used within an `assert` directive to build
 
 ## FOR
 
-**NOTE this feature is only partially implemented within corewar.io - FOR loops can be used but loop variables are not yet supported**
+**NOTE this feature is only partially implemented within corewar.io - FOR loops can be used but nested FOR loops and label references are not yet supported**
 
-FOR blocks cause the redcode contained within to be output by the parser multiple times. This saves the author from manually duplicating a line of code and is useful for introducing padding within your warrior's source code.
+`FOR` blocks cause the redcode contained within to be output by the parser multiple times. This saves the author from manually duplicating a line of code and is useful for introducing padding within your warrior's source code.
 
-The FOR block is used as shown in the following example:
+The `FOR` block is used as shown in the following example:
 
 ```redcode
 FOR 10
 dat.f $1, $2
 ROF
 ```
+In this example, `FOR` begins the `FOR` block. The number `10` indicates that the contents of the `FOR` block should be repeated ten times. Next the instruction to be duplicated is included. Finally, the `FOR` block is terminated using the `ROF` keyword.
 
 The above redcode will be parsed to produce the following output:
 
@@ -199,3 +200,42 @@ dat.f $1, $2
 dat.f $1, $2
 dat.f $1, $2
 ```
+
+A [label](labels) can be declared in front of the FOR block. Referencing the label within the FOR block will result in a different number being emitted for each sucessive instruction as the parser outputs the contents of the FOR block and each instruction gets further away from the label declaration.  This is demonstrated below:
+
+```redcode
+label FOR 4
+dat.f $1+label, $1-label
+ROF
+```
+
+This will be parsed to produce:
+
+```redcode
+dat.f $1, $1
+dat.f $0, $2
+dat.f $-1, $3
+dat.f $-2, $4
+```
+
+It is also possible to nest `FOR` blocks within each other as follows:
+
+```redcode
+FOR 2
+FOR 3
+dat.f $1, $2
+ROF
+ROF
+```
+
+Becomes
+
+```redcode
+dat.f $1, $2
+dat.f $1, $2
+dat.f $1, $2
+dat.f $1, $2
+dat.f $1, $2
+dat.f $1, $2
+```
+
