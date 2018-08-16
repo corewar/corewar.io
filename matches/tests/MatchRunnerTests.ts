@@ -11,16 +11,22 @@ import { MatchRunner } from "../MatchRunner";
 import { ISimulator } from "../../simulator/interface/ISimulator";
 import { IPublisher } from "../../simulator/interface/IPublisher";
 import { MessageType } from "../../simulator/interface/IMessage";
+import { IMatchResultMapper } from "../interface/IMatchResultMapper";
 
 describe("MatchRunner", () => {
 
     let matchRunner: IMatchRunner;
     let simulator: ISimulator;
     let publisher: IPublisher;
+    let matchResultMapper: IMatchResultMapper;
 
     beforeEach(() => {
 
         publisher = TestHelper.buildPublisher();
+
+        matchResultMapper = {
+            map: sinon.stub()
+        };
 
         simulator = {
             initialise: sinon.stub(),
@@ -30,7 +36,7 @@ describe("MatchRunner", () => {
         };
         (<sinon.stub>simulator.run).returns({});
 
-        matchRunner = new MatchRunner(simulator, publisher);
+        matchRunner = new MatchRunner(simulator, matchResultMapper, publisher);
     });
 
     it("Assigns a unique match ID to each warrior", () => {

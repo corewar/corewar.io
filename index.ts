@@ -50,6 +50,7 @@ import { PerKeyStrategy } from "./simulator/PerKeyStrategy";
 import { MatchRunner } from "./matches/MatchRunner";
 
 import * as clone from "clone";
+import { MatchResultMapper } from "./matches/MatchResultMapper";
 
 class Api {
 
@@ -119,6 +120,7 @@ class Api {
 
         this.matchRunner = new MatchRunner(
             this.simulator,
+            new MatchResultMapper(),
             this.publisher);
     }
 
