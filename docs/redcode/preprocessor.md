@@ -124,15 +124,15 @@ The label `bmb` is replaced with `-2` since its address is two lower than the `m
 
 ## Special constants
 
-A number of preprocessor constants are defined in redcode. These constants are resolved during parsing and replaced with their numeric equivalent.
+**NOTE this feature is not yet implemented within corewar.io**
 
-**NOTE these constants are not yet implemented within the current version of the Corewar.IO Parser.**
+A number of preprocessor constants are defined in redcode. These constants are resolved during parsing and replaced with their numeric equivalent.
 
 |Constant|Description|
 |---|---|
 |CORESIZE|The size of the [core](../corewar/core)|
 |MAXCYCLES|The number of cycles which will be executed before a draw is declared|
-|MAXPROCESSES|The maxmimum number of processes each warrior can have (see [spl](../corewar/warriors#processes))|
+|MAXPROCESSES|The maxmimum number of processes each warrior can have (see [Processes](../corewar/warriors#processes))|
 |WARRIORS|The number of warriors which have been loaded into the Core|
 |MAXLENGTH|The maximum length (number of instructions) a warrior can have|
 |CURLINE|The absolute position (beginning at zero) of this line within the warrior's source code|
@@ -140,6 +140,62 @@ A number of preprocessor constants are defined in redcode. These constants are r
 |VERSION|The version of the simulator used|
 |PSPACESIZE|The size of P-space - see [P-Space](../corewar/pspace)|
 
+## Assert
+
+**NOTE this feature is not yet implemented within corewar.io**
+
+When writing your warrior you may have a specific environment in mind. For example you may only want to deploy your warrior to a Core of size 8000. In order to make this clear and to prevent your warrior being loaded into a Core of the wrong size you can use the `assert` directive as shown in the following example:
+
+```redcode
+;assert CORESIZE==8000
+```
+
+The above snippet will prevent your warrior from being parsed and loaded into a core of any size other than 8000.
+
+The following C like operators can be used within an `assert` directive to build a logical condition:
+
+|Operator|Meaning|
+|---|---|
+|+|Addition|
+|-|Subtraction|
+|*|Multiplication|
+|/|Division|
+|%|Modulo|
+|==|Equal|
+|!=|Not equal|
+|<|Less than|
+|<=|Less than or equal|
+|>|Greater than|
+|>=|Greater than or equal|
+|&&|Boolean and|
+|\|\||Boolean or|
+|!|Boolean not|
+
 ## FOR
 
+**NOTE this feature is only partially implemented within corewar.io - FOR loops can be used but loop variables are not yet supported**
 
+FOR blocks cause the redcode contained within to be output by the parser multiple times. This saves the author from manually duplicating a line of code and is useful for introducing padding within your warrior's source code.
+
+The FOR block is used as shown in the following example:
+
+```redcode
+FOR 10
+dat.f $1, $2
+ROF
+```
+
+The above redcode will be parsed to produce the following output:
+
+```redcode
+dat.f $1, $2
+dat.f $1, $2
+dat.f $1, $2
+dat.f $1, $2
+dat.f $1, $2
+dat.f $1, $2
+dat.f $1, $2
+dat.f $1, $2
+dat.f $1, $2
+dat.f $1, $2
+```
