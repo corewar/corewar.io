@@ -124,7 +124,21 @@ The label `bmb` is replaced with `-2` since its address is two lower than the `m
 
 ## Special constants
 
+A number of preprocessor constants are defined in redcode. These constants are resolved during parsing and replaced with their numeric equivalent.
 
+**NOTE these constants are not yet implemented within the current version of the Corewar.IO Parser.**
+
+|Constant|Description|
+|---|---|
+|CORESIZE|The size of the [core](../corewar/core)|
+|MAXCYCLES|The number of cycles which will be executed before a draw is declared|
+|MAXPROCESSES|The maxmimum number of processes each warrior can have (see [spl](../corewar/warriors#processes))|
+|WARRIORS|The number of warriors which have been loaded into the Core|
+|MAXLENGTH|The maximum length (number of instructions) a warrior can have|
+|CURLINE|The absolute position (beginning at zero) of this line within the warrior's source code|
+|MINDISTANCE|The closest that two warriors can be placed when loaded into core|
+|VERSION|The version of the simulator used|
+|PSPACESIZE|The size of P-space - see [P-Space](../corewar/pspace)|
 
 ## FOR
 
