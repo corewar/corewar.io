@@ -239,3 +239,17 @@ dat.f $1, $2
 dat.f $1, $2
 ```
 
+Finally, the `&` operator can be used within a `FOR` loop to add the loop counter to a label declaration as demonstrated in the following example:
+
+```redcode
+i FOR 3
+loop&i dat.f $1, $1
+ROF
+```
+Becomes
+
+```redcode
+loop01 dat.f $1, $1
+loop02 dat.f $1, $1
+loop03 dat.f $1, $1
+```
