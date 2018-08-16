@@ -55,8 +55,19 @@ describe("MatchRunner", () => {
             ]
         };
 
-        const actual = matchRunner.run(match);
+        let actual = null;
+        (<sinon.stub>matchResultMapper.map).callsFake(m => {
 
+            actual = m;
+            return {
+                rounds: 1,
+                warriors: []
+            };
+        });
+
+        matchRunner.run(match);
+
+        expect(actual).not.be.null;
         expect(actual.warriors.length).to.be.equal(expected.length);
         for (let i = 0; i < expected.length; i++) {
             expect(actual.warriors[i].warriorMatchId).to.be.equal(expected[i]);
@@ -111,8 +122,19 @@ describe("MatchRunner", () => {
 
         roundResults.forEach((r, i) => (<sinon.stub>simulator.run).onCall(i).returns(r));
 
-        const actual = matchRunner.run(match);
+        let actual = null;
+        (<sinon.stub>matchResultMapper.map).callsFake(m => {
 
+            actual = m;
+            return {
+                rounds: 1,
+                warriors: []
+            };
+        });
+
+        matchRunner.run(match);
+
+        expect(actual).not.to.be.null;
         expect(actual.warriors.length).to.be.equal(2);
         expect(actual.warriors[0].wins).to.be.equal(2);
         expect(actual.warriors[1].wins).to.be.equal(1);
@@ -169,13 +191,17 @@ describe("MatchRunner", () => {
             winnerData: { warriorMatchId: 0 }
         });
 
+        const expected = {
+            rounds: 1,
+            warriors: []
+        };
+        (<sinon.stub>matchResultMapper.map).returns(expected);
+
         const actual = matchRunner.run(match);
 
         expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.MatchEnd,
-            payload: {
-                warriors: actual.warriors
-            }
+            payload: expected
         });
         expect(publisher.publish).to.have.been.called;
     });

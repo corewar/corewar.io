@@ -1,6 +1,7 @@
 import { IMatch } from "./IMatch";
+import { IMatchResult } from "./IMatchResult";
 
 export interface IMatchRunner {
 
-    run(match: IMatch): IMatch;
+    run(match: IMatch): IMatchResult;
 }
