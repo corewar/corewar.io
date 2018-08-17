@@ -7,9 +7,9 @@ pages:
    - Core: corewar/core.md
    - Warriors: corewar/warriors.md
    - Loader: corewar/loader.md
+   - Execution: corewar/execution.md
 - Redcode Reference:
    - Intro: redcode/index.md
-   - Execution: redcode/execution.md
    - Operands: redcode/operands.md
    - Opcodes: redcode/opcodes.md
    - Modifiers: redcode/modifiers.md

@@ -4,7 +4,7 @@ Each [operand](operands) in a Corewar instruction has an addressing mode. The ad
 
 When an instruction is executed, the addressing modes for the `A` and `B` operands of the instruction are evaluated to determine the source and destination instruction for the current [opcode](opcodes). Additionally, some addressing modes modify the operand number by incrementing or decrementing it during this evaluation.
 
-See the [Execution](execution) page for details of how addressing modes fit into Corewar's execution cycle.
+See the [Execution](../corewar/execution) page for details of how addressing modes fit into Corewar's execution cycle.
 
 The following addressing modes can be used in Corewar
 
@@ -121,7 +121,7 @@ mov.i }1, $1
 dat   $0, $0
 ```
 
-Note, perhaps counter-intuitively, the final resulting core looks exactly the same as the starting core. The change made by the post-increment was overwritten by the move operation. See [execution](execution) for more details about the execution order within Corewar.
+Note, perhaps counter-intuitively, the final resulting core looks exactly the same as the starting core. The change made by the post-increment was overwritten by the move operation. See [execution](../corewar/execution) for more details about the execution order within Corewar.
 
 ##B Pre-decrement Indirect
 
