@@ -1,5 +1,4 @@
-Redcode Reference
-=================
+#Redcode Reference
 
 Redcode is the languaged used to write [warriors](../corewar/warriors) for the game Corewar.
 
