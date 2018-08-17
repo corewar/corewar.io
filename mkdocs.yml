@@ -5,10 +5,14 @@ pages:
 - Guide to Corewar: 
    - Intro: corewar/index.md
    - Core: corewar/core.md
-   - Warriors: corewar/warriors.md
    - Loader: corewar/loader.md
-   - Execution: corewar/execution.md
+   - Warriors: corewar/warriors.md
    - Processes: corewar/processes.md
+   - Execution: corewar/execution.md
+   - Match Settings: corewar/match_settings.md
+   - Hills: corewar/hills.md
+   - Benchmarks: corewar/benchmarks.md
+   - Strategies: corewar/strategies.md
 - Redcode Reference:
    - Intro: redcode/index.md
    - Operands: redcode/operands.md
