@@ -26,4 +26,4 @@ pages:
    - Comments: redcode/comments.md
    - Metadata: redcode/metadata.md
 - Developer Reference: developer/index.md
-theme: cinder
+theme_dir: cinder
