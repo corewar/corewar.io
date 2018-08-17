@@ -27,3 +27,4 @@ pages:
    - Metadata: redcode/metadata.md
 - Developer Reference: developer/index.md
 theme: readthedocs
+extra_css: theme.css
