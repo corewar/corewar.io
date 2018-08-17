@@ -8,6 +8,7 @@ pages:
    - Warriors: corewar/warriors.md
    - Loader: corewar/loader.md
    - Execution: corewar/execution.md
+   - Processes: corewar/processes.md
 - Redcode Reference:
    - Intro: redcode/index.md
    - Operands: redcode/operands.md

@@ -132,7 +132,7 @@ A number of preprocessor constants are defined in redcode. These constants are r
 |---|---|
 |CORESIZE|The size of the [core](../corewar/core)|
 |MAXCYCLES|The number of cycles which will be executed before a draw is declared|
-|MAXPROCESSES|The maxmimum number of processes each warrior can have (see [Processes](../corewar/warriors#processes))|
+|MAXPROCESSES|The maxmimum number of processes each warrior can have (see [Processes](../corewar/processes))|
 |WARRIORS|The number of warriors which have been loaded into the Core|
 |MAXLENGTH|The maximum length (number of instructions) a warrior can have|
 |CURLINE|The absolute position (beginning at zero) of this line within the warrior's source code|
