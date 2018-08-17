@@ -26,4 +26,7 @@ pages:
    - Comments: redcode/comments.md
    - Metadata: redcode/metadata.md
 - Developer Reference: developer/index.md
-theme_dir: cyborg
+theme: readthedocs
+extra_css:
+   - cyborg/css/base.css
+   - cyborg/css/bootstrap-custom.min.css
