@@ -73,7 +73,7 @@ describe("EndCondition", () => {
         var state = buildState();
 
         state.cycle = 123;
-        state.options.cyclesBeforeTie = 123;
+        state.options.maximumCycles = 123;
 
         var endCondition = new EndCondition(publisher);
 
@@ -87,7 +87,7 @@ describe("EndCondition", () => {
         var state = buildState();
 
         state.cycle = 124;
-        state.options.cyclesBeforeTie = 123;
+        state.options.maximumCycles = 123;
 
         var endCondition = new EndCondition(publisher);
 
@@ -141,7 +141,7 @@ describe("EndCondition", () => {
         const state = buildState();
 
         state.cycle = 123;
-        state.options.cyclesBeforeTie = 123;
+        state.options.maximumCycles = 123;
 
         const endCondition = new EndCondition(publisher);
 
@@ -251,7 +251,7 @@ describe("EndCondition", () => {
         const state = buildState();
 
         state.cycle = 12 * 5;
-        state.options.cyclesBeforeTie = 100 * 5;
+        state.options.maximumCycles = 100 * 5;
 
         const endCondition = new EndCondition(publisher);
 

@@ -9,7 +9,7 @@ export class OptionValidator implements IOptionValidator {
     public static MinSeparationNegativeMessage = "MinSeparation must be a positive integer";
     public static InstructionLimitNegativeMessage = "InstructionLimit must be a positive integer";
     public static CoreTooSmallForWarriorsMessage = "The coresize is too small for all warriors to be placed. Coresize must be greater than minSeparation plus instructionLimit multiplied by number of warriors";
-    public static CyclesBeforeTieNegativeMessage = "cyclesBeforeTie must be an integer greater than zero";
+    public static MaximumCyclesNegativeMessage = "maximumCycles must be an integer greater than zero";
     public static MaxTasksNegativeMessage = "maxTasks must be an integer greater than zero";
     public static NoInitialInstructionMessage = "No initial instruction specified";
     public static InitialInstructionOpcodeMessage = "Initial instruction must have a valid opcode";
@@ -39,8 +39,8 @@ export class OptionValidator implements IOptionValidator {
             throw Error(OptionValidator.CoreTooSmallForWarriorsMessage);
         }
 
-        if (state.cyclesBeforeTie < 1) {
-            throw Error(OptionValidator.CyclesBeforeTieNegativeMessage);
+        if (state.maximumCycles < 1) {
+            throw Error(OptionValidator.MaximumCyclesNegativeMessage);
         }
 
         if (state.maxTasks < 1) {

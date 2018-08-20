@@ -50,13 +50,13 @@ export class EndCondition implements IEndCondition {
 
     public check(state: IState): boolean {
 
-        if (state.cycle >= state.options.cyclesBeforeTie) {
+        if (state.cycle >= state.options.maximumCycles) {
             this.publishRoundEnd('DRAW');
             return true;
         }
 
-        if ((state.cycle % (state.options.cyclesBeforeTie / 100)) === 0) {
-            this.publishProgress(state.cycle, state.options.cyclesBeforeTie);
+        if ((state.cycle % (state.options.maximumCycles / 100)) === 0) {
+            this.publishProgress(state.cycle, state.options.maximumCycles);
         }
 
         const liveWarriors = state.warriors.filter((warrior: IWarrior) => warrior.tasks.length > 0);

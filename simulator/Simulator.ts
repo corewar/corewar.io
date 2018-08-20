@@ -101,7 +101,7 @@ export class Simulator implements ISimulator {
 
     public run(): void {
 
-        const remainingSteps = this.state.options.cyclesBeforeTie - this.state.cycle;
+        const remainingSteps = this.state.options.maximumCycles - this.state.cycle;
 
         this.step(remainingSteps);
     }

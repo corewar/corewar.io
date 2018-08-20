@@ -203,7 +203,7 @@ describe("Simulator", () => {
 
         var expected: IOptions = {
             coresize: 100,
-            cyclesBeforeTie: 100,
+            maximumCycles: 100,
             initialInstruction: {
                 address: 100,
                 aOperand: {

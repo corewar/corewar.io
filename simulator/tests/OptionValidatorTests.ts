@@ -73,11 +73,11 @@ describe("OptionValidator", () => {
         validateAndExpect(options, 2, OptionValidator.CoreTooSmallForWarriorsMessage)
     });
 
-    it("Throws if cyclesBeforeTie is less than one", () => {
+    it("Throws if maximumCycles is less than one", () => {
 
-        options.cyclesBeforeTie = 0;
+        options.maximumCycles = 0;
 
-        validateAndExpect(options, 1, OptionValidator.CyclesBeforeTieNegativeMessage);
+        validateAndExpect(options, 1, OptionValidator.MaximumCyclesNegativeMessage);
     });
 
     it("Throws if maxTasks is less than one", () => {

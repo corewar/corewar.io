@@ -3,7 +3,7 @@
 export interface IOptions {
 
     coresize?: number;
-    cyclesBeforeTie?: number;
+    maximumCycles?: number;
     initialInstruction?: IInstruction;
     instructionLimit?: number;
     maxTasks?: number;

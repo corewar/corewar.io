@@ -5,7 +5,7 @@ import { ModeType } from "./interface/IOperand";
 class Defaults implements IOptions {
 
     public coresize: number = 8000;
-    public cyclesBeforeTie: number = 80000;
+    public maximumCycles: number = 80000;
     public initialInstruction: IInstruction = {
         address: 0,
         opcode: OpcodeType.DAT,
