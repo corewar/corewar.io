@@ -262,7 +262,7 @@ describe("EndCondition", () => {
             payload: {
                 runProgress: 12,
                 cycle: 12 * 5,
-                cyclesBeforeDraw: 100 * 5
+                maximumCycles: 100 * 5
             }
         });
 

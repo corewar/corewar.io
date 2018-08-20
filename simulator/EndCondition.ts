@@ -36,14 +36,14 @@ export class EndCondition implements IEndCondition {
         });
     }
 
-    private publishProgress(cycle: number, cyclesBeforeDraw: number) {
+    private publishProgress(cycle: number, maximumCycles: number) {
 
         this.publisher.queue({
             type: MessageType.RunProgress,
             payload: {
-                runProgress: cycle / cyclesBeforeDraw * 100.0,
+                runProgress: cycle / maximumCycles * 100.0,
                 cycle,
-                cyclesBeforeDraw
+                maximumCycles
             }
         });
     }
@@ -60,8 +60,7 @@ export class EndCondition implements IEndCondition {
         }
 
         const liveWarriors = state.warriors.filter((warrior: IWarrior) => warrior.tasks.length > 0);
-        let result = liveWarriors.length === 1;
-
+        
         if (state.warriors.length === 1) {
             if (liveWarriors.length === 0) {
                 this.publishRoundEnd('NONE');
