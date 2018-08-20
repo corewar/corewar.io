@@ -36,12 +36,14 @@ export class EndCondition implements IEndCondition {
         });
     }
 
-    private publishProgress(progress: number) {
+    private publishProgress(cycle: number, cyclesBeforeDraw: number) {
 
         this.publisher.queue({
             type: MessageType.RunProgress,
             payload: {
-                runProgress: progress
+                runProgress: cycle / cyclesBeforeDraw * 100.0,
+                cycle,
+                cyclesBeforeDraw
             }
         });
     }
@@ -54,7 +56,7 @@ export class EndCondition implements IEndCondition {
         }
 
         if ((state.cycle % (state.options.cyclesBeforeTie / 100)) === 0) {
-            this.publishProgress(state.cycle / (state.options.cyclesBeforeTie / 100));
+            this.publishProgress(state.cycle, state.options.cyclesBeforeTie);
         }
 
         const liveWarriors = state.warriors.filter((warrior: IWarrior) => warrior.tasks.length > 0);

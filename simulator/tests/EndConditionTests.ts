@@ -2,7 +2,6 @@
 import * as sinon from "sinon";
 
 import { ITask } from "../interface/ITask";
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import { IWarrior } from "../interface/IWarrior";
 import { IState } from "../interface/IState";
 import Defaults from "../Defaults";
@@ -261,7 +260,9 @@ describe("EndCondition", () => {
         expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.RunProgress,
             payload: {
-                runProgress: 12
+                runProgress: 12,
+                cycle: 12 * 5,
+                cyclesBeforeDraw: 100 * 5
             }
         });
 
