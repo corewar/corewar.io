@@ -147,7 +147,7 @@ describe("EndCondition", () => {
 
         endCondition.check(state);
 
-        expect(publisher.queue).to.have.been.calledWith({
+        expect(publisher.queue).not.to.have.been.calledWith({
             type: MessageType.RunProgress,
             payload: {
                 runProgress: 100
@@ -175,7 +175,7 @@ describe("EndCondition", () => {
 
         endCondition.check(state);
 
-        expect(publisher.queue).to.have.been.calledWith({
+        expect(publisher.queue).not.to.have.been.calledWith({
             type: MessageType.RunProgress,
             payload: {
                 runProgress: 100
@@ -230,7 +230,7 @@ describe("EndCondition", () => {
 
         endCondition.check(state);
 
-        expect(publisher.queue).to.have.been.calledWith({
+        expect(publisher.queue).not.to.have.been.calledWith({
             type: MessageType.RunProgress,
             payload: {
                 runProgress: 100

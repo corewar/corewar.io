@@ -15,13 +15,6 @@ export class EndCondition implements IEndCondition {
 
     private publishRoundEnd(outcome: string, winner: IWarrior = null) {
 
-        this.publisher.queue({
-            type: MessageType.RunProgress,
-            payload: {
-                runProgress: 100
-            }
-        });
-
         const payload =  {
             winnerId: winner && winner.id,
             outcome
