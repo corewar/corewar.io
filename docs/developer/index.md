@@ -76,7 +76,9 @@ Used to monitor progress towards the end of the round
 
 ```
 { 
-  runProgress: number // Indicates current cycle as a percentage of maximum cycles
+  runProgress: number   // Indicates current cycle as a percentage of maximum cycles
+  cycle: number         // The current cycle
+  maximumCycles: number // The maximum number of cycles, after which the round will end in a draw
 }
 ```
 
