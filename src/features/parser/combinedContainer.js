@@ -36,7 +36,7 @@ const ParserInterface = ({ parse, currentWarrior, hideConsole, displayConsole })
     <ControlsContainer />
     <FileManagerContainer />
     <Console
-      messages={currentWarrior && currentWarrior.messages}
+      messages={currentWarrior.messages}
       hideConsole={hideConsole}
       show={displayConsole} />
   </MobilePage>
