@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 
-import { CoreOptions, getCoreOptions } from '../../../sagas/coreOptions'
+import { CoreOptions, getCoreOptions } from '../../../helpers/coreOptions'
 
 describe('when getting core options', () => {
 

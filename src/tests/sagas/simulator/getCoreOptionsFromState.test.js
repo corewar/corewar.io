@@ -6,10 +6,10 @@ import { select } from 'redux-saga/effects'
 
 import {
   getCoreOptionsFromState
-} from '../../../sagas/simulatorSagas'
+} from '../../../features/simulator/sagas'
 
-import { getParserState } from '../../../reducers/parserReducers'
-import { getSimulatorState } from '../../../reducers/simulatorReducers'
+import { getParserState } from '../../../features/parser/reducers'
+import { getSimulatorState } from '../../../features/simulator/reducers'
 
 
 describe('when testing the getOptionsFromState saga', () => {

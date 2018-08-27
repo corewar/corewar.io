@@ -6,11 +6,11 @@ import {
   finishSaga,
   getCoreOptionsFromState,
   initialiseCore
-} from '../../../sagas/simulatorSagas'
+} from '../../../features/simulator/sagas'
 
 import {
   RUN
-} from '../../../actions/simulatorActions'
+} from '../../../features/simulator/actions'
 
 
 describe('when testing the finish saga', () => {

@@ -4,23 +4,23 @@ import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import SettingsControl from './../../components/simulator/settingsControl'
+import SettingsMenu from './../../features/settingsMenu/settingsMenu'
 import FontAwesome from 'react-fontawesome'
 
 it('renders without crashing', () => {
-  shallow(<SettingsControl />)
+  shallow(<SettingsMenu />)
 })
 
 it('renders the cog icon', () => {
 
   const props = {
-    coreOptions: [
+    options: [
       { id: 1, name: 'Beginner'},
       { id: 2, name: 'Nano' }
     ]
   }
 
-  const wrapper = shallow(<SettingsControl {...props}/>)
+  const wrapper = shallow(<SettingsMenu {...props}/>)
 
   expect(wrapper.find(FontAwesome).props().name).to.equal(`cog`)
 })
@@ -28,28 +28,28 @@ it('renders the cog icon', () => {
 it('renders one list item per processRate', () => {
 
   const props = {
-    coreOptions: [
+    options: [
       { id: 1, name: 'Beginner'},
       { id: 2, name: 'Nano' }
     ]
   }
 
-  const wrapper = mount(<SettingsControl {...props}/>)
+  const wrapper = mount(<SettingsMenu {...props}/>)
 
-  expect(wrapper.find('.optionDropdown ul li').length).to.equal(props.coreOptions.length)
+  expect(wrapper.find('.optionDropdown ul li').length).to.equal(props.options.length)
 })
 
 it('applies the active class to the currentCoreOption', () => {
 
   const props = {
     currentCoreOption: 1,
-    coreOptions: [
+    options: [
       { id: 1, name: 'Beginner'},
       { id: 2, name: 'Nano' }
     ]
   }
 
-  const wrapper = mount(<SettingsControl {...props}/>)
+  const wrapper = mount(<SettingsMenu {...props}/>)
 
   expect(wrapper.find('.optionDropdown ul li').at(0).props().className).to.equal(`active`)
 })
@@ -60,13 +60,13 @@ it('fires the clickHandler when a li is clicked', () => {
 
   const props = {
     handleClick: clickHandler,
-    coreOptions: [
+    options: [
       { id: 1, name: 'Beginner'},
       { id: 2, name: 'Nano' }
     ]
   }
 
-  const wrapper = mount(<SettingsControl {...props}/>)
+  const wrapper = mount(<SettingsMenu {...props}/>)
 
   wrapper.find('li').first().simulate('click')
 

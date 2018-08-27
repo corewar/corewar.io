@@ -5,7 +5,7 @@ import { put, call } from 'redux-saga/effects'
 
 import {
   PARSE_REQUESTED
-} from '../../../features/actions/parser'
+} from '../../../features/parser/actions'
 
 
 import { parseSaga } from '../../../features/parser/sagas'
