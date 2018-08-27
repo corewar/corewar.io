@@ -13,9 +13,11 @@ it('renders the siteName text', () => {
 
   const text = "nameOfSite"
 
-  const wrapper = shallow(<Logo siteName={text} />)
+  const history = { push: () => {}}
 
-  expect(wrapper.text()).to.contain(text)
+  const wrapper = shallow(<Logo siteName={text} history={history} />)
+
+  expect(wrapper.contains(text)).to.be.true
 })
 
 it('renders the domain text', () => {
@@ -24,5 +26,5 @@ it('renders the domain text', () => {
 
   const wrapper = shallow(<Logo siteDomain={domain} />)
 
-  expect(wrapper.text()).to.contain(domain)
+  expect(wrapper.contains(domain)).to.be.true
 })
