@@ -1,6 +1,4 @@
 import { expect } from 'chai'
-import { corewar } from 'corewar'
-import * as PubSub from 'pubsub-js'
 
 import { select } from 'redux-saga/effects'
 
@@ -8,8 +6,8 @@ import {
   getCoreOptionsFromState
 } from '../../../features/simulator/sagas'
 
-import { getParserState } from '../../../features/parser/reducers'
-import { getSimulatorState } from '../../../features/simulator/reducers'
+import { getParserState } from '../../../features/parser/reducer'
+import { getSimulatorState } from '../../../features/simulator/reducer'
 
 
 describe('when testing the getOptionsFromState saga', () => {

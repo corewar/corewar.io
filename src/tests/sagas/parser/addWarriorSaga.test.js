@@ -5,7 +5,8 @@ import { expect } from 'chai'
 import { put, call, select } from 'redux-saga/effects'
 
 import {
-  ADD_WARRIOR
+  SET_WARRIORS,
+  SET_CURRENT_WARRIOR
 } from '../../../features/parser/actions'
 
 import {
@@ -37,22 +38,24 @@ describe('when adding warriors', () => {
     expect(saga.next().value).to.deep.equal(
       put({ type: PAUSE }))
 
-    expect(saga.next().value).to.deep.equal(
-      call(getCoreOptionsFromState))
-
     expect(saga.next(data).value).to.deep.equal(
       select(getParserState))
+
+    expect(saga.next({ currentWarrior }).value).to.deep.equal(
+      put({ type: SET_CURRENT_WARRIOR, currentWarrior })
+    )
 
     expect(saga.next({ currentWarrior }).value).to.deep.equal(
       call(insertItem, data.parseResults.length, data.parseResults, currentWarrior))
 
     expect(saga.next(result).value).to.deep.equal(
-      put({ type: ADD_WARRIOR, result })
+      put({ type: SET_WARRIORS, warriorList: "?" })
     )
 
-    expect(saga.next().value).to.deep.equal(
-      call(initialiseCore, data.options, result)
-    )
+    // maybeinit isn't exported
+    // expect(saga.next(result).value).to.deep.equal(
+    //   call(maybeInit, warriorList: "?" })
+    // )
 
   })
 

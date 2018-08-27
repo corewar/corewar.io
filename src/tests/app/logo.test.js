@@ -12,8 +12,9 @@ it('renders without crashing', () => {
 it('renders the logo text', () => {
 
   const text = "nameOfSite"
+  const domain = ".com"
 
-  const wrapper = shallow(<Logo logoText={text}/>)
+  const wrapper = shallow(<Logo siteName={text} siteDomain={domain} />)
 
   expect(wrapper.text()).to.equal(text)
 });

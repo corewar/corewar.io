@@ -8,13 +8,13 @@ import {
 } from '../../../features/parser/actions'
 
 
-import { parseSaga } from '../../../features/parser/sagas'
+import { parseWarriorSaga } from '../../../features/parser/sagas'
 
 describe('when parsing', () => {
 
   const inputRedcode = 'somecode'
 
-  const saga = parseSaga({ redcode: inputRedcode })
+  const saga = parseWarriorSaga({ source: inputRedcode })
 
   const inputTokens = ['a', 'b', 'c']
   const parseResult = {

@@ -1,10 +1,12 @@
 import { expect } from 'chai'
 
 import parserReducer from './../../features/parser/reducer'
+import blankWarrior from './../../helpers/blankWarrior'
+import { defaultWarriors } from '../../helpers/defaultWarriors'
+import { colour } from './../../features/common/theme'
 
 import {
-  PARSE,
-  ADD_WARRIOR,
+  SET_CURRENT_WARRIOR,
   REMOVE_WARRIOR
 } from './../../features/parser/actions'
 
@@ -17,46 +19,34 @@ describe('when testing the parser reducers', () => {
     const result = parserReducer(undefined, action)
 
     expect(result).to.deep.equal({
-      currentWarrior: {},
-      parseResults: [],
+      currentFileIndex: 0,
+      currentWarrior: blankWarrior,
+      warriors: [],
+      warriorLibrary: defaultWarriors,
       standardId: 2,
-      redcode: '',
-      warrior: ''
-    })
-
-  })
-
-  it('should handle the PARSE action', () => {
-
-    const action = {
-      type: PARSE,
-      result: 'parseResult',
-      redcode: 'redcode'
-    }
-
-    const result = parserReducer([], action)
-
-    expect(result).to.deep.equal({
-      currentWarrior: 'parseResult',
-      redcode: 'redcode'
+      displayConsole: false,
+      displayFileManager: false,
+      colours: colour.warrior
     })
 
   })
 
 
-  it('should handle the ADD_WARRIOR action', () => {
+  it('should handle the SET_CURRENT_WARRIOR action', () => {
 
     const action = {
-      type: ADD_WARRIOR,
-      result: [
-        { data: 'new warrior' }
-      ]
+      type: SET_CURRENT_WARRIOR,
+      currentWarrior: {
+        source: 'new warrior'
+      }
+
     }
 
     const result = parserReducer([], action)
 
     expect(result).to.deep.equal({
-      parseResults: action.result
+      currentWarrior: action.currentWarrior,
+      displayFileManager: false
     })
 
   })

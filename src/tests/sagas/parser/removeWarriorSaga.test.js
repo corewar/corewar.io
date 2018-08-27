@@ -9,6 +9,10 @@ import {
   REMOVE_WARRIOR
 } from '../../../features/parser/actions'
 
+import {
+  PAUSE
+} from '../../../features/simulator/actions'
+
 import { removeWarriorSaga } from '../../../features/parser/sagas'
 import { removeItem } from '../../../helpers/arrayHelpers'
 import { getCoreOptionsFromState, initialiseCore } from '../../../features/simulator/sagas'

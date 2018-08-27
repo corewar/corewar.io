@@ -41,7 +41,7 @@ describe('when testing the parser actions', () => {
 
     const expectedAction = {
       type: REMOVE_WARRIOR_REQUESTED,
-      index: expectedId
+      id: expectedId
     }
 
     const result = removeWarrior(expectedId)

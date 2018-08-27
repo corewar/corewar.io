@@ -37,8 +37,9 @@ describe('when testing the simulator reducers', () => {
       maxTasks: 8000,
 
       instructions: [],
+      displaySettings: false,
       processRate: 1,
-      processRates: [1, 2, 5, 12, 30, 75, 200],
+      processRates: [1, 2, 5, 12, 30, 75, 200, 500, 2000],
       currentCoreOption: 1,
       coreOptions: [
         { id: 1, name: 'Beginner'},
