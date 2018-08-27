@@ -72,7 +72,7 @@ export function* addWarriorSaga() {
 
   const { warriors } = yield select(getParserState)
 
-  const id = guid()
+  const id = yield call(guid)
 
   const colour = yield call(takeColour, id)
 

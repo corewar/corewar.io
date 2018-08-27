@@ -16,6 +16,7 @@ import {
 import { insertItem } from '../../../helpers/arrayHelpers'
 import { addWarriorSaga } from '../../../features/parser/sagas'
 import { getParserState } from '../../../features/parser/reducer'
+import { guid } from '../../../helpers/guid'
 import { getCoreOptionsFromState, initialiseCore } from '../../../features/simulator/sagas'
 
 describe('when adding warriors', () => {
@@ -24,6 +25,8 @@ describe('when adding warriors', () => {
 
     const saga = addWarriorSaga()
 
+    const currentWarrior = 3
+
     const data = {
       warriors: [1, 2],
       options: {
@@ -31,21 +34,30 @@ describe('when adding warriors', () => {
       }
     }
 
-    const currentWarrior = 3
+    const { warriors } = data
+
+
+    const guidValue = '1234'
 
     const result = [1, 2, 3]
 
     expect(saga.next().value).to.deep.equal(
       put({ type: PAUSE }))
 
-    expect(saga.next(data).value).to.deep.equal(
+    expect(saga.next({ data }).value).to.deep.equal(
       select(getParserState))
+
+    expect(saga.next().value).to.deep.equal(
+      call(guid))
+
+    expect(saga.next({ guidValue }).value).to.deep.equal(
+      call(takeColour, guidValue))
 
     expect(saga.next({ currentWarrior }).value).to.deep.equal(
       put({ type: SET_CURRENT_WARRIOR, currentWarrior })
     )
 
-    expect(saga.next({ currentWarrior }).value).to.deep.equal(
+    expect(saga.next({ warriors, currentWarrior }).value).to.deep.equal(
       call(insertItem, data.warriors.length, data.warriors, currentWarrior))
 
     expect(saga.next(result).value).to.deep.equal(
