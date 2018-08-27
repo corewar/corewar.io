@@ -19,14 +19,14 @@ describe('when testing the init saga', () => {
 
     const data = {
       options: {},
-      parseResults: []
+      warriors: []
     }
 
     expect(saga.next().value).to.deep.equal(put({ type: PAUSE }))
 
     expect(saga.next().value).to.deep.equal(call(getCoreOptionsFromState))
 
-    expect(saga.next(data).value).to.deep.equal(call(initialiseCore, data.options, data.parseResults))
+    expect(saga.next(data).value).to.deep.equal(call(initialiseCore, data.options, data.warriors))
   })
 
 })

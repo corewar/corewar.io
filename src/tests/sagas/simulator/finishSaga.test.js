@@ -21,7 +21,7 @@ describe('when testing the finish saga', () => {
 
     const data = {
       options: {},
-      parseResults: [],
+      warriors: [],
       result: {
         outcome: null
       }
@@ -38,7 +38,7 @@ describe('when testing the finish saga', () => {
 
     const data = {
       options: {},
-      parseResults: [],
+      warriors: [],
       result: {
         outcome: 'WIN',
         warriorId: 0
@@ -47,7 +47,7 @@ describe('when testing the finish saga', () => {
 
     expect(saga.next().value).to.deep.equal(call(getCoreOptionsFromState))
 
-    expect(saga.next(data).value).to.deep.equal(call(initialiseCore, data.options, data.parseResults))
+    expect(saga.next(data).value).to.deep.equal(call(initialiseCore, data.options, data.warriors))
 
     expect(saga.next().value).to.deep.equal(call([corewar, corewar.run]))
   })

@@ -25,7 +25,7 @@ describe('when adding warriors', () => {
     const saga = addWarriorSaga()
 
     const data = {
-      parseResults: [1, 2],
+      warriors: [1, 2],
       options: {
         coreSize: 10
       }
@@ -46,7 +46,7 @@ describe('when adding warriors', () => {
     )
 
     expect(saga.next({ currentWarrior }).value).to.deep.equal(
-      call(insertItem, data.parseResults.length, data.parseResults, currentWarrior))
+      call(insertItem, data.warriors.length, data.warriors, currentWarrior))
 
     expect(saga.next(result).value).to.deep.equal(
       put({ type: SET_WARRIORS, warriorList: "?" })

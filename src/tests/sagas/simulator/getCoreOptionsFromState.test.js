@@ -14,7 +14,7 @@ describe('when testing the getOptionsFromState saga', () => {
 
   const parseState = {
     standardId: 1,
-    parseResults: []
+    warriors: []
   }
 
   const saga = getCoreOptionsFromState()

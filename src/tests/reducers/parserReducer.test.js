@@ -6,11 +6,10 @@ import { defaultWarriors } from '../../helpers/defaultWarriors'
 import { colour } from './../../features/common/theme'
 
 import {
-  SET_CURRENT_WARRIOR,
-  REMOVE_WARRIOR
+  SET_CURRENT_WARRIOR
 } from './../../features/parser/actions'
 
-describe('when testing the parser reducers', () => {
+describe('when testing the parser reducer', () => {
 
   it('should return the initial state', () => {
 
@@ -50,23 +49,5 @@ describe('when testing the parser reducers', () => {
     })
 
   })
-
-  it('should handle the REMOVE_WARRIOR action', () => {
-
-    const action = {
-      type: REMOVE_WARRIOR,
-      result: [
-        { data: 'new warrior' }
-      ]
-    }
-
-    const result = parserReducer([], action)
-
-    expect(result).to.deep.equal({
-      parseResults: action.result
-    })
-
-  })
-
 
 })

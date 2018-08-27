@@ -6,7 +6,7 @@ import { expect } from 'chai'
 import { put, call } from 'redux-saga/effects'
 
 import {
-  REMOVE_WARRIOR
+  SET_WARRIORS
 } from '../../../features/parser/actions'
 
 import {
@@ -14,17 +14,25 @@ import {
 } from '../../../features/simulator/actions'
 
 import { removeWarriorSaga } from '../../../features/parser/sagas'
-import { removeItem } from '../../../helpers/arrayHelpers'
-import { getCoreOptionsFromState, initialiseCore } from '../../../features/simulator/sagas'
+import { removeById } from '../../../helpers/arrayHelpers'
+import { initialiseCore } from '../../../features/simulator/sagas'
 
 describe('when removing warriors', () => {
 
-  const index = 1
+  const id = 1
 
-  const saga = removeWarriorSaga({ index })
+  const saga = removeWarriorSaga({ id })
 
   const data = {
-    parseResults: [1, 2, 3],
+    warriors: [{
+      id: 1
+    },
+    {
+      id: 2
+    },
+    {
+      id: 3
+    }],
     options: {
       coreSize: 10
     }
@@ -32,19 +40,20 @@ describe('when removing warriors', () => {
 
   const result = [1, 3]
 
-  it('should remove the warrior at the index', () => {
+  it('should remove the warrior by id', () => {
 
     expect(saga.next().value).to.deep.equal(
       put({ type: PAUSE }))
 
-    expect(saga.next().value).to.deep.equal(
-      call(getCoreOptionsFromState))
-
     expect(saga.next(data).value).to.deep.equal(
-      call(removeItem, index, data.parseResults))
+      call(removeById, id, data.warriors))
+
+    // this isn't exported
+    // expect(saga.next(data).value).to.deep.equal(
+    //   call(releaseColour, id))
 
     expect(saga.next(result).value).to.deep.equal(
-      put({ type: REMOVE_WARRIOR, result })
+      put({ type: SET_WARRIORS, result })
     )
 
     expect(saga.next().value).to.deep.equal(
