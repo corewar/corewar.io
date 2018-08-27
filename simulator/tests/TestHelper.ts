@@ -40,8 +40,8 @@ export default class TestHelper {
                 name: "",
                 author: "",
                 strategy: ""
-            }
-
+            },
+            data: {}
         };
     }
 

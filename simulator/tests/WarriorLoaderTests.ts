@@ -188,7 +188,7 @@ describe("WarriorLoader", () => {
         const core = buildCore(30);
 
         const loader = new WarriorLoader(core, this.publisher);
-        debugger;
+        
         loader.load(21, tokens, 0);
 
         const instr = core.readAt(null, 21);
@@ -423,6 +423,7 @@ describe("WarriorLoader", () => {
             type: MessageType.TaskCount,
             payload: {
                 warriorId: expectedId,
+                warriorData: {},
                 taskCount: 1
             }
         });

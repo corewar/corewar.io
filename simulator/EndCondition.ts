@@ -3,6 +3,7 @@ import { IState } from "./interface/IState";
 import { IWarrior } from "./interface/IWarrior";
 import { MessageType } from "./interface/IMessage";
 import { IPublisher } from "./interface/IPublisher";
+import { IRoundResult } from "./interface/IRoundResult";
 
 export class EndCondition implements IEndCondition {
 
@@ -13,7 +14,20 @@ export class EndCondition implements IEndCondition {
         this.publisher = publisher;
     }
 
-    private publishRoundEnd(outcome: string, winner: IWarrior = null) {
+    private buildRoundResult(outcome: string, winner: IWarrior = null): IRoundResult {
+
+        const result = {
+            winnerId: winner && winner.id,
+            outcome
+        };
+        if (winner && winner.data) {
+            result["winnerData"] = winner.data;
+        }
+
+        return result;
+    }
+
+    private publishRoundEnd(payload: IRoundResult) {
 
         this.publisher.queue({
             type: MessageType.RunProgress,
@@ -21,14 +35,6 @@ export class EndCondition implements IEndCondition {
                 runProgress: 100
             }
         });
-
-        const payload =  {
-            winnerId: winner && winner.id,
-            outcome
-        };
-        if (winner && winner.data) {
-            payload["winnerData"] = winner.data;
-        }
 
         this.publisher.queue({
             type: MessageType.RoundEnd,
@@ -46,11 +52,12 @@ export class EndCondition implements IEndCondition {
         });
     }
 
-    public check(state: IState): boolean {
+    public check(state: IState): IRoundResult {
 
         if (state.cycle >= state.options.cyclesBeforeTie) {
-            this.publishRoundEnd('DRAW');
-            return true;
+            const result = this.buildRoundResult("DRAW");
+            this.publishRoundEnd(result);
+            return result;
         }
 
         if ((state.cycle % (state.options.cyclesBeforeTie / 100)) === 0) {
@@ -62,14 +69,16 @@ export class EndCondition implements IEndCondition {
 
         if (state.warriors.length === 1) {
             if (liveWarriors.length === 0) {
-                this.publishRoundEnd('NONE');
-                return true;
+                const result = this.buildRoundResult("NONE");
+                this.publishRoundEnd(result);
+                return result;
             }
         } else if (liveWarriors.length === 1) {
-            this.publishRoundEnd('WIN', liveWarriors[0]);
-            return true;
+            const result = this.buildRoundResult("WIN", liveWarriors[0]);
+            this.publishRoundEnd(result);
+            return result;
         }
 
-        return false;
+        return null;
     }
 }
