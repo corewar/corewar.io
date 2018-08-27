@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { font, colour, space } from '../common/theme'
@@ -34,7 +35,7 @@ const Container = styled.div`
   }
 `
 
-const MenuItem = styled.li`
+export const MenuItem = styled.li`
   padding-top: ${space.s};
   display: block;
   height: 24px;
@@ -60,7 +61,7 @@ const SpeedControl = ({ processRate, processRates, handleClick, visible = true, 
   <Container visible={visible} enabled={enabled}>
       <SelectedItem>{`${processRate} x`}</SelectedItem>
       <ul>
-        {processRates && processRates.map(rate => (
+        {processRates.map(rate => (
           <MenuItem
             key={rate}
             active={rate === processRate}
@@ -71,3 +72,11 @@ const SpeedControl = ({ processRate, processRates, handleClick, visible = true, 
 )
 
 export default SpeedControl
+
+SpeedControl.propTypes = {
+  processRates: PropTypes.array
+}
+
+SpeedControl.defaultProps = {
+  processRates: []
+}

@@ -11,21 +11,7 @@ it('renders without crashing', () => {
   shallow(<SettingsMenu />)
 })
 
-it('renders the cog icon', () => {
-
-  const props = {
-    options: [
-      { id: 1, name: 'Beginner'},
-      { id: 2, name: 'Nano' }
-    ]
-  }
-
-  const wrapper = shallow(<SettingsMenu {...props}/>)
-
-  expect(wrapper.find(FontAwesome).props().name).to.equal(`cog`)
-})
-
-it('renders one list item per processRate', () => {
+it('renders one list item per option', () => {
 
   const props = {
     options: [
@@ -36,13 +22,13 @@ it('renders one list item per processRate', () => {
 
   const wrapper = mount(<SettingsMenu {...props}/>)
 
-  expect(wrapper.find('.optionDropdown ul li').length).to.equal(props.options.length)
+  expect(wrapper.find('ul li').length).to.equal(props.options.length)
 })
 
-it('applies the active class to the currentCoreOption', () => {
+it('applies the active class to the currentSelection', () => {
 
   const props = {
-    currentCoreOption: 1,
+    currentSelection: 1,
     options: [
       { id: 1, name: 'Beginner'},
       { id: 2, name: 'Nano' }
@@ -51,7 +37,7 @@ it('applies the active class to the currentCoreOption', () => {
 
   const wrapper = mount(<SettingsMenu {...props}/>)
 
-  expect(wrapper.find('.optionDropdown ul li').at(0).props().className).to.equal(`active`)
+  expect(wrapper.find('ul li').at(0).props().className).to.equal(`active`)
 })
 
 it('fires the clickHandler when a li is clicked', () => {
