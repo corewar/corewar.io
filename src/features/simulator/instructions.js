@@ -21,7 +21,7 @@ const DefaultText = styled.span`
   font-size: ${font.small};
 `
 
-const CoreVisuliser = ({ instructions, runProgress, warriors, maxTasks, focus }) =>
+const Instructions = ({ instructions, runProgress, warriors, maxTasks, focus }) =>
 <InstructionWrapper>
   <RoundProgress
     warriors={warriors}
@@ -47,6 +47,6 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps
-)(CoreVisuliser)
+)(Instructions)
 
-export { CoreVisuliser as PureCoreVisualiser }
+export { Instructions as PureInstructions }

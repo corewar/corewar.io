@@ -7,17 +7,17 @@ import { put, call } from 'redux-saga/effects'
 
 import {
   REMOVE_WARRIOR
-} from '../../../actions/parserActions'
+} from '../../../features/parser/actions'
 
-import { removeWarriorSaga } from '../../../sagas/parserSagas'
+import { removeWarriorSaga } from '../../../features/parser/sagas'
 import { removeItem } from '../../../helpers/arrayHelpers'
-import { getCoreOptionsFromState, initialiseCore } from '../../../sagas/simulatorSagas'
+import { getCoreOptionsFromState, initialiseCore } from '../../../features/simulator/sagas'
 
 describe('when removing warriors', () => {
 
   const index = 1
 
-  const saga = removeWarriorSaga({ id })
+  const saga = removeWarriorSaga({ index })
 
   const data = {
     parseResults: [1, 2, 3],

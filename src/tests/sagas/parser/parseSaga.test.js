@@ -4,12 +4,11 @@ import { expect } from 'chai'
 import { put, call } from 'redux-saga/effects'
 
 import {
-  PARSE,
-  PARSE_REQUESTED,
-} from '../../../actions/parserActions'
+  PARSE_REQUESTED
+} from '../../../features/actions/parser'
 
 
-import { parseSaga } from '../../../sagas/parserSagas'
+import { parseSaga } from '../../../features/parser/sagas'
 
 describe('when parsing', () => {
 
@@ -43,7 +42,7 @@ describe('when parsing', () => {
       warrior: inputWarrior
     }
 
-    expect(saga.next(inputWarrior, inputRedcode).value).to.deep.equal(put({ type: PARSE, result: expectedResult, redcode: inputRedcode }))
+    expect(saga.next(inputWarrior, inputRedcode).value).to.deep.equal(put({ type: PARSE_REQUESTED, result: expectedResult, redcode: inputRedcode }))
     expect(saga.next().done).to.equal(true)
 
   })

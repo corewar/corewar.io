@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import { PureSimulatorContainer } from './../../containers/simulator/simulatorContainer'
+import { PureSimulatorContainer } from './../../features/simulator/simulatorContainer'
 
 describe('when testing the simulator container', () => {
 

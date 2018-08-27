@@ -4,8 +4,8 @@ import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import SimulatorControls from './../../components/simulator/simulatorControls'
+import { PureSimulatorControls } from './../../features/simulator/controlsContainer'
 
 it('renders without crashing', () => {
-  shallow(<SimulatorControls />)
+  shallow(<PureSimulatorControls />)
 })

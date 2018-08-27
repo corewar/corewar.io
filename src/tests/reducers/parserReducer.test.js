@@ -6,7 +6,7 @@ import {
   PARSE,
   ADD_WARRIOR,
   REMOVE_WARRIOR
-} from './../../actions/parserActions'
+} from './../../features/parser/actions'
 
 describe('when testing the parser reducers', () => {
 
@@ -17,7 +17,6 @@ describe('when testing the parser reducers', () => {
     const result = parserReducer(undefined, action)
 
     expect(result).to.deep.equal({
-      isParsing: false,
       currentWarrior: {},
       parseResults: [],
       standardId: 2,
@@ -39,8 +38,7 @@ describe('when testing the parser reducers', () => {
 
     expect(result).to.deep.equal({
       currentWarrior: 'parseResult',
-      redcode: 'redcode',
-      isParsing: false
+      redcode: 'redcode'
     })
 
   })

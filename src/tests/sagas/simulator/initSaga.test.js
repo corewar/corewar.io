@@ -6,7 +6,9 @@ import {
   initSaga,
   getCoreOptionsFromState,
   initialiseCore
-} from '../../../sagas/simulatorSagas'
+} from '../../../features/simulator/sagas'
+
+import { PAUSE } from '../../../features/simulator/actions'
 
 
 describe('when testing the init saga', () => {
