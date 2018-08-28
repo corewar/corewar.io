@@ -3,31 +3,36 @@ import { IMatch } from "./interface/IMatch";
 import { ISimulator } from "../simulator/interface/ISimulator";
 import { IPublisher } from "../simulator/interface/IPublisher";
 import { MessageType } from "../simulator/interface/IMessage";
+import { IMatchResultMapper } from "./interface/IMatchResultMapper";
+import { IMatchResult } from "./interface/IMatchResult";
 import * as clone from "clone";
 
 export class MatchRunner implements IMatchRunner {
 
     private simulator: ISimulator;
     private publisher: IPublisher;
+    private matchResultMapper: IMatchResultMapper;
 
-    constructor(simulator: ISimulator, publisher: IPublisher) {
+    constructor(
+        simulator: ISimulator,
+        matchResultMapper: IMatchResultMapper,
+        publisher: IPublisher) {
 
         this.simulator = simulator;
+        this.matchResultMapper = matchResultMapper;
         this.publisher = publisher;
     }
 
-    private publishEnd(warriors) {
+    private publishEnd(result) {
 
         this.publisher.queue({
             type: MessageType.MatchEnd,
-            payload: {
-                warriors: clone(warriors)
-            }
+            payload: result
         });
         this.publisher.publish();
     }
 
-    run(match: IMatch): IMatch {
+    run(match: IMatch): IMatchResult {
 
         for (let i = 0; i < match.warriors.length; i++) {
             const warrior = match.warriors[i];
@@ -54,8 +59,10 @@ export class MatchRunner implements IMatchRunner {
             }
         }
 
-        this.publishEnd(match.warriors);
+        const result = this.matchResultMapper.map(match);
 
-        return clone(match);
+        this.publishEnd(result);
+
+        return result;
     }
 }
