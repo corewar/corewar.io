@@ -5,13 +5,19 @@ import { expect } from 'chai'
 import { put, call, select } from 'redux-saga/effects'
 
 import {
-  ADD_WARRIOR
-} from '../../../actions/parserActions'
+  SET_WARRIORS,
+  SET_CURRENT_WARRIOR
+} from '../../../features/parser/actions'
 
-import { insertItem, removeItem } from '../../../helpers/arrayHelpers'
-import { addWarriorSaga } from '../../../sagas/parserSagas'
-import { getParserState } from '../../../reducers/parserReducers'
-import { getCoreOptionsFromState, initialiseCore } from '../../../sagas/simulatorSagas'
+import {
+  PAUSE
+} from '../../../features/simulator/actions'
+
+import { insertItem } from '../../../helpers/arrayHelpers'
+import { addWarriorSaga } from '../../../features/parser/sagas'
+import { getParserState } from '../../../features/parser/reducer'
+import { guid } from '../../../helpers/guid'
+import { getCoreOptionsFromState, initialiseCore } from '../../../features/simulator/sagas'
 
 describe('when adding warriors', () => {
 
@@ -19,36 +25,49 @@ describe('when adding warriors', () => {
 
     const saga = addWarriorSaga()
 
+    const currentWarrior = 3
+
     const data = {
-      parseResults: [1, 2],
+      warriors: [1, 2],
       options: {
         coreSize: 10
       }
     }
 
-    const currentWarrior = 3
+    const { warriors } = data
+
+
+    const guidValue = '1234'
 
     const result = [1, 2, 3]
 
     expect(saga.next().value).to.deep.equal(
       put({ type: PAUSE }))
 
-    expect(saga.next().value).to.deep.equal(
-      call(getCoreOptionsFromState))
-
-    expect(saga.next(data).value).to.deep.equal(
+    expect(saga.next({ data }).value).to.deep.equal(
       select(getParserState))
 
+    expect(saga.next().value).to.deep.equal(
+      call(guid))
+
+    expect(saga.next({ guidValue }).value).to.deep.equal(
+      call(takeColour, guidValue))
+
     expect(saga.next({ currentWarrior }).value).to.deep.equal(
-      call(insertItem, data.parseResults.length, data.parseResults, currentWarrior))
+      put({ type: SET_CURRENT_WARRIOR, currentWarrior })
+    )
+
+    expect(saga.next({ warriors, currentWarrior }).value).to.deep.equal(
+      call(insertItem, data.warriors.length, data.warriors, currentWarrior))
 
     expect(saga.next(result).value).to.deep.equal(
-      put({ type: ADD_WARRIOR, result })
+      put({ type: SET_WARRIORS, warriorList: "?" })
     )
 
-    expect(saga.next().value).to.deep.equal(
-      call(initialiseCore, data.options, result)
-    )
+    // maybeinit isn't exported
+    // expect(saga.next(result).value).to.deep.equal(
+    //   call(maybeInit, warriorList: "?" })
+    // )
 
   })
 

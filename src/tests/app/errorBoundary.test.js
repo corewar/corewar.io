@@ -4,8 +4,8 @@ import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import ErrorBoundary from './../../components/app/errorBoundary'
-import Login from './../../components/app/login'
+import ErrorBoundary from './../../features/common/errorBoundary'
+import Login from './../../features/topbar/login'
 
 describe('when testing the ErrorBoundary component', () => {
 

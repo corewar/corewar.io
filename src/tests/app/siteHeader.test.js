@@ -2,10 +2,10 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { expect } from 'chai'
 
-import SiteHeader from './../../components/app/siteHeader'
-import Login from './../../components/app/login'
-import Logo from './../../components/app/logo'
-import UserInfo from './../../components/app/userInfo'
+import SiteHeader from './../../features/topbar/siteHeader'
+import Login from './../../features/topbar/login'
+import Logo from './../../features/topbar/logo'
+import UserInfo from './../../features/topbar/userInfo'
 
 
 it('renders without crashing', () => {

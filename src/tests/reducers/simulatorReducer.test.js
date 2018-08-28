@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 
-import simulatorReducer from './../../reducers/simulatorReducers'
+import simulatorReducer from './../../features/simulator/reducer'
 
 import {
   INIT,
@@ -13,7 +13,7 @@ import {
   SET_CORE_FOCUS,
   SET_PROCESS_RATE,
   SET_CORE_OPTIONS
-} from './../../actions/simulatorActions'
+} from './../../features/simulator/actions'
 
 describe('when testing the simulator reducers', () => {
 
@@ -37,8 +37,9 @@ describe('when testing the simulator reducers', () => {
       maxTasks: 8000,
 
       instructions: [],
+      displaySettings: false,
       processRate: 1,
-      processRates: [1, 2, 5, 12, 30, 75, 200],
+      processRates: [1, 2, 5, 12, 30, 75, 200, 500, 2000],
       currentCoreOption: 1,
       coreOptions: [
         { id: 1, name: 'Beginner'},

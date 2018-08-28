@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import SpeedControl from './../../components/simulator/speedControl'
+import SpeedControl, { MenuItem } from './../../features/simulator/speedControl'
 
 it('renders without crashing', () => {
   shallow(<SpeedControl />)
@@ -21,10 +21,10 @@ it('renders the current processRate', () => {
 
   const wrapper = shallow(<SpeedControl {...props}/>)
 
-  expect(wrapper.find('.optionDropdown span').text()).to.equal(`${props.processRate} x`)
+  expect(wrapper.contains(`${props.processRate} x`)).to.be.true
 });
 
-it('renders one list item per processRate', () => {
+it('renders one <MenuItem /> per processRate', () => {
 
   const props = {
     processRates: [
@@ -34,7 +34,7 @@ it('renders one list item per processRate', () => {
 
   const wrapper = mount(<SpeedControl {...props}/>)
 
-  expect(wrapper.find('.optionDropdown ul li').length).to.equal(props.processRates.length)
+  expect(wrapper.find(MenuItem).length).to.equal(props.processRates.length)
 });
 
 it('fires the clickHandler when a li is clicked', () => {
@@ -50,7 +50,7 @@ it('fires the clickHandler when a li is clicked', () => {
 
   const wrapper = mount(<SpeedControl {...props}/>)
 
-  wrapper.find('li').first().simulate('click')
+  wrapper.find(MenuItem).first().simulate('click')
 
   expect(clickHandler.calledOnce)
 })
@@ -66,6 +66,6 @@ it('applies the active class to the current process rate', () => {
 
   const wrapper = mount(<SpeedControl {...props}/>)
 
-  expect(wrapper.find('.optionDropdown ul li').at(1).props().className).to.equal(`active`)
+  expect(wrapper.find(MenuItem).at(1).props().active).to.be.true
 })
 

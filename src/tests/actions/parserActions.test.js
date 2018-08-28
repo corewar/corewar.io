@@ -1,12 +1,10 @@
 import { expect } from 'chai'
-
-import { action } from './../../actions/creator'
-import { parse, addWarrior, removeWarrior } from './../../actions/parserActions'
+import { parse, addWarrior, removeWarrior } from './../../features/parser/actions'
 import {
     PARSE_REQUESTED,
     ADD_WARRIOR_REQUESTED,
     REMOVE_WARRIOR_REQUESTED
-  } from './../../actions/parserActions'
+  } from './../../features/parser/actions'
 
 describe('when testing the parser actions', () => {
 
@@ -16,7 +14,7 @@ describe('when testing the parser actions', () => {
 
     const expectedAction = {
       type: PARSE_REQUESTED,
-      redcode: expectedRedcode
+      source: expectedRedcode
     }
 
     const result = parse(expectedRedcode)
@@ -43,7 +41,7 @@ describe('when testing the parser actions', () => {
 
     const expectedAction = {
       type: REMOVE_WARRIOR_REQUESTED,
-      index: expectedId
+      id: expectedId
     }
 
     const result = removeWarrior(expectedId)

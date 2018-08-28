@@ -110,7 +110,7 @@ const NewButton = styled.div`
 `
 
 const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWarrior,
-  toggleWarrior, removeWarrior, currentFileIndex }) => (
+  toggleWarrior, removeWarrior }) => (
   <WarriorPanel>
     <Media
       query={{ maxWidth: sizes.desktop }}

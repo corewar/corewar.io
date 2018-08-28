@@ -4,7 +4,7 @@ import { render } from 'enzyme'
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import CanvasCore from './../../components/simulator/canvasCore'
+import CanvasCore from '../../features/simulator/core'
 
 it('renders without crashing', () => {
 

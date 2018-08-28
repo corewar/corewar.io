@@ -1,17 +1,17 @@
 import { expect } from 'chai'
 
-import { action } from './../../actions/creator'
-import { init, step, pause, run, finish, getCoreInstructions, setProcessRate, setCoreOptions } from './../../actions/simulatorActions'
+import { init, step, pause, run, finish, getCoreInstructions, setProcessRate, setCoreOptions }
+  from './../../features/simulator/actions'
 import {
   INIT_REQUESTED,
   STEP_REQUESTED,
   RUN_REQUESTED,
-  PAUSE_REQUESTED,
+  PAUSE,
   FINISH_REQUESTED,
   GET_CORE_INSTRUCTIONS_REQUESTED,
   SET_PROCESS_RATE_REQUESTED,
   SET_CORE_OPTIONS_REQUESTED
-} from './../../actions/simulatorActions'
+} from './../../features/simulator/actions'
 
 describe('when testing the simulator actions', () => {
 
@@ -54,7 +54,7 @@ describe('when testing the simulator actions', () => {
   it('should create the pause action', () => {
 
     const expectedAction = {
-      type: PAUSE_REQUESTED
+      type: PAUSE
     }
 
     const result = pause()

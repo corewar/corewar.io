@@ -1,14 +1,15 @@
 import { expect } from 'chai'
 
-import parserReducer from './../../reducers/parserReducers'
+import parserReducer from './../../features/parser/reducer'
+import blankWarrior from './../../helpers/blankWarrior'
+import { defaultWarriors } from '../../helpers/defaultWarriors'
+import { colour } from './../../features/common/theme'
 
 import {
-  PARSE,
-  ADD_WARRIOR,
-  REMOVE_WARRIOR
-} from './../../actions/parserActions'
+  SET_CURRENT_WARRIOR
+} from './../../features/parser/actions'
 
-describe('when testing the parser reducers', () => {
+describe('when testing the parser reducer', () => {
 
   it('should return the initial state', () => {
 
@@ -17,68 +18,36 @@ describe('when testing the parser reducers', () => {
     const result = parserReducer(undefined, action)
 
     expect(result).to.deep.equal({
-      isParsing: false,
-      currentWarrior: {},
-      parseResults: [],
+      currentFileIndex: 0,
+      currentWarrior: blankWarrior,
+      warriors: [],
+      warriorLibrary: defaultWarriors,
       standardId: 2,
-      redcode: '',
-      warrior: ''
+      displayConsole: false,
+      displayFileManager: false,
+      colours: colour.warrior
     })
 
   })
 
-  it('should handle the PARSE action', () => {
+
+  it('should handle the SET_CURRENT_WARRIOR action', () => {
 
     const action = {
-      type: PARSE,
-      result: 'parseResult',
-      redcode: 'redcode'
+      type: SET_CURRENT_WARRIOR,
+      currentWarrior: {
+        source: 'new warrior'
+      }
+
     }
 
     const result = parserReducer([], action)
 
     expect(result).to.deep.equal({
-      currentWarrior: 'parseResult',
-      redcode: 'redcode',
-      isParsing: false
+      currentWarrior: action.currentWarrior,
+      displayFileManager: false
     })
 
   })
-
-
-  it('should handle the ADD_WARRIOR action', () => {
-
-    const action = {
-      type: ADD_WARRIOR,
-      result: [
-        { data: 'new warrior' }
-      ]
-    }
-
-    const result = parserReducer([], action)
-
-    expect(result).to.deep.equal({
-      parseResults: action.result
-    })
-
-  })
-
-  it('should handle the REMOVE_WARRIOR action', () => {
-
-    const action = {
-      type: REMOVE_WARRIOR,
-      result: [
-        { data: 'new warrior' }
-      ]
-    }
-
-    const result = parserReducer([], action)
-
-    expect(result).to.deep.equal({
-      parseResults: action.result
-    })
-
-  })
-
 
 })

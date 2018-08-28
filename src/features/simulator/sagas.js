@@ -43,7 +43,7 @@ export function* initSaga() {
 
   yield put({ type: PAUSE })
 
-  const data = yield call(getCoreOptionsFromState)
+  const data = yield call(getCoreOptions)
 
   yield call(initialiseCore, data.options, data.warriors)
 

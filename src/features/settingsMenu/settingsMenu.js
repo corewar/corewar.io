@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 import { space, colour, font } from '../common/theme'
 import { media } from '../common/mediaQuery'
@@ -82,5 +83,14 @@ const SettingsMenu = ({ show, options, handleClick, currentSelection }) => (
     </ul>
   </SettingsMenuGrid>
 )
+
+SettingsMenu.propTypes = {
+  options: PropTypes.array
+}
+
+SettingsMenu.defaultProps = {
+  options: []
+}
+
 
 export default SettingsMenu

@@ -24,12 +24,12 @@ const SiteDomain = styled.span`
   color: ${colour.white};
 `
 
-const Logo = ({ siteName, siteDomain, history }) => (
+const Logo = ({ siteName, siteDomain, history }) =>
   <SiteName onClick={() => history.push(`/`)}>
     {siteName}
     <SiteDomain>{siteDomain}</SiteDomain>
   </SiteName>
-)
+
 
 Logo.propTypes = {
   siteName: PropTypes.string.isRequired,

@@ -6,11 +6,11 @@ import {
   runSaga,
   getCoreOptionsFromState,
   initialiseCore
-} from '../../../sagas/simulatorSagas'
+} from '../../../features/simulator/sagas'
 
 import {
   RUN
-} from '../../../actions/simulatorActions'
+} from '../../../features/simulator/actions'
 
 
 describe('when testing the run saga', () => {
@@ -21,7 +21,7 @@ describe('when testing the run saga', () => {
 
     const data = {
       options: {},
-      parseResults: [],
+      warriors: [],
       result: {
         outcome: null
       }
@@ -38,7 +38,7 @@ describe('when testing the run saga', () => {
 
     const data = {
       options: {},
-      parseResults: [],
+      warriors: [],
       result: {
         outcome: 'WIN',
         warriorId: 0
@@ -47,7 +47,7 @@ describe('when testing the run saga', () => {
 
     expect(saga.next().value).to.deep.equal(call(getCoreOptionsFromState))
 
-    expect(saga.next(data).value).to.deep.equal(call(initialiseCore, data.options, data.parseResults))
+    expect(saga.next(data).value).to.deep.equal(call(initialiseCore, data.options, data.warriors))
 
     expect(saga.next().value).to.deep.equal(put({ type: RUN }))
   })

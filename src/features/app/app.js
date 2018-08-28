@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Media from 'react-media'
 import { connect } from 'react-redux'
 
@@ -46,3 +47,11 @@ export default connect(
 )(App)
 
 export { App as PureApp }
+
+App.propTypes = {
+  addWarrior: PropTypes.func
+}
+
+App.defaultProps = {
+  addWarrior: () => {}
+}
