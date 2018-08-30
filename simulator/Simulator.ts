@@ -13,6 +13,7 @@ import { MessageType } from "./interface/IMessage";
 import { IPublisher } from "./interface/IPublisher";
 import Defaults from "./Defaults";
 import * as clone from "clone";
+import { IRoundResult } from "./interface/IRoundResult";
 
 export class Simulator implements ISimulator {
 
@@ -69,7 +70,7 @@ export class Simulator implements ISimulator {
     }
 
     private publishNextExecution() {
-        
+
         this.publisher.queue({
             type: MessageType.NextExecution,
             payload: this.fetcher.getNextExecution(this.state)
@@ -99,27 +100,28 @@ export class Simulator implements ISimulator {
         this.publisher.publish();
     }
 
-    public run(): void {
+    public run(): IRoundResult {
 
         const remainingSteps = this.state.options.maximumCycles - this.state.cycle;
 
-        this.step(remainingSteps);
+        return this.step(remainingSteps);
     }
 
-    public step(steps?: number): boolean {
+    public step(steps?: number): IRoundResult {
 
-        if (this.endCondition.check(this.state)) {
-            return true;
+        let result = this.endCondition.check(this.state);
+        if (result) {
+            return result;
         }
 
-        const result = this.multiStep(steps);
+        result = this.multiStep(steps);
 
         this.publisher.publish();
 
         return result;
     }
 
-    private multiStep(steps?: number): boolean {
+    private multiStep(steps?: number): IRoundResult {
 
         if (!steps || steps < 1) {
             steps = 1;
@@ -133,17 +135,18 @@ export class Simulator implements ISimulator {
         }
 
         for (let i = 0; i < steps; i++) {
-            if (this.singleStep()) {
-                return true;
+            const result = this.singleStep();
+            if (result) {
+                return result;
             }
         }
 
         this.publishNextExecution();
 
-        return false;
+        return null;
     }
 
-    private singleStep(): boolean {
+    private singleStep(): IRoundResult {
         var context = this.fetcher.fetch(this.state, this.core);
 
         context = this.decoder.decode(context);

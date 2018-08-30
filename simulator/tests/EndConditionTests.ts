@@ -57,59 +57,72 @@ describe("EndCondition", () => {
         publisher = TestHelper.buildPublisher();
     });
 
-    it("returns false if there are multiple active warriors and the maximum number of cycles has not elapsed", () => {
+    it("returns null result if there are multiple active warriors and the maximum number of cycles has not elapsed", () => {
 
-        var state = buildState();
+        const state = buildState();
 
-        var endCondition = new EndCondition(publisher);
+        const endCondition = new EndCondition(publisher);
 
-        var actual = endCondition.check(state);
+        const actual = endCondition.check(state);
 
-        expect(actual).to.be.equal(false);
+        expect(actual).to.be.equal(null);
     });
 
-    it("returns true if the maximum number of cylces have elapsed", () => {
+    it("returns draw round result if the maximum number of cylces have elapsed", () => {
 
-        var state = buildState();
+        const state = buildState();
 
         state.cycle = 123;
         state.options.maximumCycles = 123;
 
-        var endCondition = new EndCondition(publisher);
+        const endCondition = new EndCondition(publisher);
 
-        var actual = endCondition.check(state);
+        const actual = endCondition.check(state);
 
-        expect(actual).to.be.equal(true);
+        expect(actual).not.to.be.null;
+        expect(actual.winnerId).to.be.equal(null);
+        expect(actual.outcome).to.be.equal("DRAW");
     });
 
-    it("returns true if more than the maximum number of cylces have elapsed", () => {
+    it("returns draw round result if more than the maximum number of cylces have elapsed", () => {
 
-        var state = buildState();
+        const state = buildState();
 
         state.cycle = 124;
         state.options.maximumCycles = 123;
 
-        var endCondition = new EndCondition(publisher);
+        const endCondition = new EndCondition(publisher);
 
-        var actual = endCondition.check(state);
+        const actual = endCondition.check(state);
 
-        expect(actual).to.be.equal(true);
+        expect(actual).not.to.be.null;
+        expect(actual.winnerId).to.be.equal(null);
+        expect(actual.outcome).to.be.equal("DRAW");
     });
 
-    it("returns true if there are multiple warriors and only one with active tasks", () => {
+    it("returns win round result if there are multiple warriors and only one with active tasks", () => {
 
-        var state = buildState();
+        const expectedId = 8;
+        const expectedData = {};
 
+        const state = buildState();
+
+        state.warriors[1].id = expectedId;
+        state.warriors[1].data = expectedData;
+        
         state.warriors[0].tasks = [];
 
-        var endCondition = new EndCondition(publisher);
+        const endCondition = new EndCondition(publisher);
 
-        var actual = endCondition.check(state);
+        const actual = endCondition.check(state);
 
-        expect(actual).to.be.equal(true);
+        expect(actual).not.to.be.null;
+        expect(actual.winnerId).to.be.equal(expectedId);
+        expect(actual.winnerData).to.be.equal(expectedData);
+        expect(actual.outcome).to.be.equal("WIN");
     });
 
-    it("returns false if there is only one warrior and it has active tasks", () => {
+    it("returns null result if there is only one warrior and it has active tasks", () => {
 
         var state = buildState();
 
@@ -119,10 +132,10 @@ describe("EndCondition", () => {
 
         var actual = endCondition.check(state);
 
-        expect(actual).to.be.equal(false);
+        expect(actual).to.be.equal(null);
     });
 
-    it("returns true if there is only one warrior and it has no active tasks", () => {
+    it("returns none round result if there is only one warrior and it has no active tasks", () => {
 
         var state = buildState();
 
@@ -133,7 +146,9 @@ describe("EndCondition", () => {
 
         var actual = endCondition.check(state);
 
-        expect(actual).to.be.equal(true);
+        expect(actual).not.to.be.null;
+        expect(actual.winnerId).to.be.equal(null);
+        expect(actual.outcome).to.be.equal("NONE");
     });
 
     it("publishes round end message in the event of a draw", () => {

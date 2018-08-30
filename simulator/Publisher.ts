@@ -17,7 +17,8 @@ export class Publisher implements IPublisher {
         "TASK_COUNT",
         "CORE_INITIALISE",
         "ROUND_START",
-        "NEXT_EXECUTION"
+        "NEXT_EXECUTION",
+        "MATCH_END"
     ];
 
     constructor(strategies: IPublishStrategy[]) {

@@ -1,16 +1,18 @@
 ﻿import { IParser } from "./parser/interface/IParser";
 import { IToken } from "./parser/interface/IToken";
-import { IParseOptions } from "./parser/interface/IParseOptions";
 import { IParseResult } from "./parser/interface/IParseResult";
 import { ISerialiser } from "./parser/interface/ISerialiser";
-import { IMessage, MessageType } from "./parser/interface/IMessage";
 
 import { ISimulator } from "./simulator/interface/ISimulator";
 import { ICore } from "./simulator/interface/ICore";
 import { IExecutive } from "./simulator/interface/IExecutive";
 import { IPublisher } from "./simulator/interface/IPublisher";
-import { OpcodeType, ModifierType } from "./simulator/interface/IInstruction";
-import Defaults from "./simulator/Defaults";
+import { IOptions } from "./simulator/interface/IOptions";
+import { IPublishProvider } from "./simulator/interface/IPublishProvider";
+import { ICoreLocation } from "./simulator/interface/ICoreLocation";
+
+import { IMatchRunner } from "./matches/interface/IMatchRunner";
+import { IMatch } from "./matches/interface/IMatch";
 
 import { Parser } from "./parser/Parser";
 import { Scanner } from "./parser/Scanner";
@@ -29,6 +31,7 @@ import { OrgPass } from "./parser/OrgPass";
 import { SyntaxCheck } from "./parser/SyntaxCheck";
 import { LoadFileSerialiser } from "./parser/LoadFileSerialiser";
 import { IllegalCommandCheck } from "./parser/IllegalCommandCheck";
+import { MetaDataEmitter } from "./parser/MetaDataEmitter";
 
 import { Random } from "./simulator/Random";
 import { Executive } from "./simulator/Executive";
@@ -41,17 +44,13 @@ import { Simulator } from "./simulator/Simulator";
 import { EndCondition } from "./simulator/EndCondition";
 import { OptionValidator } from "./simulator/OptionValidator";
 import { Publisher } from "./simulator/Publisher";
-import { IOptions } from "./simulator/interface/IOptions";
-import { ILoader } from "./simulator/interface/ILoader";
-import { IState } from "./simulator/interface/IState";
-import { IInstruction } from "./simulator/interface/IInstruction";
-import { IPublishProvider } from "./simulator/interface/IPublishProvider";
-
-import * as clone from "clone";
-import { ICoreLocation } from "./simulator/interface/ICoreLocation";
 import { LatestOnlyStrategy } from "./simulator/LatestOnlyStrategy";
 import { PerKeyStrategy } from "./simulator/PerKeyStrategy";
-import { MetaDataEmitter } from "./parser/MetaDataEmitter";
+
+import { MatchRunner } from "./matches/MatchRunner";
+
+import * as clone from "clone";
+import { MatchResultMapper } from "./matches/MatchResultMapper";
 
 class Api {
 
@@ -61,6 +60,7 @@ class Api {
     private core: ICore;
     private executive: IExecutive;
     private publisher: IPublisher;
+    private matchRunner: IMatchRunner;
 
     constructor() {
         // any setup needed for the NPM package to work properly
@@ -93,6 +93,7 @@ class Api {
             new PerKeyStrategy(p => p.warriorId),
             new LatestOnlyStrategy(),
             new LatestOnlyStrategy(),
+            new LatestOnlyStrategy(),
             new LatestOnlyStrategy()
         ]);
 
@@ -116,6 +117,11 @@ class Api {
             new EndCondition(this.publisher),
             new OptionValidator(),
             this.publisher);
+
+        this.matchRunner = new MatchRunner(
+            this.simulator,
+            new MatchResultMapper(),
+            this.publisher);
     }
 
     public initialiseSimulator(options: IOptions, parseResults: IParseResult[], messageProvider: IPublishProvider) {
@@ -127,9 +133,9 @@ class Api {
         this.simulator.initialise(options, parseResults);
     }
 
-    public step(steps?: number): boolean {
+    public step(steps?: number): void {
 
-        return this.simulator.step(steps);
+        this.simulator.step(steps);
     }
 
     public run(): void {
@@ -156,6 +162,11 @@ class Api {
     public republish(): void {
 
         this.publisher.republish();
+    }
+
+    public runMatch(match: IMatch) {
+
+        this.matchRunner.run(match);
     }
 }
 
