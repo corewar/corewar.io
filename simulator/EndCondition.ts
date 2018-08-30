@@ -55,10 +55,8 @@ export class EndCondition implements IEndCondition {
             return result;
         }
 
-        if ((state.cycle % (state.options.maximumCycles / 100)) === 0) {
-            this.publishProgress(state.cycle, state.options.maximumCycles);
-        }
-
+        this.publishProgress(state.cycle, state.options.maximumCycles);
+        
         const liveWarriors = state.warriors.filter((warrior: IWarrior) => warrior.tasks.length > 0);
         
         if (state.warriors.length === 1) {
