@@ -2,7 +2,6 @@
 import * as sinon from "sinon";
 
 import { ITask } from "../interface/ITask";
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
 import { IWarrior } from "../interface/IWarrior";
 import { IState } from "../interface/IState";
 import Defaults from "../Defaults";
@@ -74,7 +73,7 @@ describe("EndCondition", () => {
         const state = buildState();
 
         state.cycle = 123;
-        state.options.cyclesBeforeTie = 123;
+        state.options.maximumCycles = 123;
 
         const endCondition = new EndCondition(publisher);
 
@@ -90,7 +89,7 @@ describe("EndCondition", () => {
         const state = buildState();
 
         state.cycle = 124;
-        state.options.cyclesBeforeTie = 123;
+        state.options.maximumCycles = 123;
 
         const endCondition = new EndCondition(publisher);
 
@@ -157,13 +156,13 @@ describe("EndCondition", () => {
         const state = buildState();
 
         state.cycle = 123;
-        state.options.cyclesBeforeTie = 123;
+        state.options.maximumCycles = 123;
 
         const endCondition = new EndCondition(publisher);
 
         endCondition.check(state);
 
-        expect(publisher.queue).to.have.been.calledWith({
+        expect(publisher.queue).not.to.have.been.calledWith({
             type: MessageType.RunProgress,
             payload: {
                 runProgress: 100
@@ -191,7 +190,7 @@ describe("EndCondition", () => {
 
         endCondition.check(state);
 
-        expect(publisher.queue).to.have.been.calledWith({
+        expect(publisher.queue).not.to.have.been.calledWith({
             type: MessageType.RunProgress,
             payload: {
                 runProgress: 100
@@ -246,7 +245,7 @@ describe("EndCondition", () => {
 
         endCondition.check(state);
 
-        expect(publisher.queue).to.have.been.calledWith({
+        expect(publisher.queue).not.to.have.been.calledWith({
             type: MessageType.RunProgress,
             payload: {
                 runProgress: 100
@@ -267,7 +266,7 @@ describe("EndCondition", () => {
         const state = buildState();
 
         state.cycle = 12 * 5;
-        state.options.cyclesBeforeTie = 100 * 5;
+        state.options.maximumCycles = 100 * 5;
 
         const endCondition = new EndCondition(publisher);
 
@@ -276,7 +275,9 @@ describe("EndCondition", () => {
         expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.RunProgress,
             payload: {
-                runProgress: 12
+                runProgress: 12,
+                cycle: 12 * 5,
+                maximumCycles: 100 * 5
             }
         });
 

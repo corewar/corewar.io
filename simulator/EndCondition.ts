@@ -30,43 +30,37 @@ export class EndCondition implements IEndCondition {
     private publishRoundEnd(payload: IRoundResult) {
 
         this.publisher.queue({
-            type: MessageType.RunProgress,
-            payload: {
-                runProgress: 100
-            }
-        });
-
-        this.publisher.queue({
             type: MessageType.RoundEnd,
             payload
         });
     }
 
-    private publishProgress(progress: number) {
+    private publishProgress(cycle: number, maximumCycles: number) {
 
         this.publisher.queue({
             type: MessageType.RunProgress,
             payload: {
-                runProgress: progress
+                runProgress: cycle / maximumCycles * 100.0,
+                cycle,
+                maximumCycles
             }
         });
     }
 
     public check(state: IState): IRoundResult {
 
-        if (state.cycle >= state.options.cyclesBeforeTie) {
+        if (state.cycle >= state.options.maximumCycles) {
             const result = this.buildRoundResult("DRAW");
             this.publishRoundEnd(result);
             return result;
         }
 
-        if ((state.cycle % (state.options.cyclesBeforeTie / 100)) === 0) {
-            this.publishProgress(state.cycle / (state.options.cyclesBeforeTie / 100));
+        if ((state.cycle % (state.options.maximumCycles / 100)) === 0) {
+            this.publishProgress(state.cycle, state.options.maximumCycles);
         }
 
         const liveWarriors = state.warriors.filter((warrior: IWarrior) => warrior.tasks.length > 0);
-        let result = liveWarriors.length === 1;
-
+        
         if (state.warriors.length === 1) {
             if (liveWarriors.length === 0) {
                 const result = this.buildRoundResult("NONE");
