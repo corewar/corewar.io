@@ -31,7 +31,7 @@ describe('when testing the simulator reducers', () => {
       roundResult: {},
 
       coreSize: 8000,
-      cyclesBeforeTie: 80000,
+      maximumCycles: 80000,
       minSeparation: 100,
       instructionLimit: 100,
       maxTasks: 8000,
@@ -196,7 +196,7 @@ describe('when testing the simulator reducers', () => {
       type: SET_CORE_OPTIONS,
       id: 1,
       coreSize: 2,
-      cyclesBeforeTie: 3,
+      maximumCycles: 3,
       minSeparation: 4,
       instructionLimit: 5,
       maxTasks: 6
@@ -207,7 +207,7 @@ describe('when testing the simulator reducers', () => {
     expect(result).to.deep.equal({
       currentCoreOption: action.id,
       coreSize: action.coreSize,
-      cyclesBeforeTie: action.cyclesBeforeTie,
+      maximumCycles: action.maximumCycles,
       minSeparation: action.minSeparation,
       instructionLimit: action.instructionLimit,
       maxTasks: action.maxTasks
