@@ -18,7 +18,18 @@ The maximum number of [Processes](processes) that each Warrior can have at one t
 
 The maximum number of instructions which each Warrior can be composed of.  Writing a warrior longer than this limit will result in a [Parser](../redcode/parser) error.
 
-## Minimum Separation|The [Loader](loader) will not place Warriors closer than this number of addresses at the start of a Round|
-|Standard|Which redcode [standard](../redcode/#standards) should be used when parsing warriors|
-|Read limit|Instructions beyond this distance from the currently executing instruction cannot be read| 
-|Write limit|Instructions beyond this distance from the currenlty executing instruction cannot be written to|
+## Minimum Separation
+
+The [Loader](loader) will not place Warriors closer than this number of addresses at the start of a Round.
+
+## Standard
+
+Which redcode [standard](../redcode/#standards) should be used when parsing warriors.
+
+## Read limit
+
+Instructions beyond this distance from the currently executing instruction cannot be read.
+
+## Write limit
+
+Instructions beyond this distance from the currenlty executing instruction cannot be written to.
