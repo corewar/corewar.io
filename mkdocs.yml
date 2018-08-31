@@ -5,8 +5,8 @@ pages:
 - Guide to Corewar: 
    - Intro: corewar/index.md
    - Core: corewar/core.md
-   - Loader: corewar/loader.md
    - Warriors: corewar/warriors.md
+   - Loader: corewar/loader.md
    - Visualisation: corewar/visualisation.md
    - Processes: corewar/processes.md
    - Execution: corewar/execution.md
