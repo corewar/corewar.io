@@ -24,12 +24,20 @@ The [Loader](loader) will not place Warriors closer than this number of addresse
 
 ## Standard
 
-Which redcode [standard](../redcode/#standards) should be used when parsing warriors.
+Which redcode [standard](../redcode/#standards) should be used when parsing warriors. Using instructions which are outside of the selected standard will result in a parser error.
 
 ## Read limit
 
-Instructions beyond this distance from the currently executing instruction cannot be read.
+**Note this feature is not currently implemented within the corewar.io simulator**
+
+Instructions beyond this distance from the currently executing instruction cannot be read.  If a read address exceeds the read limit (relative to the currently executing instruction) the address is wrapped around to restrict it to the read limit.  In effect this limit restricts read operations to a 'mini-core' within the core.
+
+See [core](core) for details on how mod maths are used when resolving addresses.
 
 ## Write limit
 
-Instructions beyond this distance from the currenlty executing instruction cannot be written to.
+**Note this feature is not currently implemented within the corewar.io simulator**
+
+Instructions beyond this distance from the currenlty executing instruction cannot be written to.  If a write address exceeds the write limit (relative to the currently executing instruction) the address is wrapped around to restrict it to the write limit.  In effect this limit restricts write operations to a 'mini-core' within the core.
+
+See [core](core) for details on how mod maths are used when resolving addresses.

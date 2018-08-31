@@ -7,6 +7,7 @@ pages:
    - Core: corewar/core.md
    - Loader: corewar/loader.md
    - Warriors: corewar/warriors.md
+   - Visualisation: corewar/visualisation.md
    - Processes: corewar/processes.md
    - Execution: corewar/execution.md
    - Match Settings: corewar/match_settings.md
