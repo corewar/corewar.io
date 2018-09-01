@@ -171,6 +171,10 @@ function* takeColour(id) {
 
   const nextAvailable = colours.filter(x => x.id === null)[0]
 
+  if(!nextAvailable) {
+    return { hex: '#FFFFFF' }
+  }
+
   nextAvailable.id = id
 
   const updatedColours = replaceItemByKey('hex', nextAvailable.hex, colours, nextAvailable)
@@ -184,6 +188,10 @@ function* takeColour(id) {
 function* releaseColour(id) {
 
   const assignedColour = yield call(getColour, id)
+
+  if(!assignedColour) {
+    return
+  }
 
   assignedColour.id = null
 
