@@ -120,7 +120,7 @@ export function* republishSaga() {
 export function* getCoreOptionsFromState() {
 
   const { standardId, warriors } = yield select(getParserState)
-  const { coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks, roundResult } = yield select(getSimulatorState)
+  const { coreSize, maximumCycles, minSeparation, instructionLimit, maxTasks, roundResult } = yield select(getSimulatorState)
 
   return {
     result: roundResult,
@@ -128,7 +128,7 @@ export function* getCoreOptionsFromState() {
     options: {
       standard: standardId,
       coresize: coreSize,
-      cyclesBeforeTie: cyclesBeforeTie,
+      maximumCycles: maximumCycles,
       minSeparation: minSeparation,
       instructionLimit: instructionLimit,
       maxTasks: maxTasks
@@ -186,9 +186,9 @@ function* setCoreOptionsSaga({ id }) {
 
   yield call(PubSub.publishSync, 'RESET_CORE')
 
-  const { coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks } = yield call(getCoreOptions, id)
+  const { coreSize, maximumCycles, minSeparation, instructionLimit, maxTasks } = yield call(getCoreOptions, id)
 
-  yield put({ type: SET_CORE_OPTIONS, coreSize, cyclesBeforeTie, minSeparation, instructionLimit, maxTasks, id })
+  yield put({ type: SET_CORE_OPTIONS, coreSize, maximumCycles, minSeparation, instructionLimit, maxTasks, id })
 
   yield call(initSaga)
 

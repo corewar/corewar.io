@@ -8,7 +8,7 @@ describe('when getting core options', () => {
 
     const expected = {
       coreSize: 8000,
-      cyclesBeforeTie: 80000,
+      maximumCycles: 80000,
       maxTasks: 8000,
       minSeparation: 100,
       instructionLimit: 100
@@ -22,7 +22,7 @@ describe('when getting core options', () => {
 
     const expected = {
       coreSize: 80,
-      cyclesBeforeTie: 800,
+      maximumCycles: 800,
       maxTasks: 80,
       minSeparation: 5,
       instructionLimit: 5
@@ -36,7 +36,7 @@ describe('when getting core options', () => {
 
     const expected = {
       coreSize: 800,
-      cyclesBeforeTie: 8000,
+      maximumCycles: 8000,
       maxTasks: 800,
       minSeparation: 20,
       instructionLimit: 20
@@ -51,7 +51,7 @@ describe('when getting core options', () => {
 
     const expected = {
       coreSize: 8000,
-      cyclesBeforeTie: 80000,
+      maximumCycles: 80000,
       maxTasks: 8,
       minSeparation: 200,
       instructionLimit: 200
@@ -65,7 +65,7 @@ describe('when getting core options', () => {
 
     const expected = {
       coreSize: 8000,
-      cyclesBeforeTie: 80000,
+      maximumCycles: 80000,
       maxTasks: 80,
       minSeparation: 4000,
       instructionLimit: 400
@@ -79,7 +79,7 @@ describe('when getting core options', () => {
 
     const expected = {
       coreSize: 8192,
-      cyclesBeforeTie: 100000,
+      maximumCycles: 100000,
       maxTasks: 8000,
       minSeparation: 300,
       instructionLimit: 300
@@ -93,7 +93,7 @@ describe('when getting core options', () => {
 
     const expected = {
       coreSize: 800,
-      cyclesBeforeTie: 8000,
+      maximumCycles: 8000,
       maxTasks: 8,
       minSeparation: 50,
       instructionLimit: 50

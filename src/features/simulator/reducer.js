@@ -21,7 +21,7 @@ const initialState = {
   roundResult: {},
 
   coreSize: 8000,
-  cyclesBeforeTie: 80000,
+  maximumCycles: 80000,
   minSeparation: 100,
   instructionLimit: 100,
   maxTasks: 8000,
@@ -110,7 +110,7 @@ export default (state = initialState, action) => {
         ...state,
         currentCoreOption: action.id,
         coreSize: action.coreSize,
-        cyclesBeforeTie: action.cyclesBeforeTie,
+        maximumCycles: action.maximumCycles,
         minSeparation: action.minSeparation,
         instructionLimit: action.instructionLimit,
         maxTasks: action.maxTasks
