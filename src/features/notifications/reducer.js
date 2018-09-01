@@ -6,9 +6,7 @@ import {
 import { insertItem, replaceItemByKey } from '../../helpers/arrayHelpers'
 
 // state
-const initialState = {
-  notifications: []
-}
+import initialState from './initialState'
 
 // selectors
 export const getNotificationState = state => state.notification

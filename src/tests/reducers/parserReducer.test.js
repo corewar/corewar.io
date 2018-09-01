@@ -4,6 +4,7 @@ import parserReducer from './../../features/parser/reducer'
 import blankWarrior from './../../helpers/blankWarrior'
 import { defaultWarriors } from '../../helpers/defaultWarriors'
 import { colour } from './../../features/common/theme'
+import initialState from './../../features/parser/initialState'
 
 import {
   SET_CURRENT_WARRIOR
@@ -17,16 +18,7 @@ describe('when testing the parser reducer', () => {
 
     const result = parserReducer(undefined, action)
 
-    expect(result).to.deep.equal({
-      currentFileIndex: 0,
-      currentWarrior: blankWarrior,
-      warriors: [],
-      warriorLibrary: defaultWarriors,
-      standardId: 2,
-      displayConsole: false,
-      displayFileManager: false,
-      colours: colour.warrior
-    })
+    expect(result).to.deep.equal(initialState)
 
   })
 

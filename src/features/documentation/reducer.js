@@ -4,16 +4,7 @@ import {
 } from './actions'
 
 // state
-const initialState = {
-  impCells: [
-    0,0,0,0,0,
-    0,0,0,0,0,
-    0,0,0,0,0,
-    0,0,0,0,0,
-    0,0,0,0,0
-  ],
-  impIndex: 7
-}
+import initialState from './initialState'
 
 // selectors
 export const getDocumentationState = state => state.documentation
