@@ -3,9 +3,7 @@ import {
 } from './actions'
 
 // state
-const initialState = {
-  signupMessage: ''
-}
+import initialState from './initialState'
 
 // selectors
 export const getSignupState = state => state.signup

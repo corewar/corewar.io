@@ -3,9 +3,7 @@ import {
 } from './actions'
 
 // state
-const initialState = {
-  feedbackMessage: ''
-}
+import initialState from './initialState'
 
 // selectors
 export const getFeedbackState = state => state.feedback
