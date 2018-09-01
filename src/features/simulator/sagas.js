@@ -43,7 +43,7 @@ export function* initSaga() {
 
   yield put({ type: PAUSE })
 
-  const data = yield call(getCoreOptions)
+  const data = yield call(getCoreOptionsFromState)
 
   yield call(initialiseCore, data.options, data.warriors)
 
@@ -122,7 +122,7 @@ export function* getCoreOptionsFromState() {
   const { standardId, warriors } = yield select(getParserState)
   const { coreSize, maximumCycles, minSeparation, instructionLimit, maxTasks, roundResult } = yield select(getSimulatorState)
 
-  return {
+  var p = {
     result: roundResult,
     warriors: warriors,
     options: {
@@ -134,6 +134,8 @@ export function* getCoreOptionsFromState() {
       maxTasks: maxTasks
     }
   }
+
+  return p
 }
 
 export function* initialiseCore(options, warriors) {
