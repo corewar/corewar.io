@@ -1,4 +1,5 @@
-![corewar.io](./images/logo-small.png) #Corewar.io
+![corewar.io](./images/logo-small.png)
+#Corewar.io
 
 Welcome to the docs for [corewar.io](https://corewar.io).
 
