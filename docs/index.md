@@ -1,3 +1,5 @@
+![corewar.io](./images/logo-big.png)
+
 Corewar.io
 ==========
 
