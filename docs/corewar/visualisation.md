@@ -8,7 +8,11 @@ Initially, all addresses are loaded with a [dat](../redcode/opcodes#dat-data) in
 
 Each time a warrior executes an instruction in the core, the cell which represents the executed instruction is filled with the warrior's colour.  By executing instructions, a warrior can read from and write to addresses in the core.
 
+![execute](../images/execution.png)
+
 When a warrior writes to core (i.e. modifies or replaces an instruction) the cell is filled with an X in the warrior's colour.
+
+![write](../images/write.png)
 
 Likewise, when a warrior reads from an address in the core, a dot is placed in the cell using the warrior's colour.
 
