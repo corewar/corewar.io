@@ -80,3 +80,17 @@ Paper tends to do poorly against scissors which tend to use `spl` bombs which ca
 
 ##Scissors
 
+Scissors are warriors which scan the core looking for other warriors to attack. When a target is located, the scissors heavily bombs the detected area, usually with `spl` instructions causing opposing warriors to spawn new processes uncontrollably. The result is that the affected warrior spends most of its execution time running useless `spl` instructions.
+
+```redcode
+scn add   #10, ptr
+ptr jmz.f scn, 5
+    mov.i 2, >ptr
+    jmp   -1
+```
+
+The above example is a simple scanner which scans the core using the [jmz](../redcode/opcodes#jmz-jump-if-zero) instruction to detect instructions where either the a or b field are non zero. The address which is scanned is increased with each iteration of the loop causing every tenth instruction in the core to be scanned. When a non zero field is detected, the executing process falls through to the `mov` instruction which copies a `dat` instruction over the scanned address, followed by every address from the scanned instruction up to the scanner itself.
+
+This is a very simple example of a (not very good) scanner. It can be improved by wiping the core with one or more `spl` instructions followed by a `dat` in order to first stun and then kill papers. The scan loop can also be made more efficient so that it scans more addresses each iteration.
+
+Scissors tend to do well against papers as they quickly locate and 'stun' them using `spl` bombs, finally wiping the core with a `dat` clear. Scissors struggle against rock strategies which fill the core with bombs which provide false positives to the scanner.
