@@ -31,5 +31,4 @@ pages:
    - Parser: developer/parser.md
    - Simulator: developer/simulator.md
    - Matches: developer/matches.md
-   - Messages: developer/messages.md
 theme: readthedocs

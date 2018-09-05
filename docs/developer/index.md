@@ -14,7 +14,6 @@ The developer reference contains the following sections:
 * [Parser](./parser)
 * [Simulator](./simulator)
 * [Matches](./matches)
-* [Messages](./messages)
 
 ## Building
 
