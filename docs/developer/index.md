@@ -16,8 +16,24 @@ The developer reference contains the following sections:
 * [Matches](./matches)
 * [Messages](./messages)
 
+## Building
+
+Corewar is written in [Typescript](https://www.typescriptlang.org/) packaged using [webpack](https://webpack.js.org/) and built by running:
+
+```
+npm build
+```
+
 ## Testing
 
-Corewar is extensively unit tested, run `npm test` to execute the tests and see the coverage.
+Corewar is extensively unit tested using [Mocha](https://mochajs.org/), [Chai](http://www.chaijs.com/), [Sinon](https://sinonjs.org/) and [sinon-chai](https://github.com/domenic/sinon-chai).  Code coverage is supplied using [Istanbul](https://github.com/istanbuljs/nyc).
 
-Unit test debugging is configured to run in `VS Code`
+Corewar contains unit tests for the Parser, Simulator and Matches APIs along with integration tests for the Parser.
+
+To execute the tests and see code coverage run:
+
+```
+npm test
+```
+
+Unit test debugging is configured to run in [VS Code](https://code.visualstudio.com/)
