@@ -9,7 +9,9 @@ The Corewar library provides a redcode parser, corewar simulator and hill and be
 
 The Corewar library provides an API to access the libraries functionality. The library uses a pubsub mechanism to publish messages in resopnse to events within the simulator.
 
-The developer reference contains the following sections:
+## API
+
+The Corewar API is divded into the following sections:
 
 * [Parser](./parser)
 * [Simulator](./simulator)
