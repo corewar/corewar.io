@@ -26,5 +26,10 @@ pages:
    - Preprocessor: redcode/preprocessor.md
    - Comments: redcode/comments.md
    - Metadata: redcode/metadata.md
-- Developer Reference: developer/index.md
+- Developer Reference:
+   - Intro: developer/index.md
+   - Parser: developer/parser.md
+   - Simulator: developer/simulator.md
+   - Matches: developer/matches.md
+   - Messages: developer/messages.md
 theme: readthedocs
