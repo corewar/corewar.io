@@ -84,14 +84,14 @@ The [Addressing Mode](../redcode/addressing_modes) of the instruction's operand.
 
 |Value|Meaning|
 |---|---|
-|0|Immediate (#)|
-|1|Direct ($)|
-|2|A Indirect (*)|
-|3|B Indirect (@)|
-|4|A Pre Decrement ({)|
-|5|B Pre Decrement (<)|
-|6|A Post Increment (})|
-|7|B Post Increment (>)|
+|0|Immediate (`#`)|
+|1|Direct (`$`)|
+|2|A Indirect (`*`)|
+|3|B Indirect (`@`)|
+|4|A Pre Decrement (`{`)|
+|5|B Pre Decrement (`<`)|
+|6|A Post Increment (`}`)|
+|7|B Post Increment (`>`)|
 
 ## Enumeration
 
