@@ -37,6 +37,8 @@ The `IParseResult` has the following structure:
 }
 ```
 
+#### Token Categories
+
 The token category number is an enumerated type with the following possible values:
 
 |Value|Meaning|
@@ -64,3 +66,20 @@ The message type number is an enumerated type with the following possible values
 ### serialise(tokens: IToken[]): string
 
 Serialises the array of tokens to a single, human readable string.
+
+The `serialise` function takes a single parameter which is an array of tokens with the following structure:
+
+```
+[{
+    position: {
+        line: number,
+        char: number
+    },
+    lexeme: string,
+    category: number
+}]
+```
+
+The lexeme contains the original text which produced the token.
+
+A list of valid values for category can be found [here](#token-categories).
