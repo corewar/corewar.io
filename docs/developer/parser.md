@@ -37,31 +37,7 @@ The `IParseResult` has the following structure:
 }
 ```
 
-#### Token Categories
-
-The token category number is an enumerated type with the following possible values:
-
-|Value|Meaning|
-|---|---|
-|0|Label|
-|1|Opcode|
-|2|Preprocessor|
-|3|Modifier|
-|4|Mode|
-|5|Number|
-|6|Comma|
-|7|Maths|
-|8|EOL|
-|9|Comment|
-|10|Unknown|
-
-The message type number is an enumerated type with the following possible values:
-
-|Value|Meaning|
-|---|---|
-|0|Error|
-|1|Warning|
-|2|Info|
+[Token Category](./enumerations#token-category) and [Message Type](./enumerations#message-type) are [enumerations](./enumerations).
 
 ### serialise(tokens: IToken[]): string
 
@@ -82,4 +58,4 @@ The `serialise` function takes a single parameter which is an array of tokens wi
 
 The lexeme contains the original text which produced the token.
 
-A list of valid values for category can be found [here](#token-categories).
+A list of valid values for category can be found [here](./enumerations#token-categories).

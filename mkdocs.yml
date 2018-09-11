@@ -31,4 +31,5 @@ pages:
    - Parser: developer/parser.md
    - Simulator: developer/simulator.md
    - Matches: developer/matches.md
+   - Enumerations: developer/enumerations.md
 theme: readthedocs

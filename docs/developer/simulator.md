@@ -6,10 +6,47 @@ The Simulator API allows warriors parsed using the [Parser](./parser) to be load
 
 ### initialiseSimulator(options: IOptions, parseResults: IParseResult[], messageProvider: IPublishProvider)
 
-Setup the simulator for a specific standard and parseResult (parsed redcode).
-IParseResults are produced as output from the Parser module.
+Setup the simulator for specific [options](#options) and [parseResult](./parser#parseredcode-string-iparseresult) (parsed redcode).
+`IParseResults` are produced as output from the [Parser](./parser) module.
 Additional, data can be associated with a warrior when it is loaded into core by adding a data property to the parseResults given to the initialise function.
-Allows a pubsub provider to be specified to receive Events (see below).
+A pubsub provider can be specified to receive [Messages](#messages).
+
+#### Options
+
+The following options object can be provided to `initialiseSimulator`. See [Match Settings](../corewar/match_settings) for more info.
+
+All attributes are optional and will be defaulted as described.
+
+```
+{
+
+    coresize?: number,                  // default 8000
+    maximumCycles?: number,             // default 80000
+    initialInstruction?: {              // default DAT.F $0, $0
+        address: number,
+        opcode: number,
+        modifier: number,
+        aOperand: {
+            mode: ModeType,
+            address: number
+        },
+        bOperand: {
+            mode: ModeType,
+            address: number
+        }
+    },
+    instructionLimit?: number,          // default 100
+    maxTasks?: number,                  // default 8000
+    minSeparation?: number,             // default 100
+    standard?: number,                  // default ICWS94draft
+    readDistance?: number,
+    writeDistance?: number
+}
+```
+
+[Standard](./enumerations#standard), [Opcode](./enumerations#opcode) and [Modifier](./enumerations#modifier) are [enumerations](./enumerations)
+
+**`readDistance` and `writeDistance` are not implemented within the current version of corewar.io **
 
 ### step(steps?: number): boolean
 
