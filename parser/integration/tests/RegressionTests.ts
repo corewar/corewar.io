@@ -3,7 +3,7 @@ import { TestHelper } from  "./TestHelper";
 import { Standard } from "./../../interface/IParseOptions";
 import { MessageType } from "../../interface/IMessage";
 
-describe("Regression Tests",() => {
+describe("Parser Regression Tests",() => {
 
     it("correctly handles an instruction with no modifier",() => {
         const actual = TestHelper.testWarriorParse("MOV", Standard.ICWS94draft);
