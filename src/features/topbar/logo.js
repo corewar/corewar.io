@@ -4,13 +4,26 @@ import styled from 'styled-components'
 
 import { colour, font, space } from '../common/theme'
 
+import CorewarLogo from '../../img/corewar-logo.png'
+
+const Wrapper = styled.section`
+  display: grid;
+  grid-template-columns: ${space.header} 1fr;
+`
+
+const LogoImage = styled.img`
+  margin: ${space.xs};
+  width: calc(${space.header} - ${space.xs} - ${space.xs});
+  height: calc(${space.header} - ${space.xs} - ${space.xs});
+`
+
+
 const SiteName = styled.div`
-  background-color: ${colour.blue};
   font-family: ${font.default};
   font-size: ${font.large};
+  color: ${colour.blue};
   font-weight: 300;
   line-height: 1.2em;
-  color: ${colour.darkbg};
   padding-left: ${space.m};
   padding-top: ${space.s};
 
@@ -19,16 +32,21 @@ const SiteName = styled.div`
   }
 `
 
+SiteName.displayName = 'SiteName'
+
 const SiteDomain = styled.span`
   font-weight: 500;
   color: ${colour.white};
 `
 
 const Logo = ({ siteName, siteDomain, history }) =>
-  <SiteName onClick={() => history.push(`/`)}>
-    {siteName}
-    <SiteDomain>{siteDomain}</SiteDomain>
-  </SiteName>
+  <Wrapper onClick={() => history.push(`/`)}>
+    <LogoImage src={CorewarLogo} />
+    <SiteName>
+      {siteName}
+      <SiteDomain>{siteDomain}</SiteDomain>
+    </SiteName>
+  </Wrapper>
 
 
 Logo.propTypes = {

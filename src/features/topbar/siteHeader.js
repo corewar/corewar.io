@@ -8,11 +8,11 @@ import UserInfo from './userInfo'
 import TabLink from '../common/tabLink'
 
 import { media } from '../common/mediaQuery'
-import { colour } from '../common/theme'
+import { colour, space } from '../common/theme'
 
 const Header = styled.header`
   display: grid;
-  grid-template-columns: 240px 1fr 180px;
+  grid-template-columns: ${space.header} 1fr ${space.header};
 
   ${media.phone`
     grid-template-columns: 2fr 1fr;
@@ -31,10 +31,6 @@ const Nav = styled.div`
 const SiteHeader = ({ isAuthenticated, history }) => (
   <Header>
     <Logo siteName='corewar' siteDomain='.io' history={history} />
-    <Nav>
-      <TabLink to='/app/src'>source</TabLink>
-      <TabLink to='/app/core'>core</TabLink>
-    </Nav>
     {isAuthenticated ? <UserInfo /> : <Login />}
   </Header>
 )

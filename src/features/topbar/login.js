@@ -9,8 +9,6 @@ import UserInfo from './userInfo'
 import HeaderLink from './headerLink'
 
 const LoginModule = styled.div`
-
-  background-color: ${colour.coral};
   grid-column-start: 3;
 
   ${media.phone`
@@ -26,7 +24,7 @@ const LinkContainer = styled.div`
 `
 
 
-const Login = ({ isAuthenticated }) => (
+const Login = ({ isAuthenticated }) =>
   <LoginModule>
     {isAuthenticated ?
       <UserInfo /> :
@@ -36,7 +34,6 @@ const Login = ({ isAuthenticated }) => (
       </LinkContainer>
     }
   </LoginModule>
-)
 
 Login.propTypes = {
   isAuthenticated: PropTypes.bool
