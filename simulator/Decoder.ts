@@ -11,6 +11,8 @@ export class Decoder implements IDecoder {
 
     private executive: IExecutive;
 
+    private deferredSets = [];
+
     private modeTable: ((task: ITask, ip: number, operand: IOperand, core: ICore) => IInstruction)[] = [
         this.immediate,         // #
         this.direct,            // $
@@ -32,23 +34,33 @@ export class Decoder implements IDecoder {
         var aAccessor = this.modeTable[context.instruction.aOperand.mode];
         var bAccessor = this.modeTable[context.instruction.bOperand.mode];
 
-        context.aInstruction = aAccessor(
+        this.deferredSets = [];
+
+        context.aInstruction = aAccessor.apply(this, [
             context.task,
             context.instructionPointer,
             context.instruction.aOperand,
-            context.core);
+            context.core
+        ]);
 
-        context.bInstruction = bAccessor(
+        context.bInstruction = bAccessor.apply(this, [
             context.task,
             context.instructionPointer,
             context.instruction.bOperand,
-            context.core);
+            context.core
+        ]);
 
         context.command = this.executive.commandTable[
             context.instruction.opcode
         ];
 
         context.operands = this.decodeModifier(context);
+
+        //HACK only write to core as a result of decoding AFTER all decoding has finished
+        // in order to emulate PMARS
+        this.deferredSets.forEach(ds => {
+            context.core.setAt(context.task, ds.address, ds.instruction);
+        });
 
         return context;
     }
@@ -142,14 +154,18 @@ export class Decoder implements IDecoder {
 
         const ipa = ip + operand.address;
 
-        const instruction = core.readAt(task, ipa);
+        const instruction = clone(core.readAt(task, ipa));
 
         let value = instruction.aOperand.address;
 
         const address = ipa + --value;
 
         instruction.aOperand.address = core.wrap(value);
-        core.setAt(task, ipa, instruction);
+
+        this.deferredSets.push({
+            address: ipa,
+            instruction
+        });
 
         return clone(core.getAt(address));
     }
@@ -165,7 +181,11 @@ export class Decoder implements IDecoder {
         const address = ipa + --value;
 
         instruction.bOperand.address = core.wrap(value);
-        core.setAt(task, ipa, instruction);
+
+        this.deferredSets.push({
+            address: ipa,
+            instruction
+        });
 
         return clone(core.getAt(address));
     }
@@ -183,7 +203,11 @@ export class Decoder implements IDecoder {
         const result = clone(core.getAt(address));
 
         instruction.aOperand.address = core.wrap(value);
-        core.setAt(task, ipa, instruction);
+
+        this.deferredSets.push({
+            address: ipa,
+            instruction
+        });
 
         return result;
     }
@@ -201,7 +225,11 @@ export class Decoder implements IDecoder {
         const result = clone(core.getAt(address));
 
         instruction.bOperand.address = core.wrap(value);
-        core.setAt(task, ipa, instruction);
+
+        this.deferredSets.push({
+            address: ipa,
+            instruction
+        });
 
         return result;
     }

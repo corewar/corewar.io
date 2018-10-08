@@ -11,6 +11,9 @@ import { IInstruction } from "../interface/IInstruction";
 import { ICore } from "../interface/ICore";
 import { IOptions } from "../interface/IOptions";
 import { IPublisher } from "../interface/IPublisher";
+import { ILoader } from "../interface/ILoader";
+import { IEndCondition } from "../interface/IEndCondition";
+import { IOptionValidator } from "../interface/IOptionValidator";
 
 "use strict";
 
@@ -294,5 +297,37 @@ export default class TestHelper {
                     return prop;
             }
         }
+    }
+
+    public static getPublisher(): IPublisher {
+
+        return {
+            queue: sinon.stub(),
+            publish: sinon.stub(),
+            republish: sinon.stub(),
+            clear: sinon.stub(),
+            setPublishProvider: sinon.stub()
+        };
+    }
+
+    public static getLoader(): ILoader {
+
+        return {
+            load: sinon.stub()
+        };
+    }
+
+    public static getEndCondition(): IEndCondition {
+
+        return {
+            check: sinon.stub()
+        };
+    }
+
+    public static getOptionValidator(): IOptionValidator {
+
+        return {
+            validate: sinon.stub()
+        };
     }
 }
