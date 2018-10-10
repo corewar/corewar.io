@@ -12,11 +12,12 @@ const WarriorPanel = styled.section`
      height: calc(100vh - ${space.controls} - ${space.controls} - ${space.s} - ${space.controls});
   `}
 
-  border-right: 1px solid ${colour.lightbg};
+  border-right: 1px solid ${colour.darkbg};
 
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  /* flex-direction: row;
+  flex-wrap: wrap; */
+  grid-template-rows: ${space.header} 1fr ${space.header};
 
   overflow-x: hidden;
   overflow-y: hidden;

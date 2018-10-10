@@ -22,7 +22,6 @@ const SimulatorControls = ({ isRunning, isInitialised, init, run, pause, step,
     <FontAwesomeButton enabled={isInitialised && !isRunning} iconName={`step-forward`} handleClick={step} />
     <FontAwesomeButton enabled={isInitialised} iconName={`undo`} handleClick={init}  />
     <SpeedControl handleClick={setProcessRate} processRate={processRate} processRates={processRates} />
-    <FontAwesomeButton visible={mobile || tablet} iconName={`cog`} handleClick={toggleSettings} />
   </Controls>
 )
 

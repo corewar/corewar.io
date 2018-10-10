@@ -1,24 +1,12 @@
 import styled from 'styled-components'
 
-import { media } from  './mediaQuery'
 import { colour, space } from './theme'
 
 const Controls = styled.div`
 
   border: none;
   background-color: ${colour.defaultbg};
-
-  ${media.phone`
-    border-top: 1px solid ${colour.lightbg};
-
-  `}
-  ${media.tablet`
-    border-top: 1px solid ${colour.lightbg};
-
-  `}
-  ${media.desktop`
-    border-top: 1px solid ${colour.lightbg};
-  `}
+  border-top: 1px solid ${colour.darkbg};
 
   grid-column: 1 / 3;
 

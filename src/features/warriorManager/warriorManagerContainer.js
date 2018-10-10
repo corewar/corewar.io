@@ -5,6 +5,7 @@ import Octicon from 'react-octicon'
 import Media from 'react-media'
 
 import WarriorPanel from '../common/warriorPanel'
+import FontAwesomeButton from '../common/fontAwesomeButton'
 
 import { colour, font, space } from '../common/theme'
 import { media, sizes } from '../common/mediaQuery'
@@ -15,6 +16,10 @@ import {
   addWarrior,
   toggleWarrior
 } from '../parser/actions'
+
+import {
+  toggleSettings
+} from '../simulator/actions'
 
 const WarriorWrapper = styled.div`
 
@@ -140,6 +145,7 @@ const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWar
         {<Octicon name={`x`} onClick={() => removeWarrior(warrior.data.id)} />}
       </WarriorWrapper>
     ))}
+    <FontAwesomeButton iconName={`cog`} handleClick={toggleSettings} />
   </WarriorPanel>
 
 )
