@@ -20,6 +20,7 @@ const TabLink = styledProperty(BaseLink, 'activeClassName')`
   background-color: ${colour.defaultbg};
   color: ${colour.white};
   outline: none;
+  border-top: 1px solid ${colour.blue};
 `
 
 TabLink.displayName = 'TabLink'

@@ -11,7 +11,7 @@ const OutputInterface = ({ currentWarrior }) => (
   <MobilePage mobile>
     <WarriorManagerContainer />
     <CompiledOutput mobile>
-      {currentWarrior.compiled}
+      {currentWarrior && currentWarrior.compiled}
     </CompiledOutput>
     <FileManagerContainer />
     <ControlsContainer />

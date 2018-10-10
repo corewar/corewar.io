@@ -15,7 +15,7 @@ import {
 } from './actions'
 
 const SimulatorControls = ({ isRunning, isInitialised, init, run, pause, step,
-  processRate, processRates, setProcessRate, toggleSettings, mobile, tablet }) => (
+  processRate, processRates, setProcessRate }) => (
   <Controls>
     <FontAwesomeButton visible={!isRunning} enabled={isInitialised} iconName={`play`} handleClick={run} />
     <FontAwesomeButton visible={isRunning} enabled={isRunning} iconName={`pause`} handleClick={pause} />

@@ -96,6 +96,7 @@ const NewButton = styled.div`
   display: flex;
   width: 100px;
   border-left: 2px solid ${colour.defaultbg};
+  border-bottom: 1px solid ${colour.darkbg};
   ${media.desktop`
     border: none;
     height: ${space.controls};
@@ -115,7 +116,7 @@ const NewButton = styled.div`
 `
 
 const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWarrior,
-  toggleWarrior, removeWarrior }) => (
+  toggleWarrior, removeWarrior, toggleSettings }) => (
   <WarriorPanel>
     <Media
       query={{ maxWidth: sizes.desktop }}
@@ -123,7 +124,8 @@ const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWar
         <Octicon name={`plus`} />
       </NewButton>}
     />
-    {warriors.map((warrior, i) => (
+    <div>
+    {warriors.map((warrior, i) =>
       <WarriorWrapper
         key={`${warrior.data.hash}_${i}`}
         current={currentWarrior.data.id === warrior.data.id}
@@ -144,7 +146,8 @@ const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWar
           onClick={() => toggleWarrior(warrior.data.id)}/>
         {<Octicon name={`x`} onClick={() => removeWarrior(warrior.data.id)} />}
       </WarriorWrapper>
-    ))}
+    )}
+    </div>
     <FontAwesomeButton iconName={`cog`} handleClick={toggleSettings} />
   </WarriorPanel>
 
