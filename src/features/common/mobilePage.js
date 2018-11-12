@@ -7,7 +7,8 @@ const MobilePage = styled.main`
   ${props => props.mobile && `grid-row-start: 3;`}
   ${props => props.tablet && `grid-row-start: 2;`}
 
-  ${props => props.mobile && `height: calc(100vh - ${space.s} - ${space.header} - ${space.header});`}
+  ${props =>
+    props.mobile && `height: calc(100vh - ${space.s} - ${space.header} - ${space.header});`}
   ${props => props.tablet && `height: calc(100vh - ${space.header});`}
 
   background-color: ${colour.defaultbg};

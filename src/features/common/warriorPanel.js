@@ -4,7 +4,7 @@ import { colour, space } from '../common/theme'
 import { media } from '../common/mediaQuery'
 
 const WarriorPanel = styled.section`
-  ${media.phone`
+  ${media.desktop`
      height: calc(100vh - ${space.controls} - ${space.controls} - ${space.s} - ${space.controls});
      display: grid;
      grid-template-rows: ${space.header} 1fr ${space.header};

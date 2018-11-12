@@ -15,43 +15,38 @@ import { sizes } from '../common/mediaQuery'
 import { addWarrior } from '../parser/actions'
 
 class App extends React.Component {
-
   componentDidMount() {
     this.props.addWarrior()
   }
 
   render() {
-    return <RootGrid>
-      <SiteHeader isAuthenticated={false} history={this.props.history} />
-      <Media
-        query={{ maxWidth: sizes.phone }}
-        render={() => <MobileLayout />}
+    return (
+      <RootGrid>
+        <SiteHeader isAuthenticated={false} history={this.props.history} />
+        <Media query={{ maxWidth: sizes.phone }} render={() => <MobileLayout />} />
+        <Media
+          query={{ minWidth: sizes.phone, maxWidth: sizes.desktop }}
+          render={() => <MobileLayout />}
         />
-      <Media
-        query={{ minWidth: sizes.phone, maxWidth: sizes.desktop }}
-        render={() => <TabletLayout />}
-        />
-      <Media
-        query={{ minWidth: sizes.desktop }}
-        render={() => <DesktopLayout />}
-        />
-    </RootGrid>
+        <Media query={{ minWidth: sizes.desktop }} render={() => <DesktopLayout />} />
+      </RootGrid>
+    )
   }
 }
 
 export default connect(
   null,
   {
-    addWarrior
+    addWarrior,
   }
 )(App)
 
 export { App as PureApp }
 
 App.propTypes = {
-  addWarrior: PropTypes.func
+  addWarrior: PropTypes.func,
 }
 
 App.defaultProps = {
-  addWarrior: () => {}
+  addWarrior: () => {},
 }

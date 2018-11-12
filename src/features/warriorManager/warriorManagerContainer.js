@@ -39,7 +39,7 @@ const WarriorWrapper = styled.div`
     grid-row-gap: ${space.s};
     justify-items: center;
     padding: ${space.m} 0 ${space.s} 0;
-    border-bottom: 1px solid ${colour.lightbg};
+    border-bottom: 1px solid ${colour.darkbg};
   `}
 
   img:hover {
@@ -86,10 +86,9 @@ const WarriorName = styled.span`
 const NewButton = styled.div`
   display: flex;
   width: 100px;
-  border-left: 2px solid ${colour.defaultbg};
-  border-bottom: 1px solid ${colour.darkbg};
+  border-left: 2px solid ${colour.darkbg};
+  border-bottom: 1px solid ${colour.defaultbg};
   ${media.desktop`
-    border: none;
     height: ${space.controls};
     width: 100%;
   `} align-items: center;
