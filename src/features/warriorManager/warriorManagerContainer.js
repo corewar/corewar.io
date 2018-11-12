@@ -109,7 +109,7 @@ const ListWrapper = styled.div`
   grid-template-columns: repeat(auto-fit, 210px);
   height: 100%;
 
-  ${media.designer`
+  ${media.desktop`
     display: inherit;
     grid-template-columns: 1fr;
     height: auto;
