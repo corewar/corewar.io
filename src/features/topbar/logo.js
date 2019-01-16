@@ -17,7 +17,6 @@ const LogoImage = styled.img`
   height: calc(${space.header} - ${space.xs} - ${space.xs});
 `
 
-
 const SiteName = styled.div`
   font-family: ${font.default};
   font-size: ${font.large};

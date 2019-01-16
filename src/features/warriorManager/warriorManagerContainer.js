@@ -5,16 +5,14 @@ import Octicon from 'react-octicon'
 import Media from 'react-media'
 
 import WarriorPanel from '../common/warriorPanel'
+import FontAwesomeButton from '../common/fontAwesomeButton'
 
 import { colour, font, space } from '../common/theme'
 import { media, sizes } from '../common/mediaQuery'
 
-import {
-  removeWarrior,
-  loadWarrior,
-  addWarrior,
-  toggleWarrior
-} from '../parser/actions'
+import { removeWarrior, loadWarrior, addWarrior, toggleWarrior } from '../parser/actions'
+
+import { toggleSettings } from '../simulator/actions'
 
 const WarriorWrapper = styled.div`
 
@@ -26,7 +24,7 @@ const WarriorWrapper = styled.div`
   width: auto;
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 30px 1fr 30px 30px;
+  grid-template-columns: 30px 100px 30px 30px;
   padding-left: ${space.s};
   align-items: center;
   border-left: 1px solid ${colour.defaultbg};
@@ -41,7 +39,7 @@ const WarriorWrapper = styled.div`
     grid-row-gap: ${space.s};
     justify-items: center;
     padding: ${space.m} 0 ${space.s} 0;
-    border-bottom: 1px solid ${colour.lightbg};
+    border-bottom: 1px solid ${colour.darkbg};
   `}
 
   img:hover {
@@ -62,7 +60,7 @@ const WarriorWrapper = styled.div`
   }
 
   .octicon-primitive-dot {
-    ${props => props.active ? `color: ${colour.success};` : `color: ${colour.error};`}
+    ${props => (props.active ? `color: ${colour.success};` : `color: ${colour.error};`)}
     font-size: ${font.large};
     padding-left: ${space.s};
 
@@ -80,9 +78,7 @@ const WarriorName = styled.span`
   text-align: center;
   ${media.desktop`
     padding: 0 ${space.xs} 0 ${space.xs};
-  `}
-
-  :hover {
+  `} :hover {
     cursor: pointer;
   }
 `
@@ -90,14 +86,12 @@ const WarriorName = styled.span`
 const NewButton = styled.div`
   display: flex;
   width: 100px;
-  border-left: 2px solid ${colour.defaultbg};
+  border-left: 2px solid ${colour.darkbg};
+  border-bottom: 1px solid ${colour.defaultbg};
   ${media.desktop`
-    border: none;
     height: ${space.controls};
     width: 100%;
-  `}
-
-  align-items: center;
+  `} align-items: center;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
@@ -109,46 +103,70 @@ const NewButton = styled.div`
   }
 `
 
-const WarriorManagerContainer = ({ warriors, currentWarrior, addWarrior, loadWarrior,
-  toggleWarrior, removeWarrior }) => (
+const ListWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 210px);
+  height: 100%;
+
+  ${media.desktop`
+    display: inherit;
+    grid-template-columns: 1fr;
+    height: auto;
+  `};
+`
+
+const WarriorManagerContainer = ({
+  warriors,
+  currentWarrior,
+  addWarrior,
+  loadWarrior,
+  toggleWarrior,
+  removeWarrior,
+  toggleSettings,
+}) => (
   <WarriorPanel>
     <Media
       query={{ maxWidth: sizes.desktop }}
-      render={() => <NewButton onClick={addWarrior}>
-        <Octicon name={`plus`} />
-      </NewButton>}
+      render={() => (
+        <NewButton onClick={addWarrior}>
+          <Octicon name={`plus`} />
+        </NewButton>
+      )}
     />
-    {warriors.map((warrior, i) => (
-      <WarriorWrapper
-        key={`${warrior.data.hash}_${i}`}
-        current={currentWarrior.data.id === warrior.data.id}
-        active={!warrior.data.hasErrors && warrior.data.active}>
-        {warrior.data.icon &&
-          <img
-            onClick={() => loadWarrior(warrior.data.id)}
-            src={`data:image/svg+xml;base64,${warrior.data.icon}`}
-            alt={`${warrior.metaData.name} avatar`}
-            size={20} />
-        }
-        <WarriorName
-          onClick={() => loadWarrior(warrior.data.id)}>
-          {warrior.metaData.name}
-        </WarriorName>
-        <Octicon
-          name={`primitive-dot`}
-          onClick={() => toggleWarrior(warrior.data.id)}/>
-        {<Octicon name={`x`} onClick={() => removeWarrior(warrior.data.id)} />}
-      </WarriorWrapper>
-    ))}
+    <ListWrapper>
+      {warriors.map((warrior, i) => (
+        <WarriorWrapper
+          key={`${warrior.data.hash}_${i}`}
+          current={currentWarrior.data.id === warrior.data.id}
+          active={!warrior.data.hasErrors && warrior.data.active}
+        >
+          {warrior.data.icon && (
+            <img
+              onClick={() => loadWarrior(warrior.data.id)}
+              src={`data:image/svg+xml;base64,${warrior.data.icon}`}
+              alt={`${warrior.metaData.name} avatar`}
+              size={20}
+            />
+          )}
+          <WarriorName onClick={() => loadWarrior(warrior.data.id)}>
+            {warrior.metaData.name}
+          </WarriorName>
+          <Octicon name={`primitive-dot`} onClick={() => toggleWarrior(warrior.data.id)} />
+          {<Octicon name={`x`} onClick={() => removeWarrior(warrior.data.id)} />}
+        </WarriorWrapper>
+      ))}
+    </ListWrapper>
+    <Media
+      query={{ maxWidth: sizes.desktop }}
+      render={() => <FontAwesomeButton iconName={`cog`} handleClick={toggleSettings} />}
+    />
   </WarriorPanel>
-
 )
-
 
 const mapStateToProps = state => ({
   currentWarrior: state.parser.currentWarrior,
   warriors: state.parser.warriors,
-  currentFileIndex: state.parser.currentFileIndex
+  currentFileIndex: state.parser.currentFileIndex,
 })
 
 export default connect(
@@ -157,7 +175,7 @@ export default connect(
     addWarrior,
     removeWarrior,
     loadWarrior,
-    toggleWarrior
+    toggleWarrior,
   }
 )(WarriorManagerContainer)
 

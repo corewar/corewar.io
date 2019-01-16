@@ -15,14 +15,13 @@ import {
 } from './actions'
 
 const SimulatorControls = ({ isRunning, isInitialised, init, run, pause, step,
-  processRate, processRates, setProcessRate, toggleSettings, mobile, tablet }) => (
+  processRate, processRates, setProcessRate }) => (
   <Controls>
     <FontAwesomeButton visible={!isRunning} enabled={isInitialised} iconName={`play`} handleClick={run} />
     <FontAwesomeButton visible={isRunning} enabled={isRunning} iconName={`pause`} handleClick={pause} />
     <FontAwesomeButton enabled={isInitialised && !isRunning} iconName={`step-forward`} handleClick={step} />
     <FontAwesomeButton enabled={isInitialised} iconName={`undo`} handleClick={init}  />
     <SpeedControl handleClick={setProcessRate} processRate={processRate} processRates={processRates} />
-    <FontAwesomeButton visible={mobile || tablet} iconName={`cog`} handleClick={toggleSettings} />
   </Controls>
 )
 

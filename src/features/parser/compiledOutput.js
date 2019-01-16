@@ -5,9 +5,10 @@ import { colour, space } from '../common/theme'
 
 const CompiledOutput = styled.pre`
   ${sourceCode};
-  border-left: ${props => !props.mobile && `1px solid ${colour.lightbg}`};
+  border-left: ${props => !props.mobile && `1px solid ${colour.darkbg}`};
   width: ${props => !props.mobile && `40%`};
-  height: ${props => props.desktop && `calc(100vh - ${space.m} - ${space.m} - ${space.header} - ${space.header})`};
+  height: ${props =>
+    props.desktop && `calc(100vh - ${space.m} - ${space.m} - ${space.header} - ${space.header})`};
   color: ${colour.blue};
   padding-left: ${space.m};
 `
