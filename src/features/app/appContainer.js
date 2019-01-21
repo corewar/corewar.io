@@ -46,7 +46,6 @@ const AppContainer = ({
   pause,
   step,
   init,
-  toggleConsole,
   hideConsole,
   displayConsole,
 }) => (
@@ -115,7 +114,6 @@ export default connect(
     toggleSettings,
     getCoreInstructions,
     hideConsole,
-    toggleConsole,
   }
 )(AppContainer)
 
