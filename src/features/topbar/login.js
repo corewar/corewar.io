@@ -14,6 +14,7 @@ const LoginModule = styled.div`
   ${media.phone`
     grid-column-start: 2;
   `}
+  background-color: ${colour.coral};
 
 `
 
