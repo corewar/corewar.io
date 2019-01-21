@@ -10,34 +10,34 @@ import HeaderLink from './headerLink'
 
 const LoginModule = styled.div`
   grid-column-start: 3;
+  background-color: ${colour.coral};
 
   ${media.phone`
     grid-column-start: 2;
   `}
-  background-color: ${colour.coral};
-
 `
 
 const LinkContainer = styled.div`
   color: ${colour.white};
   text-align: center;
-  padding-top: ${space.m}
+  padding-top: ${space.m};
 `
 
-
-const Login = ({ isAuthenticated }) =>
+const Login = ({ isAuthenticated }) => (
   <LoginModule>
-    {isAuthenticated ?
-      <UserInfo /> :
+    {isAuthenticated ? (
+      <UserInfo />
+    ) : (
       <LinkContainer>
         {/* <HeaderLink to='/'>log in</HeaderLink> / */}
-        <HeaderLink to='/sign-up'>sign up</HeaderLink>
+        <HeaderLink to="/sign-up">sign up</HeaderLink>
       </LinkContainer>
-    }
+    )}
   </LoginModule>
+)
 
 Login.propTypes = {
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 }
 
 export default Login
