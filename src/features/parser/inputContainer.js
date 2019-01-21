@@ -5,26 +5,22 @@ import MobilePage from '../common/mobilePage'
 import SourceCodeTextArea from './sourceCodeTextArea'
 import Console from './console'
 import FileManagerContainer from '../fileManager/fileManagerContainer'
-import ControlsContainer from '../parser/controlsContainer'
+import InterfaceModeContainer from '../interfaceModeSelector/interfaceModeContainer'
 import WarriorManagerContainer from '../warriorManager/warriorManagerContainer'
 
-import {
-  parse,
-  hideConsole
-} from './actions'
+import { parse, hideConsole } from './actions'
 
 const InputContainer = ({ parse, currentWarrior, hideConsole, displayConsole }) => (
   <MobilePage mobile>
     <WarriorManagerContainer />
-    <SourceCodeTextArea
-      currentWarrior={currentWarrior}
-      handleChange={e => parse(e.target.value)} />
-    <ControlsContainer />
+    <SourceCodeTextArea currentWarrior={currentWarrior} handleChange={e => parse(e.target.value)} />
+    <InterfaceModeContainer />
     <FileManagerContainer />
     <Console
       hideConsole={hideConsole}
       messages={currentWarrior && currentWarrior.messages}
-      show={displayConsole} />
+      show={displayConsole}
+    />
   </MobilePage>
 )
 

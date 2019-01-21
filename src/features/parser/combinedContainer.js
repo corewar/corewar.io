@@ -6,16 +6,13 @@ import SourceCodeTextArea from './sourceCodeTextArea'
 import CompiledOutput from './compiledOutput'
 import Console from './console'
 import MobilePage from '../common/mobilePage'
-import ControlsContainer from '../parser/controlsContainer'
 import FileManagerContainer from '../fileManager/fileManagerContainer'
 import WarriorManagerContainer from '../warriorManager/warriorManagerContainer'
+import InterfaceModeContainer from '../interfaceModeSelector/interfaceModeContainer'
 
 import { space } from '../common/theme'
 
-import {
-  parse,
-  hideConsole
-} from './actions'
+import { parse, hideConsole } from './actions'
 
 const ParserGrid = styled.section`
   display: flex;
@@ -28,20 +25,15 @@ const ParserInterface = ({ parse, currentWarrior, hideConsole, displayConsole })
     <ParserGrid>
       <SourceCodeTextArea
         currentWarrior={currentWarrior}
-        handleChange={e => currentWarrior && parse(e.target.value)} />
-      <CompiledOutput tablet>
-        {currentWarrior && currentWarrior.compiled}
-      </CompiledOutput>
+        handleChange={e => currentWarrior && parse(e.target.value)}
+      />
+      <CompiledOutput tablet>{currentWarrior && currentWarrior.compiled}</CompiledOutput>
     </ParserGrid>
-    <ControlsContainer />
+    <InterfaceModeContainer />
     <FileManagerContainer />
-    <Console
-      messages={currentWarrior.messages}
-      hideConsole={hideConsole}
-      show={displayConsole} />
+    <Console messages={currentWarrior.messages} hideConsole={hideConsole} show={displayConsole} />
   </MobilePage>
 )
-
 
 const mapStateToProps = state => ({
   redcode: state.parser.redcode,

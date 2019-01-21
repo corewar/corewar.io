@@ -7,7 +7,7 @@ import Controls from '../common/controls'
 
 import { addWarrior, toggleConsole, toggleFileManager } from './actions'
 
-const MobileControls = ({ addWarrior, currentWarrior, toggleConsole, toggleFileManager }) => (
+const MobileControls = ({ toggleConsole, toggleFileManager }) => (
   <Controls>
     <OcticonButton handleClick={toggleFileManager} iconName={`pencil`} buttonText={`editor`} />
     <OcticonButton handleClick={toggleConsole} iconName={`eye`} buttonText={`player`} />
@@ -19,20 +19,19 @@ MobileControls.propTypes = {
   loadWarrior: PropTypes.func,
   currentWarrior: PropTypes.shape({
     compiled: PropTypes.string,
-    messages: PropTypes.array,
-  }).isRequired,
+    messages: PropTypes.array
+  }).isRequired
 }
 
 const mapStateToProps = state => ({
-  currentWarrior: state.parser.currentWarrior,
+  currentWarrior: state.parser.currentWarrior
 })
 
 export default connect(
   mapStateToProps,
   {
-    addWarrior,
     toggleConsole,
-    toggleFileManager,
+    toggleFileManager
   }
 )(MobileControls)
 

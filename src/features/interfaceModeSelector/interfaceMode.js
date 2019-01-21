@@ -1,0 +1,6 @@
+const INTERFACE_MODE = {
+  PLAYER: 'PLAYER',
+  EDITOR: 'EDITOR'
+}
+
+export default INTERFACE_MODE

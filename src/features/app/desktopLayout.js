@@ -15,9 +15,9 @@ const DesktopGrid = styled.div`
 const DesktopLayout = () => (
   <DesktopGrid>
     <NotificationContainer />
-    <Route path='/app/src' component={AppContainer} />
-    <Route path='/app/output' component={AppContainer} />
-    <Route path='/app/core' component={AppContainer} />
+    <Route path="/app/src" component={AppContainer} />
+    <Route path="/app/output" component={AppContainer} />
+    <Route path="/app/core" component={AppContainer} />
   </DesktopGrid>
 )
 

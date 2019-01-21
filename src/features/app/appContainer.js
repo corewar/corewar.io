@@ -4,19 +4,17 @@ import styled from 'styled-components'
 
 import SourceCodeTextArea from '../parser/sourceCodeTextArea'
 import CompiledOutput from '../parser/compiledOutput'
-import Controls from '../common/headerControls'
 import SimulatorContainer from '../simulator/simulatorContainer'
 import Instructions from '../simulator/instructions'
 import Console from '../parser/console'
 import FileManagerContainer from '../fileManager/fileManagerContainer'
-import OcticonButton from '../common/octiconButton'
-import WarriorManagerContainer from '../warriorManager/warriorManagerContainer'
+import DesktopControlsContainer from '../desktopControls/desktopControlsContainer'
 
 import { space } from '../common/theme'
 
-import { parse, addWarrior, toggleFileManager, hideConsole, toggleConsole } from '../parser/actions'
+import { parse, hideConsole } from '../parser/actions'
 
-import { step, init, run, pause, toggleSettings, getCoreInstructions } from '../simulator/actions'
+import { step, init, run, pause, getCoreInstructions } from '../simulator/actions'
 
 const DesktopContainer = styled.section`
   display: grid;
@@ -39,29 +37,15 @@ const AppContainer = ({
   getCoreInstructions,
   isRunning,
   isInitialised,
-  addWarrior,
-  toggleFileManager,
-  toggleSettings,
   run,
   pause,
   step,
   init,
   hideConsole,
-  displayConsole,
+  displayConsole
 }) => (
   <DesktopContainer>
-    <Controls>
-      <OcticonButton handleClick={() => {}} iconName={`eye`} buttonText={`player`} />
-      <OcticonButton handleClick={() => {}} iconName={`pencil`} buttonText={`editor`} />
-      <OcticonButton
-        handleClick={toggleFileManager}
-        iconName={`file-directory`}
-        buttonText={`files`}
-      />
-      <OcticonButton handleClick={addWarrior} iconName={`plus`} buttonText={`new file`} />
-      <WarriorManagerContainer />
-      <OcticonButton handleClick={toggleSettings} iconName={`gear`} buttonText={`settings`} />
-    </Controls>
+    <DesktopControlsContainer />
     <ParserGrid>
       <SourceCodeTextArea
         desktop
@@ -98,7 +82,7 @@ const mapStateToProps = state => ({
   getCoreInstructions: state.simulator.getCoreInstructions,
   isRunning: state.simulator.isRunning,
   isInitialised: state.simulator.isInitialised,
-  displayConsole: state.parser.displayConsole,
+  displayConsole: state.parser.displayConsole
 })
 
 export default connect(
@@ -109,11 +93,8 @@ export default connect(
     pause,
     parse,
     step,
-    addWarrior,
-    toggleFileManager,
-    toggleSettings,
     getCoreInstructions,
-    hideConsole,
+    hideConsole
   }
 )(AppContainer)
 
