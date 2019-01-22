@@ -7,6 +7,7 @@ import notification from '../features/notifications/reducer'
 import signup from '../features/signup/reducer'
 import documentation from '../features/documentation/reducer'
 import feedback from '../features/feedback/reducer'
+import interfaceMode from '../features/interfaceModeSelector/reducer'
 
 export default combineReducers({
   routing: routerReducer,
@@ -15,5 +16,6 @@ export default combineReducers({
   notification,
   signup,
   documentation,
-  feedback
+  feedback,
+  interfaceMode
 })

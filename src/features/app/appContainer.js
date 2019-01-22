@@ -4,32 +4,17 @@ import styled from 'styled-components'
 
 import SourceCodeTextArea from '../parser/sourceCodeTextArea'
 import CompiledOutput from '../parser/compiledOutput'
-import Controls from '../common/headerControls'
 import SimulatorContainer from '../simulator/simulatorContainer'
 import Instructions from '../simulator/instructions'
 import Console from '../parser/console'
 import FileManagerContainer from '../fileManager/fileManagerContainer'
-import OcticonButton from '../common/octiconButton'
-import WarriorManagerContainer from '../warriorManager/warriorManagerContainer'
+import DesktopControlsContainer from '../desktopControls/desktopControlsContainer'
 
 import { space } from '../common/theme'
 
-import {
-  parse,
-  addWarrior,
-  toggleFileManager,
-  hideConsole,
-  toggleConsole
-} from '../parser/actions'
+import { parse, hideConsole } from '../parser/actions'
 
-import {
-  step,
-  init,
-  run,
-  pause,
-  toggleSettings,
-  getCoreInstructions
-} from '../simulator/actions'
+import { step, init, run, pause, getCoreInstructions } from '../simulator/actions'
 
 const DesktopContainer = styled.section`
   display: grid;
@@ -45,43 +30,34 @@ const ParserGrid = styled.section`
   height: calc(100vh - ${space.header} - ${space.header});
 `
 
-const AppContainer = ({ parse, currentWarrior,
-  coreSize, getCoreInstructions, isRunning, isInitialised, addWarrior, toggleFileManager,
-  toggleSettings, run, pause, step, init, toggleConsole, hideConsole, displayConsole }) => (
+const AppContainer = ({
+  parse,
+  currentWarrior,
+  coreSize,
+  getCoreInstructions,
+  isRunning,
+  isInitialised,
+  run,
+  pause,
+  step,
+  init,
+  hideConsole,
+  displayConsole
+}) => (
   <DesktopContainer>
-    <Controls>
-      <OcticonButton
-        handleClick={toggleFileManager}
-        iconName={`file-directory`}
-        buttonText={`files`} />
-      <OcticonButton
-        handleClick={toggleConsole}
-        iconName={`terminal`}
-        buttonText={`console`}
-        />
-      <OcticonButton
-        handleClick={addWarrior}
-        iconName={`plus`}
-        buttonText={`new file`}
-        />
-      <WarriorManagerContainer />
-      <OcticonButton
-        handleClick={toggleSettings}
-        iconName={`gear`}
-        buttonText={`settings`} />
-    </Controls>
+    <DesktopControlsContainer />
     <ParserGrid>
-      <SourceCodeTextArea desktop
+      <SourceCodeTextArea
+        desktop
         currentWarrior={currentWarrior}
-        handleChange={e => parse(e.target.value)} />
-      <CompiledOutput desktop>
-        {currentWarrior && currentWarrior.compiled}
-      </CompiledOutput>
+        handleChange={e => parse(e.target.value)}
+      />
+      <CompiledOutput desktop>{currentWarrior && currentWarrior.compiled}</CompiledOutput>
       <Console
         messages={currentWarrior && currentWarrior.messages}
         hideConsole={hideConsole}
         show={displayConsole}
-        />
+      />
     </ParserGrid>
     <Instructions />
     <SimulatorContainer
@@ -95,11 +71,10 @@ const AppContainer = ({ parse, currentWarrior,
       init={init}
       mobile={false}
       tablet={false}
-      />
+    />
     <FileManagerContainer />
   </DesktopContainer>
 )
-
 
 const mapStateToProps = state => ({
   currentWarrior: state.parser.currentWarrior,
@@ -118,12 +93,8 @@ export default connect(
     pause,
     parse,
     step,
-    addWarrior,
-    toggleFileManager,
-    toggleSettings,
     getCoreInstructions,
-    hideConsole,
-    toggleConsole
+    hideConsole
   }
 )(AppContainer)
 

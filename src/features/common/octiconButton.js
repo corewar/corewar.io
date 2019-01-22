@@ -20,12 +20,10 @@ const ButtonGrid = styled.div`
   }
 `
 
-const OcticonButton = ({ enabled = true, handleClick, iconName, buttonText }) => (
-  <Button
-    enabled={enabled}
-    handleClick={handleClick}>
+const OcticonButton = ({ enabled = true, active, handleClick, iconName, buttonText }) => (
+  <Button enabled={enabled} active={active} handleClick={handleClick}>
     <ButtonGrid>
-      <Octicon name={iconName}/>
+      <Octicon name={iconName} />
       <ButtonText>{buttonText}</ButtonText>
     </ButtonGrid>
   </Button>
