@@ -2,7 +2,6 @@ import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 
 import { insertItem, removeById, replaceItemByKey, replaceById } from '../../helpers/arrayHelpers'
 import { createHash, getIdenticon } from '../common/identicon'
-import { toast } from '../notifications/sagas'
 import { corewar } from 'corewar'
 import { guid } from '../../helpers/guid'
 import blankWarrior from '../../helpers/blankWarrior'
@@ -29,7 +28,6 @@ import { getCoreOptionsFromState, initialiseCore } from '../simulator/sagas'
 
 // sagas
 export function* parseWarriorSaga({ source }) {
-
   yield put({ type: PAUSE })
 
   const parseResult = yield call([corewar, corewar.parse], source)
@@ -58,16 +56,14 @@ export function* parseWarriorSaga({ source }) {
 
   yield call(maybeInit, warriorList)
 
-  if(hasErrors){
+  if (hasErrors) {
     yield put({ type: SHOW_CONSOLE })
   } else {
     yield put({ type: HIDE_CONSOLE })
   }
-
 }
 
 export function* addWarriorSaga() {
-
   yield put({ type: PAUSE })
 
   const { warriors } = yield select(getParserState)
@@ -78,7 +74,7 @@ export function* addWarriorSaga() {
 
   const icon = getIdenticon(blankWarrior.compiled, colour.hex, 20)
 
-  const currentWarrior = { ...blankWarrior, data: { ...blankWarrior.data, id, icon, active: true }}
+  const currentWarrior = { ...blankWarrior, data: { ...blankWarrior.data, id, icon, active: true } }
 
   yield put({ type: SET_CURRENT_WARRIOR, currentWarrior })
 
@@ -87,16 +83,14 @@ export function* addWarriorSaga() {
   yield put({ type: SET_WARRIORS, warriors: warriorList })
 
   yield call(maybeInit, warriorList)
-
 }
 
 export function* removeWarriorSaga({ id }) {
-
   yield put({ type: PAUSE })
 
   const { warriors } = yield select(getParserState)
 
-  if(id === warriors[warriors.length - 1].data.id) {
+  if (id === warriors[warriors.length - 1].data.id) {
     yield put({ type: SET_CURRENT_WARRIOR, currentWarrior: warriors[warriors.length - 2] })
   }
 
@@ -111,26 +105,24 @@ export function* removeWarriorSaga({ id }) {
   yield put({ type: SET_WARRIORS, warriors: warriorList })
 
   yield call(maybeInit, warriorList)
-
-  yield call(toast, 'Warrior Removed')
 }
 
 export function* toggleWarriorSaga({ id }) {
-
   const { warriors } = yield select(getParserState)
 
   const warrior = warriors.find(x => x.data.id === id)
 
-  const warriorList = yield call(replaceById, id, warriors, { ...warrior, data: { ...warrior.data, active: !warrior.data.active }})
+  const warriorList = yield call(replaceById, id, warriors, {
+    ...warrior,
+    data: { ...warrior.data, active: !warrior.data.active }
+  })
 
   yield put({ type: SET_WARRIORS, warriors: warriorList })
 
   yield call(maybeInit, warriorList)
-
 }
 
 export function* loadWarriorSaga({ id }) {
-
   const { warriors } = yield select(getParserState)
 
   const warrior = warriors.find(x => x.data.id === id)
@@ -138,7 +130,6 @@ export function* loadWarriorSaga({ id }) {
   yield put({ type: SET_CURRENT_WARRIOR, currentWarrior: warrior })
 
   yield put({ type: LOAD_WARRIOR, warrior })
-
 }
 
 export function* loadFileSaga({ source }) {
@@ -150,14 +141,12 @@ export function* loadFileSaga({ source }) {
 
 // internal helper functions - not exported
 function* maybeInit(warriors) {
-
   const validWarriors = warriors.filter(x => !x.data.hasErrors && x.data.active)
 
-  if(validWarriors.length > 0) {
+  if (validWarriors.length > 0) {
     const { options } = yield call(getCoreOptionsFromState)
     yield call(initialiseCore, options, validWarriors)
   }
-
 }
 
 function* getColour(id) {
@@ -166,12 +155,11 @@ function* getColour(id) {
 }
 
 function* takeColour(id) {
-
   const { colours } = yield select(getParserState)
 
   const nextAvailable = colours.filter(x => x.id === null)[0]
 
-  if(!nextAvailable) {
+  if (!nextAvailable) {
     return { hex: '#FFFFFF' }
   }
 
@@ -182,14 +170,12 @@ function* takeColour(id) {
   yield put({ type: SET_COLOURS, colours: updatedColours })
 
   return nextAvailable
-
 }
 
 function* releaseColour(id) {
-
   const assignedColour = yield call(getColour, id)
 
-  if(!assignedColour) {
+  if (!assignedColour) {
     return
   }
 
@@ -200,9 +186,7 @@ function* releaseColour(id) {
   const updatedColours = replaceItemByKey('hex', assignedColour.hex, colours, assignedColour)
 
   yield put({ type: SET_COLOURS, colours: updatedColours })
-
 }
-
 
 // watchers
 export const parserWatchers = [

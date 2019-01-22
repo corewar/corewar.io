@@ -7,7 +7,6 @@ import NavBar from '../navbar/navbar'
 import InputContainer from '../parser/inputContainer'
 import OutputContainer from '../parser/outputContainer'
 import SimulatorContainer from '../simulator/simulatorContainer'
-import NotificationContainer from '../notifications/notificationContainer'
 
 import { space } from '../common/theme'
 
@@ -21,10 +20,9 @@ const MobileGrid = styled.div`
 const MobileLayout = () => (
   <MobileGrid>
     <NavBar />
-    <NotificationContainer />
-    <Route exact path='/app/src' component={InputContainer} />
-    <Route exact path='/app/output' component={OutputContainer} />
-    <Route exact path='/app/core' render={() => <SimulatorContainer mobile />} />
+    <Route exact path="/app/src" component={InputContainer} />
+    <Route exact path="/app/output" component={OutputContainer} />
+    <Route exact path="/app/core" render={() => <SimulatorContainer mobile />} />
   </MobileGrid>
 )
 
