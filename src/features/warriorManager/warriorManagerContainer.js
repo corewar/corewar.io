@@ -12,8 +12,6 @@ import { media, sizes } from '../common/mediaQuery'
 
 import { removeWarrior, loadWarrior, addWarrior, toggleWarrior } from '../parser/actions'
 
-import { toggleSettings } from '../simulator/actions'
-
 const WarriorWrapper = styled.div`
 
   ${props => props.current && media.desktop`background-color: ${colour.lightbg};`}
@@ -122,7 +120,7 @@ const WarriorManagerContainer = ({
   loadWarrior,
   toggleWarrior,
   removeWarrior,
-  toggleSettings,
+  toggleSettings
 }) => (
   <WarriorPanel>
     <Media
@@ -166,7 +164,7 @@ const WarriorManagerContainer = ({
 const mapStateToProps = state => ({
   currentWarrior: state.parser.currentWarrior,
   warriors: state.parser.warriors,
-  currentFileIndex: state.parser.currentFileIndex,
+  currentFileIndex: state.parser.currentFileIndex
 })
 
 export default connect(
@@ -175,7 +173,7 @@ export default connect(
     addWarrior,
     removeWarrior,
     loadWarrior,
-    toggleWarrior,
+    toggleWarrior
   }
 )(WarriorManagerContainer)
 

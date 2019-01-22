@@ -1,10 +1,7 @@
-import React from 'react'
 import { channel, delay } from 'redux-saga'
 import { call, put, takeEvery, takeLatest, select, take, fork } from 'redux-saga/effects'
 import * as PubSub from 'pubsub-js'
 import { corewar } from 'corewar'
-
-import { getIdenticon } from '../common/identicon'
 
 import {
   INIT,
@@ -207,23 +204,6 @@ function* watchRoundEndChannel() {
     yield put({ type: PAUSE })
     const action = yield take(roundEndChannel)
     yield put(action)
-    const { warriors } = yield select(getParserState)
-    const content = (
-      <div>
-        {action.data.outcome === 'WIN' && (
-          <img
-            style={{ marginRight: `10px` }}
-            src={`data:image/svg+xml;base64,${getIdenticon(
-              warriors[action.data.winnerId].compiled,
-              action.data.winnerData.colour.hex,
-              20
-            )}`}
-            alt={`winner icon`}
-          />
-        )}
-        {`Round Over: ${action.data.outcome}`}
-      </div>
-    )
   }
 }
 
