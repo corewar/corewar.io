@@ -4,7 +4,6 @@ import Media from 'react-media'
 import { connect } from 'react-redux'
 
 import MobileLayout from './mobileLayout'
-import TabletLayout from './tabletLayout'
 import DesktopLayout from './desktopLayout'
 
 import SiteHeader from '../topbar/siteHeader'
@@ -37,16 +36,16 @@ class App extends React.Component {
 export default connect(
   null,
   {
-    addWarrior,
+    addWarrior
   }
 )(App)
 
 export { App as PureApp }
 
 App.propTypes = {
-  addWarrior: PropTypes.func,
+  addWarrior: PropTypes.func
 }
 
 App.defaultProps = {
-  addWarrior: () => {},
+  addWarrior: () => {}
 }

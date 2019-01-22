@@ -1,11 +1,7 @@
-import React from 'react'
 import { channel, delay } from 'redux-saga'
 import { call, put, takeEvery, takeLatest, select, take, fork } from 'redux-saga/effects'
 import * as PubSub from 'pubsub-js'
 import { corewar } from 'corewar'
-
-import { toast } from '../notifications/sagas'
-import { getIdenticon } from '../common/identicon'
 
 import {
   INIT,
@@ -40,13 +36,11 @@ const runChannel = channel()
 
 // sagas
 export function* initSaga() {
-
   yield put({ type: PAUSE })
 
   const data = yield call(getCoreOptionsFromState)
 
   yield call(initialiseCore, data.options, data.warriors)
-
 }
 
 export function* addMessageSubscriptions() {
@@ -55,7 +49,6 @@ export function* addMessageSubscriptions() {
 }
 
 function* stepSaga() {
-
   const { focus } = yield select(getSimulatorState)
 
   yield call([corewar, corewar.step])
@@ -74,10 +67,9 @@ function* stepSaga() {
 }
 
 export function* runSaga() {
-
   const data = yield call(getCoreOptionsFromState)
 
-  if(data.result.outcome) {
+  if (data.result.outcome) {
     yield call(initialiseCore, data.options, data.warriors)
   }
 
@@ -86,16 +78,12 @@ export function* runSaga() {
   runChannel.put({
     type: START_REQUESTED
   })
-
 }
 
 export function* renderCoreSaga() {
-
-  while(yield take(runChannel)) {
-
-    while(true) {
-
-      yield call(delay, 1000/60)
+  while (yield take(runChannel)) {
+    while (true) {
+      yield call(delay, 1000 / 60)
 
       const { isRunning, processRate } = yield select(getSimulatorState)
 
@@ -111,16 +99,21 @@ export function* renderCoreSaga() {
 }
 
 export function* republishSaga() {
-
   yield call([corewar, corewar.republish])
 
   yield put({ type: REPUBLISH })
 }
 
 export function* getCoreOptionsFromState() {
-
   const { standardId, warriors } = yield select(getParserState)
-  const { coreSize, maximumCycles, minSeparation, instructionLimit, maxTasks, roundResult } = yield select(getSimulatorState)
+  const {
+    coreSize,
+    maximumCycles,
+    minSeparation,
+    instructionLimit,
+    maxTasks,
+    roundResult
+  } = yield select(getSimulatorState)
 
   var p = {
     result: roundResult,
@@ -139,29 +132,24 @@ export function* getCoreOptionsFromState() {
 }
 
 export function* initialiseCore(options, warriors) {
-
   yield call(PubSub.publishSync, 'RESET_CORE')
 
   yield call([corewar, corewar.initialiseSimulator], options, warriors, PubSub)
 
   yield put({ type: INIT })
-
 }
 
 export function* finishSaga() {
-
   const data = yield call(getCoreOptionsFromState)
 
-  if(data.result.outcome) {
+  if (data.result.outcome) {
     yield call(initialiseCore, data.options, data.warriors)
   }
 
   yield call([corewar, corewar.run])
-
 }
 
 function* getCoreInstructionsSaga({ address }) {
-
   const lowerLimit = address - 5
   const upperLimit = address + 5
   const coreInfo = []
@@ -175,7 +163,6 @@ function* getCoreInstructionsSaga({ address }) {
   yield put({ type: SET_CORE_FOCUS, focus: address })
 
   yield put({ type: GET_CORE_INSTRUCTIONS, coreInfo })
-
 }
 
 function* setProcessRateSaga({ rate }) {
@@ -183,17 +170,26 @@ function* setProcessRateSaga({ rate }) {
 }
 
 function* setCoreOptionsSaga({ id }) {
-
   yield put({ type: PAUSE })
 
   yield call(PubSub.publishSync, 'RESET_CORE')
 
-  const { coreSize, maximumCycles, minSeparation, instructionLimit, maxTasks } = yield call(getCoreOptions, id)
+  const { coreSize, maximumCycles, minSeparation, instructionLimit, maxTasks } = yield call(
+    getCoreOptions,
+    id
+  )
 
-  yield put({ type: SET_CORE_OPTIONS, coreSize, maximumCycles, minSeparation, instructionLimit, maxTasks, id })
+  yield put({
+    type: SET_CORE_OPTIONS,
+    coreSize,
+    maximumCycles,
+    minSeparation,
+    instructionLimit,
+    maxTasks,
+    id
+  })
 
   yield call(initSaga)
-
 }
 
 function* watchRoundProgressChannel() {
@@ -204,25 +200,12 @@ function* watchRoundProgressChannel() {
 }
 
 function* watchRoundEndChannel() {
-  while(true) {
+  while (true) {
     yield put({ type: PAUSE })
     const action = yield take(roundEndChannel)
     yield put(action)
-    const { warriors } = yield select(getParserState)
-    const content = <div>
-      {action.data.outcome === "WIN" &&
-        <img
-          style={{ marginRight: `10px` }}
-          src={`data:image/svg+xml;base64,${getIdenticon(warriors[action.data.winnerId].compiled, action.data.winnerData.colour.hex, 20)}`}
-          alt={`winner icon`}/>
-      }
-      {`Round Over: ${action.data.outcome}`}
-    </div>
-
-    yield call(toast, content)
   }
 }
-
 
 export const sendRoundProgress = (msg, data) => {
   roundProgressChannel.put({
