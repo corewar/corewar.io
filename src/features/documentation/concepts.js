@@ -10,7 +10,7 @@ const Concepts = () => (
       is to destroy the opposing warrior by causing them to execute a 'DAT' command.
     </p>
     <p>
-      Each round the warriors take turn executing instructions until of them is destroyed or the number of cycles
+      Each round the warriors take turn executing instructions until one of them is destroyed or the number of cycles
       for the round elapses.
     </p>
     <p>
@@ -19,7 +19,7 @@ const Concepts = () => (
       The bottom warrior each time is removed from the hill, leaving the others in place to face new challengers.
     </p>
     <p>
-      Great honour is recieved by staying active on one of the King of the Hill, KOTH tournaments!
+      Great honour is received by staying active on one of the King of the Hill, KOTH tournaments!
     </p>
     <h3>1.1 Corewar.io</h3>
     <p>
