@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import { space } from '../common/theme'
 import TabLink from '../common/tabLink'
 
-import INTERFACE_MODE from '../interfaceModeSelector/interfaceMode'
-
 const NavBarGrid = styled.div`
   grid-row-start: 2;
   margin-left: ${space.sidebar};
@@ -28,7 +26,9 @@ const navigationData = {
 const NavBar = ({ interfaceMode }) => (
   <NavBarGrid>
     {navigationData[interfaceMode].map(link => (
-      <TabLink to={link.url}>{link.text}</TabLink>
+      <TabLink key={link.url} to={link.url}>
+        {link.text}
+      </TabLink>
     ))}
   </NavBarGrid>
 )
