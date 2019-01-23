@@ -41,7 +41,6 @@ const Features = styled.section`
 `
 
 const Feature = styled.div`
-
   border-right: 1px solid ${colour.lightbg};
   ${media.tablet`border-right: none;`};
   ${media.tablet`border-bottom: 1px solid ${colour.lightbg}; padding-bottom: ${space.l};`};
@@ -152,7 +151,7 @@ const SpeechArrow = styled.div`
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
 
-  border-right: 10px solid  ${colour.defaultbg};
+  border-right: 10px solid ${colour.defaultbg};
 `
 
 const SpeechBubble = styled.div`
@@ -231,7 +230,6 @@ const RoadmapItem = styled.div`
   grid-template-rows: 80px 1fr;
   min-height: 200px;
   font-weight: 300;
-
 `
 
 const Timeline = styled.div`
@@ -377,23 +375,20 @@ const Home = () => (
     <SiteNav />
     <HeroLogo />
     <CallToAction>
-      <PrimaryButton href='/app/src'>
-        Play Now
-      </PrimaryButton>
-      <FeatureButton href='/learn'>
-        Learn more
-      </FeatureButton>
+      <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
+      <FeatureButton href="/learn">Learn more</FeatureButton>
     </CallToAction>
     <Tagline id={`features`}>
       <h2>
-        This is Corewar where players test their coding skills against each other, writing warriors which battle for control of the core.
-        Do you have what it takes to become the King of the Hill?
+        This is Corewar where players test their coding skills against each other, writing warriors
+        which battle for control of the core. Do you have what it takes to become the King of the
+        Hill?
       </h2>
     </Tagline>
     <Simulator>
       <FeatureDescription>
-        Our interactive Corewar Simulator provides the battle ground for your warriors.
-        Play the game, inspect the core and debug your code from your web browser!
+        Our interactive Corewar Simulator provides the battle ground for your warriors. Play the
+        game, inspect the core and debug your code from your web browser!
       </FeatureDescription>
       <FeatureImageWrapper>
         <img src={SimulatorImage} alt={`Animated core simulator example`} />
@@ -404,8 +399,9 @@ const Home = () => (
         <img src={ParserImage} alt={`Animated parser usage example`} />
       </FeatureImageWrapper>
       <FeatureDescription>
-        Our powerful Redcode editor makes it easy to write warriors and through real-time code analysis improve the quality of your programs.
-        The perfect canvas on which to craft your masterpiece.
+        Our powerful Redcode editor makes it easy to write warriors and through real-time code
+        analysis improve the quality of your programs. The perfect canvas on which to craft your
+        masterpiece.
       </FeatureDescription>
     </Parser>
     {/* <Features>
@@ -434,12 +430,12 @@ const Home = () => (
     </Prospect> */}
     <Features>
       <Feature>
-        <Octicon name='mortar-board' />
+        <Octicon name="mortar-board" />
         <h3>Experienced player</h3>
         <p>I’ve played corewar before and understand the instructions and concepts</p>
-        <PrimaryButton href='/app/src'>Play Now</PrimaryButton>
+        <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
         <Guidance>
-          <Octicon name='hubot' />
+          <Octicon name="hubot" />
           <SpeechArrow />
           <SpeechBubble>
             You should head over to the app and follow the interactive guide to explore the features
@@ -447,53 +443,55 @@ const Home = () => (
         </Guidance>
       </Feature>
       <Feature>
-        <Octicon name='law' />
+        <Octicon name="law" />
         <h3>New to the game</h3>
         <p>I’ve done some coding before but never played corewar</p>
-        <FeatureButton href='/learn'>View Tutorial</FeatureButton>
+        <FeatureButton href="/learn">View Tutorial</FeatureButton>
         <Guidance>
-          <Octicon name='hubot' />
+          <Octicon name="hubot" />
           <SpeechArrow />
           <SpeechBubble>
-            You should run through the tutorial to understand the basics of corewar first, then
-            head over the app to test what you've learned.
+            You should run through the tutorial to understand the basics of corewar first, then head
+            over the app to test what you've learned.
           </SpeechBubble>
         </Guidance>
       </Feature>
     </Features>
     <Prospect id={`roadmap`}>
       <h2>The roadmap</h2>
-      <Octicon name='milestone' />
+      <Octicon name="milestone" />
     </Prospect>
     <Roadmap>
       <RoadmapItem>
         <RoadmapText left>November 2017</RoadmapText>
         <IconWrapper colour={colour.blue}>
-          <Octicon name='light-bulb' />
+          <Octicon name="light-bulb" />
         </IconWrapper>
-        <RoadmapText right>The idea to develop corewar as a modern web app is concieved</RoadmapText>
+        <RoadmapText right>
+          The idea to develop corewar as a modern web app is concieved
+        </RoadmapText>
         <Timeline />
       </RoadmapItem>
 
       <RoadmapItem>
         <RoadmapText left>March 2018</RoadmapText>
         <IconWrapper colour={colour.blue}>
-          <Octicon name='calendar' />
+          <Octicon name="calendar" />
         </IconWrapper>
-        <RoadmapText right>Public beta, allowing players to experience the initial feature set</RoadmapText>
+        <RoadmapText right>
+          Public beta, allowing players to experience the initial feature set
+        </RoadmapText>
         <Timeline />
       </RoadmapItem>
 
       <RoadmapItem>
-        <RoadmapText left>
-          Today
-        </RoadmapText>
+        <RoadmapText left>Today</RoadmapText>
         <IconWrapper colour={colour.blue}>
-          <Octicon name='megaphone' />
+          <Octicon name="megaphone" />
         </IconWrapper>
         <RoadmapText right>
-          We are now actively listening for user feedback whilst we build
-          the next set of features but here’s what we had in mind
+          We are now actively listening for user feedback whilst we build the next set of features
+          but here’s what we had in mind
         </RoadmapText>
         <Timeline />
       </RoadmapItem>
@@ -503,71 +501,62 @@ const Home = () => (
       </TimelineDivider>
 
       <RoadmapItem>
-        <RoadmapText left>
-          Log in &amp; Warrior Management
-        </RoadmapText>
+        <RoadmapText left>Log in &amp; Warrior Management</RoadmapText>
         <IconWrapper colour={colour.blue}>
-          <Octicon name='git-commit' />
+          <Octicon name="git-commit" />
         </IconWrapper>
         <RoadmapText right>
-          Create an account and build up your warriors,
-          including file versioning and statistics over time
+          Create an account and build up your warriors, including file versioning and statistics
+          over time
         </RoadmapText>
         <Timeline />
       </RoadmapItem>
 
       <RoadmapItem>
-        <RoadmapText left>
-          Live online hills
-        </RoadmapText>
+        <RoadmapText left>Live online hills</RoadmapText>
         <IconWrapper colour={colour.blue}>
-          <Octicon name='git-commit' />
+          <Octicon name="git-commit" />
         </IconWrapper>
         <RoadmapText right>
-          We will host and run hills for all skill levels. Which will allow you to submit you warriors online
-          and see the results in realtime
+          We will host and run hills for all skill levels. Which will allow you to submit you
+          warriors online and see the results in realtime
         </RoadmapText>
         <Timeline />
       </RoadmapItem>
 
       <RoadmapItem>
-        <RoadmapText left>
-          Private hills
-        </RoadmapText>
+        <RoadmapText left>Private hills</RoadmapText>
         <IconWrapper colour={colour.blue}>
-          <Octicon name='git-commit' />
+          <Octicon name="git-commit" />
         </IconWrapper>
         <RoadmapText right>
-          Want to play with just your friends? We will add invite only hills so you can chose the rules
-          and the players
+          Want to play with just your friends? We will add invite only hills so you can chose the
+          rules and the players
         </RoadmapText>
         <Timeline />
       </RoadmapItem>
 
       <RoadmapItem>
-        <RoadmapText left>
-          Corewar challenges
-        </RoadmapText>
+        <RoadmapText left>Corewar challenges</RoadmapText>
         <IconWrapper colour={colour.blue}>
-          <Octicon name='git-commit' />
+          <Octicon name="git-commit" />
         </IconWrapper>
         <RoadmapText right>
-          Feel like you’ve done all corewar can offer? We will develop specific challenges and situations to challenge
-          the most experienced players
+          Feel like you’ve done all corewar can offer? We will develop specific challenges and
+          situations to challenge the most experienced players
         </RoadmapText>
         <Timeline />
       </RoadmapItem>
-
     </Roadmap>
     <Prospect>
       <h2>Check out the app</h2>
-      <Octicon name='beaker' />
-      <PrimaryButton href='/app/src'>
-        Play Now
-      </PrimaryButton>
+      <Octicon name="beaker" />
+      <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
     </Prospect>
     <Footer>
-      &copy; 2018 <a href='http://www.corewar.io'>www.corewar.io</a> - crafted with love by <a href='https://github.com/gareththegeek'>@gareththegeek</a> &amp; <a href='https://github.com/dougajmcdonald/'>@dougajmcdonald</a>
+      &copy; 2018 <a href="http://www.corewar.io">www.corewar.io</a> - crafted with love by{' '}
+      <a href="https://github.com/gareththegeek">@gareththegeek</a> &amp;{' '}
+      <a href="https://github.com/dougajmcdonald/">@dougajmcdonald</a>
     </Footer>
   </HomeGrid>
 )

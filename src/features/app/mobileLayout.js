@@ -2,11 +2,15 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 
-import NavBar from '../navbar/navbar'
+import EditorNavBar from '../navbar/editorNavbar'
+import PlayerNavBar from '../navbar/playerNavbar'
+import INTERFACE_MODE from '../interfaceModeSelector/interfaceMode'
 
 import InputContainer from '../parser/inputContainer'
 import OutputContainer from '../parser/outputContainer'
 import SimulatorContainer from '../simulator/simulatorContainer'
+import ConfigContainer from '../config/configContainer'
+import ResultsContainer from '../results/resultsContainer'
 
 import { space } from '../common/theme'
 
@@ -17,12 +21,16 @@ const MobileGrid = styled.div`
   min-width: 360px;
 `
 
-const MobileLayout = () => (
+const MobileLayout = ({ interfaceMode }) => (
   <MobileGrid>
-    <NavBar />
-    <Route exact path="/app/src" component={InputContainer} />
-    <Route exact path="/app/output" component={OutputContainer} />
-    <Route exact path="/app/core" render={() => <SimulatorContainer mobile />} />
+    {interfaceMode === INTERFACE_MODE.PLAYER ? <PlayerNavBar /> : <EditorNavBar />}
+    <Route exact path="/app/editor/src" component={InputContainer} />
+    <Route exact path="/app/editor/output" component={OutputContainer} />
+    <Route exact path="/app/editor/core" render={() => <SimulatorContainer mobile />} />
+
+    <Route exact path="/app/player/config" component={ConfigContainer} />
+    <Route exact path="/app/player/results" component={ResultsContainer} />
+    <Route exact path="/app/player/core" render={() => <SimulatorContainer mobile />} />
   </MobileGrid>
 )
 
