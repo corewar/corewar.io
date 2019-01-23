@@ -27,10 +27,6 @@ class App extends React.Component {
           query={{ maxWidth: sizes.desktop }}
           render={() => <MobileLayout interfaceMode={interfaceMode} />}
         />
-        {/* <Media
-          query={{ minWidth: sizes.phone, maxWidth: sizes.desktop }}
-          render={() => <MobileLayout />}
-        /> */}
         <Media query={{ minWidth: sizes.desktop }} render={() => <DesktopLayout />} />
       </RootGrid>
     )

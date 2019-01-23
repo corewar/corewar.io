@@ -2,9 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 
-import EditorNavBar from '../navbar/editorNavbar'
-import PlayerNavBar from '../navbar/playerNavbar'
-import INTERFACE_MODE from '../interfaceModeSelector/interfaceMode'
+import NavBar from '../navbar/navbar'
 
 import InputContainer from '../parser/inputContainer'
 import OutputContainer from '../parser/outputContainer'
@@ -23,7 +21,7 @@ const MobileGrid = styled.div`
 
 const MobileLayout = ({ interfaceMode }) => (
   <MobileGrid>
-    {interfaceMode === INTERFACE_MODE.PLAYER ? <PlayerNavBar /> : <EditorNavBar />}
+    <NavBar interfaceMode={interfaceMode} />
     <Route exact path="/app/editor/src" component={InputContainer} />
     <Route exact path="/app/editor/output" component={OutputContainer} />
     <Route exact path="/app/editor/core" render={() => <SimulatorContainer mobile />} />
