@@ -12,9 +12,9 @@ const Wrapper = styled.section`
 `
 
 const LogoImage = styled.img`
-  margin: ${space.xs};
-  width: calc(${space.header} - ${space.xs} - ${space.xs});
-  height: calc(${space.header} - ${space.xs} - ${space.xs});
+  margin: ${space.s};
+  width: calc(${space.header} - ${space.ss} - ${space.s});
+  height: calc(${space.header} - ${space.s} - ${space.s});
 `
 
 const SiteName = styled.div`
@@ -38,7 +38,7 @@ const SiteDomain = styled.span`
   color: ${colour.white};
 `
 
-const Logo = ({ siteName, siteDomain, history }) =>
+const Logo = ({ siteName, siteDomain, history }) => (
   <Wrapper onClick={() => history.push(`/`)}>
     <LogoImage src={CorewarLogo} />
     <SiteName>
@@ -46,7 +46,7 @@ const Logo = ({ siteName, siteDomain, history }) =>
       <SiteDomain>{siteDomain}</SiteDomain>
     </SiteName>
   </Wrapper>
-
+)
 
 Logo.propTypes = {
   siteName: PropTypes.string.isRequired,

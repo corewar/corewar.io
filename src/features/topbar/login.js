@@ -11,6 +11,7 @@ import HeaderLink from './headerLink'
 const LoginModule = styled.div`
   grid-column-start: 3;
   background-color: ${colour.coral};
+  margin: ${space.s};
 
   ${media.phone`
     grid-column-start: 2;
@@ -20,7 +21,7 @@ const LoginModule = styled.div`
 const LinkContainer = styled.div`
   color: ${colour.white};
   text-align: center;
-  padding-top: ${space.m};
+  padding-top: ${space.s};
 `
 
 const Login = ({ isAuthenticated }) => (
@@ -37,7 +38,7 @@ const Login = ({ isAuthenticated }) => (
 )
 
 Login.propTypes = {
-  isAuthenticated: PropTypes.bool,
+  isAuthenticated: PropTypes.bool
 }
 
 export default Login
