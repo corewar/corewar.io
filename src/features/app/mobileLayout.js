@@ -7,6 +7,8 @@ import NavBar from '../navbar/navbar'
 import InputContainer from '../parser/inputContainer'
 import OutputContainer from '../parser/outputContainer'
 import SimulatorContainer from '../simulator/simulatorContainer'
+import ConfigContainer from '../config/configContainer'
+import ResultsContainer from '../results/resultsContainer'
 
 import { space } from '../common/theme'
 
@@ -17,12 +19,16 @@ const MobileGrid = styled.div`
   min-width: 360px;
 `
 
-const MobileLayout = () => (
+const MobileLayout = ({ interfaceMode }) => (
   <MobileGrid>
-    <NavBar />
-    <Route exact path="/app/src" component={InputContainer} />
-    <Route exact path="/app/output" component={OutputContainer} />
-    <Route exact path="/app/core" render={() => <SimulatorContainer mobile />} />
+    <NavBar interfaceMode={interfaceMode} />
+    <Route exact path="/app/editor/src" component={InputContainer} />
+    <Route exact path="/app/editor/output" component={OutputContainer} />
+    <Route exact path="/app/editor/core" render={() => <SimulatorContainer mobile />} />
+
+    <Route exact path="/app/player/config" component={ConfigContainer} />
+    <Route exact path="/app/player/results" component={ResultsContainer} />
+    <Route exact path="/app/player/core" render={() => <SimulatorContainer mobile />} />
   </MobileGrid>
 )
 

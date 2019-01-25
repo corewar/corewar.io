@@ -19,13 +19,13 @@ class App extends React.Component {
   }
 
   render() {
+    const { interfaceMode } = this.props
     return (
       <RootGrid>
         <SiteHeader isAuthenticated={false} history={this.props.history} />
-        <Media query={{ maxWidth: sizes.phone }} render={() => <MobileLayout />} />
         <Media
-          query={{ minWidth: sizes.phone, maxWidth: sizes.desktop }}
-          render={() => <MobileLayout />}
+          query={{ maxWidth: sizes.desktop }}
+          render={() => <MobileLayout interfaceMode={interfaceMode} />}
         />
         <Media query={{ minWidth: sizes.desktop }} render={() => <DesktopLayout />} />
       </RootGrid>
@@ -33,8 +33,12 @@ class App extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  interfaceMode: state.interfaceMode.interfaceMode
+})
+
 export default connect(
-  null,
+  mapStateToProps,
   {
     addWarrior
   }
