@@ -10,7 +10,7 @@ const BaseLink = styled(NavLink)`
   height: calc(${space.header} - ${space.m});
   width: 100%;
   text-decoration: none;
-
+  border-right: 1px solid ${colour.defaultbg};
   &:hover {
     color: ${colour.white};
   }
@@ -21,6 +21,7 @@ const TabLink = styledProperty(BaseLink, 'activeClassName')`
   color: ${colour.white};
   outline: none;
   border-top: 1px solid ${colour.blue};
+  border-right: none;
 `
 
 TabLink.displayName = 'TabLink'
