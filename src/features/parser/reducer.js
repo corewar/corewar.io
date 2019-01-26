@@ -18,7 +18,6 @@ export const getParserState = state => state.parser
 // reducer
 export default (state = initialState, action) => {
   switch (action.type) {
-
     case SET_CURRENT_WARRIOR:
       return {
         ...state,
@@ -72,4 +71,3 @@ export default (state = initialState, action) => {
       return state
   }
 }
-

@@ -34,7 +34,7 @@ describe('when adding warriors', () => {
 
     expect(saga.next().value).to.deep.equal(put({ type: PAUSE }))
 
-    expect(saga.next({ data }).value).to.deep.equal(select(getParserState))
+    expect(saga.next(data.warriors).value).to.deep.equal(select(getParserState))
 
     expect(saga.next().value).to.deep.equal(call(guid))
 
