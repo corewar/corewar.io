@@ -6,7 +6,7 @@ import { colour, space, font } from '../common/theme'
 import { media } from '../common/mediaQuery'
 
 const ConsoleWrapper = styled.div`
-  ${props =>  props.show ? `display: block;` : `display: none;`}
+  ${props => (props.show ? `display: block;` : `display: none;`)}
   position: absolute;
   bottom: 0;
   min-height: 100px;
@@ -33,8 +33,6 @@ export const MessageRow = styled.div`
   font-family: ${font.code};
 `
 
-const RowHeader = MessageRow.extend``
-
 const ColouredMessageText = styled.span`
  ${props => !props.type && `color: ${colour.white};`}
  ${props => props.type === 0 && `color: ${colour.error};`}
@@ -51,42 +49,41 @@ const CloseButton = styled.div`
   }
 `
 
-const Console = ({ messages, hideConsole, show }) => (
+const HeaderRow = styled(MessageRow)``
 
+const Console = ({ messages, hideConsole, show }) => (
   <ConsoleWrapper messages={messages} show={show}>
     <CloseButton>
       <FontAwesome name={`times`} onClick={hideConsole} />
     </CloseButton>
-    <RowHeader>
+    <HeaderRow>
       <span>line</span>
       <span>char</span>
       <span>type</span>
       <span>message</span>
-    </RowHeader>
-    {
-      messages && messages.map((msg, i) => (
+    </HeaderRow>
+    {messages &&
+      messages.map((msg, i) => (
         <MessageRow key={`${msg}_${i}`}>
           <span>{msg.position.line}</span>
           <span>{msg.position.char}</span>
           <ColouredMessageText type={msg.type}>{messageTypeToString(msg.type)}</ColouredMessageText>
           <ColouredMessageText>{msg.text}</ColouredMessageText>
         </MessageRow>
-      ))
-    }
+      ))}
   </ConsoleWrapper>
-
 )
 
 const messageTypeToString = messageType => {
   switch (messageType) {
-      case 0: //MessageType.Error
-          return 'ERROR';
-      case 1: // MessageType.Warning
-          return 'WARNING';
-      case 2: // MessageType.Info
-          return 'INFO';
-      default:
-          return '';
+    case 0: //MessageType.Error
+      return 'ERROR'
+    case 1: // MessageType.Warning
+      return 'WARNING'
+    case 2: // MessageType.Info
+      return 'INFO'
+    default:
+      return ''
   }
 }
 
