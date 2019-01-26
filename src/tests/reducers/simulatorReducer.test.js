@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 
 import simulatorReducer from './../../features/simulator/reducer'
-import initialState from './../../features/parser/initialState'
+import initialState from './../../features/simulator/initialState'
 
 import {
   INIT,
