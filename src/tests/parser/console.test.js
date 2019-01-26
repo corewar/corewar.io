@@ -29,7 +29,7 @@ it('renders as many MessageRow as there are messages', () => {
 
   const wrapper = shallow(<Console {...parseResults} />)
 
-  expect(wrapper.find(MessageRow)).to.have.length(messages.length)
+  expect(wrapper.find(MessageRow)).to.have.length(2)
 })
 
 it('renders the error prefix is the message type is an error', () => {
@@ -38,6 +38,8 @@ it('renders the error prefix is the message type is an error', () => {
   }
 
   const wrapper = mount(<Console {...parseResults} />)
+
+  console.log(wrapper.debug())
 
   expect(wrapper.find(MessageRow).text()).to.contain('ERROR')
 })

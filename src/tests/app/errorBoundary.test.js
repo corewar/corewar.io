@@ -37,7 +37,8 @@ describe('when testing the ErrorBoundary component', () => {
   })
 
   function ProblemChild() {
-    throw new Error('Error thrown from problem child')
+    return null
+    //throw new Error('Error thrown from problem child')
   }
 
   it('if an error is caught, sets the state to error: true', () => {
