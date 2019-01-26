@@ -19,8 +19,8 @@ describe('when testing the init saga', () => {
 
     expect(saga.next().value).to.deep.equal(put({ type: PAUSE }))
 
-    expect(saga.next().value).to.deep.equal(call(getCoreOptions))
+    expect(saga.next(data).value).to.deep.equal(call(getCoreOptions))
 
-    expect(saga.next(data).value).to.deep.equal(call(initialiseCore, data.options, data.warriors))
+    expect(saga.next().value).to.deep.equal(call(initialiseCore, data.options, data.warriors))
   })
 })

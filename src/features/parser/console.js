@@ -49,7 +49,9 @@ const CloseButton = styled.div`
   }
 `
 
-const HeaderRow = styled(MessageRow)``
+const HeaderRow = styled(MessageRow)`
+  font-weight: bold;
+`
 
 const Console = ({ messages, hideConsole, show }) => (
   <ConsoleWrapper messages={messages} show={show}>
