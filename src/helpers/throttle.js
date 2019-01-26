@@ -9,7 +9,7 @@ const throttle = (callback, wait, context = this) => {
 
   return () => {
     if (!timeout) {
-      callbackArgs = arguments
+      //callbackArgs = arguments
       timeout = setTimeout(later, wait)
     }
   }
