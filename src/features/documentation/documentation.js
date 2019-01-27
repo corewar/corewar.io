@@ -73,8 +73,14 @@ const Documentation = () => (
       <h2>Explore the documentation to learn the concepts and techniques of corewar</h2>
     </Lede>
     <DocumentationNav>
-      <NavLink to='/learn/1'>1. Concepts</NavLink>
-      <NavLink to='/learn/2'>2. Imp Tutorial</NavLink>
+      <a href="https://corewar-docs.readthedocs.io/en/latest/">Corewar Docs</a>
+      <a href="https://corewar-docs.readthedocs.io/en/latest/corewar/">Guide to Corewar</a>
+      <a href="https://corewar-docs.readthedocs.io/en/latest/redcode/">Redcode reference</a>
+      <a href="https://corewar-docs.readthedocs.io/en/latest/developer/">
+        Corewar.io Developer API
+      </a>
+      {/* <NavLink to='/learn/1'>1. Concepts</NavLink>
+      <NavLink to='/learn/2'>2. Imp Tutorial</NavLink> */}
     </DocumentationNav>
     <Route exact path={`/learn/1`} component={Concepts} />
     <Route exact path={`/learn/2`} component={ImpTutorialContainer} />

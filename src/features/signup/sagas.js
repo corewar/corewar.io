@@ -1,5 +1,5 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
-import $ from 'jquery'
+import { ajax } from 'jquery'
 
 import {
   SUBSCRIBE_REQUESTED,
@@ -10,7 +10,7 @@ function makeSubscriptionRequest(email) {
   const u = '9d2b90bafd78376eae99a681a'
   const id = '1feb77c16a'
 
-  return $.ajax({
+  return ajax({
     url: `https://corewar.us17.list-manage.com/subscribe/post-json?u=${u}&id=${id}&EMAIL=${email}&c=?`,
     dataType: 'json',
     contentType: 'application/json; charset=utf-8'

@@ -20,13 +20,17 @@ const Header = styled.header`
 
 const SiteHeader = ({ isAuthenticated, history }) => (
   <Header>
-    <Logo siteName='corewar' siteDomain='.io' history={history} />
+    <Logo siteName="corewar" siteDomain=".io" history={history} />
     {isAuthenticated ? <UserInfo /> : <Login />}
   </Header>
 )
 
 SiteHeader.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired
+}
+
+SiteHeader.defaultProps = {
+  isAuthenticated: false
 }
 
 export default SiteHeader

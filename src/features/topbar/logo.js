@@ -53,4 +53,9 @@ Logo.propTypes = {
   siteDomain: PropTypes.string.isRequired
 }
 
+Logo.defaultProps = {
+  siteName: 'corewar',
+  siteDomain: '.io'
+}
+
 export default Logo

@@ -21,7 +21,6 @@ export const getSimulatorState = state => state.simulator
 // reducer
 export default (state = initialState, action) => {
   switch (action.type) {
-
     case INIT:
       return {
         ...state,
@@ -96,7 +95,8 @@ export default (state = initialState, action) => {
       }
 
     default:
-      return state
+      return {
+        ...state
+      }
   }
 }
-

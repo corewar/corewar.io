@@ -2,9 +2,11 @@ import { expect } from 'chai'
 
 import { put, call } from 'redux-saga/effects'
 
-import { initSaga, initialiseCore } from '../../../features/simulator/sagas'
-
-import { getCoreOptions } from '../../../helpers/coreOptions'
+import {
+  initSaga,
+  initialiseCore,
+  getCoreOptionsFromState
+} from '../../../features/simulator/sagas'
 
 import { PAUSE } from '../../../features/simulator/actions'
 
@@ -19,7 +21,7 @@ describe('when testing the init saga', () => {
 
     expect(saga.next().value).to.deep.equal(put({ type: PAUSE }))
 
-    expect(saga.next().value).to.deep.equal(call(getCoreOptions))
+    expect(saga.next().value).to.deep.equal(call(getCoreOptionsFromState))
 
     expect(saga.next(data).value).to.deep.equal(call(initialiseCore, data.options, data.warriors))
   })
