@@ -1,4 +1,4 @@
-[![wercker status](https://app.wercker.com/status/6f9ec0a3ce12a096b81de2fd298d3dcf/s/master "wercker status")](https://app.wercker.com/project/byKey/6f9ec0a3ce12a096b81de2fd298d3dcf)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9b7a33cc-31cd-4578-854c-142a40d98be5/deploy-status)](https://app.netlify.com/sites/fervent-colden-f3a70c/deploys)
 
 # Corewar UI
 
