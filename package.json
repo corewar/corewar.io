@@ -46,11 +46,11 @@
   },
   "homepage": "https://github.com/gareththegeek/corewar#readme",
   "devDependencies": {
-    "@types/node": "^8.0.51",
     "@types/mocha": "^2.2.44",
+    "@types/node": "^8.0.51",
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
-    "nyc": "^11.3.0",
+    "nyc": "^15.0.0",
     "sinon": "^4.1.2",
     "sinon-chai": "^2.14.0",
     "ts-loader": "^3.1.1",
@@ -64,7 +64,9 @@
     "@types/core-js": "^0.9.43",
     "clone": "^2.1.1",
     "core-js": "^2.5.1",
+    "core-util-is": "^1.0.2",
     "hoek": "^5.0.4",
+    "node": "^13.6.0",
     "npm-cli-login": "0.0.10",
     "pubsub-js": "^1.5.7",
     "user": "0.0.0"
