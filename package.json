@@ -64,7 +64,6 @@
     "@types/core-js": "^0.9.43",
     "clone": "^2.1.1",
     "core-js": "^2.5.1",
-    "core-util-is": "^1.0.2",
     "hoek": "^5.0.4",
     "node": "^13.6.0",
     "npm-cli-login": "0.0.10",
