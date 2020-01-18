@@ -1,3 +1,4 @@
 --require ts-node/register
+--require tsconfig-paths/register
 --recursive
-**/*[tT]ests.ts
+src/**/*[tT]ests.ts
