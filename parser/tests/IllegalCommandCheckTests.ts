@@ -1,11 +1,11 @@
 ﻿import { expect } from "chai";
 
-import { TestHelper } from "./TestHelper";
-import { Context } from "../Context";
-import { IllegalCommandCheck } from "../IllegalCommandCheck";
-import { Parser } from "../Parser";
-import { MessageType } from "../interface/IMessage";
-import { Standard } from "../interface/IParseOptions";
+import { TestHelper } from "@parser/tests/TestHelper";
+import { Context } from "@parser/Context";
+import { IllegalCommandCheck } from "@parser/IllegalCommandCheck";
+import { Parser } from "@parser/Parser";
+import { MessageType } from "@parser/interface/IMessage";
+import { Standard } from "@parser/interface/IParseOptions";
 
 describe("IllegalCommandCheck", () => {
 

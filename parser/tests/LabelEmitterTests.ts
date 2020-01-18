@@ -1,12 +1,12 @@
 ﻿import { expect } from "chai";
 
-import { IToken, TokenCategory } from "../interface/IToken";
-import { Context } from "../Context";
-import { Parser } from "../Parser";
-import { TestHelper } from "./TestHelper";
-import { LabelEmitter } from "../LabelEmitter";
-import { MessageType } from "../interface/IMessage";
-import { Standard } from "../interface/IParseOptions";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { Context } from "@parser/Context";
+import { Parser } from "@parser/Parser";
+import { TestHelper } from "@parser/tests/TestHelper";
+import { LabelEmitter } from "@parser/LabelEmitter";
+import { MessageType } from "@parser/interface/IMessage";
+import { Standard } from "@parser/interface/IParseOptions";
 
 describe("LabelEmitter",() => {
 

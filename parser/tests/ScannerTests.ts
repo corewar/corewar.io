@@ -1,11 +1,9 @@
 ﻿import { expect } from "chai";
 
-import { Context } from "../Context";
-import { IToken, TokenCategory } from "../interface/IToken";
-import { Parser } from "../Parser";
-import { Scanner } from "../Scanner";
-import { PreprocessEmitter } from "../PreprocessEmitter";
-import { Standard } from "../interface/IParseOptions";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { Parser } from "@parser/Parser";
+import { Scanner } from "@parser/Scanner";
+import { Standard } from "@parser/interface/IParseOptions";
 
 describe("Scanner",() => {
 

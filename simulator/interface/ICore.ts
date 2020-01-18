@@ -1,7 +1,7 @@
-﻿import { ITask } from "./ITask";
-import { IOptions } from "./IOptions";
-import { IInstruction } from "./IInstruction";
-import { ICoreLocation } from "./ICoreLocation";
+﻿import { ITask } from "@simulator/interface/ITask";
+import { IOptions } from "@simulator/interface/IOptions";
+import { IInstruction } from "@simulator/interface/IInstruction";
+import { ICoreLocation } from "@simulator/interface/ICoreLocation";
 
 export enum CoreAccessType {
     read,

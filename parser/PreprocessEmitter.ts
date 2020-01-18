@@ -1,5 +1,5 @@
-﻿import { IToken, TokenCategory } from "./interface/IToken";
-import { PassBase } from "./PassBase";
+﻿import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { PassBase } from "@parser/PassBase";
 
 export class PreprocessEmitter extends PassBase {
 

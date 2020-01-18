@@ -1,6 +1,6 @@
 ﻿
-import { TestHelper } from  "./TestHelper";
-import { Standard } from "../../interface/IParseOptions";
+import { TestHelper } from  "@parser/integration/tests/TestHelper";
+import { Standard } from "@parser/interface/IParseOptions";
 "use strict";
 
 describe("ICWS'94-draft",() => {

@@ -4,14 +4,14 @@ import * as sinonChai from "sinon-chai";
 var expect = chai.expect;
 chai.use(sinonChai);
 
-import { IContext } from "../interface/IContext";
-import { Context } from "../Context";
-import { IScanner } from "../interface/IScanner";
-import { IPass } from "../interface/IPass";
-import { Parser } from "../Parser";
-import { IOptions } from "../../simulator/interface/IOptions";
-import { IMessage, MessageType } from "../interface/IMessage";
-import { Standard } from "../interface/IParseOptions";
+import { IContext } from "@parser/interface/IContext";
+import { Context } from "@parser/Context";
+import { IScanner } from "@parser/interface/IScanner";
+import { IPass } from "@parser/interface/IPass";
+import { Parser } from "@parser/Parser";
+import { IOptions } from "@simulator/interface/IOptions";
+import { IMessage, MessageType } from "@parser/interface/IMessage";
+import { Standard } from "@parser/interface/IParseOptions";
 
 describe("Parser",() => {
 

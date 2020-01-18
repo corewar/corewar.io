@@ -1,11 +1,10 @@
-﻿import { IExecutive } from "./interface/IExecutive";
-import { IExecutionContext } from "./interface/IExecutionContext";
-import { IInstruction, ModifierType } from "./interface/IInstruction";
-import { IOptions } from "./interface/IOptions";
-import { MessageType } from "./interface/IMessage";
-import { IPublisher } from "./interface/IPublisher";
-import { IOperand } from "./interface/IOperand";
-import { IWarrior } from "./interface/IWarrior";
+﻿import { IExecutive } from "@simulator/interface/IExecutive";
+import { IExecutionContext } from "@simulator/interface/IExecutionContext";
+import { ModifierType } from "@simulator/interface/IInstruction";
+import { IOptions } from "@simulator/interface/IOptions";
+import { MessageType } from "@simulator/interface/IMessage";
+import { IPublisher } from "@simulator/interface/IPublisher";
+import { IWarrior } from "@simulator/interface/IWarrior";
 
 export class Executive implements IExecutive {
 

@@ -1,5 +1,5 @@
-import { IMatch } from "./IMatch";
-import { IMatchResult } from "./IMatchResult";
+import { IMatch } from "@matches/interface/IMatch";
+import { IMatchResult } from "@matches/interface/IMatchResult";
 
 export interface IMatchRunner {
 

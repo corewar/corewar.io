@@ -1,7 +1,7 @@
-﻿import { IExpression } from "./interface/IExpression";
-import { IToken, TokenCategory } from "./interface/IToken";
+﻿import { IExpression } from "@parser/interface/IExpression";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
 
-import { PassBase } from "./PassBase";
+import { PassBase } from "@parser/PassBase";
 
 export class ForPass extends PassBase {
 

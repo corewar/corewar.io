@@ -4,9 +4,8 @@ import * as sinonChai from "sinon-chai";
 var expect = chai.expect;
 chai.use(sinonChai);
 
-import { Publisher } from "../Publisher";
-import { MessageType } from "../interface/IMessage";
-import { start } from "repl";
+import { Publisher } from "@simulator/Publisher";
+import { MessageType } from "@simulator/interface/IMessage";
 
 describe("Publisher", () => {
 

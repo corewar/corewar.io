@@ -1,8 +1,8 @@
 ﻿import { expect } from "chai";
 
-import { IToken, TokenCategory } from "../interface/IToken";
-import { LoadFileSerialiser } from "../LoadFileSerialiser";
-import { TestHelper } from "./TestHelper";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { LoadFileSerialiser } from "@parser/LoadFileSerialiser";
+import { TestHelper } from "@parser/tests/TestHelper";
 
 describe("LoadFileSerialiser", () => {
 

@@ -1,6 +1,6 @@
-﻿import { IParseResult } from "../../parser/interface/IParseResult";
-import { IOptions } from "./IOptions";
-import { IWarrior } from "./IWarrior";
+﻿import { IParseResult } from "@parser/interface/IParseResult";
+import { IOptions } from "@simulator/interface/IOptions";
+import { IWarrior } from "@simulator/interface/IWarrior";
 
 export interface ILoader {
 

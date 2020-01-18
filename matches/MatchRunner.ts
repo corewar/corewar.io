@@ -1,11 +1,10 @@
-import { IMatchRunner } from "./interface/IMatchRunner";
-import { IMatch } from "./interface/IMatch";
-import { ISimulator } from "../simulator/interface/ISimulator";
-import { IPublisher } from "../simulator/interface/IPublisher";
-import { MessageType } from "../simulator/interface/IMessage";
-import { IMatchResultMapper } from "./interface/IMatchResultMapper";
-import { IMatchResult } from "./interface/IMatchResult";
-import * as clone from "clone";
+import { IMatchRunner } from "@matches/interface/IMatchRunner";
+import { IMatch } from "@matches/interface/IMatch";
+import { ISimulator } from "@simulator/interface/ISimulator";
+import { IPublisher } from "@simulator/interface/IPublisher";
+import { MessageType } from "@simulator/interface/IMessage";
+import { IMatchResultMapper } from "@matches/interface/IMatchResultMapper";
+import { IMatchResult } from "@matches/interface/IMatchResult";
 
 export class MatchRunner implements IMatchRunner {
 

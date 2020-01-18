@@ -1,10 +1,10 @@
 ﻿import { expect } from "chai";
 
-import { TestHelper } from "./TestHelper";
-import { Context } from "../Context";
-import { AddressModPass } from "../AddressModPass";
-import { Parser } from "../Parser";
-import { TokenCategory } from "../interface/IToken";
+import { TestHelper } from "@parser/tests/TestHelper";
+import { Context } from "@parser/Context";
+import { AddressModPass } from "@parser/AddressModPass";
+import { Parser } from "@parser/Parser";
+import { TokenCategory } from "@parser/interface/IToken";
 
 describe("AddressModPass",() => {
 

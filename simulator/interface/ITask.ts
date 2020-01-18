@@ -1,4 +1,4 @@
-﻿import { IWarrior } from "./IWarrior";
+﻿import { IWarrior } from "@simulator/interface/IWarrior";
 
 export interface ITask {
 

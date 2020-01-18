@@ -1,4 +1,4 @@
-﻿import { IRandom } from "./interface/IRandom";
+﻿import { IRandom } from "@simulator/interface/IRandom";
 
 export class Random implements IRandom {
 

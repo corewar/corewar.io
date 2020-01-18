@@ -1,9 +1,9 @@
 import * as chai from "chai";
 var expect = chai.expect;
 
-import { IMatchResultMapper } from "../interface/IMatchResultMapper";
-import { MatchResultMapper } from "../MatchResultMapper";
-import TestHelper from "../../simulator/tests/TestHelper";
+import { IMatchResultMapper } from "@matches/interface/IMatchResultMapper";
+import { MatchResultMapper } from "@matches/MatchResultMapper";
+import TestHelper from "@simulator/tests/TestHelper";
 
 describe("MatchResultMapper", () => {
 

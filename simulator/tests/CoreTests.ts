@@ -1,19 +1,18 @@
 ﻿import * as chai from "chai";
-import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 var expect = chai.expect;
 chai.use(sinonChai);
 
-import { IInstruction } from "../interface/IInstruction";
-import { ITask } from "../interface/ITask";
-import { OpcodeType, ModifierType } from "../interface/IInstruction";
-import { ModeType } from "../interface/IOperand";
-import { Core } from "../Core";
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
-import Defaults from "../Defaults";
-import { MessageType } from "../interface/IMessage";
-import { IPublisher } from "../interface/IPublisher";
-import TestHelper from "./TestHelper";
+import { IInstruction } from "@simulator/interface/IInstruction";
+import { ITask } from "@simulator/interface/ITask";
+import { OpcodeType, ModifierType } from "@simulator/interface/IInstruction";
+import { ModeType } from "@simulator/interface/IOperand";
+import { Core } from "@simulator/Core";
+import { CoreAccessType } from "@simulator/interface/ICore";
+import Defaults from "@simulator/Defaults";
+import { MessageType } from "@simulator/interface/IMessage";
+import { IPublisher } from "@simulator/interface/IPublisher";
+import TestHelper from "@simulator/tests/TestHelper";
 
 describe("Core", () => {
 

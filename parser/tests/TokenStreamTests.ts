@@ -1,7 +1,7 @@
 ﻿import { expect } from "chai";
 
-import { IToken, TokenCategory } from "../interface/IToken";
-import { TokenStream } from "./../TokenStream";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { TokenStream } from "@parser/TokenStream";
 "use strict";
 
 describe("TokenStream", () => {

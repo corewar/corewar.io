@@ -1,10 +1,10 @@
-﻿import { IPass } from "./interface/IPass";
-import { ITokenStream } from "./interface/ITokenStream";
-import { IContext } from "./interface/IContext";
-import { IParseOptions } from "./interface/IParseOptions";
-import { IToken, TokenCategory } from "./interface/IToken";
+﻿import { IPass } from "@parser/interface/IPass";
+import { ITokenStream } from "@parser/interface/ITokenStream";
+import { IContext } from "@parser/interface/IContext";
+import { IParseOptions } from "@parser/interface/IParseOptions";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
 
-import { TokenStream } from "./TokenStream";
+import { TokenStream } from "@parser/TokenStream";
 
 export class MetaDataCollector implements IPass {
 

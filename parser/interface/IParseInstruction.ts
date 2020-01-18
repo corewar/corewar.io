@@ -1,5 +1,5 @@
-﻿import { IToken } from "./IToken";
-import { IParseOperand } from "./IParseOperand";
+﻿import { IToken } from "@parser/interface/IToken";
+import { IParseOperand } from "@parser/interface/IParseOperand";
 
 export interface IParseInstruction {
     opcode?: IToken;

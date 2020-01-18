@@ -1,19 +1,19 @@
-﻿import { IWarriorLoader } from "./interface/IWarriorLoader";
-import { IWarrior } from "./interface/IWarrior";
-import { ICore } from "./interface/ICore";
-import { IInstruction, OpcodeType, ModifierType } from "./interface/IInstruction";
-import { IOperand, ModeType } from "./interface/IOperand";
+﻿import { IWarriorLoader } from "@simulator/interface/IWarriorLoader";
+import { IWarrior } from "@simulator/interface/IWarrior";
+import { ICore } from "@simulator/interface/ICore";
+import { IInstruction, OpcodeType, ModifierType } from "@simulator/interface/IInstruction";
+import { IOperand, ModeType } from "@simulator/interface/IOperand";
 
-import { ITokenStream } from "../parser/interface/ITokenStream";
-import { IParseResult } from "../parser/interface/IParseResult";
-import { TokenCategory } from "../parser/interface/IToken";
-import { IParseInstruction } from "../parser/interface/IParseInstruction";
-import { IParseOperand } from "../parser/interface/IParseOperand";
+import { ITokenStream } from "@parser/interface/ITokenStream";
+import { IParseResult } from "@parser/interface/IParseResult";
+import { TokenCategory } from "@parser/interface/IToken";
+import { IParseInstruction } from "@parser/interface/IParseInstruction";
+import { IParseOperand } from "@parser/interface/IParseOperand";
 
-import { TokenStream } from "../parser/TokenStream";
-import { Warrior } from "./Warrior";
-import { IPublisher } from "./interface/IPublisher";
-import { MessageType } from "./interface/IMessage";
+import { TokenStream } from "@parser/TokenStream";
+import { Warrior } from "@simulator/Warrior";
+import { IPublisher } from "@simulator/interface/IPublisher";
+import { MessageType } from "@simulator/interface/IMessage";
 
 import * as clone from "clone";
 

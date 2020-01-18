@@ -1,4 +1,4 @@
-﻿import { IPosition } from "./IToken";
+﻿import { IPosition } from "@parser/interface/IToken";
 
 export enum MessageType {
     Error,

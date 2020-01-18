@@ -1,10 +1,10 @@
 ﻿import { expect } from "chai";
 
-import { IToken, TokenCategory } from "../interface/IToken";
-import { Context } from "../Context";
-import { Parser } from "../Parser";
-import { Filter } from "../Filter";
-import { TestHelper } from "./TestHelper";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { Context } from "@parser/Context";
+import { Parser } from "@parser/Parser";
+import { Filter } from "@parser/Filter";
+import { TestHelper } from "@parser/tests/TestHelper";
 
 "use strict";
 

@@ -1,4 +1,4 @@
-﻿import { IToken, TokenCategory } from "./IToken";
+﻿import { IToken, TokenCategory } from "@parser/interface/IToken";
 
 export interface ITokenStream {
 

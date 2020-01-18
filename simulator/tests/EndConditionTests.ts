@@ -1,14 +1,14 @@
 ﻿import { expect } from "chai";
 import * as sinon from "sinon";
 
-import { ITask } from "../interface/ITask";
-import { IWarrior } from "../interface/IWarrior";
-import { IState } from "../interface/IState";
-import Defaults from "../Defaults";
-import { EndCondition } from "../EndCondition";
-import TestHelper from "./TestHelper";
-import { MessageType } from "../interface/IMessage";
-import { IPublisher } from "../interface/IPublisher";
+import { ITask } from "@simulator/interface/ITask";
+import { IWarrior } from "@simulator/interface/IWarrior";
+import { IState } from "@simulator/interface/IState";
+import Defaults from "@simulator/Defaults";
+import { EndCondition } from "@simulator/EndCondition";
+import TestHelper from "@simulator/tests/TestHelper";
+import { MessageType } from "@simulator/interface/IMessage";
+import { IPublisher } from "@simulator/interface/IPublisher";
 
 describe("EndCondition", () => {
 

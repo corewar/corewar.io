@@ -1,5 +1,5 @@
-import { IRules } from "./IRules";
-import { IMatchWarrior } from "./IMatchWarrior";
+import { IRules } from "@matches/interface/IRules";
+import { IMatchWarrior } from "@matches/interface/IMatchWarrior";
 
 export interface IMatch {
 

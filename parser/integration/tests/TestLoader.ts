@@ -1,4 +1,4 @@
-﻿import { ITestWarrior } from "./ITestWarrior";
+﻿import { ITestWarrior } from "@parser/integration/tests/ITestWarrior";
 import * as fs from "fs";
 
 export class TestLoader {

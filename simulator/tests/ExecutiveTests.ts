@@ -1,16 +1,15 @@
 import * as chai from "chai";
-import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 var expect = chai.expect;
 chai.use(sinonChai);
 
-import TestHelper from "./TestHelper";
-import * as Helper from "./ExecutiveTestHelper";
-import { Executive } from "../Executive";
-import { IPublisher } from "../interface/IPublisher";
-import { OpcodeType } from "../interface/IInstruction";
-import { IExecutionContext } from "../interface/IExecutionContext";
-import { MessageType } from "../interface/IMessage";
+import TestHelper from "@simulator/tests/TestHelper";
+import * as Helper from "@simulator/tests/ExecutiveTestHelper";
+import { Executive } from "@simulator/Executive";
+import { IPublisher } from "@simulator/interface/IPublisher";
+import { OpcodeType } from "@simulator/interface/IInstruction";
+import { IExecutionContext } from "@simulator/interface/IExecutionContext";
+import { MessageType } from "@simulator/interface/IMessage";
 
 describe("Executive", () => {
 

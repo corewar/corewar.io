@@ -4,14 +4,14 @@ import * as sinonChai from "sinon-chai";
 var expect = chai.expect;
 chai.use(sinonChai);
 
-import { IMatch } from "../interface/IMatch";
-import TestHelper from "../../simulator/tests/TestHelper";
-import { IMatchRunner } from "../interface/IMatchRunner";
-import { MatchRunner } from "../MatchRunner";
-import { ISimulator } from "../../simulator/interface/ISimulator";
-import { IPublisher } from "../../simulator/interface/IPublisher";
-import { MessageType } from "../../simulator/interface/IMessage";
-import { IMatchResultMapper } from "../interface/IMatchResultMapper";
+import { IMatch } from "@matches/interface/IMatch";
+import TestHelper from "@simulator/tests/TestHelper";
+import { IMatchRunner } from "@matches/interface/IMatchRunner";
+import { MatchRunner } from "@matches/MatchRunner";
+import { ISimulator } from "@simulator/interface/ISimulator";
+import { IPublisher } from "@simulator/interface/IPublisher";
+import { MessageType } from "@simulator/interface/IMessage";
+import { IMatchResultMapper } from "@matches/interface/IMatchResultMapper";
 
 describe("MatchRunner", () => {
 

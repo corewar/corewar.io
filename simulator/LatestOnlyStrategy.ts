@@ -1,5 +1,5 @@
-import { IPublishStrategy } from "./interface/IPublishStrategy";
-import { IMessage } from "./interface/IMessage";
+import { IPublishStrategy } from "@simulator/interface/IPublishStrategy";
+import { IMessage } from "@simulator/interface/IMessage";
 
 export class LatestOnlyStrategy implements IPublishStrategy {
 

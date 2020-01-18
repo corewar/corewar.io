@@ -1,11 +1,11 @@
 ﻿import { expect } from "chai";
 
-import { IToken, TokenCategory } from "../interface/IToken";
-import { DefaultPass } from "../DefaultPass";
-import { Parser } from "../Parser";
-import { Context } from "../Context";
-import { TestHelper } from "./TestHelper";
-import { Standard } from "../interface/IParseOptions";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { DefaultPass } from "@parser/DefaultPass";
+import { Parser } from "@parser/Parser";
+import { Context } from "@parser/Context";
+import { TestHelper } from "@parser/tests/TestHelper";
+import { Standard } from "@parser/interface/IParseOptions";
 
 describe("DefaultPass", () => {
 

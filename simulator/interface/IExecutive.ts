@@ -1,5 +1,5 @@
-﻿import { IExecutionContext } from "./IExecutionContext";
-import { IOptions } from "./IOptions";
+﻿import { IExecutionContext } from "@simulator/interface/IExecutionContext";
+import { IOptions } from "@simulator/interface/IOptions";
 
 export interface IExecutive {
 

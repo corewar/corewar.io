@@ -1,8 +1,8 @@
-﻿import { MessageType } from "./interface/IMessage";
-import { IToken, TokenCategory } from "./interface/IToken";
-import { IParseOptions, Standard } from "./interface/IParseOptions";
-import { IContext } from "./interface/IContext";
-import { PassBase } from "./PassBase";
+﻿import { MessageType } from "@parser/interface/IMessage";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { IParseOptions, Standard } from "@parser/interface/IParseOptions";
+import { IContext } from "@parser/interface/IContext";
+import { PassBase } from "@parser/PassBase";
 
 export class LabelEmitter extends PassBase {
 

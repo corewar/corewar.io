@@ -1,5 +1,5 @@
-import { IMessage, MessageType } from "./IMessage";
-import { IPublishProvider } from "./IPublishProvider";
+import { IMessage, MessageType } from "@simulator/interface/IMessage";
+import { IPublishProvider } from "@simulator/interface/IPublishProvider";
 
 export interface IPublisher {
     

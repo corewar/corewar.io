@@ -1,13 +1,12 @@
 ﻿import { expect } from "chai";
 
-import { TestHelper } from "./TestHelper";
-import { Context } from "..//Context";
-import { OrgPass } from "../OrgPass";
-import { Parser } from "../Parser";
-import { MessageType } from "../interface/IMessage";
-import { IToken, TokenCategory } from "../interface/IToken";
-import { Standard } from "../interface/IParseOptions";
-import { OpcodeType } from "../../simulator/interface/IInstruction";
+import { TestHelper } from "@parser/tests/TestHelper";
+import { Context } from "@parser/Context";
+import { OrgPass } from "@parser/OrgPass";
+import { Parser } from "@parser/Parser";
+import { MessageType } from "@parser/interface/IMessage";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { Standard } from "@parser/interface/IParseOptions";
 
 describe("OrgPass", () => {
 

@@ -1,8 +1,8 @@
-﻿import { IParseOptions, Standard } from "./interface/IParseOptions";
-import { IContext } from "./interface/IContext";
-import { IToken, TokenCategory } from "./interface/IToken";
-import { MessageType } from "./interface/IMessage";
-import { PassBase } from "./PassBase";
+﻿import { IParseOptions, Standard } from "@parser/interface/IParseOptions";
+import { IContext } from "@parser/interface/IContext";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { MessageType } from "@parser/interface/IMessage";
+import { PassBase } from "@parser/PassBase";
 
 export class PreprocessCollector extends PassBase {
 

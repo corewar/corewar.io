@@ -1,6 +1,6 @@
-﻿import { IMetaData } from "./IMetaData";
-import { IMessage } from "./IMessage";
-import { IToken } from "./IToken";
+﻿import { IMetaData } from "@parser/interface/IMetaData";
+import { IMessage } from "@parser/interface/IMessage";
+import { IToken } from "@parser/interface/IToken";
 
 export interface IParseResult {
 

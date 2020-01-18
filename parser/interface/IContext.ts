@@ -1,6 +1,6 @@
-﻿import { IToken } from "./IToken";
-import { IParseInstruction } from "./IParseInstruction";
-import { IParseResult } from "./IParseResult";
+﻿import { IToken } from "@parser/interface/IToken";
+import { IParseInstruction } from "@parser/interface/IParseInstruction";
+import { IParseResult } from "@parser/interface/IParseResult";
 
 export interface IContext extends IParseResult {
 

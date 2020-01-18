@@ -1,4 +1,4 @@
-﻿import { IInstruction } from "./IInstruction";
+﻿import { IInstruction } from "@simulator/interface/IInstruction";
 
 export interface IOptions {
 

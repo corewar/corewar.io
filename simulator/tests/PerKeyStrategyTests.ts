@@ -1,8 +1,7 @@
 import { expect } from "chai";
-import * as sinon from "sinon";
 
-import { PerKeyStrategy } from "../PerKeyStrategy";
-import { MessageType } from "../interface/IMessage";
+import { PerKeyStrategy } from "@simulator/PerKeyStrategy";
+import { MessageType } from "@simulator/interface/IMessage";
 
 describe("PerKeyStrategy", () => {
 

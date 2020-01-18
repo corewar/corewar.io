@@ -1,10 +1,9 @@
 ﻿import { expect } from "chai";
 
-import { Context } from "../Context";
-import { IToken, TokenCategory } from "../interface/IToken";
-import { Parser } from "..//Parser";
-import { PreprocessEmitter } from "../PreprocessEmitter";
-import { MessageType } from "../interface/IMessage";
+import { Context } from "@parser/Context";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { Parser } from "@parser/Parser";
+import { PreprocessEmitter } from "@parser/PreprocessEmitter";
 
 "use strict";
 

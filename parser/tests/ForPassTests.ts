@@ -1,13 +1,13 @@
 ﻿import { expect } from "chai";
 import * as sinon from "sinon";
 
-import { IToken, TokenCategory } from "../interface/IToken";
-import { Context } from "../Context";
-import { Parser } from "../Parser";
-import { ForPass } from "../ForPass";
-import { Expression } from "../Expression";
-import { MessageType } from "../interface/IMessage";
-import { TestHelper } from "./TestHelper";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { Context } from "@parser/Context";
+import { Parser } from "@parser/Parser";
+import { ForPass } from "@parser/ForPass";
+import { Expression } from "@parser/Expression";
+import { MessageType } from "@parser/interface/IMessage";
+import { TestHelper } from "@parser/tests/TestHelper";
 "use strict";
 
 describe("ForPass", () => {

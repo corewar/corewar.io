@@ -1,8 +1,7 @@
-import { IMatchResultMapper } from "./interface/IMatchResultMapper";
-import { IMatchResult } from "./interface/IMatchResult";
-import { IMatch } from "./interface/IMatch";
-import { SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION } from "constants";
-import { IMatchWarriorResult } from "./interface/IMatchWarriorResult";
+import { IMatchResultMapper } from "@matches/interface/IMatchResultMapper";
+import { IMatchResult } from "@matches/interface/IMatchResult";
+import { IMatch } from "@matches/interface/IMatch";
+import { IMatchWarriorResult } from "@matches/interface/IMatchWarriorResult";
 
 export class MatchResultMapper implements IMatchResultMapper {
 

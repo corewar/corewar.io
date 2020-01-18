@@ -1,4 +1,4 @@
-﻿import { ITokenStream } from "./ITokenStream";
+﻿import { ITokenStream } from "@parser/interface/ITokenStream";
 
 export interface IExpression {
 

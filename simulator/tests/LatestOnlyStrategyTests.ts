@@ -1,8 +1,7 @@
 import { expect } from "chai";
-import * as sinon from "sinon";
 
-import { LatestOnlyStrategy } from "../LatestOnlyStrategy";
-import { MessageType } from "../interface/IMessage";
+import { LatestOnlyStrategy } from "@simulator/LatestOnlyStrategy";
+import { MessageType } from "@simulator/interface/IMessage";
 
 describe("LatestOnlyStrategy", () => {
 

@@ -1,15 +1,15 @@
 ﻿import { expect } from "chai";
 import * as sinon from "sinon";
 
-import { IState } from "../interface/IState";
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
-import { OpcodeType, ModifierType } from "../interface/IInstruction";
-import { ModeType } from "../interface/IOperand";
-import Defaults from "../Defaults";
-import { IOptions } from "../interface/IOptions";
-import { ITask } from "../interface/ITask";
-import { Fetcher } from "../Fetcher";
-import TestHelper from "./TestHelper";
+import { IState } from "@simulator/interface/IState";
+import { ICore } from "@simulator/interface/ICore";
+import { OpcodeType, ModifierType } from "@simulator/interface/IInstruction";
+import { ModeType } from "@simulator/interface/IOperand";
+import Defaults from "@simulator/Defaults";
+import { IOptions } from "@simulator/interface/IOptions";
+import { ITask } from "@simulator/interface/ITask";
+import { Fetcher } from "@simulator/Fetcher";
+import TestHelper from "@simulator/tests/TestHelper";
 
 describe("Fetcher",() => {
 

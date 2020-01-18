@@ -1,8 +1,8 @@
-﻿import { IToken, TokenCategory } from "./interface/IToken";
-import { IParseInstruction } from "./interface/IParseInstruction";
-import { IParseOperand } from "./interface/IParseOperand";
+﻿import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { IParseInstruction } from "@parser/interface/IParseInstruction";
+import { IParseOperand } from "@parser/interface/IParseOperand";
 
-import { PassBase } from "./PassBase";
+import { PassBase } from "@parser/PassBase";
 
 export class AddressModPass extends PassBase {
 

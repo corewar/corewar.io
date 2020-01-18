@@ -1,10 +1,10 @@
-﻿import { ICore, ICoreAccessEventArgs, CoreAccessType } from "./interface/ICore";
-import { IOptions } from "./interface/IOptions";
-import { ICoreLocation } from "./interface/ICoreLocation";
-import { IInstruction, OpcodeType } from "./interface/IInstruction";
-import { ITask } from "./interface/ITask";
-import { MessageType } from "./interface/IMessage";
-import { IPublisher } from "./interface/IPublisher";
+﻿import { ICore, CoreAccessType } from "@simulator/interface/ICore";
+import { IOptions } from "@simulator/interface/IOptions";
+import { ICoreLocation } from "@simulator/interface/ICoreLocation";
+import { IInstruction, OpcodeType } from "@simulator/interface/IInstruction";
+import { ITask } from "@simulator/interface/ITask";
+import { MessageType } from "@simulator/interface/IMessage";
+import { IPublisher } from "@simulator/interface/IPublisher";
 import * as clone from "clone";
 
 export class Core implements ICore {

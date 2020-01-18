@@ -1,5 +1,5 @@
-﻿import { IParseOptions } from "./IParseOptions";
-import { IContext } from "./IContext";
+﻿import { IParseOptions } from "@parser/interface/IParseOptions";
+import { IContext } from "@parser/interface/IContext";
 
 export interface IScanner {
 

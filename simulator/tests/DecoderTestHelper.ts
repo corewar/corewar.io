@@ -1,8 +1,8 @@
 import * as sinon from "sinon";
 
-import TestHelper from "./TestHelper";
+import TestHelper from "@simulator/tests/TestHelper";
 
-import { IExecutionContext } from "../interface/IExecutionContext";
+import { IExecutionContext } from "@simulator/interface/IExecutionContext";
 
 export interface IDecoderTestConfig {
     core: string[],

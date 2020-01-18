@@ -1,12 +1,11 @@
 import * as chai from "chai";
-import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
 var expect = chai.expect;
 chai.use(sinonChai);
 
-import Defaults from "../Defaults";
-import { IOptions } from "../interface/IOptions";
-import { OptionValidator } from "../OptionValidator";
+import Defaults from "@simulator/Defaults";
+import { IOptions } from "@simulator/interface/IOptions";
+import { OptionValidator } from "@simulator/OptionValidator";
 import * as clone from "clone";
 
 describe("OptionValidator", () => {

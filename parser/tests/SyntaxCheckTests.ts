@@ -1,12 +1,12 @@
 ﻿import { expect } from "chai";
 
-import { IToken, TokenCategory } from "../interface/IToken";
-import { IContext } from "../interface/IContext";
-import { Context } from "../Context";
-import { TestHelper } from "./TestHelper";
-import { Parser } from "../Parser";
-import { SyntaxCheck } from "../SyntaxCheck";
-import { MessageType, IMessage } from "../interface/IMessage";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { IContext } from "@parser/interface/IContext";
+import { Context } from "@parser/Context";
+import { TestHelper } from "@parser/tests/TestHelper";
+import { Parser } from "@parser/Parser";
+import { SyntaxCheck } from "@parser/SyntaxCheck";
+import { MessageType, IMessage } from "@parser/interface/IMessage";
 
 describe("SyntaxCheck", () => {
 

@@ -1,7 +1,7 @@
 import { expect } from "chai";
-import { TestHelper } from  "./TestHelper";
-import { Standard } from "./../../interface/IParseOptions";
-import { MessageType } from "../../interface/IMessage";
+import { TestHelper } from  "@parser/integration/tests/TestHelper";
+import { Standard } from "@parser/interface/IParseOptions";
+import { MessageType } from "@parser/interface/IMessage";
 
 describe("Parser Regression Tests",() => {
 

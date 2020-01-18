@@ -1,5 +1,5 @@
-﻿import { IState } from "./IState";
-import { IRoundResult } from "./IRoundResult";
+﻿import { IState } from "@simulator/interface/IState";
+import { IRoundResult } from "@simulator/interface/IRoundResult";
 
 export interface IEndCondition {
 

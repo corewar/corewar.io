@@ -1,24 +1,24 @@
 import { expect } from "chai";
 import * as sinon from "sinon";
-import { Simulator } from "../Simulator";
-import { Core } from "../Core";
-import { Fetcher } from "../Fetcher";
-import { Decoder } from "../Decoder";
-import { Executive } from "../Executive";
-import { ILoader } from "../interface/ILoader";
-import { IEndCondition } from "../interface/IEndCondition";
-import { IOptionValidator } from "../interface/IOptionValidator";
-import { ICore } from "../interface/ICore";
-import { IFetcher } from "../interface/IFetcher";
-import { IExecutive } from "../interface/IExecutive";
-import { IDecoder } from "../interface/IDecoder";
-import { ISimulator } from "../interface/ISimulator";
-import { IPublisher } from "../interface/IPublisher";
-import TestHelper from "../tests/TestHelper";
-import { IWarrior } from "../interface/IWarrior";
-import { IInstruction, OpcodeType, ModifierType } from "../interface/IInstruction";
-import { ModeType } from "../interface/IOperand";
-import { ITask } from "../interface/ITask";
+import { Simulator } from "@simulator/Simulator";
+import { Core } from "@simulator/Core";
+import { Fetcher } from "@simulator/Fetcher";
+import { Decoder } from "@simulator/Decoder";
+import { Executive } from "@simulator/Executive";
+import { ILoader } from "@simulator/interface/ILoader";
+import { IEndCondition } from "@simulator/interface/IEndCondition";
+import { IOptionValidator } from "@simulator/interface/IOptionValidator";
+import { ICore } from "@simulator/interface/ICore";
+import { IFetcher } from "@simulator/interface/IFetcher";
+import { IExecutive } from "@simulator/interface/IExecutive";
+import { IDecoder } from "@simulator/interface/IDecoder";
+import { ISimulator } from "@simulator/interface/ISimulator";
+import { IPublisher } from "@simulator/interface/IPublisher";
+import TestHelper from "@simulator/tests/TestHelper";
+import { IWarrior } from "@simulator/interface/IWarrior";
+import { OpcodeType, ModifierType } from "@simulator/interface/IInstruction";
+import { ModeType } from "@simulator/interface/IOperand";
+import { ITask } from "@simulator/interface/ITask";
 
 describe("Simulator Regression Tests", () => {
 

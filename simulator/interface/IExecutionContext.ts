@@ -1,8 +1,8 @@
-﻿import { ICore } from "./ICore";
-import { IInstruction } from "./IInstruction";
-import { ITask } from "./ITask";
-import { IWarrior } from "./IWarrior";
-import { IOperand } from "./IOperand";
+﻿import { ICore } from "@simulator/interface/ICore";
+import { IInstruction } from "@simulator/interface/IInstruction";
+import { ITask } from "@simulator/interface/ITask";
+import { IWarrior } from "@simulator/interface/IWarrior";
+import { IOperand } from "@simulator/interface/IOperand";
 
 export interface IOperandPair {
     destination: IOperand;

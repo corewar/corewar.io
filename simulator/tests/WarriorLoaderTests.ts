@@ -4,18 +4,18 @@ import * as sinonChai from "sinon-chai";
 var expect = chai.expect;
 chai.use(sinonChai);
 
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
-import { IOptions } from "../interface/IOptions";
-import { ITask } from "../interface/ITask";
-import { IInstruction } from "../interface/IInstruction";
-import { OpcodeType, ModifierType } from "../interface/IInstruction";
-import { ModeType } from "../interface/IOperand";
-import { IParseResult } from "../../parser/interface/IParseResult";
-import { IToken, TokenCategory } from "../../parser/interface/IToken";
-import { WarriorLoader } from "../WarriorLoader";
-import TestHelper from "./TestHelper";
-import { IPublisher } from "../interface/IPublisher";
-import { MessageType } from "../interface/IMessage";
+import { ICore } from "@simulator/interface/ICore";
+import { IOptions } from "@simulator/interface/IOptions";
+import { ITask } from "@simulator/interface/ITask";
+import { IInstruction } from "@simulator/interface/IInstruction";
+import { OpcodeType, ModifierType } from "@simulator/interface/IInstruction";
+import { ModeType } from "@simulator/interface/IOperand";
+import { IParseResult } from "@parser/interface/IParseResult";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { WarriorLoader } from "@simulator/WarriorLoader";
+import TestHelper from "@simulator/tests/TestHelper";
+import { IPublisher } from "@simulator/interface/IPublisher";
+import { MessageType } from "@simulator/interface/IMessage";
 
 "use strict";
 

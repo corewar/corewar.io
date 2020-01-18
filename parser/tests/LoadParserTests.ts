@@ -4,15 +4,15 @@ import * as sinonChai from "sinon-chai";
 var expect = chai.expect;
 chai.use(sinonChai);
 
-import { IContext } from "../interface/IContext";
-import { IScanner } from "../interface/IScanner";
-import { IPass } from "../interface/IPass";
-import { IOptions } from "../../simulator/interface/IOptions";
-import { LoadParser } from "../LoadParser";
-import { Context } from "../Context";
-import { IMessage, MessageType } from "../interface/IMessage";
-import { Parser } from "../Parser";
-import { Standard } from "../interface/IParseOptions";
+import { IContext } from "@parser/interface/IContext";
+import { IScanner } from "@parser/interface/IScanner";
+import { IPass } from "@parser/interface/IPass";
+import { IOptions } from "@simulator/interface/IOptions";
+import { LoadParser } from "@parser/LoadParser";
+import { Context } from "@parser/Context";
+import { IMessage, MessageType } from "@parser/interface/IMessage";
+import { Parser } from "@parser/Parser";
+import { Standard } from "@parser/interface/IParseOptions";
 
 describe("LoadParser",() => {
 

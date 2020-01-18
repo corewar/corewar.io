@@ -1,6 +1,5 @@
-﻿import { IOptions } from "./IOptions";
-import { ICore } from "./ICore";
-import { IWarrior } from "./IWarrior";
+﻿import { IOptions } from "@simulator/interface/IOptions";
+import { IWarrior } from "@simulator/interface/IWarrior";
 
 export interface IState {
 

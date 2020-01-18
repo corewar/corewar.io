@@ -1,9 +1,9 @@
-﻿import { IPass } from "./interface/IPass";
-import { IContext } from "./interface/IContext";
-import { ITokenStream } from "./interface/ITokenStream";
-import { IParseOptions } from "./interface/IParseOptions";
+﻿import { IPass } from "@parser/interface/IPass";
+import { IContext } from "@parser/interface/IContext";
+import { ITokenStream } from "@parser/interface/ITokenStream";
+import { IParseOptions } from "@parser/interface/IParseOptions";
 
-import { TokenStream } from "./TokenStream";
+import { TokenStream } from "@parser/TokenStream";
 
 export class PassBase implements IPass {
 

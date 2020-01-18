@@ -1,7 +1,7 @@
-﻿import { Standard } from "./interface/IParseOptions";
-import { IToken, TokenCategory } from "./interface/IToken";
-import { IParseInstruction } from "./interface/IParseInstruction";
-import { PassBase } from "./PassBase";
+﻿import { Standard } from "@parser/interface/IParseOptions";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { IParseInstruction } from "@parser/interface/IParseInstruction";
+import { PassBase } from "@parser/PassBase";
 
 export class DefaultPass extends PassBase {
 

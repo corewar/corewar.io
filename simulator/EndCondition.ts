@@ -1,9 +1,9 @@
-﻿import { IEndCondition } from "./interface/IEndCondition";
-import { IState } from "./interface/IState";
-import { IWarrior } from "./interface/IWarrior";
-import { MessageType } from "./interface/IMessage";
-import { IPublisher } from "./interface/IPublisher";
-import { IRoundResult } from "./interface/IRoundResult";
+﻿import { IEndCondition } from "@simulator/interface/IEndCondition";
+import { IState } from "@simulator/interface/IState";
+import { IWarrior } from "@simulator/interface/IWarrior";
+import { MessageType } from "@simulator/interface/IMessage";
+import { IPublisher } from "@simulator/interface/IPublisher";
+import { IRoundResult } from "@simulator/interface/IRoundResult";
 
 export class EndCondition implements IEndCondition {
 

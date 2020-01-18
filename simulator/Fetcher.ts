@@ -1,9 +1,9 @@
-﻿import { IFetcher } from "./interface/IFetcher";
-import { IState } from "./interface/IState";
-import { ICore } from "./interface/ICore";
-import { IExecutionContext } from "./interface/IExecutionContext";
-import { IWarrior } from "./interface/IWarrior";
-import { ITask } from "./interface/ITask";
+﻿import { IFetcher } from "@simulator/interface/IFetcher";
+import { IState } from "@simulator/interface/IState";
+import { ICore } from "@simulator/interface/ICore";
+import { IExecutionContext } from "@simulator/interface/IExecutionContext";
+import { IWarrior } from "@simulator/interface/IWarrior";
+import { ITask } from "@simulator/interface/ITask";
 
 interface IFetchContext {
     warriorIndex: number;

@@ -1,8 +1,8 @@
 ﻿import { expect } from "chai";
 
-import { IToken } from "../interface/IToken";
-import { JsonSerialiser } from "../JsonSerialiser";
-import { TestHelper } from "./TestHelper";
+import { IToken } from "@parser/interface/IToken";
+import { JsonSerialiser } from "@parser/JsonSerialiser";
+import { TestHelper } from "@parser/tests/TestHelper";
 "use strict";
 
 describe("JsonSerialiser", () => {

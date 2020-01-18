@@ -1,6 +1,5 @@
-﻿import { IWarrior } from "./interface/IWarrior";
-import { IInstruction } from "./interface/IInstruction";
-import { ITask } from "./interface/ITask";
+﻿import { IWarrior } from "@simulator/interface/IWarrior";
+import { ITask } from "@simulator/interface/ITask";
 
 export class Warrior implements IWarrior {
 

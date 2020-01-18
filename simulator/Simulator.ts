@@ -1,19 +1,19 @@
-﻿import { ISimulator } from "./interface/ISimulator";
-import { IState } from "./interface/IState";
-import { ILoader } from "./interface/ILoader";
-import { IFetcher } from "./interface/IFetcher";
-import { IDecoder } from "./interface/IDecoder";
-import { IExecutive } from "./interface/IExecutive";
-import { IEndCondition } from "./interface/IEndCondition";
-import { IOptionValidator } from "./interface/IOptionValidator";
-import { ICore } from "./interface/ICore";
-import { IOptions } from "./interface/IOptions";
-import { IParseResult } from "../parser/interface/IParseResult";
-import { MessageType } from "./interface/IMessage";
-import { IPublisher } from "./interface/IPublisher";
-import Defaults from "./Defaults";
+﻿import { ISimulator } from "@simulator/interface/ISimulator";
+import { IState } from "@simulator/interface/IState";
+import { ILoader } from "@simulator/interface/ILoader";
+import { IFetcher } from "@simulator/interface/IFetcher";
+import { IDecoder } from "@simulator/interface/IDecoder";
+import { IExecutive } from "@simulator/interface/IExecutive";
+import { IEndCondition } from "@simulator/interface/IEndCondition";
+import { IOptionValidator } from "@simulator/interface/IOptionValidator";
+import { ICore } from "@simulator/interface/ICore";
+import { IOptions } from "@simulator/interface/IOptions";
+import { IParseResult } from "@parser/interface/IParseResult";
+import { MessageType } from "@simulator/interface/IMessage";
+import { IPublisher } from "@simulator/interface/IPublisher";
+import Defaults from "@simulator/Defaults";
 import * as clone from "clone";
-import { IRoundResult } from "./interface/IRoundResult";
+import { IRoundResult } from "@simulator/interface/IRoundResult";
 
 export class Simulator implements ISimulator {
 

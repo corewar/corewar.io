@@ -1,10 +1,10 @@
 ﻿import { expect } from "chai";
 
-import { Context } from "../Context";
-import { MetaDataCollector } from "../MetaDataCollector";
-import { Parser } from "../Parser";
-import { TestHelper } from "./TestHelper";
-import { MessageType } from "../interface/IMessage";
+import { Context } from "@parser/Context";
+import { MetaDataCollector } from "@parser/MetaDataCollector";
+import { Parser } from "@parser/Parser";
+import { TestHelper } from "@parser/tests/TestHelper";
+import { MessageType } from "@parser/interface/IMessage";
 "use strict";
 
 describe("MetaDataCollector",() => {

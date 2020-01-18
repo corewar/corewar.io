@@ -1,7 +1,7 @@
-﻿import { IToken, TokenCategory } from "./interface/IToken";
-import { IContext } from "./interface/IContext";
-import { IParseOptions, Standard } from "./interface/IParseOptions";
-import { PassBase } from "./PassBase";
+﻿import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { IContext } from "@parser/interface/IContext";
+import { IParseOptions, Standard } from "@parser/interface/IParseOptions";
+import { PassBase } from "@parser/PassBase";
 
 export class OrgPass extends PassBase {
 

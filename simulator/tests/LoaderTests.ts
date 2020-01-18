@@ -4,14 +4,14 @@ import * as sinonChai from "sinon-chai";
 var expect = chai.expect;
 chai.use(sinonChai);
 
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
-import { IRandom } from "../interface/IRandom";
-import { IWarriorLoader } from "../interface/IWarriorLoader";
-import { IParseResult } from "../../parser/interface/IParseResult";
-import { Warrior } from "../Warrior";
-import { Loader } from "../Loader";
-import Defaults from "../Defaults";
-import TestHelper from "./TestHelper";
+import { ICore } from "@simulator/interface/ICore";
+import { IRandom } from "@simulator/interface/IRandom";
+import { IWarriorLoader } from "@simulator/interface/IWarriorLoader";
+import { IParseResult } from "@parser/interface/IParseResult";
+import { Warrior } from "@simulator/Warrior";
+import { Loader } from "@simulator/Loader";
+import Defaults from "@simulator/Defaults";
+import TestHelper from "@simulator/tests/TestHelper";
 
 describe("Loader",() => {
 

@@ -1,11 +1,11 @@
 ﻿import { expect } from "chai";
 
-import { Context } from "../Context";
-import { IToken, TokenCategory } from "../interface/IToken";
-import { Parser } from "../Parser";
-import { MathsProcessor } from "../MathsProcessor";
-import { Expression } from "../Expression";
-import { MessageType } from "../interface/IMessage";
+import { Context } from "@parser/Context";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { Parser } from "@parser/Parser";
+import { MathsProcessor } from "@parser/MathsProcessor";
+import { Expression } from "@parser/Expression";
+import { MessageType } from "@parser/interface/IMessage";
 
 describe("MathsProcessor",() => {
 

@@ -1,19 +1,19 @@
 ﻿import * as chai from "chai";
 import * as sinon from "sinon";
 
-import { IToken, TokenCategory } from "../../parser/interface/IToken";
-import { IParseResult } from "../../parser/interface/IParseResult";
-import { IWarrior } from "../interface/IWarrior";
-import { ITask } from "../interface/ITask";
-import { OpcodeType, ModifierType } from "../interface/IInstruction";
-import { ModeType } from "../interface/IOperand";
-import { IInstruction } from "../interface/IInstruction";
-import { ICore } from "../interface/ICore";
-import { IOptions } from "../interface/IOptions";
-import { IPublisher } from "../interface/IPublisher";
-import { ILoader } from "../interface/ILoader";
-import { IEndCondition } from "../interface/IEndCondition";
-import { IOptionValidator } from "../interface/IOptionValidator";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { IParseResult } from "@parser/interface/IParseResult";
+import { IWarrior } from "@simulator/interface/IWarrior";
+import { ITask } from "@simulator/interface/ITask";
+import { OpcodeType, ModifierType } from "@simulator/interface/IInstruction";
+import { ModeType } from "@simulator/interface/IOperand";
+import { IInstruction } from "@simulator/interface/IInstruction";
+import { ICore } from "@simulator/interface/ICore";
+import { IOptions } from "@simulator/interface/IOptions";
+import { IPublisher } from "@simulator/interface/IPublisher";
+import { ILoader } from "@simulator/interface/ILoader";
+import { IEndCondition } from "@simulator/interface/IEndCondition";
+import { IOptionValidator } from "@simulator/interface/IOptionValidator";
 
 "use strict";
 

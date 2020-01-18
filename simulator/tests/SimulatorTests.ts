@@ -4,27 +4,25 @@ import * as sinonChai from "sinon-chai";
 var expect = chai.expect;
 chai.use(sinonChai);
 
-import { Warrior } from "../Warrior";
-import { ICore, ICoreAccessEventArgs, CoreAccessType } from "../interface/ICore";
-import { ITask } from "../interface/ITask";
-import { IOptions } from "../interface/IOptions";
-import { IState } from "../interface/IState";
-import { Simulator } from "../Simulator";
-import { IExecutive } from "../interface/IExecutive";
-import { ILoader } from "../interface/ILoader";
-import { IFetcher } from "../interface/IFetcher";
-import { IDecoder } from "../interface/IDecoder";
-import { IEndCondition } from "../interface/IEndCondition";
-import Defaults from "../Defaults";
-import { OpcodeType, ModifierType } from "../interface/IInstruction";
-import { ModeType } from "../interface/IOperand";
-import TestHelper from "./TestHelper";
-import { IOptionValidator } from "../interface/IOptionValidator";
-import { MessageType } from "../interface/IMessage";
-import { IPublisher } from "../interface/IPublisher";
+import { Warrior } from "@simulator/Warrior";
+import { ICore } from "@simulator/interface/ICore";
+import { IOptions } from "@simulator/interface/IOptions";
+import { IState } from "@simulator/interface/IState";
+import { Simulator } from "@simulator/Simulator";
+import { IExecutive } from "@simulator/interface/IExecutive";
+import { ILoader } from "@simulator/interface/ILoader";
+import { IFetcher } from "@simulator/interface/IFetcher";
+import { IDecoder } from "@simulator/interface/IDecoder";
+import { IEndCondition } from "@simulator/interface/IEndCondition";
+import Defaults from "@simulator/Defaults";
+import { OpcodeType, ModifierType } from "@simulator/interface/IInstruction";
+import { ModeType } from "@simulator/interface/IOperand";
+import TestHelper from "@simulator/tests/TestHelper";
+import { IOptionValidator } from "@simulator/interface/IOptionValidator";
+import { MessageType } from "@simulator/interface/IMessage";
+import { IPublisher } from "@simulator/interface/IPublisher";
 import * as clone from "clone";
-import { lchmod } from "fs";
-import { IExecutionContext } from "../interface/IExecutionContext";
+import { IExecutionContext } from "@simulator/interface/IExecutionContext";
 
 describe("Simulator", () => {
 

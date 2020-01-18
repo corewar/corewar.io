@@ -1,5 +1,5 @@
-﻿import { IContext } from "./IContext";
-import { IParseOptions } from "./IParseOptions";
+﻿import { IContext } from "@parser/interface/IContext";
+import { IParseOptions } from "@parser/interface/IParseOptions";
 
 export interface IPass {
 

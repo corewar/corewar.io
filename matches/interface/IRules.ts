@@ -1,4 +1,4 @@
-import { IOptions } from "../../simulator/interface/IOptions";
+import { IOptions } from "@simulator/interface/IOptions";
 
 export interface IRules {
 

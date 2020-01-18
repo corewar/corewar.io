@@ -1,7 +1,7 @@
-import { IOptionValidator } from "./interface/IOptionValidator";
-import { IOptions } from "./interface/IOptions";
-import { OpcodeType, ModifierType } from "./interface/IInstruction";
-import { ModeType } from "./interface/IOperand";
+import { IOptionValidator } from "@simulator/interface/IOptionValidator";
+import { IOptions } from "@simulator/interface/IOptions";
+import { OpcodeType, ModifierType } from "@simulator/interface/IInstruction";
+import { ModeType } from "@simulator/interface/IOperand";
 
 export class OptionValidator implements IOptionValidator {
 

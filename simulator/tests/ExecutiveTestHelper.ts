@@ -1,18 +1,11 @@
-import * as chai from "chai";
 import * as sinon from "sinon";
 
-import * as Helper from "./ExecutiveTestHelper";
-import TestHelper from "./TestHelper";
+import TestHelper from "@simulator/tests/TestHelper";
 
-import { IInstruction, OpcodeType, ModifierType } from "../interface/IInstruction";
-import { IExecutionContext, IOperandPair } from "../interface/IExecutionContext";
-import { ICore } from "../interface/ICore";
-import { IOptions } from "../interface/IOptions";
-import { IExecutive } from "../interface/IExecutive";
-import { ModeType } from "../interface/IOperand";
-import Defaults from "../Defaults";
-import { Decoder } from "../Decoder";
-import { IWarrior } from "../interface/IWarrior";
+import { IInstruction, ModifierType } from "@simulator/interface/IInstruction";
+import { IExecutionContext, IOperandPair } from "@simulator/interface/IExecutionContext";
+import Defaults from "@simulator/Defaults";
+import { IWarrior } from "@simulator/interface/IWarrior";
 
 interface IExecutiveTestConfig {
     i: string,

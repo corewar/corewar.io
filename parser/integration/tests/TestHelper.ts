@@ -1,26 +1,25 @@
 ﻿import { expect } from "chai";
 
-import { Standard } from "../../interface/IParseOptions";
-import { Expression } from "../../Expression";
-import { Parser } from "../../Parser";
-import { Scanner } from "../../Scanner";
-import { Filter } from "../../Filter";
-import { ForPass } from "../../ForPass";
-import { PreprocessCollector } from "../../PreprocessCollector";
-import { PreprocessAnalyser } from "../../PreprocessAnalyser";
-import { PreprocessEmitter } from "../../PreprocessEmitter";
-import { LabelCollector } from "../../LabelCollector";
-import { LabelEmitter } from "../../LabelEmitter";
-import { MathsProcessor } from "../../MathsProcessor";
-import { DefaultPass } from "../../DefaultPass";
-import { OrgPass } from "../../OrgPass";
-import { SyntaxCheck } from "../../SyntaxCheck";
-import { IllegalCommandCheck } from "../../IllegalCommandCheck";
-import { LoadFileSerialiser } from "../../LoadFileSerialiser";
-import { TestLoader } from "./TestLoader";
-import { MetaDataCollector } from "../../MetaDataCollector";
-import { MetaDataEmitter } from "../../MetaDataEmitter";
-import { ITestWarrior } from "./ITestWarrior";
+import { Standard } from "@parser/interface/IParseOptions";
+import { Expression } from "@parser/Expression";
+import { Parser } from "@parser/Parser";
+import { Scanner } from "@parser/Scanner";
+import { Filter } from "@parser/Filter";
+import { ForPass } from "@parser/ForPass";
+import { PreprocessCollector } from "@parser/PreprocessCollector";
+import { PreprocessAnalyser } from "@parser/PreprocessAnalyser";
+import { PreprocessEmitter } from "@parser/PreprocessEmitter";
+import { LabelCollector } from "@parser/LabelCollector";
+import { LabelEmitter } from "@parser/LabelEmitter";
+import { MathsProcessor } from "@parser/MathsProcessor";
+import { DefaultPass } from "@parser/DefaultPass";
+import { OrgPass } from "@parser/OrgPass";
+import { SyntaxCheck } from "@parser/SyntaxCheck";
+import { IllegalCommandCheck } from "@parser/IllegalCommandCheck";
+import { LoadFileSerialiser } from "@parser/LoadFileSerialiser";
+import { TestLoader } from "@parser/integration/tests/TestLoader";
+import { MetaDataCollector } from "@parser/MetaDataCollector";
+import { MetaDataEmitter } from "@parser/MetaDataEmitter";
 
 export class TestHelper {
     private static failedIndex(name: string, a: string, b: string) {

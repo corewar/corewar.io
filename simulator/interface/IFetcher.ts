@@ -1,6 +1,6 @@
-﻿import { IState } from "./IState";
-import { ICore } from "./ICore";
-import { IExecutionContext } from "./IExecutionContext";
+﻿import { IState } from "@simulator/interface/IState";
+import { ICore } from "@simulator/interface/ICore";
+import { IExecutionContext } from "@simulator/interface/IExecutionContext";
 
 export interface IFetcher {
 

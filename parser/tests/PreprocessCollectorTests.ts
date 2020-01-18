@@ -1,12 +1,12 @@
 ﻿import { expect } from "chai";
 
-import { Context } from "../Context";
-import { IToken, TokenCategory } from "../interface/IToken";
-import { Parser } from "../Parser";
-import { PreprocessCollector } from "../PreprocessCollector";
-import { MessageType } from "../interface/IMessage";
-import { TestHelper } from "./TestHelper";
-import { Standard } from "../interface/IParseOptions";
+import { Context } from "@parser/Context";
+import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { Parser } from "@parser/Parser";
+import { PreprocessCollector } from "@parser/PreprocessCollector";
+import { MessageType } from "@parser/interface/IMessage";
+import { TestHelper } from "@parser/tests/TestHelper";
+import { Standard } from "@parser/interface/IParseOptions";
 
 describe("PreprocessCollector", () => {
 

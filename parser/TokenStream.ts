@@ -1,7 +1,7 @@
-﻿import { IToken, TokenCategory } from "./interface/IToken";
-import { IMessage, MessageType } from "./interface/IMessage";
-import { ITokenStream } from "./interface/ITokenStream";
-import { TokenHelper } from "./TokenHelper";
+﻿import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { IMessage, MessageType } from "@parser/interface/IMessage";
+import { ITokenStream } from "@parser/interface/ITokenStream";
+import { TokenHelper } from "@parser/TokenHelper";
 
 export class TokenStream implements ITokenStream {
 
