@@ -13,10 +13,10 @@
       "@matches/*": ["./src/matches/*"],
       "@parser/tests/*": ["./test/parser/*"],
       "@simulator/tests/*": ["./test/simulator/*"],
-      "@matches/tests/*": ["./test/matches/*"],
+      "@matches/tests/*": ["./test/matches/*"]
     },
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["./src/**/*", "./test/**/*"],
+  "include": ["./src/**/*"],
   "exclude": ["./node_modules", "./dist"]
 }
