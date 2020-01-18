@@ -64,7 +64,6 @@
   "dependencies": {
     "clone": "^2.1.2",
     "core-js": "^2.6.11",
-    "hoek": "^5.0.4",
     "node": "^13.6.0",
     "npm-cli-login": "0.0.10",
     "pubsub-js": "^1.8.0"
