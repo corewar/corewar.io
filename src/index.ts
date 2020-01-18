@@ -1,5 +1,4 @@
-﻿import "module-alias/register"
-import { IParser } from "@parser/interface/IParser";
+﻿import { IParser } from "@parser/interface/IParser";
 import { IToken } from "@parser/interface/IToken";
 import { IParseResult } from "@parser/interface/IParseResult";
 import { ISerialiser } from "@parser/interface/ISerialiser";
