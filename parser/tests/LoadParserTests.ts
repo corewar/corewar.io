@@ -88,7 +88,7 @@ describe("LoadParser",() => {
 
     function errorIn(pass: IPass, name: string): void {
 
-        (<sinon.stub>pass.process).callsFake((): IContext => {
+        (<sinon.SinonStub>pass.process).callsFake((): IContext => {
             context.messages.push(fakeError());
             calls.push(name);
             return context;
@@ -97,7 +97,7 @@ describe("LoadParser",() => {
 
     function warningIn(pass: IPass, name: string): void {
 
-        (<sinon.stub>pass.process).callsFake((): IContext => {
+        (<sinon.SinonStub>pass.process).callsFake((): IContext => {
             context.messages.push(fakeWarning());
             calls.push(name);
             return context;
@@ -177,7 +177,7 @@ describe("LoadParser",() => {
 
         var options = Parser.DefaultOptions;
 
-        (<sinon.stub>scanner.scan).callsFake((): IContext => {
+        (<sinon.SinonStub>scanner.scan).callsFake((): IContext => {
             context.messages.push(fakeError());
             calls.push("scan");
             return context;
@@ -195,7 +195,7 @@ describe("LoadParser",() => {
 
         var options = Parser.DefaultOptions;
 
-        (<sinon.stub>scanner.scan).callsFake((): IContext => {
+        (<sinon.SinonStub>scanner.scan).callsFake((): IContext => {
             context.messages.push(fakeWarning());
             calls.push("scan");
             return context;
@@ -244,13 +244,13 @@ describe("LoadParser",() => {
 
         loadParser.parse("MOV 0, 1");
 
-        expect((<sinon.stub>scanner.scan).lastCall.args[1].standard).to.be.equal(Standard.ICWS94draft);
+        expect((<sinon.SinonStub>scanner.scan).lastCall.args[1].standard).to.be.equal(Standard.ICWS94draft);
     });
 
     it("Defaults the coresize to 8192 if not specified",() => {
 
         loadParser.parse("MOV 0, 1");
 
-        expect((<sinon.stub>scanner.scan).lastCall.args[1].coresize).to.be.equal(8192);
+        expect((<sinon.SinonStub>scanner.scan).lastCall.args[1].coresize).to.be.equal(8192);
     });
 });

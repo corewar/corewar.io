@@ -119,7 +119,7 @@ describe("Parser",() => {
 
     function errorIn(pass: IPass, name: string): void {
 
-        (<sinon.stub>pass.process).callsFake((): IContext => {
+        (<sinon.SinonStub>pass.process).callsFake((): IContext => {
             context.messages.push(fakeError());
             calls.push(name);
             return context;
@@ -128,7 +128,7 @@ describe("Parser",() => {
 
     function warningIn(pass: IPass, name: string): void {
 
-        (<sinon.stub>pass.process).callsFake((): IContext => {
+        (<sinon.SinonStub>pass.process).callsFake((): IContext => {
             context.messages.push(fakeWarning());
             calls.push(name);
             return context;
@@ -352,7 +352,7 @@ describe("Parser",() => {
 
         var options = Parser.DefaultOptions;
 
-        (<sinon.stub>scanner.scan).callsFake((): IContext => {
+        (<sinon.SinonStub>scanner.scan).callsFake((): IContext => {
             context.messages.push(fakeError());
             calls.push("scan");
             return context;
@@ -370,7 +370,7 @@ describe("Parser",() => {
 
         var options = Parser.DefaultOptions;
 
-        (<sinon.stub>scanner.scan).callsFake((): IContext => {
+        (<sinon.SinonStub>scanner.scan).callsFake((): IContext => {
             context.messages.push(fakeWarning());
             calls.push("scan");
             return context;
@@ -439,6 +439,6 @@ describe("Parser",() => {
 
         parser.parse("MOV 0, 1");
 
-        expect((<sinon.stub>scanner.scan).lastCall.args[1].standard).to.be.equal(Standard.ICWS94draft);
+        expect((<sinon.SinonStub>scanner.scan).lastCall.args[1].standard).to.be.equal(Standard.ICWS94draft);
     });
 });

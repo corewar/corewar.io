@@ -41,7 +41,7 @@ describe("Simulator", () => {
 
     var context: IExecutionContext;
 
-    var commandSpy: sinon.stub;
+    var commandSpy: sinon.SinonStub;
 
     beforeEach(() => {
 
@@ -74,14 +74,14 @@ describe("Simulator", () => {
             operands: []
         };
 
-        (<sinon.stub>fetcher.fetch).returns(context);
+        (<sinon.SinonStub>fetcher.fetch).returns(context);
 
         decoder = {
             decode: sinon.stub()
         };
 
         commandSpy = sinon.stub();
-        (<sinon.stub>decoder.decode).returns({
+        (<sinon.SinonStub>decoder.decode).returns({
             command: commandSpy
         });
 
@@ -118,7 +118,7 @@ describe("Simulator", () => {
         var decodeCalled = false;
         var executeCalled = false;
 
-        (<sinon.stub>decoder.decode).callsFake(() => {
+        (<sinon.SinonStub>decoder.decode).callsFake(() => {
             expect(decodeCalled).not.to.be.equal(true);
             expect(executeCalled).not.to.be.equal(true);
 
@@ -146,7 +146,7 @@ describe("Simulator", () => {
 
         const expected = {};
 
-        (<sinon.stub>endCondition.check).returns(expected);
+        (<sinon.SinonStub>endCondition.check).returns(expected);
 
         const actual = simulator.step();
 
@@ -155,7 +155,7 @@ describe("Simulator", () => {
 
     it("step returns null if the end condition check returns null", () => {
 
-        (<sinon.stub>endCondition.check).returns(null);
+        (<sinon.SinonStub>endCondition.check).returns(null);
 
         var actual = simulator.step();
 
@@ -164,7 +164,7 @@ describe("Simulator", () => {
 
     it("step increments the cycle number", () => {
 
-        var checkSpy = <sinon.stub>endCondition.check;
+        var checkSpy = <sinon.SinonStub>endCondition.check;
         var state: IState;
 
         simulator.step();
@@ -187,14 +187,14 @@ describe("Simulator", () => {
 
         simulator.step();
 
-        expect(<sinon.stub>decoder.decode).to.have.been.calledWith(context);
+        expect(<sinon.SinonStub>decoder.decode).to.have.been.calledWith(context);
     });
 
     it("step passes the context retrieved from decode to execute", () => {
 
         var decodeContext = { command: commandSpy };
 
-        (<sinon.stub>decoder.decode).returns(decodeContext);
+        (<sinon.SinonStub>decoder.decode).returns(decodeContext);
 
         simulator.step();
 
@@ -227,7 +227,7 @@ describe("Simulator", () => {
         simulator.initialise(expected, []);
         simulator.step();
 
-        var actual: IState = (<sinon.stub>endCondition.check).lastCall.args[0];
+        var actual: IState = (<sinon.SinonStub>endCondition.check).lastCall.args[0];
 
         expect(actual.options).to.deep.equal(expected);
     });
@@ -237,7 +237,7 @@ describe("Simulator", () => {
         simulator.initialise({ coresize: 123 }, []);
         simulator.step();
 
-        var actual: IState = (<sinon.stub>endCondition.check).lastCall.args[0];
+        var actual: IState = (<sinon.SinonStub>endCondition.check).lastCall.args[0];
 
         expect(actual.options).to.deep.equal(Object.assign({}, Defaults, { coresize: 123 }));
     });
@@ -254,14 +254,14 @@ describe("Simulator", () => {
         var warriors = [];
         var loadedWarriors = [];
 
-        (<sinon.stub>loader.load).returns(loadedWarriors);
+        (<sinon.SinonStub>loader.load).returns(loadedWarriors);
 
         simulator.initialise(Defaults, warriors);
         simulator.step();
 
         expect(loader.load).to.have.been.calledWith(warriors, Defaults);
 
-        var state = (<sinon.stub>fetcher.fetch).lastCall.args[0];
+        var state = (<sinon.SinonStub>fetcher.fetch).lastCall.args[0];
 
         expect(state.warriors).to.be.equal(loadedWarriors);
     });
@@ -277,7 +277,7 @@ describe("Simulator", () => {
         const expectedError = Error("Test");
         let actualError = null;
 
-        (<sinon.stub>optionValidator.validate).callsFake((options: IOptions) => {
+        (<sinon.SinonStub>optionValidator.validate).callsFake((options: IOptions) => {
             throw expectedError;
         });
 
@@ -312,7 +312,7 @@ describe("Simulator", () => {
 
     it("Should not execute step if end condition met", () => {
 
-        (<sinon.stub>endCondition.check).returns(true);
+        (<sinon.SinonStub>endCondition.check).returns(true);
 
         var actual = simulator.step();
 
@@ -339,7 +339,7 @@ describe("Simulator", () => {
 
         expect(publisher.queue).not.to.be.calledWith({
             type: MessageType.CoreInitialise,
-            payload: sinon.any
+            payload: sinon.match(() => true)
         });
     });
 
@@ -363,7 +363,7 @@ describe("Simulator", () => {
 
         const expected = {};
 
-        (<sinon.stub>fetcher.getNextExecution).returns(expected);
+        (<sinon.SinonStub>fetcher.getNextExecution).returns(expected);
 
         simulator.initialise(options, []);
 
@@ -381,7 +381,7 @@ describe("Simulator", () => {
 
         simulator.initialise(options, []);
 
-        const stub = <sinon.stub>endCondition.check;
+        const stub = <sinon.SinonStub>endCondition.check;
         stub.onCall(0).returns(false);
         stub.onCall(1).returns(false);
         stub.onCall(2).returns(false);
@@ -400,7 +400,7 @@ describe("Simulator", () => {
 
         publisher.publish = sinon.stub();
 
-        const stub = <sinon.stub>endCondition.check;
+        const stub = <sinon.SinonStub>endCondition.check;
         stub.onCall(2).returns(true);
 
         simulator.run();
@@ -438,7 +438,7 @@ describe("Simulator", () => {
 
         simulator.step(3);
 
-        var checkSpy = <sinon.stub>endCondition.check;
+        var checkSpy = <sinon.SinonStub>endCondition.check;
         const state = checkSpy.lastCall.args[0];
 
         expect(state.cycle).to.be.equal(3);
@@ -452,7 +452,7 @@ describe("Simulator", () => {
 
         simulator.step(-5);
 
-        var checkSpy = <sinon.stub>endCondition.check;
+        var checkSpy = <sinon.SinonStub>endCondition.check;
         const state = checkSpy.lastCall.args[0];
 
         expect(state.cycle).to.be.equal(1);
@@ -467,7 +467,7 @@ describe("Simulator", () => {
 
         simulator.initialise(options, []);
 
-        var getNextExecutionStub = <sinon.stub>fetcher.getNextExecution;
+        var getNextExecutionStub = <sinon.SinonStub>fetcher.getNextExecution;
         getNextExecutionStub.returns({
             warriorId: expectedId,
             address: expectedAddress

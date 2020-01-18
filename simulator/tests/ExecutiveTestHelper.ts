@@ -45,7 +45,7 @@ export function buildContext(testConfig: IExecutiveTestConfig): IExecutionContex
 
     const core = TestHelper.buildCore(options.coresize);
 
-    const wrapStub = <sinon.stub>core.wrap;
+    const wrapStub = <sinon.SinonStub>core.wrap;
     wrapStub.callsFake((address: number) => {
         address = address % options.coresize;
         if (address < 0) {

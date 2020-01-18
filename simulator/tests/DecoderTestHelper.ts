@@ -28,12 +28,12 @@ function buildContext(testConfig: IDecoderTestConfig): IExecutionContext {
     let i = 0;
     const instructions = testConfig.core.map(c => TestHelper.parseInstruction(i++, c));
 
-    const get = <sinon.stub>result.core.getAt;
+    const get = <sinon.SinonStub>result.core.getAt;
     get.callsFake(address => {
         return instructions[address];
     });
 
-    const read = <sinon.stub>result.core.readAt;
+    const read = <sinon.SinonStub>result.core.readAt;
     read.callsFake((task, address) => {
         return instructions[address];
     });
