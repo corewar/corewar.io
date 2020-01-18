@@ -1,6 +1,6 @@
 [![wercker status](https://app.wercker.com/status/d6b4d4035c2ccc4e92f9ed40ae3f727d/s/master "wercker status")](https://app.wercker.com/project/byKey/d6b4d4035c2ccc4e92f9ed40ae3f727d)
 
-![Corewar](https://github.com/gareththegeek/corewar/blob/master/logo.png)
+![Corewar](https://github.com/corewar/corewar/blob/master/logo.png)
 
 # Corewar
 
@@ -8,7 +8,7 @@ Typescript / Javascript implementation of the classic game [corewar](https://en.
 
 Currently this project contains a redcode parser and core simulator.
 
-In future we hope to include a corewar IDE with debugger, an interactive core simulation and a number of hills. The UI will be provided from this project https://github.com/gareththegeek/corewar-ui
+In future we hope to include a corewar IDE with debugger, an interactive core simulation and a number of hills. The UI will be provided from this project https://github.com/corewar/corewar-ui
 
 ## Getting Started
 
