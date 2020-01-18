@@ -5,28 +5,14 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "test": "nyc mocha",
+    "test": "jest",
+    "coverage": "jest --coverage",
     "build": "tsc && tscpaths -p tsconfig.json -s ./src -o ./dist",
     "prepublishOnly": "npm run build && npm test"
   },
   "files": [
     "dist/**/*"
   ],
-  "nyc": {
-    "extension": [
-      ".ts"
-    ],
-    "exclude": [
-      "**/*[Tt]ests.ts",
-      "**/Test*.ts",
-      "**/*Helper.ts",
-      "dist"
-    ],
-    "reporter": [
-      "text",
-      "lcov"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/corewar/corewar.git"
@@ -46,16 +32,16 @@
     "@types/chai": "^4.2.7",
     "@types/clone": "^0.1.30",
     "@types/core-js": "^0.9.43",
-    "@types/mocha": "^2.2.44",
+    "@types/jest": "^24.9.0",
     "@types/node": "^8.10.59",
     "@types/sinon": "^7.5.1",
     "@types/sinon-chai": "^3.2.3",
     "chai": "^4.1.2",
-    "mocha": "^7.0.0",
+    "jest": "^24.9.0",
     "npm-cli-login": "^0.1.1",
-    "nyc": "^15.0.0",
     "sinon": "^4.1.2",
     "sinon-chai": "^2.14.0",
+    "ts-jest": "^24.3.0",
     "ts-node": "^8.6.2",
     "tsconfig-paths": "^3.9.0",
     "tscpaths": "0.0.9",

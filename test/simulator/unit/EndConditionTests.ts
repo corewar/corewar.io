@@ -1,5 +1,7 @@
 ﻿import { expect } from "chai";
 import * as sinon from "sinon";
+import * as chai from "chai";
+import * as sinonChai from "sinon-chai";
 
 import { ITask } from "@simulator/interface/ITask";
 import { IWarrior } from "@simulator/interface/IWarrior";
@@ -9,6 +11,7 @@ import { EndCondition } from "@simulator/EndCondition";
 import TestHelper from "@simulator/tests/unit/TestHelper";
 import { MessageType } from "@simulator/interface/IMessage";
 import { IPublisher } from "@simulator/interface/IPublisher";
+chai.use(sinonChai);
 
 describe("EndCondition", () => {
 
