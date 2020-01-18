@@ -6,11 +6,14 @@
     "declaration": true,
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@parser/*": ["./parser/*"],
-      "@simulator/*": ["./simulator/*"],
-      "@matches/*": ["./matches/*"]
+      "@parser/*": ["./src/parser/*"],
+      "@simulator/*": ["./src/simulator/*"],
+      "@matches/*": ["./src/matches/*"],
+      "@parser/tests/*": ["./test/parser/*"],
+      "@simulator/tests/*": ["./test/simulator/*"],
+      "@matches/tests/*": ["./test/matches/*"]
     },
     "forceConsistentCasingInFileNames": true
   },
