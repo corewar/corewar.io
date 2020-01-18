@@ -30,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gareththegeek/corewar.git"
+    "url": "git+https://github.com/corewar/corewar.git"
   },
   "author": "Gareth Williams",
   "contributors": [
@@ -40,9 +40,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gareththegeek/corewar/issues"
+    "url": "https://github.com/corewar/corewar/issues"
   },
-  "homepage": "https://github.com/gareththegeek/corewar#readme",
+  "homepage": "https://github.com/corewar/corewar#readme",
   "devDependencies": {
     "@types/chai": "^4.2.7",
     "@types/clone": "^0.1.30",
