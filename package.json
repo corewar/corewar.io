@@ -3,17 +3,16 @@
   "version": "0.1.2",
   "description": "HTML5 & javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "nyc mocha",
     "build": "tsc",
-    "prepublishOnly": "npm run build"
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test"
   },
   "files": [
     "**/dist/index.js",
     "**/dist/"
-  ],
-  "types": [
-    "**/dist/index.d.ts"
   ],
   "nyc": {
     "extension": [
