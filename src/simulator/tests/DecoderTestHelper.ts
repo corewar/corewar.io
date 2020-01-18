@@ -4,6 +4,10 @@ import TestHelper from "@simulator/tests/TestHelper";
 
 import { IExecutionContext } from "@simulator/interface/IExecutionContext";
 
+export interface InstructionAssertion extends Chai.Assertion {
+    thisInstruction(IInstruction): void
+}
+
 export interface IDecoderTestConfig {
     core: string[],
     ip: number,
