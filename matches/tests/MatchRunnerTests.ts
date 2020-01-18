@@ -34,7 +34,7 @@ describe("MatchRunner", () => {
             step: sinon.stub(),
             getState: sinon.stub()
         };
-        (<sinon.stub>simulator.run).returns({});
+        (<sinon.SinonStub>simulator.run).returns({});
 
         matchRunner = new MatchRunner(simulator, matchResultMapper, publisher);
     });
@@ -56,7 +56,7 @@ describe("MatchRunner", () => {
         };
 
         let actual = null;
-        (<sinon.stub>matchResultMapper.map).callsFake(m => {
+        (<sinon.SinonStub>matchResultMapper.map).callsFake(m => {
 
             actual = m;
             return {
@@ -120,10 +120,10 @@ describe("MatchRunner", () => {
             { outcome: "NONE" }
         ];
 
-        roundResults.forEach((r, i) => (<sinon.stub>simulator.run).onCall(i).returns(r));
+        roundResults.forEach((r, i) => (<sinon.SinonStub>simulator.run).onCall(i).returns(r));
 
         let actual = null;
-        (<sinon.stub>matchResultMapper.map).callsFake(m => {
+        (<sinon.SinonStub>matchResultMapper.map).callsFake(m => {
 
             actual = m;
             return {
@@ -168,7 +168,7 @@ describe("MatchRunner", () => {
             warriors: []
         };
 
-        (<sinon.stub>simulator.run).returns(null);
+        (<sinon.SinonStub>simulator.run).returns(null);
 
         expect(matchRunner.run).to.throw();
     });
@@ -186,7 +186,7 @@ describe("MatchRunner", () => {
             warriors: [{ source: TestHelper.buildParseResult([]) }]
         };
 
-        (<sinon.stub>simulator.run).returns({ 
+        (<sinon.SinonStub>simulator.run).returns({ 
             outcome: "WIN", 
             winnerData: { warriorMatchId: 0 }
         });
@@ -195,7 +195,7 @@ describe("MatchRunner", () => {
             rounds: 1,
             warriors: []
         };
-        (<sinon.stub>matchResultMapper.map).returns(expected);
+        (<sinon.SinonStub>matchResultMapper.map).returns(expected);
 
         const actual = matchRunner.run(match);
 

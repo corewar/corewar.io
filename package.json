@@ -7,8 +7,7 @@
   "scripts": {
     "test": "nyc mocha",
     "build": "tsc",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm test"
+    "prepublishOnly": "npm run build && npm test"
   },
   "files": [
     "**/dist/index.js",
@@ -45,8 +44,13 @@
   },
   "homepage": "https://github.com/gareththegeek/corewar#readme",
   "devDependencies": {
+    "@types/chai": "^4.2.7",
+    "@types/clone": "^0.1.30",
+    "@types/core-js": "^0.9.43",
     "@types/mocha": "^2.2.44",
     "@types/node": "^8.10.59",
+    "@types/sinon": "^7.5.1",
+    "@types/sinon-chai": "^3.2.3",
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
     "nyc": "^15.0.0",
@@ -58,8 +62,6 @@
     "typescript": "^3.7.5"
   },
   "dependencies": {
-    "@types/clone": "^0.1.30",
-    "@types/core-js": "^0.9.43",
     "clone": "^2.1.1",
     "core-js": "^2.5.1",
     "hoek": "^5.0.4",

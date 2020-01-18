@@ -400,7 +400,7 @@ describe("WarriorLoader", () => {
         var loader = new WarriorLoader(core, this.publisher);
 
         var actual = null;
-        (<sinon.stub>core.setAt).callsFake((task, address, instruction) => {
+        (<sinon.SinonStub>core.setAt).callsFake((task, address, instruction) => {
 
             actual = task.warrior.id;
         });
