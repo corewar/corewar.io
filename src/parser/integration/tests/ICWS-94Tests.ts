@@ -8,7 +8,7 @@ describe("ICWS'94-draft",() => {
     it("alien22, B-PanamaX, Bunker t3, dbldwarf",() => {
 
         return TestHelper.testWarriorList(
-            "parser/integration/warriors/ICWS-94/", [
+            "src/parser/integration/warriors/ICWS-94/", [
             //TODO "aeka", this requires nested for and stringification
                 "alien22",
                 "b-panamax",
@@ -20,7 +20,7 @@ describe("ICWS'94-draft",() => {
     it("DynamicImp-gate, Gate-Daemon, HomemadeIceCream, Pinchers",() => {
 
         return TestHelper.testWarriorList(
-            "parser/integration/warriors/ICWS-94/", [
+            "src/parser/integration/warriors/ICWS-94/", [
                 "dynamicimp-gate",
                 "gate-daemon",
                 "homemadeicecream",
@@ -32,7 +32,7 @@ describe("ICWS'94-draft",() => {
     it("Rave, reverse dwarf", () => {
 
         return TestHelper.testWarriorList(
-            "parser/integration/warriors/ICWS-94/", [
+            "src/parser/integration/warriors/ICWS-94/", [
                 "rave",
                 "reversedwarf",
             ], Standard.ICWS94draft);
@@ -41,7 +41,7 @@ describe("ICWS'94-draft",() => {
     it("Insight v1.0, Quick-Scan94Prototype, RotLD TNG, Ryooki 1.4, Scimitar",() => {
 
         return TestHelper.testWarriorList(
-            "parser/integration/warriors/ICWS-94/", [
+            "src/parser/integration/warriors/ICWS-94/", [
                 "insightv1.0",
                 "quick-scan94prototype",
                 "rotldtng",
@@ -53,7 +53,7 @@ describe("ICWS'94-draft",() => {
     it("Silk Warrior 1.3, Single Vector, Suicial Alien 22, Sweeper v5, Vector",() => {
 
         return TestHelper.testWarriorList(
-            "parser/integration/warriors/ICWS-94/", [
+            "src/parser/integration/warriors/ICWS-94/", [
                 "silkwarrior1.3",
                 "singlevector",
                 "suicidalalien22",

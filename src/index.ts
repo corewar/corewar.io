@@ -1,57 +1,57 @@
 ﻿import "module-alias/register"
-import { IParser } from "./parser/interface/IParser";
-import { IToken } from "./parser/interface/IToken";
-import { IParseResult } from "./parser/interface/IParseResult";
-import { ISerialiser } from "./parser/interface/ISerialiser";
+import { IParser } from "@parser/interface/IParser";
+import { IToken } from "@parser/interface/IToken";
+import { IParseResult } from "@parser/interface/IParseResult";
+import { ISerialiser } from "@parser/interface/ISerialiser";
 
-import { ISimulator } from "./simulator/interface/ISimulator";
-import { ICore } from "./simulator/interface/ICore";
-import { IExecutive } from "./simulator/interface/IExecutive";
-import { IPublisher } from "./simulator/interface/IPublisher";
-import { IOptions } from "./simulator/interface/IOptions";
-import { IPublishProvider } from "./simulator/interface/IPublishProvider";
-import { ICoreLocation } from "./simulator/interface/ICoreLocation";
+import { ISimulator } from "@simulator/interface/ISimulator";
+import { ICore } from "@simulator/interface/ICore";
+import { IExecutive } from "@simulator/interface/IExecutive";
+import { IPublisher } from "@simulator/interface/IPublisher";
+import { IOptions } from "@simulator/interface/IOptions";
+import { IPublishProvider } from "@simulator/interface/IPublishProvider";
+import { ICoreLocation } from "@simulator/interface/ICoreLocation";
 
-import { IMatchRunner } from "./matches/interface/IMatchRunner";
-import { IMatch } from "./matches/interface/IMatch";
+import { IMatchRunner } from "@matches/interface/IMatchRunner";
+import { IMatch } from "@matches/interface/IMatch";
 
-import { Parser } from "./parser/Parser";
-import { Scanner } from "./parser/Scanner";
-import { ForPass } from "./parser/ForPass";
-import { PreprocessCollector } from "./parser/PreprocessCollector";
-import { PreprocessAnalyser } from "./parser/PreprocessAnalyser";
-import { PreprocessEmitter } from "./parser/PreprocessEmitter";
-import { LabelCollector } from "./parser/LabelCollector";
-import { LabelEmitter } from "./parser/LabelEmitter";
-import { MathsProcessor } from "./parser/MathsProcessor";
-import { Expression } from "./parser/Expression";
-import { Filter } from "./parser/Filter";
-import { MetaDataCollector } from "./parser/MetaDataCollector";
-import { DefaultPass } from "./parser/DefaultPass";
-import { OrgPass } from "./parser/OrgPass";
-import { SyntaxCheck } from "./parser/SyntaxCheck";
-import { LoadFileSerialiser } from "./parser/LoadFileSerialiser";
-import { IllegalCommandCheck } from "./parser/IllegalCommandCheck";
-import { MetaDataEmitter } from "./parser/MetaDataEmitter";
+import { Parser } from "@parser/Parser";
+import { Scanner } from "@parser/Scanner";
+import { ForPass } from "@parser/ForPass";
+import { PreprocessCollector } from "@parser/PreprocessCollector";
+import { PreprocessAnalyser } from "@parser/PreprocessAnalyser";
+import { PreprocessEmitter } from "@parser/PreprocessEmitter";
+import { LabelCollector } from "@parser/LabelCollector";
+import { LabelEmitter } from "@parser/LabelEmitter";
+import { MathsProcessor } from "@parser/MathsProcessor";
+import { Expression } from "@parser/Expression";
+import { Filter } from "@parser/Filter";
+import { MetaDataCollector } from "@parser/MetaDataCollector";
+import { DefaultPass } from "@parser/DefaultPass";
+import { OrgPass } from "@parser/OrgPass";
+import { SyntaxCheck } from "@parser/SyntaxCheck";
+import { LoadFileSerialiser } from "@parser/LoadFileSerialiser";
+import { IllegalCommandCheck } from "@parser/IllegalCommandCheck";
+import { MetaDataEmitter } from "@parser/MetaDataEmitter";
 
-import { Random } from "./simulator/Random";
-import { Executive } from "./simulator/Executive";
-import { Decoder } from "./simulator/Decoder";
-import { Core } from "./simulator/Core";
-import { Loader } from "./simulator/Loader";
-import { WarriorLoader } from "./simulator/WarriorLoader";
-import { Fetcher } from "./simulator/Fetcher";
-import { Simulator } from "./simulator/Simulator";
-import { EndCondition } from "./simulator/EndCondition";
-import { OptionValidator } from "./simulator/OptionValidator";
-import { Publisher } from "./simulator/Publisher";
-import { LatestOnlyStrategy } from "./simulator/LatestOnlyStrategy";
-import { PerKeyStrategy } from "./simulator/PerKeyStrategy";
+import { Random } from "@simulator/Random";
+import { Executive } from "@simulator/Executive";
+import { Decoder } from "@simulator/Decoder";
+import { Core } from "@simulator/Core";
+import { Loader } from "@simulator/Loader";
+import { WarriorLoader } from "@simulator/WarriorLoader";
+import { Fetcher } from "@simulator/Fetcher";
+import { Simulator } from "@simulator/Simulator";
+import { EndCondition } from "@simulator/EndCondition";
+import { OptionValidator } from "@simulator/OptionValidator";
+import { Publisher } from "@simulator/Publisher";
+import { LatestOnlyStrategy } from "@simulator/LatestOnlyStrategy";
+import { PerKeyStrategy } from "@simulator/PerKeyStrategy";
 
-import { MatchRunner } from "./matches/MatchRunner";
+import { MatchRunner } from "@matches/MatchRunner";
 
 import * as clone from "clone";
-import { MatchResultMapper } from "./matches/MatchResultMapper";
+import { MatchResultMapper } from "@matches/MatchResultMapper";
 
 class Api {
 
