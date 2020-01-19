@@ -1,5 +1,5 @@
 import * as chai from "chai";
-var expect = chai.expect;
+const expect = chai.expect;
 
 import { IMatchResultMapper } from "@matches/interface/IMatchResultMapper";
 import { MatchResultMapper } from "@matches/MatchResultMapper";

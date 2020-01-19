@@ -4,7 +4,8 @@
       "plugin:@typescript-eslint/recommended"
     ],
     "env": {
-      "browser": true
+      "browser": true,
+      "jest/globals": true
     },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -12,7 +13,8 @@
       "sourceType": "module"
     },
     "plugins": [
-      "@typescript-eslint/eslint-plugin"
+      "@typescript-eslint/eslint-plugin",
+      "jest"
     ],
     "rules": {
       "@typescript-eslint/interface-name-prefix": [
