@@ -4,8 +4,8 @@ import { ModeType } from "@simulator/interface/IOperand";
 
 class Defaults implements IOptions {
 
-    public coresize: number = 8000;
-    public maximumCycles: number = 80000;
+    public coresize = 8000;
+    public maximumCycles = 80000;
     public initialInstruction: IInstruction = {
         address: 0,
         opcode: OpcodeType.DAT,
@@ -19,9 +19,9 @@ class Defaults implements IOptions {
             address: 0
         }
     };
-    public instructionLimit: number = 100;
-    public maxTasks: number = 8000;
-    public minSeparation: number = 100;
+    public instructionLimit = 100;
+    public maxTasks = 8000;
+    public minSeparation = 100;
 }
 
 export default new Defaults();

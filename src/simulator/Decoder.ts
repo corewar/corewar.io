@@ -31,8 +31,8 @@ export class Decoder implements IDecoder {
 
     public decode(context: IExecutionContext): IExecutionContext {
 
-        var aAccessor = this.modeTable[context.instruction.aOperand.mode];
-        var bAccessor = this.modeTable[context.instruction.bOperand.mode];
+        const aAccessor = this.modeTable[context.instruction.aOperand.mode];
+        const bAccessor = this.modeTable[context.instruction.bOperand.mode];
 
         this.deferredSets = [];
 
@@ -118,21 +118,21 @@ export class Decoder implements IDecoder {
         }
     }
 
-    private immediate(task: ITask, ip: number, operand: IOperand, core: ICore) {
+    private immediate(_: ITask, ip: number, __: IOperand, core: ICore): IInstruction {
 
         const address = ip;
 
         return clone(core.getAt(address));
     }
 
-    private direct(task: ITask, ip: number, operand: IOperand, core: ICore) {
+    private direct(_: ITask, ip: number, operand: IOperand, core: ICore): IInstruction {
 
         const address = ip + operand.address;
 
         return clone(core.getAt(address));
     }
 
-    private aIndirect(task: ITask, ip: number, operand: IOperand, core: ICore) {
+    private aIndirect(task: ITask, ip: number, operand: IOperand, core: ICore): IInstruction {
 
         const ipa = ip + operand.address;
 
@@ -141,7 +141,7 @@ export class Decoder implements IDecoder {
         return clone(core.getAt(address));
     }
 
-    private bIndirect(task: ITask, ip: number, operand: IOperand, core: ICore) {
+    private bIndirect(task: ITask, ip: number, operand: IOperand, core: ICore): IInstruction {
 
         const ipa = ip + operand.address;
 
@@ -150,7 +150,7 @@ export class Decoder implements IDecoder {
         return clone(core.getAt(address));
     }
 
-    private aPreDecrement(task: ITask, ip: number, operand: IOperand, core: ICore) {
+    private aPreDecrement(task: ITask, ip: number, operand: IOperand, core: ICore): IInstruction {
 
         const ipa = ip + operand.address;
 
@@ -170,7 +170,7 @@ export class Decoder implements IDecoder {
         return clone(core.getAt(address));
     }
 
-    private bPreDecrement(task: ITask, ip: number, operand: IOperand, core: ICore) {
+    private bPreDecrement(task: ITask, ip: number, operand: IOperand, core: ICore): IInstruction {
 
         const ipa = ip + operand.address;
 
@@ -190,7 +190,7 @@ export class Decoder implements IDecoder {
         return clone(core.getAt(address));
     }
 
-    private aPostIncrement(task: ITask, ip: number, operand: IOperand, core: ICore) {
+    private aPostIncrement(task: ITask, ip: number, operand: IOperand, core: ICore): IInstruction {
 
         const ipa = ip + operand.address;
 
@@ -212,7 +212,7 @@ export class Decoder implements IDecoder {
         return result;
     }
 
-    private bPostIncrement(task: ITask, ip: number, operand: IOperand, core: ICore) {
+    private bPostIncrement(task: ITask, ip: number, operand: IOperand, core: ICore): IInstruction {
 
         const ipa = ip + operand.address;
 

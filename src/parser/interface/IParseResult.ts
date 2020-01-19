@@ -7,5 +7,6 @@ export interface IParseResult {
     metaData: IMetaData;
     tokens: IToken[];
     messages: IMessage[];
+    /* eslint-disable-next-line */
     data?: any;
 } 

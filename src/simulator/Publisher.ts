@@ -53,7 +53,7 @@ export class Publisher implements IPublisher {
         this.doPublish(this.republishStrategies);
     }
 
-    private doPublish(strategies: IPublishStrategy[]) {
+    private doPublish(strategies: IPublishStrategy[]): void {
 
         if (!this.publishProvider) {
             return;
@@ -62,7 +62,7 @@ export class Publisher implements IPublisher {
         strategies
             .forEach(s => {
                 
-                var message = s.dequeue();
+                const message = s.dequeue();
 
                 if (!message) {
                     return;

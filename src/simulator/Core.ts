@@ -21,7 +21,7 @@ export class Core implements ICore {
         this.publisher = publisher;
     }
 
-    public initialise(options: IOptions) {
+    public initialise(options: IOptions): void {
 
         this.options = options;
         this.cs = this.options.coresize;
@@ -41,7 +41,7 @@ export class Core implements ICore {
         return address;
     }
 
-    private triggerEvent(task: ITask, address: number, accessType: CoreAccessType) {
+    private triggerEvent(task: ITask, address: number, accessType: CoreAccessType): void {
 
         const accessEventArgs = {
             warriorId: task ? task.warrior.id : null,
@@ -96,7 +96,7 @@ export class Core implements ICore {
         return this.locations[address];
     }
 
-    public setAt(task: ITask, address: number, instruction: IInstruction) {
+    public setAt(task: ITask, address: number, instruction: IInstruction): void {
 
         address = this.wrap(address);
 
@@ -105,10 +105,10 @@ export class Core implements ICore {
         this.locations[address].instruction = instruction;
     }
 
-    private allocateMemory() {
+    private allocateMemory(): void {
 
         this.locations = [];
-        for (var i = 0; i < this.cs; i++) {
+        for (let i = 0; i < this.cs; i++) {
             this.locations.push({
                 instruction: this.buildDefaultInstruction(i),
                 access: {
@@ -121,7 +121,7 @@ export class Core implements ICore {
 
     private buildDefaultInstruction(index: number): IInstruction {
 
-        var instruction = clone(this.options.initialInstruction);
+        const instruction = clone(this.options.initialInstruction);
         instruction.address = index;
 
         return instruction;

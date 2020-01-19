@@ -1,4 +1,4 @@
-﻿import { IToken, TokenCategory } from "@parser/interface/IToken";
+﻿import { TokenCategory } from "@parser/interface/IToken";
 
 import { PassBase } from "@parser/PassBase";
 

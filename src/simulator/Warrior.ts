@@ -14,6 +14,7 @@ export class Warrior implements IWarrior {
 
     public startAddress: number;
 
+    /* eslint-disable-next-line */
     public data: any;
 
     constructor() {

@@ -1,4 +1,4 @@
 export interface IPublishProvider {
 
-    publishSync(type: String, payload: any);
+    publishSync(type: string, payload: any);
 }
