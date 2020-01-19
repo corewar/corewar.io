@@ -1,9 +1,10 @@
 ﻿import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
-var expect = chai.expect;
+const expect = chai.expect;
 chai.use(sinonChai);
 
+import { IWarrior } from "@simulator/interface/IWarrior";
 import { ICore } from "@simulator/interface/ICore";
 import { IRandom } from "@simulator/interface/IRandom";
 import { IWarriorLoader } from "@simulator/interface/IWarriorLoader";
@@ -15,12 +16,12 @@ import TestHelper from "@simulator/tests/unit/TestHelper";
 
 describe("Loader",() => {
 
-    var random: IRandom;
-    var randomIndex: number;
-    var randoms: number[];
+    let random: IRandom;
+    let randomIndex: number;
+    let randoms: number[];
 
-    var warriorLoader: IWarriorLoader;
-    var core: ICore;
+    let warriorLoader: IWarriorLoader;
+    let core: ICore;
 
     beforeEach(() => {
 
@@ -28,21 +29,21 @@ describe("Loader",() => {
         randoms = [1000, 2000, 3000, 4000, 5000, 6000, 7000];
 
         random = {
-            get: (max: number) => {
+            get: (_: number): number => {
                 return randoms[randomIndex++];
             }
         };
 
         warriorLoader = {
-            load: (address: number, result: IParseResult) => {
-                var warrior = new Warrior();
+            load: (address: number, _: IParseResult): IWarrior => {
+                const warrior = new Warrior();
                 warrior.startAddress = address;
                 return warrior;
             }
         };
 
         core = {
-            getSize: () => { return 0; },
+            getSize: (): number => { return 0; },
             executeAt: sinon.stub(),
             readAt: sinon.stub(),
             getAt: sinon.stub(),
@@ -55,20 +56,20 @@ describe("Loader",() => {
 
     it("Loads each warrior specified into core",() => {
 
-        var warriors = [
+        const warriors = [
             TestHelper.buildParseResult([]),
             TestHelper.buildParseResult([]),
             TestHelper.buildParseResult([])
         ];
 
-        var loadSpy = sinon.stub();
+        const loadSpy = sinon.stub();
         loadSpy.returns(new Warrior());
 
         warriorLoader = {
             load: loadSpy
         };
 
-        var loader = new Loader(random, core, warriorLoader);
+        const loader = new Loader(random, core, warriorLoader);
 
         loader.load(warriors, Defaults);
 
@@ -79,25 +80,25 @@ describe("Loader",() => {
 
     it("Returns the warriors which have been loaded into core",() => {
 
-        var warriorsIn = [
+        const warriorsIn = [
             TestHelper.buildParseResult([]),
             TestHelper.buildParseResult([]),
             TestHelper.buildParseResult([])
         ];
 
-        var warriorsOut = [
+        const warriorsOut = [
             new Warrior(),
             new Warrior(),
             new Warrior()
         ];
 
-        warriorLoader.load = (address: number, result: IParseResult) => {
+        warriorLoader.load = (_: number, result: IParseResult): IWarrior => {
             return warriorsOut[warriorsIn.indexOf(result)];
         };
 
-        var loader = new Loader(random, core, warriorLoader);
+        const loader = new Loader(random, core, warriorLoader);
 
-        var actual = loader.load(warriorsIn, Defaults);
+        const actual = loader.load(warriorsIn, Defaults);
 
         expect(actual[0]).to.be.equal(warriorsOut[0]);
         expect(actual[1]).to.be.equal(warriorsOut[1]);
@@ -106,7 +107,7 @@ describe("Loader",() => {
 
     function wrapTo(max: number): (address: number) => number {
 
-        return (address: number) => {
+        return (address: number): number => {
             address = address % max;
             address = address >= 0 ? address : address + max;
 
@@ -118,7 +119,7 @@ describe("Loader",() => {
 
         randoms = [10, 10, 10, 20];
 
-        var options = Object.assign({},
+        const options = Object.assign({},
             Defaults,
             {
                 coresize: 30,
@@ -126,16 +127,16 @@ describe("Loader",() => {
                 minSeparation: 1
             });
 
-        var warriors = [
+        const warriors = [
             TestHelper.buildParseResult([]),
             TestHelper.buildParseResult([])
         ];
 
         core.wrap = wrapTo(30);
 
-        var loader = new Loader(random, core, warriorLoader);
+        const loader = new Loader(random, core, warriorLoader);
 
-        var actual = loader.load(warriors, options);
+        const actual = loader.load(warriors, options);
 
         expect(actual[0].startAddress).to.be.equal(10);
         expect(actual[1].startAddress).to.be.equal(20);
@@ -145,7 +146,7 @@ describe("Loader",() => {
 
         randoms = [10, 8, 12, 15, 6, 5];
 
-        var options = Object.assign({},
+        const options = Object.assign({},
             Defaults,
             {
                 coresize: 30,
@@ -153,7 +154,7 @@ describe("Loader",() => {
                 minSeparation: 1
             });
 
-        var warriors = [
+        const warriors = [
             TestHelper.buildParseResult([]),
             TestHelper.buildParseResult([]),
             TestHelper.buildParseResult([])
@@ -161,9 +162,9 @@ describe("Loader",() => {
 
         core.wrap = wrapTo(30);
 
-        var loader = new Loader(random, core, warriorLoader);
+        const loader = new Loader(random, core, warriorLoader);
 
-        var actual = loader.load(warriors, options);
+        const actual = loader.load(warriors, options);
 
         expect(actual[0].startAddress).to.be.equal(10);
         expect(actual[1].startAddress).to.be.equal(15);
@@ -174,7 +175,7 @@ describe("Loader",() => {
 
         randoms = [10, 12, 18, 19, 4, 1];
 
-        var options = Object.assign({},
+        const options = Object.assign({},
             Defaults, 
             {
                 coresize: 30,
@@ -182,7 +183,7 @@ describe("Loader",() => {
                 minSeparation: 5
             });
 
-        var warriors = [
+        const warriors = [
             TestHelper.buildParseResult([]),
             TestHelper.buildParseResult([]),
             TestHelper.buildParseResult([])
@@ -190,9 +191,9 @@ describe("Loader",() => {
 
         core.wrap = wrapTo(30);
 
-        var loader = new Loader(random, core, warriorLoader);
+        const loader = new Loader(random, core, warriorLoader);
 
-        var actual = loader.load(warriors, options);
+        const actual = loader.load(warriors, options);
 
         expect(actual[0].startAddress).to.be.equal(10);
         expect(actual[1].startAddress).to.be.equal(19);
@@ -203,7 +204,7 @@ describe("Loader",() => {
 
         randoms = [28, 20, 19, 6, 7];
 
-        var options = Object.assign({},
+        const options = Object.assign({},
             Defaults,
             {
                 coresize: 30,
@@ -211,7 +212,7 @@ describe("Loader",() => {
                 minSeparation: 5
             });
 
-        var warriors = [
+        const warriors = [
             TestHelper.buildParseResult([]),
             TestHelper.buildParseResult([]),
             TestHelper.buildParseResult([])
@@ -219,9 +220,9 @@ describe("Loader",() => {
 
         core.wrap = wrapTo(30);
 
-        var loader = new Loader(random, core, warriorLoader);
+        const loader = new Loader(random, core, warriorLoader);
 
-        var actual = loader.load(warriors, options);
+        const actual = loader.load(warriors, options);
 
         expect(actual[0].startAddress).to.be.equal(28);
         expect(actual[1].startAddress).to.be.equal(19);
@@ -232,7 +233,7 @@ describe("Loader",() => {
 
         randoms = [19, 27, 28, 6, 7];
 
-        var options = Object.assign({},
+        const options = Object.assign({},
             Defaults,
             {
                 coresize: 30,
@@ -240,7 +241,7 @@ describe("Loader",() => {
                 minSeparation: 5
             });
 
-        var warriors = [
+        const warriors = [
             TestHelper.buildParseResult([]),
             TestHelper.buildParseResult([]),
             TestHelper.buildParseResult([])
@@ -248,9 +249,9 @@ describe("Loader",() => {
 
         core.wrap = wrapTo(30);
 
-        var loader = new Loader(random, core, warriorLoader);
+        const loader = new Loader(random, core, warriorLoader);
 
-        var actual = loader.load(warriors, options);
+        const actual = loader.load(warriors, options);
 
         expect(actual[0].startAddress).to.be.equal(19);
         expect(actual[1].startAddress).to.be.equal(28);
@@ -259,20 +260,20 @@ describe("Loader",() => {
 
     it("Assigns a unique id to each warrior", () => {
 
-        var warriors = [
+        const warriors = [
             TestHelper.buildParseResult([]),
             TestHelper.buildParseResult([]),
             TestHelper.buildParseResult([])
         ];
 
-        var loadSpy = sinon.stub();
+        const loadSpy = sinon.stub();
         loadSpy.returns(new Warrior());
 
         warriorLoader = {
             load: loadSpy
         };
 
-        var loader = new Loader(random, core, warriorLoader);
+        const loader = new Loader(random, core, warriorLoader);
 
         loader.load(warriors, Defaults);
 

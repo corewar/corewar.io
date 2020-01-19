@@ -1,6 +1,6 @@
 import * as chai from "chai";
 import * as sinonChai from "sinon-chai";
-var expect = chai.expect;
+const expect = chai.expect;
 chai.use(sinonChai);
 
 import Defaults from "@simulator/Defaults";
@@ -10,8 +10,8 @@ import * as clone from "clone";
 
 describe("OptionValidator", () => {
 
-    var optionValidator;
-    var options;
+    let optionValidator;
+    let options;
 
     beforeEach(() => {
 
@@ -19,7 +19,7 @@ describe("OptionValidator", () => {
         options = clone(Defaults);
     });
 
-    const validateAndExpect = (options: IOptions, warriorCount: number, expectedError: string) => {
+    const validateAndExpect = (options: IOptions, warriorCount: number, expectedError: string): void => {
 
         let actual = null;
 

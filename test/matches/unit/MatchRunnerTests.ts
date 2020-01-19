@@ -1,7 +1,7 @@
 import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
-var expect = chai.expect;
+const expect = chai.expect;
 chai.use(sinonChai);
 
 import { IMatch } from "@matches/interface/IMatch";
@@ -34,7 +34,7 @@ describe("MatchRunner", () => {
             step: sinon.stub(),
             getState: sinon.stub()
         };
-        (<sinon.SinonStub>simulator.run).returns({});
+        (simulator.run as sinon.SinonStub).returns({});
 
         matchRunner = new MatchRunner(simulator, matchResultMapper, publisher);
     });
@@ -56,7 +56,7 @@ describe("MatchRunner", () => {
         };
 
         let actual = null;
-        (<sinon.SinonStub>matchResultMapper.map).callsFake(m => {
+        (matchResultMapper.map as sinon.SinonStub).callsFake(m => {
 
             actual = m;
             return {
@@ -120,10 +120,10 @@ describe("MatchRunner", () => {
             { outcome: "NONE" }
         ];
 
-        roundResults.forEach((r, i) => (<sinon.SinonStub>simulator.run).onCall(i).returns(r));
+        roundResults.forEach((r, i) => (simulator.run as sinon.SinonStub).onCall(i).returns(r));
 
         let actual = null;
-        (<sinon.SinonStub>matchResultMapper.map).callsFake(m => {
+        (matchResultMapper.map as sinon.SinonStub).callsFake(m => {
 
             actual = m;
             return {
@@ -160,15 +160,7 @@ describe("MatchRunner", () => {
 
     it("throws and error is simulator does not return a result", () => {
 
-        const match: IMatch = {
-            rules: {
-                rounds: 1,
-                options: {}
-            },
-            warriors: []
-        };
-
-        (<sinon.SinonStub>simulator.run).returns(null);
+        (simulator.run as sinon.SinonStub).returns(null);
 
         expect(matchRunner.run).to.throw();
     });
@@ -186,7 +178,7 @@ describe("MatchRunner", () => {
             warriors: [{ source: TestHelper.buildParseResult([]) }]
         };
 
-        (<sinon.SinonStub>simulator.run).returns({ 
+        (simulator.run as sinon.SinonStub).returns({ 
             outcome: "WIN", 
             winnerData: { warriorMatchId: 0 }
         });
@@ -195,9 +187,9 @@ describe("MatchRunner", () => {
             rounds: 1,
             warriors: []
         };
-        (<sinon.SinonStub>matchResultMapper.map).returns(expected);
+        (matchResultMapper.map as sinon.SinonStub).returns(expected);
 
-        const actual = matchRunner.run(match);
+        matchRunner.run(match);
 
         expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.MatchEnd,

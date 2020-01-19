@@ -12,9 +12,9 @@ describe("PreprocessorAnalyser",() => {
 
     it("Does not modify the token stream",() => {
 
-        var context = new Context();
+        const context = new Context();
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Comma,
                 position: { line: 1, char: 1 },
@@ -60,20 +60,20 @@ describe("PreprocessorAnalyser",() => {
 
         context.tokens = tokens.slice();
 
-        var pass = new PreprocessAnalyser();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new PreprocessAnalyser();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(10);
         expect(actual.messages.length).to.be.equal(0);
 
-        for (var i = 0; i < tokens.length; i++) {
+        for (let i = 0; i < tokens.length; i++) {
             expect(tokens[i]).to.deep.equal(actual.tokens[i]);
         }
     });
 
     it("Resolves references between EQU statements",() => {
 
-        var context = new Context();
+        const context = new Context();
         context.equs["label1"] = [
             {
                 category: TokenCategory.Opcode,
@@ -93,11 +93,11 @@ describe("PreprocessorAnalyser",() => {
             }
         ];
 
-        var pass = new PreprocessAnalyser();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new PreprocessAnalyser();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
-        var label1 = actual.equs["label1"];
-        var label2 = actual.equs["label2"];
+        const label1 = actual.equs["label1"];
+        const label2 = actual.equs["label2"];
 
         expect(label1.length).to.be.equal(2);
         expect(label1[0].lexeme).to.be.equal("MOV");
@@ -109,7 +109,7 @@ describe("PreprocessorAnalyser",() => {
 
     it("Raises an error if a circular reference is detected",() => {
 
-        var context = new Context();
+        const context = new Context();
         context.equs["label1"] = [
             {
                 category: TokenCategory.Label,
@@ -132,8 +132,8 @@ describe("PreprocessorAnalyser",() => {
             }
         ];
 
-        var pass = new PreprocessAnalyser();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new PreprocessAnalyser();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(3);
 
@@ -149,7 +149,7 @@ describe("PreprocessorAnalyser",() => {
 
     it("Ignores undeclared labels",() => {
 
-        var context = new Context();
+        const context = new Context();
         context.equs["label1"] = [
             {
                 category: TokenCategory.Label,
@@ -158,15 +158,15 @@ describe("PreprocessorAnalyser",() => {
             }
         ];
 
-        var pass = new PreprocessAnalyser();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new PreprocessAnalyser();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
     });
 
     it("Does not identify a circular references when an equ refers to another via two paths",() => {
 
-        var context = new Context();
+        const context = new Context();
 
         context.equs["a"] = [
             {
@@ -200,8 +200,8 @@ describe("PreprocessorAnalyser",() => {
             }
         ];
 
-        var pass = new PreprocessAnalyser();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new PreprocessAnalyser();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
     });

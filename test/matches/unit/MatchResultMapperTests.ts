@@ -1,6 +1,7 @@
 import * as chai from "chai";
 const expect = chai.expect;
 
+import { IMatch } from "@matches/interface/IMatch";
 import { IMatchResultMapper } from "@matches/interface/IMatchResultMapper";
 import { MatchResultMapper } from "@matches/MatchResultMapper";
 import TestHelper from "@simulator/tests/unit/TestHelper";
@@ -14,7 +15,7 @@ describe("MatchResultMapper", () => {
         matchResultMapper = new MatchResultMapper();
     });
 
-    const buildMatch = (rounds) => {
+    const buildMatch = (rounds): IMatch => {
 
         return {
             rules: {
@@ -100,6 +101,6 @@ describe("MatchResultMapper", () => {
         const match = buildMatch(1);
         match.warriors = match.warriors.splice(1, 1);
 
-        const actual = matchResultMapper.map(match);
+        expect(matchResultMapper.map(match)).not.to.throw;
     });
 });

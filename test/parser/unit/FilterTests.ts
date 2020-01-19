@@ -12,9 +12,9 @@ describe("Filter", () => {
 
     it("Does not modify tokens if no empty lines, comments or END found", () => {
 
-        var context = new Context();
+        const context = new Context();
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Comma,
                 position: { line: 1, char: 1 },
@@ -64,35 +64,35 @@ describe("Filter", () => {
 
         context.tokens = tokens.slice();
 
-        var pass = new Filter();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new Filter();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(11);
         expect(actual.messages.length).to.be.equal(0);
 
-        for (var i = 0; i < tokens.length; i++) {
+        for (let i = 0; i < tokens.length; i++) {
             expect(tokens[i]).to.deep.equal(actual.tokens[i]);
         }
     });
 
     it("Removes empty lines from the output", () => {
 
-        var line1 = TestHelper.instruction(1, "", "MOV", "", "", "1", ",", "", "2", "");
-        var line2 = TestHelper.emptyLine(2);
-        var line3 = TestHelper.instruction(3, "", "ADD", ".BA", "#", "7", "", "", "", "");
+        const line1 = TestHelper.instruction(1, "", "MOV", "", "", "1", ",", "", "2", "");
+        const line2 = TestHelper.emptyLine(2);
+        const line3 = TestHelper.instruction(3, "", "ADD", ".BA", "#", "7", "", "", "", "");
 
-        var expected = line1.concat(line3);
+        const expected = line1.concat(line3);
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = line1.concat(line2).concat(line3);
 
-        var pass = new Filter();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new Filter();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(expected.length);
         expect(actual.messages.length).to.be.equal(0);
 
-        for (var i = 0; i < expected.length; i++) {
+        for (let i = 0; i < expected.length; i++) {
 
             expect(actual.tokens[i]).to.deep.equal(expected[i]);
         }
@@ -100,23 +100,23 @@ describe("Filter", () => {
 
     it("Removes comments from the output", () => {
 
-        var line1 = TestHelper.instruction(1, "", "MOV", "", "", "1", ",", "", "2", "; this is a comment");
-        var line2 = TestHelper.comment(2, "; comment on a line by itself");
-        var line3 = TestHelper.instruction(3, "", "ADD", ".BA", "#", "7", "", "", "", "");
+        const line1 = TestHelper.instruction(1, "", "MOV", "", "", "1", ",", "", "2", "; this is a comment");
+        const line2 = TestHelper.comment(2, "; comment on a line by itself");
+        const line3 = TestHelper.instruction(3, "", "ADD", ".BA", "#", "7", "", "", "", "");
 
-        var expected = line1.concat(line3);
+        const expected = line1.concat(line3);
         expected.splice(4, 1); // Expect everything but the comments
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = line1.concat(line2).concat(line3);
 
-        var pass = new Filter();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new Filter();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(expected.length);
         expect(actual.messages.length).to.be.equal(0);
 
-        for (var i = 0; i < expected.length; i++) {
+        for (let i = 0; i < expected.length; i++) {
 
             expect(actual.tokens[i]).to.deep.equal(expected[i]);
         }
@@ -124,22 +124,22 @@ describe("Filter", () => {
 
     it("Removes everything after the END statement from the output", () => {
 
-        var line1 = TestHelper.instruction(1, "", "MOV", "", "", "1", ",", "", "2", "");
-        var line2 = TestHelper.endStatement(2, "alabel");
-        var line3 = TestHelper.instruction(3, "", "ADD", ".BA", "#", "7", "", "", "", "");
+        const line1 = TestHelper.instruction(1, "", "MOV", "", "", "1", ",", "", "2", "");
+        const line2 = TestHelper.endStatement(2, "alabel");
+        const line3 = TestHelper.instruction(3, "", "ADD", ".BA", "#", "7", "", "", "", "");
 
-        var expected = line1.concat(line2);
+        const expected = line1.concat(line2);
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = line1.concat(line2).concat(line3);
 
-        var pass = new Filter();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new Filter();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(expected.length);
         expect(actual.messages.length).to.be.equal(0);
 
-        for (var i = 0; i < expected.length; i++) {
+        for (let i = 0; i < expected.length; i++) {
 
             expect(actual.tokens[i]).to.deep.equal(expected[i]);
         }

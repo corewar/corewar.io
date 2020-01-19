@@ -8,60 +8,13 @@ import Defaults from "@simulator/Defaults";
 import { IWarrior } from "@simulator/interface/IWarrior";
 
 interface IExecutiveTestConfig {
-    i: string,
-    a: string,
-    b: string,
+    i: string;
+    a: string;
+    b: string;
     taskCount?: number;
     maxTasks?: number;
-    e: any
-}
-
-export function runTest(testConfig: IExecutiveTestConfig[], testMethod: (IExecutionContext, string) => void) {
-
-    testConfig.forEach(c => {
-
-        const context = buildContext(c);
-        testMethod(context, c.e);
-    });
-}
-
-export function buildContext(testConfig: IExecutiveTestConfig): IExecutionContext {
-
-    const options = Object.assign({}, Defaults);
-    options.maxTasks = testConfig.maxTasks || 100;
-    options.coresize = 50;
-
-    const instruction = TestHelper.parseInstruction(0, testConfig.i);
-    const aInstruction = TestHelper.parseInstruction(0, testConfig.a);
-    const bInstruction = TestHelper.parseInstruction(0, testConfig.b);
-    const operands = buildOperands(instruction, aInstruction, bInstruction);
-
-    const core = TestHelper.buildCore(options.coresize);
-
-    const wrapStub = <sinon.SinonStub>core.wrap;
-    wrapStub.callsFake((address: number) => {
-        address = address % options.coresize;
-        if (address < 0) {
-            address += options.coresize;
-        }
-        return address;
-    });
-
-    const warrior = buildWarrior(testConfig);
-    const taskIndex = 1;
-
-    return {
-        core: core,
-        instruction: instruction,
-        instructionPointer: 1,
-        aInstruction: aInstruction,
-        bInstruction: bInstruction,
-        operands: operands,
-        task: warrior.tasks[taskIndex],
-        taskIndex: taskIndex,
-        warrior: warrior,
-        warriorIndex: 1
-    };
+    /* eslint-disable-next-line */
+    e: any;
 }
 
 function buildWarrior(testConfig: IExecutiveTestConfig): IWarrior {
@@ -102,4 +55,52 @@ function buildOperands(
         default:
             throw Error("Unknown modifier type: " + instruction.modifier);
     }
+}
+
+export function buildContext(testConfig: IExecutiveTestConfig): IExecutionContext {
+
+    const options = Object.assign({}, Defaults);
+    options.maxTasks = testConfig.maxTasks || 100;
+    options.coresize = 50;
+
+    const instruction = TestHelper.parseInstruction(0, testConfig.i);
+    const aInstruction = TestHelper.parseInstruction(0, testConfig.a);
+    const bInstruction = TestHelper.parseInstruction(0, testConfig.b);
+    const operands = buildOperands(instruction, aInstruction, bInstruction);
+
+    const core = TestHelper.buildCore(options.coresize);
+
+    const wrapStub = core.wrap as sinon.SinonStub;
+    wrapStub.callsFake((address: number) => {
+        address = address % options.coresize;
+        if (address < 0) {
+            address += options.coresize;
+        }
+        return address;
+    });
+
+    const warrior = buildWarrior(testConfig);
+    const taskIndex = 1;
+
+    return {
+        core: core,
+        instruction: instruction,
+        instructionPointer: 1,
+        aInstruction: aInstruction,
+        bInstruction: bInstruction,
+        operands: operands,
+        task: warrior.tasks[taskIndex],
+        taskIndex: taskIndex,
+        warrior: warrior,
+        warriorIndex: 1
+    };
+}
+
+export function runTest(testConfig: IExecutiveTestConfig[], testMethod: (IExecutionContext, string) => void): void {
+
+    testConfig.forEach(c => {
+
+        const context = buildContext(c);
+        testMethod(context, c.e);
+    });
 }

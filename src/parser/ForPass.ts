@@ -70,7 +70,8 @@ export class ForPass extends PassBase {
     //    });
     // }
 
-    private processFor(label: IToken, pre: IToken): void {
+    // label: IToken, pre: IToken
+    private processFor(_: IToken, __: IToken): void {
 
         // TODO use label (and reinstate warnDuplicateLabel)
         // TODO stringinisation

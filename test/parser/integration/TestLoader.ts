@@ -5,17 +5,17 @@ export class TestLoader {
 
     public getWarriors(path: string, names: string[]) : Promise<ITestWarrior[]> {
 
-        var files: { [filename: string]: string } = {};
+        const files: { [filename: string]: string } = {};
 
-        var filenames = names.map((name) => {
+        const filenames = names.map((name) => {
             return path + name + ".red";
         }).concat(names.map((name) => {
             return path + name + ".ld";
         }));
 
-        var fileCount = filenames.length;
+        let fileCount = filenames.length;
 
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             filenames.forEach((filename) => {
                 fs.readFile(filename, "utf8", (err, fileData) => {
 
@@ -32,9 +32,9 @@ export class TestLoader {
         });
     }
 
-    private mapWarriors(path: string, names: string[], files: { [filename: string]: string }) : ITestWarrior[] {
+    private mapWarriors(path: string, names: string[], files: { [filename: string]: string }): ITestWarrior[] {
 
-        var warriors: ITestWarrior[] = [];
+        const warriors: ITestWarrior[] = [];
 
         names.map((name) => {
             warriors.push({

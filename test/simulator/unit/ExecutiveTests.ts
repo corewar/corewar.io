@@ -1,6 +1,6 @@
 import * as chai from "chai";
 import * as sinonChai from "sinon-chai";
-var expect = chai.expect;
+const expect = chai.expect;
 chai.use(sinonChai);
 
 import TestHelper from "@simulator/tests/unit/TestHelper";
@@ -12,8 +12,6 @@ import { IExecutionContext } from "@simulator/interface/IExecutionContext";
 import { MessageType } from "@simulator/interface/IMessage";
 
 describe("Executive", () => {
-
-    let executive: Executive;
 
     let publisher: IPublisher;
 
@@ -29,6 +27,7 @@ describe("Executive", () => {
         { i: "DAT.I", a: "DAT.I $0, $0", b: "DAT.I $0, $0", taskCount: 2, e: { taskIndex: 0, taskCount: 1 } },
         { i: "DIV.A", a: "DAT.I $0, $0", b: "DAT.I $1, $1", taskCount: 3, e: { taskIndex: 1, taskCount: 2 } },
         { i: "MOD.A", a: "DAT.I $0, $0", b: "DAT.I $1, $1", taskCount: 3, e: { taskIndex: 1, taskCount: 2 } }
+    /* eslint-disable-next-line */
     ], (context: IExecutionContext, expectation: any) => {
         it("removes the current task from the queue when " + TestHelper.instructionToString(context.instruction) + " is executed", () => {
 
@@ -170,6 +169,7 @@ describe("Executive", () => {
         { i: "JMN.I", a: "13: DAT.F $0, $0", b: "DAT.F $1, $1", e: { ip: 13 } },
         { i: "JMN.I", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 0 } },
         { i: "JMN.I", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0 } },
+    /* eslint-disable-next-line */
     ], (context: IExecutionContext, expectation: any) => {
 
         it("correctly executes " + TestHelper.instructionToString(context.instruction), () => {
@@ -198,6 +198,7 @@ describe("Executive", () => {
         { i: "DJN.I", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 13, i: "DAT.F $0, $49" } },
         { i: "DJN.I", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 13, i: "DAT.F $49, $0" } },
         { i: "DJN.I", a: "13: DAT.F $0, $0", b: "DAT.F $1, $1", e: { ip: 0, i: "DAT.F $0, $0" } }
+        /* eslint-disable-next-line */
     ], (context: IExecutionContext, expectation: any) => {
 
         it("correctly executes " + TestHelper.instructionToString(context.instruction), () => {
@@ -288,6 +289,7 @@ describe("Executive", () => {
         { i: "SLT.I", a: "DAT.F $0, $1", b: "DAT.F $1, $2", e: { ip: 1 } },
         { i: "SLT.I", a: "DAT.F $0, $1", b: "DAT.F $0, $2", e: { ip: 0 } },
         { i: "SLT.I", a: "DAT.F $0, $1", b: "DAT.F $1, $1", e: { ip: 0 } }
+        /* eslint-disable-next-line */
     ], (context: IExecutionContext, expectation: any) => {
 
         it("correctly executes " + TestHelper.instructionToString(context.instruction), () => {
@@ -307,6 +309,7 @@ describe("Executive", () => {
         { i: "SPL.X", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 2, e: { taskCount: 3, taskIndex: 1, maxTasks: 10 } },
         { i: "SPL.I", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 2, e: { taskCount: 3, taskIndex: 1, maxTasks: 10 } },
         { i: "SPL.A", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 2, e: { taskCount: 2, taskIndex: 0, maxTasks: 2 } },
+    /* eslint-disable-next-line */
     ], (context: IExecutionContext, expectation: any) => {
         it("correctly executes " + TestHelper.instructionToString(context.instruction), () => {
 
@@ -336,7 +339,7 @@ describe("Executive", () => {
 
     Helper.runTest([
         { i: "NOP.A", a: "DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 3, e: {} }
-    ], (context: IExecutionContext, expectation: any) => {
+    ], (context: IExecutionContext, _: any) => {
         it("NOP instruction does not modify core or warrior tasks", () => {
 
             this.executive.commandTable[OpcodeType.NOP].apply(this.executive, [context]);

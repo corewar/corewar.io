@@ -25,7 +25,7 @@ describe("EndCondition", () => {
 
     function buildWarrior(): IWarrior {
 
-        var warrior = {
+        const warrior = {
             id: 0,
             author: "",
             name: "",
@@ -127,27 +127,27 @@ describe("EndCondition", () => {
 
     it("returns null result if there is only one warrior and it has active tasks", () => {
 
-        var state = buildState();
+        const state = buildState();
 
         state.warriors.pop();
 
-        var endCondition = new EndCondition(publisher);
+        const endCondition = new EndCondition(publisher);
 
-        var actual = endCondition.check(state);
+        const actual = endCondition.check(state);
 
         expect(actual).to.be.equal(null);
     });
 
     it("returns none round result if there is only one warrior and it has no active tasks", () => {
 
-        var state = buildState();
+        const state = buildState();
 
         state.warriors.pop();
         state.warriors[0].tasks = [];
 
-        var endCondition = new EndCondition(publisher);
+        const endCondition = new EndCondition(publisher);
 
-        var actual = endCondition.check(state);
+        const actual = endCondition.check(state);
 
         expect(actual).not.to.be.null;
         expect(actual.winnerId).to.be.equal(null);
@@ -215,7 +215,7 @@ describe("EndCondition", () => {
 
         const expected = {
             foo: "foo",
-            bar: x => x + 1
+            bar: (x: number): number => x + 1
         };
 
         state.warriors[0].id = 5;

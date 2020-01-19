@@ -12,7 +12,7 @@ describe("LabelCollector", () => {
 
     it("Does not modify tokens if no lines begin with a label", () => {
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Opcode,
                 lexeme: "MOV",
@@ -64,16 +64,16 @@ describe("LabelCollector", () => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new LabelCollector();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new LabelCollector();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(11);
 
-        for (var i = 0; i < tokens.length; i++) {
+        for (let i = 0; i < tokens.length; i++) {
 
             expect(actual.tokens[i]).to.deep.equal(tokens[i]);
         }
@@ -81,7 +81,7 @@ describe("LabelCollector", () => {
 
     it("Removes label declarations from the token stream", () => {
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Opcode,
                 lexeme: "MOV",
@@ -133,11 +133,11 @@ describe("LabelCollector", () => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new LabelCollector();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new LabelCollector();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(10);
@@ -156,7 +156,7 @@ describe("LabelCollector", () => {
 
     it("Records labels in context with the corresponding instruction number", () => {
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Label,
                 lexeme: "label1",
@@ -204,11 +204,11 @@ describe("LabelCollector", () => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new LabelCollector();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new LabelCollector();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.labels["label1"]).to.be.equal(0);
@@ -218,7 +218,7 @@ describe("LabelCollector", () => {
 
     it("Does not include lines which do not begin with an opcode or label in the instruction number", () => {
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Comment,
                 lexeme: "; fdskdsksdf sdfjklds f",
@@ -274,11 +274,11 @@ describe("LabelCollector", () => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new LabelCollector();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new LabelCollector();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.labels["Label1"]).to.be.equal(1);
@@ -287,7 +287,7 @@ describe("LabelCollector", () => {
 
     it("Raises a warning if a label is declared more than once and uses first definition", () => {
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Label,
                 lexeme: "label1",
@@ -317,11 +317,11 @@ describe("LabelCollector", () => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new LabelCollector();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new LabelCollector();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(1);
         expect(actual.messages[0].text).to.be.equal("Redefinition of label 'label1', original definition will be used");
@@ -332,7 +332,7 @@ describe("LabelCollector", () => {
 
     it("Raises a warning if a label is declared with the same name as an EQU label and uses the EQU label",() => {
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Label,
                 lexeme: "label2",
@@ -348,12 +348,12 @@ describe("LabelCollector", () => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
         context.equs["label2"] = [];
 
-        var pass = new LabelCollector();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new LabelCollector();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(1);
         expect(actual.messages[0].text).to.be.equal("Redefinition of label 'label2', original definition will be used");
@@ -364,7 +364,7 @@ describe("LabelCollector", () => {
 
     it("Raises an error if an opcode does not directly follow a label definition", () => {
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Label,
                 lexeme: "label1",
@@ -390,11 +390,11 @@ describe("LabelCollector", () => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new LabelCollector();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new LabelCollector();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(1);
         expect(actual.messages[0].text).to.be.equal("Expected opcode, got '123'");
@@ -406,7 +406,7 @@ describe("LabelCollector", () => {
 
     it("only records the first eight characters of a label in ICWS'88 standards mode",() => {
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Label,
                 lexeme: "longlabelwhichexceedseightchars",
@@ -426,11 +426,11 @@ describe("LabelCollector", () => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new LabelCollector();
-        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
+        const pass = new LabelCollector();
+        const actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.labels["longlabe"]).to.be.equal(0);
@@ -440,18 +440,18 @@ describe("LabelCollector", () => {
 
     it("recognises labels on end statements",() => {
 
-        var tokens = TestHelper.instruction(1, "", "MOV", "", "", "0", ",", "", "1", "")
+        const tokens = TestHelper.instruction(1, "", "MOV", "", "", "0", ",", "", "1", "")
             .concat([{
                 category: TokenCategory.Label,
                 lexeme: "label1",
                 position: { line: 2, char: 1 }
             }]).concat(TestHelper.endStatement(2, ""));
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new LabelCollector();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new LabelCollector();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
 
@@ -462,7 +462,7 @@ describe("LabelCollector", () => {
 
     it("Correctly associates labels on a line by themselves with the following line", () => {
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Opcode,
                 lexeme: "MOV",
@@ -486,11 +486,11 @@ describe("LabelCollector", () => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new LabelCollector();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new LabelCollector();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.labels["label1"]).to.be.equal(1);

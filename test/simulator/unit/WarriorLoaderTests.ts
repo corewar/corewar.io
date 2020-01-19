@@ -1,7 +1,7 @@
 ﻿import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
-var expect = chai.expect;
+const expect = chai.expect;
 chai.use(sinonChai);
 
 import { ICore } from "@simulator/interface/ICore";
@@ -14,7 +14,6 @@ import { IParseResult } from "@parser/interface/IParseResult";
 import { IToken, TokenCategory } from "@parser/interface/IToken";
 import { WarriorLoader } from "@simulator/WarriorLoader";
 import TestHelper from "@simulator/tests/unit/TestHelper";
-import { IPublisher } from "@simulator/interface/IPublisher";
 import { MessageType } from "@simulator/interface/IMessage";
 
 "use strict";
@@ -23,9 +22,9 @@ describe("WarriorLoader", () => {
 
     const CORESIZE = 8000;
 
-    var instruction = TestHelper.instruction;
+    const instruction = TestHelper.instruction;
 
-    var testTokens = instruction("DAT", ".A", "$", 0, "$", 1)
+    const testTokens = instruction("DAT", ".A", "$", 0, "$", 1)
         .concat(instruction("MOV", ".B", "#", 2, "#", 3))
         .concat(instruction("ADD", ".AB", "*", 4, "*", 5))
         .concat(instruction("SUB", ".BA", "@", 6, "@", 7))
@@ -43,8 +42,6 @@ describe("WarriorLoader", () => {
         .concat(instruction("SPL", ".A", "$", -15, "#", -16))
         .concat(instruction("NOP", ".B", "#", 0, "#", 0));
 
-    var publisher: IPublisher;
-
     beforeEach(() => {
 
         this.publisher = {
@@ -54,10 +51,10 @@ describe("WarriorLoader", () => {
     });
 
     function buildCore(size: number): ICore {
-        var core = {
-            getSize: () => { return 0; },
+        const core = {
+            getSize: (): number => { return 0; },
             instructions: [],
-            initialise: (options: IOptions) => {
+            initialise: (_: IOptions): void => {
                 //
             },
             wrap: (address: number): number => {
@@ -66,22 +63,22 @@ describe("WarriorLoader", () => {
 
                 return address;
             },
-            executeAt: (task: ITask, index: number): IInstruction => {
+            executeAt: (_: ITask, index: number): IInstruction => {
                 return core.instructions[index];
             },
-            readAt: (task: ITask, index: number): IInstruction => {
+            readAt: (_: ITask, index: number): IInstruction => {
                 return core.instructions[index];
             },
             getAt: (index: number): IInstruction => {
                 return core.instructions[index];
             },
             getWithInfoAt: sinon.stub(),
-            setAt: sinon.stub().callsFake((task: ITask, index: number, instruction: IInstruction) => {
+            setAt: sinon.stub().callsFake((_: ITask, index: number, instruction: IInstruction) => {
                 core.instructions[index] = instruction;
             }),
             publishCoreAccesses: sinon.stub()
         };
-        for (var i = 0; i < size; i++) {
+        for (let i = 0; i < size; i++) {
             core.instructions.push({
                 address: i,
                 opcode: OpcodeType.DAT,
@@ -101,7 +98,7 @@ describe("WarriorLoader", () => {
 
     it("Applies metadata to the warrior", () => {
 
-        var parseResult: IParseResult = {
+        const parseResult: IParseResult = {
             tokens: [],
             messages: [],
             metaData: {
@@ -111,10 +108,10 @@ describe("WarriorLoader", () => {
             }
         };
 
-        var core = buildCore(0);
+        const core = buildCore(0);
 
-        var loader = new WarriorLoader(core, this.publisher);
-        var actual = loader.load(0, parseResult, 0);
+        const loader = new WarriorLoader(core, this.publisher);
+        const actual = loader.load(0, parseResult, 0);
 
         expect(actual.name).to.be.equal("johnSmith");
         expect(actual.author).to.be.equal("Joe Bloggs");
@@ -123,11 +120,11 @@ describe("WarriorLoader", () => {
 
     it("Creates a single process for the warrior", () => {
 
-        var parseResult: IParseResult = TestHelper.buildParseResult([]);
-        var core = buildCore(0);
+        const parseResult: IParseResult = TestHelper.buildParseResult([]);
+        const core = buildCore(0);
 
-        var loader = new WarriorLoader(core, this.publisher);
-        var actual = loader.load(0, parseResult, 0);
+        const loader = new WarriorLoader(core, this.publisher);
+        const actual = loader.load(0, parseResult, 0);
 
         expect(actual.taskIndex).to.be.equal(0);
         expect(actual.tasks.length).to.be.equal(1);
@@ -136,7 +133,7 @@ describe("WarriorLoader", () => {
 
     it("Sets the starting instruction pointer to the load address offset by the value indicated by the ORG instruction", () => {
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Preprocessor,
                 lexeme: "ORG",
@@ -151,27 +148,27 @@ describe("WarriorLoader", () => {
                 position: TestHelper.position
             }
         ];
-        var parseResult: IParseResult = TestHelper.buildParseResult(tokens);
+        const parseResult: IParseResult = TestHelper.buildParseResult(tokens);
 
-        var core = buildCore(10);
+        const core = buildCore(10);
 
-        var loader = new WarriorLoader(core, this.publisher);
-        var actual = loader.load(3, parseResult, 0);
+        const loader = new WarriorLoader(core, this.publisher);
+        const actual = loader.load(3, parseResult, 0);
 
         expect(actual.tasks[0].instructionPointer).to.be.equal(7);
     });
 
     it("Loads the warrior into the core at the specified address", () => {
 
-        var tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
-        var core = buildCore(30);
+        const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const core = buildCore(30);
 
-        var loader = new WarriorLoader(core, this.publisher);
+        const loader = new WarriorLoader(core, this.publisher);
         loader.load(21, tokens, 0);
 
-        for (var i = 0; i < 30; i++) {
+        for (let i = 0; i < 30; i++) {
 
-            var instr = core.readAt(null, i);
+            const instr = core.readAt(null, i);
             expect(instr.address).to.be.equal(i);
 
             if (i === 21) {
@@ -199,9 +196,9 @@ describe("WarriorLoader", () => {
 
     it("Correctly interprets token opcodes into simulator instructions", () => {
 
-        var core = buildCore(20);
+        const core = buildCore(20);
 
-        var loader = new WarriorLoader(core, this.publisher);
+        const loader = new WarriorLoader(core, this.publisher);
         loader.load(0, TestHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).opcode).to.be.equal(OpcodeType.DAT);
@@ -225,9 +222,9 @@ describe("WarriorLoader", () => {
 
     it("Correctly interprets token modifiers into simulator instructions", () => {
 
-        var core = buildCore(20);
+        const core = buildCore(20);
 
-        var loader = new WarriorLoader(core, this.publisher);
+        const loader = new WarriorLoader(core, this.publisher);
         loader.load(0, TestHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).modifier).to.be.equal(ModifierType.A);
@@ -251,9 +248,9 @@ describe("WarriorLoader", () => {
 
     it("Correctly interprets token a mode into simulator instructions", () => {
 
-        var core = buildCore(20);
+        const core = buildCore(20);
 
-        var loader = new WarriorLoader(core, this.publisher);
+        const loader = new WarriorLoader(core, this.publisher);
         loader.load(0, TestHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).aOperand.mode).to.be.equal(ModeType.Direct);
@@ -277,9 +274,9 @@ describe("WarriorLoader", () => {
 
     it("Correctly interprets token a number into simulator instructions", () => {
 
-        var core = buildCore(20);
+        const core = buildCore(20);
 
-        var loader = new WarriorLoader(core, this.publisher);
+        const loader = new WarriorLoader(core, this.publisher);
         loader.load(0, TestHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).aOperand.address).to.be.equal(0);
@@ -303,9 +300,9 @@ describe("WarriorLoader", () => {
 
     it("Correctly interprets token b mode into simulator instructions", () => {
 
-        var core = buildCore(20);
+        const core = buildCore(20);
 
-        var loader = new WarriorLoader(core, this.publisher);
+        const loader = new WarriorLoader(core, this.publisher);
         loader.load(0, TestHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).bOperand.mode).to.be.equal(ModeType.Direct);
@@ -329,9 +326,9 @@ describe("WarriorLoader", () => {
 
     it("Correctly interprets token b number into simulator instructions", () => {
 
-        var core = buildCore(20);
+        const core = buildCore(20);
 
-        var loader = new WarriorLoader(core, this.publisher);
+        const loader = new WarriorLoader(core, this.publisher);
         loader.load(0, TestHelper.buildParseResult(testTokens), 0);
 
         expect(core.readAt(null, 0).bOperand.address).to.be.equal(1);
@@ -355,12 +352,12 @@ describe("WarriorLoader", () => {
 
     it("Correctly sets the startAddress property of the warrior", () => {
 
-        var tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
 
-        var core = buildCore(5);
+        const core = buildCore(5);
 
-        var loader = new WarriorLoader(core, this.publisher);
-        var actual = loader.load(3, tokens, 0);
+        const loader = new WarriorLoader(core, this.publisher);
+        const actual = loader.load(3, tokens, 0);
 
         expect(actual.startAddress).to.be.equal(3);
     });
@@ -369,23 +366,23 @@ describe("WarriorLoader", () => {
 
         const expected = 73;
 
-        var tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
 
-        var core = buildCore(5);
+        const core = buildCore(5);
 
-        var loader = new WarriorLoader(core, this.publisher);
-        var actual = loader.load(3, tokens, expected);
+        const loader = new WarriorLoader(core, this.publisher);
+        const actual = loader.load(3, tokens, expected);
 
         expect(actual.id).to.be.equal(expected);
     });
 
     it("Raises core access events for the newly created task", () => {
 
-        var tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
-        var core = buildCore(0);
+        const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const core = buildCore(0);
 
-        var loader = new WarriorLoader(core, this.publisher);
-        var actual = loader.load(0, tokens, 0);
+        const loader = new WarriorLoader(core, this.publisher);
+        const actual = loader.load(0, tokens, 0);
 
         expect(core.setAt).to.be.calledWith(actual.tasks[0], sinon.match.any, sinon.match.any);
     });
@@ -394,13 +391,13 @@ describe("WarriorLoader", () => {
 
         const expected = 8;
 
-        var tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
-        var core = buildCore(0);
+        const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const core = buildCore(0);
 
-        var loader = new WarriorLoader(core, this.publisher);
+        const loader = new WarriorLoader(core, this.publisher);
 
-        var actual = null;
-        (<sinon.SinonStub>core.setAt).callsFake((task, address, instruction) => {
+        let actual = null;
+        (core.setAt as sinon.SinonStub).callsFake((task, _, __) => {
 
             actual = task.warrior.id;
         });
@@ -458,7 +455,8 @@ describe("WarriorLoader", () => {
 
         const expected = {
             foo: 'foo',
-            bar: x => {
+            /* eslint-disable-next-line */
+            bar: (x: any): any => {
                 return x;
             }
         };

@@ -11,9 +11,9 @@ describe("MathsProcessor",() => {
 
     it("Does not modify stream with no maths or number tokens",() => {
 
-        var context = new Context();
+        const context = new Context();
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Comma,
                 position: { line: 1, char: 1 },
@@ -51,22 +51,22 @@ describe("MathsProcessor",() => {
 
         context.tokens = tokens.slice();
 
-        var pass = new MathsProcessor(new Expression());
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new MathsProcessor(new Expression());
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(8);
         expect(actual.messages.length).to.be.equal(0);
 
-        for (var i = 0; i < tokens.length; i++) {
+        for (let i = 0; i < tokens.length; i++) {
             expect(tokens[i]).to.deep.equal(actual.tokens[i]);
         }
     });
 
     it("Parses literal positive numbers",() => {
 
-        var context = new Context();
+        const context = new Context();
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Number,
                 position: { line: 1, char: 1 },
@@ -80,8 +80,8 @@ describe("MathsProcessor",() => {
 
         context.tokens = tokens.slice();
 
-        var pass = new MathsProcessor(new Expression());
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new MathsProcessor(new Expression());
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(2);
         expect(actual.messages.length).to.be.equal(0);
@@ -95,9 +95,9 @@ describe("MathsProcessor",() => {
 
     it("Parses literal positive numbers with a superfluous, leading +",() => {
 
-        var context = new Context();
+        const context = new Context();
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Maths,
                 position: { line: 1, char: 1 },
@@ -115,8 +115,8 @@ describe("MathsProcessor",() => {
 
         context.tokens = tokens.slice();
 
-        var pass = new MathsProcessor(new Expression());
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new MathsProcessor(new Expression());
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(2);
         expect(actual.messages.length).to.be.equal(0);
@@ -130,9 +130,9 @@ describe("MathsProcessor",() => {
 
     it("Parses literal negative numbers",() => {
 
-        var context = new Context();
+        const context = new Context();
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Maths,
                 position: { line: 1, char: 1 },
@@ -150,8 +150,8 @@ describe("MathsProcessor",() => {
 
         context.tokens = tokens.slice();
 
-        var pass = new MathsProcessor(new Expression());
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new MathsProcessor(new Expression());
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(2);
         expect(actual.messages.length).to.be.equal(0);
@@ -165,9 +165,9 @@ describe("MathsProcessor",() => {
 
     it("Calculates the sum of three addresses",() => {
 
-        var context = new Context();
+        const context = new Context();
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Number,
                 position: { line: 1, char: 1 },
@@ -197,8 +197,8 @@ describe("MathsProcessor",() => {
 
         context.tokens = tokens.slice();
 
-        var pass = new MathsProcessor(new Expression());
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new MathsProcessor(new Expression());
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(2);
         expect(actual.messages.length).to.be.equal(0);
@@ -212,9 +212,9 @@ describe("MathsProcessor",() => {
 
     it("Calculates the difference of three addresses",() => {
 
-        var context = new Context();
+        const context = new Context();
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Number,
                 position: { line: 1, char: 1 },
@@ -244,8 +244,8 @@ describe("MathsProcessor",() => {
 
         context.tokens = tokens.slice();
 
-        var pass = new MathsProcessor(new Expression());
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new MathsProcessor(new Expression());
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(2);
         expect(actual.messages.length).to.be.equal(0);
@@ -259,9 +259,9 @@ describe("MathsProcessor",() => {
 
     it("Calculates the product of three addresses",() => {
 
-        var context = new Context();
+        const context = new Context();
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Number,
                 position: { line: 1, char: 1 },
@@ -291,8 +291,8 @@ describe("MathsProcessor",() => {
 
         context.tokens = tokens.slice();
 
-        var pass = new MathsProcessor(new Expression());
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new MathsProcessor(new Expression());
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(2);
         expect(actual.messages.length).to.be.equal(0);
@@ -306,9 +306,9 @@ describe("MathsProcessor",() => {
 
     it("Calculates the quotient of three addresses",() => {
 
-        var context = new Context();
+        const context = new Context();
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Number,
                 position: { line: 1, char: 1 },
@@ -338,8 +338,8 @@ describe("MathsProcessor",() => {
 
         context.tokens = tokens.slice();
 
-        var pass = new MathsProcessor(new Expression());
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new MathsProcessor(new Expression());
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(2);
         expect(actual.messages.length).to.be.equal(0);
@@ -353,9 +353,9 @@ describe("MathsProcessor",() => {
 
     it("Calculates the quotient of three addresses",() => {
 
-        var context = new Context();
+        const context = new Context();
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Number,
                 position: { line: 1, char: 1 },
@@ -385,8 +385,8 @@ describe("MathsProcessor",() => {
 
         context.tokens = tokens.slice();
 
-        var pass = new MathsProcessor(new Expression());
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new MathsProcessor(new Expression());
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(2);
         expect(actual.messages.length).to.be.equal(0);
@@ -400,9 +400,9 @@ describe("MathsProcessor",() => {
 
     it("Applies correct operator precedence to operators",() => {
 
-        var context = new Context();
+        const context = new Context();
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Number,
                 position: { line: 1, char: 1 },
@@ -448,8 +448,8 @@ describe("MathsProcessor",() => {
 
         context.tokens = tokens.slice();
 
-        var pass = new MathsProcessor(new Expression());
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new MathsProcessor(new Expression());
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(2);
         expect(actual.messages.length).to.be.equal(0);
@@ -463,9 +463,9 @@ describe("MathsProcessor",() => {
 
     it("Correctly applies brackets to override operator precedence",() => {
 
-        var context = new Context();
+        const context = new Context();
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Maths,
                 position: { line: 1, char: 1 },
@@ -503,8 +503,8 @@ describe("MathsProcessor",() => {
 
         context.tokens = tokens.slice();
 
-        var pass = new MathsProcessor(new Expression());
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new MathsProcessor(new Expression());
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(2);
         expect(actual.messages.length).to.be.equal(0);
@@ -518,11 +518,11 @@ describe("MathsProcessor",() => {
 
     it("Correctly handles multiple nested brackets",() => {
 
-        var context = new Context();
+        const context = new Context();
 
         // ( 1+((2-3)*8)/(1+3) ) = 1 + (-1*8) / 4 = 1 + -8/4 = -1
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Maths,
                 position: { line: 1, char: 1 },
@@ -608,8 +608,8 @@ describe("MathsProcessor",() => {
 
         context.tokens = tokens.slice();
 
-        var pass = new MathsProcessor(new Expression());
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new MathsProcessor(new Expression());
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(2);
         expect(actual.messages.length).to.be.equal(0);
@@ -623,9 +623,9 @@ describe("MathsProcessor",() => {
 
     it("Raises a syntax error if an expression does not contain a closing bracket",() => {
 
-        var context = new Context();
+        const context = new Context();
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Maths,
                 position: { line: 1, char: 1 },
@@ -651,8 +651,8 @@ describe("MathsProcessor",() => {
 
         context.tokens = tokens.slice();
 
-        var pass = new MathsProcessor(new Expression());
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new MathsProcessor(new Expression());
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(0);
         expect(actual.messages.length).to.be.equal(1);
@@ -664,9 +664,9 @@ describe("MathsProcessor",() => {
 
     it("Raises a syntax error if a mathematical operator is not followed by an address",() => {
 
-        var context = new Context();
+        const context = new Context();
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Number,
                 position: { line: 1, char: 1 },
@@ -684,8 +684,8 @@ describe("MathsProcessor",() => {
 
         context.tokens = tokens.slice();
 
-        var pass = new MathsProcessor(new Expression());
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new MathsProcessor(new Expression());
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(0);
         expect(actual.messages.length).to.be.equal(1);
@@ -697,7 +697,7 @@ describe("MathsProcessor",() => {
 
     it("Raises a warning for non-integer division and produces integer division result",() => {
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Opcode,
                 lexeme: "MOV",
@@ -741,11 +741,11 @@ describe("MathsProcessor",() => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new MathsProcessor(new Expression());
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new MathsProcessor(new Expression());
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(2);
 
@@ -765,7 +765,7 @@ describe("MathsProcessor",() => {
 
     it("Raises an error if a divide by zero is encountered",() => {
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Opcode,
                 lexeme: "MOV",
@@ -789,11 +789,11 @@ describe("MathsProcessor",() => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new MathsProcessor(new Expression());
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new MathsProcessor(new Expression());
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(1);
 
@@ -804,7 +804,7 @@ describe("MathsProcessor",() => {
 
     it("Rounds the quotient rather than the final result of the expression",() => {
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Opcode,
                 lexeme: "MOV",
@@ -836,11 +836,11 @@ describe("MathsProcessor",() => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new MathsProcessor(new Expression());
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new MathsProcessor(new Expression());
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].lexeme).to.be.equal("726");
     });

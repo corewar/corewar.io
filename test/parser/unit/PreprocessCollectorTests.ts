@@ -12,9 +12,9 @@ describe("PreprocessCollector", () => {
 
     it("Does not modify tokens if no EQU found", () => {
 
-        var context = new Context();
+        const context = new Context();
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Comma,
                 position: { line: 1, char: 1 },
@@ -60,21 +60,21 @@ describe("PreprocessCollector", () => {
 
         context.tokens = tokens;
 
-        var pass = new PreprocessCollector();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new PreprocessCollector();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(10);
         expect(actual.messages.length).to.be.equal(0);
 
-        for (var i = 0; i < tokens.length; i++) {
+        for (let i = 0; i < tokens.length; i++) {
             expect(tokens[i]).to.deep.equal(actual.tokens[i]);
         }
     });
 
     it("Removes EQU statements from the output", () => {
 
-        var line1 = TestHelper.instruction(1, "", "MOV", "", "", "1", ",", "", "2", "");
-        var line2 = TestHelper.equ(2, "label1", [
+        const line1 = TestHelper.instruction(1, "", "MOV", "", "", "1", ",", "", "2", "");
+        const line2 = TestHelper.equ(2, "label1", [
             {
                 category: TokenCategory.Label,
                 lexeme: "label1",
@@ -86,20 +86,20 @@ describe("PreprocessCollector", () => {
            }
         ]);
 
-        var line3 = TestHelper.instruction(3, "", "ADD", ".BA", "#", "7", "", "", "", "");
+        const line3 = TestHelper.instruction(3, "", "ADD", ".BA", "#", "7", "", "", "", "");
 
-        var expected = line1.concat(line3);
+        const expected = line1.concat(line3);
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = line1.concat(line2).concat(line3);
 
-        var pass = new PreprocessCollector();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new PreprocessCollector();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(expected.length);
         expect(actual.messages.length).to.be.equal(0);
 
-        for (var i = 0; i < expected.length; i++) {
+        for (let i = 0; i < expected.length; i++) {
 
             expect(actual.tokens[i]).to.deep.equal(expected[i]);
         }
@@ -107,9 +107,9 @@ describe("PreprocessCollector", () => {
 
     it("Records EQU label definitions in output", () => {
 
-        var line1 = TestHelper.instruction(1, "", "MOV", "", "", "1", ",", "", "2", "");
+        const line1 = TestHelper.instruction(1, "", "MOV", "", "", "1", ",", "", "2", "");
 
-        var equDefinition = [
+        const equDefinition = [
             {
                 category: TokenCategory.Label,
                 lexeme: "label1",
@@ -129,7 +129,7 @@ describe("PreprocessCollector", () => {
             }
         ];
 
-        var equReplacement  = [
+        const equReplacement  = [
             {
                 category: TokenCategory.Opcode,
                 lexeme: "MOV",
@@ -165,27 +165,27 @@ describe("PreprocessCollector", () => {
             }
          ];
 
-        var line2 = equDefinition.concat(equReplacement);
+        const line2 = equDefinition.concat(equReplacement);
 
-        var line3 = TestHelper.instruction(3, "", "ADD", ".BA", "#", "7", "", "", "", "");
+        const line3 = TestHelper.instruction(3, "", "ADD", ".BA", "#", "7", "", "", "", "");
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = line1.concat(line2).concat(line3);
 
-        var pass = new PreprocessCollector();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new PreprocessCollector();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
 
-        var label1Tokens = actual.equs["label1"];
-        var label2Tokens = actual.equs["label2"];
-        var label3Tokens = actual.equs["label3"];
+        const label1Tokens = actual.equs["label1"];
+        const label2Tokens = actual.equs["label2"];
+        const label3Tokens = actual.equs["label3"];
 
         expect(label1Tokens.length).to.be.equal(equReplacement.length - 1);
         expect(label2Tokens.length).to.be.equal(equReplacement.length - 1);
         expect(label3Tokens.length).to.be.equal(equReplacement.length - 1);
 
-        for (var i = 0; i < equReplacement.length - 1; i++) {
+        for (let i = 0; i < equReplacement.length - 1; i++) {
             expect(label1Tokens[i]).to.deep.equal(equReplacement[i]);
             expect(label2Tokens[i]).to.deep.equal(equReplacement[i]);
             expect(label3Tokens[i]).to.deep.equal(equReplacement[i]);
@@ -194,7 +194,7 @@ describe("PreprocessCollector", () => {
 
     it("Raises a warning if a label is redefined", () => {
 
-        var line1 = TestHelper.equ(1, "label1", [
+        const line1 = TestHelper.equ(1, "label1", [
             {
                 category: TokenCategory.Opcode,
                 lexeme: "MOV",
@@ -202,7 +202,7 @@ describe("PreprocessCollector", () => {
             }
         ]);
 
-        var line2 = TestHelper.equ(2, "label2", [
+        const line2 = TestHelper.equ(2, "label2", [
             {
                 category: TokenCategory.Opcode,
                 lexeme: "ADD",
@@ -210,7 +210,7 @@ describe("PreprocessCollector", () => {
             }
         ]);
 
-        var line3 = TestHelper.equ(3, "label1", [
+        const line3 = TestHelper.equ(3, "label1", [
             {
                 category: TokenCategory.Opcode,
                 lexeme: "SUB",
@@ -218,10 +218,10 @@ describe("PreprocessCollector", () => {
             }
         ]);
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = line1.concat(line2).concat(line3);
 
-        var pass = new PreprocessCollector();
+        const pass = new PreprocessCollector();
         pass.process(context, Parser.DefaultOptions);
 
         expect(context.messages.length).to.be.equal(1);
@@ -233,28 +233,28 @@ describe("PreprocessCollector", () => {
 
     it("Takes the original EQU definition if a duplicate is found", () => {
 
-        var movOpcode = {
+        const movOpcode = {
             category: TokenCategory.Opcode,
             lexeme: "MOV",
             position: { line: 1, char: 3 }
         };
 
-        var addOpcode = {
+        const addOpcode = {
             category: TokenCategory.Opcode,
             lexeme: "ADD",
             position: { line: 1, char: 3 }
         };
 
-        var line1 = TestHelper.equ(1, "label1", [movOpcode]);
-        var line2 = TestHelper.equ(2, "label1", [addOpcode]);
+        const line1 = TestHelper.equ(1, "label1", [movOpcode]);
+        const line2 = TestHelper.equ(2, "label1", [addOpcode]);
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = line1.concat(line2);
 
-        var pass = new PreprocessCollector();
+        const pass = new PreprocessCollector();
         pass.process(context, Parser.DefaultOptions);
 
-        var expression = context.equs["label1"];
+        const expression = context.equs["label1"];
 
         expect(expression.length).to.be.equal(1);
         expect(expression[0]).to.deep.equal(movOpcode);
@@ -262,9 +262,9 @@ describe("PreprocessCollector", () => {
 
     it("Does not register labels in output", () => {
 
-        var context = new Context();
+        const context = new Context();
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Comma,
                 position: { line: 1, char: 1 },
@@ -310,7 +310,7 @@ describe("PreprocessCollector", () => {
 
         context.tokens = tokens;
 
-        var pass = new PreprocessCollector();
+        const pass = new PreprocessCollector();
         pass.process(context, Parser.DefaultOptions);
 
         expect(context.labels).to.deep.equal({});
@@ -318,17 +318,17 @@ describe("PreprocessCollector", () => {
 
     it("Does not include comments in EQU substitution",() => {
 
-        var tokens = TestHelper.equ(1, "label1",
+        const tokens = TestHelper.equ(1, "label1",
             TestHelper.instruction(1, "", "MOV", "", "", "0", ",", "", "1", "; this is a comment")
         );
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new PreprocessCollector();
-        var result = pass.process(context, Parser.DefaultOptions);
+        const pass = new PreprocessCollector();
+        const result = pass.process(context, Parser.DefaultOptions);
 
-        var actual = result.equs["label1"];
+        const actual = result.equs["label1"];
 
         expect(actual.length).to.be.equal(4);
         expect(actual[0].lexeme).to.be.equal("MOV");
@@ -339,14 +339,14 @@ describe("PreprocessCollector", () => {
 
     it("Collects multi-line EQU statements in ICWS-94draft",() => {
 
-        var instruction1 = TestHelper.instruction(1, "", "MOV", "", "", "0", ",", "", "1", "");
-        var instruction2 = TestHelper.instruction(2, "", "ADD", "", "", "1", ",", "", "2", "");
+        const instruction1 = TestHelper.instruction(1, "", "MOV", "", "", "0", ",", "", "1", "");
+        const instruction2 = TestHelper.instruction(2, "", "ADD", "", "", "1", ",", "", "2", "");
 
         // Remove terminating newlines
         instruction1.pop();
         instruction2.pop();
 
-        var tokens = TestHelper.equ(1, "label2", instruction1)
+        const tokens = TestHelper.equ(1, "label2", instruction1)
             .concat(TestHelper.equ(2, "", instruction2));
 
         tokens.unshift({
@@ -355,19 +355,19 @@ describe("PreprocessCollector", () => {
             position: { line: 1, char: 1 }
         });
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new PreprocessCollector();
-        var result = pass.process(context, Parser.DefaultOptions);
+        const pass = new PreprocessCollector();
+        const result = pass.process(context, Parser.DefaultOptions);
 
-        var label1 = result.equs["label1"];
-        var label2 = result.equs["label2"];
+        const label1 = result.equs["label1"];
+        const label2 = result.equs["label2"];
 
         expect(label1.length).to.be.equal(9);
         expect(label2.length).to.be.equal(label1.length);
 
-        for (var i = 0; i < label1.length; i++) {
+        for (let i = 0; i < label1.length; i++) {
             expect(label1[i].category).to.be.equal(label2[i].category);
             expect(label1[i].lexeme).to.be.equal(label2[i].lexeme);
             expect(label1[i].position).to.deep.equal(label2[i].position);
@@ -386,14 +386,14 @@ describe("PreprocessCollector", () => {
 
     it("Doesn't collect multi-line EQU statements in ICWS-88",() => {
 
-        var instruction1 = TestHelper.instruction(1, "", "MOV", "", "", "0", ",", "", "1", "");
-        var instruction2 = TestHelper.instruction(2, "", "ADD", "", "", "1", ",", "", "2", "");
+        const instruction1 = TestHelper.instruction(1, "", "MOV", "", "", "0", ",", "", "1", "");
+        const instruction2 = TestHelper.instruction(2, "", "ADD", "", "", "1", ",", "", "2", "");
 
         // Remove terminating newlines
         instruction1.pop();
         instruction2.pop();
 
-        var tokens = TestHelper.equ(1, "label2", instruction1)
+        const tokens = TestHelper.equ(1, "label2", instruction1)
             .concat(TestHelper.equ(2, "", instruction2));
 
         tokens.unshift({
@@ -402,19 +402,19 @@ describe("PreprocessCollector", () => {
             position: { line: 1, char: 1 }
         });
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new PreprocessCollector();
-        var result = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
+        const pass = new PreprocessCollector();
+        const result = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
 
-        var label1 = result.equs["label1"];
-        var label2 = result.equs["label2"];
+        const label1 = result.equs["label1"];
+        const label2 = result.equs["label2"];
 
         expect(label1.length).to.be.equal(4);
         expect(label2.length).to.be.equal(label1.length);
 
-        for (var i = 0; i < label1.length; i++) {
+        for (let i = 0; i < label1.length; i++) {
             expect(label1[i].category).to.be.equal(label2[i].category);
             expect(label1[i].lexeme).to.be.equal(label2[i].lexeme);
             expect(label1[i].position).to.deep.equal(label2[i].position);

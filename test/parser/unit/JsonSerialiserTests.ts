@@ -9,11 +9,11 @@ describe("JsonSerialiser", () => {
 
     it("json serialises tokens in the order emitted", () => {
 
-        var tokens: IToken[] = TestHelper.instruction(1, "", "MOV", ".AB", "#", "23", ",", "$", "-45", "");
+        const tokens: IToken[] = TestHelper.instruction(1, "", "MOV", ".AB", "#", "23", ",", "$", "-45", "");
 
-        var serialiser = new JsonSerialiser();
+        const serialiser = new JsonSerialiser();
 
-        var actual = serialiser.serialise(tokens);
+        const actual = serialiser.serialise(tokens);
 
         expect(actual).to.be.equal(JSON.stringify(tokens));
     });

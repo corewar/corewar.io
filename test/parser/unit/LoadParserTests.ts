@@ -1,7 +1,7 @@
 ﻿import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
-var expect = chai.expect;
+const expect = chai.expect;
 chai.use(sinonChai);
 
 import { IContext } from "@parser/interface/IContext";
@@ -16,44 +16,25 @@ import { Standard } from "@parser/interface/IParseOptions";
 
 describe("LoadParser",() => {
 
-    var context: IContext;
+    let context: IContext;
 
-    var scanner: IScanner;
-    var filter: IPass;
-    var syntaxCheck: IPass;
-    var illegalCommandCheck: IPass;
-    var modPass: IPass;
+    let scanner: IScanner;
+    let filter: IPass;
+    let syntaxCheck: IPass;
+    let illegalCommandCheck: IPass;
+    let modPass: IPass;
 
-    var loadParser: LoadParser;
+    let loadParser: LoadParser;
 
-    var calls: string[];
+    let calls: string[];
 
-    var expected94Calls = [
+    const expected94Calls = [
         "scan", "filter", "syntax", "mod"
     ];
 
-    beforeEach(() => {
-
-        calls = [];
-        context = new Context();
-
-        scanner = fakeScanner("scan");
-        filter = fakePass("filter");
-        syntaxCheck = fakePass("syntax");
-        illegalCommandCheck = fakePass("illegal");
-        modPass = fakePass("mod");
-
-        loadParser = new LoadParser(
-            scanner,
-            filter,
-            syntaxCheck,
-            illegalCommandCheck,
-            modPass);
-    });
-
     function fakeScanner(name: string): IScanner {
         return {
-            scan: sinon.stub().callsFake((s: string, options: IOptions): IContext => {
+            scan: sinon.stub().callsFake((_: string, __: IOptions): IContext => {
                 calls.push(name);
                 return context;
             })
@@ -63,7 +44,7 @@ describe("LoadParser",() => {
     function fakePass(name: string): IPass {
 
         return {
-            process: sinon.stub().callsFake((context: IContext, options: IOptions): IContext => {
+            process: sinon.stub().callsFake((context: IContext, _: IOptions): IContext => {
                 calls.push(name);
                 return context;
             })
@@ -88,7 +69,7 @@ describe("LoadParser",() => {
 
     function errorIn(pass: IPass, name: string): void {
 
-        (<sinon.SinonStub>pass.process).callsFake((): IContext => {
+        (pass.process as sinon.SinonStub).callsFake((): IContext => {
             context.messages.push(fakeError());
             calls.push(name);
             return context;
@@ -97,16 +78,35 @@ describe("LoadParser",() => {
 
     function warningIn(pass: IPass, name: string): void {
 
-        (<sinon.SinonStub>pass.process).callsFake((): IContext => {
+        (pass.process as sinon.SinonStub).callsFake((): IContext => {
             context.messages.push(fakeWarning());
             calls.push(name);
             return context;
         });
     }
 
+    beforeEach(() => {
+
+        calls = [];
+        context = new Context();
+
+        scanner = fakeScanner("scan");
+        filter = fakePass("filter");
+        syntaxCheck = fakePass("syntax");
+        illegalCommandCheck = fakePass("illegal");
+        modPass = fakePass("mod");
+
+        loadParser = new LoadParser(
+            scanner,
+            filter,
+            syntaxCheck,
+            illegalCommandCheck,
+            modPass);
+    });
+
     it("Calls passes in correct order under ICWS'94-draft",() => {
 
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
         loadParser.parse("MOV 0, 1", options);
 
@@ -117,7 +117,7 @@ describe("LoadParser",() => {
 
     it("Calls passes in correct order under ICWS'88",() => {
 
-        var options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
 
         loadParser.parse("MOV 0, 1", options);
 
@@ -132,7 +132,7 @@ describe("LoadParser",() => {
 
     it("Calls passes in correct order under ICWS'86",() => {
 
-        var options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
 
         loadParser.parse("MOV 0, 1", options);
 
@@ -147,7 +147,7 @@ describe("LoadParser",() => {
 
     it("Does not call mod pass if syntax check fails",() => {
 
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
         errorIn(syntaxCheck, "syntax");
 
@@ -161,7 +161,7 @@ describe("LoadParser",() => {
 
     it("Does not call syntax check if filter pass fails",() => {
 
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
         errorIn(filter, "filter");
 
@@ -175,9 +175,9 @@ describe("LoadParser",() => {
 
     it("Does not call filter pass if scan fails",() => {
 
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
-        (<sinon.SinonStub>scanner.scan).callsFake((): IContext => {
+        (scanner.scan as sinon.SinonStub).callsFake((): IContext => {
             context.messages.push(fakeError());
             calls.push("scan");
             return context;
@@ -193,9 +193,9 @@ describe("LoadParser",() => {
 
     it("Does call all passes regardless of raised warnings",() => {
 
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
-        (<sinon.SinonStub>scanner.scan).callsFake((): IContext => {
+        (scanner.scan as sinon.SinonStub).callsFake((): IContext => {
             context.messages.push(fakeWarning());
             calls.push("scan");
             return context;
@@ -213,12 +213,12 @@ describe("LoadParser",() => {
 
     it("Passes supplied options to each pass",() => {
 
-        var document = "MOV 0, 1";
-        var options = {
+        const document = "MOV 0, 1";
+        const options = {
             coresize: 7
         };
 
-        var expeceted = {
+        const expeceted = {
             standard: Standard.ICWS94draft,
             coresize: 7
         };
@@ -233,7 +233,7 @@ describe("LoadParser",() => {
 
     it("Returns context tokens, messages and metaData in ParserResult",() => {
 
-        var actual = loadParser.parse("MOV 0, 1", {});
+        const actual = loadParser.parse("MOV 0, 1", {});
 
         expect(actual.metaData).to.be.equal(context.metaData);
         expect(actual.tokens).to.be.equal(context.tokens);
@@ -244,13 +244,13 @@ describe("LoadParser",() => {
 
         loadParser.parse("MOV 0, 1");
 
-        expect((<sinon.SinonStub>scanner.scan).lastCall.args[1].standard).to.be.equal(Standard.ICWS94draft);
+        expect((scanner.scan as sinon.SinonStub).lastCall.args[1].standard).to.be.equal(Standard.ICWS94draft);
     });
 
     it("Defaults the coresize to 8192 if not specified",() => {
 
         loadParser.parse("MOV 0, 1");
 
-        expect((<sinon.SinonStub>scanner.scan).lastCall.args[1].coresize).to.be.equal(8192);
+        expect((scanner.scan as sinon.SinonStub).lastCall.args[1].coresize).to.be.equal(8192);
     });
 });

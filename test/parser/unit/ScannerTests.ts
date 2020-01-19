@@ -9,12 +9,12 @@ describe("Scanner",() => {
 
     it("creates newline tokens for each line ending",() => {
 
-        var document = "label\nlabel\n label\nlabel \nlabel label\nlabel label label\n";
+        const document = "label\nlabel\n label\nlabel \nlabel label\nlabel label label\n";
 
-        var scanner = new Scanner();
-        var actual = scanner.scan(document, Parser.DefaultOptions).tokens;
+        const scanner = new Scanner();
+        const actual = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var newlines = actual.filter(a => 
+        const newlines = actual.filter(a => 
             a.category === TokenCategory.EOL && 
             a.lexeme === "\n");
 
@@ -23,12 +23,12 @@ describe("Scanner",() => {
 
     it("always creates a newline token for the final line",() => {
 
-        var document = "line with ending\nline with no ending";
+        const document = "line with ending\nline with no ending";
 
-        var scanner = new Scanner();
-        var actual = scanner.scan(document, Parser.DefaultOptions).tokens;
+        const scanner = new Scanner();
+        const actual = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var newlines = actual.filter(a =>
+        const newlines = actual.filter(a =>
             a.category === TokenCategory.EOL &&
             a.lexeme === "\n");
 
@@ -37,14 +37,14 @@ describe("Scanner",() => {
 
     it("tokenises opcodes to ICWS'94-draft standard",() => {
 
-        var document = "DAT MOV ADD SUB MUL DIV MOD JMP JMZ JMN DJN CMP SLT SPL SEQ SNE NOP";
+        const document = "DAT MOV ADD SUB MUL DIV MOD JMP JMZ JMN DJN CMP SLT SPL SEQ SNE NOP";
 
-        var scanner = new Scanner();
-        var actual = scanner.scan(document, Parser.DefaultOptions).tokens;
+        const scanner = new Scanner();
+        const actual = scanner.scan(document, Parser.DefaultOptions).tokens;
 
         expect(actual.length).to.be.equal(18);
 
-        for (var i = 0; i <= 16; i++) {
+        for (let i = 0; i <= 16; i++) {
             expect(actual[i].category).to.be.equal(TokenCategory.Opcode);
         }
 
@@ -70,14 +70,14 @@ describe("Scanner",() => {
 
     it("tokenises opcodes to ICWS'88 standard",() => {
 
-        var document = "DAT MOV ADD SUB MUL DIV MOD JMP JMZ JMN DJN CMP SLT SPL";
+        const document = "DAT MOV ADD SUB MUL DIV MOD JMP JMZ JMN DJN CMP SLT SPL";
 
-        var scanner = new Scanner();
+        const scanner = new Scanner();
         const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
-        var actual = scanner.scan(document, options).tokens;
+        const actual = scanner.scan(document, options).tokens;
 
-        var opcodes = actual.filter(a => a.category === TokenCategory.Opcode);
-        var labels = actual.filter(a => a.category === TokenCategory.Label);
+        const opcodes = actual.filter(a => a.category === TokenCategory.Opcode);
+        const labels = actual.filter(a => a.category === TokenCategory.Label);
 
         expect(opcodes.length).to.be.equal(11);
         expect(labels.length).to.be.equal(3);
@@ -101,14 +101,14 @@ describe("Scanner",() => {
 
     it("tokenises opcodes to ICWS'86 standard",() => {
 
-        var document = "DAT MOV ADD SUB MUL DIV MOD JMP JMZ JMN DJN CMP SLT SPL";
+        const document = "DAT MOV ADD SUB MUL DIV MOD JMP JMZ JMN DJN CMP SLT SPL";
 
-        var scanner = new Scanner();
+        const scanner = new Scanner();
         const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
-        var actual = scanner.scan(document, options).tokens;
+        const actual = scanner.scan(document, options).tokens;
 
-        var opcodes = actual.filter(a => a.category === TokenCategory.Opcode);
-        var labels = actual.filter(a => a.category === TokenCategory.Label);
+        const opcodes = actual.filter(a => a.category === TokenCategory.Opcode);
+        const labels = actual.filter(a => a.category === TokenCategory.Label);
 
         expect(opcodes.length).to.be.equal(10);
         expect(labels.length).to.be.equal(4);
@@ -132,14 +132,14 @@ describe("Scanner",() => {
 
     it("tokenises preprocessor commands to ICWS'94-draft standard",() => {
 
-        var document = "EQU END ORG";
+        const document = "EQU END ORG";
 
-        var scanner = new Scanner();
-        var actual = scanner.scan(document, Parser.DefaultOptions).tokens;
+        const scanner = new Scanner();
+        const actual = scanner.scan(document, Parser.DefaultOptions).tokens;
 
         expect(actual.length).to.be.equal(4);
 
-        for (var i = 0; i <= 2; i++) {
+        for (let i = 0; i <= 2; i++) {
             expect(actual[i].category).to.be.equal(TokenCategory.Preprocessor);
         }
 
@@ -150,14 +150,14 @@ describe("Scanner",() => {
 
     it("tokenises preprocessor commands to ICWS'88 standard",() => {
 
-        var document = "EQU END ORG";
+        const document = "EQU END ORG";
 
-        var scanner = new Scanner();
+        const scanner = new Scanner();
         const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
-        var actual = scanner.scan(document, options).tokens;
+        const actual = scanner.scan(document, options).tokens;
 
-        var preprocessor = actual.filter(a => a.category === TokenCategory.Preprocessor);
-        var labels = actual.filter(a => a.category === TokenCategory.Label);
+        const preprocessor = actual.filter(a => a.category === TokenCategory.Preprocessor);
+        const labels = actual.filter(a => a.category === TokenCategory.Label);
 
         expect(preprocessor.length).to.be.equal(2);
         expect(labels.length).to.be.equal(1);
@@ -169,14 +169,14 @@ describe("Scanner",() => {
 
     it("tokenises preprocessor commands to ICWS'86 standard",() => {
 
-        var document = "EQU END ORG";
+        const document = "EQU END ORG";
 
-        var scanner = new Scanner();
+        const scanner = new Scanner();
         const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
-        var actual = scanner.scan(document, options).tokens;
+        const actual = scanner.scan(document, options).tokens;
 
-        var preprocessor = actual.filter(a => a.category === TokenCategory.Preprocessor);
-        var labels = actual.filter(a => a.category === TokenCategory.Label);
+        const preprocessor = actual.filter(a => a.category === TokenCategory.Preprocessor);
+        const labels = actual.filter(a => a.category === TokenCategory.Label);
 
         expect(preprocessor.length).to.be.equal(1);
         expect(labels.length).to.be.equal(2);
@@ -188,10 +188,10 @@ describe("Scanner",() => {
 
     it("correctly identifies a label which looks like a preprocessor instruction",() => {
 
-        var document = "ORG2 MOV 0, 1\n";
+        const document = "ORG2 MOV 0, 1\n";
 
-        var scanner = new Scanner();
-        var actual = scanner.scan(document, Parser.DefaultOptions).tokens;
+        const scanner = new Scanner();
+        const actual = scanner.scan(document, Parser.DefaultOptions).tokens;
 
         expect(actual.length).to.be.equal(7);
 
@@ -204,12 +204,12 @@ describe("Scanner",() => {
 
     it("tokenises modes to ICWS'94-draft standard",() => {
 
-        var document = "MOV.AB #25, $26\nDAT @1, <6\nJMP >7\nMOV {1, }2\nDAT *1";
+        const document = "MOV.AB #25, $26\nDAT @1, <6\nJMP >7\nMOV {1, }2\nDAT *1";
 
-        var scanner = new Scanner();
-        var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
+        const scanner = new Scanner();
+        const tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var actual = tokens.filter(a => a.category === TokenCategory.Mode);
+        const actual = tokens.filter(a => a.category === TokenCategory.Mode);
 
         expect(actual.length).to.be.equal(8);
 
@@ -225,13 +225,13 @@ describe("Scanner",() => {
 
     it("tokenises modes to ICWS'88 standard",() => {
 
-        var document = "MOV.AB #25, $26\nDAT @1, <6\nJMP >7";
+        const document = "MOV.AB #25, $26\nDAT @1, <6\nJMP >7";
 
-        var scanner = new Scanner();
+        const scanner = new Scanner();
         const options =  Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
-        var tokens = scanner.scan(document, options).tokens;
+        const tokens = scanner.scan(document, options).tokens;
 
-        var actual = tokens.filter(a => a.category === TokenCategory.Mode);
+        const actual = tokens.filter(a => a.category === TokenCategory.Mode);
 
         expect(actual.length).to.be.equal(4);
 
@@ -243,13 +243,13 @@ describe("Scanner",() => {
 
     it("tokenises modes to ICWS'86 standard",() => {
 
-        var document = "MOV.AB #25, $26\nDAT @1, <6\nJMP >7";
+        const document = "MOV.AB #25, $26\nDAT @1, <6\nJMP >7";
 
-        var scanner = new Scanner();
+        const scanner = new Scanner();
         const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
-        var tokens = scanner.scan(document, options).tokens;
+        const tokens = scanner.scan(document, options).tokens;
 
-        var actual = tokens.filter(a => a.category === TokenCategory.Mode);
+        const actual = tokens.filter(a => a.category === TokenCategory.Mode);
 
         expect(actual.length).to.be.equal(4);
 
@@ -261,12 +261,12 @@ describe("Scanner",() => {
 
     it("tokenises commas",() => {
 
-        var document = "MOV #25 , 26\nadd , ,, 21, 26";
+        const document = "MOV #25 , 26\nadd , ,, 21, 26";
 
-        var scanner = new Scanner();
-        var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
+        const scanner = new Scanner();
+        const tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var actual = tokens.filter(a => 
+        const actual = tokens.filter(a => 
             a.category === TokenCategory.Comma && 
             a.lexeme === ",");
 
@@ -275,15 +275,15 @@ describe("Scanner",() => {
 
     it("tokenises numbers",() => {
 
-        var document = "mov 25, #26\nadd -27, @28\na123";
+        const document = "mov 25, #26\nadd -27, @28\na123";
 
-        var scanner = new Scanner();
-        var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
+        const scanner = new Scanner();
+        const tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
         expect(tokens[7].lexeme).to.be.equal("-");
         expect(tokens[7].category).to.be.equal(TokenCategory.Maths);
 
-        var actual = tokens.filter(a => a.category === TokenCategory.Number);
+        const actual = tokens.filter(a => a.category === TokenCategory.Number);
 
         expect(actual.length).to.be.equal(4);
 
@@ -295,12 +295,12 @@ describe("Scanner",() => {
 
     it("tokenises modifiers to ICWS'94-draft standard",() => {
 
-        var document = "MOV.A 0, 0\nADD.B 0, 0\n.AB 0, 0\nJMZ .BA 0, 0\nMOV 0,.F 0\nMOV 0, 0 .I\nMOV.X 0, 0\n. AB. BA. A . B. I";
+        const document = "MOV.A 0, 0\nADD.B 0, 0\n.AB 0, 0\nJMZ .BA 0, 0\nMOV 0,.F 0\nMOV 0, 0 .I\nMOV.X 0, 0\n. AB. BA. A . B. I";
 
-        var scanner = new Scanner();
-        var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
+        const scanner = new Scanner();
+        const tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var actual = tokens.filter(a => a.category === TokenCategory.Modifier);
+        const actual = tokens.filter(a => a.category === TokenCategory.Modifier);
 
         expect(actual.length).to.be.equal(7);
 
@@ -315,17 +315,17 @@ describe("Scanner",() => {
 
     it("considers modifiers as unknown in ICWS'88 standard",() => {
 
-        var document = "MOV.A 0, 0\nADD.B 0, 0\n.AB 0, 0\nJMZ .BA 0, 0\nMOV 0,.F 0\nMOV 0, 0 .I\nMOV.X 0, 0\n. AB. BA. A . B. I";
+        const document = "MOV.A 0, 0\nADD.B 0, 0\n.AB 0, 0\nJMZ .BA 0, 0\nMOV 0,.F 0\nMOV 0, 0 .I\nMOV.X 0, 0\n. AB. BA. A . B. I";
 
-        var scanner = new Scanner();
+        const scanner = new Scanner();
         const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
-        var tokens = scanner.scan(document, options).tokens;
+        const tokens = scanner.scan(document, options).tokens;
 
-        var modifiers = tokens.filter(a => a.category === TokenCategory.Modifier);
+        const modifiers = tokens.filter(a => a.category === TokenCategory.Modifier);
 
         expect(modifiers.length).to.be.equal(0);
 
-        var unknown = tokens.filter(a => a.category === TokenCategory.Unknown);
+        const unknown = tokens.filter(a => a.category === TokenCategory.Unknown);
 
         expect(unknown.length).to.be.equal(12);
 
@@ -342,7 +342,7 @@ describe("Scanner",() => {
         expect(unknown[10].lexeme).to.be.equal(".");
         expect(unknown[11].lexeme).to.be.equal(".");
 
-        var labels = tokens.filter(a => a.category === TokenCategory.Label);
+        const labels = tokens.filter(a => a.category === TokenCategory.Label);
 
         expect(labels.length).to.be.equal(5);
 
@@ -355,17 +355,17 @@ describe("Scanner",() => {
 
     it("considers modifiers as unknown in ICWS'86 standard",() => {
 
-        var document = "MOV.A 0, 0\nADD.B 0, 0\n.AB 0, 0\nJMZ .BA 0, 0\nMOV 0,.F 0\nMOV 0, 0 .I\nMOV.X 0, 0\n. AB. BA. A . B. I";
+        const document = "MOV.A 0, 0\nADD.B 0, 0\n.AB 0, 0\nJMZ .BA 0, 0\nMOV 0,.F 0\nMOV 0, 0 .I\nMOV.X 0, 0\n. AB. BA. A . B. I";
 
-        var scanner = new Scanner();
+        const scanner = new Scanner();
         const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
-        var tokens = scanner.scan(document, options).tokens;
+        const tokens = scanner.scan(document, options).tokens;
 
-        var modifiers = tokens.filter(a => a.category === TokenCategory.Modifier);
+        const modifiers = tokens.filter(a => a.category === TokenCategory.Modifier);
 
         expect(modifiers.length).to.be.equal(0);
 
-        var unknown = tokens.filter(a => a.category === TokenCategory.Unknown);
+        const unknown = tokens.filter(a => a.category === TokenCategory.Unknown);
 
         expect(unknown.length).to.be.equal(12);
 
@@ -382,7 +382,7 @@ describe("Scanner",() => {
         expect(unknown[10].lexeme).to.be.equal(".");
         expect(unknown[11].lexeme).to.be.equal(".");
 
-        var labels = tokens.filter(a => a.category === TokenCategory.Label);
+        const labels = tokens.filter(a => a.category === TokenCategory.Label);
 
         expect(labels.length).to.be.equal(5);
 
@@ -395,12 +395,12 @@ describe("Scanner",() => {
 
     it("tokenises maths to ICWS'94-draft standard",() => {
 
-        var document = "MOV 5 + 4\nADD.F 3 - 2\nabc EQU 3 / 2\nxyz EQU 4 * 3\ndef EQU 5 % 6";
+        const document = "MOV 5 + 4\nADD.F 3 - 2\nabc EQU 3 / 2\nxyz EQU 4 * 3\ndef EQU 5 % 6";
 
-        var scanner = new Scanner();
-        var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
+        const scanner = new Scanner();
+        const tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var actual = tokens.filter(a => a.category === TokenCategory.Maths);
+        const actual = tokens.filter(a => a.category === TokenCategory.Maths);
 
         expect(actual.length).to.be.equal(5);
 
@@ -413,13 +413,13 @@ describe("Scanner",() => {
 
     it("tokenises maths to ICWS'88 standard",() => {
 
-        var document = "MOV 5+4\nADD.F 3-2\nabc EQU 3/2\nxyz EQU 4*3\ndef EQU 5%6";
+        const document = "MOV 5+4\nADD.F 3-2\nabc EQU 3/2\nxyz EQU 4*3\ndef EQU 5%6";
 
-        var scanner = new Scanner();
+        const scanner = new Scanner();
         const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
-        var tokens = scanner.scan(document, options).tokens;
+        const tokens = scanner.scan(document, options).tokens;
 
-        var actual = tokens.filter(a => a.category === TokenCategory.Maths);
+        const actual = tokens.filter(a => a.category === TokenCategory.Maths);
 
         expect(actual.length).to.be.equal(4);
 
@@ -438,13 +438,13 @@ describe("Scanner",() => {
 
     it("tokenises maths to ICWS'86 standard",() => {
 
-        var document = "MOV 5 + 4\nADD.F 3 - 2\nabc EQU 3 / 2\nxyz EQU 4 * 3\ndef EQU 5 % 6";
+        const document = "MOV 5 + 4\nADD.F 3 - 2\nabc EQU 3 / 2\nxyz EQU 4 * 3\ndef EQU 5 % 6";
 
-        var scanner = new Scanner();
+        const scanner = new Scanner();
         const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
-        var tokens = scanner.scan(document, options).tokens;
+        const tokens = scanner.scan(document, options).tokens;
 
-        var actual = tokens.filter(a => a.category === TokenCategory.Maths);
+        const actual = tokens.filter(a => a.category === TokenCategory.Maths);
 
         expect(actual.length).to.be.equal(2);
 
@@ -461,12 +461,12 @@ describe("Scanner",() => {
 
     it("tokenises brackets as maths category in ICWS'94-draft standard",() => {
 
-        var document = "MOV (5 + 4)*3\nlabel EQU (4 % ((3 + 2) - 1))";
+        const document = "MOV (5 + 4)*3\nlabel EQU (4 % ((3 + 2) - 1))";
 
-        var scanner = new Scanner();
-        var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
+        const scanner = new Scanner();
+        const tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var actual = tokens.filter(a => a.category === TokenCategory.Maths);
+        const actual = tokens.filter(a => a.category === TokenCategory.Maths);
 
         expect(actual.length).to.be.equal(13);
 
@@ -487,13 +487,13 @@ describe("Scanner",() => {
 
     it("considers brackets as unknown category in ICWS'88 standard",() => {
 
-        var document = "MOV (5 + 4)*3\nlabel EQU (4 % ((3 + 2) - 1))";
+        const document = "MOV (5 + 4)*3\nlabel EQU (4 % ((3 + 2) - 1))";
 
-        var scanner = new Scanner();
+        const scanner = new Scanner();
         const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
-        var tokens = scanner.scan(document, options).tokens;
+        const tokens = scanner.scan(document, options).tokens;
 
-        var actual = tokens.filter(a => a.category === TokenCategory.Maths);
+        const actual = tokens.filter(a => a.category === TokenCategory.Maths);
 
         expect(actual.length).to.be.equal(3);
 
@@ -501,7 +501,7 @@ describe("Scanner",() => {
         expect(actual[1].lexeme).to.be.equal("+");
         expect(actual[2].lexeme).to.be.equal("-");
 
-        var unknown = tokens.filter(a => a.category === TokenCategory.Unknown);
+        const unknown = tokens.filter(a => a.category === TokenCategory.Unknown);
 
         expect(unknown.length).to.be.equal(7);
         expect(unknown[0].lexeme).to.be.equal("(5");
@@ -515,13 +515,13 @@ describe("Scanner",() => {
 
     it("considers brackets as unknown category in ICWS'86 standard",() => {
 
-        var document = "MOV (5 + 4)*3\nlabel EQU (4 % ((3 + 2) - 1))";
+        const document = "MOV (5 + 4)*3\nlabel EQU (4 % ((3 + 2) - 1))";
 
-        var scanner = new Scanner();
+        const scanner = new Scanner();
         const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
-        var tokens = scanner.scan(document, options).tokens;
+        const tokens = scanner.scan(document, options).tokens;
 
-        var actual = tokens.filter(a => a.category === TokenCategory.Maths);
+        const actual = tokens.filter(a => a.category === TokenCategory.Maths);
 
         expect(actual.length).to.be.equal(3);
 
@@ -529,7 +529,7 @@ describe("Scanner",() => {
         expect(actual[1].lexeme).to.be.equal("+");
         expect(actual[2].lexeme).to.be.equal("-");
 
-        var unknown = tokens.filter(a => a.category === TokenCategory.Unknown);
+        const unknown = tokens.filter(a => a.category === TokenCategory.Unknown);
 
         expect(unknown.length).to.be.equal(7);
         expect(unknown[0].lexeme).to.be.equal("(5");
@@ -543,12 +543,12 @@ describe("Scanner",() => {
 
     it("tokenises comments",() => {
 
-        var document = "mov ; abc ; ;; mov\nmov; abc";
+        const document = "mov ; abc ; ;; mov\nmov; abc";
 
-        var scanner = new Scanner();
-        var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
+        const scanner = new Scanner();
+        const tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var actual = tokens.filter(a => a.category === TokenCategory.Comment);
+        const actual = tokens.filter(a => a.category === TokenCategory.Comment);
 
         expect(actual.length).to.be.equal(2);
 
@@ -558,12 +558,12 @@ describe("Scanner",() => {
 
     it("tokenises labels",() => {
 
-        var document = "MOV #4, @label\nabc EQU 3\nc123 MOV.X 5, c123\nab_2_ca_123\n2xyz _y_z";
+        const document = "MOV #4, @label\nabc EQU 3\nc123 MOV.X 5, c123\nab_2_ca_123\n2xyz _y_z";
 
-        var scanner = new Scanner();
-        var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
+        const scanner = new Scanner();
+        const tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var actual = tokens.filter(a => a.category === TokenCategory.Label);
+        const actual = tokens.filter(a => a.category === TokenCategory.Label);
 
         expect(actual.length).to.be.equal(7);
 
@@ -578,14 +578,14 @@ describe("Scanner",() => {
 
     it("is case insensitive when tokenising opcodes, modifiers and preprocessor commands",() => {
 
-        var document =
+        const document =
             "DAT MOV ADD SUB MUL DIV MOD JMP JMZ JMN DJN CMP SLT SPL ORG EQU END " +
             "dat mov add sub mul div mod jmp jmz jmn djn cmp slt spl org equ end " +
             ".AB .BA .A .B .F .X .I " +
             ".ab .ba .a .b .f .x .i";
 
-        var scanner = new Scanner();
-        var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
+        const scanner = new Scanner();
+        const tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
         expect(tokens.filter(a => a.category === TokenCategory.Opcode).length).to.be.equal(28);
         expect(tokens.filter(a => a.category === TokenCategory.Preprocessor).length).to.be.equal(6);
@@ -646,10 +646,10 @@ describe("Scanner",() => {
 
     it("is case sensitive when tokenising labels",() => {
 
-        var document = "lowercase UPPERCASE mIx_34_Ed";
+        const document = "lowercase UPPERCASE mIx_34_Ed";
 
-        var scanner = new Scanner();
-        var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
+        const scanner = new Scanner();
+        const tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
         expect(tokens.length).to.be.equal(4);
         expect(tokens[0].lexeme).to.be.equal("lowercase");
@@ -659,21 +659,21 @@ describe("Scanner",() => {
 
     it("stores the line and character number against each token",() => {
 
-        var document =
+        const document =
             "mov.ab #4, #5\n" +
             "add @lbl, >0\n" +
             "\n" +
             " \t\n" +
             "\tlbl EQU #0";
 
-        var scanner = new Scanner();
-        var tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
+        const scanner = new Scanner();
+        const tokens = scanner.scan(document, Parser.DefaultOptions).tokens;
 
-        var line1 = tokens.filter((item: IToken) => { return item.position.line === 1; });
-        var line2 = tokens.filter((item: IToken) => { return item.position.line === 2; });
-        var line3 = tokens.filter((item: IToken) => { return item.position.line === 3; });
-        var line4 = tokens.filter((item: IToken) => { return item.position.line === 4; });
-        var line5 = tokens.filter((item: IToken) => { return item.position.line === 5; });
+        const line1 = tokens.filter((item: IToken) => { return item.position.line === 1; });
+        const line2 = tokens.filter((item: IToken) => { return item.position.line === 2; });
+        const line3 = tokens.filter((item: IToken) => { return item.position.line === 3; });
+        const line4 = tokens.filter((item: IToken) => { return item.position.line === 4; });
+        const line5 = tokens.filter((item: IToken) => { return item.position.line === 5; });
 
         expect(line1.length).to.be.equal(8);
         expect(line1[0].position.char).to.be.equal(1);
@@ -710,10 +710,10 @@ describe("Scanner",() => {
 
     it("can handle an empty document",() => {
 
-        var document = "";
+        const document = "";
 
-        var scanner = new Scanner();
-        var actual = scanner.scan(document, Parser.DefaultOptions).tokens;
+        const scanner = new Scanner();
+        const actual = scanner.scan(document, Parser.DefaultOptions).tokens;
 
         expect(actual.length).to.be.equal(1);
         expect(actual[0].category).to.be.equal(TokenCategory.EOL);
@@ -721,11 +721,11 @@ describe("Scanner",() => {
 
     it("does not allow maths operators to be followed by whitespace under ICWS'88 standard",() => {
 
-        var document = "MOV\t#label- 1";
+        const document = "MOV\t#label- 1";
 
-        var pass = new Scanner();
+        const pass = new Scanner();
         const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
-        var actual = pass.scan(document, options);
+        const actual = pass.scan(document, options);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(6);
@@ -742,11 +742,11 @@ describe("Scanner",() => {
 
     it("inserts a zero before maths operators if the operator is preceded by whitespace under the ICWS'88 standard",() => {
 
-        var document = "MOV\t#0\t-1";
+        const document = "MOV\t#0\t-1";
 
-        var pass = new Scanner();
+        const pass = new Scanner();
         const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
-        var actual = pass.scan(document, options);
+        const actual = pass.scan(document, options);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(7);
@@ -764,11 +764,11 @@ describe("Scanner",() => {
 
     it("only recognises labels which are eight or fewer characters in length under ICWS'86 standard",() => {
 
-        var document = "eightlet mov 0, 1\nfour mov 0, 1\ntwelveletter mov 0, 1";
+        const document = "eightlet mov 0, 1\nfour mov 0, 1\ntwelveletter mov 0, 1";
 
-        var pass = new Scanner();
+        const pass = new Scanner();
         const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
-        var actual = pass.scan(document, options);
+        const actual = pass.scan(document, options);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(18);
@@ -784,10 +784,10 @@ describe("Scanner",() => {
 
     it("recognises comments which are not preceeded by whitespace",() => {
 
-        var document = "MOV $0, #0;comment";
+        const document = "MOV $0, #0;comment";
 
-        var scanner = new Scanner();
-        var actual = scanner.scan(document, Parser.DefaultOptions);
+        const scanner = new Scanner();
+        const actual = scanner.scan(document, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(8);
         expect(actual.tokens[6].lexeme).to.be.equal(";comment");
@@ -796,10 +796,10 @@ describe("Scanner",() => {
 
     it("correctly tokenises a indirect a field mode",() => {
 
-        var document = "dat.A * 1, #1";
+        const document = "dat.A * 1, #1";
 
-        var scanner = new Scanner();
-        var actual = scanner.scan(document, Parser.DefaultOptions);
+        const scanner = new Scanner();
+        const actual = scanner.scan(document, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
 
@@ -818,11 +818,11 @@ describe("Scanner",() => {
 
     it("Allows labels to be folowed by a colon", () => {
 
-        var document = "label1: label2 label3";
+        const document = "label1: label2 label3";
 
-        var scanner = new Scanner();
+        const scanner = new Scanner();
         const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
-        var actual = scanner.scan(document, options).tokens;
+        const actual = scanner.scan(document, options).tokens;
      
         expect(actual.length).to.be.equal(4);
         

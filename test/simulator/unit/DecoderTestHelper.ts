@@ -4,14 +4,15 @@ import TestHelper from "@simulator/tests/unit/TestHelper";
 
 import { IExecutionContext } from "@simulator/interface/IExecutionContext";
 
-export interface InstructionAssertion extends Chai.Assertion {
-    thisInstruction(IInstruction): void
+export interface IInstructionAssertion extends Chai.Assertion {
+    thisInstruction(IInstruction): void;
 }
 
 export interface IDecoderTestConfig {
-    core: string[],
-    ip: number,
-    e: any[]
+    core: string[];
+    ip: number;
+    /* eslint-disable-next-line */
+    e: any[];
 }
 
 function buildContext(testConfig: IDecoderTestConfig): IExecutionContext {
@@ -32,20 +33,20 @@ function buildContext(testConfig: IDecoderTestConfig): IExecutionContext {
     let i = 0;
     const instructions = testConfig.core.map(c => TestHelper.parseInstruction(i++, c));
 
-    const get = <sinon.SinonStub>result.core.getAt;
+    const get = result.core.getAt as sinon.SinonStub;
     get.callsFake(address => {
         return instructions[address];
     });
 
-    const read = <sinon.SinonStub>result.core.readAt;
-    read.callsFake((task, address) => {
+    const read = result.core.readAt as sinon.SinonStub;
+    read.callsFake((_, address) => {
         return instructions[address];
     });
 
     return result;
 }
 
-export function runTest(testConfig: IDecoderTestConfig[], testMethod: (IExecutionContext, string) => void) {
+export function runTest(testConfig: IDecoderTestConfig[], testMethod: (IExecutionContext, string) => void): void {
 
     testConfig.forEach(c => {
 
