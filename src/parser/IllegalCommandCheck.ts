@@ -1,11 +1,11 @@
 ﻿import { IParseInstruction } from "@parser/interface/IParseInstruction";
-import { IToken, TokenCategory } from "@parser/interface/IToken";
+import { TokenCategory } from "@parser/interface/IToken";
 import { PassBase } from "@parser/PassBase";
 
 export class IllegalCommandCheck extends PassBase {
 
 
-    public processLine() {
+    public processLine(): void {
 
         if (this.stream.peek().category === TokenCategory.Opcode) {
             this.checkLine();
@@ -44,9 +44,9 @@ export class IllegalCommandCheck extends PassBase {
         "SUB@<", "SUB<$", "SUB<@", "SUB<<"
     ];
 
-    private checkLine() {
+    private checkLine(): void {
 
-        var instruction: IParseInstruction = {
+        const instruction: IParseInstruction = {
             opcode: this.stream.expect(TokenCategory.Opcode),
             modifier: this.stream.expect(TokenCategory.Modifier),
             aOperand: {
@@ -60,7 +60,7 @@ export class IllegalCommandCheck extends PassBase {
             }
         };
 
-        var hash = instruction.opcode.lexeme +
+        const hash = instruction.opcode.lexeme +
             instruction.aOperand.mode.lexeme +
             instruction.bOperand.mode.lexeme;
 

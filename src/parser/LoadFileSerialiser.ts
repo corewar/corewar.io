@@ -7,7 +7,7 @@ export class LoadFileSerialiser implements ISerialiser {
 
     public serialise(tokens: IToken[]): string {
 
-        var result = "";
+        let result = "";
         this.previous = TokenCategory.EOL;
 
         tokens.forEach((token: IToken) => {

@@ -5,14 +5,14 @@ import { PassBase } from "@parser/PassBase";
 
 export class DefaultPass extends PassBase {
 
-    public processLine() {
+    public processLine(): void {
 
         // Should specify default
         //    Modifiers (depends upon opcode)
         //    Modes ($)
         //    Operands $0
 
-        var next = this.stream.peek();
+        const next = this.stream.peek();
 
         if (next.category === TokenCategory.Opcode) {
             this.processInstruction();
@@ -21,9 +21,9 @@ export class DefaultPass extends PassBase {
         }
     }
 
-    private processInstruction() {
+    private processInstruction(): void {
 
-        var instruction: IParseInstruction = this.readInstruction();
+        const instruction: IParseInstruction = this.readInstruction();
 
         this.defaultModifier(instruction);
 
@@ -45,7 +45,7 @@ export class DefaultPass extends PassBase {
 
     private readInstruction(): IParseInstruction {
 
-        var instruction: IParseInstruction = {};
+        const instruction: IParseInstruction = {};
 
         instruction.opcode = this.stream.expect(TokenCategory.Opcode);
         instruction.modifier = this.tryRead(TokenCategory.Modifier);
@@ -94,7 +94,7 @@ export class DefaultPass extends PassBase {
             return this.stream.read();
         } else {
 
-            var mode = "$";
+            let mode = "$";
 
             if (this.options.standard < Standard.ICWS94draft &&
                 opcode.lexeme === "DAT") {
@@ -109,7 +109,7 @@ export class DefaultPass extends PassBase {
         }
     }
 
-    private defaultBOperand(instruction: IParseInstruction) {
+    private defaultBOperand(instruction: IParseInstruction): void {
 
         if (instruction.bOperand.address === null) {
 
@@ -131,7 +131,7 @@ export class DefaultPass extends PassBase {
 
                 instruction.bOperand.mode.lexeme = "#";
 
-                var tempOperand = instruction.aOperand;
+                const tempOperand = instruction.aOperand;
                 instruction.aOperand = instruction.bOperand;
                 instruction.bOperand = tempOperand;
 
@@ -141,11 +141,11 @@ export class DefaultPass extends PassBase {
         }
     }
 
-    private defaultModifier(instruction: IParseInstruction) {
+    private defaultModifier(instruction: IParseInstruction): void {
 
         if (instruction.modifier === null) {
 
-            var token = {
+            const token = {
                 category: TokenCategory.Modifier,
                 position: Object.assign({}, instruction.opcode.position),
                 lexeme: ""
@@ -203,7 +203,7 @@ export class DefaultPass extends PassBase {
         }
     }
 
-    private emitInstruction(instruction: IParseInstruction) {
+    private emitInstruction(instruction: IParseInstruction): void {
 
         this.context.emitSingle(instruction.opcode);
         if (instruction.modifier !== null) {

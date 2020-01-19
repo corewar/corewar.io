@@ -11,7 +11,7 @@ export class MetaDataCollector implements IPass {
     private context: IContext;
     private stream: ITokenStream;
 
-    public process(context: IContext, options: IParseOptions): IContext {
+    public process(context: IContext, _: IParseOptions): IContext {
 
         // Read meta data from comments
         // ;name                   name of warrior follows
@@ -39,11 +39,11 @@ export class MetaDataCollector implements IPass {
         return this.context;
     }
 
-    private processLines() {
+    private processLines(): void {
 
         while (!this.stream.eof()) {
 
-            var token = this.stream.read();
+            const token = this.stream.read();
             if (token.category === TokenCategory.Comment) {
 
                 this.processComment(token);
@@ -51,12 +51,12 @@ export class MetaDataCollector implements IPass {
         }
     }
 
-    private processComment(comment: IToken) {
+    private processComment(comment: IToken): void {
 
         if (comment.lexeme.length > 5 &&
             comment.lexeme.substr(0, 5).toUpperCase() === ";NAME") {
 
-            var name = comment.lexeme.substr(5).trim();
+            const name = comment.lexeme.substr(5).trim();
 
             if (this.context.metaData.name !== "") {
                 this.stream.warn(comment, "Redefinition of name, latest definition will be used ('" + name + "')");
@@ -67,7 +67,7 @@ export class MetaDataCollector implements IPass {
         } else if (comment.lexeme.length > 7 &&
             comment.lexeme.substr(0, 7).toUpperCase() === ";AUTHOR") {
 
-            var author = comment.lexeme.substr(7).trim();
+            const author = comment.lexeme.substr(7).trim();
 
             if (this.context.metaData.author !== "") {
                 this.stream.warn(comment, "Redefinition of author, latest definition will be used ('" + author + "')");

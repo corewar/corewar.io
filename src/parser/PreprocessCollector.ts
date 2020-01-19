@@ -23,11 +23,11 @@ export class PreprocessCollector extends PassBase {
         return super.process(context, options);
     }
 
-    public processLine() {
+    public processLine(): void {
 
         while (!this.stream.eof()) {
 
-            var next = this.stream.peek();
+            const next = this.stream.peek();
 
             if (next.category === TokenCategory.Label) {
 
@@ -40,7 +40,7 @@ export class PreprocessCollector extends PassBase {
 
             } else {
 
-                var line = this.stream.readToEOL();
+                const line = this.stream.readToEOL();
                 this.context.emit(line);
             }
         }
@@ -59,19 +59,19 @@ export class PreprocessCollector extends PassBase {
             pre.lexeme === "EQU";
     }
 
-    private processLabels() {
+    private processLabels(): void {
 
-        var labels: IToken[] = [];
+        const labels: IToken[] = [];
 
         while (this.stream.peek().category === TokenCategory.Label) {
 
-            var token = this.stream.expect(TokenCategory.Label);
+            const token = this.stream.expect(TokenCategory.Label);
 
             this.previous.push(token.lexeme);
             labels.push(token);
         }
 
-        var pre = this.stream.read();
+        const pre = this.stream.read();
 
         if (this.isEqu(pre)) {
 
@@ -85,7 +85,7 @@ export class PreprocessCollector extends PassBase {
         }
     }
 
-    private warnDuplicateLabel(label: IToken) {
+    private warnDuplicateLabel(label: IToken): void {
 
         this.context.messages.push({
             type: MessageType.Warning,
@@ -94,9 +94,9 @@ export class PreprocessCollector extends PassBase {
         });
     }
 
-    private processEqu(labels: IToken[]) {
+    private processEqu(labels: IToken[]): void {
 
-        var expression = this.stream.readToEOL();
+        let expression = this.stream.readToEOL();
 
         // Do not include terminating EOL in replacement expression
         expression.pop();
@@ -116,11 +116,11 @@ export class PreprocessCollector extends PassBase {
         });
     }
 
-    private processMultilineEqu() {
+    private processMultilineEqu(): void {
 
         this.stream.expectOnly("EQU");
 
-        var expression: IToken[] = [{
+        let expression: IToken[] = [{
             category: TokenCategory.EOL,
             lexeme: "\n",
             position: Object.assign({}, this.stream.peek().position)
@@ -132,7 +132,7 @@ export class PreprocessCollector extends PassBase {
 
         this.previous.forEach((label: string) => {
 
-            var existing = this.context.equs[label];
+            const existing = this.context.equs[label];
             this.context.equs[label] = existing.concat(expression);
         });
     }

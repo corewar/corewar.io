@@ -22,16 +22,16 @@ export class OrgPass extends PassBase {
         this.orgAddress = null;
         this.orgComment = null;
 
-        var result = super.process(context, options);
+        const result = super.process(context, options);
 
         this.emitOrg();
 
         return result;
     }
 
-    public processLine() {
+    public processLine(): void {
 
-        var next = this.stream.peek();
+        const next = this.stream.peek();
 
         if (this.firstInstruction === null &&
             next.category !== TokenCategory.Comment) {
@@ -53,9 +53,9 @@ export class OrgPass extends PassBase {
         }
     }
 
-    private processOrg() {
+    private processOrg(): void {
 
-        var org = this.stream.expectOnly("ORG");
+        const org = this.stream.expectOnly("ORG");
         this.org = org;
 
         if (this.orgAddress !== null) {
@@ -63,7 +63,7 @@ export class OrgPass extends PassBase {
             this.stream.warn(org, "Redefinition of ORG encountered, this later definition will take effect");
         }
 
-        var address = this.stream.expect(TokenCategory.Number);
+        const address = this.stream.expect(TokenCategory.Number);
 
         this.orgAddress = parseInt(address.lexeme, 10);
 
@@ -74,11 +74,10 @@ export class OrgPass extends PassBase {
         this.stream.expect(TokenCategory.EOL);
     }
 
-    private processEnd() {
+    private processEnd(): void {
 
-        var end = this.stream.expectOnly("END");
-        var address: IToken = null;
-        var comment: IToken = null;
+        const end = this.stream.expectOnly("END");
+        let address: IToken = null;
 
         if (this.stream.peek().category === TokenCategory.Number) {
 
@@ -87,7 +86,7 @@ export class OrgPass extends PassBase {
 
         if (this.stream.peek().category === TokenCategory.Comment) {
 
-            comment = this.stream.read();
+            this.stream.read();
         }
 
         this.stream.expect(TokenCategory.EOL);
@@ -107,7 +106,7 @@ export class OrgPass extends PassBase {
 
     private static START_LABEL = "start";
 
-    private emitOrg() {
+    private emitOrg(): void {
 
         if (this.orgAddress === null) {
 
@@ -125,19 +124,19 @@ export class OrgPass extends PassBase {
             };
         }
 
-        var org = {
+        const org = {
             category: TokenCategory.Preprocessor,
             lexeme: "ORG",
             position: Object.assign({}, this.org.position)
         };
 
-        var address = {
+        const address = {
             category: TokenCategory.Number,
             lexeme: this.orgAddress.toString(),
             position: Object.assign({}, this.org.position)
         };
 
-        var instruction: IToken[] = [org, address];
+        const instruction: IToken[] = [org, address];
 
         if (this.orgComment !== null) {
             instruction.push(this.orgComment);
@@ -149,8 +148,6 @@ export class OrgPass extends PassBase {
             position: Object.assign({}, this.org.position)
         });
 
-        // HACK this is the only way I could find to insert an array into an array!
-        var args: any[] = [this.firstInstruction, 0];
-        this.context.tokens.splice.apply(this.context.tokens, args.concat(instruction));
+        this.context.tokens.splice(this.firstInstruction, 0, ...instruction);
     }
 }

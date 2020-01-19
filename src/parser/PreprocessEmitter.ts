@@ -7,12 +7,12 @@ export class PreprocessEmitter extends PassBase {
     /// Perform preprocessor substitutions.
     /// Replace EQU defined labels with corresponding expression
     /// </summary>
-    public processLine() {
+    public processLine(): void {
 
         // Perform preprocessor substitution
         // Insert EQU expressions
 
-        var next = this.stream.peek();
+        const next = this.stream.peek();
 
         if (next.category === TokenCategory.Label &&
             next.lexeme in this.context.equs) {
@@ -23,13 +23,13 @@ export class PreprocessEmitter extends PassBase {
         }
     }
 
-    private replaceLabel() {
+    private replaceLabel(): void {
 
-        var label = this.stream.read();
-        var originalExpression = this.context.equs[label.lexeme];
+        const label = this.stream.read();
+        const originalExpression = this.context.equs[label.lexeme];
 
-        var expression = originalExpression.map((token: IToken) => {
-            var clone = Object.assign({}, token);
+        const expression = originalExpression.map((token: IToken) => {
+            const clone = Object.assign({}, token);
             clone.position = label.position;
             return clone;
         });

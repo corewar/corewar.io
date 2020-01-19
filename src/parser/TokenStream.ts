@@ -28,10 +28,10 @@ export class TokenStream implements ITokenStream {
     }
 
     public readToEOL(): IToken[]{
-        var result: IToken[] = [];
+        const result: IToken[] = [];
 
         while (!this.eof()) {
-            var token = this.read();
+            const token = this.read();
             result.push(token);
             if (token.category === TokenCategory.EOL) {
                 break;
@@ -41,7 +41,7 @@ export class TokenStream implements ITokenStream {
         return result;
     }
 
-    public warn(token: IToken, message: string) {
+    public warn(token: IToken, message: string): void {
 
         this.messages.push({
             position: token.position,
@@ -56,7 +56,7 @@ export class TokenStream implements ITokenStream {
             this.error(this.tokens[this.tokens.length - 1], "Expected '" + lexeme + "', got end of file");
         }
 
-        var token = this.read();
+        const token = this.read();
 
         if (token.lexeme !== lexeme) {
             this.expected("'" + lexeme + "'", token);
@@ -73,7 +73,7 @@ export class TokenStream implements ITokenStream {
                 "Expected '" + TokenHelper.categoryToString(category) + "', got end of file");
         }
 
-        var token = this.read();
+        const token = this.read();
 
         if (token.category !== category) {
             this.expected(TokenHelper.categoryToString(category), token);
@@ -82,7 +82,7 @@ export class TokenStream implements ITokenStream {
         return token;
     }
 
-    public expected(expected: string, got: IToken) {
+    public expected(expected: string, got: IToken): void {
 
         this.messages.push({
             type: MessageType.Error,
@@ -92,7 +92,7 @@ export class TokenStream implements ITokenStream {
         throw "";
     }
 
-    public error(token: IToken, message: string) {
+    public error(token: IToken, message: string): void {
 
         this.messages.push({
             position: token.position,

@@ -30,7 +30,7 @@ export class MetaDataEmitter implements IPass {
         return context;
     }
 
-    private emitComment(comment: string) {
+    private emitComment(comment: string): void {
 
         const commentTokens: IToken[] = [{
             category: TokenCategory.Comment,
@@ -45,7 +45,7 @@ export class MetaDataEmitter implements IPass {
         this.tokens = this.tokens.concat(commentTokens);
     }
 
-    private emitStandard(standard: Standard) {
+    private emitStandard(standard: Standard): void {
 
         switch (standard) {
             case Standard.ICWS86:
@@ -60,17 +60,17 @@ export class MetaDataEmitter implements IPass {
         }
     }
 
-    private emitName(name: string) {
+    private emitName(name: string): void {
 
         this.emitComment(";name " + name);
     }
 
-    private emitAuthor(author: string) {
+    private emitAuthor(author: string): void {
 
         this.emitComment(";author " + author);
     }
 
-    private emitStrategy(strategy: string) {
+    private emitStrategy(strategy: string): void {
 
         strategy.split("\n").forEach(s => {
 

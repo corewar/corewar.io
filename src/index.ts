@@ -65,7 +65,7 @@ class Api {
     constructor() {
         // any setup needed for the NPM package to work properly
         // like creating the simulator and parser
-        var expression = new Expression();
+        const expression = new Expression();
 
         this.serialiser = new LoadFileSerialiser();
 
@@ -99,14 +99,14 @@ class Api {
 
         this.core = new Core(this.publisher);
 
-        var loader = new Loader(
+        const loader = new Loader(
             new Random(),
             this.core,
             new WarriorLoader(this.core, this.publisher));
 
-        var fetcher = new Fetcher();
+        const fetcher = new Fetcher();
         this.executive = new Executive(this.publisher);
-        var decoder = new Decoder(this.executive);
+        const decoder = new Decoder(this.executive);
 
         this.simulator = new Simulator(
             this.core,
@@ -124,7 +124,7 @@ class Api {
             this.publisher);
     }
 
-    public initialiseSimulator(options: IOptions, parseResults: IParseResult[], messageProvider: IPublishProvider) {
+    public initialiseSimulator(options: IOptions, parseResults: IParseResult[], messageProvider: IPublishProvider): void {
 
         this.publisher.setPublishProvider(messageProvider);
 
@@ -164,11 +164,11 @@ class Api {
         this.publisher.republish();
     }
 
-    public runMatch(match: IMatch) {
+    public runMatch(match: IMatch): void {
 
         this.matchRunner.run(match);
     }
 }
 
 // exports for use in npm package
-export var corewar = new Api();
+export const corewar = new Api();

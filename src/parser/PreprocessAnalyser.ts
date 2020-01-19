@@ -10,7 +10,7 @@ export class PreprocessAnalyser implements IPass {
 
     private references: { [key: string]: string[] };
 
-    public process(context: IContext, options: IParseOptions): IContext {
+    public process(context: IContext, _: IParseOptions): IContext {
 
         // Detect dependencies between EQU expressions
         // Raise circular reference errors
@@ -27,15 +27,15 @@ export class PreprocessAnalyser implements IPass {
         return this.context;
     }
 
-    private collectReferences() {
+    private collectReferences(): void {
 
-        var keys = Object.keys(this.context.equs);
+        const keys = Object.keys(this.context.equs);
 
         keys.forEach((key: string) => {
 
-            var expression = this.context.equs[key];
+            const expression = this.context.equs[key];
 
-            var references = expression.filter((token: IToken) => {
+            const references = expression.filter((token: IToken) => {
                 return token.category === TokenCategory.Label &&
                     keys.includes(token.lexeme);
             });
@@ -46,7 +46,7 @@ export class PreprocessAnalyser implements IPass {
         });
     }
 
-    private raiseCircularReference(key: string, reference: string) {
+    private raiseCircularReference(key: string): void {
 
         this.context.messages.push({
             text: "Circular reference detected in '" + key + "' EQU statement",
@@ -58,18 +58,18 @@ export class PreprocessAnalyser implements IPass {
 
     private noCircularReferences(): boolean {
 
-        var keys = Object.keys(this.context.equs);
-        var result = true;
+        const keys = Object.keys(this.context.equs);
+        let result = true;
 
         keys.forEach((key: string) => {
 
             try {
-                var seen: string[] = [];
+                const seen: string[] = [];
 
                 this.detectCircularReferencesRecursive(key, seen);
             } catch (reference) {
 
-                this.raiseCircularReference(key, reference);
+                this.raiseCircularReference(key);
                 result = false;
             }
         });
@@ -77,7 +77,7 @@ export class PreprocessAnalyser implements IPass {
         return result;
     }
 
-    private detectCircularReferencesRecursive(token: string, seen: string[]) {
+    private detectCircularReferencesRecursive(token: string, seen: string[]): void {
 
         if (seen.includes(token)) {
             throw token;
@@ -90,13 +90,13 @@ export class PreprocessAnalyser implements IPass {
             this.detectCircularReferencesRecursive(reference, seen);
         });
 
-        var i = seen.indexOf(token);
+        const i = seen.indexOf(token);
         seen.splice(i, 1);
     }
 
-    private replaceAllReferences() {
+    private replaceAllReferences(): void {
 
-        var keys = Object.keys(this.context.equs);
+        const keys = Object.keys(this.context.equs);
 
         keys.forEach((key: string) => {
 
@@ -104,25 +104,23 @@ export class PreprocessAnalyser implements IPass {
         });
     }
 
-    private replaceReferences(key: string) {
+    private replaceReferences(key: string): void {
 
-        var expression = this.context.equs[key];
-        var keys = Object.keys(this.context.equs);
+        const expression = this.context.equs[key];
+        const keys = Object.keys(this.context.equs);
 
         while (expression.some((token: IToken) => {
             return token.category === TokenCategory.Label &&
                 keys.includes(token.lexeme);
         })) {
 
-            for (var i = 0; i < expression.length; i++) {
+            for (let i = 0; i < expression.length; i++) {
                 if (expression[i].category === TokenCategory.Label) {
 
-                    var label = expression[i].lexeme;
+                    const label = expression[i].lexeme;
 
                     if (keys.includes(label)) {
-                        // HACK this is the only way I could find to insert an array into an array!
-                        var args: any[] = [i, 1];
-                        expression.splice.apply(expression, args.concat(this.context.equs[label]));
+                        expression.splice(i, 1, ...this.context.equs[label])
                     }
                 }
             }

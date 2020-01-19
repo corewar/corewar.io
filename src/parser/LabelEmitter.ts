@@ -25,7 +25,7 @@ export class LabelEmitter extends PassBase {
         }
     }
 
-    public processLine() {
+    public processLine(): void {
 
         // Pass 3
         // Replace labels with numbers
@@ -37,14 +37,14 @@ export class LabelEmitter extends PassBase {
         } else if(this.stream.peek().category === TokenCategory.Preprocessor) {
             this.processLineTokens(false);
         } else {
-            var tokens = this.stream.readToEOL();
+            const tokens = this.stream.readToEOL();
             this.context.emit(tokens);
         }
     }
 
-    private processLineTokens(isOpcode: boolean) {
+    private processLineTokens(isOpcode: boolean): void {
 
-        var tokens = this.stream.readToEOL();
+        const tokens = this.stream.readToEOL();
 
         tokens.forEach((token: IToken) => {
 
@@ -56,7 +56,7 @@ export class LabelEmitter extends PassBase {
         });
     }
 
-    private raiseUndeclaredLabel(label: IToken) {
+    private raiseUndeclaredLabel(label: IToken): void {
 
         this.context.messages.push({
             type: MessageType.Error,
@@ -65,20 +65,20 @@ export class LabelEmitter extends PassBase {
         });
     }
 
-    private processLabel(label: IToken, isOpcode: boolean) {
+    private processLabel(label: IToken, isOpcode: boolean): void {
 
-        var name = this.labelName(label);
+        const name = this.labelName(label);
 
         if (name in this.context.labels) {
 
-            var labelLine = this.context.labels[name];
+            const labelLine = this.context.labels[name];
 
-            var diff = labelLine;
+            let diff = labelLine;
             if (isOpcode) {
                 diff -= this.line;
             }
 
-            var token = {
+            const token = {
                 category: TokenCategory.Number,
                 lexeme: diff.toString(),
                 position: Object.assign({}, label.position)

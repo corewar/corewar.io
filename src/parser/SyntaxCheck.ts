@@ -3,9 +3,9 @@ import { TokenCategory } from "@parser/interface/IToken";
 
 export class SyntaxCheck extends PassBase {
 
-    public processLine() {
+    public processLine(): void {
 
-        var next = this.stream.peek();
+        const next = this.stream.peek();
 
         if (next.category === TokenCategory.Opcode) {
             this.parseInstruction();
@@ -19,26 +19,26 @@ export class SyntaxCheck extends PassBase {
         }
     }
 
-    private mustEmit(category: TokenCategory) {
+    private mustEmit(category: TokenCategory): void {
 
-        var token = this.stream.expect(category);
+        const token = this.stream.expect(category);
         this.context.emitSingle(token);
     }
 
-    private mayEmit(category: TokenCategory) {
+    private mayEmit(category: TokenCategory): void {
 
         if (this.stream.peek().category === category) {
             this.context.emitSingle(this.stream.read());
         }
     }
 
-    private parseComment() {
+    private parseComment(): void {
 
         this.mustEmit(TokenCategory.Comment);
         this.mustEmit(TokenCategory.EOL);
     }
 
-    private parseInstruction() {
+    private parseInstruction(): void {
 
         this.mustEmit(TokenCategory.Opcode);
         this.mustEmit(TokenCategory.Modifier);

@@ -9,14 +9,13 @@ export class Filter extends PassBase {
     /// Removes any empty lines and anything after the END preprocessor command
     /// Removes comments
     /// </summary>
-    public processLine() {
+    public processLine(): void {
 
         // Remove empty lines from stream
         // Remove anything after END from stream
         // Remove comments
 
-        var line: IToken[];
-        var next = this.stream.peek();
+        const next = this.stream.peek();
 
         switch (next.category) {
             case TokenCategory.EOL:
@@ -36,18 +35,18 @@ export class Filter extends PassBase {
         }
     }
 
-    private processEmptyLine() {
+    private processEmptyLine(): void {
 
         this.stream.readToEOL();
     }
 
-    private processEnd() {
+    private processEnd(): void {
 
         this.processCommentLine();
         this.stream.position = this.stream.tokens.length;
     }
 
-    private processCommentLine() {
+    private processCommentLine(): void {
 
         let line = this.stream.readToEOL();
         line = line.filter(t => t.category !== TokenCategory.Comment);
