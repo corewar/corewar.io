@@ -14,5 +14,6 @@ export enum MessageType {
 export interface IMessage {
 
     type: MessageType;
+    /* eslint-disable-next-line */
     payload: any;
 }

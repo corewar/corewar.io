@@ -43,45 +43,6 @@ describe("Parser",() => {
         "maths", "org", "default", "syntax", "metaDataEmitter"
     ];
 
-    beforeEach(() => {
-
-        calls = [];
-        context = new Context();
-
-        scanner = fakeScanner("scan");
-        filter = fakePass("filter");
-        metaDataCollector = fakePass("metaDataCollector");
-        forPass = fakePass("for");
-        preprocessCollector = fakePass("equCollector");
-        preprocessAnalyser = fakePass("equAnalyser");
-        preprocessEmitter = fakePass("equEmitter");
-        labelCollector = fakePass("labelCollector");
-        labelEmitter = fakePass("labelEmitter");
-        mathsProcessor = fakePass("maths");
-        defaultPass = fakePass("default");
-        orgPass = fakePass("org");
-        syntaxCheck = fakePass("syntax");
-        illegalCommandCheck = fakePass("illegal");
-        metaDataEmitter = fakePass("metaDataEmitter");
-
-        parser = new Parser(
-            scanner,
-            filter,
-            metaDataCollector,
-            forPass,
-            preprocessCollector,
-            preprocessAnalyser,
-            preprocessEmitter,
-            labelCollector,
-            labelEmitter,
-            mathsProcessor,
-            defaultPass,
-            orgPass,
-            syntaxCheck,
-            illegalCommandCheck,
-            metaDataEmitter);
-    });
-
     function fakeScanner(name: string): IScanner {
         return {
             scan: sinon.stub().callsFake((_: string, __: IOptions): IContext => {
@@ -134,6 +95,45 @@ describe("Parser",() => {
             return context;
         });
     }
+
+    beforeEach(() => {
+
+        calls = [];
+        context = new Context();
+
+        scanner = fakeScanner("scan");
+        filter = fakePass("filter");
+        metaDataCollector = fakePass("metaDataCollector");
+        forPass = fakePass("for");
+        preprocessCollector = fakePass("equCollector");
+        preprocessAnalyser = fakePass("equAnalyser");
+        preprocessEmitter = fakePass("equEmitter");
+        labelCollector = fakePass("labelCollector");
+        labelEmitter = fakePass("labelEmitter");
+        mathsProcessor = fakePass("maths");
+        defaultPass = fakePass("default");
+        orgPass = fakePass("org");
+        syntaxCheck = fakePass("syntax");
+        illegalCommandCheck = fakePass("illegal");
+        metaDataEmitter = fakePass("metaDataEmitter");
+
+        parser = new Parser(
+            scanner,
+            filter,
+            metaDataCollector,
+            forPass,
+            preprocessCollector,
+            preprocessAnalyser,
+            preprocessEmitter,
+            labelCollector,
+            labelEmitter,
+            mathsProcessor,
+            defaultPass,
+            orgPass,
+            syntaxCheck,
+            illegalCommandCheck,
+            metaDataEmitter);
+    });
 
     it("Calls passes in correct order under ICWS'94-draft",() => {
 
@@ -352,7 +352,7 @@ describe("Parser",() => {
 
         const options = Parser.DefaultOptions;
 
-        (<sinon.SinonStub>scanner.scan).callsFake((): IContext => {
+        (scanner.scan as sinon.SinonStub).callsFake((): IContext => {
             context.messages.push(fakeError());
             calls.push("scan");
             return context;
@@ -370,7 +370,7 @@ describe("Parser",() => {
 
         const options = Parser.DefaultOptions;
 
-        (<sinon.SinonStub>scanner.scan).callsFake((): IContext => {
+        (scanner.scan as sinon.SinonStub).callsFake((): IContext => {
             context.messages.push(fakeWarning());
             calls.push("scan");
             return context;

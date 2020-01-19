@@ -339,6 +339,7 @@ describe("Executive", () => {
 
     Helper.runTest([
         { i: "NOP.A", a: "DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 3, e: {} }
+    /* eslint-disable-next-line */
     ], (context: IExecutionContext, _: any) => {
         it("NOP instruction does not modify core or warrior tasks", () => {
 

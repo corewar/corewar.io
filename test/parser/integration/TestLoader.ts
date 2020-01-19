@@ -3,7 +3,7 @@ import * as fs from "fs";
 
 export class TestLoader {
 
-    public getWarriors(path: string, names: string[]) : Promise<ITestWarrior[]> {
+    public getWarriors(path: string, names: string[]): Promise<ITestWarrior[]> {
 
         const files: { [filename: string]: string } = {};
 

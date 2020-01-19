@@ -9,7 +9,7 @@
     "coverage": "jest --coverage",
     "lint": "eslint \"src/**/*.ts\" \"test/**/*.ts\"",
     "build": "tsc && tscpaths -p tsconfig.json -s ./src -o ./dist",
-    "prepublishOnly": "npm run build && npm test"
+    "prepublishOnly": "npm run lint && npm test && npm run build"
   },
   "files": [
     "dist/**/*"

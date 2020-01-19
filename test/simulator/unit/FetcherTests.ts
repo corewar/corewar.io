@@ -3,7 +3,7 @@ import * as sinon from "sinon";
 
 import { IState } from "@simulator/interface/IState";
 import { ICore } from "@simulator/interface/ICore";
-import { OpcodeType, ModifierType } from "@simulator/interface/IInstruction";
+import { IInstruction, OpcodeType, ModifierType } from "@simulator/interface/IInstruction";
 import { ModeType } from "@simulator/interface/IOperand";
 import Defaults from "@simulator/Defaults";
 import { IOptions } from "@simulator/interface/IOptions";
@@ -70,7 +70,7 @@ describe("Fetcher",() => {
 
         const expectedInstruction = imp;
         const unexpectedInstruction = dat;
-        core.executeAt = (_: ITask, address: number) => {
+        core.executeAt = (_: ITask, address: number): IInstruction => {
             if (address === 3) {
                 return expectedInstruction;
             } else {
@@ -112,7 +112,7 @@ describe("Fetcher",() => {
 
         expectedTask.instructionPointer = 3;
 
-        core.executeAt = (_: ITask, __: number) => {
+        core.executeAt = (_: ITask, __: number): IInstruction => {
             return imp;
         };
 
@@ -146,7 +146,7 @@ describe("Fetcher",() => {
 
         expectedTask.instructionPointer = 4;
 
-        core.executeAt = (_: ITask, __: number) => {
+        core.executeAt = (_: ITask, __: number): IInstruction => {
             return imp;
         };
 
