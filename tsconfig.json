@@ -15,7 +15,9 @@
       "@simulator/tests/*": ["./test/simulator/*"],
       "@matches/tests/*": ["./test/matches/*"]
     },
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
   "include": ["./src/**/*"],
   "exclude": ["./node_modules", "./dist"]
