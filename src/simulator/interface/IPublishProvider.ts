@@ -1,4 +1,5 @@
 export interface IPublishProvider {
 
-    publishSync(type: String, payload: any);
+    /* eslint-disable-next-line */
+    publishSync(type: string, payload: any);
 }

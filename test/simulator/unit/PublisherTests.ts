@@ -1,15 +1,16 @@
 import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
-var expect = chai.expect;
+const expect = chai.expect;
 chai.use(sinonChai);
 
 import { Publisher } from "@simulator/Publisher";
 import { MessageType } from "@simulator/interface/IMessage";
+import { IPublishStrategy } from "@simulator/interface/IPublishStrategy";
 
 describe("Publisher", () => {
 
-    function buildStrategy() {
+    function buildStrategy(): IPublishStrategy {
         return {
             queue: sinon.stub(),
             dequeue: sinon.stub(),
@@ -154,11 +155,6 @@ describe("Publisher", () => {
     it("clears all strategies when .clear is called", () => {
 
         const strategy = buildStrategy();
-
-        const expectedPayload = {
-            type: MessageType.TaskCount,
-            payload: {}
-        };
 
         const strategies = [
             strategy,

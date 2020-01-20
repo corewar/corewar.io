@@ -3,7 +3,7 @@ import * as sinon from "sinon";
 
 import { IState } from "@simulator/interface/IState";
 import { ICore } from "@simulator/interface/ICore";
-import { OpcodeType, ModifierType } from "@simulator/interface/IInstruction";
+import { IInstruction, OpcodeType, ModifierType } from "@simulator/interface/IInstruction";
 import { ModeType } from "@simulator/interface/IOperand";
 import Defaults from "@simulator/Defaults";
 import { IOptions } from "@simulator/interface/IOptions";
@@ -13,28 +13,28 @@ import TestHelper from "@simulator/tests/unit/TestHelper";
 
 describe("Fetcher",() => {
 
-    var imp = TestHelper.buildInstruction(3, OpcodeType.MOV, ModifierType.I, ModeType.Direct, 0, ModeType.Direct, 1);
-    var dat = TestHelper.buildInstruction(0, OpcodeType.DAT, ModifierType.F, ModeType.Direct, 0, ModeType.Direct, 0);
+    const imp = TestHelper.buildInstruction(3, OpcodeType.MOV, ModifierType.I, ModeType.Direct, 0, ModeType.Direct, 1);
+    const dat = TestHelper.buildInstruction(0, OpcodeType.DAT, ModifierType.F, ModeType.Direct, 0, ModeType.Direct, 0);
 
-    var state: IState;
-    var core: ICore;
+    let state: IState;
+    let core: ICore;
 
     beforeEach(() => {
 
-        var options = Object.assign({}, Defaults);
+        const options = Object.assign({}, Defaults);
         options.coresize = 5;
 
         core = {
-            getSize: () => { return 0; },
+            getSize: (): number => { return 0; },
             executeAt: sinon.stub(),
             readAt: sinon.stub(),
             getAt: sinon.stub(),
             getWithInfoAt: sinon.stub(),
             setAt: sinon.stub(),
-            wrap(address: number) {
+            wrap(address: number): number {
                 return address;
             },
-            initialise: (options: IOptions) => {
+            initialise: (_: IOptions): void => {
                 //
             }
         };
@@ -49,7 +49,7 @@ describe("Fetcher",() => {
 
     it("fetches the next warrior's, next task's, next instruction",() => {
 
-        var expectedWarrior = TestHelper.buildWarrior();
+        const expectedWarrior = TestHelper.buildWarrior();
 
         state.warriors = [
             TestHelper.buildWarrior(),
@@ -57,7 +57,7 @@ describe("Fetcher",() => {
         ];
         state.warriorIndex = 1;
 
-        var expectedTask = TestHelper.buildTask();
+        const expectedTask = TestHelper.buildTask();
 
         expectedWarrior.tasks = [
             TestHelper.buildTask(),
@@ -68,9 +68,9 @@ describe("Fetcher",() => {
 
         expectedTask.instructionPointer = 3;
 
-        var expectedInstruction = imp;
-        var unexpectedInstruction = dat;
-        core.executeAt = (task: ITask, address: number) => {
+        const expectedInstruction = imp;
+        const unexpectedInstruction = dat;
+        core.executeAt = (_: ITask, address: number): IInstruction => {
             if (address === 3) {
                 return expectedInstruction;
             } else {
@@ -78,8 +78,8 @@ describe("Fetcher",() => {
             }
         };
 
-        var fetcher = new Fetcher();
-        var context = fetcher.fetch(state, core);
+        const fetcher = new Fetcher();
+        const context = fetcher.fetch(state, core);
 
         expect(context.warrior).to.be.equal(expectedWarrior);
         expect(context.task).to.be.equal(expectedTask);
@@ -92,7 +92,7 @@ describe("Fetcher",() => {
 
     it("advances the correct warrior index, task index and instruction pointer",() => {
 
-        var expectedWarrior = TestHelper.buildWarrior();
+        const expectedWarrior = TestHelper.buildWarrior();
 
         state.warriors = [
             TestHelper.buildWarrior(),
@@ -101,7 +101,7 @@ describe("Fetcher",() => {
         ];
         state.warriorIndex = 1;
 
-        var expectedTask = TestHelper.buildTask();
+        const expectedTask = TestHelper.buildTask();
 
         expectedWarrior.tasks = [
             TestHelper.buildTask(),
@@ -112,11 +112,11 @@ describe("Fetcher",() => {
 
         expectedTask.instructionPointer = 3;
 
-        core.executeAt = (task: ITask, address: number) => {
+        core.executeAt = (_: ITask, __: number): IInstruction => {
             return imp;
         };
 
-        var fetcher = new Fetcher();
+        const fetcher = new Fetcher();
         fetcher.fetch(state, core);
 
         expect(state.warriorIndex).to.be.equal(2);
@@ -126,7 +126,7 @@ describe("Fetcher",() => {
 
     it("wraps the warrior index, task index and instruction pointer",() => {
 
-        var expectedWarrior = TestHelper.buildWarrior();
+        const expectedWarrior = TestHelper.buildWarrior();
 
         state.warriors = [
             TestHelper.buildWarrior(),
@@ -135,7 +135,7 @@ describe("Fetcher",() => {
         ];
         state.warriorIndex = 2;
 
-        var expectedTask = TestHelper.buildTask();
+        const expectedTask = TestHelper.buildTask();
 
         expectedWarrior.tasks = [
             TestHelper.buildTask(),
@@ -146,11 +146,11 @@ describe("Fetcher",() => {
 
         expectedTask.instructionPointer = 4;
 
-        core.executeAt = (task: ITask, address: number) => {
+        core.executeAt = (_: ITask, __: number): IInstruction => {
             return imp;
         };
 
-        var fetcher = new Fetcher();
+        const fetcher = new Fetcher();
         fetcher.fetch(state, core);
 
         expect(state.warriorIndex).to.be.equal(0);
@@ -160,12 +160,12 @@ describe("Fetcher",() => {
 
     it("executes in the context of the next warrior if the current warrior has no tasks", () => {
 
-        var validWarrior = TestHelper.buildWarrior();
+        const validWarrior = TestHelper.buildWarrior();
         validWarrior.tasks = [
             TestHelper.buildTask()
         ]
 
-        var deadWarrior = TestHelper.buildWarrior();
+        const deadWarrior = TestHelper.buildWarrior();
         deadWarrior.tasks = [];
 
         state.warriors = [
@@ -175,8 +175,8 @@ describe("Fetcher",() => {
 
         state.warriorIndex = 1;
 
-        var fetcher = new Fetcher();
-        var executionContext = fetcher.fetch(state, core);
+        const fetcher = new Fetcher();
+        const executionContext = fetcher.fetch(state, core);
 
         expect(executionContext.warriorIndex).to.be.equal(0);
         expect(executionContext.warrior).to.be.equal(validWarrior);

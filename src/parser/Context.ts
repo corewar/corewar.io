@@ -24,17 +24,17 @@ export class Context implements IContext {
         this.messages = [];
     }
 
-    public emitSingle(token: IToken) {
+    public emitSingle(token: IToken): void {
 
         this.tokens.push(token);
     }
 
-    public emit(tokens: IToken[]) {
+    public emit(tokens: IToken[]): void {
 
         this.tokens = this.tokens.concat(tokens);
     }
 
-    public emitInstruction(instruction: IParseInstruction) {
+    public emitInstruction(instruction: IParseInstruction): void {
 
         if (instruction.opcode != null) {
             this.tokens.push(instruction.opcode);

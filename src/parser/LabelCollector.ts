@@ -31,9 +31,9 @@ export class LabelCollector extends PassBase {
         }
     }
 
-    public processLine() {
+    public processLine(): void {
 
-        var next = this.stream.peek();
+        const next = this.stream.peek();
 
         if (next.category === TokenCategory.Label ||
             next.category === TokenCategory.Opcode) {
@@ -45,16 +45,16 @@ export class LabelCollector extends PassBase {
             this.processLabel();
         }
 
-        var tokens = this.stream.readToEOL();
+        const tokens = this.stream.readToEOL();
         this.context.emit(tokens);
     }
 
-    private processLabel() {
+    private processLabel(): void {
 
         while (!this.stream.eof() && this.stream.peek().category === TokenCategory.Label) {
 
-            var label = this.stream.expect(TokenCategory.Label);
-            var name = this.labelName(label);
+            const label = this.stream.expect(TokenCategory.Label);
+            const name = this.labelName(label);
 
             if (name in this.context.labels ||
                 name in this.context.equs) {
@@ -65,7 +65,7 @@ export class LabelCollector extends PassBase {
             }
         }
 
-        var next = this.stream.peek();
+        let next = this.stream.peek();
 
         if (next.lexeme === "END") {
             return;
@@ -75,7 +75,7 @@ export class LabelCollector extends PassBase {
             next = this.stream.expect(TokenCategory.EOL);
         }
 
-        var opcode = this.stream.expect(TokenCategory.Opcode);
+        const opcode = this.stream.expect(TokenCategory.Opcode);
         this.context.emitSingle(opcode);
     }
 }

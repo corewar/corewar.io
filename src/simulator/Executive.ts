@@ -37,12 +37,12 @@ export class Executive implements IExecutive {
 
     private maxTasks: number;
 
-    public initialise(options: IOptions) {
+    public initialise(options: IOptions): void {
 
         this.maxTasks = options.maxTasks;
     }
 
-    private publishTaskCount(warrior: IWarrior, taskCount: number) {
+    private publishTaskCount(warrior: IWarrior, taskCount: number): void {
 
         const payload = {
             warriorId: warrior.id,
@@ -58,9 +58,9 @@ export class Executive implements IExecutive {
         });
     }
 
-    private dat(context: IExecutionContext) {
+    private dat(context: IExecutionContext): void {
         //Remove current task from the queue
-        var ti = context.taskIndex;
+        const ti = context.taskIndex;
         context.warrior.tasks.splice(ti, 1);
         // wrap the warrior task index to cater for the event when
         // we just chomped off the last task
@@ -69,7 +69,7 @@ export class Executive implements IExecutive {
         this.publishTaskCount(context.warrior, context.warrior.tasks.length);
     }
 
-    private mov(context: IExecutionContext) {
+    private mov(context: IExecutionContext): void {
 
         if (context.instruction.modifier === ModifierType.I) {
 
@@ -84,7 +84,7 @@ export class Executive implements IExecutive {
         context.core.setAt(context.task, context.bInstruction.address, context.bInstruction);
     }
 
-    private add(context: IExecutionContext) {
+    private add(context: IExecutionContext): void {
 
         context.operands.forEach(p => {
             p.destination.address = context.core.wrap(p.destination.address + p.source.address);
@@ -92,7 +92,7 @@ export class Executive implements IExecutive {
         context.core.setAt(context.task, context.bInstruction.address, context.bInstruction);
     }
 
-    private sub(context: IExecutionContext) {
+    private sub(context: IExecutionContext): void {
 
         context.operands.forEach(p => {
             p.destination.address = context.core.wrap(p.destination.address - p.source.address);
@@ -100,7 +100,7 @@ export class Executive implements IExecutive {
         context.core.setAt(context.task, context.bInstruction.address, context.bInstruction);
     }
 
-    private mul(context: IExecutionContext) {
+    private mul(context: IExecutionContext): void {
 
         context.operands.forEach(p => {
             p.destination.address = context.core.wrap(p.destination.address * p.source.address);
@@ -108,7 +108,7 @@ export class Executive implements IExecutive {
         context.core.setAt(context.task, context.bInstruction.address, context.bInstruction);
     }
 
-    private div(context: IExecutionContext) {
+    private div(context: IExecutionContext): void {
 
         context.operands.forEach(p => {
             if (p.source.address !== 0) {
@@ -121,7 +121,7 @@ export class Executive implements IExecutive {
         context.core.setAt(context.task, context.bInstruction.address, context.bInstruction);
     }
 
-    private mod(context: IExecutionContext) {
+    private mod(context: IExecutionContext): void {
 
         context.operands.forEach(p => {
             if (p.source.address !== 0) {
@@ -134,12 +134,12 @@ export class Executive implements IExecutive {
         context.core.setAt(context.task, context.bInstruction.address, context.bInstruction);
     }
 
-    private jmp(context: IExecutionContext) {
+    private jmp(context: IExecutionContext): void {
 
         context.task.instructionPointer = context.core.wrap(context.aInstruction.address);
     }
 
-    private jmz(context: IExecutionContext) {
+    private jmz(context: IExecutionContext): void {
 
         let branch = true;
 
@@ -155,7 +155,7 @@ export class Executive implements IExecutive {
         }
     }
 
-    private jmn(context: IExecutionContext) {
+    private jmn(context: IExecutionContext): void {
 
         let branch = true;
 
@@ -171,7 +171,7 @@ export class Executive implements IExecutive {
         }
     }
 
-    private djn(context: IExecutionContext) {
+    private djn(context: IExecutionContext): void {
 
         let branch = false;
 
@@ -192,12 +192,12 @@ export class Executive implements IExecutive {
         context.core.setAt(context.task, context.bInstruction.address, context.bInstruction);
     }
 
-    private seq(context: IExecutionContext) {
+    private seq(context: IExecutionContext): void {
 
         let branch = true;
 
         if (context.instruction.modifier === ModifierType.I) {
-            return this.seq_i(context);
+            return this.seqI(context);
         }
 
         context.operands.forEach(p => {
@@ -213,7 +213,7 @@ export class Executive implements IExecutive {
         }
     }
 
-    private seq_i(context: IExecutionContext) {
+    private seqI(context: IExecutionContext): void {
 
         const ai = context.aInstruction;
         const bi = context.bInstruction;
@@ -230,12 +230,12 @@ export class Executive implements IExecutive {
         }
     }
 
-    private sne(context: IExecutionContext) {
+    private sne(context: IExecutionContext): void {
 
         let branch = false;
 
         if (context.instruction.modifier === ModifierType.I) {
-            return this.sne_i(context);
+            return this.sneI(context);
         }
 
         context.operands.forEach(p => {
@@ -251,10 +251,10 @@ export class Executive implements IExecutive {
         }
     }
 
-    private sne_i(context: IExecutionContext) {
+    private sneI(context: IExecutionContext): void {
 
-        var ai = context.aInstruction;
-        var bi = context.bInstruction;
+        const ai = context.aInstruction;
+        const bi = context.bInstruction;
 
         if (ai.opcode !== bi.opcode ||
             ai.modifier !== bi.modifier ||
@@ -268,7 +268,7 @@ export class Executive implements IExecutive {
         }
     }
 
-    private slt(context: IExecutionContext) {
+    private slt(context: IExecutionContext): void {
 
         let branch = true;
 
@@ -285,7 +285,7 @@ export class Executive implements IExecutive {
         }
     }
 
-    private spl(context: IExecutionContext) {
+    private spl(context: IExecutionContext): void {
 
         if (context.warrior.tasks.length < this.maxTasks) {
 
@@ -299,7 +299,7 @@ export class Executive implements IExecutive {
         }
     }
 
-    private nop(context: IExecutionContext) {
+    private nop(_: IExecutionContext): void {
         // DO NOWT
     }
 }

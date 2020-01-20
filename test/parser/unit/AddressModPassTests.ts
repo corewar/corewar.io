@@ -10,19 +10,19 @@ describe("AddressModPass",() => {
 
     it("Does not modify existing instructions with address which are within range",() => {
 
-        var tokens = TestHelper.comment(1, "; this is a comment")
+        const tokens = TestHelper.comment(1, "; this is a comment")
             .concat(TestHelper.instruction(2, "", "MOV", ".AB", "$", "0", ",", "$", "1", "; another comment"));
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new AddressModPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new AddressModPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(tokens.length);
 
-        for (var i = 0; i < actual.tokens.length; i++) {
+        for (let i = 0; i < actual.tokens.length; i++) {
 
             expect(actual.tokens[i].category).to.be.equal(tokens[i].category);
             expect(actual.tokens[i].lexeme).to.be.equal(tokens[i].lexeme);
@@ -32,20 +32,20 @@ describe("AddressModPass",() => {
 
     it("Ensures addresses are in the range +/- coresize/2",() => {
 
-        var tokens = TestHelper.instruction(1, "", "MOV", ".AB", "$", "0", ",", "$", "1", "")
+        const tokens = TestHelper.instruction(1, "", "MOV", ".AB", "$", "0", ",", "$", "1", "")
             .concat(TestHelper.instruction(2, "", "MOV", ".AB", "$", "5", ",", "$", "6", ""))
             .concat(TestHelper.instruction(3, "", "MOV", ".AB", "$", "-4", ",", "$", "-5", ""))
             .concat(TestHelper.instruction(4, "", "MOV", ".AB", "$", "10", ",", "$", "11", ""));
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new AddressModPass();
-        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { coresize: 10 }));
+        const pass = new AddressModPass();
+        const actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { coresize: 10 }));
 
         expect(actual.messages.length).to.be.equal(0);
 
-        var addresses = actual.tokens.filter((a) => a.category === TokenCategory.Number);
+        const addresses = actual.tokens.filter((a) => a.category === TokenCategory.Number);
 
         expect(addresses[0].lexeme).to.be.equal("0");
         expect(addresses[1].lexeme).to.be.equal("1");

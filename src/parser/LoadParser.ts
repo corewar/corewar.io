@@ -40,7 +40,7 @@ export class LoadParser implements IParser {
 
         options = Object.assign({}, Parser.DefaultOptions, options || {});
 
-        var context = this.scanner.scan(document, options);
+        let context = this.scanner.scan(document, options);
 
         if (this.noErrors(context)) {
             context = this.filter.process(context, options);

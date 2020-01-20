@@ -20,30 +20,31 @@ import { LoadFileSerialiser } from "@parser/LoadFileSerialiser";
 import { TestLoader } from "@parser/tests/integration/TestLoader";
 import { MetaDataCollector } from "@parser/MetaDataCollector";
 import { MetaDataEmitter } from "@parser/MetaDataEmitter";
+import { IParseResult } from "@parser/interface/IParseResult";
 
 export class TestHelper {
-    private static failedIndex(name: string, a: string, b: string) {
+    private static failedIndex(name: string, a: string, b: string): void {
 
-        for (var i = 0; i < a.length; i++) {
+        for (let i = 0; i < a.length; i++) {
 
-            var ac = a[i];
-            var bc = b[i];
+            const ac = a[i];
+            const bc = b[i];
 
             if (ac !== bc) {
                 console.log(name + " Failed index " + i.toString() + ", " + ac + " !== " + bc);
 
-                var si = i - 10;
+                let si = i - 10;
                 if (si < 0) {
                     si = 0;
                 }
 
-                var ei = i + 10;
+                let ei = i + 10;
                 if (ei >= a.length) {
                     ei = a.length - 1;
                 }
 
-                var msg = "";
-                for (var j = si; j <= ei; j++) {
+                let msg = "";
+                for (let j = si; j <= ei; j++) {
                     msg += a[j];
                 }
                 console.log("Back ten forward ten: " + msg);
@@ -53,7 +54,7 @@ export class TestHelper {
         }
     }
 
-    public static testWarriorParse(redcode: string, standard: Standard, ) {
+    public static testWarriorParse(redcode: string, standard: Standard): IParseResult {
 
         const expression = new Expression();
 
@@ -81,23 +82,23 @@ export class TestHelper {
             }));
     }
 
-    public static testWarriorList(path: string, names: string[], standard: Standard, allowMessages: boolean = false) {
+    public static testWarriorList(path: string, names: string[], standard: Standard, allowMessages = false): Promise<void> {
 
-        var loader = new TestLoader();
+        const loader = new TestLoader();
         return loader.getWarriors(path, names).then((warriors) => {
 
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 let remaining = warriors.length;
                 warriors.forEach((warrior) => {
 
                     const result = TestHelper.testWarriorParse(warrior.redcode, standard);
 
-                    var serialiser = new LoadFileSerialiser();
+                    const serialiser = new LoadFileSerialiser();
 
-                    var loadfile = serialiser.serialise(result.tokens);
+                    const loadfile = serialiser.serialise(result.tokens);
 
-                    var actual = loadfile.trim();
-                    var expected = warrior.loadfile.replace(/[\r]/g, "").trim();
+                    const actual = loadfile.trim();
+                    const expected = warrior.loadfile.replace(/[\r]/g, "").trim();
 
                     if (actual !== expected) {
                         this.failedIndex(warrior.name, actual, expected);
@@ -115,8 +116,5 @@ export class TestHelper {
                 });
             });
         });
-        // .catch((e) => {
-        //     throw e;
-        // });
     }
 }

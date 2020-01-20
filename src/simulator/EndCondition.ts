@@ -27,7 +27,7 @@ export class EndCondition implements IEndCondition {
         return result;
     }
 
-    private publishRoundEnd(payload: IRoundResult) {
+    private publishRoundEnd(payload: IRoundResult): void {
 
         this.publisher.queue({
             type: MessageType.RoundEnd,
@@ -35,7 +35,7 @@ export class EndCondition implements IEndCondition {
         });
     }
 
-    private publishProgress(cycle: number, maximumCycles: number) {
+    private publishProgress(cycle: number, maximumCycles: number): void {
 
         this.publisher.queue({
             type: MessageType.RunProgress,

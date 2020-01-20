@@ -17,11 +17,11 @@ export class Expression implements IExpression {
 
     private expression(): number {
 
-        var result = this.term();
+        let result = this.term();
 
         while (!this.stream.eof()) {
 
-            var next = this.stream.peek();
+            const next = this.stream.peek();
 
             if (next.lexeme === "+") {
                 this.stream.read();
@@ -39,18 +39,18 @@ export class Expression implements IExpression {
 
     private term(): number {
 
-        var result = this.factor();
+        let result = this.factor();
 
         while (!this.stream.eof()) {
 
-            var next = this.stream.peek();
+            const next = this.stream.peek();
 
             if (next.lexeme === "*") {
                 this.stream.read();
                 result *= this.factor();
             } else if (next.lexeme === "/") {
                 this.stream.read();
-                var divisor = this.factor();
+                const divisor = this.factor();
                 result = this.division(next, result, divisor);
             } else if (next.lexeme === "%") {
                 this.stream.read();
@@ -69,8 +69,8 @@ export class Expression implements IExpression {
             this.stream.error(token, "Divide by zero is not permitted");
         }
 
-        var quotient = numerator / denominator;
-        var rounded = this.integerRound(quotient);
+        const quotient = numerator / denominator;
+        const rounded = this.integerRound(quotient);
 
         if (rounded !== quotient) {
             this.stream.warn(token, "Rounded non-integer division truncated to integer value");
@@ -88,7 +88,7 @@ export class Expression implements IExpression {
 
     private factor(): number {
 
-        var next = this.stream.peek();
+        const next = this.stream.peek();
 
         if (next.lexeme === "+" ||
             next.lexeme === "-") {
@@ -98,7 +98,7 @@ export class Expression implements IExpression {
         } else if (next.lexeme === "(") {
 
             this.stream.expectOnly("(");
-            var result = this.expression();
+            const result = this.expression();
             this.stream.expectOnly(")");
             return result;
 

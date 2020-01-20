@@ -11,7 +11,7 @@ describe("PreprocessEmitter", () => {
 
     it("Does not modify tokens if no labels are found which have been declared as EQUs", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.equs["SomeRandomLabel"] = [
             {
                 category: TokenCategory.Maths,
@@ -20,7 +20,7 @@ describe("PreprocessEmitter", () => {
             }
         ];
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Comma,
                 position: { line: 1, char: 1 },
@@ -66,20 +66,20 @@ describe("PreprocessEmitter", () => {
 
         context.tokens = tokens;
 
-        var pass = new PreprocessEmitter();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new PreprocessEmitter();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(10);
         expect(actual.messages.length).to.be.equal(0);
 
-        for (var i = 0; i < tokens.length; i++) {
+        for (let i = 0; i < tokens.length; i++) {
             expect(tokens[i]).to.deep.equal(actual.tokens[i]);
         }
     });
 
     it("Substitutes labels with their predefined EQU substitute", () => {
 
-        var label1expression: IToken[] = [
+        const label1expression: IToken[] = [
             {
                 category: TokenCategory.Number,
                 lexeme: "1",
@@ -95,7 +95,7 @@ describe("PreprocessEmitter", () => {
             }
         ];
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Opcode,
                 lexeme: "ADD",
@@ -111,12 +111,12 @@ describe("PreprocessEmitter", () => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.equs["label1"] = label1expression.slice();
         context.tokens = tokens.slice();
 
-        var pass = new PreprocessEmitter();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new PreprocessEmitter();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(5);
 
@@ -129,7 +129,7 @@ describe("PreprocessEmitter", () => {
 
     it("Is capable of making multiple substitutions", () => {
 
-        var label1expression: IToken[] = [
+        const label1expression: IToken[] = [
             {
                 category: TokenCategory.Number,
                 lexeme: "1",
@@ -137,7 +137,7 @@ describe("PreprocessEmitter", () => {
             }
         ];
 
-        var label2expression: IToken[] = [
+        const label2expression: IToken[] = [
             {
                 category: TokenCategory.Number,
                 lexeme: "2",
@@ -145,7 +145,7 @@ describe("PreprocessEmitter", () => {
             }
         ];
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Label,
                 lexeme: "label2",
@@ -161,13 +161,13 @@ describe("PreprocessEmitter", () => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.equs["label1"] = label1expression.slice();
         context.equs["label2"] = label2expression.slice();
         context.tokens = tokens.slice();
 
-        var pass = new PreprocessEmitter();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new PreprocessEmitter();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(3);
 
@@ -178,7 +178,7 @@ describe("PreprocessEmitter", () => {
 
     it("Updates the position of substituted tokens to match position of label that was replaced", () => {
 
-        var label1expression: IToken[] = [
+        const label1expression: IToken[] = [
             {
                 category: TokenCategory.Number,
                 lexeme: "1",
@@ -190,7 +190,7 @@ describe("PreprocessEmitter", () => {
             },
         ];
 
-        var label2expression: IToken[] = [
+        const label2expression: IToken[] = [
             {
                 category: TokenCategory.Number,
                 lexeme: "2",
@@ -198,7 +198,7 @@ describe("PreprocessEmitter", () => {
             }
         ];
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Label,
                 lexeme: "label2",
@@ -214,13 +214,13 @@ describe("PreprocessEmitter", () => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.equs["label1"] = label1expression.slice();
         context.equs["label2"] = label2expression.slice();
         context.tokens = tokens.slice();
 
-        var pass = new PreprocessEmitter();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new PreprocessEmitter();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(5);
 

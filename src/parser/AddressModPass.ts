@@ -1,4 +1,4 @@
-﻿import { IToken, TokenCategory } from "@parser/interface/IToken";
+﻿import { TokenCategory } from "@parser/interface/IToken";
 import { IParseInstruction } from "@parser/interface/IParseInstruction";
 import { IParseOperand } from "@parser/interface/IParseOperand";
 
@@ -6,7 +6,7 @@ import { PassBase } from "@parser/PassBase";
 
 export class AddressModPass extends PassBase {
 
-    public processLine() {
+    public processLine(): void {
 
         // Apply mod maths to address to ensure that they fall
         // between +/- (CORESIZE / 2)
@@ -21,10 +21,10 @@ export class AddressModPass extends PassBase {
         }
     }
 
-    private processInstruction() {
+    private processInstruction(): void {
 
         // TODO reuse read instruction?
-        var instruction: IParseInstruction = {
+        const instruction: IParseInstruction = {
             opcode: this.stream.read(),
             modifier: this.stream.read(),
             aOperand: {
@@ -49,9 +49,9 @@ export class AddressModPass extends PassBase {
         this.context.emitInstruction(instruction);
     }
 
-    private limitAddress(operand: IParseOperand) {
+    private limitAddress(operand: IParseOperand): void {
 
-        var address = parseInt(operand.address.lexeme, 10);
+        let address = parseInt(operand.address.lexeme, 10);
 
         address %= this.options.coresize;
 

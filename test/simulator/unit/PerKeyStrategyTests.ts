@@ -1,13 +1,13 @@
 import { expect } from "chai";
 
 import { PerKeyStrategy } from "@simulator/PerKeyStrategy";
-import { MessageType } from "@simulator/interface/IMessage";
+import { IMessage, MessageType } from "@simulator/interface/IMessage";
 
 describe("PerKeyStrategy", () => {
 
     it("returns null if no message queued", () => {
 
-        const strategy = new PerKeyStrategy(p => 0);
+        const strategy = new PerKeyStrategy((_: IMessage): number => 0);
 
         expect(strategy.dequeue()).to.be.null;
     });

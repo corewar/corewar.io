@@ -3,5 +3,5 @@ import { IMatch } from "@matches/interface/IMatch";
 
 export interface IMatchResultMapper {
 
-    map(match: IMatch): IMatchResult
+    map(match: IMatch): IMatchResult;
 }

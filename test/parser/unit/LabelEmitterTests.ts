@@ -12,7 +12,7 @@ describe("LabelEmitter",() => {
 
     it("Does not modify token stream that contains no labels",() => {
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Comment,
                 lexeme: "; tklsd fsdjk lfd shjds",
@@ -58,35 +58,35 @@ describe("LabelEmitter",() => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new LabelEmitter();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new LabelEmitter();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(10);
 
-        for (var i = 0; i < tokens.length; i++) {
+        for (let i = 0; i < tokens.length; i++) {
             expect(actual.tokens[i]).to.deep.equal(tokens[i]);
         }
     });
 
     it("Replaces labels with their numeric position relative to the current line",() => {
 
-        var tokens: IToken[] = TestHelper
+        const tokens: IToken[] = TestHelper
             .comment(1, "; dafjska s ds jfdkl jklcm")
             .concat(TestHelper.instruction(2, "", "ADD", "", "", "", "", "", "", ""))
             .concat(TestHelper.instruction(3, "", "MOV", "", "$", "label2", ",", "", "label1", ""));
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
         context.labels["label2"] = 0;
         context.labels["label1"] = 5;
 
-        var pass = new LabelEmitter();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new LabelEmitter();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(10);
@@ -111,7 +111,7 @@ describe("LabelEmitter",() => {
 
     it("Raises a syntax error if an undeclared label is encountered",() => {
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Opcode,
                 lexeme: "JMZ",
@@ -123,11 +123,11 @@ describe("LabelEmitter",() => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new LabelEmitter();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new LabelEmitter();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(1);
         expect(actual.messages[0].text).to.be.equal("Unrecognised label 'label1'");
@@ -137,18 +137,18 @@ describe("LabelEmitter",() => {
 
     it("Replaces labels on END and ORG statements",() => {
 
-        var tokens: IToken[] = TestHelper
+        const tokens: IToken[] = TestHelper
             .org(1, "label2")
             .concat(TestHelper.endStatement(2, "label1"));
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
         context.labels["label2"] = 3;
         context.labels["label1"] = 5;
 
-        var pass = new LabelEmitter();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new LabelEmitter();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(6);
@@ -164,17 +164,17 @@ describe("LabelEmitter",() => {
 
     it("Uses a maximum of eight characters when substituting labels in ICWS'88 standard mode",() => {
 
-        var tokens: IToken[] = TestHelper
+        const tokens: IToken[] = TestHelper
             .instruction(3, "", "MOV", "", "$", "longlabelwhichexceedseightcharacters", ",", "", "short1", "");
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
         context.labels["longlabe"] = 0;
         context.labels["short1"] = 5;
 
-        var pass = new LabelEmitter();
-        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
+        const pass = new LabelEmitter();
+        const actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(6);

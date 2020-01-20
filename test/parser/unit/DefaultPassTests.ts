@@ -11,7 +11,7 @@ describe("DefaultPass", () => {
 
     it("Does not modify comments and fully qualified instructions", () => {
 
-        var tokens: IToken[] = [
+        const tokens: IToken[] = [
             {
                 category: TokenCategory.Opcode,
                 lexeme: "MOV",
@@ -61,16 +61,16 @@ describe("DefaultPass", () => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(11);
 
-        for (var i = 0; i < actual.tokens.length; i++) {
+        for (let i = 0; i < actual.tokens.length; i++) {
             expect(actual.tokens[i].category).to.be.equal(tokens[i].category);
             expect(actual.tokens[i].lexeme).to.be.equal(tokens[i].lexeme);
             expect(actual.tokens[i].position).to.deep.equal(tokens[i].position);
@@ -79,13 +79,13 @@ describe("DefaultPass", () => {
 
     it("Defaults missing A and B operand modes to $", () => {
 
-        var tokens: IToken[] = TestHelper.instruction(1, "", "MOV", ".AB", "", "8", ",", "", "34", "; sdaflkj dsj kflaj fisfsd a");
+        const tokens: IToken[] = TestHelper.instruction(1, "", "MOV", ".AB", "", "8", ",", "", "34", "; sdaflkj dsj kflaj fisfsd a");
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(9);
@@ -101,13 +101,13 @@ describe("DefaultPass", () => {
 
     it("Defaults missing A and B operand modes for DAT instructions to $", () => {
 
-        var tokens: IToken[] = TestHelper.instruction(1, "", "MOV", ".AB", "", "8", ",", "", "34", "; sdaflkj dsj kflaj fisfsd a");
+        const tokens: IToken[] = TestHelper.instruction(1, "", "MOV", ".AB", "", "8", ",", "", "34", "; sdaflkj dsj kflaj fisfsd a");
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(9);
@@ -123,13 +123,13 @@ describe("DefaultPass", () => {
 
     it("Defaults the mode to # for DAT instructions under ICWS'88 standard", () => {
 
-        var tokens: IToken[] = TestHelper.instruction(1, "", "DAT", ".AB", "", "8", ",", "", "34", "; sdaflkj dsj kflaj fisfsd a");
+        const tokens: IToken[] = TestHelper.instruction(1, "", "DAT", ".AB", "", "8", ",", "", "34", "; sdaflkj dsj kflaj fisfsd a");
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(9);
@@ -145,13 +145,13 @@ describe("DefaultPass", () => {
 
     it("Defaults the mode to # for DAT instructions under ICWS'86 standard", () => {
 
-        var tokens: IToken[] = TestHelper.instruction(1, "", "DAT", ".AB", "", "8", ",", "", "34", "; sdaflkj dsj kflaj fisfsd a");
+        const tokens: IToken[] = TestHelper.instruction(1, "", "DAT", ".AB", "", "8", ",", "", "34", "; sdaflkj dsj kflaj fisfsd a");
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(9);
@@ -167,13 +167,13 @@ describe("DefaultPass", () => {
 
     it("Defaults missing B operand to $0 for non DAT instruction", () => {
 
-        var tokens: IToken[] = TestHelper.instruction(1, "", "MOV", ".AB", "#", "8", "", "", "", "; sdaflkj dsj kflaj fisfsd a");
+        const tokens: IToken[] = TestHelper.instruction(1, "", "MOV", ".AB", "#", "8", "", "", "", "; sdaflkj dsj kflaj fisfsd a");
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(9);
@@ -189,13 +189,13 @@ describe("DefaultPass", () => {
 
     it("Defaults missing A operand to #0 for DAT instructions", () => {
 
-        var tokens: IToken[] = TestHelper.instruction(1, "", "DAT", ".AB", "#", "8", "", "", "", "; sdaflkj dsj kflaj fisfsd a");
+        const tokens: IToken[] = TestHelper.instruction(1, "", "DAT", ".AB", "#", "8", "", "", "", "; sdaflkj dsj kflaj fisfsd a");
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(9);
@@ -222,13 +222,13 @@ describe("DefaultPass", () => {
 
     it("Does not insert missing commas", () => {
 
-        var tokens: IToken[] = TestHelper.instruction(1, "", "MOV", ".AB", "#", "8", "", "@", "34", "; sdaflkj dsj kflaj fisfsd a");
+        const tokens: IToken[] = TestHelper.instruction(1, "", "MOV", ".AB", "#", "8", "", "@", "34", "; sdaflkj dsj kflaj fisfsd a");
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(8);
@@ -238,13 +238,13 @@ describe("DefaultPass", () => {
 
     it("Inserts missing commas under ICWS'88 standard", () => {
 
-        var tokens: IToken[] = TestHelper.instruction(1, "", "MOV", ".AB", "#", "8", "", "@", "34", "; sdaflkj dsj kflaj fisfsd a");
+        const tokens: IToken[] = TestHelper.instruction(1, "", "MOV", ".AB", "#", "8", "", "@", "34", "; sdaflkj dsj kflaj fisfsd a");
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 }));
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(9);
@@ -256,13 +256,13 @@ describe("DefaultPass", () => {
 
     it("Inserts missing commas under ICWS'86 standard", () => {
 
-        var tokens: IToken[] = TestHelper.instruction(1, "", "MOV", ".AB", "#", "8", "", "@", "34", "; sdaflkj dsj kflaj fisfsd a");
+        const tokens: IToken[] = TestHelper.instruction(1, "", "MOV", ".AB", "#", "8", "", "@", "34", "; sdaflkj dsj kflaj fisfsd a");
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(9);
@@ -274,11 +274,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to F for DAT instructions", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "DAT", "", "#", "0", ",", "#", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".F");
@@ -287,11 +287,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to AB for MOV instructions with an A mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "MOV", "", "#", "0", ",", "$", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".AB");
@@ -300,11 +300,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to AB for CMP instructions with an A mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "CMP", "", "#", "0", ",", "$", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".AB");
@@ -313,11 +313,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to AB for SEQ instructions with an A mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "SEQ", "", "#", "0", ",", "$", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".AB");
@@ -326,11 +326,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to AB for SNE instructions with an A mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "SNE", "", "#", "0", ",", "$", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".AB");
@@ -339,11 +339,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for MOV instructions with a B mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "MOV", "", "$", "0", ",", "#", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -352,11 +352,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for CMP instructions with a B mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "CMP", "", "$", "0", ",", "#", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -365,11 +365,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for SEQ instructions with a B mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "SEQ", "", "$", "0", ",", "#", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -378,11 +378,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for SNE instructions with a B mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "SNE", "", "$", "0", ",", "#", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -391,11 +391,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to I for MOV instructions with no # mode operands", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "MOV", "", "$", "0", ",", "@", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".I");
@@ -404,11 +404,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to I for CMP instructions with no # mode operands", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "CMP", "", "$", "0", ",", "@", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".I");
@@ -417,11 +417,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to I for SEQ instructions with no # mode operands", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "SEQ", "", "$", "0", ",", "@", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".I");
@@ -430,11 +430,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to I for SNE instructions with no # mode operands", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "SNE", "", "$", "0", ",", "@", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".I");
@@ -443,11 +443,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to AB for ADD instructions with an A mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "ADD", "", "#", "0", ",", "@", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".AB");
@@ -456,11 +456,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to AB for SUB instructions with an A mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "SUB", "", "#", "0", ",", "@", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".AB");
@@ -469,11 +469,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to AB for MUL instructions with an A mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "MUL", "", "#", "0", ",", "@", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".AB");
@@ -482,11 +482,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to AB for DIV instructions with an A mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "DIV", "", "#", "0", ",", "@", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".AB");
@@ -495,11 +495,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to AB for MOD instructions with an A mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "MOD", "", "#", "0", ",", "@", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".AB");
@@ -508,11 +508,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for ADD instructions with a B mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "ADD", "", "$", "0", ",", "#", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -521,11 +521,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for SUB instructions with a B mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "SUB", "", "$", "0", ",", "#", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -534,11 +534,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for MUL instructions with a B mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "MUL", "", "$", "0", ",", "#", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -547,11 +547,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for DIV instructions with a B mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "DIV", "", "$", "0", ",", "#", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -560,11 +560,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for MOD instructions with a B mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "MOD", "", "$", "0", ",", "#", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -573,11 +573,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to F for ADD instructions with no # mode operands", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "ADD", "", "$", "0", ",", ">", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".F");
@@ -586,11 +586,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to F for SUB instructions with no # mode operands", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "SUB", "", "$", "0", ",", ">", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".F");
@@ -599,11 +599,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to F for MUL instructions with no # mode operands", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "MUL", "", "$", "0", ",", ">", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".F");
@@ -612,11 +612,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to F for DIV instructions with no # mode operands", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "DIV", "", "$", "0", ",", ">", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".F");
@@ -625,11 +625,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to F for MOD instructions with no # mode operands", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "MOD", "", "$", "0", ",", ">", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".F");
@@ -638,11 +638,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for ADD instructions with no # mode operands under ICWS'86 standard", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "ADD", "", "$", "0", ",", ">", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -651,11 +651,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for SUB instructions with no # mode operands under ICWS'86 standard", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "SUB", "", "$", "0", ",", ">", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -664,11 +664,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for MUL instructions with no # mode operands under ICWS'86 standard", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "MUL", "", "$", "0", ",", ">", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -677,11 +677,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for DIV instructions with no # mode operands under ICWS'86 standard", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "DIV", "", "$", "0", ",", ">", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -690,11 +690,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for MOD instructions with no # mode operands under ICWS'86 standard", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "MOD", "", "$", "0", ",", ">", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 }));
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -703,11 +703,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to AB for SLT instructions with an A mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "SLT", "", "#", "0", ",", ">", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".AB");
@@ -716,11 +716,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for SLT instructions with a B mode of #", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "SLT", "", "<", "0", ",", "#", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -729,11 +729,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to AB for SLT instructions where both operands use the # mode", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "SLT", "", "#", "0", ",", "#", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".AB");
@@ -742,11 +742,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for JMP instructions", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "JMP", "", "#", "0", ",", "#", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -755,11 +755,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for JMZ instructions", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "JMZ", "", "#", "0", ",", "#", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -768,11 +768,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for JMN instructions", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "JMN", "", "#", "0", ",", "#", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -781,11 +781,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for DJN instructions", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "DJN", "", "#", "0", ",", "#", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -794,11 +794,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for SPL instructions", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "SPL", "", "#", "0", ",", "#", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -807,11 +807,11 @@ describe("DefaultPass", () => {
 
     it("Defaults the modifier to B for NOP instructions", () => {
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = TestHelper.instruction(1, "", "NOP", "", "#", "0", ",", "#", "0", "");
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens[1].category).to.be.equal(TokenCategory.Modifier);
         expect(actual.tokens[1].lexeme).to.be.equal(".B");
@@ -820,13 +820,13 @@ describe("DefaultPass", () => {
 
     it("Should emit only opcode, modifier and a addressing mode if a operand address is missing", () => {
 
-        var tokens: IToken[] = TestHelper.instruction(1, "", "MOV", "", "$", "", ",", "", "34", "; sdaflkj dsj kflaj fisfsd a");
+        const tokens: IToken[] = TestHelper.instruction(1, "", "MOV", "", "$", "", ",", "", "34", "; sdaflkj dsj kflaj fisfsd a");
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new DefaultPass();
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new DefaultPass();
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(5);

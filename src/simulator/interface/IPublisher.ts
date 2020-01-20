@@ -1,4 +1,4 @@
-import { IMessage, MessageType } from "@simulator/interface/IMessage";
+import { IMessage } from "@simulator/interface/IMessage";
 import { IPublishProvider } from "@simulator/interface/IPublishProvider";
 
 export interface IPublisher {

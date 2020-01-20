@@ -16,13 +16,13 @@ export class ForPass extends PassBase {
     /// Records EQU substitutions and removes statements from token stream
     /// Performs a duplicate label check
     /// </summary>
-    public processLine() {
+    public processLine(): void {
 
         // Record EQU label tokens
         // Remove EQU token labels from token stream
         // Duplicate label check
 
-        var next = this.stream.peek();
+        const next = this.stream.peek();
 
         if (next.category === TokenCategory.Label) {
 
@@ -30,11 +30,11 @@ export class ForPass extends PassBase {
 
         } else if (this.isFor(next)) {
 
-            var pre = this.stream.expectOnly("FOR");
+            const pre = this.stream.expectOnly("FOR");
             this.processFor(null, pre);
         } else {
 
-            var line = this.stream.readToEOL();
+            const line = this.stream.readToEOL();
             this.context.emit(line);
         }
     }
@@ -44,11 +44,11 @@ export class ForPass extends PassBase {
             pre.lexeme === "FOR";
     }
 
-    private processLabel() {
+    private processLabel(): void {
 
-        var label: IToken = this.stream.read();
+        const label: IToken = this.stream.read();
 
-        var pre = this.stream.read();
+        const pre = this.stream.read();
 
         if (this.isFor(pre)) {
 
@@ -70,13 +70,14 @@ export class ForPass extends PassBase {
     //    });
     // }
 
-    private processFor(label: IToken, pre: IToken) {
+    // label: IToken, pre: IToken
+    private processFor(_: IToken, __: IToken): void {
 
         // TODO use label (and reinstate warnDuplicateLabel)
         // TODO stringinisation
         // TODO loop counter variable subs
 
-        var count = this.expression.parse(this.stream);
+        const count = this.expression.parse(this.stream);
 
         if (this.stream.peek().category === TokenCategory.Comment) {
             this.stream.read();
@@ -84,7 +85,7 @@ export class ForPass extends PassBase {
 
         this.stream.expect(TokenCategory.EOL);
 
-        var expression = this.stream.readToEOL();
+        let expression = this.stream.readToEOL();
 
         while (!this.stream.eof() && this.stream.peek().lexeme !== "ROF") {
 
@@ -93,7 +94,7 @@ export class ForPass extends PassBase {
 
         this.stream.expectOnly("ROF");
 
-        for (var i = 0; i < count; i++) {
+        for (let i = 0; i < count; i++) {
 
             this.context.emit(expression);
         }

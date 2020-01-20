@@ -1,6 +1,6 @@
 ﻿import * as chai from "chai";
 import * as sinonChai from "sinon-chai";
-var expect = chai.expect;
+const expect = chai.expect;
 chai.use(sinonChai);
 
 import TestHelper from "@simulator/tests/unit/TestHelper";
@@ -24,14 +24,14 @@ describe("Decoder", () => {
         TestHelper.hookChaiInstructionAssertion();
 
         executive = {
-            initialise: () => {
+            initialise: (): void => {
                 //
             },
             commandTable: []
         };
 
-        for (var i = 0; i < OpcodeType.Count; i++) {
-            executive.commandTable[i] = (c: IExecutionContext) => {
+        for (let i = 0; i < OpcodeType.Count; i++) {
+            executive.commandTable[i] = (_: IExecutionContext): void => {
                 //
             };
         }
@@ -58,8 +58,8 @@ describe("Decoder", () => {
                 const aExpected = TestHelper.parseInstruction(1, expectation[0]);
                 const bExpected = TestHelper.parseInstruction(1, expectation[1]);
 
-                (expect(actual.aInstruction).to.be as Helper.InstructionAssertion).thisInstruction(aExpected);
-                (expect(actual.bInstruction).to.be as Helper.InstructionAssertion).thisInstruction(bExpected);
+                (expect(actual.aInstruction).to.be as Helper.IInstructionAssertion).thisInstruction(aExpected);
+                (expect(actual.bInstruction).to.be as Helper.IInstructionAssertion).thisInstruction(bExpected);
             });
         });
 
@@ -101,7 +101,7 @@ describe("Decoder", () => {
     Helper.runTest([
         { core: ["ADD.BLAH #3, #4"], ip: 0, e: ["3, 3"] }
     ],
-    (context, expectation) => {
+    (context) => {
         it("throws an error for invalid modifier", () => {
 
             let actual = null;

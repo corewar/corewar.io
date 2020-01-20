@@ -14,8 +14,8 @@ export class TestHelper {
         bAddress: string,
         comment: string): IToken[] {
 
-        var result: IToken[] = [];
-        var category: TokenCategory;
+        const result: IToken[] = [];
+        let category: TokenCategory;
 
         if (label !== "") {
             result.push({
@@ -134,7 +134,7 @@ export class TestHelper {
 
     public static endStatement(line: number, label: string, comment?: string): IToken[] {
 
-        var result: IToken[] = [];
+        const result: IToken[] = [];
 
         result.push({
             category: TokenCategory.Preprocessor,
@@ -144,7 +144,7 @@ export class TestHelper {
 
         if (label !== "") {
 
-            var category = this.getCategory(label);
+            const category = this.getCategory(label);
 
             result.push({
                 category: category,
@@ -172,7 +172,7 @@ export class TestHelper {
 
     public static equ(line: number, label: string, expression: IToken[]): IToken[] {
 
-        var result: IToken[] = [];
+        let result: IToken[] = [];
 
         if (label !== "") {
             result.push({
@@ -201,7 +201,7 @@ export class TestHelper {
 
     public static org(line: number, address: string): IToken[] {
 
-        var category = TestHelper.getCategory(address);
+        const category = TestHelper.getCategory(address);
 
         return [
             {
@@ -222,7 +222,7 @@ export class TestHelper {
 
     public static forStatement(line: number, statement: IToken[]): IToken[] {
 
-        var forline = [
+        const forline = [
             {
                 category: TokenCategory.Preprocessor,
                 lexeme: "FOR",
@@ -234,7 +234,7 @@ export class TestHelper {
             }
         ];
 
-        var rofLine = [
+        const rofLine = [
             {
                 category: TokenCategory.Preprocessor,
                 lexeme: "ROF",
@@ -251,7 +251,7 @@ export class TestHelper {
 
     private static getCategory(lexeme: string): TokenCategory {
 
-        var category = TokenCategory.Label;
+        let category = TokenCategory.Label;
         if (["-", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(lexeme[0])) {
             category = TokenCategory.Number;
         }

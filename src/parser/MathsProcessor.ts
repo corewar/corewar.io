@@ -11,18 +11,18 @@ export class MathsProcessor extends PassBase {
         this.expression = expression;
     }
 
-    public processLine() {
+    public processLine(): void {
 
         // Maths Processor
         // Locate and resolve mathematical expressions to resulting address
 
-        var next = this.stream.peek();
+        const next = this.stream.peek();
 
         if (next.category === TokenCategory.Number ||
             next.category === TokenCategory.Maths) {
 
             try {
-                var address = this.expression.parse(this.stream);
+                const address = this.expression.parse(this.stream);
 
                 this.context.emitSingle({
                     category: TokenCategory.Number,

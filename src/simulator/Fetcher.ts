@@ -4,6 +4,7 @@ import { ICore } from "@simulator/interface/ICore";
 import { IExecutionContext } from "@simulator/interface/IExecutionContext";
 import { IWarrior } from "@simulator/interface/IWarrior";
 import { ITask } from "@simulator/interface/ITask";
+import { INextExecutionContext } from "@simulator/interface/INextExecutionContext";
 
 interface IFetchContext {
     warriorIndex: number;
@@ -16,16 +17,16 @@ export class Fetcher implements IFetcher {
 
     private getNextFetchContext(state: IState): IFetchContext {
         
-        var wi = state.warriorIndex;
-        var warrior = state.warriors[wi];
+        let wi = state.warriorIndex;
+        let warrior = state.warriors[wi];
 
         while (this.isDead(warrior)) {
             wi = (wi + 1) % state.warriors.length
             warrior = state.warriors[wi]
         }
 
-        var ti = warrior.taskIndex;
-        var task = warrior.tasks[ti];
+        const ti = warrior.taskIndex;
+        const task = warrior.tasks[ti];
 
         return {
             warriorIndex: wi,
@@ -35,7 +36,7 @@ export class Fetcher implements IFetcher {
         };
     }
 
-    public getNextExecution(state: IState): any {
+    public getNextExecution(state: IState): INextExecutionContext {
 
         const context = this.getNextFetchContext(state);
 
@@ -52,8 +53,8 @@ export class Fetcher implements IFetcher {
         state.warriorIndex = (c.warriorIndex + 1) % state.warriors.length;
         c.warrior.taskIndex = (c.taskIndex + 1) % c.warrior.tasks.length;
 
-        var ip = c.task.instructionPointer;
-        var instruction = core.executeAt(c.task, ip);
+        const ip = c.task.instructionPointer;
+        const instruction = core.executeAt(c.task, ip);
         c.task.instructionPointer = (ip + 1) % state.options.coresize;
 
         return {

@@ -36,7 +36,7 @@ export class Scanner implements IScanner {
             char: 1
         };
 
-        var lines = document.split("\n");
+        const lines = document.split("\n");
 
         this.options = options;
         this.regex = this.selectRegexes(options.standard);
@@ -50,40 +50,40 @@ export class Scanner implements IScanner {
     }
 
     private static ICWS94draftRegex: IScannerRegex = {
-        LabelRE: /^[A-Z_][A-Z_0-9]*\:?/i,
+        LabelRE: /^[A-Z_][A-Z_0-9]*:?/i,
         OpcodeRE: /^(DAT|MOV|ADD|SUB|MUL|DIV|MOD|JMP|JMZ|JMN|DJN|CMP|SLT|SPL|SEQ|SNE|NOP)(?!\w)/i,
         PreprocessorRE: /^(EQU|END|ORG|FOR|ROF)(?!\w)/i,
         ModifierRE: /^\.(AB|BA|A|B|F|X|I)/i,
         ModeRE: /^(#|\$|@|<|>|{|}|\*)/,
         NumberRE: /^[0-9]+/,
         CommaRE: /^,/,
-        MathsRE: /^(\+|\-|\*|\/|%|\(|\))/,
+        MathsRE: /^(\+|-|\*|\/|%|\(|\))/,
         CommentRE: /^;.*/,
         Whitespace: /^[ \t]/
     };
 
     private static ICWS88Regex: IScannerRegex = {
-        LabelRE: /^[A-Z][A-Z0-9]*\:?/i,
+        LabelRE: /^[A-Z][A-Z0-9]*:?/i,
         OpcodeRE: /^(DAT|MOV|ADD|SUB|JMP|JMZ|JMN|CMP|SLT|DJN|SPL)(?!\w)/i,
         PreprocessorRE: /^(END|EQU)(?!\w)/i,
         ModifierRE: /$a/i,
         ModeRE: /^(#|\$|@|<)/,
         NumberRE: /^[0-9]+/,
         CommaRE: /^,/,
-        MathsRE: /^(\+|\-|\*|\/)/,
+        MathsRE: /^(\+|-|\*|\/)/,
         CommentRE: /^;.*/,
         Whitespace: /^[ \t]/
     };
 
     private static ICWS86Regex: IScannerRegex = {
-        LabelRE: /^[A-Z][A-Z0-9]{0,7}(?![A-Z0-9])\:?/i,
+        LabelRE: /^[A-Z][A-Z0-9]{0,7}(?![A-Z0-9]):?/i,
         OpcodeRE: /^(DAT|MOV|ADD|SUB|JMP|JMZ|JMN|CMP|DJN|SPL)(?!\w)/i,
         PreprocessorRE: /^(END)(?!\w)/i,
         ModifierRE: /$a/i,
         ModeRE: /^(#|\$|@|<)/,
         NumberRE: /^[0-9]+/,
         CommaRE: /^,/,
-        MathsRE: /^(\+|\-)/,
+        MathsRE: /^(\+|-)/,
         CommentRE: /^;.*/,
         Whitespace: /^[ \t]/
     };
@@ -101,14 +101,14 @@ export class Scanner implements IScanner {
         }
     }
 
-    private readLine(line: string) {
+    private readLine(line: string): void {
 
-        var accumulator = "";
+        let accumulator = "";
         this.position.char = 1;
 
-        for (var charNumber = 0; charNumber < line.length; charNumber++) {
+        for (let charNumber = 0; charNumber < line.length; charNumber++) {
 
-            var c = line[charNumber];
+            const c = line[charNumber];
 
             if (c === "\n") {
                 break;
@@ -126,7 +126,7 @@ export class Scanner implements IScanner {
                 break;
             }
 
-            var result = this.regex.Whitespace.exec(c);
+            const result = this.regex.Whitespace.exec(c);
 
             if (result === null) {
                 accumulator += c;
@@ -165,7 +165,7 @@ export class Scanner implements IScanner {
         // If the previous token was an opcode or comma, treat this as an addressing mode
         // otherwise treat it as a multiply
 
-        var previousOpcodeOrComma = this.previous.category === TokenCategory.Opcode ||
+        const previousOpcodeOrComma = this.previous.category === TokenCategory.Opcode ||
                                     this.previous.category === TokenCategory.Modifier ||
                                     this.previous.category === TokenCategory.Comma;
 
@@ -178,12 +178,12 @@ export class Scanner implements IScanner {
         }
     }
 
-    private processAccumulator(accumulator: string) {
+    private processAccumulator(accumulator: string): void {
 
-        var result: RegExpExecArray;
-        var found = 0;
+        let result: RegExpExecArray;
+        let found = 0;
 
-        var matchToken = (category: TokenCategory, re: RegExp) => {
+        const matchToken = (category: TokenCategory, re: RegExp): boolean => {
 
             result = re.exec(accumulator);
 
@@ -244,18 +244,18 @@ export class Scanner implements IScanner {
         }
     }
 
-    private processComment(lexeme: string) {
+    private processComment(lexeme: string): void {
 
         this.emit(TokenCategory.Comment, lexeme);
     }
 
-    private isCaseInsensitive(category: TokenCategory) {
+    private isCaseInsensitive(category: TokenCategory): boolean {
         return category === TokenCategory.Opcode ||
             category === TokenCategory.Modifier ||
             category === TokenCategory.Preprocessor;
     }
 
-    private processToken(category: TokenCategory, accumulator: string, lexeme: string, found: boolean) {
+    private processToken(category: TokenCategory, accumulator: string, lexeme: string, found: boolean): string {
 
         // HACK ICWS'88/86 has optional commas and delimits operands using whitespace but this parser does not tokenise whitespace.
         // This workaround will allow a plus/minus to begin an operand and disallows whitespace after a maths operator.
@@ -277,11 +277,11 @@ export class Scanner implements IScanner {
         return accumulator.substr(lexeme.length);
     }
 
-    private emitEndOfLine() {
+    private emitEndOfLine(): void {
         this.emit(TokenCategory.EOL, "\n");
     }
 
-    private emit(category: TokenCategory, lexeme: string) {
+    private emit(category: TokenCategory, lexeme: string): void {
 
         this.previous = {
             position: {

@@ -6,7 +6,7 @@ import { TokenStream } from "@parser/TokenStream";
 
 describe("TokenStream", () => {
 
-    var tokens: IToken[];
+    let tokens: IToken[];
 
     beforeEach(() => {
 
@@ -37,7 +37,7 @@ describe("TokenStream", () => {
 
     it(".peek() returns the next token in the stream but does not advance the current position", () => {
 
-        var stream = new TokenStream(tokens, []);
+        const stream = new TokenStream(tokens, []);
         stream.position = 3;
 
         expect(stream.peek().position.char).to.be.equal(4);
@@ -47,7 +47,7 @@ describe("TokenStream", () => {
 
     it(".read() returns the next token in the stream and does advance the current position", () => {
 
-        var stream = new TokenStream(tokens, []);
+        const stream = new TokenStream(tokens, []);
         stream.position = 1;
 
         expect(stream.read().position.char).to.be.equal(2);
@@ -57,7 +57,7 @@ describe("TokenStream", () => {
 
     it(".eof() returns false if the position has not reached the end of the token array", () => {
 
-        var stream = new TokenStream(tokens, []);
+        const stream = new TokenStream(tokens, []);
         stream.position = 1;
 
         expect(stream.eof()).to.be.equal(false);
@@ -65,7 +65,7 @@ describe("TokenStream", () => {
 
     it(".eof() returns true if the position has reached the end of the token array", () => {
 
-        var stream = new TokenStream(tokens, []);
+        const stream = new TokenStream(tokens, []);
         stream.position = 5;
 
         expect(stream.eof()).to.be.equal(true);
@@ -73,7 +73,7 @@ describe("TokenStream", () => {
 
     it(".readToEOL() moves the position ahead to the character after the next end of line token", () => {
 
-        var stream = new TokenStream(tokens, []);
+        const stream = new TokenStream(tokens, []);
         stream.position = 0;
 
         stream.readToEOL();
@@ -83,10 +83,10 @@ describe("TokenStream", () => {
 
     it(".readToEOL() returns all tokens read", () => {
 
-        var stream = new TokenStream(tokens, []);
+        const stream = new TokenStream(tokens, []);
         stream.position = 0;
 
-        var actual = stream.readToEOL();
+        const actual = stream.readToEOL();
 
         expect(actual.length).to.be.equal(3);
         expect(actual[0]).to.deep.equal(tokens[0]);

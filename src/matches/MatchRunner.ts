@@ -22,7 +22,7 @@ export class MatchRunner implements IMatchRunner {
         this.publisher = publisher;
     }
 
-    private publishEnd(result) {
+    private publishEnd(result): void {
 
         this.publisher.queue({
             type: MessageType.MatchEnd,

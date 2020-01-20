@@ -59,7 +59,7 @@ export class Simulator implements ISimulator {
         };
     }
 
-    private publishInitialise(state: IState) {
+    private publishInitialise(state: IState): void {
 
         this.publisher.queue({
             type: MessageType.CoreInitialise,
@@ -69,7 +69,7 @@ export class Simulator implements ISimulator {
         });
     }
 
-    private publishNextExecution() {
+    private publishNextExecution(): void {
 
         this.publisher.queue({
             type: MessageType.NextExecution,
@@ -77,7 +77,7 @@ export class Simulator implements ISimulator {
         });
     }
 
-    public initialise(options: IOptions, warriors: IParseResult[]) {
+    public initialise(options: IOptions, warriors: IParseResult[]): void {
 
         this.publisher.clear();
 
@@ -147,7 +147,7 @@ export class Simulator implements ISimulator {
     }
 
     private singleStep(): IRoundResult {
-        var context = this.fetcher.fetch(this.state, this.core);
+        let context = this.fetcher.fetch(this.state, this.core);
 
         context = this.decoder.decode(context);
 

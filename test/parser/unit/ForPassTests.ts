@@ -14,67 +14,67 @@ describe("ForPass", () => {
 
     it("Inserts for instruction into token stream the requested number of times", () => {
 
-        var instruction = TestHelper.instruction(2, "label", "MOV", ".AB", "#", "0", ",", "$", "1", "; comment");
+        const instruction = TestHelper.instruction(2, "label", "MOV", ".AB", "#", "0", ",", "$", "1", "; comment");
 
-        var expression = new Expression();
+        const expression = new Expression();
         sinon.stub(expression, "parse").returns(3);
 
-        var tokens: IToken[] = TestHelper.forStatement(1, instruction);
+        const tokens: IToken[] = TestHelper.forStatement(1, instruction);
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new ForPass(expression);
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new ForPass(expression);
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(instruction.length * 3);
 
-        for (var i = 0; i < instruction.length * 3; i++) {
+        for (let i = 0; i < instruction.length * 3; i++) {
             expect(actual.tokens[i].lexeme).to.be.equal(instruction[i % instruction.length].lexeme);
         }
     });
 
     it("Inserts multiple instructions", () => {
 
-        var instruction1 = TestHelper.instruction(2, "label", "MOV", ".AB", "#", "0", ",", "$", "1", "; comment");
-        var instruction2 = TestHelper.instruction(3, "", "ADD", ".X", "@", "1", ",", "", "2", "");
+        const instruction1 = TestHelper.instruction(2, "label", "MOV", ".AB", "#", "0", ",", "$", "1", "; comment");
+        const instruction2 = TestHelper.instruction(3, "", "ADD", ".X", "@", "1", ",", "", "2", "");
 
-        var expected = instruction1.concat(instruction2);
+        const expected = instruction1.concat(instruction2);
 
-        var expression = new Expression();
+        const expression = new Expression();
         sinon.stub(expression, "parse").returns(1);
 
-        var tokens: IToken[] = TestHelper.forStatement(1, expected);
+        const tokens: IToken[] = TestHelper.forStatement(1, expected);
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new ForPass(expression);
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new ForPass(expression);
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(expected.length);
 
-        for (var i = 0; i < expected.length; i++) {
+        for (let i = 0; i < expected.length; i++) {
             expect(actual.tokens[i].lexeme).to.be.equal(expected[i].lexeme);
         }
     });
 
     it("Raises a syntax error if the FOR loop is not terminated by a ROF preprocessor command", () => {
 
-        var instruction = TestHelper.instruction(2, "label", "MOV", ".AB", "#", "0", ",", "$", "1", "; comment");
+        const instruction = TestHelper.instruction(2, "label", "MOV", ".AB", "#", "0", ",", "$", "1", "; comment");
 
-        var expression = new Expression();
+        const expression = new Expression();
         sinon.stub(expression, "parse").returns(3);
 
-        var tokens: IToken[] = TestHelper.forStatement(1, instruction);
+        const tokens: IToken[] = TestHelper.forStatement(1, instruction);
         tokens.pop();// Remove EOL
         tokens.pop();// Remove ROF
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new ForPass(expression);
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new ForPass(expression);
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(1);
         expect(actual.messages[0].text).to.be.equal("Expected 'ROF', got end of file");
@@ -84,7 +84,7 @@ describe("ForPass", () => {
 
     it("Allows a comment to follow the for and rof lines", () => {
 
-        var tokens = [
+        const tokens = [
             {
                 category: TokenCategory.Preprocessor,
                 lexeme: "FOR",
@@ -140,23 +140,23 @@ describe("ForPass", () => {
             }
         ];
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new ForPass(new Expression());
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new ForPass(new Expression());
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
     });
 
     it("Allows labels to precede the FOR command", () => {
 
-        var instruction = TestHelper.instruction(2, "label", "MOV", ".AB", "#", "0", ",", "$", "1", "; comment");
+        const instruction = TestHelper.instruction(2, "label", "MOV", ".AB", "#", "0", ",", "$", "1", "; comment");
 
-        var expression = new Expression();
+        const expression = new Expression();
         sinon.stub(expression, "parse").returns(3);
 
-        var tokens: IToken[] = TestHelper.forStatement(1, instruction);
+        const tokens: IToken[] = TestHelper.forStatement(1, instruction);
         tokens.unshift({
             position: {
                 line: 0,
@@ -166,22 +166,22 @@ describe("ForPass", () => {
             category: TokenCategory.Label
         });
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new ForPass(expression);
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new ForPass(expression);
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(instruction.length * 3);
 
-        for (var i = 0; i < instruction.length * 3; i++) {
+        for (let i = 0; i < instruction.length * 3; i++) {
             expect(actual.tokens[i].lexeme).to.be.equal(instruction[i % instruction.length].lexeme);
         }
     });
 
     it("Ignores labels followed by preprocessor commands other than FOR", () => {
 
-        var tokens = [
+        const tokens = [
             {
                 category: TokenCategory.Label,
                 lexeme: "SomeLabel",
@@ -198,18 +198,18 @@ describe("ForPass", () => {
             }
         ];
 
-        var expression = new Expression();
+        const expression = new Expression();
         sinon.stub(expression, "parse").returns(3);
 
-        var context = new Context();
+        const context = new Context();
         context.tokens = tokens.slice();
 
-        var pass = new ForPass(expression);
-        var actual = pass.process(context, Parser.DefaultOptions);
+        const pass = new ForPass(expression);
+        const actual = pass.process(context, Parser.DefaultOptions);
 
         expect(actual.tokens.length).to.be.equal(tokens.length);
 
-        for (var i = 0; i < tokens.length; i++) {
+        for (let i = 0; i < tokens.length; i++) {
             expect(actual.tokens[i].lexeme).to.be.equal(tokens[i].lexeme);
         }
     });

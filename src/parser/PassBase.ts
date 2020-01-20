@@ -29,7 +29,7 @@ export class PassBase implements IPass {
         return this.context;
     }
 
-    private processLines() {
+    private processLines(): void {
 
         while (!this.stream.eof()) {
 
@@ -41,7 +41,7 @@ export class PassBase implements IPass {
         }
     }
 
-    public processLine() {
+    public processLine(): void {
 
         throw new Error("PassBase.processLine is an Abstract Method");
     }

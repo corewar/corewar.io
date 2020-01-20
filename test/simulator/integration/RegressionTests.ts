@@ -53,7 +53,7 @@ describe("Simulator Regression Tests", () => {
         task = TestHelper.buildTask();
         task.warrior = warrior;
         warrior.tasks.push(task);
-        (<sinon.SinonStub>loader.load).returns([warrior]);
+        (loader.load as sinon.SinonStub).returns([warrior]);
 
         simulator.initialise({}, []);
     });

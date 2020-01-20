@@ -76,7 +76,8 @@ export default class TestHelper {
         ];
     }
 
-    public static buildWarrior(id: number = 0, data: any = null): IWarrior {
+    /* eslint-disable-next-line */
+    public static buildWarrior(id = 0, data: any = null): IWarrior {
         return {
             id: id,
             data: data,
@@ -131,22 +132,24 @@ export default class TestHelper {
         });
 
         return {
-            getSize: () => { return size; },
+            getSize: (): number => { return size; },
             executeAt: sinon.stub(),
             readAt: sinon.stub(),
             getAt: sinon.stub(),
             getWithInfoAt: sinon.stub(),
             setAt: sinon.stub(),
             wrap: wrapStub,
-            initialise: (options: IOptions) => { }
+            initialise: (_: IOptions): void => {
+                //STUB
+            }
         };
     }
 
-    public static hookChaiInstructionAssertion() {
-        chai.use((chai, util) => {
+    public static hookChaiInstructionAssertion(): void {
+        chai.use((chai) => {
             chai.Assertion.addMethod("thisInstruction", function (expected: IInstruction) {
 
-                var actual = <IInstruction>this._obj;
+                const actual = this._obj as IInstruction;
 
                 this.assert(
                     actual.opcode === expected.opcode,
@@ -278,7 +281,7 @@ export default class TestHelper {
             bOperand);
     }
 
-    public static instructionToString(instruction: IInstruction) {
+    public static instructionToString(instruction: IInstruction): string {
 
         const opcode = this.reverseLookup(this.opcodeTable, instruction.opcode);
         const modifier = this.reverseLookup(this.modifierTable, instruction.modifier);
@@ -290,9 +293,10 @@ export default class TestHelper {
         return opcode + "." + modifier + " " + aMode + aAddress + ", " + bMode + bAddress;
     }
 
-    private static reverseLookup = function (dictionary, value) {
-        for (var prop in dictionary) {
-            if (dictionary.hasOwnProperty(prop)) {
+    /* eslint-disable-next-line */
+    private static reverseLookup = function (dictionary, value): any {
+        for (const prop in dictionary) {
+            if (Object.prototype.hasOwnProperty.call(dictionary, prop)) {
                 if (dictionary[prop] === value)
                     return prop;
             }

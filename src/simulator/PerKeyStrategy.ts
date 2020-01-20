@@ -6,7 +6,7 @@ export class PerKeyStrategy implements IPublishStrategy {
 
     private key: (IMessage) => number;
     private type: MessageType;
-    private payloads: { [key: number]: IMessage; } = {};
+    private payloads: { [key: number]: IMessage } = {};
 
     constructor(key: (IMessage) => number) {
 

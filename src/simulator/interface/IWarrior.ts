@@ -13,5 +13,6 @@ export interface IWarrior {
 
     startAddress: number;
 
+    /* eslint-disable-next-line */
     data?: any;
 } 

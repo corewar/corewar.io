@@ -1,7 +1,7 @@
 ﻿import * as chai from "chai";
 import * as sinon from "sinon";
 import * as sinonChai from "sinon-chai";
-var expect = chai.expect;
+const expect = chai.expect;
 chai.use(sinonChai);
 
 import { IContext } from "@parser/interface/IContext";
@@ -15,33 +15,86 @@ import { Standard } from "@parser/interface/IParseOptions";
 
 describe("Parser",() => {
 
-    var context: IContext;
+    let context: IContext;
 
-    var scanner: IScanner;
-    var filter: IPass;
-    var metaDataCollector: IPass;
-    var forPass: IPass;
-    var preprocessCollector: IPass;
-    var preprocessAnalyser: IPass;
-    var preprocessEmitter: IPass;
-    var labelCollector: IPass;
-    var labelEmitter: IPass;
-    var mathsProcessor: IPass;
-    var defaultPass: IPass;
-    var orgPass: IPass;
-    var syntaxCheck: IPass;
-    var illegalCommandCheck: IPass;
-    var metaDataEmitter: IPass;
+    let scanner: IScanner;
+    let filter: IPass;
+    let metaDataCollector: IPass;
+    let forPass: IPass;
+    let preprocessCollector: IPass;
+    let preprocessAnalyser: IPass;
+    let preprocessEmitter: IPass;
+    let labelCollector: IPass;
+    let labelEmitter: IPass;
+    let mathsProcessor: IPass;
+    let defaultPass: IPass;
+    let orgPass: IPass;
+    let syntaxCheck: IPass;
+    let illegalCommandCheck: IPass;
+    let metaDataEmitter: IPass;
 
-    var parser: Parser;
+    let parser: Parser;
 
-    var calls: string[];
+    let calls: string[];
 
-    var expected94Calls = [
+    const expected94Calls = [
         "scan", "metaDataCollector", "filter", "for", "equCollector",
         "equAnalyser", "equEmitter", "labelCollector", "labelEmitter",
         "maths", "org", "default", "syntax", "metaDataEmitter"
     ];
+
+    function fakeScanner(name: string): IScanner {
+        return {
+            scan: sinon.stub().callsFake((_: string, __: IOptions): IContext => {
+                calls.push(name);
+                return context;
+            })
+        };
+    }
+
+    function fakePass(name: string): IPass {
+
+        return {
+            process: sinon.stub().callsFake((context: IContext, _: IOptions): IContext => {
+                calls.push(name);
+                return context;
+            })
+        };
+    }
+
+    function fakeError(): IMessage {
+        return {
+            text: "",
+            type: MessageType.Error,
+            position: { line: 1, char: 1 }
+        };
+    }
+
+    function fakeWarning(): IMessage {
+        return {
+            text: "",
+            type: MessageType.Warning,
+            position: { line: 1, char: 1 }
+        };
+    }
+
+    function errorIn(pass: IPass, name: string): void {
+
+        (pass.process as sinon.SinonStub).callsFake((): IContext => {
+            context.messages.push(fakeError());
+            calls.push(name);
+            return context;
+        });
+    }
+
+    function warningIn(pass: IPass, name: string): void {
+
+        (pass.process as sinon.SinonStub).callsFake((): IContext => {
+            context.messages.push(fakeWarning());
+            calls.push(name);
+            return context;
+        });
+    }
 
     beforeEach(() => {
 
@@ -82,62 +135,9 @@ describe("Parser",() => {
             metaDataEmitter);
     });
 
-    function fakeScanner(name: string): IScanner {
-        return {
-            scan: sinon.stub().callsFake((s: string, options: IOptions): IContext => {
-                calls.push(name);
-                return context;
-            })
-        };
-    }
-
-    function fakePass(name: string): IPass {
-
-        return {
-            process: sinon.stub().callsFake((context: IContext, options: IOptions): IContext => {
-                calls.push(name);
-                return context;
-            })
-        };
-    }
-
-    function fakeError(): IMessage {
-        return {
-            text: "",
-            type: MessageType.Error,
-            position: { line: 1, char: 1 }
-        };
-    }
-
-    function fakeWarning(): IMessage {
-        return {
-            text: "",
-            type: MessageType.Warning,
-            position: { line: 1, char: 1 }
-        };
-    }
-
-    function errorIn(pass: IPass, name: string): void {
-
-        (<sinon.SinonStub>pass.process).callsFake((): IContext => {
-            context.messages.push(fakeError());
-            calls.push(name);
-            return context;
-        });
-    }
-
-    function warningIn(pass: IPass, name: string): void {
-
-        (<sinon.SinonStub>pass.process).callsFake((): IContext => {
-            context.messages.push(fakeWarning());
-            calls.push(name);
-            return context;
-        });
-    }
-
     it("Calls passes in correct order under ICWS'94-draft",() => {
 
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
         parser.parse("MOV 0, 1", options);
 
@@ -148,7 +148,7 @@ describe("Parser",() => {
 
     it("Calls passes in correct order under ICWS'88",() => {
 
-        var options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
 
         parser.parse("MOV 0, 1", options);
 
@@ -172,7 +172,7 @@ describe("Parser",() => {
 
     it("Calls passes in correct order under ICWS'86",() => {
 
-        var options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
+        const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
 
         parser.parse("MOV 0, 1", options);
 
@@ -196,7 +196,7 @@ describe("Parser",() => {
     
     it("Does not call syntax check if default pass fails",() => {
 
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
         errorIn(defaultPass, "default");
 
@@ -210,7 +210,7 @@ describe("Parser",() => {
 
     it("Does not call default pass check if org pass fails",() => {
 
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
         errorIn(orgPass, "org");
 
@@ -224,7 +224,7 @@ describe("Parser",() => {
 
     it("Does not call org pass if maths pass fails",() => {
 
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
         errorIn(mathsProcessor, "maths");
 
@@ -238,7 +238,7 @@ describe("Parser",() => {
 
     it("Does not call maths pass if label emitter fails",() => {
 
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
         errorIn(labelEmitter, "labelEmitter");
 
@@ -252,7 +252,7 @@ describe("Parser",() => {
 
     it("Does not call label emitter if label collector fails",() => {
 
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
         errorIn(labelCollector, "labelCollector");
 
@@ -266,7 +266,7 @@ describe("Parser",() => {
 
     it("Does not call label collector if equ emitter fails",() => {
 
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
         errorIn(preprocessEmitter, "equEmitter");
 
@@ -280,7 +280,7 @@ describe("Parser",() => {
 
     it("Does not call equ emitter if equ analyser fails",() => {
 
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
         errorIn(preprocessAnalyser, "equAnalyser");
 
@@ -294,7 +294,7 @@ describe("Parser",() => {
 
     it("Does not call equ analyser if equ collector fails",() => {
 
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
         errorIn(preprocessCollector, "equCollector");
 
@@ -308,7 +308,7 @@ describe("Parser",() => {
 
     it("Does not call equ collector if for pass fails",() => {
 
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
         errorIn(forPass, "for");
 
@@ -322,7 +322,7 @@ describe("Parser",() => {
 
     it("Does not call for pass if filter pass fails",() => {
 
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
         errorIn(filter, "filter");
 
@@ -336,7 +336,7 @@ describe("Parser",() => {
     
     it("Does not call filter pass if metadata collector pass fails",() => {
         
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
         errorIn(metaDataCollector, "metaDataCollector");
 
@@ -350,9 +350,9 @@ describe("Parser",() => {
 
     it("Does not call filter pass if scan fails",() => {
 
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
-        (<sinon.SinonStub>scanner.scan).callsFake((): IContext => {
+        (scanner.scan as sinon.SinonStub).callsFake((): IContext => {
             context.messages.push(fakeError());
             calls.push("scan");
             return context;
@@ -368,9 +368,9 @@ describe("Parser",() => {
 
     it("Does call all passes regardless of raised warnings",() => {
 
-        var options = Parser.DefaultOptions;
+        const options = Parser.DefaultOptions;
 
-        (<sinon.SinonStub>scanner.scan).callsFake((): IContext => {
+        (scanner.scan as sinon.SinonStub).callsFake((): IContext => {
             context.messages.push(fakeWarning());
             calls.push("scan");
             return context;
@@ -399,12 +399,12 @@ describe("Parser",() => {
 
     it("Passes supplied options to each pass",() => {
 
-        var document = "MOV 0, 1";
-        var options = {
+        const document = "MOV 0, 1";
+        const options = {
             coresize: 82
         };
 
-        var expected = {
+        const expected = {
             standard: Standard.ICWS94draft,
             coresize: 82
         };
@@ -428,7 +428,7 @@ describe("Parser",() => {
 
     it("Returns context tokens, messages and metaData in ParserResult",() => {
 
-        var actual = parser.parse("MOV 0, 1", {});
+        const actual = parser.parse("MOV 0, 1", {});
 
         expect(actual.metaData).to.be.equal(context.metaData);
         expect(actual.tokens).to.be.equal(context.tokens);
@@ -439,6 +439,6 @@ describe("Parser",() => {
 
         parser.parse("MOV 0, 1");
 
-        expect((<sinon.SinonStub>scanner.scan).lastCall.args[1].standard).to.be.equal(Standard.ICWS94draft);
+        expect((scanner.scan as sinon.SinonStub).lastCall.args[1].standard).to.be.equal(Standard.ICWS94draft);
     });
 });

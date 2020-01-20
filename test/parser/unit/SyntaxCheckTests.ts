@@ -10,9 +10,9 @@ import { MessageType, IMessage } from "@parser/interface/IMessage";
 
 describe("SyntaxCheck", () => {
 
-    var context: IContext;
+    let context: IContext;
 
-    var instructionTokens: IToken[];
+    let instructionTokens: IToken[];
 
     beforeEach(() => {
 
@@ -22,15 +22,15 @@ describe("SyntaxCheck", () => {
 
     it("returns syntax errors for empty lines", () => {
 
-        var tokens: IToken[] = TestHelper.emptyLine(1)
+        const tokens: IToken[] = TestHelper.emptyLine(1)
             .concat(TestHelper.emptyLine(2))
             .concat(TestHelper.emptyLine(3))
             .concat(TestHelper.emptyLine(4));
 
         context.tokens = tokens.slice();
 
-        var parser = new SyntaxCheck();
-        var actual = parser.process(context, Parser.DefaultOptions);
+        const parser = new SyntaxCheck();
+        const actual = parser.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(4);
         expect(actual.tokens.length).to.be.equal(0);
@@ -48,14 +48,14 @@ describe("SyntaxCheck", () => {
 
     it("parses comments", () => {
 
-        var tokens: IToken[] = TestHelper.comment(1, "; this is a comment")
+        const tokens: IToken[] = TestHelper.comment(1, "; this is a comment")
             .concat(TestHelper.comment(2, "; this is a second comment"));
 
         context.tokens = tokens.slice();
 
-        var parser = new SyntaxCheck();
+        const parser = new SyntaxCheck();
 
-        var actual = parser.process(context, Parser.DefaultOptions);
+        const actual = parser.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(4);
@@ -65,23 +65,23 @@ describe("SyntaxCheck", () => {
 
     it("parses instructions", () => {
 
-        var tokens: IToken[] = instructionTokens.slice(0);
+        const tokens: IToken[] = instructionTokens.slice(0);
 
         context.tokens = tokens.slice();
 
-        var parser = new SyntaxCheck();
-        var actual = parser.process(context, Parser.DefaultOptions);
+        const parser = new SyntaxCheck();
+        const actual = parser.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
 
-        for (var i = 0; i < context.tokens.length; i++) {
+        for (let i = 0; i < context.tokens.length; i++) {
             expect(tokens[i]).to.deep.equal(actual.tokens[i]);
         }
     });
 
     it("parses instructions followed by a comment", () => {
 
-        var tokens: IToken[] = instructionTokens.slice(0);
+        let tokens: IToken[] = instructionTokens.slice(0);
 
         // Insert a comment before the final new line token
         tokens = tokens.splice(7, 0, {
@@ -92,27 +92,27 @@ describe("SyntaxCheck", () => {
 
         context.tokens = tokens.slice();
 
-        var parser = new SyntaxCheck();
-        var actual = parser.process(context, Parser.DefaultOptions);
+        const parser = new SyntaxCheck();
+        const actual = parser.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
 
-        for (var i = 0; i < context.tokens.length; i++) {
+        for (let i = 0; i < context.tokens.length; i++) {
             expect(tokens[i]).to.deep.equal(actual.tokens[i]);
         }
     });
 
     it("returns a syntax error if an instruction does not begin with an opcode", () => {
 
-        var tokens: IToken[] = instructionTokens.slice(0);
+        const tokens: IToken[] = instructionTokens.slice(0);
 
         tokens[0].category = TokenCategory.Comma;
         tokens[0].lexeme = ",";
 
         context.tokens = tokens.slice();
 
-        var parser = new SyntaxCheck();
-        var actual = parser.process(context, Parser.DefaultOptions);
+        const parser = new SyntaxCheck();
+        const actual = parser.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(1);
 
@@ -123,15 +123,15 @@ describe("SyntaxCheck", () => {
 
     it("returns a syntax error if an opcode does not have a modifier", () => {
 
-        var tokens: IToken[] = instructionTokens.slice(0);
+        const tokens: IToken[] = instructionTokens.slice(0);
 
         tokens[1].category = TokenCategory.Mode;
         tokens[1].lexeme = "@";
 
         context.tokens = tokens.slice();
 
-        var parser = new SyntaxCheck();
-        var actual = parser.process(context, Parser.DefaultOptions);
+        const parser = new SyntaxCheck();
+        const actual = parser.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(1);
 
@@ -142,15 +142,15 @@ describe("SyntaxCheck", () => {
 
     it("returns a syntax error if an A field does not have a mode", () => {
 
-        var tokens: IToken[] = instructionTokens.slice(0);
+        const tokens: IToken[] = instructionTokens.slice(0);
 
         tokens[2].category = TokenCategory.Number;
         tokens[2].lexeme = "-4";
 
         context.tokens = tokens.slice();
 
-        var parser = new SyntaxCheck();
-        var actual = parser.process(context, Parser.DefaultOptions);
+        const parser = new SyntaxCheck();
+        const actual = parser.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(1);
 
@@ -161,15 +161,15 @@ describe("SyntaxCheck", () => {
 
     it("returns a syntax error if an A field does not have a number", () => {
 
-        var tokens: IToken[] = instructionTokens.slice(0);
+        const tokens: IToken[] = instructionTokens.slice(0);
 
         tokens[3].category = TokenCategory.Comma;
         tokens[3].lexeme = ",";
 
         context.tokens = tokens.slice();
 
-        var parser = new SyntaxCheck();
-        var actual = parser.process(context, Parser.DefaultOptions);
+        const parser = new SyntaxCheck();
+        const actual = parser.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(1);
 
@@ -180,15 +180,15 @@ describe("SyntaxCheck", () => {
 
     it("returns a syntax error if there is no comma between the A and B field", () => {
 
-        var tokens: IToken[] = instructionTokens.slice(0);
+        const tokens: IToken[] = instructionTokens.slice(0);
 
         tokens[4].category = TokenCategory.Mode;
         tokens[4].lexeme = "<";
 
         context.tokens = tokens.slice();
 
-        var parser = new SyntaxCheck();
-        var actual = parser.process(context, Parser.DefaultOptions);
+        const parser = new SyntaxCheck();
+        const actual = parser.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(1);
 
@@ -199,15 +199,15 @@ describe("SyntaxCheck", () => {
 
     it("returns a syntax error if a B field does not have a mode", () => {
 
-        var tokens: IToken[] = instructionTokens.slice(0);
+        const tokens: IToken[] = instructionTokens.slice(0);
 
         tokens[5].category = TokenCategory.Comment;
         tokens[5].lexeme = "; dfsfdsa";
 
         context.tokens = tokens.slice();
 
-        var parser = new SyntaxCheck();
-        var actual = parser.process(context, Parser.DefaultOptions);
+        const parser = new SyntaxCheck();
+        const actual = parser.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(1);
 
@@ -218,15 +218,15 @@ describe("SyntaxCheck", () => {
 
     it("returns a syntax error if a B field does not have a number", () => {
 
-        var tokens: IToken[] = instructionTokens.slice(0);
+        const tokens: IToken[] = instructionTokens.slice(0);
 
         tokens[6].category = TokenCategory.Comment;
         tokens[6].lexeme = "; comment";
 
         context.tokens = tokens.slice();
 
-        var parser = new SyntaxCheck();
-        var actual = parser.process(context, Parser.DefaultOptions);
+        const parser = new SyntaxCheck();
+        const actual = parser.process(context, Parser.DefaultOptions);
 
         expect(context.messages.length).to.be.equal(1);
 
@@ -237,15 +237,15 @@ describe("SyntaxCheck", () => {
 
     it("returns a syntax error if an instruction is not followed by a new line or comment", () => {
 
-        var tokens: IToken[] = instructionTokens.slice(0);
+        const tokens: IToken[] = instructionTokens.slice(0);
 
         tokens[7].category = TokenCategory.Opcode;
         tokens[7].lexeme = "ADD";
 
         context.tokens = tokens.slice();
 
-        var parser = new SyntaxCheck();
-        var actual = parser.process(context, Parser.DefaultOptions);
+        const parser = new SyntaxCheck();
+        const actual = parser.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(1);
 
@@ -256,15 +256,15 @@ describe("SyntaxCheck", () => {
 
     it("returns multiple syntax errors if multiple lines are incorrect", () => {
 
-        var tokens: IToken[] = TestHelper.comment(1, ";author gareththegeek")
+        const tokens: IToken[] = TestHelper.comment(1, ";author gareththegeek")
             .concat(TestHelper.instruction(2, "", "MOV", "", "", "23", "", "", "", ""))
             .concat(TestHelper.instruction(3, "", "MOV", ".X", "$", "0", ",", "#", "1", ""))
             .concat(TestHelper.emptyLine(4));
 
         context.tokens = tokens.slice();
 
-        var parser = new SyntaxCheck();
-        var actual = parser.process(context, Parser.DefaultOptions);
+        const parser = new SyntaxCheck();
+        const actual = parser.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(2);
 
@@ -279,12 +279,12 @@ describe("SyntaxCheck", () => {
 
     it("Does not modify or raise errors regarding ORG instructions",() => {
 
-        var tokens: IToken[] = TestHelper.org(1, "3");
+        const tokens: IToken[] = TestHelper.org(1, "3");
 
         context.tokens = tokens.slice();
 
-        var parser = new SyntaxCheck();
-        var actual = parser.process(context, Parser.DefaultOptions);
+        const parser = new SyntaxCheck();
+        const actual = parser.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(3);
@@ -296,12 +296,12 @@ describe("SyntaxCheck", () => {
 
     it("Does not modify or raise errors regarding END instructions",() => {
 
-        var tokens: IToken[] = TestHelper.endStatement(1, "");
+        const tokens: IToken[] = TestHelper.endStatement(1, "");
 
         context.tokens = tokens.slice();
 
-        var parser = new SyntaxCheck();
-        var actual = parser.process(context, Parser.DefaultOptions);
+        const parser = new SyntaxCheck();
+        const actual = parser.process(context, Parser.DefaultOptions);
 
         expect(actual.messages.length).to.be.equal(0);
         expect(actual.tokens.length).to.be.equal(2);

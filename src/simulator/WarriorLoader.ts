@@ -52,10 +52,10 @@ export class WarriorLoader implements IWarriorLoader {
         return this.warrior;
     }
 
-    private readInstructions() {
+    private readInstructions(): void {
         while (!this.stream.eof()) {
 
-            var next = this.stream.peek();
+            const next = this.stream.peek();
 
             if (next.category === TokenCategory.Opcode) {
 
@@ -75,9 +75,9 @@ export class WarriorLoader implements IWarriorLoader {
 
     private readInstruction(): IInstruction {
 
-        var parseInstruction = this.readParseInstruction();
+        const parseInstruction = this.readParseInstruction();
 
-        var instruction: IInstruction = {
+        const instruction: IInstruction = {
             address: this.address,
             opcode: this.getOpcode(parseInstruction),
             modifier: this.getModifier(parseInstruction),
@@ -90,7 +90,7 @@ export class WarriorLoader implements IWarriorLoader {
 
     private readOrg(): number {
         this.stream.read(); // ORG
-        var token = this.stream.read();
+        const token = this.stream.read();
 
         this.stream.readToEOL();
 
@@ -99,7 +99,7 @@ export class WarriorLoader implements IWarriorLoader {
 
     private readParseInstruction(): IParseInstruction {
 
-        var result = {
+        const result = {
             opcode: this.stream.read(),
             modifier: this.stream.read(),
             aOperand: {
@@ -180,7 +180,7 @@ export class WarriorLoader implements IWarriorLoader {
 
     private getOperand(operand: IParseOperand): IOperand {
 
-        var result: IOperand = {
+        const result: IOperand = {
             mode: 0,
             address: this.core.wrap(parseInt(operand.address.lexeme, 10))
         };
@@ -215,7 +215,7 @@ export class WarriorLoader implements IWarriorLoader {
         return result;
     }
 
-    private loadProcess(startAddress: number) {
+    private loadProcess(startAddress: number): void {
 
         this.warrior.tasks.push({
             instructionPointer: startAddress,
