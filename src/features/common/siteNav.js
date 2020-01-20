@@ -43,12 +43,12 @@ const Nav = styled.nav`
 const SiteNav = () => (
   <Header>
     <Nav>
-      <a href={`/app/src`}>play</a>
+      <a href={`/app/editor/src`}>play</a>
       <a href={`/learn`}>learn</a>
       <a href={`/#features`}>features</a>
       <a href={`/sign-up`}>sign up</a>
       <a href={`/contact-us`}>contact us</a>
-      <a href={`https://github.com/gareththegeek/corewar`}>code</a>
+      <a href={`https://github.com/corewar/corewar`}>code</a>
     </Nav>
   </Header>
 )

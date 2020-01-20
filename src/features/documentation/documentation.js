@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, NavLink } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 
 import SiteNav from '../common/siteNav'
