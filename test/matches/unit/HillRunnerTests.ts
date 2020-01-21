@@ -8,6 +8,8 @@ import TestHelper from '@simulator/tests/unit/TestHelper';
 import { IMatchRunner } from '@matches/interface/IMatchRunner';
 import { IMatch } from '@matches/interface/IMatch';
 import { IHillWarrior } from '@matches/interface/IHillWarrior';
+import { IHillResultMapper } from '@matches/interface/IHillResultMapper';
+import { IHillResult } from '@matches/interface/IHillResult';
 chai.use(sinonChai);
 
 describe('HillRunner', () => {
@@ -15,14 +17,22 @@ describe('HillRunner', () => {
     let hillRunner: IHillRunner;
 
     let matchRunner: IMatchRunner;
+    let hillResultMapper: IHillResultMapper;
 
     beforeEach(() => {
         matchRunner = {
             run: sinon.stub()
         };
 
-        hillRunner = new HillRunner(matchRunner);
+        hillResultMapper = {
+            map: sinon.stub()
+        };
+
+        hillRunner = new HillRunner(matchRunner, hillResultMapper);
     })
+
+    const arraysEqual = <T>(a: T[], b: T[]): boolean =>
+        a.every((x, i) => b[i] === x);
 
     const withWarriors = (a: IHillWarrior, b: IHillWarrior): (IMatch) => boolean =>
         (match: IMatch): boolean =>
@@ -50,5 +60,35 @@ describe('HillRunner', () => {
         expect(matchRunner.run).to.have.been.calledWith(sinon.match(withWarriors(warriorA, warriorB)));
         expect(matchRunner.run).to.have.been.calledWith(sinon.match(withWarriors(warriorA, warriorC)));
         expect(matchRunner.run).to.have.been.calledWith(sinon.match(withWarriors(warriorB, warriorC)));
+    })
+    
+    it('should return mapped hill results', () => {
+
+        const expected: IHillResult = {
+            rounds: 2,
+            warriors: []
+        };
+
+        const matches = [{}, {}, {}];
+        for (let i = 0; i <= 2; i++) {
+            (matchRunner.run as sinon.SinonStub).onCall(i).returns(matches[i])
+        }
+
+        const warrior =  { source: TestHelper.buildParseResult([]) };
+        const hill = {
+            rules: {
+                rounds: expected.rounds,
+                options: {}
+            },
+            warriors: [ warrior, warrior, warrior ]
+        };
+
+        (hillResultMapper.map as sinon.SinonStub)
+            .withArgs(hill, sinon.match(arg => arraysEqual(arg, matches)))
+            .returns(expected);
+
+        const actual = hillRunner.run(hill);
+
+        expect(actual).to.deep.equal(expected);
     })
 })
