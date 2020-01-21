@@ -2,6 +2,6 @@ import { IParseResult } from "@parser/interface/IParseResult";
 
 export interface IHillWarrior {
     
-    warriorHillId: string;
+    warriorHillId?: string;
     source: IParseResult;
 }
