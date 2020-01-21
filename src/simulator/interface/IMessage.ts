@@ -8,6 +8,7 @@ export enum MessageType {
     RoundStart,
     NextExecution,
     MatchEnd,
+    HillEnd,
     Count
 }
 
