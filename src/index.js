@@ -14,6 +14,7 @@ import FeedbackContainer from './features/feedback/feedbackContainer'
 import Documentation from './features/documentation/documentation'
 
 import 'typeface-lato'
+import 'typeface-inter'
 import 'typeface-anonymous-pro'
 
 import './cssreset.css'
@@ -38,15 +39,15 @@ render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Wrapper>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/sign-up' component={SignUpContainer} />
-        <Route exact path='/contact-us' component={FeedbackContainer} />
-        <Route path='/learn' component={Documentation} />
-        <Route path='/app' component={App} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/sign-up" component={SignUpContainer} />
+        <Route exact path="/contact-us" component={FeedbackContainer} />
+        <Route path="/learn" component={Documentation} />
+        <Route path="/app" component={App} />
       </Wrapper>
     </ConnectedRouter>
   </Provider>,
   target
 )
 
-registerServiceWorker();
+registerServiceWorker()

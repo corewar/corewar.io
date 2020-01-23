@@ -33,6 +33,7 @@
     "styled-components": "^3.2.3",
     "styled-property": "^1.0.2",
     "typeface-anonymous-pro": "0.0.44",
+    "typeface-inter": "^3.11.2",
     "typeface-lato": "0.0.44"
   },
   "scripts": {

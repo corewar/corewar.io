@@ -27,6 +27,7 @@ const WarriorWrapper = styled.div`
   align-items: center;
   border-left: 1px solid ${colour.defaultbg};
   position: relative;
+  font-family: ${font.default};
 
   ${media.desktop`
     min-width: 100%;
@@ -76,7 +77,8 @@ const WarriorName = styled.span`
   text-align: center;
   ${media.desktop`
     padding: 0 ${space.xs} 0 ${space.xs};
-  `} :hover {
+  `}
+    :hover {
     cursor: pointer;
   }
 `
@@ -167,14 +169,11 @@ const mapStateToProps = state => ({
   currentFileIndex: state.parser.currentFileIndex
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    addWarrior,
-    removeWarrior,
-    loadWarrior,
-    toggleWarrior
-  }
-)(WarriorManagerContainer)
+export default connect(mapStateToProps, {
+  addWarrior,
+  removeWarrior,
+  loadWarrior,
+  toggleWarrior
+})(WarriorManagerContainer)
 
 export { WarriorManagerContainer as PureWarriorManagerContainer }

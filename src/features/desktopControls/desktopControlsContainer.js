@@ -23,22 +23,22 @@ const DesktopControlsContainer = ({
       active={interfaceMode === INTERFACE_MODE.EDITOR}
       handleClick={() => setInterfaceMode(INTERFACE_MODE.EDITOR)}
       iconName={`pencil`}
-      buttonText={`editor`}
+      buttonText={`Editor`}
     />
     <OcticonButton
       active={interfaceMode === INTERFACE_MODE.PLAYER}
       handleClick={() => setInterfaceMode(INTERFACE_MODE.PLAYER)}
       iconName={`eye`}
-      buttonText={`player`}
+      buttonText={`Player`}
     />
     <OcticonButton
       handleClick={toggleFileManager}
       iconName={`file-directory`}
-      buttonText={`files`}
+      buttonText={`Files`}
     />
-    <OcticonButton handleClick={addWarrior} iconName={`plus`} buttonText={`new file`} />
+    <OcticonButton handleClick={addWarrior} iconName={`plus`} buttonText={`New file`} />
     <WarriorManagerContainer />
-    <OcticonButton handleClick={toggleSettings} iconName={`gear`} buttonText={`settings`} />
+    <OcticonButton handleClick={toggleSettings} iconName={`gear`} buttonText={`Settings`} />
   </Controls>
 )
 
@@ -46,14 +46,11 @@ const mapStateToProps = state => ({
   interfaceMode: state.interfaceMode.interfaceMode
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    setInterfaceMode,
-    addWarrior,
-    toggleFileManager,
-    toggleSettings
-  }
-)(DesktopControlsContainer)
+export default connect(mapStateToProps, {
+  setInterfaceMode,
+  addWarrior,
+  toggleFileManager,
+  toggleSettings
+})(DesktopControlsContainer)
 
 export { DesktopControlsContainer as PureDesktopControlsContainer }

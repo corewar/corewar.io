@@ -9,6 +9,7 @@ const RoundStatusWrapper = styled.section`
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid ${colour.lightbg};
+  font-family: ${font.default};
 
   span {
     color: ${colour.lightgrey};
@@ -40,8 +41,7 @@ const TaskBar = styled.div`
   ${props => `width: ${getWidth(props.tasks, props.maxTasks)}%;`}
 `
 
-class RoundProgress extends Component{
-
+class RoundProgress extends Component {
   constructor(props) {
     super(props)
 
@@ -54,15 +54,13 @@ class RoundProgress extends Component{
     })
 
     PubSub.subscribe('TASK_COUNT', (msg, data) => {
-
       let newTasks = this.state.tasks
 
-      data.forEach((item) => {
+      data.forEach(item => {
         newTasks = replaceItem(item.warriorId, newTasks, item.taskCount)
       })
 
       this.setState({ tasks: newTasks })
-
     })
   }
 
@@ -78,25 +76,31 @@ class RoundProgress extends Component{
         <span>Round status</span>
         <ProgressBar runProgress={runProgress} />
         <span>Tasks</span>
-        {warriors && warriors.map((warrior, i) => {
-          const taskCount = this.state.tasks[i]
-          return <Fragment key={`warrior_${i}`}>
-            <TaskCountDisplay>{taskCount}</TaskCountDisplay>
-            <TaskBar tasks={taskCount} maxTasks={maxTasks} colour={warrior.data.colour && warrior.data.colour.hex}></TaskBar>
-          </Fragment>
-        })}
+        {warriors &&
+          warriors.map((warrior, i) => {
+            const taskCount = this.state.tasks[i]
+            return (
+              <Fragment key={`warrior_${i}`}>
+                <TaskCountDisplay>{taskCount}</TaskCountDisplay>
+                <TaskBar
+                  tasks={taskCount}
+                  maxTasks={maxTasks}
+                  colour={warrior.data.colour && warrior.data.colour.hex}
+                ></TaskBar>
+              </Fragment>
+            )
+          })}
       </RoundStatusWrapper>
     )
   }
 }
 
 const getWidth = (tasks, maxTasks) => {
-
-  if(!tasks) {
+  if (!tasks) {
     return 0
   }
 
-  return Math.floor(tasks / maxTasks * 100)
+  return Math.floor((tasks / maxTasks) * 100)
 }
 
 export default RoundProgress

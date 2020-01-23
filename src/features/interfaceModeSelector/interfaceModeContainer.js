@@ -31,7 +31,7 @@ const InterfaceModeContainer = ({ setInterfaceMode, interfaceMode }) => (
           active={interfaceMode === INTERFACE_MODE.EDITOR}
           handleClick={e => clickHandler(e, history, setInterfaceMode, INTERFACE_MODE.EDITOR)}
           iconName={`pencil`}
-          buttonText={`editor`}
+          buttonText={`Editor`}
         />
       )}
     />
@@ -41,7 +41,7 @@ const InterfaceModeContainer = ({ setInterfaceMode, interfaceMode }) => (
           active={interfaceMode === INTERFACE_MODE.PLAYER}
           handleClick={e => clickHandler(e, history, setInterfaceMode, INTERFACE_MODE.PLAYER)}
           iconName={`eye`}
-          buttonText={`player`}
+          buttonText={`Player`}
         />
       )}
     />
@@ -52,11 +52,8 @@ const mapStateToProps = state => ({
   interfaceMode: state.interfaceMode.interfaceMode
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    setInterfaceMode
-  }
-)(InterfaceModeContainer)
+export default connect(mapStateToProps, {
+  setInterfaceMode
+})(InterfaceModeContainer)
 
 export { InterfaceModeContainer as PureInterfaceModeContainer }
