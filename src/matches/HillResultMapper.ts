@@ -3,10 +3,11 @@ import { IHillResult } from "@matches/interface/IHillResult";
 import { IMatchResult } from "@matches/interface/IMatchResult";
 import { IHill } from "@matches/interface/IHill";
 import { IHillWarrior } from "@matches/interface/IHillWarrior";
+import { IHillWarriorResult } from "@matches/interface/IHillWarriorResult";
 
 export class HillResultMapper implements IHillResultMapper {
 
-    private mapMatchResultsToWarriors(warrior: IHillWarrior, allResults: IMatchResult[]) {
+    private mapMatchResultsToWarriors(warrior: IHillWarrior, allResults: IMatchResult[]): IHillWarriorResult[] {
 
         const matches = allResults.filter(
             x => !!x.warriors.find(y => y.source === warrior.source)

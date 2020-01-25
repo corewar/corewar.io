@@ -4,7 +4,6 @@ import { IMatchResult } from "@matches/interface/IMatchResult";
 export interface IHillWarriorResult {
     
     source: IParseResult;
-    age: number;
     rank: number;
     score: number;
     won: number;
