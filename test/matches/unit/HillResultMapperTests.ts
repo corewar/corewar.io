@@ -154,4 +154,36 @@ describe("HillResultMapper", () => {
         const warriorCResult = actual.warriors.find(x => x.source == warriorC.source);
         expect(warriorCResult.matches).to.deep.equal(warriorCMatches);
     });
+
+    it("ranks each warrior based upon their score", () => {
+
+        const warriorA = { source: TestHelper.buildParseResult([]) };
+        const warriorB = { source: TestHelper.buildParseResult([]) };
+        const warriorC = { source: TestHelper.buildParseResult([]) };
+
+        const hill = {
+            rules: {
+                rounds: 1,
+                options: {}
+            },
+            warriors: [warriorA, warriorB, warriorC]
+        };
+
+        const results: IMatchResult[] = [
+            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA, 0, 1, 1), buildResult(warriorB, 1, 1, 0)] },
+            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA, 0, 0, 2), buildResult(warriorC, 2, 0, 0)] },
+            { rounds: hill.rules.rounds, warriors: [buildResult(warriorB, 0, 1, 1), buildResult(warriorC, 1, 1, 0)] }
+        ];
+
+        const actual = hillResultMapper.map(hill, results);
+
+        const warriorAResult = actual.warriors.find(x => x.source == warriorA.source);
+        expect(warriorAResult.rank).to.be.equal(3);
+
+        const warriorBResult = actual.warriors.find(x => x.source == warriorB.source);
+        expect(warriorBResult.rank).to.be.equal(2);
+
+        const warriorCResult = actual.warriors.find(x => x.source == warriorC.source);
+        expect(warriorCResult.rank).to.be.equal(1);
+    });
 });
