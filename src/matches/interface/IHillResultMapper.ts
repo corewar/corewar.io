@@ -1,6 +1,6 @@
-import { IHill } from "@matches/interface/IHill";
 import { IHillResult } from "@matches/interface/IHillResult";
 import { IMatchResult } from "@matches/interface/IMatchResult";
+import { IHill } from "@matches/interface/IHill";
 
 export interface IHillResultMapper {
 

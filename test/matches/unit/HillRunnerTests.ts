@@ -77,7 +77,6 @@ describe("HillRunner", () => {
     it("returns mapped hill results", () => {
 
         const expected: IHillResult = {
-            rounds: 2,
             warriors: []
         };
 
@@ -89,7 +88,7 @@ describe("HillRunner", () => {
         const warrior =  { source: TestHelper.buildParseResult([]) };
         const hill = {
             rules: {
-                rounds: expected.rounds,
+                rounds: 2,
                 options: {}
             },
             warriors: [ warrior, warrior, warrior ]
