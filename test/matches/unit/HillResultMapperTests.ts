@@ -82,9 +82,9 @@ describe("HillResultMapper", () => {
         const result = hillResultMapper.map(hill, results);
         const actual = result.warriors.find(x => x.source === warriorA.source);
         
-        const won = (60 + 40 + 70) * 3 / 3;
-        const lost = (10 + 40 + 10) * 3 / 3;
-        const drawn = (30 + 20 + 20) * 1 / 3;
+        const won = (60 + 40 + 70) / 3;
+        const lost = (10 + 40 + 10) / 3;
+        const drawn = (30 + 20 + 20) / 3;
         expect(actual.won).to.be.equal(won);
         expect(actual.drawn).to.be.equal(drawn);
         expect(actual.lost).to.be.equal(lost);

@@ -15,9 +15,9 @@ export class HillResultMapper implements IHillResultMapper {
                 return {
                     source: warrior.source,
                     age: 0,
-                    won: results.reduce((accum, result) => accum + result.won, 0) * 3 / results.length,
-                    drawn: results.reduce((accum, result) => accum + result.drawn, 0) * 1 / results.length,
-                    lost: results.reduce((accum, result) => accum + result.lost, 0) * 3 / results.length,
+                    won: results.reduce((accum, result) => accum + result.won, 0) / results.length,
+                    drawn: results.reduce((accum, result) => accum + result.drawn, 0) / results.length,
+                    lost: results.reduce((accum, result) => accum + result.lost, 0) / results.length,
                     matches: []
                 };
             })
