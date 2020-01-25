@@ -7,7 +7,7 @@ import { IHillWarriorResult } from "@matches/interface/IHillWarriorResult";
 
 export class HillResultMapper implements IHillResultMapper {
 
-    private mapMatchResultsToWarriors(warrior: IHillWarrior, allResults: IMatchResult[]): IHillWarriorResult[] {
+    private mapMatchResultsToWarriors(warrior: IHillWarrior, allResults: IMatchResult[]): IHillWarriorResult {
 
         const matches = allResults.filter(
             x => !!x.warriors.find(y => y.source === warrior.source)
@@ -22,7 +22,6 @@ export class HillResultMapper implements IHillResultMapper {
 
         return {
             source: warrior.source,
-            age: 0,
             rank: 0,
             score: won * 3 + drawn,
             won,
