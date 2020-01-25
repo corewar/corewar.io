@@ -26,11 +26,11 @@ describe("HillResultMapper", () => {
         won,
         drawn,
         lost,
-        given: lost * 100 * 3 + drawn * 100 * 1,
-        taken: won * 100 * 3 + drawn * 100 * 1
+        given: lost * 3 + drawn * 1,
+        taken: won * 3 + drawn * 1
     })
 
-    it("Produces hill result for each warrior", () => {
+    it("produces hill result for each warrior", () => {
 
         const warriorA =  { source: TestHelper.buildParseResult([]) };
         const warriorB =  { source: TestHelper.buildParseResult([]) };
@@ -58,5 +58,35 @@ describe("HillResultMapper", () => {
         expect(actual.warriors.find(x => x.source == warriorC.source)).not.to.be.undefined;
     });
 
-    
+    it("awards each warrior points based on their average win and draw percentage", () => {
+
+        const warriorA =  { source: TestHelper.buildParseResult([]) };
+        const warriorB =  { source: TestHelper.buildParseResult([]) };
+        const warriorC =  { source: TestHelper.buildParseResult([]) };
+        const warriorD =  { source: TestHelper.buildParseResult([]) };
+
+        const hill = {
+            rules: {
+                rounds: 1,
+                options: {}
+            },
+            warriors: [warriorA, warriorB, warriorC]
+        };
+
+        const results: IMatchResult[] = [
+            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA, 60, 30, 10), buildResult(warriorB)] },
+            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA, 40, 20, 40), buildResult(warriorC)] },
+            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA, 70, 20, 10), buildResult(warriorD)] }
+        ];
+
+        const result = hillResultMapper.map(hill, results);
+        const actual = result.warriors.find(x => x.source === warriorA.source);
+        
+        const won = (60 + 40 + 70) * 3 / 3;
+        const lost = (10 + 40 + 10) * 3 / 3;
+        const drawn = (30 + 20 + 20) * 1 / 3;
+        expect(actual.won).to.be.equal(won);
+        expect(actual.drawn).to.be.equal(drawn);
+        expect(actual.lost).to.be.equal(lost);
+    })
 });
