@@ -53,8 +53,10 @@ describe("HillResultMapper", () => {
         const actual = hillResultMapper.map(hill, results);
 
         expect(actual.warriors.length).to.be.equal(3);
-        expect(actual.warriors.find(x => x.source == warriorA.source)).not.to.be.null;
-        expect(actual.warriors.find(x => x.source == warriorB.source)).not.to.be.null;
-        expect(actual.warriors.find(x => x.source == warriorC.source)).not.to.be.null;
+        expect(actual.warriors.find(x => x.source == warriorA.source)).not.to.be.undefined;
+        expect(actual.warriors.find(x => x.source == warriorB.source)).not.to.be.undefined;
+        expect(actual.warriors.find(x => x.source == warriorC.source)).not.to.be.undefined;
     });
+
+    
 });
