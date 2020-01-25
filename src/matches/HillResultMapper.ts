@@ -9,7 +9,8 @@ export class HillResultMapper implements IHillResultMapper {
 
         return {
             warriors: hill.warriors.map(warrior => {
-                const results = allResults.flatMap(
+                const matches = allResults.filter(x => !!x.warriors.find(y => y.source === warrior.source));
+                const results = matches.flatMap(
                     x => x.warriors.filter(y => y.source === warrior.source)
                 );
                 
@@ -24,7 +25,7 @@ export class HillResultMapper implements IHillResultMapper {
                     won,
                     drawn,
                     lost,
-                    matches: []
+                    matches
                 };
             })
         };

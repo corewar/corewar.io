@@ -22,19 +22,19 @@ describe("HillResultMapper", () => {
         won = 1,
         drawn = 1,
         lost = 1): IMatchWarriorResult => ({
-        source: warrior.source,
-        won,
-        drawn,
-        lost,
-        given: lost * 3 + drawn * 1,
-        taken: won * 3 + drawn * 1
-    })
+            source: warrior.source,
+            won,
+            drawn,
+            lost,
+            given: lost * 3 + drawn * 1,
+            taken: won * 3 + drawn * 1
+        })
 
     it("produces hill result for each warrior", () => {
 
-        const warriorA =  { source: TestHelper.buildParseResult([]) };
-        const warriorB =  { source: TestHelper.buildParseResult([]) };
-        const warriorC =  { source: TestHelper.buildParseResult([]) };
+        const warriorA = { source: TestHelper.buildParseResult([]) };
+        const warriorB = { source: TestHelper.buildParseResult([]) };
+        const warriorC = { source: TestHelper.buildParseResult([]) };
 
         const hill = {
             rules: {
@@ -60,10 +60,10 @@ describe("HillResultMapper", () => {
 
     it("calculates average won, drawn and lost percentage for each warrior", () => {
 
-        const warriorA =  { source: TestHelper.buildParseResult([]) };
-        const warriorB =  { source: TestHelper.buildParseResult([]) };
-        const warriorC =  { source: TestHelper.buildParseResult([]) };
-        const warriorD =  { source: TestHelper.buildParseResult([]) };
+        const warriorA = { source: TestHelper.buildParseResult([]) };
+        const warriorB = { source: TestHelper.buildParseResult([]) };
+        const warriorC = { source: TestHelper.buildParseResult([]) };
+        const warriorD = { source: TestHelper.buildParseResult([]) };
 
         const hill = {
             rules: {
@@ -81,7 +81,7 @@ describe("HillResultMapper", () => {
 
         const result = hillResultMapper.map(hill, results);
         const actual = result.warriors.find(x => x.source === warriorA.source);
-        
+
         const won = (60 + 40 + 70) / 3;
         const lost = (10 + 40 + 10) / 3;
         const drawn = (30 + 20 + 20) / 3;
@@ -92,10 +92,10 @@ describe("HillResultMapper", () => {
 
     it("calculates total score for each warrior based upon average win and draw percentage", () => {
 
-        const warriorA =  { source: TestHelper.buildParseResult([]) };
-        const warriorB =  { source: TestHelper.buildParseResult([]) };
-        const warriorC =  { source: TestHelper.buildParseResult([]) };
-        const warriorD =  { source: TestHelper.buildParseResult([]) };
+        const warriorA = { source: TestHelper.buildParseResult([]) };
+        const warriorB = { source: TestHelper.buildParseResult([]) };
+        const warriorC = { source: TestHelper.buildParseResult([]) };
+        const warriorD = { source: TestHelper.buildParseResult([]) };
 
         const hill = {
             rules: {
@@ -113,9 +113,45 @@ describe("HillResultMapper", () => {
 
         const result = hillResultMapper.map(hill, results);
         const actual = result.warriors.find(x => x.source === warriorA.source);
-        
+
         const won = (60 + 40 + 70) / 3;
         const drawn = (30 + 20 + 20) / 3;
         expect(actual.score).to.be.equal(won * 3 + drawn);
+    });
+
+    it("associates individual match results with each warrior in the hill result", () => {
+
+        const warriorA = { source: TestHelper.buildParseResult([]) };
+        const warriorB = { source: TestHelper.buildParseResult([]) };
+        const warriorC = { source: TestHelper.buildParseResult([]) };
+
+        const hill = {
+            rules: {
+                rounds: 1,
+                options: {}
+            },
+            warriors: [warriorA, warriorB, warriorC]
+        };
+
+        const results: IMatchResult[] = [
+            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA), buildResult(warriorB)] },
+            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA), buildResult(warriorC)] },
+            { rounds: hill.rules.rounds, warriors: [buildResult(warriorB), buildResult(warriorC)] }
+        ];
+
+        const warriorAMatches = [results[0], results[1]];
+        const warriorBMatches = [results[0], results[2]];
+        const warriorCMatches = [results[1], results[2]];
+
+        const actual = hillResultMapper.map(hill, results);
+
+        const warriorAResult = actual.warriors.find(x => x.source == warriorA.source);
+        expect(warriorAResult.matches).to.deep.equal(warriorAMatches);
+
+        const warriorBResult = actual.warriors.find(x => x.source == warriorB.source);
+        expect(warriorBResult.matches).to.deep.equal(warriorBMatches);
+
+        const warriorCResult = actual.warriors.find(x => x.source == warriorC.source);
+        expect(warriorCResult.matches).to.deep.equal(warriorCMatches);
     });
 });
