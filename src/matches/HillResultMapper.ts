@@ -12,12 +12,18 @@ export class HillResultMapper implements IHillResultMapper {
                 const results = allResults.flatMap(
                     x => x.warriors.filter(y => y.source === warrior.source)
                 );
+                
+                const won = results.reduce((accum, result) => accum + result.won, 0) / results.length;
+                const drawn = results.reduce((accum, result) => accum + result.drawn, 0) / results.length;
+                const lost = results.reduce((accum, result) => accum + result.lost, 0) / results.length;
+
                 return {
                     source: warrior.source,
                     age: 0,
-                    won: results.reduce((accum, result) => accum + result.won, 0) / results.length,
-                    drawn: results.reduce((accum, result) => accum + result.drawn, 0) / results.length,
-                    lost: results.reduce((accum, result) => accum + result.lost, 0) / results.length,
+                    score: won * 3 + drawn,
+                    won,
+                    drawn,
+                    lost,
                     matches: []
                 };
             })

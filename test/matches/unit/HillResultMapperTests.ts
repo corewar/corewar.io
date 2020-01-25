@@ -58,7 +58,7 @@ describe("HillResultMapper", () => {
         expect(actual.warriors.find(x => x.source == warriorC.source)).not.to.be.undefined;
     });
 
-    it("awards each warrior points based on their average win and draw percentage", () => {
+    it("calculates average won, drawn and lost percentage for each warrior", () => {
 
         const warriorA =  { source: TestHelper.buildParseResult([]) };
         const warriorB =  { source: TestHelper.buildParseResult([]) };
@@ -88,5 +88,34 @@ describe("HillResultMapper", () => {
         expect(actual.won).to.be.equal(won);
         expect(actual.drawn).to.be.equal(drawn);
         expect(actual.lost).to.be.equal(lost);
-    })
+    });
+
+    it("calculates total score for each warrior based upon average win and draw percentage", () => {
+
+        const warriorA =  { source: TestHelper.buildParseResult([]) };
+        const warriorB =  { source: TestHelper.buildParseResult([]) };
+        const warriorC =  { source: TestHelper.buildParseResult([]) };
+        const warriorD =  { source: TestHelper.buildParseResult([]) };
+
+        const hill = {
+            rules: {
+                rounds: 1,
+                options: {}
+            },
+            warriors: [warriorA, warriorB, warriorC]
+        };
+
+        const results: IMatchResult[] = [
+            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA, 60, 30, 10), buildResult(warriorB)] },
+            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA, 40, 20, 40), buildResult(warriorC)] },
+            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA, 70, 20, 10), buildResult(warriorD)] }
+        ];
+
+        const result = hillResultMapper.map(hill, results);
+        const actual = result.warriors.find(x => x.source === warriorA.source);
+        
+        const won = (60 + 40 + 70) / 3;
+        const drawn = (30 + 20 + 20) / 3;
+        expect(actual.score).to.be.equal(won * 3 + drawn);
+    });
 });

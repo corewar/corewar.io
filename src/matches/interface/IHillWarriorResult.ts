@@ -5,6 +5,7 @@ export interface IHillWarriorResult {
     
     source: IParseResult;
     age: number;
+    score: number;
     won: number;
     drawn: number;
     lost: number;
