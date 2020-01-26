@@ -204,7 +204,7 @@ The `cmp` opcode is an alias for `seq` used to support legacy [corewar standards
 
 The `seq` instruction compares the number(s) at the addresses specified by its source and destination [operands](operands) and if they are equal, increments the next address to be executed by the current [process](../corewar/processes) by one - in effect skipping the next instruction. Skip instructions are commonly used to develop scanners which scan the [core](core) looking for other [warriors](../corewar/warriors).
 
-The instruction's [modifier](modifiers) determines what at the two addresses is compared for equality. Importantly, using a modifier of [.i](modifiers#i) will compare the entire source and destination instructions. This means even if the instructions differ only by opcode, modifier or [addressing mode](addressing_modes), the next instruction will be skipped.
+The instruction's [modifier](modifiers) determines what at the two addresses is compared for equality. Importantly, using a modifier of [.i](modifiers#i) will compare the entire source and destination instructions. This means even if the instructions differ only by opcode, modifier or [addressing mode](addressing_modes), the next instruction will not be skipped.
 
 The default modifier for the 'seq' opcode is [.i](modifiers#i).
 
