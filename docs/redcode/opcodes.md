@@ -232,7 +232,7 @@ The instruction's [modifier](modifiers) controls which operands are compared at 
 
 We can see from this that the [.f](modifiers#f) and [.i](modifiers#i) modifiers are equivalent.
 
-If comparing both A and B operands (using .f, .x or .i), the instruction will not be skipped if **either** source number is greater than its corresponding destination number.
+If comparing both A and B operands (using .f, .x or .i), the instruction will not be skipped if **either** source number is greater than or equal to its corresponding destination number.
 
 The default modifier for the 'slt' opcode is [.b](modifiers#b).
 
