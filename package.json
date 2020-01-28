@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "apollo-server": "^2.9.16",
-    "corewar": "../corewar",
+    "corewar": "^0.1.6",
     "graphql": "^14.6.0",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^8.6.2",
