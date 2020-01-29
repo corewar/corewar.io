@@ -7,6 +7,7 @@ import { ApolloServer } from 'apollo-server'
 
 (async () => {
     const schema = await buildSchema({
+        validate: false,
         resolvers: [ParseResolver, WarriorResolver, HillResolver]
     })
 

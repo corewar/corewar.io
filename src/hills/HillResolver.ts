@@ -1,30 +1,27 @@
 import { Resolver, Mutation, ObjectType, Args, ArgsType, Field, Query } from 'type-graphql'
 import Hill from '@/hills/Hill'
-import Rules from '@/hills/Rules'
 import Repository from '@/database/Repository'
 import { HILLS_COLLECTION as HILL_COLLECTION } from '@/constants'
 import uuid from 'uuid/v1'
 import MutationResult from '@/schema/MutationResult'
+import RulesInput from '@/hills/RulesInput'
 
 @ArgsType()
 class HillArgs {
+    @Field()
     id!: string
 }
 
 @ArgsType()
 class CreateHillArgs {
-    rules!: Rules
+    @Field()
+    rules!: RulesInput
 }
 
 @ObjectType()
 class CreateHillResult extends MutationResult<Hill> {
     @Field()
     result?: Hill
-}
-
-@ObjectType()
-class RunHillResult extends MutationResult<HillResult> {
-    
 }
 
 @ObjectType()
@@ -48,10 +45,12 @@ export default class HillResolver {
     @Mutation(() => CreateHillResult)
     async createHill(@Args() { rules }: CreateHillArgs): Promise<CreateHillResult> {
         try {
-            const result = await (new Repository(HILL_COLLECTION)).upsert({
+            const result = {
                 id: uuid(),
                 rules
-            })
+            }
+
+            await (new Repository(HILL_COLLECTION)).upsert(result)
 
             return {
                 success: true,
@@ -63,11 +62,6 @@ export default class HillResolver {
                 message: e
             }
         }
-    }
-
-    @Mutation(() => RunHillResult)
-    async runHill(@Args() {}: RunHillArgs): Promise<RunHillResult> {
-
     }
 
     @Mutation(() => DeleteHillResult)

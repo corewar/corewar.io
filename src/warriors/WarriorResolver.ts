@@ -9,11 +9,13 @@ import { WARRIOR_COLLECTION } from '@/constants'
 
 @ArgsType()
 class WarriorArgs {
+    @Field()
     id!: string
 }
 
 @ArgsType()
 class SaveWarriorArgs {
+    @Field()
     warrior!: WarriorInput
 }
 
@@ -56,12 +58,12 @@ export default class WarriorResolver {
             }
         }
 
-        if (!warrior.id) {
-            warrior.id = uuid()
+        if (!result.id) {
+            result.id = uuid()
         }
 
         try {
-            result = await (new Repository(WARRIOR_COLLECTION)).upsert(warrior as Warrior)
+            await (new Repository(WARRIOR_COLLECTION)).upsert(result as Warrior)
             return {
                 success: true,
                 result

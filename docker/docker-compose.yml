@@ -1,7 +1,7 @@
 version: '3'
 
 volumes:
-  mongo-data
+  mongo-data:
 
 services:
   mongo:
