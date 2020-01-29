@@ -13,6 +13,11 @@ import { ICoreLocation } from "@simulator/interface/ICoreLocation";
 
 import { IMatchRunner } from "@matches/interface/IMatchRunner";
 import { IMatch } from "@matches/interface/IMatch";
+import { IMatchResult } from "@matches/interface/IMatchResult";
+
+import { IHill } from "@matches/interface/IHill";
+import { IHillRunner } from "@matches/interface/IHillRunner";
+import { IHillResult } from "@matches/interface/IHillResult";
 
 import { Parser } from "@parser/Parser";
 import { Scanner } from "@parser/Scanner";
@@ -46,11 +51,15 @@ import { OptionValidator } from "@simulator/OptionValidator";
 import { Publisher } from "@simulator/Publisher";
 import { LatestOnlyStrategy } from "@simulator/LatestOnlyStrategy";
 import { PerKeyStrategy } from "@simulator/PerKeyStrategy";
+import { IRoundResult } from "@simulator/interface/IRoundResult";
 
 import { MatchRunner } from "@matches/MatchRunner";
+import { MatchResultMapper } from "@matches/MatchResultMapper";
+
+import { HillRunner } from "@matches/HillRunner";
+import { HillResultMapper } from "@matches/HillResultMapper";
 
 import * as clone from "clone";
-import { MatchResultMapper } from "@matches/MatchResultMapper";
 
 class Api {
 
@@ -61,6 +70,7 @@ class Api {
     private executive: IExecutive;
     private publisher: IPublisher;
     private matchRunner: IMatchRunner;
+    private hillRunner: IHillRunner;
 
     constructor() {
         // any setup needed for the NPM package to work properly
@@ -122,6 +132,11 @@ class Api {
             this.simulator,
             new MatchResultMapper(),
             this.publisher);
+
+        this.hillRunner = new HillRunner(
+            this.publisher,
+            this.matchRunner,
+            new HillResultMapper());
     }
 
     public initialiseSimulator(options: IOptions, parseResults: IParseResult[], messageProvider: IPublishProvider): void {
@@ -133,19 +148,19 @@ class Api {
         this.simulator.initialise(options, parseResults);
     }
 
-    public step(steps?: number): void {
+    public step(steps?: number): IRoundResult | null {
 
-        this.simulator.step(steps);
+        return clone(this.simulator.step(steps));
     }
 
-    public run(): void {
+    public run(): IRoundResult {
 
-        this.simulator.run();
+        return clone(this.simulator.run());
     }
 
     public parse(redcode: string): IParseResult {
 
-        return this.parser.parse(redcode);
+        return clone(this.parser.parse(redcode));
     }
 
     public serialise(tokens: IToken[]): string {
@@ -164,9 +179,14 @@ class Api {
         this.publisher.republish();
     }
 
-    public runMatch(match: IMatch): void {
+    public runMatch(match: IMatch): IMatchResult {
 
-        this.matchRunner.run(match);
+        return clone(this.matchRunner.run(match));
+    }
+
+    public runHill(hill: IHill): IHillResult {
+
+        return clone(this.hillRunner.run(hill));
     }
 }
 

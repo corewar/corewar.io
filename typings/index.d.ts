@@ -134,6 +134,13 @@ declare module "corewar" {
         publishSync(type: string, payload: any): void;
     }
 
+    interface IRoundResult {
+        winnerId: number;
+        /* eslint-disable-next-line */
+        winnerData?: any;
+        outcome: string;
+    }
+
     enum CoreAccessType {
         read,
         write,
@@ -171,14 +178,59 @@ declare module "corewar" {
         warriors: IMatchWarrior[];
     }
 
+    interface IMatchWarriorResult {
+
+        source: IParseResult;
+        won: number;
+        drawn: number;
+        lost: number;
+        given: number;
+        taken: number;
+    }
+
+    interface IMatchResult {
+
+        rounds: number;
+        warriors: IMatchWarriorResult[];
+    }
+
+    interface IHillWarrior {
+
+        warriorHillId?: string;
+        source: IParseResult;
+    }
+
+    interface IHill {
+
+        rules: IRules;
+        warriors: IHillWarrior[];
+    }
+
+    interface IHillWarriorResult {
+    
+        source: IParseResult;
+        rank: number;
+        score: number;
+        won: number;
+        drawn: number;
+        lost: number;
+        matches: IMatchResult[];
+    }
+
+    interface IHillResult {
+
+        warriors: IHillWarriorResult[];
+    }
+
     export namespace corewar {
         function initialiseSimulator(options: IOptions, parseResults: IParseResult[], messageProvider: IPublishProvider): void;
-        function step(steps?: number): void;
-        function run(): void;
+        function step(steps?: number): IRoundResult | null;
+        function run(): IRoundResult;
         function parse(redcode: string): IParseResult;
         function serialise(tokens: IToken[]): string;
         function getWithInfoAt(address: number): ICoreLocation;
         function republish(): void;
-        function runMatch(match: IMatch): void;
+        function runMatch(match: IMatch): IMatchResult;
+        function runHill(hill: IHill): IHillResult;
     }
 }
