@@ -1,5 +1,5 @@
-import ParseResult from "../parse/ParseResult";
-import { Field, ObjectType, InputType } from "type-graphql";
+import ParseResult from '../parse/ParseResult'
+import { Field, ObjectType } from 'type-graphql'
 
 @ObjectType()
 export class Warrior {
@@ -9,12 +9,4 @@ export class Warrior {
     redcode!: string
     @Field()
     parseResult!: ParseResult
-}
-
-@InputType()
-export class WarriorInput {
-    @Field({nullable: true})
-    id?: string
-    @Field()
-    redcode!: string
 }

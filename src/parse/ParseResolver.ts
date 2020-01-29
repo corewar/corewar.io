@@ -1,6 +1,6 @@
-import { Resolver, Query, Arg } from 'type-graphql';
-import ParseResult from './ParseResult';
-import { corewar } from 'corewar';
+import { Resolver, Query, Arg } from 'type-graphql'
+import ParseResult from './ParseResult'
+import { corewar } from 'corewar'
 
 @Resolver(ParseResult)
 export default class ParseResolver {
