@@ -11,23 +11,32 @@ export interface IRepository {
     delete(id: string): Promise<void>
 }
 
-export default {
-    getAll: <T extends IId>(): Promise<T[]> => {
-        throw Error('Not implemented')
-    },
-    getById: <T extends IId>(id: string): Promise<T> => {
-        throw Error('Not implemented')
-    },
-    getOneBy: <T extends IId>(filter: any): Promise<T> => {
-        throw Error('Not implemented')
-    },
-    getManyBy: <T extends IId>(filter: any): Promise<T[]> => {
-        throw Error('Not implemented')
-    },
-    upsert: <T extends IId>(data: T): Promise<T> => {
-        throw Error('Not implemented')
-    },
-    delete: (id: string): Promise<void> => {
+export default class Repository implements IRepository {
+    constructor(collectionName: string) {
+        throw Error('Not Implemented')
+    }
+
+    getAll<T extends IId>(): Promise<T[]> {
         throw Error('Not implemented')
     }
-} as IRepository
+
+    getById<T extends IId>(id: string): Promise<T> {
+        throw Error('Not implemented')
+    }
+
+    getOneBy<T extends IId>(filter: any): Promise<T> {
+        throw Error('Not implemented')
+    }
+
+    getManyBy<T extends IId>(filter: any): Promise<T[]> {
+        throw Error('Not implemented')
+    }
+
+    upsert<T extends IId>(data: T): Promise<T> {
+        throw Error('Not implemented')
+    }
+
+    delete(id: string): Promise<void> {
+        throw Error('Not implemented')
+    }
+}
