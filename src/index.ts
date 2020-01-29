@@ -1,6 +1,6 @@
 import 'reflect-metadata'
-import ParseResolver from './parse/ParseResolver'
-import WarriorResolver from './warriors/WarriorResolver'
+import ParseResolver from '@/parse/ParseResolver'
+import WarriorResolver from '@/warriors/WarriorResolver'
 import { buildSchema } from 'type-graphql'
 import { ApolloServer } from 'apollo-server'
 

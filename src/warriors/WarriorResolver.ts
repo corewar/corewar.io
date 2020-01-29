@@ -1,11 +1,11 @@
 import { Resolver, Mutation, ObjectType, Query, Args, Field, ArgsType } from 'type-graphql'
-import Warrior from './Warrior'
-import Repository from '../database/Repository'
+import Warrior from '@/warriors/Warrior'
+import Repository from '@/database/Repository'
 import uuid from 'uuid/v1'
 import { corewar } from 'corewar'
-import WarriorInput from './WarriorInput'
-import MutationResult from '../schema/MutationResult'
-import { WARRIOR_COLLECTION } from '../constants'
+import WarriorInput from '@/warriors/WarriorInput'
+import MutationResult from '@/schema/MutationResult'
+import { WARRIOR_COLLECTION } from '@/constants'
 
 @ArgsType()
 class WarriorArgs {

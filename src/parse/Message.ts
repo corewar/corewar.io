@@ -1,6 +1,6 @@
 import { ObjectType, Field } from 'type-graphql'
 import { IMessage, MessageType } from 'corewar'
-import Position from './Position'
+import Position from '@/parse/Position'
 
 @ObjectType()
 export default class Message implements IMessage {
