@@ -1,4 +1,4 @@
-import { IId } from '../schema/IId'
+import IId from '../schema/IId'
 
 export interface IRepository {
     getAll<T extends IId>(): Promise<T[]>

@@ -1,6 +1,6 @@
 import { GraphQLScalarType } from 'graphql'
 
-export const DataScalar = new GraphQLScalarType({
+const DataScalar = new GraphQLScalarType({
     name: 'Data',
     description: 'Any data',
     parseValue(value: any) {
@@ -13,3 +13,5 @@ export const DataScalar = new GraphQLScalarType({
         return ast
     }
 })
+
+export default DataScalar

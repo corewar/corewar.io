@@ -1,29 +1,36 @@
-import { Resolver, Mutation, ObjectType, Query, Args } from 'type-graphql'
-import { Warrior } from './Warrior'
+import { Resolver, Mutation, ObjectType, Query, Args, Field, ArgsType } from 'type-graphql'
+import Warrior from './Warrior'
 import Repository from '../database/Repository'
 import uuid from 'uuid/v1'
 import { corewar } from 'corewar'
-import { WarriorInput } from './WarriorInput'
-import { MutationResult } from '../schema/MutationResult'
+import WarriorInput from './WarriorInput'
+import MutationResult from '../schema/MutationResult'
+import { WARRIOR_COLLECTION } from '../constants'
 
-const WARRIOR_COLLECTION = 'warriors'
-
+@ArgsType()
 class WarriorArgs {
     id!: string
 }
 
+@ArgsType()
 class SaveWarriorArgs {
     warrior!: WarriorInput
 }
 
 @ObjectType()
-class SaveWarriorResult extends MutationResult<Warrior> { }
+class SaveWarriorResult extends MutationResult<Warrior> { 
+    @Field({ nullable: true })
+    result?: Warrior
+}
 
 @ObjectType()
-class DeleteWarriorResult extends MutationResult<string> { }
+class DeleteWarriorResult extends MutationResult<string> { 
+    @Field({ nullable: true })
+    result?: string
+}
 
 @Resolver(Warrior)
-export class WarriorResolver {
+export default class WarriorResolver {
     @Query(() => Warrior)
     async warrior(@Args() { id }: WarriorArgs): Promise<Warrior> {
         return (new Repository(WARRIOR_COLLECTION)).getById<Warrior>(id)

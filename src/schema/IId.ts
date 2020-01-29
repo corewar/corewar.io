@@ -1,3 +1,3 @@
-export interface IId {
+export default interface IId {
     id: string
 }

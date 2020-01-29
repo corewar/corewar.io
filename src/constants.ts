@@ -1,0 +1,1 @@
+export const WARRIOR_COLLECTION = 'warriors'

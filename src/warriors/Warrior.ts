@@ -2,7 +2,7 @@ import ParseResult from '../parse/ParseResult'
 import { Field, ObjectType } from 'type-graphql'
 
 @ObjectType()
-export class Warrior {
+export default class Warrior {
     @Field()
     id!: string
     @Field()

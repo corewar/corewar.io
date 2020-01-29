@@ -1,7 +1,7 @@
 import { InputType, Field } from 'type-graphql'
 
 @InputType()
-export class WarriorInput {
+export default class WarriorInput {
     @Field({nullable: true})
     id?: string
     @Field()
