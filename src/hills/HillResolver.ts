@@ -23,6 +23,11 @@ class CreateHillResult extends MutationResult<Hill> {
 }
 
 @ObjectType()
+class RunHillResult extends MutationResult<HillResult> {
+    
+}
+
+@ObjectType()
 class DeleteHillResult extends MutationResult<string> { 
     @Field({ nullable: true })
     result?: string
@@ -58,6 +63,11 @@ export default class HillResolver {
                 message: e
             }
         }
+    }
+
+    @Mutation(() => RunHillResult)
+    async runHill(@Args() {}: RunHillArgs): Promise<RunHillResult> {
+
     }
 
     @Mutation(() => DeleteHillResult)
