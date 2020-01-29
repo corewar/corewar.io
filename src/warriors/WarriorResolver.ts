@@ -4,7 +4,7 @@ import Repository from '../database/Repository'
 import uuid from 'uuid/v1'
 import { corewar } from 'corewar'
 import { WarriorInput } from './WarriorInput'
-import { MutationResult } from './MutationResult'
+import { MutationResult } from '../schema/MutationResult'
 
 const WARRIOR_COLLECTION = 'warriors'
 

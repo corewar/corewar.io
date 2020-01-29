@@ -1,6 +1,4 @@
-export interface IId {
-    id: string
-}
+import { IId } from '../schema/IId'
 
 export interface IRepository {
     getAll<T extends IId>(): Promise<T[]>
