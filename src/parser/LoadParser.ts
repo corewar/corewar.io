@@ -61,7 +61,7 @@ export class LoadParser implements IParser {
             metaData: context.metaData,
             tokens: context.tokens,
             messages: context.messages,
-            success: true
+            success: !context.messages.some(message => message.type === MessageType.Error)
         };
     }
 }

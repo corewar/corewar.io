@@ -14,7 +14,7 @@ import { IMessage, MessageType } from "@parser/interface/IMessage";
 import { Parser } from "@parser/Parser";
 import { Standard } from "@parser/interface/IParseOptions";
 
-describe("LoadParser",() => {
+describe("LoadParser", () => {
 
     let context: IContext;
 
@@ -104,7 +104,7 @@ describe("LoadParser",() => {
             modPass);
     });
 
-    it("Calls passes in correct order under ICWS'94-draft",() => {
+    it("Calls passes in correct order under ICWS'94-draft", () => {
 
         const options = Parser.DefaultOptions;
 
@@ -115,7 +115,7 @@ describe("LoadParser",() => {
         expect(calls).to.deep.equal(expected94Calls);
     });
 
-    it("Calls passes in correct order under ICWS'88",() => {
+    it("Calls passes in correct order under ICWS'88", () => {
 
         const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS88 });
 
@@ -130,7 +130,7 @@ describe("LoadParser",() => {
         expect(calls[4]).to.be.equal("mod");
     });
 
-    it("Calls passes in correct order under ICWS'86",() => {
+    it("Calls passes in correct order under ICWS'86", () => {
 
         const options = Object.assign({}, Parser.DefaultOptions, { standard: Standard.ICWS86 });
 
@@ -145,7 +145,7 @@ describe("LoadParser",() => {
         expect(calls[4]).to.be.equal("mod");
     });
 
-    it("Does not call mod pass if syntax check fails",() => {
+    it("Does not call mod pass if syntax check fails", () => {
 
         const options = Parser.DefaultOptions;
 
@@ -159,7 +159,7 @@ describe("LoadParser",() => {
         expect(calls).to.deep.equal(expected94Calls.slice(0, 3));
     });
 
-    it("Does not call syntax check if filter pass fails",() => {
+    it("Does not call syntax check if filter pass fails", () => {
 
         const options = Parser.DefaultOptions;
 
@@ -173,7 +173,7 @@ describe("LoadParser",() => {
         expect(calls).to.deep.equal(expected94Calls.slice(0, 2));
     });
 
-    it("Does not call filter pass if scan fails",() => {
+    it("Does not call filter pass if scan fails", () => {
 
         const options = Parser.DefaultOptions;
 
@@ -191,7 +191,7 @@ describe("LoadParser",() => {
         expect(calls).to.deep.equal(expected94Calls.slice(0, 1));
     });
 
-    it("Does call all passes regardless of raised warnings",() => {
+    it("Does call all passes regardless of raised warnings", () => {
 
         const options = Parser.DefaultOptions;
 
@@ -211,7 +211,7 @@ describe("LoadParser",() => {
         expect(calls).to.deep.equal(expected94Calls.slice(0, 4));
     });
 
-    it("Passes supplied options to each pass",() => {
+    it("Passes supplied options to each pass", () => {
 
         const document = "MOV 0, 1";
         const options = {
@@ -231,7 +231,7 @@ describe("LoadParser",() => {
         expect(modPass.process).to.have.been.calledWith(context, expeceted);
     });
 
-    it("Returns context tokens, messages and metaData in ParserResult",() => {
+    it("Returns context tokens, messages and metaData in ParserResult", () => {
 
         const actual = loadParser.parse("MOV 0, 1", {});
 
@@ -240,17 +240,46 @@ describe("LoadParser",() => {
         expect(actual.messages).to.be.equal(context.messages);
     });
 
-    it("Defaults the standard to ICWS'94-draft if not specified",() => {
+    it("Defaults the standard to ICWS'94-draft if not specified", () => {
 
         loadParser.parse("MOV 0, 1");
 
         expect((scanner.scan as sinon.SinonStub).lastCall.args[1].standard).to.be.equal(Standard.ICWS94draft);
     });
 
-    it("Defaults the coresize to 8192 if not specified",() => {
+    it("Defaults the coresize to 8192 if not specified", () => {
 
         loadParser.parse("MOV 0, 1");
 
         expect((scanner.scan as sinon.SinonStub).lastCall.args[1].coresize).to.be.equal(8192);
+    });
+
+    it("Returns successful ParseResult if only info and warning messages exist", () => {
+
+        (modPass.process as sinon.SinonStub).returns({
+            ...context, messages: [
+                { type: MessageType.Warning, position: { line: 1, char: 1 }, text: "Warning Message" },
+                { type: MessageType.Info, position: { line: 1, char: 1 }, text: "Info Message" }
+            ]
+        });
+
+        const actual = loadParser.parse("MOV 0, 1");
+
+        expect(actual.success).to.be.true;
+    });
+
+    it("Returns unsuccessful ParseResult if error message exists", () => {
+
+        (modPass.process as sinon.SinonStub).returns({
+            ...context, messages: [
+                { type: MessageType.Warning, position: { line: 1, char: 1 }, text: "Warning Message" },
+                { type: MessageType.Error, position: { line: 1, char: 1 }, text: "Error Message" },
+                { type: MessageType.Info, position: { line: 1, char: 1 }, text: "Info Message" }
+            ]
+        });
+
+        const actual = loadParser.parse("MOV 0, 1");
+
+        expect(actual.success).to.be.false;
     });
 });
