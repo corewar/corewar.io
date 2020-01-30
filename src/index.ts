@@ -11,13 +11,16 @@ import { IOptions } from "@simulator/interface/IOptions";
 import { IPublishProvider } from "@simulator/interface/IPublishProvider";
 import { ICoreLocation } from "@simulator/interface/ICoreLocation";
 
-import { IMatchRunner } from "@matches/interface/IMatchRunner";
 import { IMatch } from "@matches/interface/IMatch";
 import { IMatchResult } from "@matches/interface/IMatchResult";
+import { IMatchRunner } from "@matches/interface/IMatchRunner";
 
 import { IHill } from "@matches/interface/IHill";
 import { IHillRunner } from "@matches/interface/IHillRunner";
 import { IHillResult } from "@matches/interface/IHillResult";
+import { IHillWarrior } from "@matches/interface/IHillWarrior";
+
+import { IBenchmarkRunner } from "@matches/interface/IBenchmarkRunner";
 
 import { Parser } from "@parser/Parser";
 import { Scanner } from "@parser/Scanner";
@@ -58,6 +61,9 @@ import { MatchResultMapper } from "@matches/MatchResultMapper";
 
 import { HillRunner } from "@matches/HillRunner";
 import { HillResultMapper } from "@matches/HillResultMapper";
+import { HillMatchRunner } from "@matches/HillMatchRunner";
+
+import { BenchmarkRunner } from "@matches/BenchmarkRunner";
 
 import * as clone from "clone";
 
@@ -71,6 +77,7 @@ class Api {
     private publisher: IPublisher;
     private matchRunner: IMatchRunner;
     private hillRunner: IHillRunner;
+    private benchmarkRunner: IBenchmarkRunner;
 
     constructor() {
         // any setup needed for the NPM package to work properly
@@ -135,7 +142,12 @@ class Api {
 
         this.hillRunner = new HillRunner(
             this.publisher,
-            this.matchRunner,
+            new HillMatchRunner(this.matchRunner),
+            new HillResultMapper());
+
+        this.benchmarkRunner = new BenchmarkRunner(
+            this.publisher,
+            new HillMatchRunner(this.matchRunner),
             new HillResultMapper());
     }
 
@@ -187,6 +199,11 @@ class Api {
     public runHill(hill: IHill): IHillResult {
 
         return clone(this.hillRunner.run(hill));
+    }
+
+    public runBenchmark(warrior: IHillWarrior, benchmark: IHill): IHillResult {
+
+        return clone(this.benchmarkRunner.run(warrior, benchmark));
     }
 }
 
