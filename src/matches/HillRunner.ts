@@ -1,38 +1,25 @@
 import { IHillRunner } from "@matches/interface/IHillRunner";
 import { IHill } from "@matches/interface/IHill";
 import { IHillResult } from "@matches/interface/IHillResult";
-import { IMatchRunner } from "@matches/interface/IMatchRunner";
-import { IHillWarrior } from "./interface/IHillWarrior";
-import { IMatch } from "@matches/interface/IMatch";
-import { IHillResultMapper } from "./interface/IHillResultMapper";
+import { IHillResultMapper } from "@matches/interface/IHillResultMapper";
 import { IPublisher } from "@simulator/interface/IPublisher";
 import { MessageType } from "@simulator/interface/IMessage";
+import { IHillMatchRunner } from "@matches/interface/IHillMatchRunner";
 
 export class HillRunner implements IHillRunner {
 
-    private matchRunner: IMatchRunner;
+    private hillMatchRunner: IHillMatchRunner;
     private hillResultMapper: IHillResultMapper;
     private publisher: IPublisher;
 
     constructor(
         publisher: IPublisher,
-        matchRunner: IMatchRunner,
+        hillMatchRunner: IHillMatchRunner,
         hillResultMapper: IHillResultMapper) {
 
         this.publisher = publisher;
-        this.matchRunner = matchRunner;
+        this.hillMatchRunner = hillMatchRunner;
         this.hillResultMapper = hillResultMapper;
-    }
-
-    private buildMatch(hill: IHill, warriorA: IHillWarrior, warriorB: IHillWarrior): IMatch {
-
-        return {
-            rules: hill.rules,
-            warriors: [
-                { source: warriorA.source },
-                { source: warriorB.source }
-            ]
-        }
     }
 
     private publishEnd(result: IHillResult): void {
@@ -55,7 +42,7 @@ export class HillRunner implements IHillRunner {
                 }
 
                 matchResults.push(
-                    this.matchRunner.run(this.buildMatch(hill, warriorA, warriorB))
+                    this.hillMatchRunner.run(hill.rules, warriorA, warriorB)
                 );
             }
         }
