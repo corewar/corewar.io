@@ -233,5 +233,6 @@ declare module "corewar" {
         function republish(): void;
         function runMatch(match: IMatch): IMatchResult;
         function runHill(hill: IHill): IHillResult;
+        function runBenchmark(warrior: IHillWarrior, benchmark: IHill): IHillResult;
     }
 }
