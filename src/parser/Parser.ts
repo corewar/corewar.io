@@ -124,7 +124,7 @@ export class Parser implements IParser {
             metaData: context.metaData,
             tokens: context.tokens,
             messages: context.messages,
-            success: true
+            success: !context.messages.some(({ type }) => type === MessageType.Error)
         };
     }
 }
