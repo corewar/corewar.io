@@ -11,6 +11,7 @@ export class Context implements IContext {
     public equs: { [label: string]: IToken[] };
     public labels: { [label: string]: number };
     public messages: IMessage[];
+    public success: boolean;
 
     constructor() {
         this.metaData = {

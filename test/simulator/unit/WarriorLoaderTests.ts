@@ -101,6 +101,7 @@ describe("WarriorLoader", () => {
         const parseResult: IParseResult = {
             tokens: [],
             messages: [],
+            success: true,
             metaData: {
                 name: "johnSmith",
                 author: "Joe Bloggs",

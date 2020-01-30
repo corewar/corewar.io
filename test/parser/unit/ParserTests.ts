@@ -441,4 +441,33 @@ describe("Parser",() => {
 
         expect((scanner.scan as sinon.SinonStub).lastCall.args[1].standard).to.be.equal(Standard.ICWS94draft);
     });
+
+    it("Returns successful ParseResult if only info and warning messages exist", () => {
+
+        (syntaxCheck.process as sinon.SinonStub).returns({
+            ...context, messages: [
+                { type: MessageType.Warning, position: { line: 1, char: 1 }, text: "Warning Message" },
+                { type: MessageType.Info, position: { line: 1, char: 1 }, text: "Info Message" }
+            ]
+        });
+
+        const actual = parser.parse("MOV 0, 1");
+
+        expect(actual.success).to.be.true;
+    });
+
+    it("Returns unsuccessful ParseResult if error message exists", () => {
+
+        (syntaxCheck.process as sinon.SinonStub).returns({
+            ...context, messages: [
+                { type: MessageType.Warning, position: { line: 1, char: 1 }, text: "Warning Message" },
+                { type: MessageType.Error, position: { line: 1, char: 1 }, text: "Error Message" },
+                { type: MessageType.Info, position: { line: 1, char: 1 }, text: "Info Message" }
+            ]
+        });
+
+        const actual = parser.parse("MOV 0, 1");
+
+        expect(actual.success).to.be.false;
+    });
 });

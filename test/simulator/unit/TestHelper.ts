@@ -39,6 +39,7 @@ export default class TestHelper {
         return {
             tokens: tokens,
             messages: [],
+            success: true,
             metaData: {
                 name: "",
                 author: "",
