@@ -60,7 +60,8 @@ export class LoadParser implements IParser {
         return {
             metaData: context.metaData,
             tokens: context.tokens,
-            messages: context.messages
+            messages: context.messages,
+            success: true
         };
     }
 }
