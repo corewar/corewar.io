@@ -51,11 +51,11 @@ export class OptionValidator implements IOptionValidator {
             throw Error(OptionValidator.NoInitialInstructionMessage);
         }
 
-        if (state.initialInstruction.opcode < OpcodeType.DAT || state.initialInstruction.opcode >= OpcodeType.Count) {
+        if (!Object.values(OpcodeType).includes(state.initialInstruction.opcode)) {
             throw Error(OptionValidator.InitialInstructionOpcodeMessage);
         }
 
-        if (state.initialInstruction.modifier < ModifierType.A || state.initialInstruction.modifier >= ModifierType.Count) {
+        if (!Object.values(ModifierType).includes(state.initialInstruction.modifier)) {
             throw Error(OptionValidator.InitialInstructionModifierMessage);
         }
 
@@ -67,11 +67,11 @@ export class OptionValidator implements IOptionValidator {
             throw Error(OptionValidator.InitialInstructionBOperandMessage);
         }
 
-        if (state.initialInstruction.aOperand.mode < ModeType.Immediate || state.initialInstruction.aOperand.mode >= ModeType.Count) {
+        if (!Object.values(ModeType).includes(state.initialInstruction.aOperand.mode)) {
             throw Error(OptionValidator.InitialInstructionAOperandModeMessage);
         }
 
-        if (state.initialInstruction.bOperand.mode < ModeType.Immediate || state.initialInstruction.bOperand.mode >= ModeType.Count) {
+        if (!Object.values(ModeType).includes(state.initialInstruction.bOperand.mode)) {
             throw Error(OptionValidator.InitialInstructionBOperandModeMessage);
         }
     }

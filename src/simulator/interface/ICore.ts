@@ -4,9 +4,9 @@ import { IInstruction } from "@simulator/interface/IInstruction";
 import { ICoreLocation } from "@simulator/interface/ICoreLocation";
 
 export enum CoreAccessType {
-    read,
-    write,
-    execute
+    read = "READ",
+    write = "WRITE",
+    execute = "EXECUTE"
 }
 
 export interface ICoreAccessEventArgs {

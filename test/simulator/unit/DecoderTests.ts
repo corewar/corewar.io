@@ -27,12 +27,12 @@ describe("Decoder", () => {
             initialise: (): void => {
                 //
             },
-            commandTable: []
+            commandTable: {}
         };
 
-        for (let i = 0; i < OpcodeType.Count; i++) {
-            executive.commandTable[i] = (_: IExecutionContext): void => {
-                //
+        for (const opcode of Object.values(OpcodeType)) {
+            executive.commandTable[opcode] = (_: IExecutionContext): void => {
+                // STUB
             };
         }
 

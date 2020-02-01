@@ -1,35 +1,33 @@
 ﻿import { IOperand } from "@simulator/interface/IOperand";
 
 export enum OpcodeType {
-    DAT = 0,
-    MOV,
-    ADD,
-    SUB,
-    MUL,
-    DIV,
-    MOD,
-    JMP,
-    JMZ,
-    JMN,
-    DJN,
-    CMP,
-    SEQ,
-    SNE,
-    SLT,
-    SPL,
-    NOP,
-    Count
+    DAT = "DAT",
+    MOV = "MOV",
+    ADD = "ADD",
+    SUB = "SUB",
+    MUL = "MUL",
+    DIV = "DIV",
+    MOD = "MOD",
+    JMP = "JMP",
+    JMZ = "JMZ",
+    JMN = "JMN",
+    DJN = "DJN",
+    CMP = "CMP",
+    SEQ = "SEQ",
+    SNE = "SNE",
+    SLT = "SLT",
+    SPL = "SPL",
+    NOP = "NOP"
 }
 
 export enum ModifierType {
-    A = 0,
-    B,
-    AB,
-    BA,
-    F,
-    X,
-    I,
-    Count
+    A = "A",
+    B = "B",
+    AB = "AB",
+    BA = "BA",
+    F = "F",
+    X = "X",
+    I = "I"
 }
 
 export interface IInstruction {

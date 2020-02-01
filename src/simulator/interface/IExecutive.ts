@@ -4,5 +4,5 @@ import { IOptions } from "@simulator/interface/IOptions";
 export interface IExecutive {
 
     initialise(options: IOptions): void;
-    commandTable: ((context: IExecutionContext) => void)[];
+    commandTable: { [opcode: string]: (context: IExecutionContext) => void };
 }

@@ -1,14 +1,13 @@
 declare module "corewar" {
     enum ModeType {
-        Immediate,      // #
-        Direct,         // $
-        AIndirect,      // *
-        BIndirect,      // @
-        APreDecrement,  // {
-        BPreDecrement,  // <
-        APostIncrement, // }
-        BPostIncrement, // >
-        Count
+        Immediate = "#",
+        Direct = "$",
+        AIndirect = "*",
+        BIndirect = "@",
+        APreDecrement = "{",
+        BPreDecrement = "<",
+        APostIncrement = "}",
+        BPostIncrement = ">"
     }
 
     interface IOperand {
@@ -18,35 +17,33 @@ declare module "corewar" {
     }
 
     enum OpcodeType {
-        DAT = 0,
-        MOV,
-        ADD,
-        SUB,
-        MUL,
-        DIV,
-        MOD,
-        JMP,
-        JMZ,
-        JMN,
-        DJN,
-        CMP,
-        SEQ,
-        SNE,
-        SLT,
-        SPL,
-        NOP,
-        Count
+        DAT = "DAT",
+        MOV = "MOV",
+        ADD = "ADD",
+        SUB = "SUB",
+        MUL = "MUL",
+        DIV = "DIV",
+        MOD = "MOD",
+        JMP = "JMP",
+        JMZ = "JMZ",
+        JMN = "JMN",
+        DJN = "DJN",
+        CMP = "CMP",
+        SEQ = "SEQ",
+        SNE = "SNE",
+        SLT = "SLT",
+        SPL = "SPL",
+        NOP = "NOP"
     }
 
     enum ModifierType {
-        A = 0,
-        B,
-        AB,
-        BA,
-        F,
-        X,
-        I,
-        Count
+        A = "A",
+        B = "B",
+        AB = "AB",
+        BA = "BA",
+        F = "F",
+        X = "X",
+        I = "I"
     }
 
     interface IInstruction {
@@ -80,23 +77,22 @@ declare module "corewar" {
     }
 
     enum MessageType {
-        Error,
-        Warning,
-        Info
+        Error = "ERROR",
+        Warning = "WARNING",
+        Info = "INFO"
     }
 
     enum TokenCategory {
-        Label,
-        Opcode,
-        Preprocessor,
-        Modifier,
-        Mode,
-        Number,
-        Comma,
-        Maths,
-        EOL,
-        Comment,
-        Unknown
+        Label = "LABEL",
+        Opcode = "OPCODE",
+        Preprocessor = "PREPROCESSOR",
+        Modifier = "MODIFIER",
+        Mode = "MODE",
+        Number = "NUMBER",
+        Comma = "COMMA",
+        Maths = "MATHS",
+        EOL = "EOL",
+        Comment = "COMMENT"
     }
 
     interface IPosition {
@@ -143,9 +139,9 @@ declare module "corewar" {
     }
 
     enum CoreAccessType {
-        read,
-        write,
-        execute
+        read = "READ",
+        write = "WRITE",
+        execute = "EXECUTE"
     }
 
     interface ICoreAccessEventArgs {
