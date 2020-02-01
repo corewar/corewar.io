@@ -1,6 +1,6 @@
 ﻿import { IDecoder } from "@simulator/interface/IDecoder";
 import { IExecutive } from "@simulator/interface/IExecutive";
-import { IOperand } from "@simulator/interface/IOperand";
+import { IOperand, ModeType } from "@simulator/interface/IOperand";
 import { ITask } from "@simulator/interface/ITask";
 import { ICore } from "@simulator/interface/ICore";
 import { IExecutionContext, IOperandPair } from "@simulator/interface/IExecutionContext";
@@ -13,16 +13,16 @@ export class Decoder implements IDecoder {
 
     private deferredSets = [];
 
-    private modeTable: ((task: ITask, ip: number, operand: IOperand, core: ICore) => IInstruction)[] = [
-        this.immediate,         // #
-        this.direct,            // $
-        this.aIndirect,         // *
-        this.bIndirect,         // @
-        this.aPreDecrement,     // {
-        this.bPreDecrement,     // <
-        this.aPostIncrement,    // }
-        this.bPostIncrement     // >
-    ];
+    private modeTable: { [mode: string]: (task: ITask, ip: number, operand: IOperand, core: ICore) => IInstruction } = {
+        [ModeType.Immediate]: this.immediate,           // #
+        [ModeType.Direct]: this.direct,                 // $
+        [ModeType.AIndirect]: this.aIndirect,           // *
+        [ModeType.BIndirect]: this.bIndirect,           // @
+        [ModeType.APreDecrement]: this.aPreDecrement,   // {
+        [ModeType.BPreDecrement]: this.bPreDecrement,   // <
+        [ModeType.APostIncrement]: this.aPostIncrement, // }
+        [ModeType.BPostIncrement]: this.bPostIncrement  // >
+    };
 
     constructor(executive: IExecutive) {
 

@@ -21,14 +21,13 @@ export enum OpcodeType {
 }
 
 export enum ModifierType {
-    A = 0,
-    B,
-    AB,
-    BA,
-    F,
-    X,
-    I,
-    Count
+    A = "A",
+    B = "B",
+    AB = "AB",
+    BA = "BA",
+    F = "F",
+    X = "X",
+    I = "I"
 }
 
 export interface IInstruction {
