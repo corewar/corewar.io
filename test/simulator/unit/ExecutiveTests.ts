@@ -27,9 +27,15 @@ describe("Executive", () => {
         { i: "DAT.I", a: "DAT.I $0, $0", b: "DAT.I $0, $0", taskCount: 2, e: { taskIndex: 0, taskCount: 1 } },
         { i: "DIV.A", a: "DAT.I $0, $0", b: "DAT.I $1, $1", taskCount: 3, e: { taskIndex: 1, taskCount: 2 } },
         { i: "MOD.A", a: "DAT.I $0, $0", b: "DAT.I $1, $1", taskCount: 3, e: { taskIndex: 1, taskCount: 2 } }
-    /* eslint-disable-next-line */
+        /* eslint-disable-next-line */
     ], (context: IExecutionContext, expectation: any) => {
         it("removes the current task from the queue when " + TestHelper.instructionToString(context.instruction) + " is executed", () => {
+
+            const payload = {
+                warriorId: context.warrior.id,
+                warriorData: { data: "true" },
+                taskCount: expectation.taskCount
+            };
 
             this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context]);
 
@@ -38,11 +44,33 @@ describe("Executive", () => {
 
             expect(publisher.queue).to.have.been.calledWith({
                 type: MessageType.TaskCount,
-                payload: {
-                    warriorId: context.warrior.id,
-                    warriorData: { data: "true" },
-                    taskCount: expectation.taskCount
-                }
+                payload
+            });
+
+            expect(publisher.queue).not.to.have.been.calledWith({
+                type: MessageType.WarriorDead,
+                payload
+            });
+        });
+    });
+
+    Helper.runTest([
+        { i: "DAT.I", a: "DAT.I $0, $0", b: "DAT.I $0, $0", taskCount: 1, e: { taskIndex: 1, taskCount: 0 } }
+        /* eslint-disable-next-line */
+    ], (context: IExecutionContext) => {
+        it("queues warrior dead message when warrior task count reduced to zero", () => {
+
+            const payload = {
+                warriorId: context.warrior.id,
+                warriorData: { data: "true" },
+                taskCount: 0
+            };
+
+            this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context]);
+
+            expect(publisher.queue).to.have.been.calledWith({
+                type: MessageType.WarriorDead,
+                payload
             });
         });
     });
@@ -169,7 +197,7 @@ describe("Executive", () => {
         { i: "JMN.I", a: "13: DAT.F $0, $0", b: "DAT.F $1, $1", e: { ip: 13 } },
         { i: "JMN.I", a: "13: DAT.F $0, $0", b: "DAT.F $0, $1", e: { ip: 0 } },
         { i: "JMN.I", a: "13: DAT.F $0, $0", b: "DAT.F $1, $0", e: { ip: 0 } },
-    /* eslint-disable-next-line */
+        /* eslint-disable-next-line */
     ], (context: IExecutionContext, expectation: any) => {
 
         it("correctly executes " + TestHelper.instructionToString(context.instruction), () => {
@@ -309,7 +337,7 @@ describe("Executive", () => {
         { i: "SPL.X", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 2, e: { taskCount: 3, taskIndex: 1, maxTasks: 10 } },
         { i: "SPL.I", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 2, e: { taskCount: 3, taskIndex: 1, maxTasks: 10 } },
         { i: "SPL.A", a: "13: DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 2, e: { taskCount: 2, taskIndex: 0, maxTasks: 2 } },
-    /* eslint-disable-next-line */
+        /* eslint-disable-next-line */
     ], (context: IExecutionContext, expectation: any) => {
         it("correctly executes " + TestHelper.instructionToString(context.instruction), () => {
 
@@ -319,7 +347,7 @@ describe("Executive", () => {
             expect(context.warrior.tasks.length).to.be.equal(expectation.taskCount);
             expect(context.warrior.taskIndex).to.be.equal(expectation.taskIndex);
             expect(context.warrior.tasks[context.warrior.taskIndex].instructionPointer).to.be.equal(0);
-            
+
             if (expectation.taskCount === expectation.maxTasks) {
                 return;
             }
@@ -339,7 +367,7 @@ describe("Executive", () => {
 
     Helper.runTest([
         { i: "NOP.A", a: "DAT.F $0, $0", b: "DAT.F $0, $0", taskCount: 3, e: {} }
-    /* eslint-disable-next-line */
+        /* eslint-disable-next-line */
     ], (context: IExecutionContext, _: any) => {
         it("NOP instruction does not modify core or warrior tasks", () => {
 

@@ -56,6 +56,13 @@ export class Executive implements IExecutive {
             type: MessageType.TaskCount,
             payload
         });
+
+        if (taskCount === 0) {
+            this.publisher.queue({
+                type: MessageType.WarriorDead,
+                payload
+            })
+        }
     }
 
     private dat(context: IExecutionContext): void {
