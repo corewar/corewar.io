@@ -9,6 +9,7 @@ export enum MessageType {
     NextExecution,
     MatchEnd,
     HillEnd,
+    WarriorDead,
     Count
 }
 

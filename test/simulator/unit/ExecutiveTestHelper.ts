@@ -80,7 +80,7 @@ export function buildContext(testConfig: IExecutiveTestConfig): IExecutionContex
     });
 
     const warrior = buildWarrior(testConfig);
-    const taskIndex = 1;
+    const taskIndex = Math.min(1, warrior.tasks.length - 1);
 
     return {
         core: core,
