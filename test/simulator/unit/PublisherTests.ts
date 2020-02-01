@@ -20,14 +20,14 @@ describe("Publisher", () => {
 
     it("can be called when the publish provider has not been specified", () => {
 
-        const publisher = new Publisher([]);
+        const publisher = new Publisher({});
 
         publisher.publish();
     });
 
     it("publishes nothing if no messages are queued", () => {
 
-        const publisher = new Publisher([]);
+        const publisher = new Publisher({});
 
         const provider = {
             publishSync: sinon.stub()
@@ -50,15 +50,9 @@ describe("Publisher", () => {
             payload: {}
         };
 
-        const strategies = [
-            unexpected,
-            unexpected,
-            unexpected,
-            unexpected,
-            unexpected,
-            unexpected
-        ];
-        strategies[MessageType.TaskCount] = expectedStrategy;
+        const strategies = {
+            [MessageType.TaskCount]: expectedStrategy
+        };
 
         const publisher = new Publisher(strategies);
 
@@ -82,15 +76,15 @@ describe("Publisher", () => {
         const roundStartMessages = { type: MessageType.RoundStart, payload: [{}] };
         const matchEndMessages = { type: MessageType.MatchEnd, payload: [{}] };
 
-        const strategies = [
-            { dequeue: sinon.stub().returns(coreAccessMessages), queue: sinon.stub(), clear: sinon.stub() },
-            { dequeue: sinon.stub().returns(runProgressMessages), queue: sinon.stub(), clear: sinon.stub() },
-            { dequeue: sinon.stub().returns(roundEndMessages), queue: sinon.stub(), clear: sinon.stub() },
-            { dequeue: sinon.stub().returns(taskCountMessages), queue: sinon.stub(), clear: sinon.stub() },
-            { dequeue: sinon.stub().returns(initialiseMessages), queue: sinon.stub(), clear: sinon.stub() },
-            { dequeue: sinon.stub().returns(roundStartMessages), queue: sinon.stub(), clear: sinon.stub() },
-            { dequeue: sinon.stub().returns(matchEndMessages), queue: sinon.stub(), clear: sinon.stub() }
-        ];
+        const strategies = {
+            [MessageType.CoreAccess]: { dequeue: sinon.stub().returns(coreAccessMessages), queue: sinon.stub(), clear: sinon.stub() },
+            [MessageType.RunProgress]: { dequeue: sinon.stub().returns(runProgressMessages), queue: sinon.stub(), clear: sinon.stub() },
+            [MessageType.RoundEnd]: { dequeue: sinon.stub().returns(roundEndMessages), queue: sinon.stub(), clear: sinon.stub() },
+            [MessageType.TaskCount]: { dequeue: sinon.stub().returns(taskCountMessages), queue: sinon.stub(), clear: sinon.stub() },
+            [MessageType.CoreInitialise]: { dequeue: sinon.stub().returns(initialiseMessages), queue: sinon.stub(), clear: sinon.stub() },
+            [MessageType.RoundStart]: { dequeue: sinon.stub().returns(roundStartMessages), queue: sinon.stub(), clear: sinon.stub() },
+            [MessageType.MatchEnd]: { dequeue: sinon.stub().returns(matchEndMessages), queue: sinon.stub(), clear: sinon.stub() }
+        };
 
         const provider = { publishSync: sinon.stub() };
 
@@ -107,8 +101,8 @@ describe("Publisher", () => {
         expect(provider.publishSync).to.have.been.calledWith("ROUND_START", roundStartMessages.payload);
         expect(provider.publishSync).to.have.been.calledWith("MATCH_END", matchEndMessages.payload);
 
-        strategies.forEach(s => {
-            expect(s.clear).to.have.been.called;
+        Object.keys(strategies).forEach(key => {
+            expect(strategies[key].clear).to.have.been.called;
         })
     });
 
@@ -122,15 +116,15 @@ describe("Publisher", () => {
         const roundStartMessages = { type: MessageType.RoundStart, payload: [{}] };
         const matchEndMessages = { type: MessageType.MatchEnd, payload: [{}] };
 
-        const strategies = [
-            { dequeue: sinon.stub().returns(coreAccessMessages), queue: sinon.stub(), clear: sinon.stub() },
-            { dequeue: sinon.stub().returns(runProgressMessages), queue: sinon.stub(), clear: sinon.stub() },
-            { dequeue: sinon.stub().returns(roundEndMessages), queue: sinon.stub(), clear: sinon.stub() },
-            { dequeue: sinon.stub().returns(taskCountMessages), queue: sinon.stub(), clear: sinon.stub() },
-            { dequeue: sinon.stub().returns(initialiseMessages), queue: sinon.stub(), clear: sinon.stub() },
-            { dequeue: sinon.stub().returns(roundStartMessages), queue: sinon.stub(), clear: sinon.stub() },
-            { dequeue: sinon.stub().returns(matchEndMessages), queue: sinon.stub(), clear: sinon.stub() }
-        ];
+        const strategies = {
+            [MessageType.CoreAccess]: { dequeue: sinon.stub().returns(coreAccessMessages), queue: sinon.stub(), clear: sinon.stub() },
+            [MessageType.RunProgress]: { dequeue: sinon.stub().returns(runProgressMessages), queue: sinon.stub(), clear: sinon.stub() },
+            [MessageType.RoundEnd]: { dequeue: sinon.stub().returns(roundEndMessages), queue: sinon.stub(), clear: sinon.stub() },
+            [MessageType.TaskCount]: { dequeue: sinon.stub().returns(taskCountMessages), queue: sinon.stub(), clear: sinon.stub() },
+            [MessageType.CoreInitialise]: { dequeue: sinon.stub().returns(initialiseMessages), queue: sinon.stub(), clear: sinon.stub() },
+            [MessageType.RoundStart]: { dequeue: sinon.stub().returns(roundStartMessages), queue: sinon.stub(), clear: sinon.stub() },
+            [MessageType.MatchEnd]: { dequeue: sinon.stub().returns(matchEndMessages), queue: sinon.stub(), clear: sinon.stub() }
+        };
 
         const provider = { publishSync: sinon.stub() };
 
@@ -147,8 +141,8 @@ describe("Publisher", () => {
         expect(provider.publishSync).to.have.been.calledWith("ROUND_START", roundStartMessages.payload);
         expect(provider.publishSync).to.have.been.calledWith("MATCH_END", matchEndMessages.payload);
 
-        strategies.forEach(s => {
-            expect(s.clear).not.to.have.been.called;
+        Object.keys(strategies).forEach(key => {
+            expect(strategies[key].clear).not.to.have.been.called;
         })
     });
 
@@ -156,20 +150,20 @@ describe("Publisher", () => {
 
         const strategy = buildStrategy();
 
-        const strategies = [
-            strategy,
-            strategy,
-            strategy,
-            strategy,
-            strategy,
-            strategy
-        ];
+        const strategies = {
+            [MessageType.CoreAccess]: strategy,
+            [MessageType.CoreInitialise]: strategy,
+            [MessageType.HillEnd]: strategy,
+            [MessageType.MatchEnd]: strategy,
+            [MessageType.NextExecution]: strategy,
+            [MessageType.RoundEnd]: strategy
+        };
 
         const publisher = new Publisher(strategies);
 
         publisher.clear();
 
         // *2 because there is a publish and a republish clone of each strategy
-        expect(strategy.clear).to.have.callCount(strategies.length * 2);
+        expect(strategy.clear).to.have.callCount(Object.keys(strategies).length * 2);
     });
 });

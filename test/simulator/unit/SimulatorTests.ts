@@ -87,7 +87,7 @@ describe("Simulator", () => {
             initialise: (): void => {
                 //
             },
-            commandTable: []
+            commandTable: {}
         };
 
         endCondition = {
