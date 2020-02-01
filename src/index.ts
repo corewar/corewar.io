@@ -66,6 +66,7 @@ import { HillMatchRunner } from "@matches/HillMatchRunner";
 import { BenchmarkRunner } from "@matches/BenchmarkRunner";
 
 import * as clone from "clone";
+import { MessageType } from "@simulator/interface/IMessage";
 
 class Api {
 
@@ -103,16 +104,18 @@ class Api {
             new IllegalCommandCheck(),
             new MetaDataEmitter());
 
-        this.publisher = new Publisher([
-            new PerKeyStrategy(p => p.address),
-            new LatestOnlyStrategy(),
-            new LatestOnlyStrategy(),
-            new PerKeyStrategy(p => p.warriorId),
-            new LatestOnlyStrategy(),
-            new LatestOnlyStrategy(),
-            new LatestOnlyStrategy(),
-            new LatestOnlyStrategy()
-        ]);
+        this.publisher = new Publisher({
+            [MessageType.CoreAccess]: new PerKeyStrategy(p => p.address),
+            [MessageType.RunProgress]: new LatestOnlyStrategy(),
+            [MessageType.RoundEnd]: new LatestOnlyStrategy(),
+            [MessageType.TaskCount]: new PerKeyStrategy(p => p.warriorId),
+            [MessageType.CoreInitialise]: new LatestOnlyStrategy(),
+            [MessageType.RoundStart]: new LatestOnlyStrategy(),
+            [MessageType.NextExecution]: new LatestOnlyStrategy(),
+            [MessageType.MatchEnd]: new LatestOnlyStrategy(),
+            [MessageType.HillEnd]: new LatestOnlyStrategy(),
+            [MessageType.WarriorDead]: new LatestOnlyStrategy()
+        });
 
         this.core = new Core(this.publisher);
 

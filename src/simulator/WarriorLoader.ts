@@ -181,36 +181,9 @@ export class WarriorLoader implements IWarriorLoader {
     private getOperand(operand: IParseOperand): IOperand {
 
         const result: IOperand = {
-            mode: 0,
+            mode: operand.mode.lexeme as ModeType,
             address: this.core.wrap(parseInt(operand.address.lexeme, 10))
         };
-
-        switch (operand.mode.lexeme) {
-            case "#":
-                result.mode = ModeType.Immediate;
-                break;
-            case "*":
-                result.mode = ModeType.AIndirect;
-                break;
-            case "@":
-                result.mode = ModeType.BIndirect;
-                break;
-            case "{":
-                result.mode = ModeType.APreDecrement;
-                break;
-            case "<":
-                result.mode = ModeType.BPreDecrement;
-                break;
-            case "}":
-                result.mode = ModeType.APostIncrement;
-                break;
-            case ">":
-                result.mode = ModeType.BPostIncrement;
-                break;
-            default:
-                result.mode = ModeType.Direct;
-                break;
-        }
 
         return result;
     }
