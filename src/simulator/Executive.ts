@@ -1,6 +1,6 @@
 ﻿import { IExecutive } from "@simulator/interface/IExecutive";
 import { IExecutionContext } from "@simulator/interface/IExecutionContext";
-import { ModifierType } from "@simulator/interface/IInstruction";
+import { ModifierType, OpcodeType } from "@simulator/interface/IInstruction";
 import { IOptions } from "@simulator/interface/IOptions";
 import { MessageType } from "@simulator/interface/IMessage";
 import { IPublisher } from "@simulator/interface/IPublisher";
@@ -8,25 +8,25 @@ import { IWarrior } from "@simulator/interface/IWarrior";
 
 export class Executive implements IExecutive {
 
-    public commandTable: ((context: IExecutionContext) => void)[] = [
-        this.dat,
-        this.mov,
-        this.add,
-        this.sub,
-        this.mul,
-        this.div,
-        this.mod,
-        this.jmp,
-        this.jmz,
-        this.jmn,
-        this.djn,
-        this.seq, // CMP
-        this.seq,
-        this.sne,
-        this.slt,
-        this.spl,
-        this.nop
-    ];
+    public commandTable: { [opcode: string]: (context: IExecutionContext) => void } = {
+        [OpcodeType.DAT]: this.dat,
+        [OpcodeType.MOV]: this.mov,
+        [OpcodeType.ADD]: this.add,
+        [OpcodeType.SUB]: this.sub,
+        [OpcodeType.MUL]: this.mul,
+        [OpcodeType.DIV]: this.div,
+        [OpcodeType.MOD]: this.mod,
+        [OpcodeType.JMP]: this.jmp,
+        [OpcodeType.JMZ]: this.jmz,
+        [OpcodeType.JMN]: this.jmn,
+        [OpcodeType.DJN]: this.djn,
+        [OpcodeType.CMP]: this.seq,
+        [OpcodeType.SEQ]: this.seq,
+        [OpcodeType.SNE]: this.sne,
+        [OpcodeType.SLT]: this.slt,
+        [OpcodeType.SPL]: this.spl,
+        [OpcodeType.NOP]: this.nop
+    };
 
     private publisher: IPublisher;
 

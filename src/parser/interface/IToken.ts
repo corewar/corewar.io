@@ -1,16 +1,16 @@
 ﻿
 export enum TokenCategory {
-    Label,
-    Opcode,
-    Preprocessor,
-    Modifier,
-    Mode,
-    Number,
-    Comma,
-    Maths,
-    EOL,
-    Comment,
-    Unknown
+    Label = "LABEL",
+    Opcode = "OPCODE",
+    Preprocessor = "PREPROCESSOR",
+    Modifier = "MODIFIER",
+    Mode = "MODE",
+    Number = "NUMBER",
+    Comma = "COMMA",
+    Maths = "MATHS",
+    EOL = "EOL",
+    Comment = "COMMENT",
+    Unknown = "UNKNOWN"
 }
 
 export interface IPosition {

@@ -4,10 +4,10 @@ import { IParseResult } from "@parser/interface/IParseResult";
 
 export interface IContext extends IParseResult {
 
-        equs: { [label: string]: IToken[] };
-        labels: { [label: string]: number };
+    equs: { [label: string]: IToken[] };
+    labels: { [label: string]: number };
 
-        emitSingle(token: IToken): void;
-        emit(tokens: IToken[]): void;
-        emitInstruction(instruction: IParseInstruction): void;
+    emitSingle(token: IToken): void;
+    emit(tokens: IToken[]): void;
+    emitInstruction(instruction: IParseInstruction): void;
 }

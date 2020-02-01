@@ -1,9 +1,9 @@
 ﻿import { IPosition } from "@parser/interface/IToken";
 
 export enum MessageType {
-    Error,
-    Warning,
-    Info
+    Error = "ERROR",
+    Warning = "WARNING",
+    Info = "INFO"
 }
 
 export interface IMessage {
