@@ -2,7 +2,6 @@ import { Resolver, Mutation, ObjectType, Args, ArgsType, Field, Query, InputType
 import Hill from '@/schema/Hill'
 import Repository from '@/database/Repository'
 import { HILLS_COLLECTION as HILL_COLLECTION } from '@/constants'
-import uuid from 'uuid/v1'
 import MutationResult from '@/resolvers/MutationResult'
 import Rules from '@/schema/Rules'
 import Operand from '@/schema/Operand'
@@ -10,6 +9,28 @@ import { ModeType, OpcodeType, ModifierType } from 'corewar'
 import Instruction from '@/schema/Instruction'
 import Options from '@/schema/Options'
 import HillService, { IHillService } from '@/services/HillService'
+
+@InputType()
+export class OperandInput implements Partial<Operand> {
+    @Field()
+    mode!: ModeType
+    @Field()
+    address!: number
+}
+
+@InputType()
+export class InstructionInput implements Partial<Instruction> {
+    @Field()
+    address!: number
+    @Field()
+    opcode!: OpcodeType
+    @Field()
+    modifier!: ModifierType
+    @Field()
+    aOperand!: OperandInput
+    @Field()
+    bOperand!: OperandInput
+}
 
 @InputType()
 export class OptionsInput implements Partial<Options> {
@@ -35,28 +56,6 @@ export class RulesInput implements Partial<Rules> {
     rounds!: number
     @Field()
     options!: OptionsInput
-}
-
-@InputType()
-export class OperandInput implements Partial<Operand> {
-    @Field()
-    mode!: ModeType
-    @Field()
-    address!: number
-}
-
-@InputType()
-export class InstructionInput implements Partial<Instruction> {
-    @Field()
-    address!: number
-    @Field()
-    opcode!: OpcodeType
-    @Field()
-    modifier!: ModifierType
-    @Field()
-    aOperand!: OperandInput
-    @Field()
-    bOperand!: OperandInput
 }
 
 @ArgsType()
