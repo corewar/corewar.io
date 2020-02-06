@@ -1,9 +1,9 @@
 import { IParseResult } from 'corewar'
 import { ObjectType, Field } from 'type-graphql'
-import Token from '@/parse/Token'
-import MetaData from '@/parse/MetaData'
-import Message from '@/parse/Message'
-import DataScalar from '@/parse/DataScalar'
+import Token from '@/schema/Token'
+import MetaData from '@/schema/MetaData'
+import Message from '@/schema/Message'
+import DataScalar from '@/schema/DataScalar'
 
 @ObjectType()
 export default class ParseResult implements IParseResult {

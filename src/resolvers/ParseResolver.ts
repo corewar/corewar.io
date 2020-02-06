@@ -1,5 +1,5 @@
 import { Resolver, Query, Arg } from 'type-graphql'
-import ParseResult from '@/parse/ParseResult'
+import ParseResult from '@/schema/ParseResult'
 import { corewar } from 'corewar'
 
 @Resolver(ParseResult)

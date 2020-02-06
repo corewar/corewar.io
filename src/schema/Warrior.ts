@@ -1,4 +1,4 @@
-import ParseResult from '@/parse/ParseResult'
+import ParseResult from '@/schema/ParseResult'
 import { Field, ObjectType } from 'type-graphql'
 
 @ObjectType()

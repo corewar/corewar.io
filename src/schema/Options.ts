@@ -1,15 +1,15 @@
-import { InputType, Field } from 'type-graphql'
-import Options from '@/hills/Options'
-import InstructionInput from '@/hills/InstructionInput'
+import { ObjectType, Field } from 'type-graphql'
+import { IOptions } from 'corewar'
+import Instruction from '@/schema/Instruction'
 
-@InputType()
-export default class OptionsInput implements Partial<Options> {
+@ObjectType()
+export default class Options implements IOptions {
     @Field({ nullable: true })
     coresize?: number
     @Field({ nullable: true })
     maximumCycles?: number
     @Field({ nullable: true })
-    initialInstruction?: InstructionInput
+    initialInstruction?: Instruction
     @Field({ nullable: true })
     instructionLimit?: number
     @Field({ nullable: true })
