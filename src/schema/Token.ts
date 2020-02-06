@@ -1,6 +1,6 @@
 import { ObjectType, Field } from 'type-graphql'
 import { IToken, TokenCategory } from 'corewar'
-import Position from '@/parse/Position'
+import Position from '@/schema/Position'
 
 @ObjectType()
 export default class Token implements IToken {

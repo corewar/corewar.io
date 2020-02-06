@@ -1,5 +1,5 @@
 import 'reflect-metadata'
-import ParseResolver from '@/parse/ParseResolver'
+import ParseResolver from '@/resolvers/ParseResolver'
 import WarriorResolver from '@/resolvers/WarriorResolver'
 import HillResolver from '@/hills/HillResolver'
 import { buildSchema } from 'type-graphql'
