@@ -11,6 +11,8 @@ export default class ParseResult implements IParseResult {
     metaData!: MetaData
     @Field(() => [Token])
     tokens!: Token[]
+    @Field()
+    success!: boolean
     @Field(() => [Message])
     messages!: Message[]
     @Field(() => DataScalar, { nullable: true })

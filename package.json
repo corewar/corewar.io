@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "apollo-server": "^2.9.16",
-    "corewar": "^0.1.7",
+    "corewar": "^0.2.0",
     "graphql": "^14.6.0",
     "mongodb": "^3.5.2",
     "reflect-metadata": "^0.1.13",
