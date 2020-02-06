@@ -50,7 +50,7 @@ export default class WarriorResolver {
             parseResult: corewar.parse(warrior.redcode)
         } as Warrior
 
-        if (!!result.parseResult.messages.length) {
+        if (!result.parseResult.success) {
             return {
                 success: false,
                 message: 'Failed to parse warrior',
