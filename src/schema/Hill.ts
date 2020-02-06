@@ -1,5 +1,5 @@
 import { ObjectType, Field } from 'type-graphql'
-import Rules from '@/hills/Rules'
+import Rules from '@/schema/Rules'
 import IId from '@/schema/IId'
 
 @ObjectType()

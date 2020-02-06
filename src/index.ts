@@ -1,7 +1,7 @@
 import 'reflect-metadata'
 import ParseResolver from '@/resolvers/ParseResolver'
 import WarriorResolver from '@/resolvers/WarriorResolver'
-import HillResolver from '@/hills/HillResolver'
+import HillResolver from '@/resolvers/HillResolver'
 import { buildSchema } from 'type-graphql'
 import { ApolloServer } from 'apollo-server'
 
