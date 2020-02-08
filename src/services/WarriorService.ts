@@ -1,5 +1,5 @@
 import Warrior from '@/schema/Warrior'
-import Repository, { IRepository } from '@/database/Repository'
+import { IRepository } from '@/database/Repository'
 import { corewar } from 'corewar'
 import uuid from 'uuid/v1'
 

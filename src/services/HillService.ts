@@ -1,6 +1,4 @@
-import Warrior from '@/schema/Warrior'
-import Repository, { IRepository } from '@/database/Repository'
-import { corewar } from 'corewar'
+import { IRepository } from '@/database/Repository'
 import uuid from 'uuid/v1'
 import Hill from '@/schema/Hill'
 import Rules from '@/schema/Rules'
