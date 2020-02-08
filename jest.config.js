@@ -6,7 +6,8 @@ module.exports = {
     coverageDirectory: 'coverage',
     coverageReporters: ['text', 'lcov'],
     moduleNameMapper: {
-        '@/(.*)$': '<rootDir>/src/$1'
+        '@/(.*)$': '<rootDir>/src/$1',
+        '@test/(.*)$': '<rootDir>/test/$1'
     },
     preset: 'ts-jest',
     testEnvironment: 'node',
