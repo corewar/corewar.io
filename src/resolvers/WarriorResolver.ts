@@ -4,6 +4,7 @@ import Repository from '@/database/Repository'
 import MutationResult from '@/resolvers/MutationResult'
 import { WARRIOR_COLLECTION } from '@/constants'
 import WarriorService, { IWarriorService } from '@/services/WarriorService'
+import UuidFactory from '@/services/UuidFactory'
 
 @InputType()
 class WarriorInput {
@@ -40,7 +41,7 @@ class DeleteWarriorResult extends MutationResult<string> {
 @Resolver(Warrior)
 export default class WarriorResolver {
     private getService(): IWarriorService {
-        return new WarriorService(new Repository(WARRIOR_COLLECTION))
+        return new WarriorService(new Repository(WARRIOR_COLLECTION), new UuidFactory())
     }
 
     @Query(() => Warrior)

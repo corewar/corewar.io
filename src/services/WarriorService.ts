@@ -1,7 +1,7 @@
 import Warrior from '@/schema/Warrior'
 import { IRepository } from '@/database/Repository'
 import { corewar } from 'corewar'
-import uuid from 'uuid/v1'
+import { IUuidFactory } from './UuidFactory'
 
 export interface IWarriorService {
     getById(id: string): Promise<Warrior>
@@ -12,9 +12,11 @@ export interface IWarriorService {
 
 export default class WarriorService implements IWarriorService {
     private repo: IRepository
+    private uuid: IUuidFactory
 
-    constructor(repo: IRepository) {
+    constructor(repo: IRepository, uuid: IUuidFactory) {
         this.repo = repo
+        this.uuid = uuid
     }
 
     public async getById(id: string): Promise<Warrior> {
@@ -37,7 +39,7 @@ export default class WarriorService implements IWarriorService {
         }
 
         if (!result.id) {
-            result.id = uuid()
+            result.id = this.uuid.get()
         }
 
         await this.repo.upsert(result as Warrior)
