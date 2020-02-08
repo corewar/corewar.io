@@ -1,7 +1,7 @@
 import { IRepository } from '@/database/Repository'
-import uuid from 'uuid/v1'
 import Hill from '@/schema/Hill'
 import Rules from '@/schema/Rules'
+import { IUuidFactory } from './UuidFactory'
 
 export interface IHillService {
     getById(id: string): Promise<Hill>
@@ -12,9 +12,11 @@ export interface IHillService {
 
 export default class HillService implements IHillService {
     private repo: IRepository
+    private uuid: IUuidFactory
 
-    constructor(repo: IRepository) {
+    constructor(repo: IRepository, uuid: IUuidFactory) {
         this.repo = repo
+        this.uuid = uuid
     }
 
     public async getById(id: string): Promise<Hill> {
@@ -27,7 +29,7 @@ export default class HillService implements IHillService {
 
     public async createHill(rules: Rules): Promise<Hill> {
         const result = {
-            id: uuid(),
+            id: this.uuid.get(),
             rules
         }
 

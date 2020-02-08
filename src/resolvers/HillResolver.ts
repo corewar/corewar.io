@@ -9,6 +9,7 @@ import { ModeType, OpcodeType, ModifierType } from 'corewar'
 import Instruction from '@/schema/Instruction'
 import Options from '@/schema/Options'
 import HillService, { IHillService } from '@/services/HillService'
+import UuidFactory from '@/services/UuidFactory'
 
 @InputType()
 export class OperandInput implements Partial<Operand> {
@@ -85,7 +86,7 @@ class DeleteHillResult extends MutationResult<string> {
 @Resolver(Hill)
 export default class HillResolver {
     private getService(): IHillService {
-        return new HillService(new Repository(HILL_COLLECTION))
+        return new HillService(new Repository(HILL_COLLECTION), new UuidFactory())
     }
 
     @Query(() => Hill)
