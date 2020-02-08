@@ -1,4 +1,13 @@
-import { Resolver, Mutation, ObjectType, Args, ArgsType, Field, Query, InputType } from 'type-graphql'
+import {
+    Resolver,
+    Mutation,
+    ObjectType,
+    Args,
+    ArgsType,
+    Field,
+    Query,
+    InputType
+} from 'type-graphql'
 import Hill from '@/schema/Hill'
 import Repository from '@/database/Repository'
 import { HILLS_COLLECTION as HILL_COLLECTION } from '@/constants'
@@ -86,7 +95,10 @@ class DeleteHillResult extends MutationResult<string> {
 @Resolver(Hill)
 export default class HillResolver {
     private getService(): IHillService {
-        return new HillService(new Repository(HILL_COLLECTION), new UuidFactory())
+        return new HillService(
+            new Repository(HILL_COLLECTION),
+            new UuidFactory()
+        )
     }
 
     @Query(() => Hill)
@@ -100,7 +112,9 @@ export default class HillResolver {
     }
 
     @Mutation(() => CreateHillResult)
-    async createHill(@Args() { rules }: CreateHillArgs): Promise<CreateHillResult> {
+    async createHill(
+        @Args() { rules }: CreateHillArgs
+    ): Promise<CreateHillResult> {
         try {
             return {
                 success: true,

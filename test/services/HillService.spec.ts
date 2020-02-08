@@ -54,7 +54,9 @@ describe('HillService', () => {
 
             await target.createHill(rules)
 
-            expect(stub).to.have.been.calledWith(sinon.match((x: Hill) => x.rules === rules))
+            expect(stub).to.have.been.calledWith(
+                sinon.match((x: Hill) => x.rules === rules)
+            )
         })
 
         it('should generate a uuid for the new hill', async () => {

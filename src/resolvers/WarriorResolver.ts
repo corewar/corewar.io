@@ -1,4 +1,13 @@
-import { Resolver, Mutation, ObjectType, Query, Args, Field, ArgsType, InputType } from 'type-graphql'
+import {
+    Resolver,
+    Mutation,
+    ObjectType,
+    Query,
+    Args,
+    Field,
+    ArgsType,
+    InputType
+} from 'type-graphql'
 import Warrior from '@/schema/Warrior'
 import Repository from '@/database/Repository'
 import MutationResult from '@/resolvers/MutationResult'
@@ -41,7 +50,10 @@ class DeleteWarriorResult extends MutationResult<string> {
 @Resolver(Warrior)
 export default class WarriorResolver {
     private getService(): IWarriorService {
-        return new WarriorService(new Repository(WARRIOR_COLLECTION), new UuidFactory())
+        return new WarriorService(
+            new Repository(WARRIOR_COLLECTION),
+            new UuidFactory()
+        )
     }
 
     @Query(() => Warrior)
@@ -55,11 +67,16 @@ export default class WarriorResolver {
     }
 
     @Mutation(() => SaveWarriorResult)
-    async saveWarrior(@Args() { warrior }: SaveWarriorArgs): Promise<SaveWarriorResult> {
+    async saveWarrior(
+        @Args() { warrior }: SaveWarriorArgs
+    ): Promise<SaveWarriorResult> {
         try {
             return {
                 success: true,
-                result: await this.getService().saveWarrior(warrior.redcode, warrior.id)
+                result: await this.getService().saveWarrior(
+                    warrior.redcode,
+                    warrior.id
+                )
             }
         } catch (e) {
             return {
@@ -70,7 +87,9 @@ export default class WarriorResolver {
     }
 
     @Mutation(() => DeleteWarriorResult)
-    async deleteWarrior(@Args() { id }: WarriorArgs): Promise<DeleteWarriorResult> {
+    async deleteWarrior(
+        @Args() { id }: WarriorArgs
+    ): Promise<DeleteWarriorResult> {
         try {
             return {
                 success: true,
