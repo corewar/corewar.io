@@ -5,7 +5,9 @@ import { MONGO_URL, DATABASE_NAME } from '@/constants'
 export interface IRepository {
     getAll<T extends IId>(): Promise<T[]>
     getById<T extends IId>(id: string): Promise<T>
+    /* eslint-disable-next-line */
     getOneBy<T extends IId>(filter: FilterQuery<any>): Promise<T>
+    /* eslint-disable-next-line */
     getManyBy<T extends IId>(filter: FilterQuery<any>): Promise<T[]>
     upsert<T extends IId>(data: T): Promise<void>
     delete(id: string): Promise<void>
@@ -60,6 +62,7 @@ export default class Repository implements IRepository {
         }
     }
 
+    /* eslint-disable-next-line */
     async getOneBy<T extends IId>(filter: FilterQuery<any>): Promise<T> {
         const client = await this.getClient()
         try {
@@ -72,6 +75,7 @@ export default class Repository implements IRepository {
         }
     }
 
+    /* eslint-disable-next-line */
     async getManyBy<T extends IId>(filter: FilterQuery<any>): Promise<T[]> {
         const client = await this.getClient()
         try {
