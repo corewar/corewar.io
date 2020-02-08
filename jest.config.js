@@ -5,6 +5,7 @@ module.exports = {
     clearMocks: true,
     coverageDirectory: 'coverage',
     coverageReporters: ['text', 'lcov'],
+    collectCoverageFrom: ['./src/**/*.ts'],
     moduleNameMapper: {
         '@/(.*)$': '<rootDir>/src/$1',
         '@test/(.*)$': '<rootDir>/test/$1'

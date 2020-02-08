@@ -7,6 +7,7 @@
     "start": "ts-node -r tsconfig-paths/register src/index.ts",
     "start:docker": "cd docker && docker-compose up",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "lint": "eslint \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint:fix": "eslint --fix \"src/**/*.ts\" \"test/**/*.ts\""
   },
