@@ -6,6 +6,6 @@ export default abstract class MutationResult<T> {
     success!: boolean
     @Field({ nullable: true })
     message?: string
-    
+
     result?: T
 }

@@ -1,7 +1,9 @@
 {
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
   ],
   "env": {
     "browser": true,
@@ -15,7 +17,8 @@
   },
   "plugins": [
     "@typescript-eslint/eslint-plugin",
-    "jest"
+    "jest",
+    "eslint-plugin-prettier"
   ],
   "rules": {
     "@typescript-eslint/no-unused-vars": [

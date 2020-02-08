@@ -12,7 +12,6 @@ export interface IRepository {
 }
 
 export default class Repository implements IRepository {
-
     private collectionName: string
 
     constructor(collectionName: string) {
@@ -25,7 +24,7 @@ export default class Repository implements IRepository {
         return new Promise((resolve, reject) => {
             try {
                 client.connect(err => {
-                    if (!!err) {
+                    if (err) {
                         reject(err)
                     }
 
@@ -43,7 +42,7 @@ export default class Repository implements IRepository {
             const database = client.db(DATABASE_NAME)
             const collection = database.collection(this.collectionName)
 
-            return await collection.find().toArray() as T[]
+            return (await collection.find().toArray()) as T[]
         } finally {
             client.close()
         }
@@ -55,7 +54,7 @@ export default class Repository implements IRepository {
             const database = client.db(DATABASE_NAME)
             const collection = database.collection(this.collectionName)
 
-            return await collection.findOne({ id }) as T
+            return (await collection.findOne({ id })) as T
         } finally {
             client.close()
         }
@@ -67,7 +66,7 @@ export default class Repository implements IRepository {
             const database = client.db(DATABASE_NAME)
             const collection = database.collection(this.collectionName)
 
-            return await collection.findOne(filter) as T
+            return (await collection.findOne(filter)) as T
         } finally {
             client.close()
         }
@@ -79,7 +78,7 @@ export default class Repository implements IRepository {
             const database = client.db(DATABASE_NAME)
             const collection = database.collection(this.collectionName)
 
-            return await collection.find(filter).toArray() as T[]
+            return (await collection.find(filter).toArray()) as T[]
         } finally {
             client.close()
         }

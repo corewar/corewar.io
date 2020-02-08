@@ -7,7 +7,7 @@ import WarriorService, { IWarriorService } from '@/services/WarriorService'
 
 @InputType()
 class WarriorInput {
-    @Field({nullable: true})
+    @Field({ nullable: true })
     id?: string
     @Field()
     redcode!: string
@@ -39,11 +39,8 @@ class DeleteWarriorResult extends MutationResult<string> {
 
 @Resolver(Warrior)
 export default class WarriorResolver {
-
     private getService(): IWarriorService {
-        return new WarriorService(
-            new Repository(WARRIOR_COLLECTION)
-        )
+        return new WarriorService(new Repository(WARRIOR_COLLECTION))
     }
 
     @Query(() => Warrior)

@@ -13,7 +13,6 @@ export interface IHillService {
 }
 
 export default class HillService implements IHillService {
-
     private repo: IRepository
 
     constructor(repo: IRepository) {
@@ -29,7 +28,6 @@ export default class HillService implements IHillService {
     }
 
     public async createHill(rules: Rules): Promise<Hill> {
-
         const result = {
             id: uuid(),
             rules
@@ -41,7 +39,6 @@ export default class HillService implements IHillService {
     }
 
     public async deleteHill(id: string): Promise<string> {
-        
         await this.repo.delete(id)
 
         return id

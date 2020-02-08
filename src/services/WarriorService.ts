@@ -11,7 +11,6 @@ export interface IWarriorService {
 }
 
 export default class WarriorService implements IWarriorService {
-
     private repo: IRepository
 
     constructor(repo: IRepository) {
@@ -21,13 +20,13 @@ export default class WarriorService implements IWarriorService {
     public async getById(id: string): Promise<Warrior> {
         return this.repo.getById<Warrior>(id)
     }
-    
+
     public async getAll(): Promise<Warrior[]> {
         return this.repo.getAll<Warrior>()
     }
-    
+
     public async saveWarrior(redcode: string, id?: string): Promise<Warrior> {
-        let result = {
+        const result = {
             id,
             redcode,
             parseResult: corewar.parse(redcode)
@@ -45,7 +44,7 @@ export default class WarriorService implements IWarriorService {
 
         return result
     }
-    
+
     public async deleteWarrior(id: string): Promise<string> {
         await this.repo.delete(id)
 

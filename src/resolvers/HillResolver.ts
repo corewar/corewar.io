@@ -84,11 +84,8 @@ class DeleteHillResult extends MutationResult<string> {
 
 @Resolver(Hill)
 export default class HillResolver {
-
     private getService(): IHillService {
-        return new HillService(
-            new Repository(HILL_COLLECTION)
-        )
+        return new HillService(new Repository(HILL_COLLECTION))
     }
 
     @Query(() => Hill)
