@@ -1,7 +1,8 @@
 import Warrior from '@/schema/Warrior'
-import { IRepository } from '@/database/Repository'
+import Repository, { IRepository } from '@/database/Repository'
 import { corewar } from 'corewar'
-import { IUuidFactory } from './UuidFactory'
+import UuidFactory, { IUuidFactory } from './UuidFactory'
+import { WARRIOR_COLLECTION } from '@/constants'
 
 export interface IWarriorService {
     getById(id: string): Promise<Warrior>
@@ -53,3 +54,6 @@ export default class WarriorService implements IWarriorService {
         return id
     }
 }
+
+export const buildWarriorService: () => IWarriorService = () =>
+    new WarriorService(new Repository(WARRIOR_COLLECTION), new UuidFactory())

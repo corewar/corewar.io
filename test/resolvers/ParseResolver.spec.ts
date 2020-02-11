@@ -4,7 +4,7 @@ import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 import ParseResolver from '@/resolvers/ParseResolver'
 import { corewar } from 'corewar'
-import getParseResult from '@test/factories/ParseResult'
+import buildParseResult from '@test/mocks/ParseResult'
 chai.use(sinonChai)
 
 describe('ParseResolver', () => {
@@ -30,7 +30,7 @@ describe('ParseResolver', () => {
         })
 
         it('should return ParseResult', async () => {
-            const expected = getParseResult()
+            const expected = buildParseResult()
 
             sinon.stub(corewar, 'parse').returns(expected)
 

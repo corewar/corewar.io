@@ -1,6 +1,6 @@
 import { IParseResult } from 'corewar'
 
-export const getParseResult = (): IParseResult => ({
+export const buildParseResult = (): IParseResult => ({
     messages: [],
     metaData: {
         author: '',
@@ -11,4 +11,4 @@ export const getParseResult = (): IParseResult => ({
     tokens: []
 })
 
-export default getParseResult
+export default buildParseResult

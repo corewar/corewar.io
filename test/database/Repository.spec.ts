@@ -3,7 +3,7 @@ import chai, { expect, assert } from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 import { MongoClient, MongoCallback, Db, Collection, MongoError } from 'mongodb'
-import getCollection from '@test/factories/Collection'
+import buildCollectionMock from '@test/mocks/Collection'
 chai.use(sinonChai)
 
 describe('Repository', () => {
@@ -18,7 +18,7 @@ describe('Repository', () => {
 
     beforeEach(() => {
         const db = sinon.createStubInstance(Db)
-        collection = getCollection()
+        collection = buildCollectionMock()
         /* eslint-disable-next-line */
         connect = sinon.stub(MongoClient.prototype, 'connect').callsFake((callback: any) => {
                 callback()

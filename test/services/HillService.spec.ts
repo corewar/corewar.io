@@ -1,13 +1,13 @@
 import chai, { expect } from 'chai'
 import { IRepository } from '@/database/Repository'
-import getRepository from '@test/factories/Repository'
+import buildRepositoryMock from '@test/mocks/Repository'
 import HillService, { IHillService } from '@/services/HillService'
 import sinon from 'sinon'
-import buildRules from '@test/factories/Rules'
+import buildRules from '@test/mocks/Rules'
 import sinonChai from 'sinon-chai'
 import Hill from '@/schema/Hill'
 import { IUuidFactory } from '@/services/UuidFactory'
-import getUuidFactory from '@test/factories/UuidFactory'
+import buildUidFactoryMock from '@test/mocks/UuidFactory'
 chai.use(sinonChai)
 
 describe('HillService', () => {
@@ -17,8 +17,8 @@ describe('HillService', () => {
     let uuid: IUuidFactory
 
     beforeEach(() => {
-        repo = getRepository()
-        uuid = getUuidFactory()
+        repo = buildRepositoryMock()
+        uuid = buildUidFactoryMock()
         target = new HillService(repo, uuid)
     })
 

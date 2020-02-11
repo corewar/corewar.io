@@ -1,14 +1,14 @@
 import chai, { expect } from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
-import getRepository from '@test/factories/Repository'
-import getUuidFactory from '@test/factories/UuidFactory'
+import buildRepositoryMock from '@test/mocks/Repository'
+import buildUidFactoryMock from '@test/mocks/UuidFactory'
 import { IRepository } from '@/database/Repository'
 import { IUuidFactory } from '@/services/UuidFactory'
 import WarriorService, { IWarriorService } from '@/services/WarriorService'
 import Warrior from '@/schema/Warrior'
 import { corewar, IParseResult } from 'corewar'
-import getParseResult from '@test/factories/ParseResult'
+import buildParseResult from '@test/mocks/ParseResult'
 chai.use(sinonChai)
 
 describe('WarriorService', () => {
@@ -18,8 +18,8 @@ describe('WarriorService', () => {
     let uuid: IUuidFactory
 
     beforeEach(() => {
-        repo = getRepository()
-        uuid = getUuidFactory()
+        repo = buildRepositoryMock()
+        uuid = buildUidFactoryMock()
         target = new WarriorService(repo, uuid)
     })
 
@@ -52,7 +52,7 @@ describe('WarriorService', () => {
         let parse: sinon.SinonStub<[string], IParseResult>
 
         beforeEach(() => {
-            parse = sinon.stub(corewar, 'parse').returns(getParseResult())
+            parse = sinon.stub(corewar, 'parse').returns(buildParseResult())
         })
 
         afterEach(() => {
@@ -84,7 +84,7 @@ describe('WarriorService', () => {
         })
 
         it('should not assign an id or persist if redcode cannot be parsed', async () => {
-            const parseResult = getParseResult()
+            const parseResult = buildParseResult()
             parseResult.success = false
             parse.returns(parseResult)
 

@@ -1,7 +1,7 @@
 import { IRepository } from '@/database/Repository'
 import sinon from 'sinon'
 
-const getRepository = (): IRepository =>
+const buildRepositoryMock = (): IRepository =>
     ({
         getAll: sinon.stub(),
         getById: sinon.stub(),
@@ -11,4 +11,4 @@ const getRepository = (): IRepository =>
         delete: sinon.stub()
     } as IRepository)
 
-export default getRepository
+export default buildRepositoryMock

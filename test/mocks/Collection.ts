@@ -1,7 +1,7 @@
 import { Collection } from 'mongodb'
 import sinon from 'sinon'
 
-export const getCollection = (): Collection =>
+export const buildCollectionMock = (): Collection =>
     (({
         find: sinon.stub().returns({ toArray: sinon.stub().returns([]) }),
         findOne: sinon.stub().returns({}),
@@ -10,4 +10,4 @@ export const getCollection = (): Collection =>
         deleteOne: sinon.stub()
     } as unknown) as Collection)
 
-export default getCollection
+export default buildCollectionMock
