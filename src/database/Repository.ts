@@ -94,7 +94,7 @@ export default class Repository implements IRepository {
             const database = client.db(DATABASE_NAME)
             const collection = database.collection(this.collectionName)
 
-            const existing = await this.getById(data.id)
+            const existing = await collection.findOne({ id: data.id })
             if (!existing) {
                 await collection.insertOne(data)
             } else {

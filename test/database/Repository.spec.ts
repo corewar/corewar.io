@@ -60,6 +60,21 @@ describe('Repository', () => {
                 .catch((e: any) => expect(e.message).to.deep.equal(expected.message))
         })
 
+        it('should handle other connect error', () => {
+            const expected = new Error('Promise failed')
+
+            /* eslint-disable-next-line */
+            connect.throws(expected)
+
+            target
+                .getAll()
+                .then(() =>
+                    assert.fail('Promise should have failed but succeeded')
+                )
+                /* eslint-disable-next-line */
+                .catch((e: any) => expect(e.message).to.deep.equal(expected.message))
+        })
+
         it('should return the result of collection.find', async () => {
             const expected = [{ foo: 'bar' }]
 
@@ -69,6 +84,120 @@ describe('Repository', () => {
             const actual = await target.getAll()
 
             expect(actual).to.be.deep.equal(expected)
+        })
+    })
+
+    describe('getById', () => {
+        it('should return the result of collection.findOne', async () => {
+            const id = '1234'
+            const expected = { id, foo: 'bar' }
+
+            const stub = collection.findOne as sinon.SinonStub
+            stub.withArgs({ id }).returns(expected)
+
+            const actual = await target.getById(id)
+
+            expect(actual).to.be.deep.equal(expected)
+        })
+    })
+
+    describe('getOneBy', () => {
+        it('should return result of collection.findOne', async () => {
+            const expected = { foo: 'bar' }
+
+            const stub = collection.findOne as sinon.SinonStub
+            stub.returns(expected)
+
+            const actual = await target.getOneBy({})
+
+            expect(actual).to.deep.equal(expected)
+        })
+
+        it('should filter collection using specified parameter', async () => {
+            const expected = { foo: 'bar' }
+
+            const stub = collection.findOne as sinon.SinonStub
+
+            await target.getOneBy(expected)
+
+            expect(stub).to.have.been.calledWith(expected)
+        })
+    })
+
+    describe('getManyBy', () => {
+        it('should return the result of collection.find', async () => {
+            const expected = [{ foo: 'bar' }]
+
+            const stub = collection.find as sinon.SinonStub
+            stub.returns({ toArray: sinon.stub().returns(expected) })
+
+            const actual = await target.getManyBy({})
+
+            expect(actual).to.be.deep.equal(expected)
+        })
+
+        it('should filter collection.find by specified filter parameter', async () => {
+            const expected = { foo: 'bar' }
+
+            const stub = collection.find as sinon.SinonStub
+
+            await target.getManyBy(expected)
+
+            expect(stub).to.have.been.calledWith(expected)
+        })
+    })
+
+    describe('upsert', () => {
+        it('should insert data if it does not exist', async () => {
+            const expected = { id: '1234', foo: 'bar' }
+
+            const findOne = collection.findOne as sinon.SinonStub
+            findOne.withArgs({ id: expected.id }).returns(null)
+
+            const insertOne = collection.insertOne as sinon.SinonStub
+            const updateOne = collection.updateOne as sinon.SinonStub
+
+            await target.upsert(expected)
+
+            expect(insertOne).to.have.been.calledWith(expected)
+            expect(updateOne).not.to.have.been.called
+        })
+
+        it('should update data if it does exist', async () => {
+            const expected = { id: '1234', foo: 'bar' }
+
+            const findOne = collection.findOne as sinon.SinonStub
+            findOne.withArgs({ id: expected.id }).returns(expected)
+
+            const insertOne = collection.insertOne as sinon.SinonStub
+            const updateOne = collection.updateOne as sinon.SinonStub
+
+            await target.upsert(expected)
+
+            expect(updateOne).to.have.been.calledWith(
+                { id: expected.id },
+                { $set: expected }
+            )
+            expect(insertOne).not.to.have.been.called
+        })
+
+        it('should open an close the connection once only', async () => {
+            await target.upsert({ id: '1234' })
+
+            expect(connect).to.have.been.calledOnce
+            expect(close).to.have.been.calledOnce
+        })
+    })
+
+    describe('delete', () => {
+        it('should delete specified id from collection', async () => {
+            const id = '1234'
+
+            const stub = collection.deleteOne as sinon.SinonStub
+
+            await target.delete(id)
+
+            expect(stub).to.have.been.calledWith({ id })
         })
     })
 })
