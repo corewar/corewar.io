@@ -16,5 +16,6 @@ export default class ParseResult implements IParseResult {
     @Field(() => [Message])
     messages!: Message[]
     @Field(() => DataScalar, { nullable: true })
+    /* eslint-disable-next-line */
     data?: any
 }

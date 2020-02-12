@@ -7,5 +7,5 @@ export default class Rules implements IRules {
     @Field()
     rounds!: number
     @Field()
-    options!: Options;
+    options!: Options
 }

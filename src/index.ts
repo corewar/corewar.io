@@ -4,8 +4,7 @@ import WarriorResolver from '@/resolvers/WarriorResolver'
 import HillResolver from '@/resolvers/HillResolver'
 import { buildSchema } from 'type-graphql'
 import { ApolloServer } from 'apollo-server'
-
-(async () => {
+;(async (): Promise<void> => {
     const schema = await buildSchema({
         validate: false,
         resolvers: [ParseResolver, WarriorResolver, HillResolver]

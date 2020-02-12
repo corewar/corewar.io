@@ -1,14 +1,21 @@
-import { Resolver, Mutation, ObjectType, Args, ArgsType, Field, Query, InputType } from 'type-graphql'
+import {
+    Resolver,
+    Mutation,
+    ObjectType,
+    Args,
+    ArgsType,
+    Field,
+    Query,
+    InputType
+} from 'type-graphql'
 import Hill from '@/schema/Hill'
-import Repository from '@/database/Repository'
-import { HILLS_COLLECTION as HILL_COLLECTION } from '@/constants'
 import MutationResult from '@/resolvers/MutationResult'
 import Rules from '@/schema/Rules'
 import Operand from '@/schema/Operand'
 import { ModeType, OpcodeType, ModifierType } from 'corewar'
 import Instruction from '@/schema/Instruction'
 import Options from '@/schema/Options'
-import HillService, { IHillService } from '@/services/HillService'
+import { IHillService, buildHillService } from '@/services/HillService'
 
 @InputType()
 export class OperandInput implements Partial<Operand> {
@@ -84,11 +91,8 @@ class DeleteHillResult extends MutationResult<string> {
 
 @Resolver(Hill)
 export default class HillResolver {
-
     private getService(): IHillService {
-        return new HillService(
-            new Repository(HILL_COLLECTION)
-        )
+        return buildHillService()
     }
 
     @Query(() => Hill)
@@ -102,7 +106,9 @@ export default class HillResolver {
     }
 
     @Mutation(() => CreateHillResult)
-    async createHill(@Args() { rules }: CreateHillArgs): Promise<CreateHillResult> {
+    async createHill(
+        @Args() { rules }: CreateHillArgs
+    ): Promise<CreateHillResult> {
         try {
             return {
                 success: true,
@@ -111,7 +117,7 @@ export default class HillResolver {
         } catch (e) {
             return {
                 success: false,
-                message: e
+                message: e.message
             }
         }
     }
@@ -126,7 +132,7 @@ export default class HillResolver {
         } catch (e) {
             return {
                 success: false,
-                message: e
+                message: e.message
             }
         }
     }

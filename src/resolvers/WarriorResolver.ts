@@ -1,13 +1,20 @@
-import { Resolver, Mutation, ObjectType, Query, Args, Field, ArgsType, InputType } from 'type-graphql'
+import {
+    Resolver,
+    Mutation,
+    ObjectType,
+    Query,
+    Args,
+    Field,
+    ArgsType,
+    InputType
+} from 'type-graphql'
 import Warrior from '@/schema/Warrior'
-import Repository from '@/database/Repository'
 import MutationResult from '@/resolvers/MutationResult'
-import { WARRIOR_COLLECTION } from '@/constants'
-import WarriorService, { IWarriorService } from '@/services/WarriorService'
+import { IWarriorService, buildWarriorService } from '@/services/WarriorService'
 
 @InputType()
 class WarriorInput {
-    @Field({nullable: true})
+    @Field({ nullable: true })
     id?: string
     @Field()
     redcode!: string
@@ -39,11 +46,8 @@ class DeleteWarriorResult extends MutationResult<string> {
 
 @Resolver(Warrior)
 export default class WarriorResolver {
-
     private getService(): IWarriorService {
-        return new WarriorService(
-            new Repository(WARRIOR_COLLECTION)
-        )
+        return buildWarriorService()
     }
 
     @Query(() => Warrior)
@@ -57,22 +61,29 @@ export default class WarriorResolver {
     }
 
     @Mutation(() => SaveWarriorResult)
-    async saveWarrior(@Args() { warrior }: SaveWarriorArgs): Promise<SaveWarriorResult> {
+    async saveWarrior(
+        @Args() { warrior }: SaveWarriorArgs
+    ): Promise<SaveWarriorResult> {
         try {
             return {
                 success: true,
-                result: await this.getService().saveWarrior(warrior.redcode, warrior.id)
+                result: await this.getService().saveWarrior(
+                    warrior.redcode,
+                    warrior.id
+                )
             }
         } catch (e) {
             return {
                 success: false,
-                message: e
+                message: e.message
             }
         }
     }
 
     @Mutation(() => DeleteWarriorResult)
-    async deleteWarrior(@Args() { id }: WarriorArgs): Promise<DeleteWarriorResult> {
+    async deleteWarrior(
+        @Args() { id }: WarriorArgs
+    ): Promise<DeleteWarriorResult> {
         try {
             return {
                 success: true,
@@ -81,7 +92,7 @@ export default class WarriorResolver {
         } catch (e) {
             return {
                 success: false,
-                message: e
+                message: e.message
             }
         }
     }

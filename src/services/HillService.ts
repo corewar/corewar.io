@@ -1,9 +1,8 @@
-import Warrior from '@/schema/Warrior'
 import Repository, { IRepository } from '@/database/Repository'
-import { corewar } from 'corewar'
-import uuid from 'uuid/v1'
 import Hill from '@/schema/Hill'
 import Rules from '@/schema/Rules'
+import UuidFactory, { IUuidFactory } from '@/services/UuidFactory'
+import { HILL_COLLECTION } from '@/constants'
 
 export interface IHillService {
     getById(id: string): Promise<Hill>
@@ -13,11 +12,12 @@ export interface IHillService {
 }
 
 export default class HillService implements IHillService {
-
     private repo: IRepository
+    private uuid: IUuidFactory
 
-    constructor(repo: IRepository) {
+    constructor(repo: IRepository, uuid: IUuidFactory) {
         this.repo = repo
+        this.uuid = uuid
     }
 
     public async getById(id: string): Promise<Hill> {
@@ -29,9 +29,8 @@ export default class HillService implements IHillService {
     }
 
     public async createHill(rules: Rules): Promise<Hill> {
-
         const result = {
-            id: uuid(),
+            id: this.uuid.get(),
             rules
         }
 
@@ -41,9 +40,11 @@ export default class HillService implements IHillService {
     }
 
     public async deleteHill(id: string): Promise<string> {
-        
         await this.repo.delete(id)
 
         return id
     }
 }
+
+export const buildHillService: () => IHillService = () =>
+    new HillService(new Repository(HILL_COLLECTION), new UuidFactory())

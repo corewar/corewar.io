@@ -5,14 +5,15 @@ import { MONGO_URL, DATABASE_NAME } from '@/constants'
 export interface IRepository {
     getAll<T extends IId>(): Promise<T[]>
     getById<T extends IId>(id: string): Promise<T>
+    /* eslint-disable-next-line */
     getOneBy<T extends IId>(filter: FilterQuery<any>): Promise<T>
+    /* eslint-disable-next-line */
     getManyBy<T extends IId>(filter: FilterQuery<any>): Promise<T[]>
     upsert<T extends IId>(data: T): Promise<void>
     delete(id: string): Promise<void>
 }
 
 export default class Repository implements IRepository {
-
     private collectionName: string
 
     constructor(collectionName: string) {
@@ -25,7 +26,7 @@ export default class Repository implements IRepository {
         return new Promise((resolve, reject) => {
             try {
                 client.connect(err => {
-                    if (!!err) {
+                    if (err) {
                         reject(err)
                     }
 
@@ -43,7 +44,7 @@ export default class Repository implements IRepository {
             const database = client.db(DATABASE_NAME)
             const collection = database.collection(this.collectionName)
 
-            return await collection.find().toArray() as T[]
+            return (await collection.find().toArray()) as T[]
         } finally {
             client.close()
         }
@@ -55,31 +56,33 @@ export default class Repository implements IRepository {
             const database = client.db(DATABASE_NAME)
             const collection = database.collection(this.collectionName)
 
-            return await collection.findOne({ id }) as T
+            return (await collection.findOne({ id })) as T
         } finally {
             client.close()
         }
     }
 
+    /* eslint-disable-next-line */
     async getOneBy<T extends IId>(filter: FilterQuery<any>): Promise<T> {
         const client = await this.getClient()
         try {
             const database = client.db(DATABASE_NAME)
             const collection = database.collection(this.collectionName)
 
-            return await collection.findOne(filter) as T
+            return (await collection.findOne(filter)) as T
         } finally {
             client.close()
         }
     }
 
+    /* eslint-disable-next-line */
     async getManyBy<T extends IId>(filter: FilterQuery<any>): Promise<T[]> {
         const client = await this.getClient()
         try {
             const database = client.db(DATABASE_NAME)
             const collection = database.collection(this.collectionName)
 
-            return await collection.find(filter).toArray() as T[]
+            return (await collection.find(filter).toArray()) as T[]
         } finally {
             client.close()
         }
@@ -91,7 +94,7 @@ export default class Repository implements IRepository {
             const database = client.db(DATABASE_NAME)
             const collection = database.collection(this.collectionName)
 
-            const existing = await this.getById(data.id)
+            const existing = await collection.findOne({ id: data.id })
             if (!existing) {
                 await collection.insertOne(data)
             } else {

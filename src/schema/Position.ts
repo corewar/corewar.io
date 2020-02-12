@@ -3,8 +3,8 @@ import { IPosition } from 'corewar'
 
 @ObjectType()
 export default class Position implements IPosition {
-    @Field(type => Int)
+    @Field(_ => Int)
     char!: number
-    @Field(type => Int)
+    @Field(_ => Int)
     line!: number
 }
