@@ -1,4 +1,4 @@
-[![wercker status](https://app.wercker.com/status/d6b4d4035c2ccc4e92f9ed40ae3f727d/s/master "wercker status")](https://app.wercker.com/project/byKey/d6b4d4035c2ccc4e92f9ed40ae3f727d)
+![Node.js CI](https://github.com/corewar/corewar/workflows/Node.js%20CI/badge.svg)
 
 ![Corewar](https://github.com/corewar/corewar/blob/master/logo.png)
 
