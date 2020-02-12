@@ -1,7 +1,8 @@
-import { IRepository } from '@/database/Repository'
+import Repository, { IRepository } from '@/database/Repository'
 import Hill from '@/schema/Hill'
 import Rules from '@/schema/Rules'
-import { IUuidFactory } from './UuidFactory'
+import UuidFactory, { IUuidFactory } from '@/services/UuidFactory'
+import { HILL_COLLECTION } from '@/constants'
 
 export interface IHillService {
     getById(id: string): Promise<Hill>
@@ -44,3 +45,6 @@ export default class HillService implements IHillService {
         return id
     }
 }
+
+export const buildHillService: () => IHillService = () =>
+    new HillService(new Repository(HILL_COLLECTION), new UuidFactory())
