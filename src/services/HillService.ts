@@ -1,6 +1,6 @@
 import Repository, { IRepository } from '@/database/Repository'
 import Hill from '@/schema/Hill'
-import Rules from '@/schema/Rules'
+import Rules from '@/schema/HillRules'
 import UuidFactory, { IUuidFactory } from '@/services/UuidFactory'
 import { HILL_COLLECTION } from '@/constants'
 
@@ -9,6 +9,7 @@ export interface IHillService {
     getAll(): Promise<Hill[]>
     createHill(rules: Rules): Promise<Hill>
     deleteHill(id: string): Promise<string>
+    challengeHill(hillId: string, warriorId: string): Promise<string>
 }
 
 export default class HillService implements IHillService {
@@ -44,6 +45,10 @@ export default class HillService implements IHillService {
         await this.repo.delete(id)
 
         return id
+    }
+
+    public async challengeHill(_: string, __: string): Promise<string> {
+        throw new Error('Not implemented')
     }
 }
 

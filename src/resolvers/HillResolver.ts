@@ -10,7 +10,7 @@ import {
 } from 'type-graphql'
 import Hill from '@/schema/Hill'
 import MutationResult from '@/resolvers/MutationResult'
-import Rules from '@/schema/Rules'
+import Rules from '@/schema/HillRules'
 import Operand from '@/schema/Operand'
 import { ModeType, OpcodeType, ModifierType } from 'corewar'
 import Instruction from '@/schema/Instruction'
@@ -62,6 +62,8 @@ export class RulesInput implements Partial<Rules> {
     @Field()
     rounds!: number
     @Field()
+    size!: number
+    @Field()
     options!: OptionsInput
 }
 
@@ -85,6 +87,20 @@ class CreateHillResult extends MutationResult<Hill> {
 
 @ObjectType()
 class DeleteHillResult extends MutationResult<string> {
+    @Field({ nullable: true })
+    result?: string
+}
+
+@ArgsType()
+class ChallengeHillArgs {
+    @Field()
+    warriorId!: string
+    @Field()
+    hillId!: string
+}
+
+@ObjectType()
+class ChallengeHillResult extends MutationResult<string> {
     @Field({ nullable: true })
     result?: string
 }
@@ -128,6 +144,23 @@ export default class HillResolver {
             return {
                 success: true,
                 result: await this.getService().deleteHill(id)
+            }
+        } catch (e) {
+            return {
+                success: false,
+                message: e.message
+            }
+        }
+    }
+
+    @Mutation(() => ChallengeHillResult)
+    async challengeHill(
+        @Args() { hillId, warriorId }: ChallengeHillArgs
+    ): Promise<ChallengeHillResult> {
+        try {
+            return {
+                success: true,
+                result: await this.getService().challengeHill(hillId, warriorId)
             }
         } catch (e) {
             return {

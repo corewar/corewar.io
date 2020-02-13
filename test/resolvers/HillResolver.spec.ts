@@ -5,7 +5,7 @@ import sinonChai from 'sinon-chai'
 import * as hillService from '@/services/HillService'
 import HillResolver from '@/resolvers/HillResolver'
 import buildHillServiceMock from '@test/mocks/HillService'
-import buildRules from '@test/mocks/Rules'
+import buildRules from '@test/mocks/HillRules'
 chai.use(sinonChai)
 
 describe('HillResolver', () => {
@@ -102,7 +102,7 @@ describe('HillResolver', () => {
 
         it('should return result of service deleteHill', async () => {
             const args = { id: '1234' }
-            const result = { id: '1234' }
+            const result = '1234'
             const expected = { result, success: true }
 
             const stub = service.deleteHill as sinon.SinonStub
@@ -120,6 +120,48 @@ describe('HillResolver', () => {
             stub.throws(expected)
 
             const actual = await target.deleteHill({ id: '1234' })
+
+            expect(actual.message).to.be.equal(expected.message)
+            expect(actual.success).to.be.false
+            expect(actual.result).to.be.undefined
+        })
+    })
+
+    describe('mutation challengeHill', () => {
+        it('should challenge specified hill with the specified warrior', async () => {
+            const hillId = '1234'
+            const warriorId = '5678'
+
+            const stub = service.challengeHill as sinon.SinonStub
+
+            await target.challengeHill({ hillId, warriorId })
+
+            expect(stub).to.have.been.calledWith(hillId, warriorId)
+        })
+
+        it('should return result of service challengeHill', async () => {
+            const args = { hillId: '1234', warriorId: '5678' }
+            const result = '1234'
+            const expected = { result, success: true }
+
+            const stub = service.challengeHill as sinon.SinonStub
+            stub.returns(result)
+
+            const actual = await target.challengeHill(args)
+
+            expect(actual).to.be.deep.equal(expected)
+        })
+
+        it('should handle errors raised by service', async () => {
+            const expected = new Error('Failed to challenge hill')
+
+            const stub = service.challengeHill as sinon.SinonStub
+            stub.throws(expected)
+
+            const actual = await target.challengeHill({
+                hillId: '1234',
+                warriorId: '5678'
+            })
 
             expect(actual.message).to.be.equal(expected.message)
             expect(actual.success).to.be.false
