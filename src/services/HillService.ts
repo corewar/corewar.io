@@ -2,7 +2,9 @@ import Repository, { IRepository } from '@/database/Repository'
 import Hill from '@/schema/Hill'
 import Rules from '@/schema/HillRules'
 import UuidFactory, { IUuidFactory } from '@/services/UuidFactory'
-import { HILL_COLLECTION } from '@/constants'
+import { HILL_COLLECTION, WARRIOR_COLLECTION } from '@/constants'
+import { corewar } from 'corewar'
+import WarriorService, { IWarriorService } from './WarriorService'
 
 export interface IHillService {
     getById(id: string): Promise<Hill>
@@ -14,10 +16,16 @@ export interface IHillService {
 
 export default class HillService implements IHillService {
     private repo: IRepository
+    private warriorService: IWarriorService
     private uuid: IUuidFactory
 
-    constructor(repo: IRepository, uuid: IUuidFactory) {
-        this.repo = repo
+    constructor(
+        hillRepo: IRepository,
+        warriorService: IWarriorService,
+        uuid: IUuidFactory
+    ) {
+        this.repo = hillRepo
+        this.warriorService = warriorService
         this.uuid = uuid
     }
 
@@ -47,10 +55,28 @@ export default class HillService implements IHillService {
         return id
     }
 
-    public async challengeHill(_: string, __: string): Promise<string> {
-        throw new Error('Not implemented')
+    public async challengeHill(
+        hillId: string,
+        warriorId: string
+    ): Promise<string> {
+        const hill = await this.repo.getById<Hill>(hillId)
+        const challenger = await this.warriorService.getById(warriorId)
+
+        corewar.runHill({
+            rules: hill.rules,
+            warriors: [{ source: challenger.parseResult }]
+        })
+
+        return warriorId
     }
 }
 
 export const buildHillService: () => IHillService = () =>
-    new HillService(new Repository(HILL_COLLECTION), new UuidFactory())
+    new HillService(
+        new Repository(HILL_COLLECTION),
+        new WarriorService(
+            new Repository(WARRIOR_COLLECTION),
+            new UuidFactory()
+        ),
+        new UuidFactory()
+    )

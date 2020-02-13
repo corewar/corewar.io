@@ -8,18 +8,30 @@ import sinonChai from 'sinon-chai'
 import Hill from '@/schema/Hill'
 import { IUuidFactory } from '@/services/UuidFactory'
 import buildUidFactoryMock from '@test/mocks/UuidFactory'
+import {
+    corewar,
+    IHill,
+    IHillResult,
+    IHillWarrior,
+    IParseResult
+} from 'corewar'
+import buildParseResult from '@test/mocks/ParseResult'
+import { IWarriorService } from '@/services/WarriorService'
+import buildWarriorServiceMock from '@test/mocks/WarriorService'
 chai.use(sinonChai)
 
 describe('HillService', () => {
     let target: IHillService
 
     let repo: IRepository
+    let warriorService: IWarriorService
     let uuid: IUuidFactory
 
     beforeEach(() => {
         repo = buildRepositoryMock()
         uuid = buildUidFactoryMock()
-        target = new HillService(repo, uuid)
+        warriorService = buildWarriorServiceMock()
+        target = new HillService(repo, warriorService, uuid)
     })
 
     describe('getById', () => {
@@ -81,6 +93,59 @@ describe('HillService', () => {
             await target.deleteHill(expected)
 
             expect(stub).to.have.been.calledWith(expected)
+        })
+    })
+
+    describe('challengeHill', () => {
+        let runHill: sinon.SinonStub<[IHill], IHillResult>
+
+        beforeEach(() => {
+            runHill = sinon.stub(corewar, 'runHill')
+
+            const warriorServiceGetById = warriorService.getById as sinon.SinonStub
+            warriorServiceGetById.returns({ parseResult: buildParseResult() })
+
+            const repoGetbyId = repo.getById as sinon.SinonStub
+            repoGetbyId.returns({ rules: buildRules() })
+        })
+
+        afterEach(() => {
+            sinon.restore()
+        })
+
+        const warriorWithSource = (source: IParseResult) => (
+            hill: IHill
+        ): boolean =>
+            !!hill.warriors.find(
+                (warrior: IHillWarrior): boolean => warrior.source === source
+            )
+
+        it('should run hill with specified warrior', async () => {
+            const expectedId = '2'
+            const expected = buildParseResult()
+            const stub = warriorService.getById as sinon.SinonStub
+            stub.withArgs(expectedId).returns({ parseResult: expected })
+
+            await target.challengeHill('1', expectedId)
+
+            expect(runHill).to.have.been.calledWith(
+                sinon.match(warriorWithSource(expected))
+            )
+        })
+
+        it('should use the rules for the hill with the specified id', async () => {
+            const hillId = '1'
+
+            const expected = buildRules()
+
+            const stub = repo.getById as sinon.SinonStub
+            stub.withArgs(hillId).returns({ rules: expected })
+
+            await target.challengeHill(hillId, '2')
+
+            expect(runHill).to.have.been.calledWith(
+                sinon.match((hill: IHill) => hill.rules === expected)
+            )
         })
     })
 })
