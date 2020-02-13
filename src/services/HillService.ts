@@ -31,7 +31,8 @@ export default class HillService implements IHillService {
     public async createHill(rules: Rules): Promise<Hill> {
         const result = {
             id: this.uuid.get(),
-            rules
+            rules,
+            warriors: []
         }
 
         await this.repo.upsert(result)
