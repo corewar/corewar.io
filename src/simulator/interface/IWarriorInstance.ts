@@ -1,6 +1,6 @@
 ﻿import { ITask } from "@simulator/interface/ITask";
 
-export interface IWarrior {
+export interface IWarriorInstance {
 
     id: number;
     

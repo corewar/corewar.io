@@ -1,5 +1,5 @@
 ﻿import { IWarriorLoader } from "@simulator/interface/IWarriorLoader";
-import { IWarrior } from "@simulator/interface/IWarrior";
+import { IWarriorInstance } from "@simulator/interface/IWarriorInstance";
 import { ICore } from "@simulator/interface/ICore";
 import { IInstruction, OpcodeType, ModifierType } from "@simulator/interface/IInstruction";
 import { IOperand, ModeType } from "@simulator/interface/IOperand";
@@ -21,7 +21,7 @@ export class WarriorLoader implements IWarriorLoader {
 
     private address: number;
     private stream: ITokenStream;
-    private warrior: IWarrior;
+    private warrior: IWarriorInstance;
 
     private core: ICore;
     private publisher: IPublisher;
@@ -32,7 +32,7 @@ export class WarriorLoader implements IWarriorLoader {
         this.publisher = publisher;
     }
 
-    public load(address: number, result: IParseResult, id: number): IWarrior {
+    public load(address: number, result: IParseResult, id: number): IWarriorInstance {
 
         this.stream = new TokenStream(result.tokens, result.messages);
         this.address = address;

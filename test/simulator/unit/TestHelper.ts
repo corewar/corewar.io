@@ -3,7 +3,7 @@ import * as sinon from "sinon";
 
 import { IToken, TokenCategory } from "@parser/interface/IToken";
 import { IParseResult } from "@parser/interface/IParseResult";
-import { IWarrior } from "@simulator/interface/IWarrior";
+import { IWarriorInstance } from "@simulator/interface/IWarriorInstance";
 import { ITask } from "@simulator/interface/ITask";
 import { OpcodeType, ModifierType } from "@simulator/interface/IInstruction";
 import { ModeType } from "@simulator/interface/IOperand";
@@ -78,7 +78,7 @@ export default class TestHelper {
     }
 
     /* eslint-disable-next-line */
-    public static buildWarrior(id = 0, data: any = null): IWarrior {
+    public static buildWarrior(id = 0, data: any = null): IWarriorInstance {
         return {
             id: id,
             data: data,

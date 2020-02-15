@@ -4,7 +4,7 @@ import { ModifierType, OpcodeType } from "@simulator/interface/IInstruction";
 import { IOptions } from "@simulator/interface/IOptions";
 import { MessageType } from "@simulator/interface/IMessage";
 import { IPublisher } from "@simulator/interface/IPublisher";
-import { IWarrior } from "@simulator/interface/IWarrior";
+import { IWarriorInstance } from "@simulator/interface/IWarriorInstance";
 
 export class Executive implements IExecutive {
 
@@ -42,7 +42,7 @@ export class Executive implements IExecutive {
         this.maxTasks = options.maxTasks;
     }
 
-    private publishTaskCount(warrior: IWarrior, taskCount: number): void {
+    private publishTaskCount(warrior: IWarriorInstance, taskCount: number): void {
 
         const payload = {
             warriorId: warrior.id,

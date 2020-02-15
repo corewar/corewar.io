@@ -1,8 +1,8 @@
 ﻿import { IParseResult } from "@parser/interface/IParseResult";
 import { IOptions } from "@simulator/interface/IOptions";
-import { IWarrior } from "@simulator/interface/IWarrior";
+import { IWarriorInstance } from "@simulator/interface/IWarriorInstance";
 
 export interface ILoader {
 
-    load(warriors: IParseResult[], options: IOptions): IWarrior[];
+    load(warriors: IParseResult[], options: IOptions): IWarriorInstance[];
 }

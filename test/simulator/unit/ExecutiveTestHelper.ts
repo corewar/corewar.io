@@ -5,7 +5,7 @@ import TestHelper from "@simulator/tests/unit/TestHelper";
 import { IInstruction, ModifierType } from "@simulator/interface/IInstruction";
 import { IExecutionContext, IOperandPair } from "@simulator/interface/IExecutionContext";
 import Defaults from "@simulator/Defaults";
-import { IWarrior } from "@simulator/interface/IWarrior";
+import { IWarriorInstance } from "@simulator/interface/IWarriorInstance";
 
 interface IExecutiveTestConfig {
     i: string;
@@ -17,7 +17,7 @@ interface IExecutiveTestConfig {
     e: any;
 }
 
-function buildWarrior(testConfig: IExecutiveTestConfig): IWarrior {
+function buildWarrior(testConfig: IExecutiveTestConfig): IWarriorInstance {
     const warrior = TestHelper.buildWarrior(7, { data: "true" });
     warrior.tasks = [];
     for (let i = 0; i < (testConfig.taskCount || 3); i++) {

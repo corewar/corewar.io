@@ -4,7 +4,7 @@ import * as sinonChai from "sinon-chai";
 const expect = chai.expect;
 chai.use(sinonChai);
 
-import { IWarrior } from "@simulator/interface/IWarrior";
+import { IWarriorInstance } from "@simulator/interface/IWarriorInstance";
 import { ICore } from "@simulator/interface/ICore";
 import { IRandom } from "@simulator/interface/IRandom";
 import { IWarriorLoader } from "@simulator/interface/IWarriorLoader";
@@ -35,7 +35,7 @@ describe("Loader",() => {
         };
 
         warriorLoader = {
-            load: (address: number, _: IParseResult): IWarrior => {
+            load: (address: number, _: IParseResult): IWarriorInstance => {
                 const warrior = new Warrior();
                 warrior.startAddress = address;
                 return warrior;
@@ -92,7 +92,7 @@ describe("Loader",() => {
             new Warrior()
         ];
 
-        warriorLoader.load = (_: number, result: IParseResult): IWarrior => {
+        warriorLoader.load = (_: number, result: IParseResult): IWarriorInstance => {
             return warriorsOut[warriorsIn.indexOf(result)];
         };
 

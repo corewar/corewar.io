@@ -4,7 +4,7 @@ import * as chai from "chai";
 import * as sinonChai from "sinon-chai";
 
 import { ITask } from "@simulator/interface/ITask";
-import { IWarrior } from "@simulator/interface/IWarrior";
+import { IWarriorInstance } from "@simulator/interface/IWarriorInstance";
 import { IState } from "@simulator/interface/IState";
 import Defaults from "@simulator/Defaults";
 import { EndCondition } from "@simulator/EndCondition";
@@ -15,7 +15,7 @@ chai.use(sinonChai);
 
 describe("EndCondition", () => {
 
-    function buildTask(warrior: IWarrior): ITask {
+    function buildTask(warrior: IWarriorInstance): ITask {
 
         return {
             instructionPointer: 0,
@@ -23,7 +23,7 @@ describe("EndCondition", () => {
         };
     }
 
-    function buildWarrior(): IWarrior {
+    function buildWarrior(): IWarriorInstance {
 
         const warrior = {
             id: 0,

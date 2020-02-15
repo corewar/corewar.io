@@ -2,14 +2,14 @@
 import { IState } from "@simulator/interface/IState";
 import { ICore } from "@simulator/interface/ICore";
 import { IExecutionContext } from "@simulator/interface/IExecutionContext";
-import { IWarrior } from "@simulator/interface/IWarrior";
+import { IWarriorInstance } from "@simulator/interface/IWarriorInstance";
 import { ITask } from "@simulator/interface/ITask";
 import { INextExecutionContext } from "@simulator/interface/INextExecutionContext";
 
 interface IFetchContext {
     warriorIndex: number;
     taskIndex: number;
-    warrior: IWarrior;
+    warrior: IWarriorInstance;
     task: ITask;
 }
 
@@ -69,7 +69,7 @@ export class Fetcher implements IFetcher {
         };
     }
 
-    private isDead(warrior: IWarrior): boolean {
+    private isDead(warrior: IWarriorInstance): boolean {
         return warrior.tasks.length === 0
     }
 }

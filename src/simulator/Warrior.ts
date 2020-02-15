@@ -1,7 +1,7 @@
-﻿import { IWarrior } from "@simulator/interface/IWarrior";
+﻿import { IWarriorInstance } from "@simulator/interface/IWarriorInstance";
 import { ITask } from "@simulator/interface/ITask";
 
-export class Warrior implements IWarrior {
+export class Warrior implements IWarriorInstance {
 
     public id: number;
 

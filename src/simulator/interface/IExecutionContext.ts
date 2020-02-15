@@ -1,7 +1,7 @@
 ﻿import { ICore } from "@simulator/interface/ICore";
 import { IInstruction } from "@simulator/interface/IInstruction";
 import { ITask } from "@simulator/interface/ITask";
-import { IWarrior } from "@simulator/interface/IWarrior";
+import { IWarriorInstance } from "@simulator/interface/IWarriorInstance";
 import { IOperand } from "@simulator/interface/IOperand";
 
 export interface IOperandPair {
@@ -27,5 +27,5 @@ export interface IExecutionContext {
     task?: ITask;
 
     warriorIndex?: number;
-    warrior?: IWarrior;
+    warrior?: IWarriorInstance;
 }

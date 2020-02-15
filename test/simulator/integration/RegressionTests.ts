@@ -15,7 +15,7 @@ import { IDecoder } from "@simulator/interface/IDecoder";
 import { ISimulator } from "@simulator/interface/ISimulator";
 import { IPublisher } from "@simulator/interface/IPublisher";
 import TestHelper from "@simulator/tests/unit/TestHelper";
-import { IWarrior } from "@simulator/interface/IWarrior";
+import { IWarriorInstance } from "@simulator/interface/IWarriorInstance";
 import { OpcodeType, ModifierType } from "@simulator/interface/IInstruction";
 import { ModeType } from "@simulator/interface/IOperand";
 import { ITask } from "@simulator/interface/ITask";
@@ -33,7 +33,7 @@ describe("Simulator Regression Tests", () => {
     let decoder: IDecoder;
     let simulator: ISimulator;
 
-    let warrior: IWarrior;
+    let warrior: IWarriorInstance;
     let task: ITask;
 
     beforeEach(() => {
