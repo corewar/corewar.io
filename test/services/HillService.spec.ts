@@ -1,5 +1,4 @@
 import chai, { expect, assert } from 'chai'
-import chaiAsPromised from 'chai-as-promised'
 import { IRepository } from '@/database/Repository'
 import buildRepositoryMock from '@test/mocks/Repository'
 import HillService, { IHillService } from '@/services/HillService'
@@ -23,7 +22,6 @@ import buildHillWarrior from '@test/mocks/HillWarrior'
 import buildWarrior from '@test/mocks/Warrior'
 import buildHill from '@test/mocks/Hill'
 chai.use(sinonChai)
-chai.use(chaiAsPromised)
 
 describe('HillService', () => {
     let target: IHillService
@@ -224,6 +222,22 @@ describe('HillService', () => {
             } catch (e) {
                 expect(e.message).to.be.equal(
                     `No hill found with id '${hillId}'`
+                )
+            }
+        })
+
+        it('should throw if challenger does not exist', async () => {
+            const challengerId = '2'
+
+            const stub = warriorService.getById as sinon.SinonStub
+            stub.withArgs(challengerId).returns(null)
+
+            try {
+                await target.challengeHill('1', challengerId)
+                assert.fail('Expected promise to fail but succeeded')
+            } catch (e) {
+                expect(e.message).to.be.equal(
+                    `No warrior found with id '${challengerId}'`
                 )
             }
         })

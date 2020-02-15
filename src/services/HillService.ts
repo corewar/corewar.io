@@ -59,8 +59,6 @@ export default class HillService implements IHillService {
         hillId: string,
         warriorId: string
     ): Promise<Hill> {
-        // TODO handle missing hill
-        // TODO handle missing warriors
         // TODO store results in db
         // TODO increase age of warriors
         const hill = await this.repo.getById<Hill>(hillId)
@@ -68,6 +66,9 @@ export default class HillService implements IHillService {
             throw Error(`No hill found with id '${hillId}'`)
         }
         const challenger = await this.warriorService.getById(warriorId)
+        if (!challenger) {
+            throw Error(`No warrior found with id '${warriorId}'`)
+        }
 
         const warriors = hill.warriors
             .sort((a, b) => a.rank - b.rank)
