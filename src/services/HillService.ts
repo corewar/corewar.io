@@ -75,9 +75,13 @@ export default class HillService implements IHillService {
             .sort((a, b) => a.rank - b.rank)
             .slice(0, hill.rules.size)
             .map(warrior => ({
+                warriorHillId: warrior.warriorId,
                 source: warrior.result.source
             }))
-        warriors.push({ source: challenger.parseResult })
+        warriors.push({
+            warriorHillId: challenger.id,
+            source: challenger.parseResult
+        })
 
         corewar.runHill({
             rules: hill.rules,

@@ -123,6 +123,11 @@ describe('HillService', () => {
                 (warrior: IHillWarrior): boolean => warrior.source === source
             )
 
+        const warriorWithId = (id: string) => (hill: IHill): boolean =>
+            !!hill.warriors.find(
+                (warrior: IHillWarrior): boolean => warrior.warriorHillId === id
+            )
+
         it('should run hill with specified warrior', async () => {
             const expectedId = '2'
             const expected = buildParseResult()
@@ -240,6 +245,35 @@ describe('HillService', () => {
                     `No warrior found with id '${challengerId}'`
                 )
             }
+        })
+
+        it('should assign warrior ids to all warriors passed to corewar.runHill', async () => {
+            const existing = [buildHillWarrior('1'), buildHillWarrior('2')]
+            const challenger = buildWarrior('3')
+
+            const hill = buildHill('4')
+            hill.warriors = existing
+
+            const getWarriorById = warriorService.getById as sinon.SinonStub
+            getWarriorById.withArgs(challenger.id).returns(challenger)
+            existing.forEach(warrior =>
+                getWarriorById.withArgs(warrior.warriorId).returns(warrior)
+            )
+
+            const getHillById = repo.getById as sinon.SinonStub
+            getHillById.returns(hill)
+
+            await target.challengeHill(hill.id, challenger.id)
+
+            expect(runHill).to.have.been.calledWith(
+                sinon.match(warriorWithId('1'))
+            )
+            expect(runHill).to.have.been.calledWith(
+                sinon.match(warriorWithId('2'))
+            )
+            expect(runHill).to.have.been.calledWith(
+                sinon.match(warriorWithId('3'))
+            )
         })
     })
 })
