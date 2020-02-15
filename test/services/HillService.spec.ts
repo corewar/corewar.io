@@ -177,5 +177,37 @@ describe('HillService', () => {
                 )
             )
         })
+
+        it('should exclude warriors whose rank exceeds the hill size', async () => {
+            const expected = buildHillWarrior('1')
+            expected.rank = 1
+            const unexpected = buildHillWarrior('2')
+            unexpected.rank = 2
+            const existing = [expected, unexpected]
+
+            const challenger = buildWarrior('3')
+
+            const hill = buildHill('4')
+            hill.warriors = existing
+            hill.rules.size = 1
+
+            const getWarriorById = warriorService.getById as sinon.SinonStub
+            getWarriorById.withArgs(challenger.id).returns(challenger)
+            existing.forEach(warrior =>
+                getWarriorById.withArgs(warrior.warriorId).returns(warrior)
+            )
+
+            const getHillById = repo.getById as sinon.SinonStub
+            getHillById.returns(hill)
+
+            await target.challengeHill(hill.id, challenger.id)
+
+            expect(runHill).to.have.been.calledWith(
+                sinon.match(warriorWithSource(expected.result.source))
+            )
+            expect(runHill).not.to.have.been.calledWith(
+                sinon.match(warriorWithSource(unexpected.result.source))
+            )
+        })
     })
 })

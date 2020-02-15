@@ -63,13 +63,15 @@ export default class HillService implements IHillService {
         // TODO handle missing warriors
         // TODO store results in db
         // TODO increase age of warriors
-        // TODO push bottom warrior off the hill
         const hill = await this.repo.getById<Hill>(hillId)
         const challenger = await this.warriorService.getById(warriorId)
 
-        const warriors = hill.warriors.map(warrior => ({
-            source: warrior.result.source
-        }))
+        const warriors = hill.warriors
+            .sort((a, b) => a.rank - b.rank)
+            .slice(0, hill.rules.size)
+            .map(warrior => ({
+                source: warrior.result.source
+            }))
         warriors.push({ source: challenger.parseResult })
 
         corewar.runHill({
