@@ -61,6 +61,7 @@ export default class HillService implements IHillService {
     ): Promise<Hill> {
         // TODO store results in db
         // TODO increase age of warriors
+        // TODO handle first run of a hill (no existing warriors)
         const hill = await this.repo.getById<Hill>(hillId)
         if (!hill) {
             throw Error(`No hill found with id '${hillId}'`)
