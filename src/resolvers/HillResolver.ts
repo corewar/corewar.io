@@ -100,9 +100,9 @@ class ChallengeHillArgs {
 }
 
 @ObjectType()
-class ChallengeHillResult extends MutationResult<string> {
+class ChallengeHillResult extends MutationResult<Hill> {
     @Field({ nullable: true })
-    result?: string
+    result?: Hill
 }
 
 @Resolver(Hill)

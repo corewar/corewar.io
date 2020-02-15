@@ -11,7 +11,7 @@ export interface IHillService {
     getAll(): Promise<Hill[]>
     createHill(rules: Rules): Promise<Hill>
     deleteHill(id: string): Promise<string>
-    challengeHill(hillId: string, warriorId: string): Promise<string>
+    challengeHill(hillId: string, warriorId: string): Promise<Hill>
 }
 
 export default class HillService implements IHillService {
@@ -58,10 +58,9 @@ export default class HillService implements IHillService {
     public async challengeHill(
         hillId: string,
         warriorId: string
-    ): Promise<string> {
+    ): Promise<Hill> {
         // TODO handle missing hill
         // TODO handle missing warriors
-        // TODO fetch all warriors for hill
         // TODO store results in db
         // TODO increase age of warriors
         // TODO push bottom warrior off the hill
@@ -78,7 +77,7 @@ export default class HillService implements IHillService {
             warriors
         })
 
-        return warriorId
+        return hill
     }
 }
 
