@@ -43,7 +43,7 @@ describe('Repository', () => {
             expect(close).to.have.been.calledOnce
         })
 
-        it('should handle connection error', () => {
+        it('should handle connection error', async () => {
             const expected = new MongoError('Promise failed')
 
             /* eslint-disable-next-line */
@@ -51,28 +51,26 @@ describe('Repository', () => {
                 callback(expected)
             })
 
-            target
-                .getAll()
-                .then(() =>
-                    assert.fail('Promise should have failed but succeeded')
-                )
-                /* eslint-disable-next-line */
-                .catch((e: any) => expect(e.message).to.deep.equal(expected.message))
+            try {
+                await target.getAll()
+                assert.fail('Promise should have failed but succeeded')
+            } catch (e) {
+                expect(e.message).to.deep.equal(expected.message)
+            }
         })
 
-        it('should handle other connect error', () => {
+        it('should handle other connect error', async () => {
             const expected = new Error('Promise failed')
 
             /* eslint-disable-next-line */
             connect.throws(expected)
 
-            target
-                .getAll()
-                .then(() =>
-                    assert.fail('Promise should have failed but succeeded')
-                )
-                /* eslint-disable-next-line */
-                .catch((e: any) => expect(e.message).to.deep.equal(expected.message))
+            try {
+                await target.getAll()
+                assert.fail('Promise should have failed but succeeded')
+            } catch (e) {
+                expect(e.message).to.deep.equal(expected.message)
+            }
         })
 
         it('should return the result of collection.find', async () => {
