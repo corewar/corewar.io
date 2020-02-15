@@ -10,13 +10,11 @@ import { ITask } from "@simulator/interface/ITask";
 import { IInstruction } from "@simulator/interface/IInstruction";
 import { OpcodeType, ModifierType } from "@simulator/interface/IInstruction";
 import { ModeType } from "@simulator/interface/IOperand";
-import { IParseResult } from "@parser/interface/IParseResult";
 import { IToken, TokenCategory } from "@parser/interface/IToken";
 import { WarriorLoader } from "@simulator/WarriorLoader";
 import TestHelper from "@simulator/tests/unit/TestHelper";
 import { MessageType } from "@simulator/interface/IMessage";
-
-"use strict";
+import IWarrior from "@simulator/interface/IWarrior";
 
 describe("WarriorLoader", () => {
 
@@ -98,21 +96,23 @@ describe("WarriorLoader", () => {
 
     it("Applies metadata to the warrior", () => {
 
-        const parseResult: IParseResult = {
-            tokens: [],
-            messages: [],
-            success: true,
-            metaData: {
-                name: "johnSmith",
-                author: "Joe Bloggs",
-                strategy: "This is a strategy\nit has two lines"
+        const warrior: IWarrior = {
+            source: {
+                tokens: [],
+                messages: [],
+                success: true,
+                metaData: {
+                    name: "johnSmith",
+                    author: "Joe Bloggs",
+                    strategy: "This is a strategy\nit has two lines"
+                }
             }
         };
 
         const core = buildCore(0);
 
         const loader = new WarriorLoader(core, this.publisher);
-        const actual = loader.load(0, parseResult, 0);
+        const actual = loader.load(0, warrior, 0);
 
         expect(actual.name).to.be.equal("johnSmith");
         expect(actual.author).to.be.equal("Joe Bloggs");
@@ -121,15 +121,15 @@ describe("WarriorLoader", () => {
 
     it("Creates a single process for the warrior", () => {
 
-        const parseResult: IParseResult = TestHelper.buildParseResult([]);
+        const warrior = TestHelper.buildWarrior();
         const core = buildCore(0);
 
         const loader = new WarriorLoader(core, this.publisher);
-        const actual = loader.load(0, parseResult, 0);
+        const actual = loader.load(0, warrior, 0);
 
         expect(actual.taskIndex).to.be.equal(0);
         expect(actual.tasks.length).to.be.equal(1);
-        expect(actual.tasks[0].warrior).to.be.equal(actual);
+        expect(actual.tasks[0].instance).to.be.equal(actual);
     });
 
     it("Sets the starting instruction pointer to the load address offset by the value indicated by the ORG instruction", () => {
@@ -149,23 +149,23 @@ describe("WarriorLoader", () => {
                 position: TestHelper.position
             }
         ];
-        const parseResult: IParseResult = TestHelper.buildParseResult(tokens);
+        const warrior = { source: TestHelper.buildParseResult(tokens) };
 
         const core = buildCore(10);
 
         const loader = new WarriorLoader(core, this.publisher);
-        const actual = loader.load(3, parseResult, 0);
+        const actual = loader.load(3, warrior, 0);
 
         expect(actual.tasks[0].instructionPointer).to.be.equal(7);
     });
 
     it("Loads the warrior into the core at the specified address", () => {
 
-        const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const warrior = { source: TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1)) };
         const core = buildCore(30);
 
         const loader = new WarriorLoader(core, this.publisher);
-        loader.load(21, tokens, 0);
+        loader.load(21, warrior, 0);
 
         for (let i = 0; i < 30; i++) {
 
@@ -182,12 +182,12 @@ describe("WarriorLoader", () => {
 
     it("applies wraps addresses so that they are in the range 0-(CORESIZE-1)", () => {
 
-        const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", -1, "$", 8001));
+        const warrior = { source: TestHelper.buildParseResult(instruction("MOV", ".I", "$", -1, "$", 8001)) };
         const core = buildCore(30);
 
         const loader = new WarriorLoader(core, this.publisher);
-        
-        loader.load(21, tokens, 0);
+
+        loader.load(21, warrior, 0);
 
         const instr = core.readAt(null, 21);
 
@@ -198,9 +198,10 @@ describe("WarriorLoader", () => {
     it("Correctly interprets token opcodes into simulator instructions", () => {
 
         const core = buildCore(20);
+        const warrior = { source: TestHelper.buildParseResult(testTokens) };
 
         const loader = new WarriorLoader(core, this.publisher);
-        loader.load(0, TestHelper.buildParseResult(testTokens), 0);
+        loader.load(0, warrior, 0);
 
         expect(core.readAt(null, 0).opcode).to.be.equal(OpcodeType.DAT);
         expect(core.readAt(null, 1).opcode).to.be.equal(OpcodeType.MOV);
@@ -224,9 +225,10 @@ describe("WarriorLoader", () => {
     it("Correctly interprets token modifiers into simulator instructions", () => {
 
         const core = buildCore(20);
+        const warrior = { source: TestHelper.buildParseResult(testTokens) };
 
         const loader = new WarriorLoader(core, this.publisher);
-        loader.load(0, TestHelper.buildParseResult(testTokens), 0);
+        loader.load(0, warrior, 0);
 
         expect(core.readAt(null, 0).modifier).to.be.equal(ModifierType.A);
         expect(core.readAt(null, 1).modifier).to.be.equal(ModifierType.B);
@@ -250,9 +252,10 @@ describe("WarriorLoader", () => {
     it("Correctly interprets token a mode into simulator instructions", () => {
 
         const core = buildCore(20);
+        const warrior = { source: TestHelper.buildParseResult(testTokens) };
 
         const loader = new WarriorLoader(core, this.publisher);
-        loader.load(0, TestHelper.buildParseResult(testTokens), 0);
+        loader.load(0, warrior, 0);
 
         expect(core.readAt(null, 0).aOperand.mode).to.be.equal(ModeType.Direct);
         expect(core.readAt(null, 1).aOperand.mode).to.be.equal(ModeType.Immediate);
@@ -276,9 +279,10 @@ describe("WarriorLoader", () => {
     it("Correctly interprets token a number into simulator instructions", () => {
 
         const core = buildCore(20);
+        const warrior = { source: TestHelper.buildParseResult(testTokens) };
 
         const loader = new WarriorLoader(core, this.publisher);
-        loader.load(0, TestHelper.buildParseResult(testTokens), 0);
+        loader.load(0, warrior, 0);
 
         expect(core.readAt(null, 0).aOperand.address).to.be.equal(0);
         expect(core.readAt(null, 1).aOperand.address).to.be.equal(2);
@@ -302,9 +306,10 @@ describe("WarriorLoader", () => {
     it("Correctly interprets token b mode into simulator instructions", () => {
 
         const core = buildCore(20);
+        const warrior = { source: TestHelper.buildParseResult(testTokens) };
 
         const loader = new WarriorLoader(core, this.publisher);
-        loader.load(0, TestHelper.buildParseResult(testTokens), 0);
+        loader.load(0, warrior, 0);
 
         expect(core.readAt(null, 0).bOperand.mode).to.be.equal(ModeType.Direct);
         expect(core.readAt(null, 1).bOperand.mode).to.be.equal(ModeType.Immediate);
@@ -328,9 +333,10 @@ describe("WarriorLoader", () => {
     it("Correctly interprets token b number into simulator instructions", () => {
 
         const core = buildCore(20);
+        const warrior = { source: TestHelper.buildParseResult(testTokens) };
 
         const loader = new WarriorLoader(core, this.publisher);
-        loader.load(0, TestHelper.buildParseResult(testTokens), 0);
+        loader.load(0, warrior, 0);
 
         expect(core.readAt(null, 0).bOperand.address).to.be.equal(1);
         expect(core.readAt(null, 1).bOperand.address).to.be.equal(3);
@@ -354,11 +360,12 @@ describe("WarriorLoader", () => {
     it("Correctly sets the startAddress property of the warrior", () => {
 
         const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const warrior = { source: tokens };
 
         const core = buildCore(5);
 
         const loader = new WarriorLoader(core, this.publisher);
-        const actual = loader.load(3, tokens, 0);
+        const actual = loader.load(3, warrior, 0);
 
         expect(actual.startAddress).to.be.equal(3);
     });
@@ -368,22 +375,24 @@ describe("WarriorLoader", () => {
         const expected = 73;
 
         const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const warrior = { source: tokens };
 
         const core = buildCore(5);
 
         const loader = new WarriorLoader(core, this.publisher);
-        const actual = loader.load(3, tokens, expected);
+        const actual = loader.load(3, warrior, expected);
 
-        expect(actual.id).to.be.equal(expected);
+        expect(actual.warrior.internalId).to.be.equal(expected);
     });
 
     it("Raises core access events for the newly created task", () => {
 
         const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const warrior = { source: tokens };
         const core = buildCore(0);
 
         const loader = new WarriorLoader(core, this.publisher);
-        const actual = loader.load(0, tokens, 0);
+        const actual = loader.load(0, warrior, 0);
 
         expect(core.setAt).to.be.calledWith(actual.tasks[0], sinon.match.any, sinon.match.any);
     });
@@ -393,17 +402,18 @@ describe("WarriorLoader", () => {
         const expected = 8;
 
         const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const warrior = { source: tokens };
         const core = buildCore(0);
 
         const loader = new WarriorLoader(core, this.publisher);
 
         let actual = null;
-        (core.setAt as sinon.SinonStub).callsFake((task, _, __) => {
+        (core.setAt as sinon.SinonStub).callsFake((task: ITask, _, __) => {
 
-            actual = task.warrior.id;
+            actual = task.instance.warrior.internalId;
         });
 
-        loader.load(0, tokens, expected);
+        loader.load(0, warrior, expected);
 
         expect(actual).to.be.equal(expected);
     });
@@ -413,15 +423,15 @@ describe("WarriorLoader", () => {
         const expectedId = 5;
         const core = buildCore(0);
         const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const warrior = { source: tokens };
         const loader = new WarriorLoader(core, this.publisher);
 
-        loader.load(0, tokens, expectedId);
+        loader.load(0, warrior, expectedId);
 
         expect(this.publisher.queue).to.have.been.calledWith({
             type: MessageType.TaskCount,
             payload: {
                 warriorId: expectedId,
-                warriorData: {},
                 taskCount: 1
             }
         });
@@ -436,11 +446,10 @@ describe("WarriorLoader", () => {
         const expectedId = 5;
         const core = buildCore(0);
         const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const warrior = { source: tokens, data: expectedData };
         const loader = new WarriorLoader(core, this.publisher);
 
-        tokens.data = expectedData;
-
-        loader.load(0, tokens, expectedId);
+        loader.load(0, warrior, expectedId);
 
         expect(this.publisher.queue).to.have.been.calledWith({
             type: MessageType.TaskCount,
@@ -463,14 +472,13 @@ describe("WarriorLoader", () => {
         };
 
         const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const warrior = { source: tokens, data: expected };
         const core = buildCore(0);
-
-        tokens.data = expected;
 
         const loader = new WarriorLoader(core, this.publisher);
 
-        const actual = loader.load(0, tokens, 0);
+        const actual = loader.load(0, warrior, 0);
 
-        expect(actual.data).to.be.deep.equal(expected);
+        expect(actual.warrior.data).to.be.deep.equal(expected);
     });
 });

@@ -49,9 +49,9 @@ describe("Simulator Regression Tests", () => {
         decoder = new Decoder(executive);
         simulator = new Simulator(core, loader, fetcher, decoder, executive, endCondition, optionValidator, publisher);
 
-        warrior = TestHelper.buildWarrior();
+        warrior = TestHelper.buildWarriorInstance();
         task = TestHelper.buildTask();
-        task.warrior = warrior;
+        task.instance = warrior;
         warrior.tasks.push(task);
         (loader.load as sinon.SinonStub).returns([warrior]);
 

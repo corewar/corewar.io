@@ -43,16 +43,16 @@ describe("Fetcher",() => {
             cycle: 0,
             options: options,
             warriorIndex: 0,
-            warriors: []
+            instances: []
         };
     });
 
     it("fetches the next warrior's, next task's, next instruction",() => {
 
-        const expectedWarrior = TestHelper.buildWarrior();
+        const expectedWarrior = TestHelper.buildWarriorInstance();
 
-        state.warriors = [
-            TestHelper.buildWarrior(),
+        state.instances = [
+            TestHelper.buildWarriorInstance(),
             expectedWarrior
         ];
         state.warriorIndex = 1;
@@ -81,7 +81,7 @@ describe("Fetcher",() => {
         const fetcher = new Fetcher();
         const context = fetcher.fetch(state, core);
 
-        expect(context.warrior).to.be.equal(expectedWarrior);
+        expect(context.instance).to.be.equal(expectedWarrior);
         expect(context.task).to.be.equal(expectedTask);
         expect(context.instruction).to.be.equal(expectedInstruction);
 
@@ -92,12 +92,12 @@ describe("Fetcher",() => {
 
     it("advances the correct warrior index, task index and instruction pointer",() => {
 
-        const expectedWarrior = TestHelper.buildWarrior();
+        const expectedWarrior = TestHelper.buildWarriorInstance();
 
-        state.warriors = [
-            TestHelper.buildWarrior(),
+        state.instances = [
+            TestHelper.buildWarriorInstance(),
             expectedWarrior,
-            TestHelper.buildWarrior()
+            TestHelper.buildWarriorInstance()
         ];
         state.warriorIndex = 1;
 
@@ -126,11 +126,11 @@ describe("Fetcher",() => {
 
     it("wraps the warrior index, task index and instruction pointer",() => {
 
-        const expectedWarrior = TestHelper.buildWarrior();
+        const expectedWarrior = TestHelper.buildWarriorInstance();
 
-        state.warriors = [
-            TestHelper.buildWarrior(),
-            TestHelper.buildWarrior(),
+        state.instances = [
+            TestHelper.buildWarriorInstance(),
+            TestHelper.buildWarriorInstance(),
             expectedWarrior
         ];
         state.warriorIndex = 2;
@@ -160,15 +160,15 @@ describe("Fetcher",() => {
 
     it("executes in the context of the next warrior if the current warrior has no tasks", () => {
 
-        const validWarrior = TestHelper.buildWarrior();
+        const validWarrior = TestHelper.buildWarriorInstance();
         validWarrior.tasks = [
             TestHelper.buildTask()
         ]
 
-        const deadWarrior = TestHelper.buildWarrior();
+        const deadWarrior = TestHelper.buildWarriorInstance();
         deadWarrior.tasks = [];
 
-        state.warriors = [
+        state.instances = [
             validWarrior,
             deadWarrior
         ];
@@ -179,17 +179,17 @@ describe("Fetcher",() => {
         const executionContext = fetcher.fetch(state, core);
 
         expect(executionContext.warriorIndex).to.be.equal(0);
-        expect(executionContext.warrior).to.be.equal(validWarrior);
+        expect(executionContext.instance).to.be.equal(validWarrior);
     });
 
     it(".getNextExecution returns new warrior's id and execution address", () => {
 
-        const expectedWarrior = TestHelper.buildWarrior();
+        const expectedWarrior = TestHelper.buildWarriorInstance();
 
-        state.warriors = [
-            TestHelper.buildWarrior(),
+        state.instances = [
+            TestHelper.buildWarriorInstance(),
             expectedWarrior,
-            TestHelper.buildWarrior()
+            TestHelper.buildWarriorInstance()
         ];
         state.warriorIndex = 1;
 
@@ -208,7 +208,7 @@ describe("Fetcher",() => {
         const fetcher = new Fetcher();
         const actual = fetcher.getNextExecution(state);
 
-        expect(actual.warriorId).to.be.equal(expectedWarrior.id);
+        expect(actual.warriorId).to.be.equal(expectedWarrior.warrior.internalId);
         expect(actual.address).to.be.equal(expectedTask.instructionPointer);
     });
 });

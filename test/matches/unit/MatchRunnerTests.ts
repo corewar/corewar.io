@@ -12,6 +12,7 @@ import { ISimulator } from "@simulator/interface/ISimulator";
 import { IPublisher } from "@simulator/interface/IPublisher";
 import { MessageType } from "@simulator/interface/IMessage";
 import { IMatchResultMapper } from "@matches/interface/IMatchResultMapper";
+import { IMatchWarrior } from "@matches/interface/IMatchWarrior";
 
 describe("MatchRunner", () => {
 
@@ -71,7 +72,6 @@ describe("MatchRunner", () => {
         expect(actual.warriors.length).to.be.equal(expected.length);
         for (let i = 0; i < expected.length; i++) {
             expect(actual.warriors[i].warriorMatchId).to.be.equal(expected[i]);
-            expect(actual.warriors[i].source.data.warriorMatchId).to.be.equal(expected[i]);
         }
     });
 
@@ -79,23 +79,26 @@ describe("MatchRunner", () => {
 
         const expectedOptions = {};
 
-        const expectedSource = TestHelper.buildParseResult([]);
+        const expectedWarrior: IMatchWarrior = {
+            source: TestHelper.buildParseResult([])
+        }
 
         const match: IMatch = {
             rules: {
                 rounds: 1,
                 options: expectedOptions
             },
-            warriors: [{
-                source: expectedSource
-            }]
+            warriors: [expectedWarrior]
         };
 
         matchRunner.run(match);
 
         expect(simulator.initialise).to.have.been.calledWith(
             expectedOptions,
-            [expectedSource]);
+            [{
+                source: expectedWarrior.source,
+                data: { warriorMatchId: 0 }
+            }]);
     });
 
     it("records the number of wins for a warrior", () => {

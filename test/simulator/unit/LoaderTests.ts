@@ -8,11 +8,11 @@ import { IWarriorInstance } from "@simulator/interface/IWarriorInstance";
 import { ICore } from "@simulator/interface/ICore";
 import { IRandom } from "@simulator/interface/IRandom";
 import { IWarriorLoader } from "@simulator/interface/IWarriorLoader";
-import { IParseResult } from "@parser/interface/IParseResult";
-import { Warrior } from "@simulator/Warrior";
+import { WarriorInstance } from "@simulator/WarriorInstance";
 import { Loader } from "@simulator/Loader";
 import Defaults from "@simulator/Defaults";
 import TestHelper from "@simulator/tests/unit/TestHelper";
+import IWarrior from "@simulator/interface/IWarrior";
 
 describe("Loader",() => {
 
@@ -35,8 +35,8 @@ describe("Loader",() => {
         };
 
         warriorLoader = {
-            load: (address: number, _: IParseResult): IWarriorInstance => {
-                const warrior = new Warrior();
+            load: (address: number, _: IWarrior): IWarriorInstance => {
+                const warrior = new WarriorInstance();
                 warrior.startAddress = address;
                 return warrior;
             }
@@ -57,13 +57,13 @@ describe("Loader",() => {
     it("Loads each warrior specified into core",() => {
 
         const warriors = [
-            TestHelper.buildParseResult([]),
-            TestHelper.buildParseResult([]),
-            TestHelper.buildParseResult([])
+            TestHelper.buildWarrior(),
+            TestHelper.buildWarrior(),
+            TestHelper.buildWarrior()
         ];
 
         const loadSpy = sinon.stub();
-        loadSpy.returns(new Warrior());
+        loadSpy.returns(new WarriorInstance());
 
         warriorLoader = {
             load: loadSpy
@@ -81,18 +81,18 @@ describe("Loader",() => {
     it("Returns the warriors which have been loaded into core",() => {
 
         const warriorsIn = [
-            TestHelper.buildParseResult([]),
-            TestHelper.buildParseResult([]),
-            TestHelper.buildParseResult([])
+            TestHelper.buildWarrior(),
+            TestHelper.buildWarrior(),
+            TestHelper.buildWarrior()
         ];
 
         const warriorsOut = [
-            new Warrior(),
-            new Warrior(),
-            new Warrior()
+            new WarriorInstance(),
+            new WarriorInstance(),
+            new WarriorInstance()
         ];
 
-        warriorLoader.load = (_: number, result: IParseResult): IWarriorInstance => {
+        warriorLoader.load = (_: number, result: IWarrior): IWarriorInstance => {
             return warriorsOut[warriorsIn.indexOf(result)];
         };
 
@@ -128,8 +128,8 @@ describe("Loader",() => {
             });
 
         const warriors = [
-            TestHelper.buildParseResult([]),
-            TestHelper.buildParseResult([])
+            TestHelper.buildWarrior(),
+            TestHelper.buildWarrior()
         ];
 
         core.wrap = wrapTo(30);
@@ -155,9 +155,9 @@ describe("Loader",() => {
             });
 
         const warriors = [
-            TestHelper.buildParseResult([]),
-            TestHelper.buildParseResult([]),
-            TestHelper.buildParseResult([])
+            TestHelper.buildWarrior(),
+            TestHelper.buildWarrior(),
+            TestHelper.buildWarrior()
         ];
 
         core.wrap = wrapTo(30);
@@ -184,9 +184,9 @@ describe("Loader",() => {
             });
 
         const warriors = [
-            TestHelper.buildParseResult([]),
-            TestHelper.buildParseResult([]),
-            TestHelper.buildParseResult([])
+            TestHelper.buildWarrior(),
+            TestHelper.buildWarrior(),
+            TestHelper.buildWarrior()
         ];
 
         core.wrap = wrapTo(30);
@@ -213,9 +213,9 @@ describe("Loader",() => {
             });
 
         const warriors = [
-            TestHelper.buildParseResult([]),
-            TestHelper.buildParseResult([]),
-            TestHelper.buildParseResult([])
+            TestHelper.buildWarrior(),
+            TestHelper.buildWarrior(),
+            TestHelper.buildWarrior()
         ];
 
         core.wrap = wrapTo(30);
@@ -242,9 +242,9 @@ describe("Loader",() => {
             });
 
         const warriors = [
-            TestHelper.buildParseResult([]),
-            TestHelper.buildParseResult([]),
-            TestHelper.buildParseResult([])
+            TestHelper.buildWarrior(),
+            TestHelper.buildWarrior(),
+            TestHelper.buildWarrior()
         ];
 
         core.wrap = wrapTo(30);
@@ -261,13 +261,13 @@ describe("Loader",() => {
     it("Assigns a unique id to each warrior", () => {
 
         const warriors = [
-            TestHelper.buildParseResult([]),
-            TestHelper.buildParseResult([]),
-            TestHelper.buildParseResult([])
+            TestHelper.buildWarrior(),
+            TestHelper.buildWarrior(),
+            TestHelper.buildWarrior()
         ];
 
         const loadSpy = sinon.stub();
-        loadSpy.returns(new Warrior());
+        loadSpy.returns(new WarriorInstance());
 
         warriorLoader = {
             load: loadSpy

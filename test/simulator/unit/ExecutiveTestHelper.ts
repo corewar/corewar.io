@@ -18,7 +18,7 @@ interface IExecutiveTestConfig {
 }
 
 function buildWarrior(testConfig: IExecutiveTestConfig): IWarriorInstance {
-    const warrior = TestHelper.buildWarrior(7, { data: "true" });
+    const warrior = TestHelper.buildWarriorInstance(7, { data: "true" });
     warrior.tasks = [];
     for (let i = 0; i < (testConfig.taskCount || 3); i++) {
         warrior.tasks.push(TestHelper.buildTask());
@@ -91,7 +91,7 @@ export function buildContext(testConfig: IExecutiveTestConfig): IExecutionContex
         operands: operands,
         task: warrior.tasks[taskIndex],
         taskIndex: taskIndex,
-        warrior: warrior,
+        instance: warrior,
         warriorIndex: 1
     };
 }

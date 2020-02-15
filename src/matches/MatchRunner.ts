@@ -35,14 +35,16 @@ export class MatchRunner implements IMatchRunner {
 
         for (let i = 0; i < match.warriors.length; i++) {
             const warrior = match.warriors[i];
-            warrior.source.data.warriorMatchId = i;
             warrior.warriorMatchId = i;
             warrior.wins = 0;
         }
 
         for (let i = 0; i < match.rules.rounds; i++) {
 
-            this.simulator.initialise(match.rules.options, match.warriors.map(w => w.source));
+            this.simulator.initialise(match.rules.options, match.warriors.map(w => ({ 
+                source: w.source,
+                data: { warriorMatchId: w.warriorMatchId }
+            })));
             const roundResult = this.simulator.run();
 
             if (!roundResult) {

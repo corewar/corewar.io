@@ -5,23 +5,21 @@ import { IInstruction, OpcodeType, ModifierType } from "@simulator/interface/IIn
 import { IOperand, ModeType } from "@simulator/interface/IOperand";
 
 import { ITokenStream } from "@parser/interface/ITokenStream";
-import { IParseResult } from "@parser/interface/IParseResult";
 import { TokenCategory } from "@parser/interface/IToken";
 import { IParseInstruction } from "@parser/interface/IParseInstruction";
 import { IParseOperand } from "@parser/interface/IParseOperand";
 
 import { TokenStream } from "@parser/TokenStream";
-import { Warrior } from "@simulator/Warrior";
+import { WarriorInstance } from "@simulator/WarriorInstance";
+import IWarrior from "@simulator/interface/IWarrior";
 import { IPublisher } from "@simulator/interface/IPublisher";
 import { MessageType } from "@simulator/interface/IMessage";
-
-import * as clone from "clone";
 
 export class WarriorLoader implements IWarriorLoader {
 
     private address: number;
     private stream: ITokenStream;
-    private warrior: IWarriorInstance;
+    private instance: IWarriorInstance;
 
     private core: ICore;
     private publisher: IPublisher;
@@ -32,24 +30,25 @@ export class WarriorLoader implements IWarriorLoader {
         this.publisher = publisher;
     }
 
-    public load(address: number, result: IParseResult, id: number): IWarriorInstance {
+    public load(address: number, warrior: IWarrior, id: number): IWarriorInstance {
 
-        this.stream = new TokenStream(result.tokens, result.messages);
+        const { source } = warrior;
+        this.stream = new TokenStream(source.tokens, source.messages);
         this.address = address;
 
-        this.warrior = new Warrior();
+        this.instance = new WarriorInstance();
 
-        this.warrior.id = id;
-        this.warrior.name = result.metaData.name;
-        this.warrior.author = result.metaData.author;
-        this.warrior.strategy = result.metaData.strategy;
-        this.warrior.data = clone(result.data);
+        this.instance.warrior = warrior;
+        this.instance.warrior.internalId = id;
+        this.instance.name = source.metaData.name;
+        this.instance.author = source.metaData.author;
+        this.instance.strategy = source.metaData.strategy;
         
         this.loadProcess(address);
 
         this.readInstructions();
 
-        return this.warrior;
+        return this.instance;
     }
 
     private readInstructions(): void {
@@ -59,12 +58,12 @@ export class WarriorLoader implements IWarriorLoader {
 
             if (next.category === TokenCategory.Opcode) {
 
-                this.core.setAt(this.warrior.tasks[0], this.address, this.readInstruction());
+                this.core.setAt(this.instance.tasks[0], this.address, this.readInstruction());
                 this.address += 1;
 
             } else if (next.category === TokenCategory.Preprocessor) {
 
-                this.warrior.tasks[0].instructionPointer = this.readOrg();
+                this.instance.tasks[0].instructionPointer = this.readOrg();
 
             } else {
 
@@ -190,20 +189,20 @@ export class WarriorLoader implements IWarriorLoader {
 
     private loadProcess(startAddress: number): void {
 
-        this.warrior.tasks.push({
+        this.instance.tasks.push({
             instructionPointer: startAddress,
-            warrior: this.warrior
+            instance: this.instance
         });
         
-        this.warrior.startAddress = startAddress;
-        this.warrior.taskIndex = 0;
+        this.instance.startAddress = startAddress;
+        this.instance.taskIndex = 0;
 
         const payload =  {
-            warriorId: this.warrior.id,
+            warriorId: this.instance.warrior.internalId,
             taskCount: 1
         };
-        if (this.warrior.data) {
-            payload["warriorData"] = this.warrior.data;
+        if (this.instance.warrior.data) {
+            payload["warriorData"] = this.instance.warrior.data;
         }
 
         this.publisher.queue({

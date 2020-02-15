@@ -32,15 +32,15 @@ describe("Executive", () => {
         it("removes the current task from the queue when " + TestHelper.instructionToString(context.instruction) + " is executed", () => {
 
             const payload = {
-                warriorId: context.warrior.id,
+                warriorId: context.instance.warrior.internalId,
                 warriorData: { data: "true" },
                 taskCount: expectation.taskCount
             };
 
             this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context]);
 
-            expect(context.warrior.tasks.length).to.be.equal(expectation.taskCount);
-            expect(context.warrior.taskIndex).to.be.equal(expectation.taskIndex);
+            expect(context.instance.tasks.length).to.be.equal(expectation.taskCount);
+            expect(context.instance.taskIndex).to.be.equal(expectation.taskIndex);
 
             expect(publisher.queue).to.have.been.calledWith({
                 type: MessageType.TaskCount,
@@ -61,7 +61,7 @@ describe("Executive", () => {
         it("queues warrior dead message when warrior task count reduced to zero", () => {
 
             const payload = {
-                warriorId: context.warrior.id,
+                warriorId: context.instance.warrior.internalId,
                 warriorData: { data: "true" },
                 taskCount: 0
             };
@@ -344,20 +344,20 @@ describe("Executive", () => {
             this.executive.initialise(expectation);
             this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context]);
 
-            expect(context.warrior.tasks.length).to.be.equal(expectation.taskCount);
-            expect(context.warrior.taskIndex).to.be.equal(expectation.taskIndex);
-            expect(context.warrior.tasks[context.warrior.taskIndex].instructionPointer).to.be.equal(0);
+            expect(context.instance.tasks.length).to.be.equal(expectation.taskCount);
+            expect(context.instance.taskIndex).to.be.equal(expectation.taskIndex);
+            expect(context.instance.tasks[context.instance.taskIndex].instructionPointer).to.be.equal(0);
 
             if (expectation.taskCount === expectation.maxTasks) {
                 return;
             }
 
-            expect(context.warrior.tasks[0].instructionPointer).to.be.equal(13);
+            expect(context.instance.tasks[0].instructionPointer).to.be.equal(13);
 
             expect(publisher.queue).to.have.been.calledWith({
                 type: MessageType.TaskCount,
                 payload: {
-                    warriorId: context.warrior.id,
+                    warriorId: context.instance.warrior.internalId,
                     warriorData: { data: "true" },
                     taskCount: expectation.taskCount
                 }
@@ -374,7 +374,7 @@ describe("Executive", () => {
             this.executive.commandTable[OpcodeType.NOP].apply(this.executive, [context]);
 
             expect(context.core.setAt).not.to.have.been.called;
-            expect(context.warrior.tasks.length).to.be.equal(3);
+            expect(context.instance.tasks.length).to.be.equal(3);
         });
     });
 });

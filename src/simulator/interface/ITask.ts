@@ -2,6 +2,6 @@
 
 export interface ITask {
 
-    warrior: IWarriorInstance;
+    instance: IWarriorInstance;
     instructionPointer: number;
 }

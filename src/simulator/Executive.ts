@@ -42,14 +42,14 @@ export class Executive implements IExecutive {
         this.maxTasks = options.maxTasks;
     }
 
-    private publishTaskCount(warrior: IWarriorInstance, taskCount: number): void {
+    private publishTaskCount(instance: IWarriorInstance, taskCount: number): void {
 
         const payload = {
-            warriorId: warrior.id,
+            warriorId: instance.warrior.internalId,
             taskCount
         };
-        if (warrior.data) {
-            payload["warriorData"] = warrior.data;
+        if (instance.warrior.data) {
+            payload["warriorData"] = instance.warrior.data;
         }
 
         this.publisher.queue({
@@ -68,12 +68,12 @@ export class Executive implements IExecutive {
     private dat(context: IExecutionContext): void {
         //Remove current task from the queue
         const ti = context.taskIndex;
-        context.warrior.tasks.splice(ti, 1);
+        context.instance.tasks.splice(ti, 1);
         // wrap the warrior task index to cater for the event when
         // we just chomped off the last task
-        context.warrior.taskIndex = ti % context.warrior.tasks.length;
+        context.instance.taskIndex = ti % context.instance.tasks.length;
 
-        this.publishTaskCount(context.warrior, context.warrior.tasks.length);
+        this.publishTaskCount(context.instance, context.instance.tasks.length);
     }
 
     private mov(context: IExecutionContext): void {
@@ -294,15 +294,15 @@ export class Executive implements IExecutive {
 
     private spl(context: IExecutionContext): void {
 
-        if (context.warrior.tasks.length < this.maxTasks) {
+        if (context.instance.tasks.length < this.maxTasks) {
 
-            context.warrior.tasks.splice(context.warrior.taskIndex, 0, {
+            context.instance.tasks.splice(context.instance.taskIndex, 0, {
                 instructionPointer: context.core.wrap(context.aInstruction.address),
-                warrior: context.warrior
+                instance: context.instance
             });
-            context.warrior.taskIndex = (context.warrior.taskIndex + 1) % context.warrior.tasks.length;
+            context.instance.taskIndex = (context.instance.taskIndex + 1) % context.instance.tasks.length;
 
-            this.publishTaskCount(context.warrior, context.warrior.tasks.length);
+            this.publishTaskCount(context.instance, context.instance.tasks.length);
         }
     }
 

@@ -1,9 +1,8 @@
 ﻿import { ITask } from "@simulator/interface/ITask";
+import IWarrior from "./IWarrior";
 
 export interface IWarriorInstance {
 
-    id: number;
-    
     name: string;
     author: string;
     strategy: string;
@@ -13,6 +12,5 @@ export interface IWarriorInstance {
 
     startAddress: number;
 
-    /* eslint-disable-next-line */
-    data?: any;
+    warrior: IWarrior;
 } 

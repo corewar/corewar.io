@@ -2,9 +2,9 @@
 import { IRandom } from "@simulator/interface/IRandom";
 import { ICore } from "@simulator/interface/ICore";
 import { IWarriorLoader } from "@simulator/interface/IWarriorLoader";
-import { IParseResult } from "@parser/interface/IParseResult";
 import { IWarriorInstance } from "@simulator/interface/IWarriorInstance";
 import { IOptions } from "@simulator/interface/IOptions";
+import IWarrior from "@simulator/interface/IWarrior";
 
 export class Loader implements ILoader {
 
@@ -19,35 +19,35 @@ export class Loader implements ILoader {
         this.core = core;
     }
 
-    public load(warriors: IParseResult[], options: IOptions): IWarriorInstance[] {
+    public load(warriors: IWarrior[], options: IOptions): IWarriorInstance[] {
 
         const result: IWarriorInstance[] = [];
         let id = 0;
 
-        warriors.forEach((w: IParseResult) => {
+        warriors.forEach((warrior: IWarrior) => {
 
             const address = this.getValidAddress(result, options);
 
-            result.push(this.warriorLoader.load(address, w, id++));
+            result.push(this.warriorLoader.load(address, warrior, id++));
         });
 
         return result;
     }
 
-    private getValidAddress(warriors: IWarriorInstance[], options: IOptions): number {
+    private getValidAddress(instances: IWarriorInstance[], options: IOptions): number {
 
         /* eslint-disable-next-line */
         while (true) {
 
             const address = this.random.get(options.coresize);
 
-            if (this.isValidAddress(address, warriors, options)) {
+            if (this.isValidAddress(address, instances, options)) {
                 return address;
             }
         }
     }
 
-    private isValidAddress(address: number, warriors: IWarriorInstance[], options: IOptions): boolean {
+    private isValidAddress(address: number, instances: IWarriorInstance[], options: IOptions): boolean {
 
         let valid = true;
         const core = this.core;
@@ -55,7 +55,7 @@ export class Loader implements ILoader {
         const instructionLimitLess1 = options.instructionLimit - 1;
         const minSeparationLess1 = options.minSeparation - 1;
 
-        warriors.forEach((w: IWarriorInstance) => {
+        instances.forEach((w: IWarriorInstance) => {
 
             let s0 = address;
             let f0 = address + instructionLimitLess1;

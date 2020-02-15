@@ -10,6 +10,8 @@ import { IPublisher } from "@simulator/interface/IPublisher";
 import { IOptions } from "@simulator/interface/IOptions";
 import { IPublishProvider } from "@simulator/interface/IPublishProvider";
 import { ICoreLocation } from "@simulator/interface/ICoreLocation";
+import IWarrior from "@simulator/interface/IWarrior";
+import { MessageType } from "@simulator/interface/IMessage";
 
 import { IMatch } from "@matches/interface/IMatch";
 import { IMatchResult } from "@matches/interface/IMatchResult";
@@ -66,7 +68,6 @@ import { HillMatchRunner } from "@matches/HillMatchRunner";
 import { BenchmarkRunner } from "@matches/BenchmarkRunner";
 
 import * as clone from "clone";
-import { MessageType } from "@simulator/interface/IMessage";
 
 class Api {
 
@@ -154,13 +155,13 @@ class Api {
             new HillResultMapper());
     }
 
-    public initialiseSimulator(options: IOptions, parseResults: IParseResult[], messageProvider: IPublishProvider): void {
+    public initialiseSimulator(options: IOptions, warriors: IWarrior[], messageProvider: IPublishProvider): void {
 
         this.publisher.setPublishProvider(messageProvider);
 
         this.executive.initialise(options);
 
-        this.simulator.initialise(options, parseResults);
+        this.simulator.initialise(options, warriors);
     }
 
     public step(steps?: number): IRoundResult | null {

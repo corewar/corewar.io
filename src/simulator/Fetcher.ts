@@ -9,7 +9,7 @@ import { INextExecutionContext } from "@simulator/interface/INextExecutionContex
 interface IFetchContext {
     warriorIndex: number;
     taskIndex: number;
-    warrior: IWarriorInstance;
+    instance: IWarriorInstance;
     task: ITask;
 }
 
@@ -18,20 +18,20 @@ export class Fetcher implements IFetcher {
     private getNextFetchContext(state: IState): IFetchContext {
         
         let wi = state.warriorIndex;
-        let warrior = state.warriors[wi];
+        let instance = state.instances[wi];
 
-        while (this.isDead(warrior)) {
-            wi = (wi + 1) % state.warriors.length
-            warrior = state.warriors[wi]
+        while (this.isDead(instance)) {
+            wi = (wi + 1) % state.instances.length
+            instance = state.instances[wi]
         }
 
-        const ti = warrior.taskIndex;
-        const task = warrior.tasks[ti];
+        const ti = instance.taskIndex;
+        const task = instance.tasks[ti];
 
         return {
             warriorIndex: wi,
             taskIndex: ti,
-            warrior: warrior,
+            instance: instance,
             task: task
         };
     }
@@ -41,7 +41,7 @@ export class Fetcher implements IFetcher {
         const context = this.getNextFetchContext(state);
 
         return {
-            warriorId: context.warrior.id,
+            warriorId: context.instance.warrior.internalId,
             address: context.task.instructionPointer
         };
     }
@@ -50,8 +50,8 @@ export class Fetcher implements IFetcher {
 
         const c = this.getNextFetchContext(state);
 
-        state.warriorIndex = (c.warriorIndex + 1) % state.warriors.length;
-        c.warrior.taskIndex = (c.taskIndex + 1) % c.warrior.tasks.length;
+        state.warriorIndex = (c.warriorIndex + 1) % state.instances.length;
+        c.instance.taskIndex = (c.taskIndex + 1) % c.instance.tasks.length;
 
         const ip = c.task.instructionPointer;
         const instruction = core.executeAt(c.task, ip);
@@ -64,7 +64,7 @@ export class Fetcher implements IFetcher {
             taskIndex: c.taskIndex,
             task: c.task,
             warriorIndex: c.warriorIndex,
-            warrior: c.warrior,
+            instance: c.instance,
             operands: []
         };
     }

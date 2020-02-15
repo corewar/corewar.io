@@ -27,5 +27,5 @@ export interface IExecutionContext {
     task?: ITask;
 
     warriorIndex?: number;
-    warrior?: IWarriorInstance;
+    instance?: IWarriorInstance;
 }

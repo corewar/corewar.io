@@ -121,6 +121,11 @@ declare module "corewar" {
         tokens: IToken[];
         messages: IMessage[];
         success: boolean;
+    }
+
+    interface IWarrior {
+
+        source: IParseResult;
         /* eslint-disable-next-line */
         data?: any;
     }
@@ -220,7 +225,7 @@ declare module "corewar" {
     }
 
     export namespace corewar {
-        function initialiseSimulator(options: IOptions, parseResults: IParseResult[], messageProvider: IPublishProvider): void;
+        function initialiseSimulator(options: IOptions, warriors: IWarrior[], messageProvider: IPublishProvider): void;
         function step(steps?: number): IRoundResult | null;
         function run(): IRoundResult;
         function parse(redcode: string): IParseResult;

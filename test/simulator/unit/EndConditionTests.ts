@@ -19,20 +19,20 @@ describe("EndCondition", () => {
 
         return {
             instructionPointer: 0,
-            warrior: warrior
+            instance: warrior
         };
     }
 
     function buildWarrior(): IWarriorInstance {
 
         const warrior = {
-            id: 0,
             author: "",
             name: "",
             startAddress: 0,
             strategy: "",
             taskIndex: 0,
-            tasks: []
+            tasks: [],
+            warrior: { source: TestHelper.buildParseResult([]) }
         };
 
         warrior.tasks.push(buildTask(warrior));
@@ -47,7 +47,7 @@ describe("EndCondition", () => {
             cycle: 0,
             options: Object.assign({}, Defaults),
             warriorIndex: 0,
-            warriors: [
+            instances: [
                 buildWarrior(),
                 buildWarrior()
             ]
@@ -110,10 +110,10 @@ describe("EndCondition", () => {
 
         const state = buildState();
 
-        state.warriors[1].id = expectedId;
-        state.warriors[1].data = expectedData;
-        
-        state.warriors[0].tasks = [];
+        state.instances[1].warrior.internalId = expectedId;
+        state.instances[1].warrior.data = expectedData;
+
+        state.instances[0].tasks = [];
 
         const endCondition = new EndCondition(publisher);
 
@@ -129,7 +129,7 @@ describe("EndCondition", () => {
 
         const state = buildState();
 
-        state.warriors.pop();
+        state.instances.pop();
 
         const endCondition = new EndCondition(publisher);
 
@@ -142,8 +142,8 @@ describe("EndCondition", () => {
 
         const state = buildState();
 
-        state.warriors.pop();
-        state.warriors[0].tasks = [];
+        state.instances.pop();
+        state.instances[0].tasks = [];
 
         const endCondition = new EndCondition(publisher);
 
@@ -185,9 +185,9 @@ describe("EndCondition", () => {
 
         const state = buildState();
 
-        state.warriors[0].id = 5;
-        state.warriors[1].id = 7;
-        state.warriors[0].tasks = [];
+        state.instances[0].warrior.internalId = 5;
+        state.instances[1].warrior.internalId = 7;
+        state.instances[0].tasks = [];
 
         const endCondition = new EndCondition(publisher);
 
@@ -218,10 +218,10 @@ describe("EndCondition", () => {
             bar: (x: number): number => x + 1
         };
 
-        state.warriors[0].id = 5;
-        state.warriors[1].id = 7;
-        state.warriors[1].data = expected;
-        state.warriors[0].tasks = [];
+        state.instances[0].warrior.internalId = 5;
+        state.instances[1].warrior.internalId = 7;
+        state.instances[1].warrior.data = expected;
+        state.instances[0].tasks = [];
 
         const endCondition = new EndCondition(publisher);
 
@@ -241,8 +241,8 @@ describe("EndCondition", () => {
 
         const state = buildState();
 
-        state.warriors.pop();
-        state.warriors[0].tasks = [];
+        state.instances.pop();
+        state.instances[0].tasks = [];
 
         const endCondition = new EndCondition(publisher);
 

@@ -6,5 +6,5 @@ export interface IState {
     options: IOptions;
     cycle: number;
     warriorIndex: number;
-    warriors: IWarriorInstance[];
+    instances: IWarriorInstance[];
 }
