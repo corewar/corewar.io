@@ -17,7 +17,6 @@ import { IRules } from "@matches/interface/IRules";
 import { IMatchResult } from "@matches/interface/IMatchResult";
 import { IMatchRunner } from "@matches/interface/IMatchRunner";
 
-import { IHill } from "@matches/interface/IHill";
 import { IHillRunner } from "@matches/interface/IHillRunner";
 import { IHillResult } from "@matches/interface/IHillResult";
 import { IHillWarrior } from "@matches/interface/IHillWarrior";
@@ -201,18 +200,18 @@ class Api {
         return clone(this.matchRunner.run(rules, warriors));
     }
 
-    public runHill(hill: IHill, messageProvider: IPublishProvider): IHillResult {
+    public runHill(rules: IRules, warriors: IWarrior[], messageProvider: IPublishProvider): IHillResult {
 
         this.publisher.setPublishProvider(messageProvider);
 
-        return clone(this.hillRunner.run(hill));
+        return clone(this.hillRunner.run(rules, warriors));
     }
 
-    public runBenchmark(warrior: IHillWarrior, benchmark: IHill, messageProvider: IPublishProvider): IHillResult {
+    public runBenchmark(warrior: IHillWarrior, rules: IRules, warriors: IWarrior[], messageProvider: IPublishProvider): IHillResult {
 
         this.publisher.setPublishProvider(messageProvider);
 
-        return clone(this.benchmarkRunner.run(warrior, benchmark));
+        return clone(this.benchmarkRunner.run(warrior, rules, warriors));
     }
 }
 

@@ -1,11 +1,11 @@
-import { IHill } from "@matches/interface/IHill";
 import { IHillResult } from "@matches/interface/IHillResult";
 import { IHillResultMapper } from "@matches/interface/IHillResultMapper";
 import { IPublisher } from "@simulator/interface/IPublisher";
 import { MessageType } from "@simulator/interface/IMessage";
-import { IHillWarrior } from "@matches/interface/IHillWarrior";
 import { IBenchmarkRunner } from "@matches/interface/IBenchmarkRunner";
-import { IMatchRunner } from "./interface/IMatchRunner";
+import { IMatchRunner } from "@matches/interface/IMatchRunner";
+import IWarrior from "@simulator/interface/IWarrior";
+import { IRules } from "@matches/interface/IRules";
 
 export class BenchmarkRunner implements IBenchmarkRunner {
 
@@ -32,20 +32,30 @@ export class BenchmarkRunner implements IBenchmarkRunner {
         this.publisher.publish();
     }
 
-    public run(warrior: IHillWarrior, benchmark: IHill): IHillResult {
+    public run(warrior: IWarrior, rules: IRules, warriors: IWarrior[]): IHillResult {
 
         const matchResults = [];
 
-        for (const warriorB of benchmark.warriors) {
+        let i: number;
+        for (i = 0; i < warriors.length; i++) {
+            if (typeof (warriors[i].internalId) === "undefined") {
+                warriors[i].internalId = i;
+            }
+        }
+        if (typeof (warrior.internalId) === "undefined") {
+            warrior.internalId = i;
+        }
+
+        for (const warriorB of warriors) {
             matchResults.push(
-                this.matchRunner.run(benchmark.rules, [warrior, warriorB])
+                this.matchRunner.run(rules, [warrior, warriorB])
             );
         }
 
-        const hillResult = this.hillResultMapper.map(benchmark, matchResults);
+        const hillResult = this.hillResultMapper.map([warrior, ...warriors], matchResults);
 
         const result = {
-            warriors: hillResult.warriors.filter(x => x.source === warrior.source)
+            warriors: hillResult.warriors.filter(x => x.warrior.internalId === warrior.internalId)
         }
 
         this.publishEnd(result);

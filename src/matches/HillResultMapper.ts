@@ -1,19 +1,18 @@
 import { IHillResultMapper } from "@matches/interface/IHillResultMapper";
 import { IHillResult } from "@matches/interface/IHillResult";
 import { IMatchResult } from "@matches/interface/IMatchResult";
-import { IHill } from "@matches/interface/IHill";
-import { IHillWarrior } from "@matches/interface/IHillWarrior";
 import { IHillWarriorResult } from "@matches/interface/IHillWarriorResult";
+import IWarrior from "@simulator/interface/IWarrior";
 
 export class HillResultMapper implements IHillResultMapper {
 
-    private mapMatchResultsToWarriors(warrior: IHillWarrior, allResults: IMatchResult[]): IHillWarriorResult {
+    private mapMatchResultsToWarriors(warrior: IWarrior, allResults: IMatchResult[]): IHillWarriorResult {
 
         const matches = allResults.filter(
-            x => !!x.results.find(y => y.warrior.source === warrior.source)
+            x => !!x.results.find(y => y.warrior.internalId === warrior.internalId)
         );
         const results = matches.flatMap(
-            x => x.results.filter(y => y.warrior.source === warrior.source)
+            x => x.results.filter(y => y.warrior.internalId === warrior.internalId)
         );
 
         const won = results.reduce((accum, result) => accum + result.won, 0) / results.length;
@@ -31,9 +30,9 @@ export class HillResultMapper implements IHillResultMapper {
         };
     }
 
-    public map(hill: IHill, allResults: IMatchResult[]): IHillResult {
+    public map(warriors: IWarrior[], allResults: IMatchResult[]): IHillResult {
 
-        const warriorResults = hill.warriors.map(warrior => this.mapMatchResultsToWarriors(warrior, allResults));
+        const warriorResults = warriors.map(warrior => this.mapMatchResultsToWarriors(warrior, allResults));
 
         const sortedResults = warriorResults.sort((a, b) => b.score - a.score);
         

@@ -196,12 +196,6 @@ declare module "corewar" {
         source: IParseResult;
     }
 
-    interface IHill {
-
-        rules: IRules;
-        warriors: IHillWarrior[];
-    }
-
     interface IHillWarriorResult {
     
         warrior: IWarrior;
@@ -227,7 +221,7 @@ declare module "corewar" {
         function getWithInfoAt(address: number): ICoreLocation;
         function republish(): void;
         function runMatch(rules: IRules, warriors: IWarrior[], messageProvider: IPublishProvider): IMatchResult;
-        function runHill(hill: IHill, messageProvider: IPublishProvider): IHillResult;
-        function runBenchmark(warrior: IHillWarrior, benchmark: IHill, messageProvider: IPublishProvider): IHillResult;
+        function runHill(rules: IRules, warriors: IWarrior[], messageProvider: IPublishProvider): IHillResult;
+        function runBenchmark(warrior: IHillWarrior, rules: IRules, warriors: IWarrior[], messageProvider: IPublishProvider): IHillResult;
     }
 }
