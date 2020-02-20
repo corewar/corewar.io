@@ -4,21 +4,21 @@ import { IHillResult } from "@matches/interface/IHillResult";
 import { IHillResultMapper } from "@matches/interface/IHillResultMapper";
 import { IPublisher } from "@simulator/interface/IPublisher";
 import { MessageType } from "@simulator/interface/IMessage";
-import { IHillMatchRunner } from "@matches/interface/IHillMatchRunner";
+import { IMatchRunner } from "./interface/IMatchRunner";
 
 export class HillRunner implements IHillRunner {
 
-    private hillMatchRunner: IHillMatchRunner;
+    private matchRunner: IMatchRunner;
     private hillResultMapper: IHillResultMapper;
     private publisher: IPublisher;
 
     constructor(
         publisher: IPublisher,
-        hillMatchRunner: IHillMatchRunner,
+        matchRunner: IMatchRunner,
         hillResultMapper: IHillResultMapper) {
 
         this.publisher = publisher;
-        this.hillMatchRunner = hillMatchRunner;
+        this.matchRunner = matchRunner;
         this.hillResultMapper = hillResultMapper;
     }
 
@@ -42,7 +42,7 @@ export class HillRunner implements IHillRunner {
                 }
 
                 matchResults.push(
-                    this.hillMatchRunner.run(hill.rules, warriorA, warriorB)
+                    this.matchRunner.run(hill.rules, [warriorA, warriorB])
                 );
             }
         }

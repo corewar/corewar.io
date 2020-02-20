@@ -1,19 +1,21 @@
 import { IMatchResultMapper } from "@matches/interface/IMatchResultMapper";
 import { IMatchResult } from "@matches/interface/IMatchResult";
-import { IMatch } from "@matches/interface/IMatch";
 import { IMatchWarriorResult } from "@matches/interface/IMatchWarriorResult";
+import { IRoundResult } from "@simulator/interface/IRoundResult";
+import IWarrior from "@simulator/interface/IWarrior";
 
 export class MatchResultMapper implements IMatchResultMapper {
 
-    private getWarriorResult(warrior, match): IMatchWarriorResult {
+    private getWarriorResult(warrior: IWarrior, roundResults: IRoundResult[]): IMatchWarriorResult {
 
-        const rounds = match.rules.rounds;
+        const rounds = roundResults.length;
 
-        const won = warrior.wins;
-        const lost: number = match.warriors
-            .filter(w => warrior.warriorMatchId != w.warriorMatchId)
-            .map(w => w.wins)
-            .reduce((t, w) => t + w, 0);
+        const won = roundResults
+            .filter(r => r.outcome === "WIN" && r.winnerId === warrior.internalId)
+            .length;
+        const lost = roundResults
+            .filter(r => r.outcome === "WIN" && r.winnerId !== warrior.internalId)
+            .length;
         const drawn = rounds - won - lost;
 
         const winpoints = won / rounds * 100 * 3;
@@ -21,7 +23,7 @@ export class MatchResultMapper implements IMatchResultMapper {
         const losepoints = lost / rounds * 100 * 3;
 
         return {
-            source: warrior.source,
+            warrior,
             won,
             drawn,
             lost,
@@ -30,11 +32,11 @@ export class MatchResultMapper implements IMatchResultMapper {
         };
     }
 
-    public map(match: IMatch): IMatchResult {
+    public map(warriors: IWarrior[], roundResults: IRoundResult[]): IMatchResult {
 
         return {
-            rounds: match.rules.rounds,
-            warriors: match.warriors.map(w => this.getWarriorResult(w, match))
+            rounds: roundResults.length,
+            results: warriors.map(warrior => this.getWarriorResult(warrior, roundResults))
         };
     }
 }

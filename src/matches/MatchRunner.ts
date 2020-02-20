@@ -1,10 +1,11 @@
 import { IMatchRunner } from "@matches/interface/IMatchRunner";
-import { IMatch } from "@matches/interface/IMatch";
+import IWarrior from "@simulator/interface/IWarrior";
 import { ISimulator } from "@simulator/interface/ISimulator";
 import { IPublisher } from "@simulator/interface/IPublisher";
 import { MessageType } from "@simulator/interface/IMessage";
 import { IMatchResultMapper } from "@matches/interface/IMatchResultMapper";
 import { IMatchResult } from "@matches/interface/IMatchResult";
+import { IRules } from "./interface/IRules";
 
 export class MatchRunner implements IMatchRunner {
 
@@ -31,36 +32,26 @@ export class MatchRunner implements IMatchRunner {
         this.publisher.publish();
     }
 
-    run(match: IMatch): IMatchResult {
+    public run(rules: IRules, warriors: IWarrior[]): IMatchResult {
 
-        for (let i = 0; i < match.warriors.length; i++) {
-            const warrior = match.warriors[i];
-            warrior.warriorMatchId = i;
-            warrior.wins = 0;
+        for (let i = 0; i < warriors.length; i++) {
+            warriors[i].internalId = i;
         }
 
-        for (let i = 0; i < match.rules.rounds; i++) {
+        const roundResults = [];
+        for (let i = 0; i < rules.rounds; i++) {
 
-            this.simulator.initialise(match.rules.options, match.warriors.map(w => ({ 
-                source: w.source,
-                data: { warriorMatchId: w.warriorMatchId }
-            })));
+            this.simulator.initialise(rules.options, warriors);
             const roundResult = this.simulator.run();
 
             if (!roundResult) {
                 throw new Error("Round ended without returning a result");
             }
 
-            if (roundResult.outcome === "WIN") {
-
-                const winner = match.warriors
-                    .find(w => w.warriorMatchId === roundResult.winnerData.warriorMatchId);
-
-                winner.wins += 1;
-            }
+            roundResults.push(roundResult);
         }
 
-        const result = this.matchResultMapper.map(match);
+        const result = this.matchResultMapper.map(warriors, roundResults);
 
         this.publishEnd(result);
 

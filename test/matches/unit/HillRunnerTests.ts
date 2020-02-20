@@ -5,11 +5,11 @@ import * as sinonChai from 'sinon-chai';
 import { IHillRunner } from "@matches/interface/IHillRunner";
 import { HillRunner } from '@matches/HillRunner';
 import TestHelper from '@simulator/tests/unit/TestHelper';
-import { IHillMatchRunner } from '@matches/interface/IHillMatchRunner';
 import { IHillResultMapper } from '@matches/interface/IHillResultMapper';
 import { IHillResult } from '@matches/interface/IHillResult';
 import { IPublisher } from '@simulator/interface/IPublisher';
 import { MessageType } from "@simulator/interface/IMessage";
+import { IMatchRunner } from '@matches/interface/IMatchRunner';
 chai.use(sinonChai);
 
 describe("HillRunner", () => {
@@ -17,7 +17,7 @@ describe("HillRunner", () => {
     let hillRunner: IHillRunner;
 
     let publisher: IPublisher;
-    let hillMatchRunner: IHillMatchRunner;
+    let matchRunner: IMatchRunner;
     let hillResultMapper: IHillResultMapper;
 
     beforeEach(() => {
@@ -30,7 +30,7 @@ describe("HillRunner", () => {
             setPublishProvider: sinon.stub()
         };
 
-        hillMatchRunner = {
+        matchRunner = {
             run: sinon.stub()
         };
 
@@ -38,7 +38,7 @@ describe("HillRunner", () => {
             map: sinon.stub()
         };
 
-        hillRunner = new HillRunner(publisher, hillMatchRunner, hillResultMapper);
+        hillRunner = new HillRunner(publisher, matchRunner, hillResultMapper);
     })
 
     const arraysEqual = <T>(a: T[], b: T[]): boolean =>
@@ -60,10 +60,10 @@ describe("HillRunner", () => {
 
         hillRunner.run(hill);
 
-        expect((hillMatchRunner.run as sinon.SinonStub).calledOnce);
-        expect(hillMatchRunner.run).to.have.been.calledWith(hill.rules, warriorA, warriorB);
-        expect(hillMatchRunner.run).to.have.been.calledWith(hill.rules, warriorA, warriorC);
-        expect(hillMatchRunner.run).to.have.been.calledWith(hill.rules, warriorB, warriorC);
+        expect((matchRunner.run as sinon.SinonStub).calledOnce);
+        expect(matchRunner.run).to.have.been.calledWith(hill.rules, [warriorA, warriorB]);
+        expect(matchRunner.run).to.have.been.calledWith(hill.rules, [warriorA, warriorC]);
+        expect(matchRunner.run).to.have.been.calledWith(hill.rules, [warriorB, warriorC]);
     });
 
     it("returns mapped hill results", () => {
@@ -74,7 +74,7 @@ describe("HillRunner", () => {
 
         const matches = [{}, {}, {}];
         for (let i = 0; i <= 2; i++) {
-            (hillMatchRunner.run as sinon.SinonStub).onCall(i).returns(matches[i])
+            (matchRunner.run as sinon.SinonStub).onCall(i).returns(matches[i])
         }
 
         const warrior = { source: TestHelper.buildParseResult([]) };

@@ -1,10 +1,11 @@
 import * as chai from "chai";
 const expect = chai.expect;
 
-import { IMatch } from "@matches/interface/IMatch";
 import { IMatchResultMapper } from "@matches/interface/IMatchResultMapper";
 import { MatchResultMapper } from "@matches/MatchResultMapper";
 import TestHelper from "@simulator/tests/unit/TestHelper";
+import IWarrior from "@simulator/interface/IWarrior";
+import { IRoundResult } from "@simulator/interface/IRoundResult";
 
 describe("MatchResultMapper", () => {
 
@@ -15,62 +16,73 @@ describe("MatchResultMapper", () => {
         matchResultMapper = new MatchResultMapper();
     });
 
-    const buildMatch = (rounds): IMatch => {
-
-        return {
-            rules: {
-                rounds: rounds,
-                options: {}
-            },
-            warriors: [
-                { wins: 0, warriorMatchId: 0, source: TestHelper.buildParseResult([]) },
-                { wins: 0, warriorMatchId: 1, source: TestHelper.buildParseResult([]) }
-            ]
-        };
+    const buildRoundResults = (rounds): IRoundResult[] => {
+        const results: IRoundResult[] = [];
+        for (let i = 0; i < rounds; i++) {
+            results.push({
+                outcome: "DRAW",
+                winnerId: 0
+            });
+        }
+        return results;
     };
+
+    const buildWarriors = (): IWarrior[] => [
+        { source: TestHelper.buildParseResult([]) },
+        { source: TestHelper.buildParseResult([]) }
+    ];
 
     it("returns a match result with the correct number of rounds", () => {
 
         const expected = 7;
 
-        const actual = matchResultMapper.map(buildMatch(expected));
+        const actual = matchResultMapper.map(buildWarriors(), buildRoundResults(expected));
 
         expect(actual.rounds).to.be.equal(expected);
     });
 
     it("associates each result with the corresponding warrior source", () => {
 
-        const match = buildMatch(1);
+        const warriors = buildWarriors();
 
-        const expected = [
-            match.warriors[0].source,
-            match.warriors[1].source
-        ];
+        const actual = matchResultMapper.map(warriors, buildRoundResults(10));
 
-        const actual = matchResultMapper.map(match);
+        expect(actual.results.length).to.be.equal(2);
 
-        expect(actual.warriors.length).to.be.equal(2);
-        
-        expected.forEach((e, i) => expect(match.warriors[i].source).to.be.equal(e));
+        warriors.forEach(expected =>
+            expect(actual.results.find(result => result.warrior === expected)).not.to.be.null
+        );
     });
 
     it("correctly calculates won, drawn and lost", () => {
 
-        const match = buildMatch(10);
+        const warriors = buildWarriors();
+        warriors[0].internalId = 1;
+        warriors[1].internalId = 2;
 
-        match.warriors[0].wins = 3;
-        match.warriors[1].wins = 2;
+        const results: IRoundResult[] = [
+            { outcome: "WIN", winnerId: 1 },
+            { outcome: "WIN", winnerId: 1 },
+            { outcome: "WIN", winnerId: 1 },
+            { outcome: "WIN", winnerId: 2 },
+            { outcome: "WIN", winnerId: 2 },
+            { outcome: "DRAW" },
+            { outcome: "DRAW" },
+            { outcome: "DRAW" },
+            { outcome: "DRAW" },
+            { outcome: "DRAW" },
+        ];
 
-        const actual = matchResultMapper.map(match);
+        const actual = matchResultMapper.map(warriors, results);
 
-        expect(actual.warriors.length).to.be.equal(2);
+        expect(actual.results.length).to.be.equal(2);
 
-        const a = actual.warriors[0];
+        const a = actual.results[0];
         expect(a.won).to.be.equal(3);
         expect(a.drawn).to.be.equal(5);
         expect(a.lost).to.be.equal(2);
 
-        const b = actual.warriors[1];
+        const b = actual.results[1];
         expect(b.won).to.be.equal(2);
         expect(b.drawn).to.be.equal(5);
         expect(b.lost).to.be.equal(3);
@@ -78,29 +90,40 @@ describe("MatchResultMapper", () => {
 
     it("correctly calculates points taken and given", () => {
 
-        const match = buildMatch(10);
+        const warriors = buildWarriors();
+        warriors[0].internalId = 1;
+        warriors[1].internalId = 2;
 
-        match.warriors[0].wins = 3;
-        match.warriors[1].wins = 2;
+        const results: IRoundResult[] = [
+            { outcome: "WIN", winnerId: 1 },
+            { outcome: "WIN", winnerId: 1 },
+            { outcome: "WIN", winnerId: 1 },
+            { outcome: "WIN", winnerId: 2 },
+            { outcome: "WIN", winnerId: 2 },
+            { outcome: "DRAW" },
+            { outcome: "DRAW" },
+            { outcome: "DRAW" },
+            { outcome: "DRAW" },
+            { outcome: "DRAW" },
+        ];
 
-        const actual = matchResultMapper.map(match);
+        const actual = matchResultMapper.map(warriors, results);
 
-        expect(actual.warriors.length).to.be.equal(2);
+        expect(actual.results.length).to.be.equal(2);
 
-        const a = actual.warriors[0];
+        const a = actual.results[0];
         expect(a.taken).to.be.equal(140);
         expect(a.given).to.be.equal(110);
 
-        const b = actual.warriors[1];
+        const b = actual.results[1];
         expect(b.taken).to.be.equal(110);
         expect(b.given).to.be.equal(140);
     });
 
     it("handles a match with a single warrior", () => {
 
-        const match = buildMatch(1);
-        match.warriors = match.warriors.splice(1, 1);
+        const warriors = buildWarriors().splice(1, 1);
 
-        expect(matchResultMapper.map(match)).not.to.throw;
+        expect(matchResultMapper.map(warriors, [{ outcome: "DRAW" }])).not.to.throw;
     });
 });

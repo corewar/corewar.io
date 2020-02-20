@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import * as chai from 'chai';
 import * as sinonChai from 'sinon-chai';
 import TestHelper from '@simulator/tests/unit/TestHelper';
-import { IHillMatchRunner } from '@matches/interface/IHillMatchRunner';
 import { IHillResultMapper } from '@matches/interface/IHillResultMapper';
 import { IHillResult } from '@matches/interface/IHillResult';
 import { IPublisher } from '@simulator/interface/IPublisher';
@@ -12,6 +11,7 @@ import { IBenchmarkRunner } from '@matches/interface/IBenchmarkRunner';
 import { BenchmarkRunner } from '@matches/BenchmarkRunner';
 import { IHillWarriorResult } from '@matches/interface/IHillWarriorResult';
 import { IParseResult } from '@parser/interface/IParseResult';
+import { IMatchRunner } from '@matches/interface/IMatchRunner';
 chai.use(sinonChai);
 
 describe("BenchmarkRunner", () => {
@@ -19,7 +19,7 @@ describe("BenchmarkRunner", () => {
     let benchmarkRunner: IBenchmarkRunner;
 
     let publisher: IPublisher;
-    let hillMatchRunner: IHillMatchRunner;
+    let matchRunner: IMatchRunner;
     let hillResultMapper: IHillResultMapper;
 
     beforeEach(() => {
@@ -32,7 +32,7 @@ describe("BenchmarkRunner", () => {
             setPublishProvider: sinon.stub()
         };
 
-        hillMatchRunner = {
+        matchRunner = {
             run: sinon.stub()
         };
 
@@ -40,7 +40,7 @@ describe("BenchmarkRunner", () => {
             map: sinon.stub()
         };
 
-        benchmarkRunner = new BenchmarkRunner(publisher, hillMatchRunner, hillResultMapper);
+        benchmarkRunner = new BenchmarkRunner(publisher, matchRunner, hillResultMapper);
     })
 
     const arraysEqual = <T>(a: T[], b: T[]): boolean =>
@@ -65,10 +65,10 @@ describe("BenchmarkRunner", () => {
 
         benchmarkRunner.run(warrior, benchmark);
 
-        expect((hillMatchRunner.run as sinon.SinonStub).calledOnce);
-        expect(hillMatchRunner.run).to.have.been.calledWith(benchmark.rules, warrior, warriorA);
-        expect(hillMatchRunner.run).to.have.been.calledWith(benchmark.rules, warrior, warriorB);
-        expect(hillMatchRunner.run).to.have.been.calledWith(benchmark.rules, warrior, warriorC);
+        expect((matchRunner.run as sinon.SinonStub).calledOnce);
+        expect(matchRunner.run).to.have.been.calledWith(benchmark.rules, [warrior, warriorA]);
+        expect(matchRunner.run).to.have.been.calledWith(benchmark.rules, [warrior, warriorB]);
+        expect(matchRunner.run).to.have.been.calledWith(benchmark.rules, [warrior, warriorC]);
     });
 
     const buildMatchResult = (source: IParseResult): IHillWarriorResult => ({
@@ -85,7 +85,7 @@ describe("BenchmarkRunner", () => {
 
         const matches = [{}, {}, {}];
         for (let i = 0; i <= 2; i++) {
-            (hillMatchRunner.run as sinon.SinonStub).onCall(i).returns(matches[i])
+            (matchRunner.run as sinon.SinonStub).onCall(i).returns(matches[i])
         }
 
         const warrior = { source: TestHelper.buildParseResult([]) };

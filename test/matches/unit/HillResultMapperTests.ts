@@ -22,7 +22,7 @@ describe("HillResultMapper", () => {
         won = 1,
         drawn = 1,
         lost = 1): IMatchWarriorResult => ({
-            source: warrior.source,
+            warrior,
             won,
             drawn,
             lost,
@@ -45,9 +45,9 @@ describe("HillResultMapper", () => {
         };
 
         const results: IMatchResult[] = [
-            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA), buildResult(warriorB)] },
-            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA), buildResult(warriorC)] },
-            { rounds: hill.rules.rounds, warriors: [buildResult(warriorB), buildResult(warriorC)] }
+            { rounds: hill.rules.rounds, results: [buildResult(warriorA), buildResult(warriorB)] },
+            { rounds: hill.rules.rounds, results: [buildResult(warriorA), buildResult(warriorC)] },
+            { rounds: hill.rules.rounds, results: [buildResult(warriorB), buildResult(warriorC)] }
         ];
 
         const actual = hillResultMapper.map(hill, results);
@@ -74,9 +74,9 @@ describe("HillResultMapper", () => {
         };
 
         const results: IMatchResult[] = [
-            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA, 60, 30, 10), buildResult(warriorB)] },
-            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA, 40, 20, 40), buildResult(warriorC)] },
-            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA, 70, 20, 10), buildResult(warriorD)] }
+            { rounds: hill.rules.rounds, results: [buildResult(warriorA, 60, 30, 10), buildResult(warriorB)] },
+            { rounds: hill.rules.rounds, results: [buildResult(warriorA, 40, 20, 40), buildResult(warriorC)] },
+            { rounds: hill.rules.rounds, results: [buildResult(warriorA, 70, 20, 10), buildResult(warriorD)] }
         ];
 
         const result = hillResultMapper.map(hill, results);
@@ -106,9 +106,9 @@ describe("HillResultMapper", () => {
         };
 
         const results: IMatchResult[] = [
-            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA, 60, 30, 10), buildResult(warriorB)] },
-            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA, 40, 20, 40), buildResult(warriorC)] },
-            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA, 70, 20, 10), buildResult(warriorD)] }
+            { rounds: hill.rules.rounds, results: [buildResult(warriorA, 60, 30, 10), buildResult(warriorB)] },
+            { rounds: hill.rules.rounds, results: [buildResult(warriorA, 40, 20, 40), buildResult(warriorC)] },
+            { rounds: hill.rules.rounds, results: [buildResult(warriorA, 70, 20, 10), buildResult(warriorD)] }
         ];
 
         const result = hillResultMapper.map(hill, results);
@@ -134,9 +134,9 @@ describe("HillResultMapper", () => {
         };
 
         const results: IMatchResult[] = [
-            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA), buildResult(warriorB)] },
-            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA), buildResult(warriorC)] },
-            { rounds: hill.rules.rounds, warriors: [buildResult(warriorB), buildResult(warriorC)] }
+            { rounds: hill.rules.rounds, results: [buildResult(warriorA), buildResult(warriorB)] },
+            { rounds: hill.rules.rounds, results: [buildResult(warriorA), buildResult(warriorC)] },
+            { rounds: hill.rules.rounds, results: [buildResult(warriorB), buildResult(warriorC)] }
         ];
 
         const warriorAMatches = [results[0], results[1]];
@@ -170,9 +170,9 @@ describe("HillResultMapper", () => {
         };
 
         const results: IMatchResult[] = [
-            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA, 0, 1, 1), buildResult(warriorB, 1, 1, 0)] },
-            { rounds: hill.rules.rounds, warriors: [buildResult(warriorA, 0, 0, 2), buildResult(warriorC, 2, 0, 0)] },
-            { rounds: hill.rules.rounds, warriors: [buildResult(warriorB, 0, 1, 1), buildResult(warriorC, 1, 1, 0)] }
+            { rounds: hill.rules.rounds, results: [buildResult(warriorA, 0, 1, 1), buildResult(warriorB, 1, 1, 0)] },
+            { rounds: hill.rules.rounds, results: [buildResult(warriorA, 0, 0, 2), buildResult(warriorC, 2, 0, 0)] },
+            { rounds: hill.rules.rounds, results: [buildResult(warriorB, 0, 1, 1), buildResult(warriorC, 1, 1, 0)] }
         ];
 
         const actual = hillResultMapper.map(hill, results);

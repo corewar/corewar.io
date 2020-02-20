@@ -137,7 +137,7 @@ declare module "corewar" {
     }
 
     interface IRoundResult {
-        winnerId: number;
+        winnerId?: number;
         /* eslint-disable-next-line */
         winnerData?: any;
         outcome: string;
@@ -174,15 +174,9 @@ declare module "corewar" {
         wins?: number;
     }
 
-    interface IMatch {
-
-        rules: IRules;
-        warriors: IMatchWarrior[];
-    }
-
     interface IMatchWarriorResult {
 
-        source: IParseResult;
+        warrior: IWarrior;
         won: number;
         drawn: number;
         lost: number;
@@ -232,8 +226,8 @@ declare module "corewar" {
         function serialise(tokens: IToken[]): string;
         function getWithInfoAt(address: number): ICoreLocation;
         function republish(): void;
-        function runMatch(match: IMatch): IMatchResult;
-        function runHill(hill: IHill): IHillResult;
-        function runBenchmark(warrior: IHillWarrior, benchmark: IHill): IHillResult;
+        function runMatch(rules: IRules, warriors: IWarrior[], messageProvider: IPublishProvider): IMatchResult;
+        function runHill(hill: IHill, messageProvider: IPublishProvider): IHillResult;
+        function runBenchmark(warrior: IHillWarrior, benchmark: IHill, messageProvider: IPublishProvider): IHillResult;
     }
 }

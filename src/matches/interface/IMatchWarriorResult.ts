@@ -1,8 +1,8 @@
-import { IParseResult } from "@parser/interface/IParseResult";
+import IWarrior from "@simulator/interface/IWarrior";
 
 export interface IMatchWarriorResult {
 
-    source: IParseResult;
+    warrior: IWarrior;
     won: number;
     drawn: number;
     lost: number;

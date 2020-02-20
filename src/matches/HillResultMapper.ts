@@ -10,10 +10,10 @@ export class HillResultMapper implements IHillResultMapper {
     private mapMatchResultsToWarriors(warrior: IHillWarrior, allResults: IMatchResult[]): IHillWarriorResult {
 
         const matches = allResults.filter(
-            x => !!x.warriors.find(y => y.source === warrior.source)
+            x => !!x.results.find(y => y.warrior.source === warrior.source)
         );
         const results = matches.flatMap(
-            x => x.warriors.filter(y => y.source === warrior.source)
+            x => x.results.filter(y => y.warrior.source === warrior.source)
         );
 
         const won = results.reduce((accum, result) => accum + result.won, 0) / results.length;

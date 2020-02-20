@@ -3,23 +3,23 @@ import { IHillResult } from "@matches/interface/IHillResult";
 import { IHillResultMapper } from "@matches/interface/IHillResultMapper";
 import { IPublisher } from "@simulator/interface/IPublisher";
 import { MessageType } from "@simulator/interface/IMessage";
-import { IHillMatchRunner } from "@matches/interface/IHillMatchRunner";
 import { IHillWarrior } from "@matches/interface/IHillWarrior";
 import { IBenchmarkRunner } from "@matches/interface/IBenchmarkRunner";
+import { IMatchRunner } from "./interface/IMatchRunner";
 
 export class BenchmarkRunner implements IBenchmarkRunner {
 
-    private hillMatchRunner: IHillMatchRunner;
+    private matchRunner: IMatchRunner;
     private hillResultMapper: IHillResultMapper;
     private publisher: IPublisher;
 
     constructor(
         publisher: IPublisher,
-        hillMatchRunner: IHillMatchRunner,
+        matchRunner: IMatchRunner,
         hillResultMapper: IHillResultMapper) {
 
         this.publisher = publisher;
-        this.hillMatchRunner = hillMatchRunner;
+        this.matchRunner = matchRunner;
         this.hillResultMapper = hillResultMapper;
     }
 
@@ -38,7 +38,7 @@ export class BenchmarkRunner implements IBenchmarkRunner {
 
         for (const warriorB of benchmark.warriors) {
             matchResults.push(
-                this.hillMatchRunner.run(benchmark.rules, warrior, warriorB)
+                this.matchRunner.run(benchmark.rules, [warrior, warriorB])
             );
         }
 

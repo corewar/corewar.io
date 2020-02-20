@@ -13,7 +13,7 @@ import { ICoreLocation } from "@simulator/interface/ICoreLocation";
 import IWarrior from "@simulator/interface/IWarrior";
 import { MessageType } from "@simulator/interface/IMessage";
 
-import { IMatch } from "@matches/interface/IMatch";
+import { IRules } from "@matches/interface/IRules";
 import { IMatchResult } from "@matches/interface/IMatchResult";
 import { IMatchRunner } from "@matches/interface/IMatchRunner";
 
@@ -63,7 +63,6 @@ import { MatchResultMapper } from "@matches/MatchResultMapper";
 
 import { HillRunner } from "@matches/HillRunner";
 import { HillResultMapper } from "@matches/HillResultMapper";
-import { HillMatchRunner } from "@matches/HillMatchRunner";
 
 import { BenchmarkRunner } from "@matches/BenchmarkRunner";
 
@@ -146,12 +145,12 @@ class Api {
 
         this.hillRunner = new HillRunner(
             this.publisher,
-            new HillMatchRunner(this.matchRunner),
+            this.matchRunner,
             new HillResultMapper());
 
         this.benchmarkRunner = new BenchmarkRunner(
             this.publisher,
-            new HillMatchRunner(this.matchRunner),
+            this.matchRunner,
             new HillResultMapper());
     }
 
@@ -195,17 +194,23 @@ class Api {
         this.publisher.republish();
     }
 
-    public runMatch(match: IMatch): IMatchResult {
+    public runMatch(rules: IRules, warriors: IWarrior[], messageProvider: IPublishProvider): IMatchResult {
 
-        return clone(this.matchRunner.run(match));
+        this.publisher.setPublishProvider(messageProvider);
+
+        return clone(this.matchRunner.run(rules, warriors));
     }
 
-    public runHill(hill: IHill): IHillResult {
+    public runHill(hill: IHill, messageProvider: IPublishProvider): IHillResult {
+
+        this.publisher.setPublishProvider(messageProvider);
 
         return clone(this.hillRunner.run(hill));
     }
 
-    public runBenchmark(warrior: IHillWarrior, benchmark: IHill): IHillResult {
+    public runBenchmark(warrior: IHillWarrior, benchmark: IHill, messageProvider: IPublishProvider): IHillResult {
+
+        this.publisher.setPublishProvider(messageProvider);
 
         return clone(this.benchmarkRunner.run(warrior, benchmark));
     }
