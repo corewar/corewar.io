@@ -385,6 +385,22 @@ describe("WarriorLoader", () => {
         expect(actual.warrior.internalId).to.be.equal(expected);
     });
 
+    it("Does not set the unique id for the warrior if one is already present", () => {
+
+        const expected = 73;
+        const unexpected = expected + 1;
+
+        const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));
+        const warrior = { source: tokens, internalId: expected };
+
+        const core = buildCore(5);
+
+        const loader = new WarriorLoader(core, this.publisher);
+        const actual = loader.load(3, warrior, unexpected);
+
+        expect(actual.warrior.internalId).to.be.equal(expected);
+    });
+
     it("Raises core access events for the newly created task", () => {
 
         const tokens = TestHelper.buildParseResult(instruction("MOV", ".I", "$", 0, "$", 1));

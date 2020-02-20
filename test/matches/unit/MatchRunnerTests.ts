@@ -39,7 +39,7 @@ describe("MatchRunner", () => {
         matchRunner = new MatchRunner(simulator, matchResultMapper, publisher);
     });
 
-    it("Assigns a unique match ID to each warrior", () => {
+    it("Assigns a unique ID to each warrior", () => {
 
         const expected = [0, 1, 2];
 
@@ -51,6 +51,39 @@ describe("MatchRunner", () => {
             { source: TestHelper.buildParseResult([]) },
             { source: TestHelper.buildParseResult([]) },
             { source: TestHelper.buildParseResult([]) }
+        ];
+
+        let actual = null;
+        (matchResultMapper.map as sinon.SinonStub).callsFake((warriors) => {
+
+            actual = warriors;
+            return {
+                rounds: 1,
+                warriors: []
+            };
+        });
+
+        matchRunner.run(rules, warriors);
+
+        expect(actual).not.be.null;
+        expect(actual.length).to.be.equal(expected.length);
+        for (let i = 0; i < expected.length; i++) {
+            expect(actual[i].internalId).to.be.equal(expected[i]);
+        }
+    });
+
+    it("Does not assign a unique ID to each warrior if one is already present", () => {
+
+        const expected = [4, 5, 6];
+
+        const rules = {
+            rounds: 1,
+            options: {}
+        };
+        const warriors = [
+            { internalId: expected[0], source: TestHelper.buildParseResult([]) },
+            { internalId: expected[1], source: TestHelper.buildParseResult([]) },
+            { internalId: expected[2], source: TestHelper.buildParseResult([]) }
         ];
 
         let actual = null;

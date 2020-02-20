@@ -35,7 +35,9 @@ export class MatchRunner implements IMatchRunner {
     public run(rules: IRules, warriors: IWarrior[]): IMatchResult {
 
         for (let i = 0; i < warriors.length; i++) {
-            warriors[i].internalId = i;
+            if (typeof (warriors[i].internalId) === "undefined") {
+                warriors[i].internalId = i;
+            }
         }
 
         const roundResults = [];

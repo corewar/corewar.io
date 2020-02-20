@@ -39,11 +39,13 @@ export class WarriorLoader implements IWarriorLoader {
         this.instance = new WarriorInstance();
 
         this.instance.warrior = warrior;
-        this.instance.warrior.internalId = id;
+        if (typeof (this.instance.warrior.internalId) === "undefined") {
+            this.instance.warrior.internalId = id;
+        }
         this.instance.name = source.metaData.name;
         this.instance.author = source.metaData.author;
         this.instance.strategy = source.metaData.strategy;
-        
+
         this.loadProcess(address);
 
         this.readInstructions();
@@ -193,11 +195,11 @@ export class WarriorLoader implements IWarriorLoader {
             instructionPointer: startAddress,
             instance: this.instance
         });
-        
+
         this.instance.startAddress = startAddress;
         this.instance.taskIndex = 0;
 
-        const payload =  {
+        const payload = {
             warriorId: this.instance.warrior.internalId,
             taskCount: 1
         };
