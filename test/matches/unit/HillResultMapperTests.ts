@@ -53,9 +53,9 @@ describe("HillResultMapper", () => {
         const actual = hillResultMapper.map(hill, results);
 
         expect(actual.warriors.length).to.be.equal(3);
-        expect(actual.warriors.find(x => x.source == warriorA.source)).not.to.be.undefined;
-        expect(actual.warriors.find(x => x.source == warriorB.source)).not.to.be.undefined;
-        expect(actual.warriors.find(x => x.source == warriorC.source)).not.to.be.undefined;
+        expect(actual.warriors.find(x => x.warrior === warriorA)).not.to.be.undefined;
+        expect(actual.warriors.find(x => x.warrior === warriorB)).not.to.be.undefined;
+        expect(actual.warriors.find(x => x.warrior === warriorC)).not.to.be.undefined;
     });
 
     it("calculates average won, drawn and lost percentage for each warrior", () => {
@@ -80,7 +80,7 @@ describe("HillResultMapper", () => {
         ];
 
         const result = hillResultMapper.map(hill, results);
-        const actual = result.warriors.find(x => x.source === warriorA.source);
+        const actual = result.warriors.find(x => x.warrior === warriorA);
 
         const won = (60 + 40 + 70) / 3;
         const lost = (10 + 40 + 10) / 3;
@@ -112,7 +112,7 @@ describe("HillResultMapper", () => {
         ];
 
         const result = hillResultMapper.map(hill, results);
-        const actual = result.warriors.find(x => x.source === warriorA.source);
+        const actual = result.warriors.find(x => x.warrior === warriorA);
 
         const won = (60 + 40 + 70) / 3;
         const drawn = (30 + 20 + 20) / 3;
@@ -145,13 +145,13 @@ describe("HillResultMapper", () => {
 
         const actual = hillResultMapper.map(hill, results);
 
-        const warriorAResult = actual.warriors.find(x => x.source == warriorA.source);
+        const warriorAResult = actual.warriors.find(x => x.warrior === warriorA);
         expect(warriorAResult.matches).to.deep.equal(warriorAMatches);
 
-        const warriorBResult = actual.warriors.find(x => x.source == warriorB.source);
+        const warriorBResult = actual.warriors.find(x => x.warrior === warriorB);
         expect(warriorBResult.matches).to.deep.equal(warriorBMatches);
 
-        const warriorCResult = actual.warriors.find(x => x.source == warriorC.source);
+        const warriorCResult = actual.warriors.find(x => x.warrior === warriorC);
         expect(warriorCResult.matches).to.deep.equal(warriorCMatches);
     });
 
@@ -177,13 +177,13 @@ describe("HillResultMapper", () => {
 
         const actual = hillResultMapper.map(hill, results);
 
-        const warriorAResult = actual.warriors.find(x => x.source == warriorA.source);
+        const warriorAResult = actual.warriors.find(x => x.warrior === warriorA);
         expect(warriorAResult.rank).to.be.equal(3);
 
-        const warriorBResult = actual.warriors.find(x => x.source == warriorB.source);
+        const warriorBResult = actual.warriors.find(x => x.warrior === warriorB);
         expect(warriorBResult.rank).to.be.equal(2);
 
-        const warriorCResult = actual.warriors.find(x => x.source == warriorC.source);
+        const warriorCResult = actual.warriors.find(x => x.warrior === warriorC);
         expect(warriorCResult.rank).to.be.equal(1);
     });
 });

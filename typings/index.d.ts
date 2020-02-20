@@ -204,7 +204,7 @@ declare module "corewar" {
 
     interface IHillWarriorResult {
     
-        source: IParseResult;
+        warrior: IWarrior;
         rank: number;
         score: number;
         won: number;

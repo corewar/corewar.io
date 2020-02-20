@@ -21,7 +21,7 @@ export class HillResultMapper implements IHillResultMapper {
         const lost = results.reduce((accum, result) => accum + result.lost, 0) / results.length;
 
         return {
-            source: warrior.source,
+            warrior,
             rank: 0,
             score: won * 3 + drawn,
             won,
