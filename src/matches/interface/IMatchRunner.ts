@@ -1,7 +1,8 @@
-import { IMatch } from "@matches/interface/IMatch";
 import { IMatchResult } from "@matches/interface/IMatchResult";
+import { IRules } from "./IRules";
+import IWarrior from "@simulator/interface/IWarrior";
 
 export interface IMatchRunner {
 
-    run(match: IMatch): IMatchResult;
+    run(rules: IRules, warriors: IWarrior[]): IMatchResult;
 }

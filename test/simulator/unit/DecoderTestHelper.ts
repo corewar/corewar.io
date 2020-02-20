@@ -26,7 +26,7 @@ function buildContext(testConfig: IDecoderTestConfig): IExecutionContext {
         operands: [],
         task: TestHelper.buildTask(),
         taskIndex: 2,
-        warrior: TestHelper.buildWarrior(),
+        warrior: TestHelper.buildWarriorInstance(),
         warriorIndex: 1
     };
 

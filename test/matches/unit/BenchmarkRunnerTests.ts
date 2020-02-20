@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import * as chai from 'chai';
 import * as sinonChai from 'sinon-chai';
 import TestHelper from '@simulator/tests/unit/TestHelper';
-import { IHillMatchRunner } from '@matches/interface/IHillMatchRunner';
 import { IHillResultMapper } from '@matches/interface/IHillResultMapper';
 import { IHillResult } from '@matches/interface/IHillResult';
 import { IPublisher } from '@simulator/interface/IPublisher';
@@ -12,6 +11,8 @@ import { IBenchmarkRunner } from '@matches/interface/IBenchmarkRunner';
 import { BenchmarkRunner } from '@matches/BenchmarkRunner';
 import { IHillWarriorResult } from '@matches/interface/IHillWarriorResult';
 import { IParseResult } from '@parser/interface/IParseResult';
+import { IMatchRunner } from '@matches/interface/IMatchRunner';
+import IWarrior from '@simulator/interface/IWarrior';
 chai.use(sinonChai);
 
 describe("BenchmarkRunner", () => {
@@ -19,7 +20,7 @@ describe("BenchmarkRunner", () => {
     let benchmarkRunner: IBenchmarkRunner;
 
     let publisher: IPublisher;
-    let hillMatchRunner: IHillMatchRunner;
+    let matchRunner: IMatchRunner;
     let hillResultMapper: IHillResultMapper;
 
     beforeEach(() => {
@@ -32,15 +33,15 @@ describe("BenchmarkRunner", () => {
             setPublishProvider: sinon.stub()
         };
 
-        hillMatchRunner = {
+        matchRunner = {
             run: sinon.stub()
         };
 
         hillResultMapper = {
-            map: sinon.stub()
+            map: sinon.stub().returns({ warriors: [] })
         };
 
-        benchmarkRunner = new BenchmarkRunner(publisher, hillMatchRunner, hillResultMapper);
+        benchmarkRunner = new BenchmarkRunner(publisher, matchRunner, hillResultMapper);
     })
 
     const arraysEqual = <T>(a: T[], b: T[]): boolean =>
@@ -55,65 +56,103 @@ describe("BenchmarkRunner", () => {
         const warriorB = { source: TestHelper.buildParseResult([]) };
         const warriorC = { source: TestHelper.buildParseResult([]) };
 
-        const benchmark = {
-            rules: {
-                rounds: 1,
-                options: {}
-            },
-            warriors: [warriorA, warriorB, warriorC]
+        const rules = {
+            rounds: 1,
+            options: {}
         };
+        const warriors = [warriorA, warriorB, warriorC];
 
-        benchmarkRunner.run(warrior, benchmark);
+        benchmarkRunner.run(warrior, rules, warriors);
 
-        expect((hillMatchRunner.run as sinon.SinonStub).calledOnce);
-        expect(hillMatchRunner.run).to.have.been.calledWith(benchmark.rules, warrior, warriorA);
-        expect(hillMatchRunner.run).to.have.been.calledWith(benchmark.rules, warrior, warriorB);
-        expect(hillMatchRunner.run).to.have.been.calledWith(benchmark.rules, warrior, warriorC);
+        expect((matchRunner.run as sinon.SinonStub).calledOnce);
+        expect(matchRunner.run).to.have.been.calledWith(rules, [warrior, warriorA]);
+        expect(matchRunner.run).to.have.been.calledWith(rules, [warrior, warriorB]);
+        expect(matchRunner.run).to.have.been.calledWith(rules, [warrior, warriorC]);
     });
 
-    const buildMatchResult = (source: IParseResult): IHillWarriorResult => ({
+    const buildMatchResult = (source: IParseResult, id: number): IHillWarriorResult => ({
         drawn: 1,
         lost: 1,
         won: 1,
         rank: 1,
         score: 1,
-        source,
+        warrior: { internalId: id, source },
         matches: []
-    })
+    });
+
+    it("assigns a unique id to each warrior", () => {
+
+        const expected = [0, 1, 2];
+
+        const warriorA: IWarrior = { source: TestHelper.buildParseResult([]) };
+        const warriorB: IWarrior = { source: TestHelper.buildParseResult([]) };
+        const warriorC: IWarrior = { source: TestHelper.buildParseResult([]) };
+
+        const rules = {
+            rounds: 1,
+            options: {}
+        };
+        const warriors = [warriorA, warriorB];
+
+        benchmarkRunner.run(warriorC, rules, warriors);
+
+        expect(warriorA.internalId).to.be.equal(expected[0]);
+        expect(warriorB.internalId).to.be.equal(expected[1]);
+        expect(warriorC.internalId).to.be.equal(expected[2]);
+    });
+
+    it("does not assign a unique id to each warrior if one is already present", () => {
+
+        const expected = [4, 5, 6];
+
+        const warriorA: IWarrior = { internalId: 4, source: TestHelper.buildParseResult([]) };
+        const warriorB: IWarrior = { internalId: 5, source: TestHelper.buildParseResult([]) };
+        const warriorC: IWarrior = { internalId: 6, source: TestHelper.buildParseResult([]) };
+
+        const rules = {
+            rounds: 1,
+            options: {}
+        };
+        const warriors = [warriorA, warriorB];
+
+        benchmarkRunner.run(warriorC, rules, warriors);
+
+        expect(warriorA.internalId).to.be.equal(expected[0]);
+        expect(warriorB.internalId).to.be.equal(expected[1]);
+        expect(warriorC.internalId).to.be.equal(expected[2]);
+    });
 
     it("returns mapped hill results for submitted warrior only", () => {
 
         const matches = [{}, {}, {}];
         for (let i = 0; i <= 2; i++) {
-            (hillMatchRunner.run as sinon.SinonStub).onCall(i).returns(matches[i])
+            (matchRunner.run as sinon.SinonStub).onCall(i).returns(matches[i])
         }
 
         const warrior = { source: TestHelper.buildParseResult([]) };
         const otherWarrior = { source: TestHelper.buildParseResult([]) };
-        const benchmark = {
-            rules: {
-                rounds: 2,
-                options: {}
-            },
-            warriors: [otherWarrior, otherWarrior, otherWarrior]
+        const rules = {
+            rounds: 2,
+            options: {}
         };
+        const warriors = [otherWarrior, otherWarrior, otherWarrior];
 
-        const expected = buildMatchResult(warrior.source);
+        const expected = buildMatchResult(warrior.source, 3);
 
         const mappedResult: IHillResult = {
             warriors: [
                 expected,
-                buildMatchResult(otherWarrior.source),
-                buildMatchResult(otherWarrior.source),
-                buildMatchResult(otherWarrior.source)
+                buildMatchResult(otherWarrior.source, 0),
+                buildMatchResult(otherWarrior.source, 1),
+                buildMatchResult(otherWarrior.source, 2)
             ]
         };
 
         (hillResultMapper.map as sinon.SinonStub)
-            .withArgs(benchmark, sinon.match(arg => arraysEqual(arg, matches)))
+            .withArgs(sinon.match(() => true), sinon.match(arg => arraysEqual(arg, matches)))
             .returns(mappedResult);
 
-        const actual = benchmarkRunner.run(warrior, benchmark);
+        const actual = benchmarkRunner.run(warrior, rules, warriors);
 
         expect(actual).to.deep.equal({ warriors: [expected] });
     });
@@ -125,15 +164,13 @@ describe("BenchmarkRunner", () => {
         const expected = { warriors: [] };
         (hillResultMapper.map as sinon.SinonStub).returns(expected);
 
-        const benchmark = {
-            rules: {
-                rounds: 1,
-                options: {}
-            },
-            warriors: [warrior, warrior]
+        const rules = {
+            rounds: 1,
+            options: {}
         };
+        const warriors = [warrior, warrior];
 
-        benchmarkRunner.run(warrior, benchmark);
+        benchmarkRunner.run(warrior, rules, warriors);
 
         expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.HillEnd,

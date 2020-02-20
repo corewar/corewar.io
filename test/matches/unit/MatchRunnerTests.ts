@@ -4,7 +4,6 @@ import * as sinonChai from "sinon-chai";
 const expect = chai.expect;
 chai.use(sinonChai);
 
-import { IMatch } from "@matches/interface/IMatch";
 import TestHelper from "@simulator/tests/unit/TestHelper";
 import { IMatchRunner } from "@matches/interface/IMatchRunner";
 import { MatchRunner } from "@matches/MatchRunner";
@@ -12,6 +11,7 @@ import { ISimulator } from "@simulator/interface/ISimulator";
 import { IPublisher } from "@simulator/interface/IPublisher";
 import { MessageType } from "@simulator/interface/IMessage";
 import { IMatchResultMapper } from "@matches/interface/IMatchResultMapper";
+import { IMatchWarrior } from "@matches/interface/IMatchWarrior";
 
 describe("MatchRunner", () => {
 
@@ -39,39 +39,69 @@ describe("MatchRunner", () => {
         matchRunner = new MatchRunner(simulator, matchResultMapper, publisher);
     });
 
-    it("Assigns a unique match ID to each warrior", () => {
+    it("Assigns a unique ID to each warrior", () => {
 
         const expected = [0, 1, 2];
 
-        const match: IMatch = {
-            rules: {
-                rounds: 1,
-                options: {}
-            },
-            warriors: [
-                { source: TestHelper.buildParseResult([]) },
-                { source: TestHelper.buildParseResult([]) },
-                { source: TestHelper.buildParseResult([]) }
-            ]
+        const rules = {
+            rounds: 1,
+            options: {}
         };
+        const warriors = [
+            { source: TestHelper.buildParseResult([]) },
+            { source: TestHelper.buildParseResult([]) },
+            { source: TestHelper.buildParseResult([]) }
+        ];
 
         let actual = null;
-        (matchResultMapper.map as sinon.SinonStub).callsFake(m => {
+        (matchResultMapper.map as sinon.SinonStub).callsFake((warriors) => {
 
-            actual = m;
+            actual = warriors;
             return {
                 rounds: 1,
                 warriors: []
             };
         });
 
-        matchRunner.run(match);
+        matchRunner.run(rules, warriors);
 
         expect(actual).not.be.null;
-        expect(actual.warriors.length).to.be.equal(expected.length);
+        expect(actual.length).to.be.equal(expected.length);
         for (let i = 0; i < expected.length; i++) {
-            expect(actual.warriors[i].warriorMatchId).to.be.equal(expected[i]);
-            expect(actual.warriors[i].source.data.warriorMatchId).to.be.equal(expected[i]);
+            expect(actual[i].internalId).to.be.equal(expected[i]);
+        }
+    });
+
+    it("Does not assign a unique ID to each warrior if one is already present", () => {
+
+        const expected = [4, 5, 6];
+
+        const rules = {
+            rounds: 1,
+            options: {}
+        };
+        const warriors = [
+            { internalId: expected[0], source: TestHelper.buildParseResult([]) },
+            { internalId: expected[1], source: TestHelper.buildParseResult([]) },
+            { internalId: expected[2], source: TestHelper.buildParseResult([]) }
+        ];
+
+        let actual = null;
+        (matchResultMapper.map as sinon.SinonStub).callsFake((warriors) => {
+
+            actual = warriors;
+            return {
+                rounds: 1,
+                warriors: []
+            };
+        });
+
+        matchRunner.run(rules, warriors);
+
+        expect(actual).not.be.null;
+        expect(actual.length).to.be.equal(expected.length);
+        for (let i = 0; i < expected.length; i++) {
+            expect(actual[i].internalId).to.be.equal(expected[i]);
         }
     });
 
@@ -79,80 +109,80 @@ describe("MatchRunner", () => {
 
         const expectedOptions = {};
 
-        const expectedSource = TestHelper.buildParseResult([]);
+        const expectedWarrior: IMatchWarrior = {
+            source: TestHelper.buildParseResult([])
+        }
 
-        const match: IMatch = {
-            rules: {
-                rounds: 1,
-                options: expectedOptions
-            },
-            warriors: [{
-                source: expectedSource
-            }]
+        const rules = {
+            rounds: 1,
+            options: expectedOptions
         };
+        const warriors = [expectedWarrior];
 
-        matchRunner.run(match);
+        matchRunner.run(rules, warriors);
 
         expect(simulator.initialise).to.have.been.calledWith(
             expectedOptions,
-            [expectedSource]);
+            [{
+                source: expectedWarrior.source,
+                internalId: 0
+            }]);
     });
 
     it("records the number of wins for a warrior", () => {
 
-        const match: IMatch = {
-            rules: {
-                rounds: 5,
-                options: {}
-            },
-            warriors: [
-                { source: TestHelper.buildParseResult([]) },
-                { source: TestHelper.buildParseResult([]) }
-            ]
+        const rules = {
+            rounds: 5,
+            options: {}
         };
+        const warriors = [
+            { source: TestHelper.buildParseResult([]) },
+            { source: TestHelper.buildParseResult([]) }
+        ];
 
         const id = 0;
         const roundResults = [
-            { outcome: "WIN", winnerData: { warriorMatchId: id } },
-            { outcome: "WIN", winnerData: { warriorMatchId: id + 1 } },
-            { outcome: "WIN", winnerData: { warriorMatchId: id } },
+            { outcome: "WIN", winnerId: id },
+            { outcome: "WIN", winnerId: id + 1 },
+            { outcome: "WIN", winnerId: id },
             { outcome: "DRAW" },
             { outcome: "NONE" }
         ];
 
         roundResults.forEach((r, i) => (simulator.run as sinon.SinonStub).onCall(i).returns(r));
 
-        let actual = null;
-        (matchResultMapper.map as sinon.SinonStub).callsFake(m => {
+        let actualWarriors;
+        let actualRoundResults;
+        (matchResultMapper.map as sinon.SinonStub).callsFake((warriors, roundResults) => {
 
-            actual = m;
+            actualWarriors = warriors;
+            actualRoundResults = roundResults;
+
             return {
                 rounds: 1,
                 warriors: []
             };
         });
 
-        matchRunner.run(match);
+        matchRunner.run(rules, warriors);
 
-        expect(actual).not.to.be.null;
-        expect(actual.warriors.length).to.be.equal(2);
-        expect(actual.warriors[0].wins).to.be.equal(2);
-        expect(actual.warriors[1].wins).to.be.equal(1);
+        expect(actualWarriors).not.to.be.null;
+        expect(actualWarriors).to.be.deep.equal(warriors);
+        expect(actualRoundResults).not.to.be.null;
+        expect(actualRoundResults).to.be.deep.equal(roundResults);
     });
 
     it("initialises and runs the simulator once per round", () => {
 
         const expected = 7;
 
-        const match: IMatch = {
-            rules: {
-                rounds: expected,
-                options: {}
-            },
-            warriors: [{ source: TestHelper.buildParseResult([]) }]
+        const rules = {
+            rounds: expected,
+            options: {}
         };
+        const warriors = [{ source: TestHelper.buildParseResult([]) }];
 
-        matchRunner.run(match);
+        matchRunner.run(rules, warriors);
 
         expect(simulator.initialise).to.have.callCount(expected);
         expect(simulator.run).to.have.callCount(expected);
@@ -170,16 +200,14 @@ describe("MatchRunner", () => {
         publisher.queue = sinon.stub();
         publisher.publish = sinon.stub();
 
-        const match: IMatch = {
-            rules: {
-                rounds: 3,
-                options: {}
-            },
-            warriors: [{ source: TestHelper.buildParseResult([]) }]
+        const rules = {
+            rounds: 3,
+            options: {}
         };
+        const warriors = [{ source: TestHelper.buildParseResult([]) }];
 
-        (simulator.run as sinon.SinonStub).returns({ 
-            outcome: "WIN", 
+        (simulator.run as sinon.SinonStub).returns({
+            outcome: "WIN",
             winnerData: { warriorMatchId: 0 }
         });
 
@@ -189,7 +217,7 @@ describe("MatchRunner", () => {
         };
         (matchResultMapper.map as sinon.SinonStub).returns(expected);
 
-        matchRunner.run(match);
+        matchRunner.run(rules, warriors);
 
         expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.MatchEnd,

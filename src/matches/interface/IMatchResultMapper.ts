@@ -1,7 +1,8 @@
 import { IMatchResult } from "@matches/interface/IMatchResult";
-import { IMatch } from "@matches/interface/IMatch";
+import { IRoundResult } from "@simulator/interface/IRoundResult";
+import IWarrior from "@simulator/interface/IWarrior";
 
 export interface IMatchResultMapper {
 
-    map(match: IMatch): IMatchResult;
+    map(warriors: IWarrior[], roundResults: IRoundResult[]): IMatchResult;
 }

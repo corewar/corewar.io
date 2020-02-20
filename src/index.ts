@@ -10,12 +10,13 @@ import { IPublisher } from "@simulator/interface/IPublisher";
 import { IOptions } from "@simulator/interface/IOptions";
 import { IPublishProvider } from "@simulator/interface/IPublishProvider";
 import { ICoreLocation } from "@simulator/interface/ICoreLocation";
+import IWarrior from "@simulator/interface/IWarrior";
+import { MessageType } from "@simulator/interface/IMessage";
 
-import { IMatch } from "@matches/interface/IMatch";
+import { IRules } from "@matches/interface/IRules";
 import { IMatchResult } from "@matches/interface/IMatchResult";
 import { IMatchRunner } from "@matches/interface/IMatchRunner";
 
-import { IHill } from "@matches/interface/IHill";
 import { IHillRunner } from "@matches/interface/IHillRunner";
 import { IHillResult } from "@matches/interface/IHillResult";
 import { IHillWarrior } from "@matches/interface/IHillWarrior";
@@ -61,12 +62,10 @@ import { MatchResultMapper } from "@matches/MatchResultMapper";
 
 import { HillRunner } from "@matches/HillRunner";
 import { HillResultMapper } from "@matches/HillResultMapper";
-import { HillMatchRunner } from "@matches/HillMatchRunner";
 
 import { BenchmarkRunner } from "@matches/BenchmarkRunner";
 
 import * as clone from "clone";
-import { MessageType } from "@simulator/interface/IMessage";
 
 class Api {
 
@@ -145,22 +144,22 @@ class Api {
 
         this.hillRunner = new HillRunner(
             this.publisher,
-            new HillMatchRunner(this.matchRunner),
+            this.matchRunner,
             new HillResultMapper());
 
         this.benchmarkRunner = new BenchmarkRunner(
             this.publisher,
-            new HillMatchRunner(this.matchRunner),
+            this.matchRunner,
             new HillResultMapper());
     }
 
-    public initialiseSimulator(options: IOptions, parseResults: IParseResult[], messageProvider: IPublishProvider): void {
+    public initialiseSimulator(options: IOptions, warriors: IWarrior[], messageProvider: IPublishProvider): void {
 
         this.publisher.setPublishProvider(messageProvider);
 
         this.executive.initialise(options);
 
-        this.simulator.initialise(options, parseResults);
+        this.simulator.initialise(options, warriors);
     }
 
     public step(steps?: number): IRoundResult | null {
@@ -194,19 +193,25 @@ class Api {
         this.publisher.republish();
     }
 
-    public runMatch(match: IMatch): IMatchResult {
+    public runMatch(rules: IRules, warriors: IWarrior[], messageProvider: IPublishProvider): IMatchResult {
 
-        return clone(this.matchRunner.run(match));
+        this.publisher.setPublishProvider(messageProvider);
+
+        return clone(this.matchRunner.run(rules, warriors));
     }
 
-    public runHill(hill: IHill): IHillResult {
+    public runHill(rules: IRules, warriors: IWarrior[], messageProvider: IPublishProvider): IHillResult {
 
-        return clone(this.hillRunner.run(hill));
+        this.publisher.setPublishProvider(messageProvider);
+
+        return clone(this.hillRunner.run(rules, warriors));
     }
 
-    public runBenchmark(warrior: IHillWarrior, benchmark: IHill): IHillResult {
+    public runBenchmark(warrior: IHillWarrior, rules: IRules, warriors: IWarrior[], messageProvider: IPublishProvider): IHillResult {
 
-        return clone(this.benchmarkRunner.run(warrior, benchmark));
+        this.publisher.setPublishProvider(messageProvider);
+
+        return clone(this.benchmarkRunner.run(warrior, rules, warriors));
     }
 }
 

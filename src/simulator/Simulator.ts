@@ -8,12 +8,13 @@ import { IEndCondition } from "@simulator/interface/IEndCondition";
 import { IOptionValidator } from "@simulator/interface/IOptionValidator";
 import { ICore } from "@simulator/interface/ICore";
 import { IOptions } from "@simulator/interface/IOptions";
-import { IParseResult } from "@parser/interface/IParseResult";
 import { MessageType } from "@simulator/interface/IMessage";
 import { IPublisher } from "@simulator/interface/IPublisher";
 import Defaults from "@simulator/Defaults";
-import * as clone from "clone";
 import { IRoundResult } from "@simulator/interface/IRoundResult";
+import IWarrior from "@simulator/interface/IWarrior";
+
+import * as clone from "clone";
 
 export class Simulator implements ISimulator {
 
@@ -53,7 +54,7 @@ export class Simulator implements ISimulator {
     private initState(): void {
         this.state = {
             cycle: 0,
-            warriors: [],
+            instances: [],
             warriorIndex: 0,
             options: null
         };
@@ -77,7 +78,7 @@ export class Simulator implements ISimulator {
         });
     }
 
-    public initialise(options: IOptions, warriors: IParseResult[]): void {
+    public initialise(options: IOptions, warriors: IWarrior[]): void {
 
         this.publisher.clear();
 
@@ -91,7 +92,7 @@ export class Simulator implements ISimulator {
 
         this.core.initialise(defaultedOptions);
 
-        this.state.warriors = this.loader.load(warriors, defaultedOptions);
+        this.state.instances = this.loader.load(warriors, defaultedOptions);
 
         this.publishInitialise(this.state);
 

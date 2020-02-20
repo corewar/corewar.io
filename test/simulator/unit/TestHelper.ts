@@ -3,7 +3,7 @@ import * as sinon from "sinon";
 
 import { IToken, TokenCategory } from "@parser/interface/IToken";
 import { IParseResult } from "@parser/interface/IParseResult";
-import { IWarrior } from "@simulator/interface/IWarrior";
+import { IWarriorInstance } from "@simulator/interface/IWarriorInstance";
 import { ITask } from "@simulator/interface/ITask";
 import { OpcodeType, ModifierType } from "@simulator/interface/IInstruction";
 import { ModeType } from "@simulator/interface/IOperand";
@@ -14,6 +14,7 @@ import { IPublisher } from "@simulator/interface/IPublisher";
 import { ILoader } from "@simulator/interface/ILoader";
 import { IEndCondition } from "@simulator/interface/IEndCondition";
 import { IOptionValidator } from "@simulator/interface/IOptionValidator";
+import IWarrior from "@simulator/interface/IWarrior";
 
 "use strict";
 
@@ -49,6 +50,15 @@ export default class TestHelper {
         };
     }
 
+    /* eslint-disable-next-line */
+    public static buildWarrior(id?: number, data?: any): IWarrior {
+        return {
+            source: this.buildParseResult([]),
+            internalId: id,
+            data
+        }
+    }
+
     public static buildToken(category: TokenCategory, lexeme: string): IToken {
         return {
             category: category,
@@ -78,22 +88,21 @@ export default class TestHelper {
     }
 
     /* eslint-disable-next-line */
-    public static buildWarrior(id = 0, data: any = null): IWarrior {
+    public static buildWarriorInstance(id?: number, data?: any): IWarriorInstance {
         return {
-            id: id,
-            data: data,
             author: "",
             name: "",
             startAddress: 0,
             strategy: "",
             taskIndex: 0,
-            tasks: []
+            tasks: [],
+            warrior: TestHelper.buildWarrior(id, data)
         };
     }
 
     public static buildTask(): ITask {
         return {
-            warrior: null,
+            instance: null,
             instructionPointer: 0
         };
     }

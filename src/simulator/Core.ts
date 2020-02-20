@@ -44,12 +44,12 @@ export class Core implements ICore {
     private triggerEvent(task: ITask, address: number, accessType: CoreAccessType): void {
 
         const accessEventArgs = {
-            warriorId: task ? task.warrior.id : null,
+            warriorId: task ? task.instance.warrior.internalId : null,
             accessType: accessType,
             address: address
         };
-        if (task && task.warrior.data) {
-            accessEventArgs["warriorData"] = task.warrior.data;
+        if (task && task.instance.warrior.data) {
+            accessEventArgs["warriorData"] = task.instance.warrior.data;
         }
 
         this.locations[address].access = accessEventArgs;

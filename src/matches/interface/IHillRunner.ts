@@ -1,7 +1,8 @@
-import { IHill } from '@matches/interface/IHill';
 import { IHillResult } from '@matches/interface/IHillResult';
+import { IRules } from './IRules';
+import IWarrior from '@simulator/interface/IWarrior';
 
 export interface IHillRunner {
 
-    run(hill: IHill): IHillResult;
+    run(rules: IRules, warriors: IWarrior[]): IHillResult;
 }

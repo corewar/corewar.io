@@ -1,18 +1,8 @@
-﻿import { ITask } from "@simulator/interface/ITask";
+import { IParseResult } from "@parser/interface/IParseResult";
 
-export interface IWarrior {
-
-    id: number;
-    
-    name: string;
-    author: string;
-    strategy: string;
-
-    taskIndex: number;
-    tasks: ITask[];
-
-    startAddress: number;
-
+export default interface IWarrior {
+    source: IParseResult;
+    internalId?: number;
     /* eslint-disable-next-line */
     data?: any;
-} 
+}

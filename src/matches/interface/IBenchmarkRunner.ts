@@ -1,8 +1,8 @@
-import { IHillWarrior } from "@matches/interface/IHillWarrior";
-import { IHill } from "@matches/interface/IHill";
 import { IHillResult } from "@matches/interface/IHillResult";
+import { IRules } from "@matches/interface/IRules";
+import IWarrior from "@simulator/interface/IWarrior";
 
 export interface IBenchmarkRunner {
 
-    run(warrior: IHillWarrior, benchmark: IHill): IHillResult;
+    run(warrior: IWarrior, rules: IRules, warriors: IWarrior[]): IHillResult;
 }

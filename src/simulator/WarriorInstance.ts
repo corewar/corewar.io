@@ -1,7 +1,8 @@
-﻿import { IWarrior } from "@simulator/interface/IWarrior";
+﻿import { IWarriorInstance } from "@simulator/interface/IWarriorInstance";
 import { ITask } from "@simulator/interface/ITask";
+import IWarrior from "./interface/IWarrior";
 
-export class Warrior implements IWarrior {
+export class WarriorInstance implements IWarriorInstance {
 
     public id: number;
 
@@ -14,8 +15,7 @@ export class Warrior implements IWarrior {
 
     public startAddress: number;
 
-    /* eslint-disable-next-line */
-    public data: any;
+    public warrior: IWarrior;
 
     constructor() {
         this.id = 0;
@@ -25,6 +25,6 @@ export class Warrior implements IWarrior {
         this.taskIndex = 0;
         this.tasks = [];
         this.startAddress = 0;
-        this.data = null;
+        this.warrior = null;
     }
 }

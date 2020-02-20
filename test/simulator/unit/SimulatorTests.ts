@@ -4,7 +4,7 @@ import * as sinonChai from "sinon-chai";
 const expect = chai.expect;
 chai.use(sinonChai);
 
-import { Warrior } from "@simulator/Warrior";
+import { WarriorInstance } from "@simulator/WarriorInstance";
 import { ICore } from "@simulator/interface/ICore";
 import { IOptions } from "@simulator/interface/IOptions";
 import { IState } from "@simulator/interface/IState";
@@ -64,9 +64,9 @@ describe("Simulator", () => {
         };
 
         context = {
-            warrior: new Warrior(),
+            instance: new WarriorInstance(),
             task: {
-                warrior: new Warrior(),
+                instance: new WarriorInstance(),
                 instructionPointer: 0
             },
             operands: []
@@ -259,9 +259,9 @@ describe("Simulator", () => {
 
         expect(loader.load).to.have.been.calledWith(warriors, Defaults);
 
-        const state = (fetcher.fetch as sinon.SinonStub).lastCall.args[0];
+        const state: IState = (fetcher.fetch as sinon.SinonStub).lastCall.args[0];
 
-        expect(state.warriors).to.be.equal(loadedWarriors);
+        expect(state.instances).to.be.equal(loadedWarriors);
     });
 
     it("Validates options provided during initialisation and raises any errors", () => {
@@ -295,9 +295,9 @@ describe("Simulator", () => {
 
         mutated.cycle = 123;
         mutated.warriorIndex = 876;
-        mutated.warriors.push(new Warrior());
-        mutated.warriors[0].tasks.push({
-            warrior: mutated.warriors[0],
+        mutated.instances.push(new WarriorInstance());
+        mutated.instances[0].tasks.push({
+            instance: mutated.instances[0],
             instructionPointer: 666
         });
 
@@ -305,7 +305,7 @@ describe("Simulator", () => {
 
         expect(actual.cycle).not.to.be.equal(mutated.cycle);
         expect(actual.warriorIndex).not.to.be.equal(mutated.warriorIndex);
-        expect(actual.warriors.length).to.be.equal(0);
+        expect(actual.instances.length).to.be.equal(0);
     });
 
     it("Should not execute step if end condition met", () => {

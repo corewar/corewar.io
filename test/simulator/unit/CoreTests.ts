@@ -33,18 +33,21 @@ describe("Core", () => {
     }
 
     /* eslint-disable-next-line */
-    function buildTask(warriorId = 0, data: any = null): ITask {
+    function buildTask(warriorId?: number, data?: any): ITask {
         return {
             instructionPointer: 0,
-            warrior: {
-                id: warriorId,
-                data: data,
+            instance: {
                 author: "",
                 name: "",
                 startAddress: 0,
                 strategy: "",
                 taskIndex: 0,
-                tasks: []
+                tasks: [],
+                warrior: { 
+                    source: TestHelper.buildParseResult([]),
+                    internalId: warriorId,
+                    data
+                }
             }
         };
     }
@@ -202,7 +205,7 @@ describe("Core", () => {
         expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.CoreAccess,
             payload: {
-                warriorId: task.warrior.id,
+                warriorId: task.instance.warrior.internalId,
                 accessType: CoreAccessType.read,
                 address: 2
             }
@@ -221,7 +224,7 @@ describe("Core", () => {
         expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.CoreAccess,
             payload: {
-                warriorId: task.warrior.id,
+                warriorId: task.instance.warrior.internalId,
                 accessType: CoreAccessType.write,
                 address: 2
             }
@@ -246,7 +249,7 @@ describe("Core", () => {
         expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.CoreAccess,
             payload: {
-                warriorId: task.warrior.id,
+                warriorId: task.instance.warrior.internalId,
                 accessType: CoreAccessType.execute,
                 address: 2
             }
@@ -285,7 +288,7 @@ describe("Core", () => {
         expect(publisher.queue).to.have.been.calledWith({
             type: MessageType.CoreAccess,
             payload: {
-                warriorId: task.warrior.id,
+                warriorId: task.instance.warrior.internalId,
                 warriorData: expected,
                 accessType: CoreAccessType.write,
                 address: 2
@@ -326,7 +329,7 @@ describe("Core", () => {
 
         const expected = {
 
-            warriorId: task.warrior.id,
+            warriorId: task.instance.warrior.internalId,
             accessType: CoreAccessType.write,
             address: 2
         };
