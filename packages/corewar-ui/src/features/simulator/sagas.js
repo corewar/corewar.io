@@ -133,8 +133,13 @@ export function* getCoreOptionsFromState() {
 
 export function* initialiseCore(options, warriors) {
   yield call(PubSub.publishSync, 'RESET_CORE')
-
-  yield call([corewar, corewar.initialiseSimulator], options, warriors, PubSub)
+  console.log(warriors.map(warrior => ({ data: warrior.data, source: warrior })))
+  yield call(
+    [corewar, corewar.initialiseSimulator],
+    options,
+    warriors.map(warrior => ({ data: warrior.data, source: warrior })),
+    PubSub
+  )
 
   yield put({ type: INIT })
 }
