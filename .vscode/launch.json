@@ -1,0 +1,35 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Corewar Tests",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/jest/bin/jest",
+            "args": [
+                "test",
+                "lib-name",
+                "--runInBand",
+                "true"
+            ],
+            "cwd": "${workspaceRoot}/packages/corewar",
+            "protocol": "inspector",
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "name": "Debug API Tests",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/jest/bin/jest",
+            "args": [
+                "test",
+                "lib-name",
+                "--runInBand",
+                "true"
+            ],
+            "cwd": "${workspaceRoot}/packages/corewar-api",
+            "protocol": "inspector",
+            "internalConsoleOptions": "openOnSessionStart"
+        }
+    ]
+}
