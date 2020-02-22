@@ -1,3 +1,4 @@
 ```bash
-npm install --global lerna
+npm install --global lerna eslint-cli
+lerna bootstrap
 ```
