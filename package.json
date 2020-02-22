@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap && lerna run prepublish --stream",
-    "start": "lerna run start --stream",
+    "start": "lerna run prepublish --stream && lerna run start --stream",
     "clean": "lerna clean",
     "test": "lerna run test --stream",
     "coverage": "lerna run coverage --stream",

@@ -48,7 +48,6 @@ export class Core implements ICore {
         }
 
         this.locations[address].access = accessEventArgs
-
         this.publisher.queue({
             type: MessageType.CoreAccess,
             payload: accessEventArgs

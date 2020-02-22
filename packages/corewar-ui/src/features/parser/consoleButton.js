@@ -16,11 +16,11 @@ ConsoleButton.displayName = 'ConsoleButton'
 const getStatusColour = messages => {
   const worst = getWorstMessage(messages)
   switch (worst) {
-    case 0:
+    case 'ERROR':
       return colour.error
-    case 1:
+    case 'WARNING':
       return colour.warning
-    case 2:
+    case 'INFO':
       return colour.info
     default:
       return colour.success

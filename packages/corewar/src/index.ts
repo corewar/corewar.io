@@ -142,6 +142,12 @@ class Api {
     }
 
     public initialiseSimulator(options: IOptions, warriors: IWarrior[], messageProvider?: IPublishProvider): void {
+        // TODO move this into library and unit test
+        // TODO perform this check on run match, hill and benchmark also
+        if (warriors.filter(warrior => !warrior.source.success).length) {
+            return
+        }
+
         if (messageProvider) {
             this.publisher.setPublishProvider(messageProvider)
         }

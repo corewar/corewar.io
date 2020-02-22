@@ -279,10 +279,23 @@ class CanvasCore extends Component {
     return y * this.cellsWide + x
   }
 
+  getAccessTypeIndex(accessType) {
+    switch(accessType) {
+      case 'READ':
+        return 0
+      case 'WRITE':
+        return 1
+      case 'EXECUTE':
+        return 2
+      default:
+        throw Error(`Unexpected access type ${accessType}`)
+    }
+  }
+
   renderCell(event) {
     const coordinate = this.addressToScreenCoordinate(event.address)
 
-    const sprite = this.sprites[event.warriorData.colour.hex][event.accessType]
+    const sprite = this.sprites[event.warriorData.colour.hex][this.getAccessTypeIndex(event.accessType)]
     this.coreContext.drawImage(sprite.canvas, coordinate.x, coordinate.y)
   }
 

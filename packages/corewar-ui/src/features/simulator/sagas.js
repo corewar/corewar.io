@@ -133,7 +133,6 @@ export function* getCoreOptionsFromState() {
 
 export function* initialiseCore(options, warriors) {
   yield call(PubSub.publishSync, 'RESET_CORE')
-  console.log(warriors.map(warrior => ({ data: warrior.data, source: warrior })))
   yield call(
     [corewar, corewar.initialiseSimulator],
     options,

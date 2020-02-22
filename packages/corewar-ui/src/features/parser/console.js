@@ -76,17 +76,6 @@ const Console = ({ messages, hideConsole, show }) => (
   </ConsoleWrapper>
 )
 
-const messageTypeToString = messageType => {
-  switch (messageType) {
-    case 0: //MessageType.Error
-      return 'ERROR'
-    case 1: // MessageType.Warning
-      return 'WARNING'
-    case 2: // MessageType.Info
-      return 'INFO'
-    default:
-      return ''
-  }
-}
+const messageTypeToString = messageType => messageType
 
 export default Console
