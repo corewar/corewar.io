@@ -1,0 +1,39 @@
+;redcode-88
+;name Nameless
+;author Blameless
+ORG	0
+JMP.B	$2,	$0
+DAT.F	#0,	#10
+MOV.I	@11,	<10
+DJN.B	$-1,	$10
+ADD.AB	#3,	$8
+JMP.B	$3,	$0
+DAT.F	#0,	#0
+DAT.F	#0,	#0
+SPL.B	@4,	$0
+MOV.AB	#19,	$4
+ADD.AB	#1416,	$2
+DJN.B	$-9,	$-10
+DAT.F	#0,	#1421
+DAT.F	#0,	#19
+DAT.F	#0,	#0
+DAT.F	#0,	#0
+DAT.F	#0,	#-1401
+MOV.I	$7,	@-1
+MOV.I	$14,	<-2
+ADD.AB	#632,	$5
+SUB.AB	#631,	$-4
+JMP.B	$-4,	$0
+DAT.F	#0,	#0
+DAT.F	#0,	#0
+DAT.F	#0,	#1410
+MOV.AB	#-18,	$8
+MOV.AB	#-7,	$8
+MOV.AB	#-18,	<6
+SPL.B	@6,	$0
+JMP.B	@5,	$0
+DAT.F	#0,	#0
+DAT.F	#0,	#0
+JMP.B	@1,	$0
+DAT.F	#0,	#-18
+DAT.F	#0,	#-7

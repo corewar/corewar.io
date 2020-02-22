@@ -1,0 +1,7 @@
+Program "Unknown" (length 2) by "Anonymous"
+
+       ORG      START
+       DAT.F  #     0, #     0     
+START  MOV.I  $     0, $     1     
+
+Unknown by Anonymous scores 0

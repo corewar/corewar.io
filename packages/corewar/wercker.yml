@@ -1,0 +1,55 @@
+# This references the default nodejs container from
+# the Docker Hub: https://registry.hub.docker.com/_/node/
+# If you want Nodesource's container you would reference nodesource/node
+# Read more about containers on our dev center
+# http://devcenter.wercker.com/docs/containers/index.html
+box: node:latest
+# This is the build pipeline. Pipelines are the core of wercker
+# Read more about pipelines on our dev center
+# http://devcenter.wercker.com/docs/pipelines/index.html
+
+# You can also use services such as databases. Read more on our dev center:
+# http://devcenter.wercker.com/docs/services/index.html
+# services:
+    # - postgres
+    # http://devcenter.wercker.com/docs/services/postgresql.html
+
+    # - mongo
+    # http://devcenter.wercker.com/docs/services/mongodb.html
+build:
+  # The steps that will be executed on build
+  # Steps make up the actions in your pipeline
+  # Read more about steps on our dev center:
+  # http://devcenter.wercker.com/docs/steps/index.html
+  steps:
+    # A step that executes `npm install` command
+    - script:
+      name: global dependency install
+      code: |
+        npm i -g typescript
+        npm i -g ts-node
+
+
+    # A custom script step, name value is used in the UI
+    # and the code value contains the command that get executed
+    - script:
+        name: echo nodejs information
+        code: |
+          echo "node version $(node -v) running"
+
+    - npm-install
+    # A step that executes `npm test` command
+    - npm-test
+test:
+  steps:
+    - npm test
+
+publish:
+  steps:
+    - script:
+      name: upversion and publish to npm
+      code: |
+        npm i -g npm-cli-login
+        npm-cli-login -u $npm_user -p $npm_pass -e $npm_email
+        npm version patch
+        npm publish

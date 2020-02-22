@@ -1,0 +1,6 @@
+Program "Unknown" (length 1) by "Anonymous"
+
+       ORG      START
+START  JMP.B  $     0, $     0     
+
+Unknown by Anonymous scores 0

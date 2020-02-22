@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es2019", "dom"],
+    "declaration": false,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": ".",
+    "paths": {
+      "@parser/*": ["./src/parser/*"],
+      "@simulator/*": ["./src/simulator/*"],
+      "@matches/*": ["./src/matches/*"],
+      "@parser/tests/*": ["./test/parser/*"],
+      "@simulator/tests/*": ["./test/simulator/*"],
+      "@matches/tests/*": ["./test/matches/*"]
+    },
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+  },
+  "include": ["./src/**/*", "./test/**/*"],
+  "exclude": ["./node_modules", "./dist"]
+}
