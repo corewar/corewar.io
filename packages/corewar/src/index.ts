@@ -142,8 +142,10 @@ class Api {
         this.benchmarkRunner = new BenchmarkRunner(this.publisher, this.matchRunner, new HillResultMapper())
     }
 
-    public initialiseSimulator(options: IOptions, warriors: IWarrior[], messageProvider: IPublishProvider): void {
-        this.publisher.setPublishProvider(messageProvider)
+    public initialiseSimulator(options: IOptions, warriors: IWarrior[], messageProvider?: IPublishProvider): void {
+        if (messageProvider) {
+            this.publisher.setPublishProvider(messageProvider)
+        }
 
         this.executive.initialise(options)
 
@@ -175,14 +177,18 @@ class Api {
         this.publisher.republish()
     }
 
-    public runMatch(rules: IRules, warriors: IWarrior[], messageProvider: IPublishProvider): IMatchResult {
-        this.publisher.setPublishProvider(messageProvider)
+    public runMatch(rules: IRules, warriors: IWarrior[], messageProvider?: IPublishProvider): IMatchResult {
+        if (messageProvider) {
+            this.publisher.setPublishProvider(messageProvider)
+        }
 
         return clone(this.matchRunner.run(rules, warriors))
     }
 
-    public runHill(rules: IRules, warriors: IWarrior[], messageProvider: IPublishProvider): IHillResult {
-        this.publisher.setPublishProvider(messageProvider)
+    public runHill(rules: IRules, warriors: IWarrior[], messageProvider?: IPublishProvider): IHillResult {
+        if (messageProvider) {
+            this.publisher.setPublishProvider(messageProvider)
+        }
 
         return clone(this.hillRunner.run(rules, warriors))
     }

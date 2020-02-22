@@ -8,8 +8,9 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "lint": "eslint \"src/**/*.ts\" \"test/**/*.ts\"",
-    "build": "tsc && tscpaths -p tsconfig.json -s ./src -o ./dist",
-    "prepublishOnly": "npm run lint && npm test && npm run build"
+    "build": "tsc -p tsconfig-build.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
+    "prepublish": "npm run build",
+    "prepublishOnly": "npm run lint && npm test"
   },
   "files": [
     "dist/**/*",

@@ -195,15 +195,15 @@ declare module 'corewar' {
     }
 
     export namespace corewar {
-        function initialiseSimulator(options: IOptions, warriors: IWarrior[], messageProvider: IPublishProvider): void
+        function initialiseSimulator(options: IOptions, warriors: IWarrior[], messageProvider?: IPublishProvider): void
         function step(steps?: number): IRoundResult | null
         function run(): IRoundResult
         function parse(redcode: string): IParseResult
         function serialise(tokens: IToken[]): string
         function getWithInfoAt(address: number): ICoreLocation
         function republish(): void
-        function runMatch(rules: IRules, warriors: IWarrior[], messageProvider: IPublishProvider): IMatchResult
-        function runHill(rules: IRules, warriors: IWarrior[], messageProvider: IPublishProvider): IHillResult
+        function runMatch(rules: IRules, warriors: IWarrior[], messageProvider?: IPublishProvider): IMatchResult
+        function runHill(rules: IRules, warriors: IWarrior[], messageProvider?: IPublishProvider): IHillResult
         function runBenchmark(
             warrior: IHillWarrior,
             rules: IRules,

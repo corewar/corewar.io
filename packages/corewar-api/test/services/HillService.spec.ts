@@ -8,7 +8,7 @@ import sinonChai from 'sinon-chai'
 import Hill from '@/schema/Hill'
 import { IUuidFactory } from '@/services/UuidFactory'
 import buildUidFactoryMock from '@test/mocks/UuidFactory'
-import { corewar, IHill, IHillResult, IHillWarrior, IParseResult } from 'corewar'
+import { corewar, IHillResult, IHillWarrior, IParseResult, IRules, IWarrior, IPublishProvider } from 'corewar'
 import buildParseResult from '@test/mocks/ParseResult'
 import { IWarriorService } from '@/services/WarriorService'
 import buildWarriorServiceMock from '@test/mocks/WarriorService'
@@ -92,7 +92,7 @@ describe('HillService', () => {
     })
 
     describe('challengeHill', () => {
-        let runHill: sinon.SinonStub<[IHill], IHillResult>
+        let runHill: sinon.SinonStub<[IRules, IWarrior[], IPublishProvider], IHillResult>
 
         beforeEach(() => {
             runHill = sinon.stub(corewar, 'runHill')
@@ -108,11 +108,11 @@ describe('HillService', () => {
             sinon.restore()
         })
 
-        const warriorWithSource = (source: IParseResult) => (hill: IHill): boolean =>
-            !!hill.warriors.find((warrior: IHillWarrior): boolean => warrior.source === source)
+        const warriorWithSource = (source: IParseResult) => (warriors: IWarrior[]): boolean =>
+            !!warriors.find((warrior: IHillWarrior): boolean => warrior.source === source)
 
-        const warriorWithId = (id: string) => (hill: IHill): boolean =>
-            !!hill.warriors.find((warrior: IHillWarrior): boolean => warrior.warriorHillId === id)
+        const warriorWithId = (id: string) => (warriors: IWarrior[]): boolean =>
+            !!warriors.find((warrior: IHillWarrior): boolean => warrior.warriorHillId === id)
 
         it('should run hill with specified warrior', async () => {
             const expectedId = '2'
@@ -137,7 +137,7 @@ describe('HillService', () => {
 
             await target.challengeHill(hillId, '2')
 
-            expect(runHill).to.have.been.calledWith(sinon.match((hill: IHill) => hill.rules === expected))
+            expect(runHill).to.have.been.calledWith(sinon.match((rules: IRules) => rules === expected))
         })
 
         it("should run hill with hill's existing warriors", async () => {

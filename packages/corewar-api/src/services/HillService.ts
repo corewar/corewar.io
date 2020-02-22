@@ -76,10 +76,7 @@ export default class HillService implements IHillService {
             source: challenger.parseResult
         })
 
-        corewar.runHill({
-            rules: hill.rules,
-            warriors
-        })
+        corewar.runHill(hill.rules, warriors)
 
         return hill
     }
