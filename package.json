@@ -5,7 +5,9 @@
     "start": "lerna run start --stream",
     "test": "lerna run test --stream",
     "coverage": "lerna run coverage --stream",
-    "build": "lerna run build --stream"
+    "build": "lerna run build --stream",
+    "lint": "eslint \"**/*.(ts(?x)|js(?x))\"",
+    "lint:fix": "eslint --fix \"src/**/*.ts\" \"test/**/*.ts\""
   },
   "devDependencies": {
     "@types/chai": "^4.2.7",
