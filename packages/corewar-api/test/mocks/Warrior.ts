@@ -3,7 +3,7 @@ import buildParseResult from './ParseResult'
 
 export const buildWarrior = (id?: string): Warrior => ({
     id: id || '1',
-    parseResult: buildParseResult(),
+    source: buildParseResult(),
     redcode: 'mov 0, 1'
 })
 

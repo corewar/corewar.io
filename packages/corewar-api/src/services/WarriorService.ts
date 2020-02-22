@@ -32,10 +32,10 @@ export default class WarriorService implements IWarriorService {
         const result = {
             id,
             redcode,
-            parseResult: corewar.parse(redcode)
+            source: corewar.parse(redcode)
         } as Warrior
 
-        if (!result.parseResult.success) {
+        if (!result.source.success) {
             return result
         }
 

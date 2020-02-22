@@ -1,5 +1,5 @@
 import HillWarriorResult from '@/schema/HillWarriorResult'
-import buildParseResult from './ParseResult'
+import buildWarrior from './Warrior'
 
 export const buildHillWarriorResult = (): HillWarriorResult => ({
     won: 1,
@@ -8,7 +8,7 @@ export const buildHillWarriorResult = (): HillWarriorResult => ({
     matches: [],
     rank: 1,
     score: 1,
-    source: buildParseResult()
+    warrior: buildWarrior()
 })
 
 export default buildHillWarriorResult

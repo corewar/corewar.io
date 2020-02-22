@@ -1,11 +1,11 @@
 import { IMatchWarriorResult } from 'corewar'
 import { ObjectType, Field } from 'type-graphql'
-import ParseResult from '@/schema/ParseResult'
+import Warrior from './Warrior'
 
 @ObjectType()
 export default class MatchWarriorResult implements IMatchWarriorResult {
     @Field()
-    source!: ParseResult
+    warrior!: Warrior
     @Field()
     won!: number
     @Field()

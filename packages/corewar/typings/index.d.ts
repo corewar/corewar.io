@@ -175,11 +175,6 @@ declare module 'corewar' {
         warriors: IMatchWarriorResult[]
     }
 
-    interface IHillWarrior {
-        warriorHillId?: string
-        source: IParseResult
-    }
-
     interface IHillWarriorResult {
         warrior: IWarrior
         rank: number
@@ -205,7 +200,7 @@ declare module 'corewar' {
         function runMatch(rules: IRules, warriors: IWarrior[], messageProvider?: IPublishProvider): IMatchResult
         function runHill(rules: IRules, warriors: IWarrior[], messageProvider?: IPublishProvider): IHillResult
         function runBenchmark(
-            warrior: IHillWarrior,
+            warrior: IWarrior,
             rules: IRules,
             warriors: IWarrior[],
             messageProvider: IPublishProvider

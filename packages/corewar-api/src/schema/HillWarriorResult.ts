@@ -1,12 +1,12 @@
 import { IHillWarriorResult } from 'corewar'
 import { ObjectType, Field } from 'type-graphql'
-import ParseResult from '@/schema/ParseResult'
 import MatchResult from '@/schema/MatchResult'
+import Warrior from './Warrior'
 
 @ObjectType()
 export default class HillWarriorResult implements IHillWarriorResult {
     @Field()
-    source!: ParseResult
+    warrior!: Warrior
     @Field()
     rank!: number
     @Field()

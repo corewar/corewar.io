@@ -55,6 +55,7 @@ export default class HillService implements IHillService {
         // TODO store results in db
         // TODO increase age of warriors
         // TODO handle first run of a hill (no existing warriors)
+        // TODO rename IWarrior.internalId to id and then use everywhere,....EVERYWHERE!!
         const hill = await this.repo.getById<Hill>(hillId)
         if (!hill) {
             throw Error(`No hill found with id '${hillId}'`)
@@ -64,17 +65,13 @@ export default class HillService implements IHillService {
             throw Error(`No warrior found with id '${warriorId}'`)
         }
 
-        const warriors = hill.warriors
-            .sort((a, b) => a.rank - b.rank)
-            .slice(0, hill.rules.size)
-            .map(warrior => ({
-                warriorHillId: warrior.warriorId,
-                source: warrior.result.source
-            }))
-        warriors.push({
-            warriorHillId: challenger.id,
-            source: challenger.parseResult
-        })
+        const warriors = await Promise.all(
+            hill.warriors
+                .sort((a, b) => a.rank - b.rank)
+                .slice(0, hill.rules.size)
+                .map(async warrior => await this.warriorService.getById(warrior.warriorId))
+        )
+        warriors.push(challenger)
 
         corewar.runHill(hill.rules, warriors)
 

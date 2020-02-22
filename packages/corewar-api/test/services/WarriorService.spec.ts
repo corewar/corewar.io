@@ -90,7 +90,7 @@ describe('WarriorService', () => {
             const actual = await target.saveWarrior('')
 
             expect(actual.id).to.be.undefined
-            expect(actual.parseResult).to.be.deep.equal(parseResult)
+            expect(actual.source).to.be.deep.equal(parseResult)
             expect(stub).not.to.have.been.called
         })
 

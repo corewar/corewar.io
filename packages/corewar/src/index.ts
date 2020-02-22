@@ -19,7 +19,6 @@ import { IMatchRunner } from '@matches/interface/IMatchRunner'
 
 import { IHillRunner } from '@matches/interface/IHillRunner'
 import { IHillResult } from '@matches/interface/IHillResult'
-import { IHillWarrior } from '@matches/interface/IHillWarrior'
 
 import { IBenchmarkRunner } from '@matches/interface/IBenchmarkRunner'
 
@@ -194,7 +193,7 @@ class Api {
     }
 
     public runBenchmark(
-        warrior: IHillWarrior,
+        warrior: IWarrior,
         rules: IRules,
         warriors: IWarrior[],
         messageProvider: IPublishProvider
