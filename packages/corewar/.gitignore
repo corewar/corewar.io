@@ -1,7 +1,0 @@
-node_modules
-.nyc_output
-coverage
-.vs
-dist
-bundle.js
-.ts-node

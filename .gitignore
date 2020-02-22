@@ -1,16 +1,20 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/server/node_modules
+node_modules
 
 # testing
-/coverage
+.nyc_output
+coverage
 
 # production
-/build
+build
+dist
+bundle.js
 
 # misc
+.vs
+.ts-node
 .DS_Store
 .env.local
 .env.development.local
