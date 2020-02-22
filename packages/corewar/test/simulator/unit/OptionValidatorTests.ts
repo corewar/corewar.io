@@ -1,137 +1,120 @@
-import * as chai from "chai";
-import * as sinonChai from "sinon-chai";
-const expect = chai.expect;
-chai.use(sinonChai);
+import * as chai from 'chai'
+import * as sinonChai from 'sinon-chai'
+const expect = chai.expect
+chai.use(sinonChai)
 
-import Defaults from "@simulator/Defaults";
-import { IOptions } from "@simulator/interface/IOptions";
-import { OptionValidator } from "@simulator/OptionValidator";
-import * as clone from "clone";
+import Defaults from '@simulator/Defaults'
+import { IOptions } from '@simulator/interface/IOptions'
+import { OptionValidator } from '@simulator/OptionValidator'
+import * as clone from 'clone'
 
-describe("OptionValidator", () => {
-
-    let optionValidator;
-    let options;
+describe('OptionValidator', () => {
+    let optionValidator
+    let options
 
     beforeEach(() => {
-
-        optionValidator = new OptionValidator();
-        options = clone(Defaults);
-    });
+        optionValidator = new OptionValidator()
+        options = clone(Defaults)
+    })
 
     const validateAndExpect = (options: IOptions, warriorCount: number, expectedError: string): void => {
-
-        let actual = null;
+        let actual = null
 
         try {
-            optionValidator.validate(options, warriorCount);
+            optionValidator.validate(options, warriorCount)
         } catch (e) {
-            actual = e;
+            actual = e
         }
 
-        expect(actual).not.to.be.null;
-        expect(actual.message).to.be.equal(expectedError);
+        expect(actual).not.to.be.null
+        expect(actual.message).to.be.equal(expectedError)
     }
 
-    it("Throws if coresize is less than zero", () => {
+    it('Throws if coresize is less than zero', () => {
+        options.coresize = -1
 
-        options.coresize = -1;
+        validateAndExpect(options, 1, OptionValidator.CoresizeNegativeMessage)
+    })
 
-        validateAndExpect(options, 1, OptionValidator.CoresizeNegativeMessage);
-    });
+    it('Throws if minSeparation is less than zero', () => {
+        options.minSeparation = -1
 
-    it("Throws if minSeparation is less than zero", () => {
+        validateAndExpect(options, 1, OptionValidator.MinSeparationNegativeMessage)
+    })
 
-        options.minSeparation = -1;
+    it('Throws if instructionLimit is less than zero', () => {
+        options.instructionLimit = -1
 
-        validateAndExpect(options, 1, OptionValidator.MinSeparationNegativeMessage);
-    });
+        validateAndExpect(options, 1, OptionValidator.InstructionLimitNegativeMessage)
+    })
 
-    it("Throws if instructionLimit is less than zero", () => {
+    it('Does not throw for valid coresize, instructionLimit and minSeparation', () => {
+        options.coresize = 6
+        options.minSeparation = 1
+        options.instructionLimit = 2
 
-        options.instructionLimit = -1;
+        optionValidator.validate(options, 2)
+    })
 
-        validateAndExpect(options, 1, OptionValidator.InstructionLimitNegativeMessage);
-    });
-
-    it("Does not throw for valid coresize, instructionLimit and minSeparation", () => {
-
-        options.coresize = 6;
-        options.minSeparation = 1;
-        options.instructionLimit = 2;
-
-        optionValidator.validate(options, 2);
-    });
-
-    it("Throws if coresize is too small to contain all warriors", () => {
-
-        options.coresize = 5;
-        options.minSeparation = 1;
-        options.instructionLimit = 2;
+    it('Throws if coresize is too small to contain all warriors', () => {
+        options.coresize = 5
+        options.minSeparation = 1
+        options.instructionLimit = 2
 
         validateAndExpect(options, 2, OptionValidator.CoreTooSmallForWarriorsMessage)
-    });
+    })
 
-    it("Throws if maximumCycles is less than one", () => {
+    it('Throws if maximumCycles is less than one', () => {
+        options.maximumCycles = 0
 
-        options.maximumCycles = 0;
+        validateAndExpect(options, 1, OptionValidator.MaximumCyclesNegativeMessage)
+    })
 
-        validateAndExpect(options, 1, OptionValidator.MaximumCyclesNegativeMessage);
-    });
+    it('Throws if maxTasks is less than one', () => {
+        options.maxTasks = 0
 
-    it("Throws if maxTasks is less than one", () => {
+        validateAndExpect(options, 1, OptionValidator.MaxTasksNegativeMessage)
+    })
 
-        options.maxTasks = 0;
+    it('Throws if initial instruction is missing', () => {
+        options.initialInstruction = null
 
-        validateAndExpect(options, 1, OptionValidator.MaxTasksNegativeMessage);
-    });
+        validateAndExpect(options, 1, OptionValidator.NoInitialInstructionMessage)
+    })
 
-    it("Throws if initial instruction is missing", () => {
+    it('Throws if initial instruction opcode is invalid', () => {
+        options.initialInstruction.opcode = -1
 
-        options.initialInstruction = null;
+        validateAndExpect(options, 1, OptionValidator.InitialInstructionOpcodeMessage)
+    })
 
-        validateAndExpect(options, 1, OptionValidator.NoInitialInstructionMessage);
-    });
+    it('Throws if initial instruction modifier is invalid', () => {
+        options.initialInstruction.modifier = -1
 
-    it("Throws if initial instruction opcode is invalid", () => {
+        validateAndExpect(options, 1, OptionValidator.InitialInstructionModifierMessage)
+    })
 
-        options.initialInstruction.opcode = -1;
+    it('Throws if initial instruction a operand is missing', () => {
+        options.initialInstruction.aOperand = null
 
-        validateAndExpect(options, 1, OptionValidator.InitialInstructionOpcodeMessage);
-    });
+        validateAndExpect(options, 1, OptionValidator.InitialInstructionAOperandMessage)
+    })
 
-    it("Throws if initial instruction modifier is invalid", () => {
+    it('Throws if initial instruction a operand mode is invalid', () => {
+        options.initialInstruction.aOperand.mode = -1
 
-        options.initialInstruction.modifier = -1;
+        validateAndExpect(options, 1, OptionValidator.InitialInstructionAOperandModeMessage)
+    })
 
-        validateAndExpect(options, 1, OptionValidator.InitialInstructionModifierMessage);
-    });
+    it('Throws if initial instruction b operand is missing', () => {
+        options.initialInstruction.bOperand = null
 
-    it("Throws if initial instruction a operand is missing", () => {
+        validateAndExpect(options, 1, OptionValidator.InitialInstructionBOperandMessage)
+    })
 
-        options.initialInstruction.aOperand = null;
+    it('Throws if initial instruction b operand mode is invalid', () => {
+        options.initialInstruction.bOperand.mode = -1
 
-        validateAndExpect(options, 1, OptionValidator.InitialInstructionAOperandMessage);
-    });
-
-    it("Throws if initial instruction a operand mode is invalid", () => {
-
-        options.initialInstruction.aOperand.mode = -1;
-
-        validateAndExpect(options, 1, OptionValidator.InitialInstructionAOperandModeMessage);
-    });
-
-    it("Throws if initial instruction b operand is missing", () => {
-
-        options.initialInstruction.bOperand = null;
-
-        validateAndExpect(options, 1, OptionValidator.InitialInstructionBOperandMessage);
-    });
-
-    it("Throws if initial instruction b operand mode is invalid", () => {
-
-        options.initialInstruction.bOperand.mode = -1;
-
-        validateAndExpect(options, 1, OptionValidator.InitialInstructionBOperandModeMessage);
-    });
-});
+        validateAndExpect(options, 1, OptionValidator.InitialInstructionBOperandModeMessage)
+    })
+})

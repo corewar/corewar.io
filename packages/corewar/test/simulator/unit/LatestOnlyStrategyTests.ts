@@ -1,51 +1,46 @@
-import { expect } from "chai";
+import { expect } from 'chai'
 
-import { LatestOnlyStrategy } from "@simulator/LatestOnlyStrategy";
-import { MessageType } from "@simulator/interface/IMessage";
+import { LatestOnlyStrategy } from '@simulator/LatestOnlyStrategy'
+import { MessageType } from '@simulator/interface/IMessage'
 
-describe("LatestOnlyStrategy", () => {
+describe('LatestOnlyStrategy', () => {
+    it('returns null if no message queued', () => {
+        const strategy = new LatestOnlyStrategy()
 
-    it("returns null if no message queued", () => {
+        expect(strategy.dequeue()).to.be.null
+    })
 
-        const strategy = new LatestOnlyStrategy();
+    it('returns most recent message queued', () => {
+        const strategy = new LatestOnlyStrategy()
 
-        expect(strategy.dequeue()).to.be.null;
-    });
+        const unexpected = { type: MessageType.CoreAccess, payload: {} }
+        const expected = { type: MessageType.CoreInitialise, payload: {} }
 
-    it("returns most recent message queued", () => {
+        strategy.queue(unexpected)
+        strategy.queue(expected)
 
-        const strategy = new LatestOnlyStrategy();
+        expect(strategy.dequeue()).to.be.deep.equal(expected)
+    })
 
-        const unexpected = { type: MessageType.CoreAccess, payload: {} };
-        const expected = { type: MessageType.CoreInitialise, payload: {} };
+    it('returns same message if dequeued a second time without queueing', () => {
+        const strategy = new LatestOnlyStrategy()
 
-        strategy.queue(unexpected);
-        strategy.queue(expected);
+        const message = { type: MessageType.CoreInitialise, payload: {} }
 
-        expect(strategy.dequeue()).to.be.deep.equal(expected);
-    });
+        strategy.queue(message)
+        strategy.dequeue()
 
-    it("returns same message if dequeued a second time without queueing", () => {
+        expect(strategy.dequeue()).to.be.deep.equal(message)
+    })
 
-        const strategy = new LatestOnlyStrategy();
+    it('returns null if cleared and then dequeued', () => {
+        const strategy = new LatestOnlyStrategy()
 
-        const message = { type: MessageType.CoreInitialise, payload: {} };
+        const unexpected = { type: MessageType.CoreAccess, payload: {} }
 
-        strategy.queue(message);
-        strategy.dequeue();
+        strategy.queue(unexpected)
+        strategy.clear()
 
-        expect(strategy.dequeue()).to.be.deep.equal(message);
-    });
-
-    it("returns null if cleared and then dequeued", () => {
-
-        const strategy = new LatestOnlyStrategy();
-
-        const unexpected = { type: MessageType.CoreAccess, payload: {} };
-
-        strategy.queue(unexpected);
-        strategy.clear();
-
-        expect(strategy.dequeue()).to.be.null;
-    });
-});
+        expect(strategy.dequeue()).to.be.null
+    })
+})

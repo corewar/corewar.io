@@ -1,11 +1,8 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 
-import {
-  FEEDBACK_REQUESTED,
-  FEEDBACK_RESPONSE
-} from './actions'
+import { FEEDBACK_REQUESTED, FEEDBACK_RESPONSE } from './actions'
 
-const handleErrors = (response) => {
+const handleErrors = response => {
   if (!response.ok) {
     throw Error(response.statusText)
   }
@@ -13,7 +10,6 @@ const handleErrors = (response) => {
 }
 
 const sendFeedback = payload => {
-
   return fetch('/api/email', {
     headers: {
       'content-type': 'application/json'
@@ -21,13 +17,12 @@ const sendFeedback = payload => {
     method: 'POST',
     body: payload
   })
-  .then(handleErrors)
-  .then(res => res.json())
-  .catch(err => console.log(err))
+    .then(handleErrors)
+    .then(res => res.json())
+    .catch(err => console.log(err))
 }
 
 export function* feedbackSaga(payload) {
-
   const { email, msg } = payload
 
   const feedback = {
@@ -40,6 +35,4 @@ export function* feedbackSaga(payload) {
   yield put({ type: FEEDBACK_RESPONSE, message: response })
 }
 
-export const feedbackWatchers = [
-  takeEvery(FEEDBACK_REQUESTED, feedbackSaga)
-]
+export const feedbackWatchers = [takeEvery(FEEDBACK_REQUESTED, feedbackSaga)]

@@ -1,4 +1,3 @@
-
 import { action } from '../../actions/creator'
 
 export const INIT = 'simulator/INIT'

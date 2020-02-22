@@ -1,4 +1,4 @@
 export interface INextExecutionContext {
-    warriorId: number;
-    address: number;
+    warriorId: number
+    address: number
 }

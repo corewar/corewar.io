@@ -1,8 +1,8 @@
-import { IParseResult } from "@parser/interface/IParseResult";
+import { IParseResult } from '@parser/interface/IParseResult'
 
 export default interface IWarrior {
-    source: IParseResult;
-    internalId?: number;
+    source: IParseResult
+    internalId?: number
     /* eslint-disable-next-line */
     data?: any;
 }

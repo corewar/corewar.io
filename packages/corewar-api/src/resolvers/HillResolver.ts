@@ -1,13 +1,4 @@
-import {
-    Resolver,
-    Mutation,
-    ObjectType,
-    Args,
-    ArgsType,
-    Field,
-    Query,
-    InputType
-} from 'type-graphql'
+import { Resolver, Mutation, ObjectType, Args, ArgsType, Field, Query, InputType } from 'type-graphql'
 import Hill from '@/schema/Hill'
 import MutationResult from '@/resolvers/MutationResult'
 import Rules from '@/schema/HillRules'
@@ -122,9 +113,7 @@ export default class HillResolver {
     }
 
     @Mutation(() => CreateHillResult)
-    async createHill(
-        @Args() { rules }: CreateHillArgs
-    ): Promise<CreateHillResult> {
+    async createHill(@Args() { rules }: CreateHillArgs): Promise<CreateHillResult> {
         try {
             return {
                 success: true,
@@ -154,9 +143,7 @@ export default class HillResolver {
     }
 
     @Mutation(() => ChallengeHillResult)
-    async challengeHill(
-        @Args() { hillId, warriorId }: ChallengeHillArgs
-    ): Promise<ChallengeHillResult> {
+    async challengeHill(@Args() { hillId, warriorId }: ChallengeHillArgs): Promise<ChallengeHillResult> {
         try {
             return {
                 success: true,

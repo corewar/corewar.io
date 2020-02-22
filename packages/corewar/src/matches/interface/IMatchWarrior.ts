@@ -1,8 +1,7 @@
-import { IParseResult } from "@parser/interface/IParseResult";
+import { IParseResult } from '@parser/interface/IParseResult'
 
 export interface IMatchWarrior {
-
-    warriorMatchId?: number;
-    source: IParseResult;
-    wins?: number;
+    warriorMatchId?: number
+    source: IParseResult
+    wins?: number
 }

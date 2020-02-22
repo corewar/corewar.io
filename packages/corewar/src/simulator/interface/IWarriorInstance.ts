@@ -1,16 +1,15 @@
-﻿import { ITask } from "@simulator/interface/ITask";
-import IWarrior from "./IWarrior";
+﻿import { ITask } from '@simulator/interface/ITask'
+import IWarrior from './IWarrior'
 
 export interface IWarriorInstance {
+    name: string
+    author: string
+    strategy: string
 
-    name: string;
-    author: string;
-    strategy: string;
+    taskIndex: number
+    tasks: ITask[]
 
-    taskIndex: number;
-    tasks: ITask[];
+    startAddress: number
 
-    startAddress: number;
-
-    warrior: IWarrior;
-} 
+    warrior: IWarrior
+}

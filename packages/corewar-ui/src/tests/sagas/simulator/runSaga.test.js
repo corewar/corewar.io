@@ -2,21 +2,12 @@ import { expect } from 'chai'
 
 import { put, call } from 'redux-saga/effects'
 
-import {
-  runSaga,
-  getCoreOptionsFromState,
-  initialiseCore
-} from '../../../features/simulator/sagas'
+import { runSaga, getCoreOptionsFromState, initialiseCore } from '../../../features/simulator/sagas'
 
-import {
-  RUN
-} from '../../../features/simulator/actions'
-
+import { RUN } from '../../../features/simulator/actions'
 
 describe('when testing the run saga', () => {
-
   it('should get the core options and dispatch the run action', () => {
-
     const saga = runSaga()
 
     const data = {
@@ -33,7 +24,6 @@ describe('when testing the run saga', () => {
   })
 
   it('should re initialise the core if there is already a result', () => {
-
     const saga = runSaga()
 
     const data = {
@@ -51,8 +41,4 @@ describe('when testing the run saga', () => {
 
     expect(saga.next().value).to.deep.equal(put({ type: RUN }))
   })
-
 })
-
-
-

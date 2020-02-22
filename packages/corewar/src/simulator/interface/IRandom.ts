@@ -1,5 +1,3 @@
-﻿
-export interface IRandom {
-
-    get(max: number): number;
+﻿export interface IRandom {
+    get(max: number): number
 }

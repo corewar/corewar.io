@@ -85,17 +85,14 @@ const mapStateToProps = state => ({
   displayConsole: state.parser.displayConsole
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    run,
-    init,
-    pause,
-    parse,
-    step,
-    getCoreInstructions,
-    hideConsole
-  }
-)(AppContainer)
+export default connect(mapStateToProps, {
+  run,
+  init,
+  pause,
+  parse,
+  step,
+  getCoreInstructions,
+  hideConsole
+})(AppContainer)
 
 export { AppContainer as PureAppContainer }

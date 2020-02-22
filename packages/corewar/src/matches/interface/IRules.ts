@@ -1,7 +1,6 @@
-import { IOptions } from "@simulator/interface/IOptions";
+import { IOptions } from '@simulator/interface/IOptions'
 
 export interface IRules {
-
-    rounds: number;
-    options: IOptions;
+    rounds: number
+    options: IOptions
 }

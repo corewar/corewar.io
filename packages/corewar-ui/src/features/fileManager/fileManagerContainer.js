@@ -6,11 +6,7 @@ import { loadFile } from '../parser/actions'
 import FileManager from './fileManager'
 
 const FileManagerContainer = ({ displayFileManager, warriorLibrary, loadFile }) => (
-  <FileManager
-    show={displayFileManager}
-    files={warriorLibrary}
-    handleClick={loadFile}
-    />
+  <FileManager show={displayFileManager} files={warriorLibrary} handleClick={loadFile} />
 )
 
 const mapStateToProps = state => ({
@@ -18,11 +14,8 @@ const mapStateToProps = state => ({
   warriorLibrary: state.parser.warriorLibrary
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    loadFile
-  }
-)(FileManagerContainer)
+export default connect(mapStateToProps, {
+  loadFile
+})(FileManagerContainer)
 
 export { FileManagerContainer as PureFileManagerContainer }

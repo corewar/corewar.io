@@ -1,4 +1,3 @@
-
 import { colour, space, font } from './theme'
 
 export const sourceCode = props => `

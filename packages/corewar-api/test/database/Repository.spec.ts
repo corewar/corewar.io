@@ -21,8 +21,8 @@ describe('Repository', () => {
         collection = buildCollectionMock()
         /* eslint-disable-next-line */
         connect = sinon.stub(MongoClient.prototype, 'connect').callsFake((callback: any) => {
-                callback()
-            })
+            callback()
+        })
         close = sinon.stub(MongoClient.prototype, 'close')
         sinon.stub(MongoClient.prototype, 'db').returns((db as unknown) as Db)
         db.collection.returns(collection)
@@ -172,10 +172,7 @@ describe('Repository', () => {
 
             await target.upsert(expected)
 
-            expect(updateOne).to.have.been.calledWith(
-                { id: expected.id },
-                { $set: expected }
-            )
+            expect(updateOne).to.have.been.calledWith({ id: expected.id }, { $set: expected })
             expect(insertOne).not.to.have.been.called
         })
 

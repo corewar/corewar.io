@@ -8,15 +8,10 @@ import {
   initialiseCore
 } from '../../../features/simulator/sagas'
 
-import {
-  RUN
-} from '../../../features/simulator/actions'
-
+import { RUN } from '../../../features/simulator/actions'
 
 describe('when testing the finish saga', () => {
-
   it('should get the core options and dispatch call run on the simulator', () => {
-
     const saga = finishSaga()
 
     const data = {
@@ -33,7 +28,6 @@ describe('when testing the finish saga', () => {
   })
 
   it('should re initialise the core if there is already a result', () => {
-
     const saga = finishSaga()
 
     const data = {
@@ -51,8 +45,4 @@ describe('when testing the finish saga', () => {
 
     expect(saga.next().value).to.deep.equal(call([corewar, corewar.run]))
   })
-
 })
-
-
-

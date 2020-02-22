@@ -1,3 +1,1 @@
-export const action = (type, payload = {}) => (
-  {type, ...payload}
-)
+export const action = (type, payload = {}) => ({ type, ...payload })

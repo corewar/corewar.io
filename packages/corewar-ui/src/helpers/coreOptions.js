@@ -8,8 +8,7 @@ export const CoreOptions = {
   TinyLimitedProcess: 7
 }
 
-export const getCoreOptions = (id) => {
-
+export const getCoreOptions = id => {
   switch (id) {
     case CoreOptions.Beginner:
       return {
@@ -75,5 +74,4 @@ export const getCoreOptions = (id) => {
     default:
       return {}
   }
-
 }

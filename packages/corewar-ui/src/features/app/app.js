@@ -37,12 +37,9 @@ const mapStateToProps = state => ({
   interfaceMode: state.interfaceMode.interfaceMode
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    addWarrior
-  }
-)(App)
+export default connect(mapStateToProps, {
+  addWarrior
+})(App)
 
 export { App as PureApp }
 

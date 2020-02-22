@@ -4,15 +4,15 @@ import styled from 'styled-components'
 import { colour } from '../common/theme'
 
 const Container = styled.div.attrs({
-  onClick: props => props.enabled ? props.handleClick : null
+  onClick: props => (props.enabled ? props.handleClick : null)
 })`
-
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   ${props => !props.visible && `display: none;`}
-  ${props => props.enabled ? `color: ${colour.lightgrey};` : `color: ${colour.grey};`}
+  ${props =>
+    props.enabled ? `color: ${colour.lightgrey};` : `color: ${colour.grey};`}
   font-size: 20px;
 
   span {
@@ -22,15 +22,15 @@ const Container = styled.div.attrs({
   }
 
   i {
-    ${props => props.enabled ? `color: ${colour.lightgrey};` : `color: ${colour.grey};`}
+    ${props => (props.enabled ? `color: ${colour.lightgrey};` : `color: ${colour.grey};`)}
     margin: 0.5em 0 0 0.5em;
   }
 
-  .fa-play{
+  .fa-play {
     padding-left: 0.15em;
   }
 
-  .fa-pause  {
+  .fa-pause {
     padding-left: 0.09em;
   }
 
@@ -47,7 +47,9 @@ const Container = styled.div.attrs({
   }
 
   &:hover {
-    ${props => props.enabled && `
+    ${props =>
+      props.enabled &&
+      `
       cursor: pointer;
       span {
         background-color: ${colour.coral};
@@ -57,7 +59,6 @@ const Container = styled.div.attrs({
       }
     `}
   }
-
 `
 
 const FontAwesomeButton = ({ visible = true, enabled = true, handleClick, iconName }) => (

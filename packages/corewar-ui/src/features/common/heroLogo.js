@@ -48,7 +48,6 @@ const Features = styled.section`
 `
 
 const Feature = styled.div`
-
   border-right: 1px solid ${colour.lightbg};
   ${media.tablet`border-right: none;`};
   ${media.desktop`border-right: none;`};
@@ -106,7 +105,6 @@ const Feature = styled.div`
 
     ${media.desktop`margin-left: ${space.s};`};
     ${media.desktop`margin-right: ${space.s};`};
-
   }
 
   :hover {
@@ -133,24 +131,25 @@ const Feature = styled.div`
   }
 `
 
-
 const HeroLogo = () => (
   <Hero>
     <Logo>
-      <h1>corewar<span>.io</span></h1>
-      <Octicon name='chevron-right' />
+      <h1>
+        corewar<span>.io</span>
+      </h1>
+      <Octicon name="chevron-right" />
     </Logo>
     <Features>
       <Feature>
-        <Octicon name='rocket' />
+        <Octicon name="rocket" />
         <h3>Play corewar</h3>
       </Feature>
       <Feature>
-        <Octicon name='device-mobile' />
+        <Octicon name="device-mobile" />
         <h3>On any device</h3>
       </Feature>
       <Feature>
-        <Octicon name='megaphone' />
+        <Octicon name="megaphone" />
         <h3>In new ways</h3>
       </Feature>
     </Features>

@@ -8,13 +8,7 @@ import sinonChai from 'sinon-chai'
 import Hill from '@/schema/Hill'
 import { IUuidFactory } from '@/services/UuidFactory'
 import buildUidFactoryMock from '@test/mocks/UuidFactory'
-import {
-    corewar,
-    IHill,
-    IHillResult,
-    IHillWarrior,
-    IParseResult
-} from 'corewar'
+import { corewar, IHill, IHillResult, IHillWarrior, IParseResult } from 'corewar'
 import buildParseResult from '@test/mocks/ParseResult'
 import { IWarriorService } from '@/services/WarriorService'
 import buildWarriorServiceMock from '@test/mocks/WarriorService'
@@ -69,9 +63,7 @@ describe('HillService', () => {
 
             await target.createHill(rules)
 
-            expect(stub).to.have.been.calledWith(
-                sinon.match((x: Hill) => x.rules === rules)
-            )
+            expect(stub).to.have.been.calledWith(sinon.match((x: Hill) => x.rules === rules))
         })
 
         it('should generate a uuid for the new hill', async () => {
@@ -116,17 +108,11 @@ describe('HillService', () => {
             sinon.restore()
         })
 
-        const warriorWithSource = (source: IParseResult) => (
-            hill: IHill
-        ): boolean =>
-            !!hill.warriors.find(
-                (warrior: IHillWarrior): boolean => warrior.source === source
-            )
+        const warriorWithSource = (source: IParseResult) => (hill: IHill): boolean =>
+            !!hill.warriors.find((warrior: IHillWarrior): boolean => warrior.source === source)
 
         const warriorWithId = (id: string) => (hill: IHill): boolean =>
-            !!hill.warriors.find(
-                (warrior: IHillWarrior): boolean => warrior.warriorHillId === id
-            )
+            !!hill.warriors.find((warrior: IHillWarrior): boolean => warrior.warriorHillId === id)
 
         it('should run hill with specified warrior', async () => {
             const expectedId = '2'
@@ -136,9 +122,7 @@ describe('HillService', () => {
 
             await target.challengeHill('1', expectedId)
 
-            expect(runHill).to.have.been.calledWith(
-                sinon.match(warriorWithSource(expected))
-            )
+            expect(runHill).to.have.been.calledWith(sinon.match(warriorWithSource(expected)))
         })
 
         it('should use the rules for the hill with the specified id', async () => {
@@ -153,9 +137,7 @@ describe('HillService', () => {
 
             await target.challengeHill(hillId, '2')
 
-            expect(runHill).to.have.been.calledWith(
-                sinon.match((hill: IHill) => hill.rules === expected)
-            )
+            expect(runHill).to.have.been.calledWith(sinon.match((hill: IHill) => hill.rules === expected))
         })
 
         it("should run hill with hill's existing warriors", async () => {
@@ -167,9 +149,7 @@ describe('HillService', () => {
 
             const getWarriorById = warriorService.getById as sinon.SinonStub
             getWarriorById.withArgs(challenger.id).returns(challenger)
-            existing.forEach(warrior =>
-                getWarriorById.withArgs(warrior.warriorId).returns(warrior)
-            )
+            existing.forEach(warrior => getWarriorById.withArgs(warrior.warriorId).returns(warrior))
 
             const getHillById = repo.getById as sinon.SinonStub
             getHillById.returns(hill)
@@ -177,9 +157,7 @@ describe('HillService', () => {
             await target.challengeHill(hill.id, challenger.id)
 
             existing.forEach(warrior =>
-                expect(runHill).to.have.been.calledWith(
-                    sinon.match(warriorWithSource(warrior.result.source))
-                )
+                expect(runHill).to.have.been.calledWith(sinon.match(warriorWithSource(warrior.result.source)))
             )
         })
 
@@ -198,21 +176,15 @@ describe('HillService', () => {
 
             const getWarriorById = warriorService.getById as sinon.SinonStub
             getWarriorById.withArgs(challenger.id).returns(challenger)
-            existing.forEach(warrior =>
-                getWarriorById.withArgs(warrior.warriorId).returns(warrior)
-            )
+            existing.forEach(warrior => getWarriorById.withArgs(warrior.warriorId).returns(warrior))
 
             const getHillById = repo.getById as sinon.SinonStub
             getHillById.returns(hill)
 
             await target.challengeHill(hill.id, challenger.id)
 
-            expect(runHill).to.have.been.calledWith(
-                sinon.match(warriorWithSource(expected.result.source))
-            )
-            expect(runHill).not.to.have.been.calledWith(
-                sinon.match(warriorWithSource(unexpected.result.source))
-            )
+            expect(runHill).to.have.been.calledWith(sinon.match(warriorWithSource(expected.result.source)))
+            expect(runHill).not.to.have.been.calledWith(sinon.match(warriorWithSource(unexpected.result.source)))
         })
 
         it('should throw if hill does not exist', async () => {
@@ -225,9 +197,7 @@ describe('HillService', () => {
                 await target.challengeHill(hillId, '1')
                 assert.fail('Expected promise to fail but succeeded')
             } catch (e) {
-                expect(e.message).to.be.equal(
-                    `No hill found with id '${hillId}'`
-                )
+                expect(e.message).to.be.equal(`No hill found with id '${hillId}'`)
             }
         })
 
@@ -241,9 +211,7 @@ describe('HillService', () => {
                 await target.challengeHill('1', challengerId)
                 assert.fail('Expected promise to fail but succeeded')
             } catch (e) {
-                expect(e.message).to.be.equal(
-                    `No warrior found with id '${challengerId}'`
-                )
+                expect(e.message).to.be.equal(`No warrior found with id '${challengerId}'`)
             }
         })
 
@@ -256,24 +224,16 @@ describe('HillService', () => {
 
             const getWarriorById = warriorService.getById as sinon.SinonStub
             getWarriorById.withArgs(challenger.id).returns(challenger)
-            existing.forEach(warrior =>
-                getWarriorById.withArgs(warrior.warriorId).returns(warrior)
-            )
+            existing.forEach(warrior => getWarriorById.withArgs(warrior.warriorId).returns(warrior))
 
             const getHillById = repo.getById as sinon.SinonStub
             getHillById.returns(hill)
 
             await target.challengeHill(hill.id, challenger.id)
 
-            expect(runHill).to.have.been.calledWith(
-                sinon.match(warriorWithId('1'))
-            )
-            expect(runHill).to.have.been.calledWith(
-                sinon.match(warriorWithId('2'))
-            )
-            expect(runHill).to.have.been.calledWith(
-                sinon.match(warriorWithId('3'))
-            )
+            expect(runHill).to.have.been.calledWith(sinon.match(warriorWithId('1')))
+            expect(runHill).to.have.been.calledWith(sinon.match(warriorWithId('2')))
+            expect(runHill).to.have.been.calledWith(sinon.match(warriorWithId('3')))
         })
     })
 })

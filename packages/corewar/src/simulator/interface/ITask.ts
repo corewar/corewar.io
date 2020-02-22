@@ -1,7 +1,6 @@
-﻿import { IWarriorInstance } from "@simulator/interface/IWarriorInstance";
+﻿import { IWarriorInstance } from '@simulator/interface/IWarriorInstance'
 
 export interface ITask {
-
-    instance: IWarriorInstance;
-    instructionPointer: number;
+    instance: IWarriorInstance
+    instructionPointer: number
 }

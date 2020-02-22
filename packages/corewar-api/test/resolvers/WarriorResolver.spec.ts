@@ -56,10 +56,7 @@ describe('WarriorResolver', () => {
 
             await target.saveWarrior(expected)
 
-            expect(stub).to.have.been.calledWith(
-                expected.warrior.redcode,
-                expected.warrior.id
-            )
+            expect(stub).to.have.been.calledWith(expected.warrior.redcode, expected.warrior.id)
         })
 
         it('should return result of service saveWarrior', async () => {

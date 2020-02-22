@@ -7,13 +7,14 @@ import ControlsContainer from './controlsContainer'
 import SettingsMenuContainer from '../settingsMenu/settingsMenuContainer'
 import WarriorManagerContainer from '../warriorManager/warriorManagerContainer'
 
-import { space, colour } from  '../common/theme'
-import { media } from  '../common/mediaQuery'
+import { space, colour } from '../common/theme'
+import { media } from '../common/mediaQuery'
 
 const SimulatorGrid = styled.section`
 
   ${props => props.mobile && `grid-row-start: 3;`}
-  ${props => props.mobile && `height: calc(100vh - ${space.s} - ${space.header} - ${space.controls});`}
+  ${props =>
+    props.mobile && `height: calc(100vh - ${space.s} - ${space.header} - ${space.controls});`}
 
   ${props => props.tablet && `grid-row-start: 2;`}
   ${props => props.tablet && `height: calc(100vh - ${space.controls});`}
@@ -32,10 +33,22 @@ const SimulatorGrid = styled.section`
 
 SimulatorGrid.displayName = `SimulatorGrid`
 
-const SimulatorLayout = ({ coreSize, getCoreInstructions, isRunning, isInitialised,
-  init, warriors, maxTasks, removeWarrior, loadWarrior, republish, tablet, mobile }) => (
+const SimulatorLayout = ({
+  coreSize,
+  getCoreInstructions,
+  isRunning,
+  isInitialised,
+  init,
+  warriors,
+  maxTasks,
+  removeWarrior,
+  loadWarrior,
+  republish,
+  tablet,
+  mobile
+}) => (
   <SimulatorGrid mobile={mobile} tablet={tablet}>
-    {(mobile || tablet) && <WarriorManagerContainer /> }
+    {(mobile || tablet) && <WarriorManagerContainer />}
     <ErrorBoundary>
       <Core
         init={init}
@@ -44,7 +57,7 @@ const SimulatorLayout = ({ coreSize, getCoreInstructions, isRunning, isInitialis
         getCoreInstructions={getCoreInstructions}
         isRunning={isRunning}
         isInitialised={isInitialised}
-        />
+      />
     </ErrorBoundary>
     <ControlsContainer mobile={mobile} tablet={tablet} />
     <SettingsMenuContainer />

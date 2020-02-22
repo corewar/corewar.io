@@ -1,6 +1,5 @@
-import { IHillWarriorResult } from "@matches/interface/IHillWarriorResult";
+import { IHillWarriorResult } from '@matches/interface/IHillWarriorResult'
 
 export interface IHillResult {
-
-    warriors: IHillWarriorResult[];
+    warriors: IHillWarriorResult[]
 }

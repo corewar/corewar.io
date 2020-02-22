@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { space } from  './theme'
+import { space } from './theme'
 
 const RootGrid = styled.main`
   display: grid;

@@ -6,7 +6,7 @@ import { media } from '../common/mediaQuery'
 
 const FileManagerGrid = styled.section`
 
-  ${props => props.show ? `left: 0;` : `left: -201px;`};
+  ${props => (props.show ? `left: 0;` : `left: -201px;`)};
 
   transition: 0.5s;
   position: absolute;
@@ -62,9 +62,7 @@ const FileManager = ({ show, files, handleClick }) => (
     <span>/ root</span>
     <ul>
       {files.map((file, i) => (
-        <li
-          key={`${file.name}_${i}`}
-          onClick={() => handleClick(file.source)}>
+        <li key={`${file.name}_${i}`} onClick={() => handleClick(file.source)}>
           {file.name}
         </li>
       ))}

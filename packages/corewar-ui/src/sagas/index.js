@@ -6,10 +6,5 @@ import { signupWatchers } from '../features/signup/sagas'
 import { feedbackWatchers } from '../features/feedback/sagas'
 
 export default function* rootSaga() {
-  yield all([
-    ...parserWatchers,
-    ...simulatorWatchers,
-    ...signupWatchers,
-    ...feedbackWatchers
-  ])
+  yield all([...parserWatchers, ...simulatorWatchers, ...signupWatchers, ...feedbackWatchers])
 }

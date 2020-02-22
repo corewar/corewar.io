@@ -1,6 +1,4 @@
-import {
-  SUBSCRIPTION_RESPONSE
-} from './actions'
+import { SUBSCRIPTION_RESPONSE } from './actions'
 
 // state
 import initialState from './initialState'
@@ -11,7 +9,6 @@ export const getSignupState = state => state.signup
 // reducer
 export default (state = initialState, action) => {
   switch (action.type) {
-
     case SUBSCRIPTION_RESPONSE:
       return {
         ...state,
@@ -22,4 +19,3 @@ export default (state = initialState, action) => {
       return state
   }
 }
-

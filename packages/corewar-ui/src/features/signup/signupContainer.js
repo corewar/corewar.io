@@ -9,10 +9,7 @@ import SiteNav from '../common/siteNav'
 import HeroLogo from '../common/heroLogo'
 import FeatureButton from '../common/featureButton'
 
-
-import {
-  subscribe
-} from './actions'
+import { subscribe } from './actions'
 
 const SignUpGrid = styled.main`
   height: 100vh;
@@ -77,7 +74,6 @@ const Form = styled.form`
 `
 
 class SignUpContainer extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = { email: '' }
@@ -91,26 +87,32 @@ class SignUpContainer extends React.Component {
 
   render() {
     const { subscribe, signupMessage } = this.props
-    return <SignUpGrid>
-      <SiteNav />
-      <HeroLogo />
-      <Content>
-        <h1>Sign up to register your interest in corewar.io and receive early notification of features and releases</h1>
-        {signupMessage && <h2>{signupMessage}</h2>}
-        <Form>
-          <label htmlFor='email'>Email Address</label>
-          <input
-            type="email"
-            autoCapitalize="off"
-            autoCorrect="off"
-            id="email"
-            size="25"
-            value={this.state.email}
-            onChange={(e) => this.emailChange(e)} />
-          <FeatureButton onClick={() => subscribe(this.state.email)}>Sign up</FeatureButton>
-        </Form>
-      </Content>
-    </SignUpGrid>
+    return (
+      <SignUpGrid>
+        <SiteNav />
+        <HeroLogo />
+        <Content>
+          <h1>
+            Sign up to register your interest in corewar.io and receive early notification of
+            features and releases
+          </h1>
+          {signupMessage && <h2>{signupMessage}</h2>}
+          <Form>
+            <label htmlFor="email">Email Address</label>
+            <input
+              type="email"
+              autoCapitalize="off"
+              autoCorrect="off"
+              id="email"
+              size="25"
+              value={this.state.email}
+              onChange={e => this.emailChange(e)}
+            />
+            <FeatureButton onClick={() => subscribe(this.state.email)}>Sign up</FeatureButton>
+          </Form>
+        </Content>
+      </SignUpGrid>
+    )
   }
 }
 
@@ -118,11 +120,8 @@ const mapStateToProps = state => ({
   signupMessage: state.signup.signupMessage
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    subscribe
-  }
-)(SignUpContainer)
+export default connect(mapStateToProps, {
+  subscribe
+})(SignUpContainer)
 
 export { SignUpContainer as PureSignUpContainer }

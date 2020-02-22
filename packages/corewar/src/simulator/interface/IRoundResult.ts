@@ -1,7 +1,6 @@
 export interface IRoundResult {
-
-    winnerId?: number;
+    winnerId?: number
     /* eslint-disable-next-line */
     winnerData?: any;
-    outcome: string;
+    outcome: string
 }

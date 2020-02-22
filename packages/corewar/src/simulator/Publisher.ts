@@ -1,82 +1,70 @@
-import { IMessage } from "@simulator/interface/IMessage";
-import { IPublisher, IPublishStrategyMap } from "@simulator/interface/IPublisher";
-import { IPublishProvider } from "@simulator/interface/IPublishProvider";
-import * as clone from "clone";
+import { IMessage } from '@simulator/interface/IMessage'
+import { IPublisher, IPublishStrategyMap } from '@simulator/interface/IPublisher'
+import { IPublishProvider } from '@simulator/interface/IPublishProvider'
+import * as clone from 'clone'
 
 export class Publisher implements IPublisher {
-
-    private publishProvider: IPublishProvider;
-    private publishStrategies: IPublishStrategyMap;
-    private republishStrategies: IPublishStrategyMap;
+    private publishProvider: IPublishProvider
+    private publishStrategies: IPublishStrategyMap
+    private republishStrategies: IPublishStrategyMap
 
     constructor(strategies: IPublishStrategyMap) {
-
         this.publishStrategies = Object.keys(strategies).reduce(
-            (a: IPublishStrategyMap, c: string) => ({ ...a, [c]: clone(strategies[c]) }), {});
+            (a: IPublishStrategyMap, c: string) => ({ ...a, [c]: clone(strategies[c]) }),
+            {}
+        )
 
         this.republishStrategies = Object.keys(strategies).reduce(
-                (a: IPublishStrategyMap, c: string) => ({ ...a, [c]: clone(strategies[c]) }), {});
+            (a: IPublishStrategyMap, c: string) => ({ ...a, [c]: clone(strategies[c]) }),
+            {}
+        )
     }
 
     public setPublishProvider(publishProvider: IPublishProvider): void {
-
-        this.publishProvider = publishProvider;
+        this.publishProvider = publishProvider
     }
 
     public queue(message: IMessage): void {
-
-        this.publishStrategies[message.type].queue(message);
-        this.republishStrategies[message.type].queue(message);
+        this.publishStrategies[message.type].queue(message)
+        this.republishStrategies[message.type].queue(message)
     }
 
     public publish(): void {
+        this.doPublish(this.publishStrategies)
 
-        this.doPublish(this.publishStrategies);
-
-        Object.keys(this.publishStrategies)
-            .forEach(key => {
-                this.publishStrategies[key].clear();
-            });
+        Object.keys(this.publishStrategies).forEach(key => {
+            this.publishStrategies[key].clear()
+        })
     }
 
     public republish(): void {
-
-        this.doPublish(this.republishStrategies);
+        this.doPublish(this.republishStrategies)
     }
 
     private doPublish(strategies: IPublishStrategyMap): void {
-
         if (!this.publishProvider) {
-            return;
+            return
         }
 
-        Object.keys(strategies)
-            .forEach(key => {
-                
-                const strategy = strategies[key];
-                const message = strategy.dequeue();
+        Object.keys(strategies).forEach(key => {
+            const strategy = strategies[key]
+            const message = strategy.dequeue()
 
-                if (!message) {
-                    return;
-                }
+            if (!message) {
+                return
+            }
 
-                this.publishProvider.publishSync(
-                    message.type,
-                    message.payload
-                );
-            });
+            this.publishProvider.publishSync(message.type, message.payload)
+        })
     }
 
     public clear(): void {
+        Object.keys(this.publishStrategies).forEach(key => {
+            this.publishStrategies[key].clear()
+        })
 
-        Object.keys(this.publishStrategies)
-            .forEach(key => {
-                this.publishStrategies[key].clear();
-            });
-
-        Object.keys(this.republishStrategies)
-            .forEach(key => {
-                this.republishStrategies[key].clear();
-            });
+        Object.keys(this.republishStrategies).forEach(key => {
+            this.republishStrategies[key].clear()
+        })
     }
 }

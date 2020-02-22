@@ -29,12 +29,9 @@ const mapStateToProps = state => ({
   displayConsole: state.parser.displayConsole
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    parse,
-    hideConsole
-  }
-)(InputContainer)
+export default connect(mapStateToProps, {
+  parse,
+  hideConsole
+})(InputContainer)
 
 export { InputContainer as PureInputContainer }

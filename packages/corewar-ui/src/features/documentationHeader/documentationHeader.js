@@ -37,12 +37,13 @@ const Logo = styled.div`
   align-items: center;
 `
 
-
 const HeroLogo = () => (
   <Hero>
     <Logo>
-      <h1>corewar<span>.docs</span></h1>
-      <Octicon name='chevron-right' />
+      <h1>
+        corewar<span>.docs</span>
+      </h1>
+      <Octicon name="chevron-right" />
     </Logo>
   </Hero>
 )

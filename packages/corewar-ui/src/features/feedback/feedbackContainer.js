@@ -9,9 +9,7 @@ import SiteNav from '../common/siteNav'
 import HeroLogo from '../common/heroLogo'
 import FeatureButton from '../common/featureButton'
 
-import {
-  sendFeedback
-} from './actions'
+import { sendFeedback } from './actions'
 
 const Grid = styled.main`
   height: 100vh;
@@ -55,7 +53,6 @@ const Content = styled.div`
   }
 
   ul {
-
     margin-bottom: ${space.xxl};
 
     li {
@@ -112,7 +109,6 @@ const Form = styled.form`
 `
 
 class FeedbackContainer extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = { email: '', msg: '' }
@@ -132,42 +128,56 @@ class FeedbackContainer extends React.Component {
 
   render() {
     const { sendFeedback, feedbackMessage } = this.props
-    return <Grid>
-      <SiteNav />
-      <HeroLogo />
-      <Content>
-        <h1>We'd love to hear your feedback, good or bad. Help us to improve the service for you.</h1>
-        {feedbackMessage && <h2>{feedbackMessage}</h2>}
-        <Form>
-          <label htmlFor='email'>Email Address (so we can thank you)</label>
-          <input
-            type="email"
-            autoCapitalize="off"
-            autoCorrect="off"
-            id="email"
-            size="25"
-            value={this.state.email}
-            onChange={(e) => this.emailChange(e)} />
-          <label htmlFor='message'>Your message</label>
-          <textarea
-            autoCapitalize="off"
-            autoCorrect="off"
-            id="message"
-            rows={5}
-            value={this.state.msg}
-            onChange={(e) => this.msgChange(e)} ></textarea>
-          <FeatureButton onClick={() => sendFeedback({ email: this.state.email, msg: this.state.msg })}>Send Feedback</FeatureButton>
-        </Form>
-        <p>
-          As well as providing feedback through this form, you can join one of our Corewar.io
-          communities to speak to us directly
-        </p>
-        <ul>
-          <li><a href="https://corewario.slack.com">https://corewario.slack.com</a></li>
-          <li><a href="https://spectrum.chat/corewar">https://spectrum.chat/corewar</a></li>
-        </ul>
-      </Content>
-    </Grid>
+    return (
+      <Grid>
+        <SiteNav />
+        <HeroLogo />
+        <Content>
+          <h1>
+            We'd love to hear your feedback, good or bad. Help us to improve the service for you.
+          </h1>
+          {feedbackMessage && <h2>{feedbackMessage}</h2>}
+          <Form>
+            <label htmlFor="email">Email Address (so we can thank you)</label>
+            <input
+              type="email"
+              autoCapitalize="off"
+              autoCorrect="off"
+              id="email"
+              size="25"
+              value={this.state.email}
+              onChange={e => this.emailChange(e)}
+            />
+            <label htmlFor="message">Your message</label>
+            <textarea
+              autoCapitalize="off"
+              autoCorrect="off"
+              id="message"
+              rows={5}
+              value={this.state.msg}
+              onChange={e => this.msgChange(e)}
+            ></textarea>
+            <FeatureButton
+              onClick={() => sendFeedback({ email: this.state.email, msg: this.state.msg })}
+            >
+              Send Feedback
+            </FeatureButton>
+          </Form>
+          <p>
+            As well as providing feedback through this form, you can join one of our Corewar.io
+            communities to speak to us directly
+          </p>
+          <ul>
+            <li>
+              <a href="https://corewario.slack.com">https://corewario.slack.com</a>
+            </li>
+            <li>
+              <a href="https://spectrum.chat/corewar">https://spectrum.chat/corewar</a>
+            </li>
+          </ul>
+        </Content>
+      </Grid>
+    )
   }
 }
 
@@ -175,11 +185,8 @@ const mapStateToProps = state => ({
   feedbackMessage: state.feedback.feedbackMessage
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    sendFeedback
-  }
-)(FeedbackContainer)
+export default connect(mapStateToProps, {
+  sendFeedback
+})(FeedbackContainer)
 
 export { FeedbackContainer as PureFeedbackContainer }

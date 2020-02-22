@@ -1,51 +1,144 @@
-﻿import { IParseInstruction } from "@parser/interface/IParseInstruction";
-import { TokenCategory } from "@parser/interface/IToken";
-import { PassBase } from "@parser/PassBase";
+﻿import { IParseInstruction } from '@parser/interface/IParseInstruction'
+import { TokenCategory } from '@parser/interface/IToken'
+import { PassBase } from '@parser/PassBase'
 
 export class IllegalCommandCheck extends PassBase {
-
-
     public processLine(): void {
-
         if (this.stream.peek().category === TokenCategory.Opcode) {
-            this.checkLine();
+            this.checkLine()
         } else {
-            this.context.emit(
-                this.stream.readToEOL()
-            );
+            this.context.emit(this.stream.readToEOL())
         }
     }
 
     private static LegalCommands: string[] = [
-        "ADD#$", "ADD#@", "ADD#<", "ADD$$", "ADD$@",
-        "ADD$<", "ADD@$", "ADD@@", "ADD@<", "ADD<$",
-        "ADD<@", "ADD<<", "CMP#$", "CMP#@", "CMP#<",
-        "CMP$$", "CMP$@", "CMP$<", "CMP@$", "CMP@@",
-        "CMP@<", "CMP<$", "CMP<@", "CMP<<", "DAT##",
-        "DAT#<", "DAT<#", "DAT<<", "DJN$#", "DJN$$",
-        "DJN$@", "DJN$<", "DJN@#", "DJN@$", "DJN@@",
-        "DJN@<", "DJN<#", "DJN<$", "DJN<@", "DJN<<",
-        "JMN$#", "JMN$$", "JMN$@", "JMN$<", "JMN@#",
-        "JMN@$", "JMN@@", "JMN@<", "JMN<#", "JMN<$",
-        "JMN<@", "JMN<<", "JMP$#", "JMP$$", "JMP$@",
-        "JMP$<", "JMP@#", "JMP@$", "JMP@@", "JMP@<",
-        "JMP<#", "JMP<$", "JMP<@", "JMP<<", "JMZ$#",
-        "JMZ$$", "JMZ$@", "JMZ$<", "JMZ@#", "JMZ@$",
-        "JMZ@@", "JMZ@<", "JMZ<#", "JMZ<$", "JMZ<@",
-        "JMZ<<", "MOV#$", "MOV#@", "MOV#<", "MOV$$",
-        "MOV$@", "MOV$<", "MOV@$", "MOV@@", "MOV@<",
-        "MOV<$", "MOV<@", "MOV<<", "SLT#$", "SLT#@",
-        "SLT#<", "SLT$$", "SLT$@", "SLT$<", "SLT@$",
-        "SLT@@", "SLT@<", "SLT<$", "SLT<@", "SLT<<",
-        "SPL$#", "SPL$$", "SPL$@", "SPL$<", "SPL@#",
-        "SPL@$", "SPL@@", "SPL@<", "SPL<#", "SPL<$",
-        "SPL<@", "SPL<<", "SUB#$", "SUB#@", "SUB#<",
-        "SUB$$", "SUB$@", "SUB$<", "SUB@$", "SUB@@",
-        "SUB@<", "SUB<$", "SUB<@", "SUB<<"
-    ];
+        'ADD#$',
+        'ADD#@',
+        'ADD#<',
+        'ADD$$',
+        'ADD$@',
+        'ADD$<',
+        'ADD@$',
+        'ADD@@',
+        'ADD@<',
+        'ADD<$',
+        'ADD<@',
+        'ADD<<',
+        'CMP#$',
+        'CMP#@',
+        'CMP#<',
+        'CMP$$',
+        'CMP$@',
+        'CMP$<',
+        'CMP@$',
+        'CMP@@',
+        'CMP@<',
+        'CMP<$',
+        'CMP<@',
+        'CMP<<',
+        'DAT##',
+        'DAT#<',
+        'DAT<#',
+        'DAT<<',
+        'DJN$#',
+        'DJN$$',
+        'DJN$@',
+        'DJN$<',
+        'DJN@#',
+        'DJN@$',
+        'DJN@@',
+        'DJN@<',
+        'DJN<#',
+        'DJN<$',
+        'DJN<@',
+        'DJN<<',
+        'JMN$#',
+        'JMN$$',
+        'JMN$@',
+        'JMN$<',
+        'JMN@#',
+        'JMN@$',
+        'JMN@@',
+        'JMN@<',
+        'JMN<#',
+        'JMN<$',
+        'JMN<@',
+        'JMN<<',
+        'JMP$#',
+        'JMP$$',
+        'JMP$@',
+        'JMP$<',
+        'JMP@#',
+        'JMP@$',
+        'JMP@@',
+        'JMP@<',
+        'JMP<#',
+        'JMP<$',
+        'JMP<@',
+        'JMP<<',
+        'JMZ$#',
+        'JMZ$$',
+        'JMZ$@',
+        'JMZ$<',
+        'JMZ@#',
+        'JMZ@$',
+        'JMZ@@',
+        'JMZ@<',
+        'JMZ<#',
+        'JMZ<$',
+        'JMZ<@',
+        'JMZ<<',
+        'MOV#$',
+        'MOV#@',
+        'MOV#<',
+        'MOV$$',
+        'MOV$@',
+        'MOV$<',
+        'MOV@$',
+        'MOV@@',
+        'MOV@<',
+        'MOV<$',
+        'MOV<@',
+        'MOV<<',
+        'SLT#$',
+        'SLT#@',
+        'SLT#<',
+        'SLT$$',
+        'SLT$@',
+        'SLT$<',
+        'SLT@$',
+        'SLT@@',
+        'SLT@<',
+        'SLT<$',
+        'SLT<@',
+        'SLT<<',
+        'SPL$#',
+        'SPL$$',
+        'SPL$@',
+        'SPL$<',
+        'SPL@#',
+        'SPL@$',
+        'SPL@@',
+        'SPL@<',
+        'SPL<#',
+        'SPL<$',
+        'SPL<@',
+        'SPL<<',
+        'SUB#$',
+        'SUB#@',
+        'SUB#<',
+        'SUB$$',
+        'SUB$@',
+        'SUB$<',
+        'SUB@$',
+        'SUB@@',
+        'SUB@<',
+        'SUB<$',
+        'SUB<@',
+        'SUB<<'
+    ]
 
     private checkLine(): void {
-
         const instruction: IParseInstruction = {
             opcode: this.stream.expect(TokenCategory.Opcode),
             modifier: this.stream.expect(TokenCategory.Modifier),
@@ -58,20 +151,15 @@ export class IllegalCommandCheck extends PassBase {
                 mode: this.stream.expect(TokenCategory.Mode),
                 address: this.stream.expect(TokenCategory.Number)
             }
-        };
-
-        const hash = instruction.opcode.lexeme +
-            instruction.aOperand.mode.lexeme +
-            instruction.bOperand.mode.lexeme;
-
-        if (!IllegalCommandCheck.LegalCommands.includes(hash)) {
-
-            this.stream.error(
-                instruction.opcode,
-                "Illegal addressing mode under selected Corewar standard");
         }
 
-        this.context.emitInstruction(instruction);
-        this.context.emit(this.stream.readToEOL());
+        const hash = instruction.opcode.lexeme + instruction.aOperand.mode.lexeme + instruction.bOperand.mode.lexeme
+
+        if (!IllegalCommandCheck.LegalCommands.includes(hash)) {
+            this.stream.error(instruction.opcode, 'Illegal addressing mode under selected Corewar standard')
+        }
+
+        this.context.emitInstruction(instruction)
+        this.context.emit(this.stream.readToEOL())
     }
 }

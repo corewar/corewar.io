@@ -66,11 +66,7 @@ describe('WarriorService', () => {
 
             await target.saveWarrior(redcode, id)
 
-            expect(stub).to.have.been.calledWith(
-                sinon.match(
-                    (x: Warrior) => x.redcode === redcode && x.id === id
-                )
-            )
+            expect(stub).to.have.been.calledWith(sinon.match((x: Warrior) => x.redcode === redcode && x.id === id))
         })
 
         it('should generate a uuid if no id specified', async () => {

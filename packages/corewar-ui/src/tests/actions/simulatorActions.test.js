@@ -1,7 +1,15 @@
 import { expect } from 'chai'
 
-import { init, step, pause, run, finish, getCoreInstructions, setProcessRate, setCoreOptions }
-  from './../../features/simulator/actions'
+import {
+  init,
+  step,
+  pause,
+  run,
+  finish,
+  getCoreInstructions,
+  setProcessRate,
+  setCoreOptions
+} from './../../features/simulator/actions'
 import {
   INIT_REQUESTED,
   STEP_REQUESTED,
@@ -14,9 +22,7 @@ import {
 } from './../../features/simulator/actions'
 
 describe('when testing the simulator actions', () => {
-
   it('should create the init action', () => {
-
     const expectedAction = {
       type: INIT_REQUESTED
     }
@@ -24,11 +30,9 @@ describe('when testing the simulator actions', () => {
     const result = init()
 
     expect(result).to.deep.equal(expectedAction)
-
   })
 
   it('should create the step action', () => {
-
     const expectedAction = {
       type: STEP_REQUESTED
     }
@@ -36,11 +40,9 @@ describe('when testing the simulator actions', () => {
     const result = step()
 
     expect(result).to.deep.equal(expectedAction)
-
   })
 
   it('should create the run action', () => {
-
     const expectedAction = {
       type: RUN_REQUESTED
     }
@@ -48,11 +50,9 @@ describe('when testing the simulator actions', () => {
     const result = run()
 
     expect(result).to.deep.equal(expectedAction)
-
   })
 
   it('should create the pause action', () => {
-
     const expectedAction = {
       type: PAUSE
     }
@@ -60,11 +60,9 @@ describe('when testing the simulator actions', () => {
     const result = pause()
 
     expect(result).to.deep.equal(expectedAction)
-
   })
 
   it('should create the finish action', () => {
-
     const expectedAction = {
       type: FINISH_REQUESTED
     }
@@ -72,12 +70,9 @@ describe('when testing the simulator actions', () => {
     const result = finish()
 
     expect(result).to.deep.equal(expectedAction)
-
   })
 
-
   it('should create the getCoreInstructions action', () => {
-
     const expectedAddress = 10
 
     const expectedAction = {
@@ -88,11 +83,9 @@ describe('when testing the simulator actions', () => {
     const result = getCoreInstructions(expectedAddress)
 
     expect(result).to.deep.equal(expectedAction)
-
   })
 
   it('should create the setProcessRate action', () => {
-
     const expectedRate = 12
 
     const expectedAction = {
@@ -103,11 +96,9 @@ describe('when testing the simulator actions', () => {
     const result = setProcessRate(expectedRate)
 
     expect(result).to.deep.equal(expectedAction)
-
   })
 
   it('should create the setCoreOptions action', () => {
-
     const expectedId = 1
 
     const expectedAction = {
@@ -118,8 +109,5 @@ describe('when testing the simulator actions', () => {
     const result = setCoreOptions(expectedId)
 
     expect(result).to.deep.equal(expectedAction)
-
   })
-
-
 })

@@ -1,10 +1,7 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
 import { ajax } from 'jquery'
 
-import {
-  SUBSCRIBE_REQUESTED,
-  SUBSCRIPTION_RESPONSE
-} from './actions'
+import { SUBSCRIBE_REQUESTED, SUBSCRIPTION_RESPONSE } from './actions'
 
 function makeSubscriptionRequest(email) {
   const u = '9d2b90bafd78376eae99a681a'
@@ -18,19 +15,16 @@ function makeSubscriptionRequest(email) {
 }
 
 export function* subscribeSaga({ email }) {
-
   try {
     const response = yield call(makeSubscriptionRequest, email)
     yield put({ type: SUBSCRIPTION_RESPONSE, message: response.msg })
-  } catch(error) {
+  } catch (error) {
     let msg = error.msg
-    if(msg.includes('is already subscribed to list')) {
+    if (msg.includes('is already subscribed to list')) {
       msg = 'Thanks for the enthusiasm but it looks like you are already signed up to our list'
     }
     yield put({ type: SUBSCRIPTION_RESPONSE, message: msg })
   }
 }
 
-export const signupWatchers = [
-  takeEvery(SUBSCRIBE_REQUESTED, subscribeSaga)
-]
+export const signupWatchers = [takeEvery(SUBSCRIBE_REQUESTED, subscribeSaga)]

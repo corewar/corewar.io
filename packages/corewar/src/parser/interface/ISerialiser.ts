@@ -1,6 +1,5 @@
-﻿import { IToken } from "@parser/interface/IToken";
+﻿import { IToken } from '@parser/interface/IToken'
 
 export interface ISerialiser {
-
-    serialise(tokens: IToken[]): string;
+    serialise(tokens: IToken[]): string
 }

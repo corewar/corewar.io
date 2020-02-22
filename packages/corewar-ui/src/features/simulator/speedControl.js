@@ -6,7 +6,7 @@ import { font, colour, space } from '../common/theme'
 
 const Container = styled.div`
   ${props => !props.visible && `display: none;`};
-  color: ${props => props.enabled ? `${colour.white}` : `${colour.grey}`};
+  color: ${props => (props.enabled ? `${colour.white}` : `${colour.grey}`)};
   font-size: ${font.small};
   flex: 1;
   text-align: center;
@@ -31,7 +31,6 @@ const Container = styled.div`
       width: 100%;
       margin-bottom: -1px;
     }
-
   }
 `
 
@@ -40,8 +39,8 @@ export const MenuItem = styled.li`
   display: block;
   height: 24px;
   font-size: ${font.base};
-  color: ${props => props.active ? colour.defaultbg : colour.blue};
-  background-color: ${props => props.active ? colour.blue : colour.lightbg};
+  color: ${props => (props.active ? colour.defaultbg : colour.blue)};
+  background-color: ${props => (props.active ? colour.blue : colour.lightbg)};
 
   &:hover {
     color: ${colour.defaultbg};
@@ -57,17 +56,22 @@ const SelectedItem = styled.div`
   margin-top: ${font.base};
 `
 
-const SpeedControl = ({ processRate, processRates, handleClick, visible = true, enabled = true }) => (
+const SpeedControl = ({
+  processRate,
+  processRates,
+  handleClick,
+  visible = true,
+  enabled = true
+}) => (
   <Container visible={visible} enabled={enabled}>
-      <SelectedItem>{`${processRate} x`}</SelectedItem>
-      <ul>
-        {processRates.map(rate => (
-          <MenuItem
-            key={rate}
-            active={rate === processRate}
-            onClick={() => handleClick(rate)}>{rate} x</MenuItem>
-        ))}
-      </ul>
+    <SelectedItem>{`${processRate} x`}</SelectedItem>
+    <ul>
+      {processRates.map(rate => (
+        <MenuItem key={rate} active={rate === processRate} onClick={() => handleClick(rate)}>
+          {rate} x
+        </MenuItem>
+      ))}
+    </ul>
   </Container>
 )
 

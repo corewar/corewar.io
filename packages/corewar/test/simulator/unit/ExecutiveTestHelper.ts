@@ -1,86 +1,84 @@
-import * as sinon from "sinon";
+import * as sinon from 'sinon'
 
-import TestHelper from "@simulator/tests/unit/TestHelper";
+import TestHelper from '@simulator/tests/unit/TestHelper'
 
-import { IInstruction, ModifierType } from "@simulator/interface/IInstruction";
-import { IExecutionContext, IOperandPair } from "@simulator/interface/IExecutionContext";
-import Defaults from "@simulator/Defaults";
-import { IWarriorInstance } from "@simulator/interface/IWarriorInstance";
+import { IInstruction, ModifierType } from '@simulator/interface/IInstruction'
+import { IExecutionContext, IOperandPair } from '@simulator/interface/IExecutionContext'
+import Defaults from '@simulator/Defaults'
+import { IWarriorInstance } from '@simulator/interface/IWarriorInstance'
 
 interface IExecutiveTestConfig {
-    i: string;
-    a: string;
-    b: string;
-    taskCount?: number;
-    maxTasks?: number;
+    i: string
+    a: string
+    b: string
+    taskCount?: number
+    maxTasks?: number
     /* eslint-disable-next-line */
     e: any;
 }
 
 function buildWarrior(testConfig: IExecutiveTestConfig): IWarriorInstance {
-    const warrior = TestHelper.buildWarriorInstance(7, { data: "true" });
-    warrior.tasks = [];
+    const warrior = TestHelper.buildWarriorInstance(7, { data: 'true' })
+    warrior.tasks = []
     for (let i = 0; i < (testConfig.taskCount || 3); i++) {
-        warrior.tasks.push(TestHelper.buildTask());
+        warrior.tasks.push(TestHelper.buildTask())
     }
-    return warrior;
+    return warrior
 }
 
 function buildOperands(
     instruction: IInstruction,
     aInstruction: IInstruction,
-    bInstruction: IInstruction): IOperandPair[] {
-
+    bInstruction: IInstruction
+): IOperandPair[] {
     switch (instruction.modifier) {
-
         case ModifierType.A:
-            return [{ source: aInstruction.aOperand, destination: bInstruction.aOperand }];
+            return [{ source: aInstruction.aOperand, destination: bInstruction.aOperand }]
         case ModifierType.B:
-            return [{ source: aInstruction.bOperand, destination: bInstruction.bOperand }];
+            return [{ source: aInstruction.bOperand, destination: bInstruction.bOperand }]
         case ModifierType.AB:
-            return [{ source: aInstruction.aOperand, destination: bInstruction.bOperand }];
+            return [{ source: aInstruction.aOperand, destination: bInstruction.bOperand }]
         case ModifierType.BA:
-            return [{ source: aInstruction.bOperand, destination: bInstruction.aOperand }];
+            return [{ source: aInstruction.bOperand, destination: bInstruction.aOperand }]
         case ModifierType.F:
         case ModifierType.I:
             return [
                 { source: aInstruction.aOperand, destination: bInstruction.aOperand },
                 { source: aInstruction.bOperand, destination: bInstruction.bOperand }
-            ];
+            ]
         case ModifierType.X:
             return [
                 { source: aInstruction.aOperand, destination: bInstruction.bOperand },
                 { source: aInstruction.bOperand, destination: bInstruction.aOperand }
-            ];
+            ]
         default:
-            throw Error("Unknown modifier type: " + instruction.modifier);
+            throw Error('Unknown modifier type: ' + instruction.modifier)
     }
 }
 
 export function buildContext(testConfig: IExecutiveTestConfig): IExecutionContext {
+    const options = Object.assign({}, Defaults)
+    options.maxTasks = testConfig.maxTasks || 100
+    options.coresize = 50
 
-    const options = Object.assign({}, Defaults);
-    options.maxTasks = testConfig.maxTasks || 100;
-    options.coresize = 50;
+    const instruction = TestHelper.parseInstruction(0, testConfig.i)
+    const aInstruction = TestHelper.parseInstruction(0, testConfig.a)
+    const bInstruction = TestHelper.parseInstruction(0, testConfig.b)
+    const operands = buildOperands(instruction, aInstruction, bInstruction)
 
-    const instruction = TestHelper.parseInstruction(0, testConfig.i);
-    const aInstruction = TestHelper.parseInstruction(0, testConfig.a);
-    const bInstruction = TestHelper.parseInstruction(0, testConfig.b);
-    const operands = buildOperands(instruction, aInstruction, bInstruction);
+    const core = TestHelper.buildCore(options.coresize)
 
-    const core = TestHelper.buildCore(options.coresize);
-
-    const wrapStub = core.wrap as sinon.SinonStub;
+    const wrapStub = core.wrap as sinon.SinonStub
     wrapStub.callsFake((address: number) => {
-        address = address % options.coresize;
+        address = address % options.coresize
         if (address < 0) {
-            address += options.coresize;
+            address += options.coresize
         }
-        return address;
-    });
+        return address
+    })
 
-    const warrior = buildWarrior(testConfig);
-    const taskIndex = Math.min(1, warrior.tasks.length - 1);
+    const warrior = buildWarrior(testConfig)
+    const taskIndex = Math.min(1, warrior.tasks.length - 1)
 
     return {
         core: core,
@@ -93,14 +91,12 @@ export function buildContext(testConfig: IExecutiveTestConfig): IExecutionContex
         taskIndex: taskIndex,
         instance: warrior,
         warriorIndex: 1
-    };
+    }
 }
 
 export function runTest(testConfig: IExecutiveTestConfig[], testMethod: (IExecutionContext, string) => void): void {
-
     testConfig.forEach(c => {
-
-        const context = buildContext(c);
-        testMethod(context, c.e);
-    });
+        const context = buildContext(c)
+        testMethod(context, c.e)
+    })
 }

@@ -18,7 +18,9 @@ const ImpGrid = styled.div`
 
 const ImpCell = styled.div`
   ${props => props.visited && `background-color: ${colour.blue};`};
-  ${props => props.active && `
+  ${props =>
+    props.active &&
+    `
     position: relative;
     width: calc(100% - 2px);
     height: calc(100% - 2px);
@@ -52,17 +54,18 @@ export const ImpTutorialContainer = ({ moveImp, impCells, impIndex }) => (
   <DocumentationContent>
     <h3>2. Write an Imp</h3>
     <p>
-      Corewar is a coding game where you write programs known as 'warriors' and battle them against warriors
-      written by other people. This tutorial shows you how to write a program known as an 'Imp'.
+      Corewar is a coding game where you write programs known as 'warriors' and battle them against
+      warriors written by other people. This tutorial shows you how to write a program known as an
+      'Imp'.
     </p>
     <p>
       Below is a tiny 5x5 core, real cores are normally much larger but this will be easy to follow.
-      Each address in the core can contain one instruction and the colour of the instruction indicates the
-      warrior which last wrote and instruction to the address. Our warrior is blue.
+      Each address in the core can contain one instruction and the colour of the instruction
+      indicates the warrior which last wrote and instruction to the address. Our warrior is blue.
     </p>
     <p>
-      Let's see the Imp in action. Click the 'Step' button once to perform a 'cycle'. A cycle is like a turn in chess,
-      during a cycle each warrior in the core executes their next instruction.
+      Let's see the Imp in action. Click the 'Step' button once to perform a 'cycle'. A cycle is
+      like a turn in chess, during a cycle each warrior in the core executes their next instruction.
     </p>
 
     <ImpGrid>
@@ -72,26 +75,27 @@ export const ImpTutorialContainer = ({ moveImp, impCells, impIndex }) => (
     </ImpGrid>
     <button onClick={() => moveImp()}>Step</button>
     <p>
-      Each time a cycle is completed you can see the blue X move to the next address in the core, the X represents
-      that the warrior wrote an instruction to the core.
-      (Also if you got excited and clicked 'step' many times you will have noticed that the addresses wrap around.)
+      Each time a cycle is completed you can see the blue X move to the next address in the core,
+      the X represents that the warrior wrote an instruction to the core. (Also if you got excited
+      and clicked 'step' many times you will have noticed that the addresses wrap around.)
     </p>
     <p>
-      You will also see a blue square appear where the Imp last was. This represents the fact that the blue Imp
-      was the last warrior to execute an instruction at that address.
+      You will also see a blue square appear where the Imp last was. This represents the fact that
+      the blue Imp was the last warrior to execute an instruction at that address.
     </p>
     <p>
-      So we can see the imp writing and executing instructions, but what exactly are the instructions?
-      Fortunately our Imp is a very simple program and consists of just a single instruction.
+      So we can see the imp writing and executing instructions, but what exactly are the
+      instructions? Fortunately our Imp is a very simple program and consists of just a single
+      instruction.
     </p>
     <pre>MOV 0, 1</pre>
     <p>
-      The instruction above, each time its executed will MOV (MOVE) the instruction at position 0 (the current address)
-      to position 1 (the next address)
+      The instruction above, each time its executed will MOV (MOVE) the instruction at position 0
+      (the current address) to position 1 (the next address)
     </p>
     <p>
-      This results in a program which constantly copies itself to the next available address and fills up the core.
-      You can demonstrate this by repeatedly clicking 'Step'.
+      This results in a program which constantly copies itself to the next available address and
+      fills up the core. You can demonstrate this by repeatedly clicking 'Step'.
     </p>
   </DocumentationContent>
 )
@@ -101,11 +105,8 @@ const mapStateToProps = state => ({
   impIndex: state.documentation.impIndex
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    moveImp
-  }
-)(ImpTutorialContainer)
+export default connect(mapStateToProps, {
+  moveImp
+})(ImpTutorialContainer)
 
 export { ImpTutorialContainer as PureImpTutorialContainer }

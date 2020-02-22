@@ -5,13 +5,18 @@ import { setCoreOptions } from '../simulator/actions'
 
 import SettingsMenu from './settingsMenu'
 
-const SettingsMenuContainer = ({ displaySettings, coreOptions, setCoreOptions, currentCoreOption }) => (
+const SettingsMenuContainer = ({
+  displaySettings,
+  coreOptions,
+  setCoreOptions,
+  currentCoreOption
+}) => (
   <SettingsMenu
     show={displaySettings}
     options={coreOptions}
     handleClick={setCoreOptions}
     currentSelection={currentCoreOption}
-    />
+  />
 )
 
 const mapStateToProps = state => ({
@@ -20,11 +25,8 @@ const mapStateToProps = state => ({
   currentCoreOption: state.simulator.currentCoreOption
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    setCoreOptions
-  }
-)(SettingsMenuContainer)
+export default connect(mapStateToProps, {
+  setCoreOptions
+})(SettingsMenuContainer)
 
 export { SettingsMenuContainer as PureSettingsMenuContainer }

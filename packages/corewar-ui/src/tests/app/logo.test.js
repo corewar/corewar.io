@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { shallow } from 'enzyme'
 import { expect } from 'chai'
@@ -10,10 +9,9 @@ it('renders without crashing', () => {
 })
 
 it('renders the siteName text', () => {
+  const text = 'nameOfSite'
 
-  const text = "nameOfSite"
-
-  const history = { push: () => {}}
+  const history = { push: () => {} }
 
   const wrapper = shallow(<Logo siteName={text} history={history} />)
 
@@ -21,8 +19,7 @@ it('renders the siteName text', () => {
 })
 
 it('renders the domain text', () => {
-
-  const domain = ".com"
+  const domain = '.com'
 
   const wrapper = shallow(<Logo siteDomain={domain} />)
 

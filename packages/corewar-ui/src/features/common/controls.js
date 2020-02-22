@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { colour, space } from './theme'
 
 const Controls = styled.div`
-
   border: none;
   background-color: ${colour.defaultbg};
   border-top: 1px solid ${colour.darkbg};

@@ -7,8 +7,8 @@ import { media } from '../common/mediaQuery'
 
 const SettingsMenuGrid = styled.section`
 
-  ${props => props.show && media.tablet ? `right: 0;` : `right: -200px;`};
-  ${props => props.show && media.designer ? `right: -${space.m};` : `right: -216px;`};
+  ${props => (props.show && media.tablet ? `right: 0;` : `right: -200px;`)};
+  ${props => (props.show && media.designer ? `right: -${space.m};` : `right: -216px;`)};
 
   transition: 0.5s;
   position: absolute;
@@ -76,7 +76,8 @@ const SettingsMenu = ({ show, options, handleClick, currentSelection }) => (
         <li
           className={option.id === currentSelection ? `active` : ``}
           key={`${option.name}_${i}`}
-          onClick={() => handleClick(option.id)}>
+          onClick={() => handleClick(option.id)}
+        >
           {option.name}
         </li>
       ))}
@@ -91,6 +92,5 @@ SettingsMenu.propTypes = {
 SettingsMenu.defaultProps = {
   options: []
 }
-
 
 export default SettingsMenu

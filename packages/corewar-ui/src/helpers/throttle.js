@@ -1,6 +1,6 @@
 const throttle = (callback, wait, context = this) => {
   let timeout = null
-  let callbackArgs = null
+  const callbackArgs = null
 
   const later = () => {
     callback.apply(context, callbackArgs)

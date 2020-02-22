@@ -1,37 +1,36 @@
-﻿import { IToken, TokenCategory } from "@parser/interface/IToken";
+﻿import { IToken, TokenCategory } from '@parser/interface/IToken'
 
 export class TokenHelper {
-
     public static categoryToString(category: TokenCategory): string {
         switch (category) {
             case TokenCategory.Comma:
-                return "','";
+                return "','"
             case TokenCategory.Comment:
-                return "';'";
+                return "';'"
             case TokenCategory.EOL:
-                return "end of line";
+                return 'end of line'
             case TokenCategory.Label:
-                return "label";
+                return 'label'
             case TokenCategory.Mode:
-                return "mode";
+                return 'mode'
             case TokenCategory.Modifier:
-                return "modifier";
+                return 'modifier'
             case TokenCategory.Number:
-                return "number";
+                return 'number'
             case TokenCategory.Opcode:
-                return "opcode";
+                return 'opcode'
         }
-        return "";
+        return ''
     }
 
     public static tokenToString(token: IToken): string {
         switch (token.category) {
             case TokenCategory.Comment:
-                return "';'";
+                return "';'"
             case TokenCategory.EOL:
-                return "end of line";
+                return 'end of line'
             default:
-                return "'" + token.lexeme + "'";
+                return "'" + token.lexeme + "'"
         }
     }
 }

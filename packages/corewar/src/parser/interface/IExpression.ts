@@ -1,6 +1,5 @@
-﻿import { ITokenStream } from "@parser/interface/ITokenStream";
+﻿import { ITokenStream } from '@parser/interface/ITokenStream'
 
 export interface IExpression {
-
-    parse(stream: ITokenStream): number;
+    parse(stream: ITokenStream): number
 }

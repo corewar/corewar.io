@@ -1,8 +1,7 @@
 import Identicon from 'identicon.js'
 import jssha from 'jssha'
 
-export const createHash = (input) => {
-
+export const createHash = input => {
   const sha = new jssha('SHA-512', 'TEXT')
 
   sha.update(input)
@@ -11,13 +10,12 @@ export const createHash = (input) => {
 }
 
 export const getIdenticon = (compiled, colour, size = 40) => {
-
   const hash = createHash(compiled)
 
   const options = {
     size: size,
     foreground: hexToRgbA(colour),
-    background: [0,0,0,0],
+    background: [0, 0, 0, 0],
     margin: 0,
     format: 'svg'
   }
@@ -25,11 +23,10 @@ export const getIdenticon = (compiled, colour, size = 40) => {
   return new Identicon(hash, options)
 }
 
-const hexToRgbA = (hex) => {
-
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
+const hexToRgbA = hex => {
+  const r = parseInt(hex.slice(1, 3), 16)
+  const g = parseInt(hex.slice(3, 5), 16)
+  const b = parseInt(hex.slice(5, 7), 16)
 
   return [r, g, b, 255]
 }

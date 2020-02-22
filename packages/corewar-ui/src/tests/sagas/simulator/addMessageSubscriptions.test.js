@@ -9,20 +9,14 @@ import {
   sendRoundEnd
 } from '../../../features/simulator/sagas'
 
-
 describe('when testing the addMessageSubscriptions saga', () => {
-
   const saga = addMessageSubscriptions()
 
   it('should subscribe to the pubsub correctly', () => {
-
     expect(saga.next().value).to.deep.equal(call(PubSub.subscribe, 'ROUND_END', sendRoundEnd))
 
-    expect(saga.next().value).to.deep.equal(call(PubSub.subscribe, 'RUN_PROGRESS', sendRoundProgress))
-
+    expect(saga.next().value).to.deep.equal(
+      call(PubSub.subscribe, 'RUN_PROGRESS', sendRoundProgress)
+    )
   })
-
 })
-
-
-

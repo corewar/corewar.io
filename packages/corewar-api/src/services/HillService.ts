@@ -19,11 +19,7 @@ export default class HillService implements IHillService {
     private warriorService: IWarriorService
     private uuid: IUuidFactory
 
-    constructor(
-        hillRepo: IRepository,
-        warriorService: IWarriorService,
-        uuid: IUuidFactory
-    ) {
+    constructor(hillRepo: IRepository, warriorService: IWarriorService, uuid: IUuidFactory) {
         this.repo = hillRepo
         this.warriorService = warriorService
         this.uuid = uuid
@@ -55,10 +51,7 @@ export default class HillService implements IHillService {
         return id
     }
 
-    public async challengeHill(
-        hillId: string,
-        warriorId: string
-    ): Promise<Hill> {
+    public async challengeHill(hillId: string, warriorId: string): Promise<Hill> {
         // TODO store results in db
         // TODO increase age of warriors
         // TODO handle first run of a hill (no existing warriors)
@@ -95,9 +88,6 @@ export default class HillService implements IHillService {
 export const buildHillService: () => IHillService = () =>
     new HillService(
         new Repository(HILL_COLLECTION),
-        new WarriorService(
-            new Repository(WARRIOR_COLLECTION),
-            new UuidFactory()
-        ),
+        new WarriorService(new Repository(WARRIOR_COLLECTION), new UuidFactory()),
         new UuidFactory()
     )
