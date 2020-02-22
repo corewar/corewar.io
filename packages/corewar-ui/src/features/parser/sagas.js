@@ -32,7 +32,7 @@ export function* parseWarriorSaga({ source }) {
 
   const parseResult = yield call([corewar, corewar.parse], source)
 
-  const hasErrors = parseResult.messages.find(x => x.type === 0) !== undefined
+  const hasErrors = !parseResult.success
 
   const compiled = yield call([corewar, corewar.serialise], parseResult.tokens)
 
