@@ -13,11 +13,13 @@ import SignUpContainer from './features/signup/signupContainer'
 import FeedbackContainer from './features/feedback/feedbackContainer'
 import Documentation from './features/documentation/documentation'
 
-import 'typeface-lato'
+//import 'typeface-lato'
 import 'typeface-inter'
 import 'typeface-anonymous-pro'
 
-import './cssreset.css'
+//import './cssreset.css'
+//import './styles/styles.css'
+import './styles/tailwind.css'
 
 import { font, colour } from './features/common/theme'
 
