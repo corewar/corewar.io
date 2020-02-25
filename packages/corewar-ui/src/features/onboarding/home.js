@@ -12,14 +12,6 @@ import FeatureButton from '../common/featureButton'
 import SimulatorImage from '../../img/corewarx200.gif'
 import ParserImage from '../../img/redcode.gif'
 
-const HomeGrid = styled.main`
-  display: grid;
-  grid-template-rows: ${space.header} 50vh auto auto auto auto auto auto auto auto 100px;
-  grid-template-columns: 100%;
-  color: ${colour.white};
-  background-color: ${colour.darkbg};
-`
-
 const CallToAction = styled.div`
   display: flex;
   flex-direction: row;
@@ -371,7 +363,7 @@ const FeatureImageWrapper = styled.div`
 `
 
 const Home = () => (
-  <HomeGrid>
+  <main className="grid grid-rows-home-grid text-white bg-darkbg">
     <SiteNav />
     <HeroLogo />
     <CallToAction>
@@ -558,7 +550,7 @@ const Home = () => (
       <a href="https://github.com/gareththegeek">@gareththegeek</a> &amp;{' '}
       <a href="https://github.com/dougajmcdonald/">@dougajmcdonald</a>
     </Footer>
-  </HomeGrid>
+  </main>
 )
 
 export default Home

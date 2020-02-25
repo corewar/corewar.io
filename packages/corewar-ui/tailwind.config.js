@@ -20,6 +20,9 @@ module.exports = {
         warning: '#F2C94C',
         info: '#56CCF2',
         success: '#6FCF97'
+      },
+      gridTemplateRows: {
+        'home-grid': '48px 50vh repeat(8, auto) 100px'
       }
     }
   },
