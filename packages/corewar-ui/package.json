@@ -44,7 +44,7 @@
     "test": "react-scripts test --env=jsdom",
     "coverage": "react-scripts test --env=jsdom --coverage",
     "eject": "react-scripts eject",
-    "build:style": "tailwind build src/styles/index.css -o src/styles/tailwind.css",
+    "build:style": "npx tailwind build src/styles/index.css -o src/styles/tailwind.css",
     "prebuild": "npm run build:style",
     "prestart": "npm run build:style"
   },

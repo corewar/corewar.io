@@ -3,7 +3,7 @@
 ### Prepare development environment
 
 ```bash
-npm install --global lerna eslint-cli
+npm install --global lerna eslint-cli tailwind
 lerna bootstrap
 lerna run prepublish --stream
 ```
