@@ -20,7 +20,7 @@
     "jest",
     "eslint-plugin-prettier"
   ],
-  "ignorePatterns": ["node_modules/"],
+  "ignorePatterns": ["node_modules/", "dist/"],
   "rules": {
     "@typescript-eslint/no-unused-vars": [
       "error",
