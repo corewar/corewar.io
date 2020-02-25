@@ -37,16 +37,6 @@ const Logo = styled.div`
   align-items: center;
 `
 
-const Features = styled.section`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-left: ${space.xl};
-  ${media.phone`display: none;`}
-  ${media.tablet`display: none;`}
-`
-
 const Feature = styled.div`
   border-right: 1px solid ${colour.lightbg};
   ${media.tablet`border-right: none;`};
@@ -139,7 +129,7 @@ const HeroLogo = () => (
       </h1>
       <Octicon name="chevron-right" />
     </Logo>
-    <Features>
+    <section className="hidden md:flex flex-row flex-wrap justify-center ml-16">
       <Feature>
         <Octicon name="rocket" />
         <h3>Play corewar</h3>
@@ -152,7 +142,7 @@ const HeroLogo = () => (
         <Octicon name="megaphone" />
         <h3>In new ways</h3>
       </Feature>
-    </Features>
+    </section>
   </Hero>
 )
 
