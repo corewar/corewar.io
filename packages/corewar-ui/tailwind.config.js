@@ -26,6 +26,9 @@ module.exports = {
       },
       minHeight: {
         cta: '150px'
+      },
+      fontSize: {
+        '7xl': '96px'
       }
     }
   },
