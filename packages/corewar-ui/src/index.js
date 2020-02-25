@@ -4,7 +4,6 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import { Route } from 'react-router-dom'
-import styled from 'styled-components'
 import store, { history } from './store'
 
 import App from './features/app/app'
@@ -13,38 +12,22 @@ import SignUpContainer from './features/signup/signupContainer'
 import FeedbackContainer from './features/feedback/feedbackContainer'
 import Documentation from './features/documentation/documentation'
 
-import 'typeface-lato'
 import 'typeface-inter'
 import 'typeface-anonymous-pro'
-
-import './cssreset.css'
-
-import { font, colour } from './features/common/theme'
-
-const Wrapper = styled.div`
-  min-width: 360px;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  font-family: ${font.default};
-  font-size: ${font.base};
-  background-color: ${colour.darkbg};
-  width: 100%;
-  overflow-x: hidden;
-`
+import './styles/tailwind.css'
 
 const target = document.querySelector('#root')
 
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Wrapper>
+      <div className="m-0 p-0 h-screen w-full text-base bg-darkbg overflow-x-hidden font-body">
         <Route exact path="/" component={Home} />
         <Route exact path="/sign-up" component={SignUpContainer} />
         <Route exact path="/contact-us" component={FeedbackContainer} />
         <Route path="/learn" component={Documentation} />
         <Route path="/app" component={App} />
-      </Wrapper>
+      </div>
     </ConnectedRouter>
   </Provider>,
   target

@@ -24,9 +24,9 @@ export const colour = {
 export const space = {
   xs: '2px',
   s: '8px',
-  m: '16px',
-  l: '32px',
-  xl: '64px',
+  m: '16px' /* 1 rem */,
+  l: '32px' /* 2rem */,
+  xl: '64px' /* 4 rem */,
   xxl: '128px',
   header: '48px',
   controls: '48px',
