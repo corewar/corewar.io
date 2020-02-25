@@ -12,17 +12,6 @@ import FeatureButton from '../common/featureButton'
 import SimulatorImage from '../../img/corewarx200.gif'
 import ParserImage from '../../img/redcode.gif'
 
-const CallToAction = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  min-height: 150px;
-  margin-bottom: ${space.xl};
-`
-
 const Features = styled.section`
   display: flex;
   flex-direction: row;
@@ -366,10 +355,10 @@ const Home = () => (
   <main className="grid grid-rows-home-grid text-white bg-darkbg">
     <SiteNav />
     <HeroLogo />
-    <CallToAction>
+    <div className="flex flex-row flex-wrap justify-center items-center content-center mb-16 min-h-cta">
       <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
       <FeatureButton href="/learn">Learn more</FeatureButton>
-    </CallToAction>
+    </div>
     <Tagline id={`features`}>
       <h2>
         This is Corewar where players test their coding skills against each other, writing warriors

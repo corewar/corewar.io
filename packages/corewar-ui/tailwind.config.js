@@ -23,6 +23,9 @@ module.exports = {
       },
       gridTemplateRows: {
         'home-grid': '48px 50vh repeat(8, auto) 100px'
+      },
+      minHeight: {
+        cta: '150px'
       }
     }
   },
