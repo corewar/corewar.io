@@ -20,6 +20,7 @@ Documentation for the project along with guidance on corewar and the redcode lan
 ## Scripts
 
 This project uses `lerna` in order to manage the monorepo.
+Node 12+ is required.
 
 ### Prepare development environment
 
