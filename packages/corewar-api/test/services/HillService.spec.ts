@@ -19,6 +19,8 @@ import Warrior from '@/schema/Warrior'
 chai.use(sinonChai)
 
 describe('HillService', () => {
+    let sandbox: sinon.SinonSandbox
+
     let target: IHillService
 
     let repo: IRepository
@@ -26,10 +28,15 @@ describe('HillService', () => {
     let uuid: IUuidFactory
 
     beforeEach(() => {
-        repo = buildRepositoryMock()
-        uuid = buildUidFactoryMock()
-        warriorService = buildWarriorServiceMock()
+        sandbox = sinon.createSandbox()
+        repo = buildRepositoryMock(sandbox)
+        uuid = buildUidFactoryMock(sandbox)
+        warriorService = buildWarriorServiceMock(sandbox)
         target = new HillService(repo, warriorService, uuid)
+    })
+
+    afterEach(() => {
+        sandbox.restore()
     })
 
     describe('getById', () => {
@@ -96,7 +103,7 @@ describe('HillService', () => {
         let runHill: sinon.SinonStub<[IRules, IWarrior[], IPublishProvider?], IHillResult>
 
         beforeEach(() => {
-            runHill = sinon.stub(corewar, 'runHill')
+            runHill = sandbox.stub(corewar, 'runHill')
 
             const warriorServiceGetById = warriorService.getById as sinon.SinonStub
             warriorServiceGetById.returns({ parseResult: buildParseResult() })
@@ -106,7 +113,7 @@ describe('HillService', () => {
         })
 
         afterEach(() => {
-            sinon.restore()
+            sandbox.restore()
         })
 
         const warriorWithId = (id: string) => (warriors: IWarrior[]): boolean =>

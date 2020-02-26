@@ -8,17 +8,20 @@ import buildWarriorServiceMock from '@test/mocks/WarriorService'
 chai.use(sinonChai)
 
 describe('WarriorResolver', () => {
+    let sandbox: sinon.SinonSandbox
+
     let target: WarriorResolver
     let service: warriorService.IWarriorService
 
     beforeEach(() => {
+        sandbox = sinon.createSandbox()
         target = new WarriorResolver()
-        service = buildWarriorServiceMock()
-        sinon.stub(warriorService, 'buildWarriorService').returns(service)
+        service = buildWarriorServiceMock(sandbox)
+        sandbox.stub(warriorService, 'buildWarriorService').returns(service)
     })
 
     afterEach(() => {
-        sinon.restore()
+        sandbox.restore()
     })
 
     describe('query warrior', () => {
