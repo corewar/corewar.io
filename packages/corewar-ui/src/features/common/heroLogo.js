@@ -10,7 +10,7 @@ const Feature = ({ children }) => (
 const HeroLogo = () => (
   <section className="flex flex-row justify-center items-center font-thin mt-4 mx-16">
     <div className="flex flex-row justify-center items-center">
-      <h1 className="text-5xl md:text-7xl">
+      <h1 className="text-5xl md:text-7xl font-hairline">
         corewar<span className="font-light">.io</span>
       </h1>
       <Octicon
