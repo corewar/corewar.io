@@ -20,7 +20,7 @@
     "jest",
     "eslint-plugin-prettier"
   ],
-  "ignorePatterns": ["node_modules/"],
+  "ignorePatterns": ["packages/corewar-ui", "node_modules/", "dist/", "*.config.js"],
   "rules": {
     "@typescript-eslint/no-unused-vars": [
       "error",

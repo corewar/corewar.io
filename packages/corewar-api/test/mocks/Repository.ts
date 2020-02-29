@@ -1,14 +1,14 @@
 import { IRepository } from '@/database/Repository'
 import sinon from 'sinon'
 
-const buildRepositoryMock = (): IRepository =>
+const buildRepositoryMock = (sandbox: sinon.SinonSandbox): IRepository =>
     ({
-        getAll: sinon.stub(),
-        getById: sinon.stub(),
-        getOneBy: sinon.stub(),
-        getManyBy: sinon.stub(),
-        upsert: sinon.stub(),
-        delete: sinon.stub()
+        getAll: sandbox.stub(),
+        getById: sandbox.stub(),
+        getOneBy: sandbox.stub(),
+        getManyBy: sandbox.stub(),
+        upsert: sandbox.stub(),
+        delete: sandbox.stub()
     } as IRepository)
 
 export default buildRepositoryMock

@@ -9,17 +9,20 @@ import buildRules from '@test/mocks/HillRules'
 chai.use(sinonChai)
 
 describe('HillResolver', () => {
+    let sandbox: sinon.SinonSandbox
+
     let target: HillResolver
     let service: hillService.IHillService
 
     beforeEach(() => {
+        sandbox = sinon.createSandbox()
         target = new HillResolver()
-        service = buildHillServiceMock()
-        sinon.stub(hillService, 'buildHillService').returns(service)
+        service = buildHillServiceMock(sandbox)
+        sandbox.stub(hillService, 'buildHillService').returns(service)
     })
 
     afterEach(() => {
-        sinon.restore()
+        sandbox.restore()
     })
 
     describe('query hill', () => {

@@ -1,13 +1,13 @@
 import { Collection } from 'mongodb'
 import sinon from 'sinon'
 
-export const buildCollectionMock = (): Collection =>
+export const buildCollectionMock = (sandbox: sinon.SinonSandbox): Collection =>
     (({
-        find: sinon.stub().returns({ toArray: sinon.stub().returns([]) }),
-        findOne: sinon.stub().returns({}),
-        insertOne: sinon.stub(),
-        updateOne: sinon.stub(),
-        deleteOne: sinon.stub()
+        find: sandbox.stub().returns({ toArray: sandbox.stub().returns([]) }),
+        findOne: sandbox.stub().returns({}),
+        insertOne: sandbox.stub(),
+        updateOne: sandbox.stub(),
+        deleteOne: sandbox.stub()
     } as unknown) as Collection)
 
 export default buildCollectionMock

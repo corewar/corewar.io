@@ -9,6 +9,8 @@ chai.use(sinonChai)
 describe('Repository', () => {
     const COLLECTION_NAME = 'COLLECTION_NAME'
 
+    let sandbox: sinon.SinonSandbox
+
     let target: IRepository
 
     let connect: sinon.SinonStub<[MongoCallback<MongoClient>], void>
@@ -17,21 +19,22 @@ describe('Repository', () => {
     let collection: Collection<any>
 
     beforeEach(() => {
-        const db = sinon.createStubInstance(Db)
-        collection = buildCollectionMock()
+        sandbox = sinon.createSandbox()
+        const db = sandbox.createStubInstance(Db)
+        collection = buildCollectionMock(sandbox)
         /* eslint-disable-next-line */
-        connect = sinon.stub(MongoClient.prototype, 'connect').callsFake((callback: any) => {
+        connect = sandbox.stub(MongoClient.prototype, 'connect').callsFake((callback: any) => {
             callback()
         })
-        close = sinon.stub(MongoClient.prototype, 'close')
-        sinon.stub(MongoClient.prototype, 'db').returns((db as unknown) as Db)
+        close = sandbox.stub(MongoClient.prototype, 'close')
+        sandbox.stub(MongoClient.prototype, 'db').returns((db as unknown) as Db)
         db.collection.returns(collection)
 
         target = new Repository(COLLECTION_NAME)
     })
 
     afterEach(() => {
-        sinon.restore()
+        sandbox.restore()
     })
 
     describe('getAll', () => {
@@ -77,7 +80,7 @@ describe('Repository', () => {
             const expected = [{ foo: 'bar' }]
 
             const stub = collection.find as sinon.SinonStub
-            stub.returns({ toArray: sinon.stub().returns(expected) })
+            stub.returns({ toArray: sandbox.stub().returns(expected) })
 
             const actual = await target.getAll()
 
@@ -127,7 +130,7 @@ describe('Repository', () => {
             const expected = [{ foo: 'bar' }]
 
             const stub = collection.find as sinon.SinonStub
-            stub.returns({ toArray: sinon.stub().returns(expected) })
+            stub.returns({ toArray: sandbox.stub().returns(expected) })
 
             const actual = await target.getManyBy({})
 
