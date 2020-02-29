@@ -1,0 +1,35 @@
+site_name: Corewar.io Documentation
+repo_url: https://github.com/corewar/corewar.io
+pages:
+- Home: index.md
+- Guide to Corewar: 
+   - Intro: corewar/index.md
+   - Core: corewar/core.md
+   - Warriors: corewar/warriors.md
+   - Loader: corewar/loader.md
+   - Visualisation: corewar/visualisation.md
+   - Processes: corewar/processes.md
+   - Execution: corewar/execution.md
+   - Match Settings: corewar/match_settings.md
+   - Hills: corewar/hills.md
+   - Benchmarks: corewar/benchmarks.md
+   - Strategies: corewar/strategies.md
+- Redcode Reference:
+   - Intro: redcode/index.md
+   - Operands: redcode/operands.md
+   - Opcodes: redcode/opcodes.md
+   - Modifiers: redcode/modifiers.md
+   - Addressing Modes: redcode/addressing_modes.md
+   - ORG and END: redcode/org.md
+   - Parser: redcode/parser.md
+   - Labels: redcode/labels.md
+   - Preprocessor: redcode/preprocessor.md
+   - Comments: redcode/comments.md
+   - Metadata: redcode/metadata.md
+- Developer Reference:
+   - Intro: developer/index.md
+   - Parser: developer/parser.md
+   - Simulator: developer/simulator.md
+   - Matches: developer/matches.md
+   - Enumerations: developer/enumerations.md
+theme: readthedocs
