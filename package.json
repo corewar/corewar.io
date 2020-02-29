@@ -8,8 +8,8 @@
     "test": "lerna run test --stream",
     "coverage": "lerna run coverage --stream",
     "build": "lerna run build --stream",
-    "lint": "eslint \"**/*.ts\" \"**/*.js\"",
-    "lint:fix": "eslint --fix \"**/*.ts\" \"**/*.js\""
+    "lint": "eslint \"**/*.ts\"",
+    "lint:fix": "eslint --fix \"**/*.ts\""
   },
   "devDependencies": {
     "@types/chai": "^4.2.7",
@@ -41,6 +41,7 @@
     "react-dev-utils": "^5.0.2",
     "sinon": "^4.1.2",
     "sinon-chai": "^2.14.0",
+    "tailwindcss": "^1.2.0",
     "ts-jest": "^24.3.0",
     "ts-node": "^8.6.2",
     "tsconfig-paths": "^3.9.0",

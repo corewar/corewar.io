@@ -9,20 +9,22 @@ chai.use(sinonChai)
 
 describe('ParseResolver', () => {
     let target: ParseResolver
+    let sandbox: sinon.SinonSandbox
 
     beforeEach(() => {
+        sandbox = sinon.createSandbox()
         target = new ParseResolver()
     })
 
     afterEach(() => {
-        sinon.restore()
+        sandbox.restore()
     })
 
     describe('parse', () => {
         it('should pass specified redcode to corewar library to parse', async () => {
             const expected = 'mov 0, 1'
 
-            const parse = sinon.stub(corewar, 'parse')
+            const parse = sandbox.stub(corewar, 'parse')
 
             await target.parse(expected)
 
@@ -32,7 +34,7 @@ describe('ParseResolver', () => {
         it('should return ParseResult', async () => {
             const expected = buildParseResult()
 
-            sinon.stub(corewar, 'parse').returns(expected)
+            sandbox.stub(corewar, 'parse').returns(expected)
 
             const actual = await target.parse('mov 0, 1')
 

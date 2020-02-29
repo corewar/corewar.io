@@ -12,15 +12,22 @@ import buildParseResult from '@test/mocks/ParseResult'
 chai.use(sinonChai)
 
 describe('WarriorService', () => {
+    let sandbox: sinon.SinonSandbox
+
     let target: IWarriorService
 
     let repo: IRepository
     let uuid: IUuidFactory
 
     beforeEach(() => {
-        repo = buildRepositoryMock()
-        uuid = buildUidFactoryMock()
+        sandbox = sinon.createSandbox()
+        repo = buildRepositoryMock(sandbox)
+        uuid = buildUidFactoryMock(sandbox)
         target = new WarriorService(repo, uuid)
+    })
+
+    afterEach(() => {
+        sandbox.restore()
     })
 
     describe('getById', () => {
@@ -52,11 +59,11 @@ describe('WarriorService', () => {
         let parse: sinon.SinonStub<[string], IParseResult>
 
         beforeEach(() => {
-            parse = sinon.stub(corewar, 'parse').returns(buildParseResult())
+            parse = sandbox.stub(corewar, 'parse').returns(buildParseResult())
         })
 
         afterEach(() => {
-            sinon.restore()
+            sandbox.restore()
         })
 
         it('should upsert warrior with repository', async () => {
@@ -84,7 +91,7 @@ describe('WarriorService', () => {
             parseResult.success = false
             parse.returns(parseResult)
 
-            const stub = sinon.stub()
+            const stub = sandbox.stub()
             repo.upsert = stub
 
             const actual = await target.saveWarrior('')

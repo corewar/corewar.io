@@ -11,6 +11,7 @@ coverage
 build
 dist
 bundle.js
+tailwind.css
 
 # misc
 .vs
