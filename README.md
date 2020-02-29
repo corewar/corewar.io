@@ -2,6 +2,9 @@
 
 ![Corewar](https://github.com/corewar/corewar.io/blob/master/packages/corewar/logo.png)
 
+![Node.js CI](https://github.com/corewar/corewar.io/workflows/Node.js%20CI/badge.svg)
+![Documentation Status](http://readthedocs.org/projects/corewar-docs/badge/?version=latest)
+
 # Corewar
 
 Typescript / Javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)
