@@ -303,7 +303,7 @@ const Home = () => (
       className="flex flex-col justify-center items-center min-h-cta text-xl bg-defaultbg"
     >
       <h2 className="font-light m-8">The roadmap</h2>
-      <Octicon name="milestone" className="m-4 text-blue text-5xl" />
+      <Octicon name="milestone" className="m-4 mb-16 text-blue text-5xl" />
     </section>
     <section className="flex flex-col flex-wrap mb-8">
       <RoadmapItem>
@@ -394,7 +394,7 @@ const Home = () => (
     </section>
     <section className="flex flex-col justify-center items-center min-h-cta text-xl bg-defaultbg">
       <h2 className="font-light m-8">Check out the app</h2>
-      <Octicon name="beaker" className="m-4 text-blue text-5xl" />
+      <Octicon name="beaker" className="m-4 text-blue text-5xl mb-16" />
       <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
     </section>
     <footer className="flex flex-wrap justify-center items-center bg-defaultbg font-thin text-base font-code">
