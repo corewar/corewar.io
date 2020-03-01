@@ -117,14 +117,14 @@ const Guidance = styled.div.attrs({
     padding: ${space.m};
   }
 `
-const SpeechArrow = styled.div`
-  width: 0;
-  height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
+// const SpeechArrow = styled.div`
+//   width: 0;
+//   height: 0;
+//   border-top: 10px solid transparent;
+//   border-bottom: 10px solid transparent;
 
-  border-right: 10px solid ${colour.defaultbg};
-`
+//   border-right: 10px solid ${colour.defaultbg};
+// `
 
 const SpeechBubble = styled.div`
   border-radius: 10px;
@@ -276,7 +276,6 @@ const Home = () => (
         <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
         <Guidance>
           <Octicon name="hubot" />
-          <SpeechArrow />
           <SpeechBubble>
             You should head over to the app and follow the interactive guide to explore the features
           </SpeechBubble>
@@ -289,7 +288,6 @@ const Home = () => (
         <FeatureButton href="/learn">View Tutorial</FeatureButton>
         <Guidance>
           <Octicon name="hubot" />
-          <SpeechArrow />
           <SpeechBubble>
             You should run through the tutorial to understand the basics of corewar first, then head
             over the app to test what you've learned.
