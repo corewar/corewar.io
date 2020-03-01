@@ -117,14 +117,6 @@ const Guidance = styled.div.attrs({
     padding: ${space.m};
   }
 `
-// const SpeechArrow = styled.div`
-//   width: 0;
-//   height: 0;
-//   border-top: 10px solid transparent;
-//   border-bottom: 10px solid transparent;
-
-//   border-right: 10px solid ${colour.defaultbg};
-// `
 
 const SpeechBubble = styled.div`
   border-radius: 10px;
