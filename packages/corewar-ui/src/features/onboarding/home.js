@@ -242,21 +242,6 @@ const RoadmapText = styled.div`
   color: ${colour.white};
 `
 
-const TimelineDivider = styled.div`
-  width: 50%;
-  margin: ${space.l} 25% ${space.l} 25%;
-  border-bottom: 1px solid ${colour.lightbg};
-  font-size: ${font.large};
-  padding: ${space.m};
-  text-align: center;
-
-  h3 {
-    text-align: center;
-    font-weight: 300;
-    line-height: ${font.xlarge};
-  }
-`
-
 const Tagline = styled.section`
 
   display: flex;
@@ -448,9 +433,9 @@ const Home = () => (
         <Timeline />
       </RoadmapItem>
 
-      <TimelineDivider>
-        <h3>Future development</h3>
-      </TimelineDivider>
+      <div className="w-1/2 my-8 mx-auto border-b-2 border-lightbg text-lg p-4 text-center">
+        <h3 className="font-light leading-10">Future development</h3>
+      </div>
 
       <RoadmapItem>
         <RoadmapText left>Log in &amp; Warrior Management</RoadmapText>
