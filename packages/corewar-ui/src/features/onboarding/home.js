@@ -12,14 +12,14 @@ import FeatureButton from '../common/featureButton'
 import SimulatorImage from '../../img/corewarx200.gif'
 import ParserImage from '../../img/redcode.gif'
 
-const Features = styled.section`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: ${space.m} ${space.xl} ${space.l} ${space.xl};
-  ${media.phone`margin: ${space.m};`}
-`
+// const Features = styled.section`
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: wrap;
+//   justify-content: center;
+//   margin: ${space.m} ${space.xl} ${space.l} ${space.xl};
+//   ${media.phone`margin: ${space.m};`}
+// `
 
 const Feature = styled.div`
   border-right: 1px solid ${colour.lightbg};
@@ -292,9 +292,8 @@ const Home = () => (
       <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
       <FeatureButton href="/learn">Learn more</FeatureButton>
     </div>
-
     <section className="flex items-center justify-center bg-defaultbg min-h-cta" id={`features`}>
-      <h2 className="w-2/3 md:w-3/4 lg:w-1/2 font-light text-lg text-blue leading-9 m-4">
+      <h2 className="w-2/3 md:w-3/4 lg:w-1/2 font-light text-2xl text-blue leading-10 m-4 text-center my-16">
         This is Corewar where players test their coding skills against each other, writing warriors
         which battle for control of the core. Do you have what it takes to become the King of the
         Hill?
@@ -319,31 +318,7 @@ const Home = () => (
         masterpiece.
       </FeatureDescription>
     </section>
-    {/* <Features>
-      <Feature>
-        <Octicon name='rocket' />
-        <h3>Play corewar</h3>
-        <p>Enjoy a slice of coding history by playing and learning the classic game corewar</p>
-        <PrimaryButton href='/app/src'>Play Now</PrimaryButton>
-      </Feature>
-      <Feature>
-        <Octicon name='device-mobile' />
-        <h3>On any device</h3>
-        <p>Our web platform gives the ability to play where and when you want on any system with no installs</p>
-        <FeatureButton href='#who-are-you'>Learn more</FeatureButton>
-      </Feature>
-      <Feature>
-      <Octicon name='megaphone' />
-        <h3>In new ways</h3>
-        <p>We have a fully featured roadmap bringing new ideas to the well established corewar player</p>
-        <FeatureButton href='#roadmap'>View Roadmap</FeatureButton>
-      </Feature>
-    </Features> */}
-    {/* <Prospect id={`who-are-you`}>
-      <h2>What best describes you?</h2>
-      <Octicon name='person' />
-    </Prospect> */}
-    <Features>
+    <section className="flex flex-wrap justify-center m-4 md:mx-16 md:mt-4 md:mb-8">
       <Feature>
         <Octicon name="mortar-board" />
         <h3>Experienced player</h3>
@@ -371,7 +346,7 @@ const Home = () => (
           </SpeechBubble>
         </Guidance>
       </Feature>
-    </Features>
+    </section>
     <Prospect id={`roadmap`}>
       <h2>The roadmap</h2>
       <Octicon name="milestone" />
