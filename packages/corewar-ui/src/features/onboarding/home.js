@@ -12,15 +12,6 @@ import FeatureButton from '../common/featureButton'
 import SimulatorImage from '../../img/corewarx200.gif'
 import ParserImage from '../../img/redcode.gif'
 
-// const Features = styled.section`
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: wrap;
-//   justify-content: center;
-//   margin: ${space.m} ${space.xl} ${space.l} ${space.xl};
-//   ${media.phone`margin: ${space.m};`}
-// `
-
 const Feature = styled.div`
   border-right: 1px solid ${colour.lightbg};
   ${media.tablet`border-right: none;`};
