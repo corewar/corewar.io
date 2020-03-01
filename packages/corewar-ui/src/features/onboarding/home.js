@@ -242,29 +242,6 @@ const RoadmapText = styled.div`
   color: ${colour.white};
 `
 
-const Tagline = styled.section`
-
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  background-color: ${colour.defaultbg};
-  min-height: 300px;
-
-  h2 {
-    width: 50%;
-    ${media.phone`width: 60%;`}
-    ${media.tablet`width: 75%;`}
-    ${media.desktop`width: 75%;`}
-    font-weight: 300;
-    line-height: ${font.xlarge};
-    color: ${colour.blue};
-    font-size: ${font.large};
-    ${media.phone`font-size: ${font.base};`}
-    margin: ${space.m};
-  }
-`
-
 const FeatureDescription = styled.div`
   font-size: ${font.large};
   ${media.phone`font-size: ${font.base};`}
@@ -315,13 +292,14 @@ const Home = () => (
       <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
       <FeatureButton href="/learn">Learn more</FeatureButton>
     </div>
-    <Tagline id={`features`}>
-      <h2>
+
+    <section className="flex items-center justify-center bg-defaultbg min-h-cta" id={`features`}>
+      <h2 className="w-2/3 md:w-3/4 lg:w-1/2 font-light text-lg text-blue leading-9 m-4">
         This is Corewar where players test their coding skills against each other, writing warriors
         which battle for control of the core. Do you have what it takes to become the King of the
         Hill?
       </h2>
-    </Tagline>
+    </section>
     <section className="flex flex-wrap items-center justify-center p-8 my-4 md:my-16 mx-0">
       <FeatureDescription>
         Our interactive Corewar Simulator provides the battle ground for your warriors. Play the
