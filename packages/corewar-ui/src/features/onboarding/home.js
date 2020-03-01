@@ -171,24 +171,6 @@ const Prospect = styled.section.attrs({
   }
 `
 
-const Footer = styled.footer`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  background-color: ${colour.defaultbg};
-  font-weight: 200;
-  font-size: ${font.base};
-  font-family: ${font.code};
-
-  a {
-    color: ${colour.blue};
-    display: inline-block;
-    padding: 0 ${space.m};
-  }
-`
-
 const RoadmapItem = styled.div`
   display: grid;
   grid-template-columns: 1fr 80px 1fr;
@@ -434,11 +416,26 @@ const Home = () => (
       <Octicon name="beaker" />
       <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
     </Prospect>
-    <Footer>
-      &copy; 2018 <a href="http://www.corewar.io">www.corewar.io</a> - crafted with love by{' '}
-      <a href="https://github.com/gareththegeek">@gareththegeek</a> &amp;{' '}
-      <a href="https://github.com/dougajmcdonald/">@dougajmcdonald</a>
-    </Footer>
+    <footer className="flex flex-wrap justify-center items-center bg-defaultbg font-thin text-base font-code">
+      &copy; 2018{' '}
+      <a href="http://www.corewar.io" className="text-blue inline-block py-0 px-4 hover:underline">
+        www.corewar.io
+      </a>{' '}
+      - crafted with love by{' '}
+      <a
+        href="https://github.com/gareththegeek"
+        className="text-blue inline-block py-0 px-4 hover:underline"
+      >
+        @gareththegeek
+      </a>{' '}
+      &amp;{' '}
+      <a
+        href="https://github.com/dougajmcdonald/"
+        className="text-blue inline-block py-0 px-4 hover:underline"
+      >
+        @dougajmcdonald
+      </a>
+    </footer>
   </main>
 )
 
