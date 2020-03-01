@@ -280,17 +280,6 @@ const Tagline = styled.section`
   }
 `
 
-const Simulator = styled.section`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  margin: ${space.xl} 0;
-  ${media.phone`margin: ${space.m} 0;`}
-  padding: ${space.l};
-`
-
 const Parser = styled.section`
   display: flex;
   flex-direction: row;
@@ -359,7 +348,7 @@ const Home = () => (
         Hill?
       </h2>
     </Tagline>
-    <Simulator>
+    <section className="flex flex-wrap items-center justify-center p-8 my-4 md:my-16 mx-0">
       <FeatureDescription>
         Our interactive Corewar Simulator provides the battle ground for your warriors. Play the
         game, inspect the core and debug your code from your web browser!
@@ -367,7 +356,7 @@ const Home = () => (
       <FeatureImageWrapper>
         <img src={SimulatorImage} alt={`Animated core simulator example`} />
       </FeatureImageWrapper>
-    </Simulator>
+    </section>
     <Parser>
       <FeatureImageWrapper>
         <img src={ParserImage} alt={`Animated parser usage example`} />
