@@ -280,17 +280,6 @@ const Tagline = styled.section`
   }
 `
 
-const Parser = styled.section`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  margin: ${space.xl} 0;
-  padding: ${space.l};
-  background-color: ${colour.defaultbg};
-`
-
 const FeatureDescription = styled.div`
   font-size: ${font.large};
   ${media.phone`font-size: ${font.base};`}
@@ -357,7 +346,7 @@ const Home = () => (
         <img src={SimulatorImage} alt={`Animated core simulator example`} />
       </FeatureImageWrapper>
     </section>
-    <Parser>
+    <section className="flex flex-wrap justify-center items-center p-8 my-16 mx-0 bg-defaultbg">
       <FeatureImageWrapper>
         <img src={ParserImage} alt={`Animated parser usage example`} />
       </FeatureImageWrapper>
@@ -366,7 +355,7 @@ const Home = () => (
         analysis improve the quality of your programs. The perfect canvas on which to craft your
         masterpiece.
       </FeatureDescription>
-    </Parser>
+    </section>
     {/* <Features>
       <Feature>
         <Octicon name='rocket' />
