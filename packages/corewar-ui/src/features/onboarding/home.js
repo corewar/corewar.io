@@ -198,13 +198,6 @@ const Footer = styled.footer`
   }
 `
 
-const Roadmap = styled.section`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin-bottom: ${space.l};
-`
-
 const RoadmapItem = styled.div`
   display: grid;
   grid-template-columns: 1fr 80px 1fr;
@@ -442,7 +435,7 @@ const Home = () => (
       <h2>The roadmap</h2>
       <Octicon name="milestone" />
     </Prospect>
-    <Roadmap>
+    <section className="flex flex-col flex-wrap mb-8">
       <RoadmapItem>
         <RoadmapText left>November 2017</RoadmapText>
         <IconWrapper colour={colour.blue}>
@@ -528,7 +521,7 @@ const Home = () => (
         </RoadmapText>
         <Timeline />
       </RoadmapItem>
-    </Roadmap>
+    </section>
     <Prospect>
       <h2>Check out the app</h2>
       <Octicon name="beaker" />
