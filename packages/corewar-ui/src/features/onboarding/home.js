@@ -148,29 +148,6 @@ const PrimaryButton = FeatureButton.extend`
   font-weight: bold;
 `
 
-const Prospect = styled.section.attrs({
-  id: props => props.id
-})`
-  min-height: 250px;
-  background-color: ${colour.defaultbg};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: ${font.large};
-
-  h2 {
-    margin: ${space.l};
-    font-weight: 300;
-  }
-
-  .octicon {
-    font-size: ${icon.xlarge};
-    color: ${colour.blue};
-    margin: ${space.m};
-  }
-`
-
 const RoadmapItem = styled.div`
   display: grid;
   grid-template-columns: 1fr 80px 1fr;
@@ -320,10 +297,14 @@ const Home = () => (
         </Guidance>
       </Feature>
     </section>
-    <Prospect id={`roadmap`}>
-      <h2>The roadmap</h2>
-      <Octicon name="milestone" />
-    </Prospect>
+
+    <section
+      id={`roadmap`}
+      className="flex flex-col justify-center items-center min-h-cta text-xl bg-defaultbg"
+    >
+      <h2 className="font-light m-8">The roadmap</h2>
+      <Octicon name="milestone" className="m-4 text-blue text-5xl" />
+    </section>
     <section className="flex flex-col flex-wrap mb-8">
       <RoadmapItem>
         <RoadmapText left>November 2017</RoadmapText>
@@ -411,11 +392,11 @@ const Home = () => (
         <Timeline />
       </RoadmapItem>
     </section>
-    <Prospect>
-      <h2>Check out the app</h2>
-      <Octicon name="beaker" />
+    <section className="flex flex-col justify-center items-center min-h-cta text-xl bg-defaultbg">
+      <h2 className="font-light m-8">Check out the app</h2>
+      <Octicon name="beaker" className="m-4 text-blue text-5xl" />
       <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
-    </Prospect>
+    </section>
     <footer className="flex flex-wrap justify-center items-center bg-defaultbg font-thin text-base font-code">
       &copy; 2018{' '}
       <a href="http://www.corewar.io" className="text-blue inline-block py-0 px-4 hover:underline">
