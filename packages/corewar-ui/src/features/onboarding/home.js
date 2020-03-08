@@ -64,63 +64,14 @@ const roadMapItems = [
 ]
 
 const Feature = styled.div`
-  border-right: 1px solid ${colour.lightbg};
   ${media.tablet`border-right: none;`};
   ${media.tablet`border-bottom: 1px solid ${colour.lightbg}; padding-bottom: ${space.l};`};
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-  min-height: 200px;
-  margin-top: ${space.l};
-
-  :first-child {
-    .octicon {
-      color: ${colour.warrior[1]};
-    }
-    li .octicon {
-      color: ${colour.white};
-    }
-  }
-
-  :last-child {
-    border: none;
-
-    .octicon {
-      color: ${colour.warrior[4]};
-    }
-    li .octicon {
-      color: ${colour.white};
-    }
-  }
-
-  .octicon {
-    font-size: ${font.xlarge};
-    color: ${colour.warrior[2]};
-  }
 
   :hover {
     cursor: pointer;
     .guidance {
       opacity: 1;
       transition: 0.5s;
-    }
-  }
-
-  ul {
-    margin: ${space.m};
-
-    li {
-      margin: ${space.s};
-      font-weight: 300;
-      line-height: ${font.large};
-
-      .octicon {
-        font-size: ${font.base};
-        margin-right: ${space.m};
-        color: ${colour.white};
-      }
     }
   }
 `
@@ -137,12 +88,6 @@ const Guidance = styled.div.attrs({
   justify-content: flex-start;
   margin: ${space.l};
   ${media.phone`margin: ${space.m};`}
-
-  .octicon.octicon-hubot {
-    color: ${colour.white};
-    font-size: ${font.xlarge};
-    padding: ${space.m};
-  }
 `
 
 const SpeechBubble = styled.div`
@@ -211,35 +156,35 @@ const Home = () => (
     </section>
 
     <section className="flex flex-wrap justify-center m-4 md:mx-16 md:mt-4 md:mb-8">
-      <Feature>
-        <Octicon name="mortar-board" />
+      <div className="flex flex-col items-center flex-1 min-h-200 mt-8">
+        <Octicon className="text-5xl" name="mortar-board" />
         <h3 className="m-2 md:m-4 text-xl font-light text-lightgrey">Experienced player</h3>
         <p className="text-blue font-code text-base p-4 text-center mx-8">
           I’ve played corewar before and understand the instructions and concepts
         </p>
         <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
         <Guidance>
-          <Octicon name="hubot" />
+          <Octicon className="text-4xl p-8" name="hubot" />
           <SpeechBubble>
             You should head over to the app and follow the interactive guide to explore the features
           </SpeechBubble>
         </Guidance>
-      </Feature>
-      <Feature>
-        <Octicon name="law" />
+      </div>
+      <div className="flex flex-col items-center flex-1 min-h-200 mt-8">
+        <Octicon className="text-5xl" name="law" />
         <h3 className="m-2 md:m-4 text-xl font-light text-lightgrey">New to the game</h3>
         <p className="text-blue font-code text-base p-4 text-center mx-8">
           I’ve done some coding before but never played corewar
         </p>
         <FeatureButton href="/learn">View Tutorial</FeatureButton>
         <Guidance>
-          <Octicon name="hubot" />
+          <Octicon className="text-4xl p-8" name="hubot" />
           <SpeechBubble>
             You should run through the tutorial to understand the basics of corewar first, then head
             over the app to test what you've learned.
           </SpeechBubble>
         </Guidance>
-      </Feature>
+      </div>
     </section>
 
     <section
