@@ -9,9 +9,60 @@ import SiteNav from '../common/siteNav'
 import HeroLogo from '../common/heroLogo'
 import FeatureButton from '../common/featureButton'
 import Timeline from './timeline'
+import RoadmapItem from './roadmapItem'
 
 import SimulatorImage from '../../img/corewarx200.gif'
 import ParserImage from '../../img/redcode.gif'
+
+const roadMapItems = [
+  {
+    leftText: 'November 2017',
+    rightText: 'The idea to develop corewar as a modern web app is conceived',
+    icon: 'light-bulb',
+    complete: true
+  },
+  {
+    leftText: 'March 2018',
+    rightText: 'Public beta, allowing players to experience the initial feature set',
+    icon: 'calendar',
+    complete: true
+  },
+  {
+    leftText: 'Today',
+    rightText:
+      'We are now actively listening for user feedback whilst we build the next set of features but here’s what we had in mind',
+    icon: 'megaphone',
+    complete: true
+  },
+  {
+    leftText: 'Log in & Warrior Management',
+    rightText:
+      'Create an account and build up your warriors, including file versioning and statistics over time',
+    icon: 'git-commit',
+    complete: false
+  },
+  {
+    leftText: 'Live online hills',
+    rightText:
+      'We will host and run hills for all skill levels. Which will allow you to submit you warriors online and see the results in realtime',
+    icon: 'git-commit',
+    complete: false
+  },
+  {
+    leftText: 'Private hills',
+    rightText:
+      'Want to play with just your friends? We will add invite only hills so you can chose the rules and the players',
+    icon: 'git-commit',
+    complete: false
+  },
+  {
+    leftText: 'Corewar challenges',
+    rightText:
+      'Feel like you’ve done all corewar can offer? We will develop specific challenges and situations to challenge the most experienced players',
+    icon: 'git-commit',
+    complete: false
+  }
+]
 
 const Feature = styled.div`
   border-right: 1px solid ${colour.lightbg};
@@ -141,14 +192,6 @@ const PrimaryButton = FeatureButton.extend`
   font-weight: bold;
 `
 
-const RoadmapItem = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 80px 1fr;
-  grid-template-rows: 80px 1fr;
-  min-height: 200px;
-  font-weight: 300;
-`
-
 const RoadmapText = styled.div`
   ${props => props.left && `justify-self: end; text-align: right; padding-left: ${space.m};`}
   ${props => props.right && `justify-self: start; padding-right: ${space.m};`}
@@ -275,91 +318,35 @@ const Home = () => (
       <Octicon name="milestone" className="m-4 mb-16 text-blue text-5xl" />
     </section>
     <section className="flex flex-col flex-wrap mb-8">
-      <RoadmapItem>
-        <RoadmapText left>November 2017</RoadmapText>
-        <div className="col-start-2 row-start-1 self-center mx-auto text-blue">
-          <Octicon className="text-2xl" name="light-bulb" />
-        </div>
-        <RoadmapText right>
-          The idea to develop corewar as a modern web app is conceived
-        </RoadmapText>
-        <Timeline />
-      </RoadmapItem>
-
-      <RoadmapItem>
-        <RoadmapText left>March 2018</RoadmapText>
-        <div className="col-start-2 row-start-1 self-center mx-auto text-blue">
-          <Octicon className="text-2xl" name="calendar" />
-        </div>
-        <RoadmapText right>
-          Public beta, allowing players to experience the initial feature set
-        </RoadmapText>
-        <Timeline />
-      </RoadmapItem>
-
-      <RoadmapItem>
-        <RoadmapText left>Today</RoadmapText>
-        <div className="col-start-2 row-start-1 self-center mx-auto text-blue">
-          <Octicon className="text-2xl" name="megaphone" />
-        </div>
-        <RoadmapText right>
-          We are now actively listening for user feedback whilst we build the next set of features
-          but here’s what we had in mind
-        </RoadmapText>
-        <Timeline />
-      </RoadmapItem>
+      {roadMapItems
+        .filter(x => x.complete)
+        .map(item => (
+          <RoadmapItem>
+            <RoadmapText left>{item.leftText}</RoadmapText>
+            <div className="col-start-2 row-start-1 self-center mx-auto text-blue">
+              <Octicon className="text-2xl" name={`${item.icon}`} />
+            </div>
+            <RoadmapText right>{item.rightText}</RoadmapText>
+            <Timeline />
+          </RoadmapItem>
+        ))}
 
       <div className="w-1/2 my-8 mx-auto border-b-2 border-lightbg text-lg p-4 text-center">
         <h3 className="font-light leading-10">Future development</h3>
       </div>
 
-      <RoadmapItem>
-        <RoadmapText left>Log in &amp; Warrior Management</RoadmapText>
-        <div className="col-start-2 row-start-1 self-center mx-auto text-blue">
-          <Octicon className="text-2xl" name="git-commit" />
-        </div>
-        <RoadmapText right>
-          Create an account and build up your warriors, including file versioning and statistics
-          over time
-        </RoadmapText>
-        <Timeline />
-      </RoadmapItem>
-
-      <RoadmapItem>
-        <RoadmapText left>Live online hills</RoadmapText>
-        <div className="col-start-2 row-start-1 self-center mx-auto text-blue">
-          <Octicon className="text-2xl" name="git-commit" />
-        </div>
-        <RoadmapText right>
-          We will host and run hills for all skill levels. Which will allow you to submit you
-          warriors online and see the results in realtime
-        </RoadmapText>
-        <Timeline />
-      </RoadmapItem>
-
-      <RoadmapItem>
-        <RoadmapText left>Private hills</RoadmapText>
-        <div className="col-start-2 row-start-1 self-center mx-auto text-blue">
-          <Octicon className="text-2xl" name="git-commit" />
-        </div>
-        <RoadmapText right>
-          Want to play with just your friends? We will add invite only hills so you can chose the
-          rules and the players
-        </RoadmapText>
-        <Timeline />
-      </RoadmapItem>
-
-      <RoadmapItem>
-        <RoadmapText left>Corewar challenges</RoadmapText>
-        <div className="col-start-2 row-start-1 self-center mx-auto text-blue">
-          <Octicon className="text-2xl" name="git-commit" />
-        </div>
-        <RoadmapText right>
-          Feel like you’ve done all corewar can offer? We will develop specific challenges and
-          situations to challenge the most experienced players
-        </RoadmapText>
-        <Timeline />
-      </RoadmapItem>
+      {roadMapItems
+        .filter(x => x.complete === false)
+        .map(item => (
+          <RoadmapItem>
+            <RoadmapText left>{item.leftText}</RoadmapText>
+            <div className="col-start-2 row-start-1 self-center mx-auto text-blue">
+              <Octicon className="text-2xl" name={`${item.icon}`} />
+            </div>
+            <RoadmapText right>{item.rightText}</RoadmapText>
+            <Timeline />
+          </RoadmapItem>
+        ))}
     </section>
     <section className="flex flex-col justify-center items-center min-h-cta text-xl bg-defaultbg">
       <h2 className="font-light m-8">Check out the app</h2>
