@@ -8,7 +8,6 @@ import { media } from '../common/mediaQuery'
 import SiteNav from '../common/siteNav'
 import HeroLogo from '../common/heroLogo'
 import FeatureButton from '../common/featureButton'
-import Timeline from './timeline'
 import RoadmapItem from './roadmapItem'
 
 import SimulatorImage from '../../img/corewarx200.gif'
@@ -192,20 +191,6 @@ const PrimaryButton = FeatureButton.extend`
   font-weight: bold;
 `
 
-const RoadmapText = styled.div`
-  ${props => props.left && `justify-self: end; text-align: right; padding-left: ${space.m};`}
-  ${props => props.right && `justify-self: start; padding-right: ${space.m};`}
-  grid-row: 1 / 3;
-  font-size: ${font.base};
-
-  line-height: ${font.large};
-
-  max-width: 350px;
-  align-self: flex-start;
-  padding-top: calc(${space.m} + ${space.s});
-  color: ${colour.white};
-`
-
 const FeatureDescription = styled.div`
   font-size: ${font.large};
   ${media.phone`font-size: ${font.base};`}
@@ -321,14 +306,7 @@ const Home = () => (
       {roadMapItems
         .filter(x => x.complete)
         .map(item => (
-          <RoadmapItem>
-            <RoadmapText left>{item.leftText}</RoadmapText>
-            <div className="col-start-2 row-start-1 self-center mx-auto text-blue">
-              <Octicon className="text-2xl" name={`${item.icon}`} />
-            </div>
-            <RoadmapText right>{item.rightText}</RoadmapText>
-            <Timeline />
-          </RoadmapItem>
+          <RoadmapItem item={item} />
         ))}
 
       <div className="w-1/2 my-8 mx-auto border-b-2 border-lightbg text-lg p-4 text-center">
@@ -338,14 +316,7 @@ const Home = () => (
       {roadMapItems
         .filter(x => x.complete === false)
         .map(item => (
-          <RoadmapItem>
-            <RoadmapText left>{item.leftText}</RoadmapText>
-            <div className="col-start-2 row-start-1 self-center mx-auto text-blue">
-              <Octicon className="text-2xl" name={`${item.icon}`} />
-            </div>
-            <RoadmapText right>{item.rightText}</RoadmapText>
-            <Timeline />
-          </RoadmapItem>
+          <RoadmapItem item={item} />
         ))}
     </section>
     <section className="flex flex-col justify-center items-center min-h-cta text-xl bg-defaultbg">
