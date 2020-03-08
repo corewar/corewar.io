@@ -191,48 +191,6 @@ const PrimaryButton = FeatureButton.extend`
   font-weight: bold;
 `
 
-const FeatureDescription = styled.div`
-  font-size: ${font.large};
-  ${media.phone`font-size: ${font.base};`}
-  line-height: ${font.xlarge};
-  ${media.phone`line-height: ${font.large};`}
-  margin: ${space.xl};
-  ${media.phone`margin: ${space.m};`}
-  ${media.tablet`margin: ${space.m};`}
-  ${media.desktop`margin: ${space.m};`}
-  font-weight: 300;
-  flex: 0.4;
-  ${media.phone`flex: 1;`}
-  ${media.tablet`flex: 1;`}
-  ${media.desktop`flex: 1;`}
-`
-
-const FeatureImageWrapper = styled.div`
-  flex: 0.4;
-  display: flex;
-  justify-content: center;
-  ${media.desktop`
-    flex: 1;
-    img {
-      width: 100%;
-      height: 100%;
-
-    }
-  `}
-  ${media.tablet`
-    flex: 1;
-    img {
-      width: calc(100vw - ${space.xl} - ${space.xl});
-    }
-  `}
-  ${media.phone`
-    flex: 1;
-    img {
-      width: calc(100vw - ${space.l} - ${space.l});
-    }
-  `}
-`
-
 const Home = () => (
   <main className="grid grid-rows-home-grid text-white bg-darkbg">
     <SiteNav />
@@ -248,24 +206,32 @@ const Home = () => (
         Hill?
       </h2>
     </section>
-    <section className="flex flex-wrap items-center justify-center p-8 my-4 md:my-16 mx-0">
-      <FeatureDescription>
+    <section className="flex flex-row flex-wrap items-center justify-center p-8 my-4 md:my-16 mx-0">
+      <div className="text-2xl leading-10 m-16 font-light md:flex-feature">
         Our interactive Corewar Simulator provides the battle ground for your warriors. Play the
         game, inspect the core and debug your code from your web browser!
-      </FeatureDescription>
-      <FeatureImageWrapper>
-        <img src={SimulatorImage} alt={`Animated core simulator example`} />
-      </FeatureImageWrapper>
+      </div>
+      <div className="flex flex-1 md:flex-feature justify-center">
+        <img
+          className="w-screen md:w-full"
+          src={SimulatorImage}
+          alt={`Animated core simulator example`}
+        />
+      </div>
     </section>
-    <section className="flex flex-wrap justify-center items-center p-8 my-16 mx-0 bg-defaultbg">
-      <FeatureImageWrapper>
-        <img src={ParserImage} alt={`Animated parser usage example`} />
-      </FeatureImageWrapper>
-      <FeatureDescription>
+    <section className="flex flex-wrap justify-center items-center p-8 my-4 md:my-16 mx-0 bg-defaultbg">
+      <div className="flex flex-1 md:flex-feature justify-center">
+        <img
+          className="w-screen md:w-full"
+          src={ParserImage}
+          alt={`Animated parser usage example`}
+        />
+      </div>
+      <div className="text-2xl leading-10 m-16 font-light md:flex-feature">
         Our powerful Redcode editor makes it easy to write warriors and through real-time code
         analysis improve the quality of your programs. The perfect canvas on which to craft your
         masterpiece.
-      </FeatureDescription>
+      </div>
     </section>
     <section className="flex flex-wrap justify-center m-4 md:mx-16 md:mt-4 md:mb-8">
       <Feature>

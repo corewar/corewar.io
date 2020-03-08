@@ -38,6 +38,9 @@ module.exports = {
       },
       fontSize: {
         '7xl': '96px'
+      },
+      flex: {
+        feature: '0.4'
       }
     }
   },
