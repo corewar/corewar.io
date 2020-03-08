@@ -100,30 +100,6 @@ const Feature = styled.div`
     color: ${colour.warrior[2]};
   }
 
-  h3 {
-    margin: ${space.m};
-    ${media.tablet`margin: ${space.s}`};
-    font-size: ${font.large};
-    font-weight: 300;
-    color: ${colour.lightgrey};
-  }
-
-  p {
-    color: ${colour.blue};
-    font-family: ${font.code};
-    line-height: 1.5em;
-    font-size: ${font.base};
-    padding: ${space.m};
-    text-align: center;
-    margin-left: ${space.xl};
-    margin-right: ${space.xl};
-
-    ${media.desktop`margin-left: ${space.s};`};
-    ${media.desktop`margin-right: ${space.s};`};
-
-    min-height: 80px;
-  }
-
   :hover {
     cursor: pointer;
     .guidance {
@@ -233,11 +209,14 @@ const Home = () => (
         masterpiece.
       </div>
     </section>
+
     <section className="flex flex-wrap justify-center m-4 md:mx-16 md:mt-4 md:mb-8">
       <Feature>
         <Octicon name="mortar-board" />
-        <h3>Experienced player</h3>
-        <p>I’ve played corewar before and understand the instructions and concepts</p>
+        <h3 className="m-2 md:m-4 text-xl font-light text-lightgrey">Experienced player</h3>
+        <p className="text-blue font-code text-base p-4 text-center mx-8">
+          I’ve played corewar before and understand the instructions and concepts
+        </p>
         <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
         <Guidance>
           <Octicon name="hubot" />
@@ -248,8 +227,10 @@ const Home = () => (
       </Feature>
       <Feature>
         <Octicon name="law" />
-        <h3>New to the game</h3>
-        <p>I’ve done some coding before but never played corewar</p>
+        <h3 className="m-2 md:m-4 text-xl font-light text-lightgrey">New to the game</h3>
+        <p className="text-blue font-code text-base p-4 text-center mx-8">
+          I’ve done some coding before but never played corewar
+        </p>
         <FeatureButton href="/learn">View Tutorial</FeatureButton>
         <Guidance>
           <Octicon name="hubot" />
