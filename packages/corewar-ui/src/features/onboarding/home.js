@@ -12,15 +12,6 @@ import FeatureButton from '../common/featureButton'
 import SimulatorImage from '../../img/corewarx200.gif'
 import ParserImage from '../../img/redcode.gif'
 
-const Features = styled.section`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: ${space.m} ${space.xl} ${space.l} ${space.xl};
-  ${media.phone`margin: ${space.m};`}
-`
-
 const Feature = styled.div`
   border-right: 1px solid ${colour.lightbg};
   ${media.tablet`border-right: none;`};
@@ -126,14 +117,6 @@ const Guidance = styled.div.attrs({
     padding: ${space.m};
   }
 `
-const SpeechArrow = styled.div`
-  width: 0;
-  height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-
-  border-right: 10px solid ${colour.defaultbg};
-`
 
 const SpeechBubble = styled.div`
   border-radius: 10px;
@@ -155,54 +138,6 @@ const PrimaryButton = FeatureButton.extend`
   color: ${colour.darkbg};
   transition: 0.2s;
   font-weight: bold;
-`
-
-const Prospect = styled.section.attrs({
-  id: props => props.id
-})`
-  min-height: 250px;
-  background-color: ${colour.defaultbg};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: ${font.large};
-
-  h2 {
-    margin: ${space.l};
-    font-weight: 300;
-  }
-
-  .octicon {
-    font-size: ${icon.xlarge};
-    color: ${colour.blue};
-    margin: ${space.m};
-  }
-`
-
-const Footer = styled.footer`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  background-color: ${colour.defaultbg};
-  font-weight: 200;
-  font-size: ${font.base};
-  font-family: ${font.code};
-
-  a {
-    color: ${colour.blue};
-    display: inline-block;
-    padding: 0 ${space.m};
-  }
-`
-
-const Roadmap = styled.section`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin-bottom: ${space.l};
 `
 
 const RoadmapItem = styled.div`
@@ -247,66 +182,6 @@ const RoadmapText = styled.div`
   align-self: flex-start;
   padding-top: calc(${space.m} + ${space.s});
   color: ${colour.white};
-`
-
-const TimelineDivider = styled.div`
-  width: 50%;
-  margin: ${space.l} 25% ${space.l} 25%;
-  border-bottom: 1px solid ${colour.lightbg};
-  font-size: ${font.large};
-  padding: ${space.m};
-  text-align: center;
-
-  h3 {
-    text-align: center;
-    font-weight: 300;
-    line-height: ${font.xlarge};
-  }
-`
-
-const Tagline = styled.section`
-
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  background-color: ${colour.defaultbg};
-  min-height: 300px;
-
-  h2 {
-    width: 50%;
-    ${media.phone`width: 60%;`}
-    ${media.tablet`width: 75%;`}
-    ${media.desktop`width: 75%;`}
-    font-weight: 300;
-    line-height: ${font.xlarge};
-    color: ${colour.blue};
-    font-size: ${font.large};
-    ${media.phone`font-size: ${font.base};`}
-    margin: ${space.m};
-  }
-`
-
-const Simulator = styled.section`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  margin: ${space.xl} 0;
-  ${media.phone`margin: ${space.m} 0;`}
-  padding: ${space.l};
-`
-
-const Parser = styled.section`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  margin: ${space.xl} 0;
-  padding: ${space.l};
-  background-color: ${colour.defaultbg};
 `
 
 const FeatureDescription = styled.div`
@@ -359,14 +234,14 @@ const Home = () => (
       <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
       <FeatureButton href="/learn">Learn more</FeatureButton>
     </div>
-    <Tagline id={`features`}>
-      <h2>
+    <section className="flex items-center justify-center bg-defaultbg min-h-cta" id={`features`}>
+      <h2 className="w-2/3 md:w-3/4 lg:w-1/2 font-light text-2xl text-blue leading-10 m-4 text-center my-16">
         This is Corewar where players test their coding skills against each other, writing warriors
         which battle for control of the core. Do you have what it takes to become the King of the
         Hill?
       </h2>
-    </Tagline>
-    <Simulator>
+    </section>
+    <section className="flex flex-wrap items-center justify-center p-8 my-4 md:my-16 mx-0">
       <FeatureDescription>
         Our interactive Corewar Simulator provides the battle ground for your warriors. Play the
         game, inspect the core and debug your code from your web browser!
@@ -374,8 +249,8 @@ const Home = () => (
       <FeatureImageWrapper>
         <img src={SimulatorImage} alt={`Animated core simulator example`} />
       </FeatureImageWrapper>
-    </Simulator>
-    <Parser>
+    </section>
+    <section className="flex flex-wrap justify-center items-center p-8 my-16 mx-0 bg-defaultbg">
       <FeatureImageWrapper>
         <img src={ParserImage} alt={`Animated parser usage example`} />
       </FeatureImageWrapper>
@@ -384,32 +259,8 @@ const Home = () => (
         analysis improve the quality of your programs. The perfect canvas on which to craft your
         masterpiece.
       </FeatureDescription>
-    </Parser>
-    {/* <Features>
-      <Feature>
-        <Octicon name='rocket' />
-        <h3>Play corewar</h3>
-        <p>Enjoy a slice of coding history by playing and learning the classic game corewar</p>
-        <PrimaryButton href='/app/src'>Play Now</PrimaryButton>
-      </Feature>
-      <Feature>
-        <Octicon name='device-mobile' />
-        <h3>On any device</h3>
-        <p>Our web platform gives the ability to play where and when you want on any system with no installs</p>
-        <FeatureButton href='#who-are-you'>Learn more</FeatureButton>
-      </Feature>
-      <Feature>
-      <Octicon name='megaphone' />
-        <h3>In new ways</h3>
-        <p>We have a fully featured roadmap bringing new ideas to the well established corewar player</p>
-        <FeatureButton href='#roadmap'>View Roadmap</FeatureButton>
-      </Feature>
-    </Features> */}
-    {/* <Prospect id={`who-are-you`}>
-      <h2>What best describes you?</h2>
-      <Octicon name='person' />
-    </Prospect> */}
-    <Features>
+    </section>
+    <section className="flex flex-wrap justify-center m-4 md:mx-16 md:mt-4 md:mb-8">
       <Feature>
         <Octicon name="mortar-board" />
         <h3>Experienced player</h3>
@@ -417,7 +268,6 @@ const Home = () => (
         <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
         <Guidance>
           <Octicon name="hubot" />
-          <SpeechArrow />
           <SpeechBubble>
             You should head over to the app and follow the interactive guide to explore the features
           </SpeechBubble>
@@ -430,19 +280,22 @@ const Home = () => (
         <FeatureButton href="/learn">View Tutorial</FeatureButton>
         <Guidance>
           <Octicon name="hubot" />
-          <SpeechArrow />
           <SpeechBubble>
             You should run through the tutorial to understand the basics of corewar first, then head
             over the app to test what you've learned.
           </SpeechBubble>
         </Guidance>
       </Feature>
-    </Features>
-    <Prospect id={`roadmap`}>
-      <h2>The roadmap</h2>
-      <Octicon name="milestone" />
-    </Prospect>
-    <Roadmap>
+    </section>
+
+    <section
+      id={`roadmap`}
+      className="flex flex-col justify-center items-center min-h-cta text-xl bg-defaultbg"
+    >
+      <h2 className="font-light m-8">The roadmap</h2>
+      <Octicon name="milestone" className="m-4 mb-16 text-blue text-5xl" />
+    </section>
+    <section className="flex flex-col flex-wrap mb-8">
       <RoadmapItem>
         <RoadmapText left>November 2017</RoadmapText>
         <IconWrapper colour={colour.blue}>
@@ -477,9 +330,9 @@ const Home = () => (
         <Timeline />
       </RoadmapItem>
 
-      <TimelineDivider>
-        <h3>Future development</h3>
-      </TimelineDivider>
+      <div className="w-1/2 my-8 mx-auto border-b-2 border-lightbg text-lg p-4 text-center">
+        <h3 className="font-light leading-10">Future development</h3>
+      </div>
 
       <RoadmapItem>
         <RoadmapText left>Log in &amp; Warrior Management</RoadmapText>
@@ -528,17 +381,32 @@ const Home = () => (
         </RoadmapText>
         <Timeline />
       </RoadmapItem>
-    </Roadmap>
-    <Prospect>
-      <h2>Check out the app</h2>
-      <Octicon name="beaker" />
+    </section>
+    <section className="flex flex-col justify-center items-center min-h-cta text-xl bg-defaultbg">
+      <h2 className="font-light m-8">Check out the app</h2>
+      <Octicon name="beaker" className="m-4 text-blue text-5xl mb-16" />
       <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
-    </Prospect>
-    <Footer>
-      &copy; 2018 <a href="http://www.corewar.io">www.corewar.io</a> - crafted with love by{' '}
-      <a href="https://github.com/gareththegeek">@gareththegeek</a> &amp;{' '}
-      <a href="https://github.com/dougajmcdonald/">@dougajmcdonald</a>
-    </Footer>
+    </section>
+    <footer className="flex flex-wrap justify-center items-center bg-defaultbg font-thin text-base font-code">
+      &copy; 2018{' '}
+      <a href="http://www.corewar.io" className="text-blue inline-block py-0 px-4 hover:underline">
+        www.corewar.io
+      </a>{' '}
+      - crafted with love by{' '}
+      <a
+        href="https://github.com/gareththegeek"
+        className="text-blue inline-block py-0 px-4 hover:underline"
+      >
+        @gareththegeek
+      </a>{' '}
+      &amp;{' '}
+      <a
+        href="https://github.com/dougajmcdonald/"
+        className="text-blue inline-block py-0 px-4 hover:underline"
+      >
+        @dougajmcdonald
+      </a>
+    </footer>
   </main>
 )
 

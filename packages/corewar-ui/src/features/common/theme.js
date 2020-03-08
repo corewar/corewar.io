@@ -46,8 +46,8 @@ export const font = {
   documentation: `Bitter, georgia, 'times new roman'`,
   xsmall: '10px',
   small: '12px',
-  base: '16px',
-  large: '24px',
-  xlarge: '48px',
+  base: '16px' /* 1rem */,
+  large: '24px' /* 1.5rem */,
+  xlarge: '48px' /* 3 rem */,
   xxlarge: '96px'
 }
