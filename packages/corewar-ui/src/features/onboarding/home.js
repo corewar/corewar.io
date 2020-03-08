@@ -2,12 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import Octicon from 'react-octicon'
 
-import { colour, font, space, icon } from '../common/theme'
+import { colour, font, space } from '../common/theme'
 import { media } from '../common/mediaQuery'
 
 import SiteNav from '../common/siteNav'
 import HeroLogo from '../common/heroLogo'
 import FeatureButton from '../common/featureButton'
+import Timeline from './timeline'
 
 import SimulatorImage from '../../img/corewarx200.gif'
 import ParserImage from '../../img/redcode.gif'
@@ -146,15 +147,6 @@ const RoadmapItem = styled.div`
   grid-template-rows: 80px 1fr;
   min-height: 200px;
   font-weight: 300;
-`
-
-const Timeline = styled.div`
-  background-color: ${colour.white};
-  border-radius: 4px;
-  width: 5px;
-  height: 100%;
-  grid-column-start: 2;
-  margin-left: calc(50% - 4px);
 `
 
 const IconWrapper = styled.div`
@@ -302,7 +294,7 @@ const Home = () => (
           <Octicon name="light-bulb" />
         </IconWrapper>
         <RoadmapText right>
-          The idea to develop corewar as a modern web app is concieved
+          The idea to develop corewar as a modern web app is conceived
         </RoadmapText>
         <Timeline />
       </RoadmapItem>
