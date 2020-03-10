@@ -2,98 +2,76 @@ import React from 'react'
 import styled from 'styled-components'
 import Octicon from 'react-octicon'
 
-import { colour, font, space, icon } from '../common/theme'
+import { colour, font, space } from '../common/theme'
 import { media } from '../common/mediaQuery'
 
 import SiteNav from '../common/siteNav'
 import HeroLogo from '../common/heroLogo'
 import FeatureButton from '../common/featureButton'
+import RoadmapItem from './roadmapItem'
 
 import SimulatorImage from '../../img/corewarx200.gif'
 import ParserImage from '../../img/redcode.gif'
 
+const roadMapItems = [
+  {
+    leftText: 'November 2017',
+    rightText: 'The idea to develop corewar as a modern web app is conceived',
+    icon: 'light-bulb',
+    complete: true
+  },
+  {
+    leftText: 'March 2018',
+    rightText: 'Public beta, allowing players to experience the initial feature set',
+    icon: 'calendar',
+    complete: true
+  },
+  {
+    leftText: 'Today',
+    rightText:
+      'We are now actively listening for user feedback whilst we build the next set of features but here’s what we had in mind',
+    icon: 'megaphone',
+    complete: true
+  },
+  {
+    leftText: 'Log in & Warrior Management',
+    rightText:
+      'Create an account and build up your warriors, including file versioning and statistics over time',
+    icon: 'git-commit',
+    complete: false
+  },
+  {
+    leftText: 'Live online hills',
+    rightText:
+      'We will host and run hills for all skill levels. Which will allow you to submit you warriors online and see the results in realtime',
+    icon: 'git-commit',
+    complete: false
+  },
+  {
+    leftText: 'Private hills',
+    rightText:
+      'Want to play with just your friends? We will add invite only hills so you can chose the rules and the players',
+    icon: 'git-commit',
+    complete: false
+  },
+  {
+    leftText: 'Corewar challenges',
+    rightText:
+      'Feel like you’ve done all corewar can offer? We will develop specific challenges and situations to challenge the most experienced players',
+    icon: 'git-commit',
+    complete: false
+  }
+]
+
 const Feature = styled.div`
-  border-right: 1px solid ${colour.lightbg};
   ${media.tablet`border-right: none;`};
   ${media.tablet`border-bottom: 1px solid ${colour.lightbg}; padding-bottom: ${space.l};`};
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-  min-height: 200px;
-  margin-top: ${space.l};
-
-  :first-child {
-    .octicon {
-      color: ${colour.warrior[1]};
-    }
-    li .octicon {
-      color: ${colour.white};
-    }
-  }
-
-  :last-child {
-    border: none;
-
-    .octicon {
-      color: ${colour.warrior[4]};
-    }
-    li .octicon {
-      color: ${colour.white};
-    }
-  }
-
-  .octicon {
-    font-size: ${font.xlarge};
-    color: ${colour.warrior[2]};
-  }
-
-  h3 {
-    margin: ${space.m};
-    ${media.tablet`margin: ${space.s}`};
-    font-size: ${font.large};
-    font-weight: 300;
-    color: ${colour.lightgrey};
-  }
-
-  p {
-    color: ${colour.blue};
-    font-family: ${font.code};
-    line-height: 1.5em;
-    font-size: ${font.base};
-    padding: ${space.m};
-    text-align: center;
-    margin-left: ${space.xl};
-    margin-right: ${space.xl};
-
-    ${media.desktop`margin-left: ${space.s};`};
-    ${media.desktop`margin-right: ${space.s};`};
-
-    min-height: 80px;
-  }
 
   :hover {
     cursor: pointer;
     .guidance {
       opacity: 1;
       transition: 0.5s;
-    }
-  }
-
-  ul {
-    margin: ${space.m};
-
-    li {
-      margin: ${space.s};
-      font-weight: 300;
-      line-height: ${font.large};
-
-      .octicon {
-        font-size: ${font.base};
-        margin-right: ${space.m};
-        color: ${colour.white};
-      }
     }
   }
 `
@@ -110,12 +88,6 @@ const Guidance = styled.div.attrs({
   justify-content: flex-start;
   margin: ${space.l};
   ${media.phone`margin: ${space.m};`}
-
-  .octicon.octicon-hubot {
-    color: ${colour.white};
-    font-size: ${font.xlarge};
-    padding: ${space.m};
-  }
 `
 
 const SpeechBubble = styled.div`
@@ -140,92 +112,6 @@ const PrimaryButton = FeatureButton.extend`
   font-weight: bold;
 `
 
-const RoadmapItem = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 80px 1fr;
-  grid-template-rows: 80px 1fr;
-  min-height: 200px;
-  font-weight: 300;
-`
-
-const Timeline = styled.div`
-  background-color: ${colour.white};
-  border-radius: 4px;
-  width: 5px;
-  height: 100%;
-  grid-column-start: 2;
-  margin-left: calc(50% - 4px);
-`
-
-const IconWrapper = styled.div`
-  grid-column-start: 2;
-  grid-row-start: 1;
-  justify-self: center;
-  align-self: center;
-
-  .octicon {
-    ${props => props.colour && `color: ${props.colour};`}
-    font-size: ${font.large};
-    text-align: center;
-  }
-`
-
-const RoadmapText = styled.div`
-  ${props => props.left && `justify-self: end; text-align: right; padding-left: ${space.m};`}
-  ${props => props.right && `justify-self: start; padding-right: ${space.m};`}
-  grid-row: 1 / 3;
-  font-size: ${font.base};
-
-  line-height: ${font.large};
-
-  max-width: 350px;
-  align-self: flex-start;
-  padding-top: calc(${space.m} + ${space.s});
-  color: ${colour.white};
-`
-
-const FeatureDescription = styled.div`
-  font-size: ${font.large};
-  ${media.phone`font-size: ${font.base};`}
-  line-height: ${font.xlarge};
-  ${media.phone`line-height: ${font.large};`}
-  margin: ${space.xl};
-  ${media.phone`margin: ${space.m};`}
-  ${media.tablet`margin: ${space.m};`}
-  ${media.desktop`margin: ${space.m};`}
-  font-weight: 300;
-  flex: 0.4;
-  ${media.phone`flex: 1;`}
-  ${media.tablet`flex: 1;`}
-  ${media.desktop`flex: 1;`}
-`
-
-const FeatureImageWrapper = styled.div`
-  flex: 0.4;
-  display: flex;
-  justify-content: center;
-  ${media.desktop`
-    flex: 1;
-    img {
-      width: 100%;
-      height: 100%;
-
-    }
-  `}
-  ${media.tablet`
-    flex: 1;
-    img {
-      width: calc(100vw - ${space.xl} - ${space.xl});
-    }
-  `}
-  ${media.phone`
-    flex: 1;
-    img {
-      width: calc(100vw - ${space.l} - ${space.l});
-    }
-  `}
-`
-
 const Home = () => (
   <main className="grid grid-rows-home-grid text-white bg-darkbg">
     <SiteNav />
@@ -241,51 +127,64 @@ const Home = () => (
         Hill?
       </h2>
     </section>
-    <section className="flex flex-wrap items-center justify-center p-8 my-4 md:my-16 mx-0">
-      <FeatureDescription>
+    <section className="flex flex-row flex-wrap items-center justify-center p-8 my-4 md:my-16 mx-0">
+      <div className="text-2xl leading-10 m-16 font-light md:flex-feature">
         Our interactive Corewar Simulator provides the battle ground for your warriors. Play the
         game, inspect the core and debug your code from your web browser!
-      </FeatureDescription>
-      <FeatureImageWrapper>
-        <img src={SimulatorImage} alt={`Animated core simulator example`} />
-      </FeatureImageWrapper>
+      </div>
+      <div className="flex flex-1 md:flex-feature justify-center">
+        <img
+          className="w-screen md:w-full"
+          src={SimulatorImage}
+          alt={`Animated core simulator example`}
+        />
+      </div>
     </section>
-    <section className="flex flex-wrap justify-center items-center p-8 my-16 mx-0 bg-defaultbg">
-      <FeatureImageWrapper>
-        <img src={ParserImage} alt={`Animated parser usage example`} />
-      </FeatureImageWrapper>
-      <FeatureDescription>
+    <section className="flex flex-wrap justify-center items-center p-8 my-4 md:my-16 mx-0 bg-defaultbg">
+      <div className="flex flex-1 md:flex-feature justify-center">
+        <img
+          className="w-screen md:w-full"
+          src={ParserImage}
+          alt={`Animated parser usage example`}
+        />
+      </div>
+      <div className="text-2xl leading-10 m-16 font-light md:flex-feature">
         Our powerful Redcode editor makes it easy to write warriors and through real-time code
         analysis improve the quality of your programs. The perfect canvas on which to craft your
         masterpiece.
-      </FeatureDescription>
+      </div>
     </section>
+
     <section className="flex flex-wrap justify-center m-4 md:mx-16 md:mt-4 md:mb-8">
-      <Feature>
-        <Octicon name="mortar-board" />
-        <h3>Experienced player</h3>
-        <p>I’ve played corewar before and understand the instructions and concepts</p>
+      <div className="flex flex-col items-center flex-1 min-h-200 mt-8">
+        <Octicon className="text-5xl" name="mortar-board" />
+        <h3 className="m-2 md:m-4 text-xl font-light text-lightgrey">Experienced player</h3>
+        <p className="text-blue font-code text-base p-4 text-center mx-8">
+          I’ve played corewar before and understand the instructions and concepts
+        </p>
         <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
         <Guidance>
-          <Octicon name="hubot" />
+          <Octicon className="text-4xl p-8" name="hubot" />
           <SpeechBubble>
             You should head over to the app and follow the interactive guide to explore the features
           </SpeechBubble>
         </Guidance>
-      </Feature>
-      <Feature>
-        <Octicon name="law" />
-        <h3>New to the game</h3>
-        <p>I’ve done some coding before but never played corewar</p>
+      </div>
+      <div className="flex flex-col items-center flex-1 min-h-200 mt-8">
+        <Octicon className="text-5xl" name="law" />
+        <h3 className="m-2 md:m-4 text-xl font-light text-lightgrey">New to the game</h3>
+        <p className="text-blue font-code text-base p-4 text-center mx-8">
+          I’ve done some coding before but never played corewar
+        </p>
         <FeatureButton href="/learn">View Tutorial</FeatureButton>
         <Guidance>
-          <Octicon name="hubot" />
+          <Octicon className="text-4xl p-8" name="hubot" />
           <SpeechBubble>
             You should run through the tutorial to understand the basics of corewar first, then head
             over the app to test what you've learned.
           </SpeechBubble>
         </Guidance>
-      </Feature>
+      </div>
     </section>
 
     <section
@@ -296,91 +195,21 @@ const Home = () => (
       <Octicon name="milestone" className="m-4 mb-16 text-blue text-5xl" />
     </section>
     <section className="flex flex-col flex-wrap mb-8">
-      <RoadmapItem>
-        <RoadmapText left>November 2017</RoadmapText>
-        <IconWrapper colour={colour.blue}>
-          <Octicon name="light-bulb" />
-        </IconWrapper>
-        <RoadmapText right>
-          The idea to develop corewar as a modern web app is concieved
-        </RoadmapText>
-        <Timeline />
-      </RoadmapItem>
-
-      <RoadmapItem>
-        <RoadmapText left>March 2018</RoadmapText>
-        <IconWrapper colour={colour.blue}>
-          <Octicon name="calendar" />
-        </IconWrapper>
-        <RoadmapText right>
-          Public beta, allowing players to experience the initial feature set
-        </RoadmapText>
-        <Timeline />
-      </RoadmapItem>
-
-      <RoadmapItem>
-        <RoadmapText left>Today</RoadmapText>
-        <IconWrapper colour={colour.blue}>
-          <Octicon name="megaphone" />
-        </IconWrapper>
-        <RoadmapText right>
-          We are now actively listening for user feedback whilst we build the next set of features
-          but here’s what we had in mind
-        </RoadmapText>
-        <Timeline />
-      </RoadmapItem>
+      {roadMapItems
+        .filter(x => x.complete)
+        .map(item => (
+          <RoadmapItem item={item} />
+        ))}
 
       <div className="w-1/2 my-8 mx-auto border-b-2 border-lightbg text-lg p-4 text-center">
         <h3 className="font-light leading-10">Future development</h3>
       </div>
 
-      <RoadmapItem>
-        <RoadmapText left>Log in &amp; Warrior Management</RoadmapText>
-        <IconWrapper colour={colour.blue}>
-          <Octicon name="git-commit" />
-        </IconWrapper>
-        <RoadmapText right>
-          Create an account and build up your warriors, including file versioning and statistics
-          over time
-        </RoadmapText>
-        <Timeline />
-      </RoadmapItem>
-
-      <RoadmapItem>
-        <RoadmapText left>Live online hills</RoadmapText>
-        <IconWrapper colour={colour.blue}>
-          <Octicon name="git-commit" />
-        </IconWrapper>
-        <RoadmapText right>
-          We will host and run hills for all skill levels. Which will allow you to submit you
-          warriors online and see the results in realtime
-        </RoadmapText>
-        <Timeline />
-      </RoadmapItem>
-
-      <RoadmapItem>
-        <RoadmapText left>Private hills</RoadmapText>
-        <IconWrapper colour={colour.blue}>
-          <Octicon name="git-commit" />
-        </IconWrapper>
-        <RoadmapText right>
-          Want to play with just your friends? We will add invite only hills so you can chose the
-          rules and the players
-        </RoadmapText>
-        <Timeline />
-      </RoadmapItem>
-
-      <RoadmapItem>
-        <RoadmapText left>Corewar challenges</RoadmapText>
-        <IconWrapper colour={colour.blue}>
-          <Octicon name="git-commit" />
-        </IconWrapper>
-        <RoadmapText right>
-          Feel like you’ve done all corewar can offer? We will develop specific challenges and
-          situations to challenge the most experienced players
-        </RoadmapText>
-        <Timeline />
-      </RoadmapItem>
+      {roadMapItems
+        .filter(x => x.complete === false)
+        .map(item => (
+          <RoadmapItem item={item} />
+        ))}
     </section>
     <section className="flex flex-col justify-center items-center min-h-cta text-xl bg-defaultbg">
       <h2 className="font-light m-8">Check out the app</h2>

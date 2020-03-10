@@ -21,13 +21,13 @@ const HeroLogo = () => (
       </h1>
       <Octicon
         name="chevron-right"
-        className="text-2xl md:text-3xl text-blue fill-current ml-8 pt-4"
+        className="text-3xl md:text-7xl text-blue fill-current ml-8 pt-4"
       />
     </div>
     <section className="hidden md:flex flex-wrap justify-center ml-16">
       {features.map(feature => (
         <Feature>
-          <Octicon name={feature.icon} className="text-xl text-blue fill-current" />
+          <Octicon name={feature.icon} className="text-2xl text-blue fill-current" />
           <h3 className="m-4 font-light text-lightgrey text-center">{feature.heading}</h3>
         </Feature>
       ))}
