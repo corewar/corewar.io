@@ -6,8 +6,10 @@ import HeroLogo from '../common/heroLogo'
 import FeatureButton from '../common/featureButton'
 import PrimaryButton from '../common/primaryButton'
 import RoadmapItem from './roadmapItem'
-import SpeechBubble from './speechBubble'
 import Guidance from './guidance'
+import GuidanceText from './guidanceText'
+import Feature from './feature'
+import FeatureDescription from './featureDescription'
 
 import SimulatorImage from '../../img/corewarx200.gif'
 import ParserImage from '../../img/redcode.gif'
@@ -77,11 +79,11 @@ const Home = () => (
         Hill?
       </h2>
     </section>
-    <section className="flex flex-row flex-wrap items-center justify-center p-8 my-4 md:my-16 mx-0">
-      <div className="text-xl md:text-2xl leading-10 m-4 md:m-16 font-light md:flex-feature">
+    <Feature>
+      <FeatureDescription>
         Our interactive Corewar Simulator provides the battle ground for your warriors. Play the
         game, inspect the core and debug your code from your web browser!
-      </div>
+      </FeatureDescription>
       <div className="flex flex-1 md:flex-feature justify-center">
         <img
           className="w-screen md:w-full"
@@ -89,8 +91,8 @@ const Home = () => (
           alt={`Animated core simulator example`}
         />
       </div>
-    </section>
-    <section className="flex flex-wrap justify-center items-center p-8 my-4 md:my-16 mx-0 bg-defaultbg">
+    </Feature>
+    <Feature className="bg-defaultbg">
       <div className="flex flex-1 md:flex-feature justify-center">
         <img
           className="w-screen md:w-full"
@@ -98,12 +100,12 @@ const Home = () => (
           alt={`Animated parser usage example`}
         />
       </div>
-      <div className="text-xl md:text-2xl leading-10 m-4 md:m-16 font-light md:flex-feature">
+      <FeatureDescription>
         Our powerful Redcode editor makes it easy to write warriors and through real-time code
         analysis improve the quality of your programs. The perfect canvas on which to craft your
         masterpiece.
-      </div>
-    </section>
+      </FeatureDescription>
+    </Feature>
 
     <section className="flex flex-wrap justify-center m-4 md:mx-16 md:mt-4 md:mb-8">
       <Guidance>
@@ -113,12 +115,9 @@ const Home = () => (
           I’ve played corewar before and understand the instructions and concepts
         </p>
         <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
-        <section className="md:opacity-0 flex flex-row items-center justify-start m-4 md:m-8">
-          <Octicon className="text-4xl p-8" name="hubot" />
-          <SpeechBubble>
-            Head over to the app and follow the interactive guide to explore the features
-          </SpeechBubble>
-        </section>
+        <GuidanceText>
+          Head over to the app and follow the interactive guide to explore the features
+        </GuidanceText>
       </Guidance>
       <Guidance>
         <Octicon className="text-5xl" name="law" />
@@ -127,13 +126,10 @@ const Home = () => (
           I’ve done some coding before but never played corewar
         </p>
         <FeatureButton href="/learn">View Tutorial</FeatureButton>
-        <section className="md:opacity-0 flex flex-row items-center justify-start m-4 md:m-8">
-          <Octicon className="text-4xl p-8" name="hubot" />
-          <SpeechBubble>
-            Run through the tutorial to understand the basics of corewar first, then head over the
-            app to test what you've learned.
-          </SpeechBubble>
-        </section>
+        <GuidanceText>
+          Run through the tutorial to understand the basics of corewar first, then head over the app
+          to test what you've learned.
+        </GuidanceText>
       </Guidance>
     </section>
 

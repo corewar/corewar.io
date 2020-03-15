@@ -2,9 +2,9 @@
 
 @tailwind components;
 
-@tailwind utilities;
-
 .guidance:hover > section {
   opacity: 1;
   transition: 0.5s;
 }
+
+@tailwind utilities;
