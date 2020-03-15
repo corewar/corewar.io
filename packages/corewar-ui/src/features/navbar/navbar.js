@@ -1,14 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
-import { space } from '../common/theme'
 import TabLink from './tabLink'
-
-const NavBarGrid = styled.div`
-  grid-row-start: 2;
-  margin-left: ${space.sidebar};
-  display: flex;
-  text-align: center;
-`
 
 const navigationData = {
   EDITOR: [
@@ -24,15 +15,13 @@ const navigationData = {
 }
 
 const NavBar = ({ interfaceMode }) => (
-  <NavBarGrid>
+  <div className="flex row-start-2 text-center ml-12">
     {navigationData[interfaceMode].map(link => (
       <TabLink key={link.url} to={link.url}>
         {link.text}
       </TabLink>
     ))}
-  </NavBarGrid>
+  </div>
 )
-
-NavBarGrid.displayName = 'NavBarGrid'
 
 export default NavBar
