@@ -1,56 +1,67 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState } from 'react'
 
-import { colour, space } from '../common/theme'
-import { media } from '../common/mediaQuery'
+import Logo from '../topbar/logo'
 
-const Header = styled.header`
-  display: flex;
-  flex-direction: row-reverse;
-  margin: 0 ${space.xl};
-  ${media.phone`margin: 0;`}
-
-  a {
-    color: ${colour.grey};
-    padding-bottom: ${space.s};
-    margin: 0 ${space.s};
-    ${media.phone`margin: 0;`}
-    display: inline-block;
-    min-width: 80px;
-    text-decoration: none;
-    font-weight: 400;
-    text-align: center;
-    border-bottom: 2px solid transparent;
-    transition: 0.5s;
-  }
-
-  a:hover {
-    border-bottom: 2px solid ${colour.blue};
-    colour: ${colour.white};
-    transition: 0.5s;
-  }
-`
-
-const Nav = styled.nav`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  ${media.phone`justify-content: center;`}
-  align-items: center;
-  width: 100%;
-`
-
-const SiteNav = () => (
-  <Header>
-    <Nav>
-      <a href={`/app/editor/src`}>play</a>
-      <a href={`/learn`}>learn</a>
-      <a href={`/#features`}>features</a>
-      <a href={`/sign-up`}>sign up</a>
-      <a href={`/contact-us`}>contact us</a>
-      <a href={`https://github.com/corewar/corewar`}>code</a>
-    </Nav>
-  </Header>
+const Link = ({ route, children }) => (
+  <a
+    className="text-white font-display mr-2 ml-2 lg:ml-10 lg:mr-10 leading-loose border-b-2 border-transparent hover:border-blue hover:no-underline cursor-pointer"
+    href={route}
+  >
+    {children}
+  </a>
 )
+
+const MobileLink = ({ route, children }) => (
+  <a
+    className="block md:inline-block mt-4 md:mt-0 md:ml-6 no-underline text-white font-display hover:no-underline cursor-pointer"
+    href={route}
+  >
+    {children}
+  </a>
+)
+
+const links = [
+  { route: `/app/editor/src`, text: `play` },
+  { route: `/learn`, text: `learn` },
+  { route: `/#features`, text: `features` },
+  { route: `/sign-up`, text: `sign up` },
+  { route: `/contact-us`, text: `contact us` },
+  { route: `https://github.com/corewar/corewar.io`, text: `code` }
+]
+
+const SiteNav = () => {
+  const [isExpanded, toggleExpansion] = useState(false)
+  return (
+    <header className="bg-secondary font-display flex">
+      <div className="w-4/5 md:w-2/3 mx-auto py-4 flex flex-wrap items-center justify-between">
+        <Logo siteName="corewar" siteDomain=".io" />
+        <nav className="hidden md:block">
+          {links.map(link => (
+            <Link key={link.route} route={link.route}>
+              {link.text}
+            </Link>
+          ))}
+        </nav>
+        <button
+          className="md:hidden text-white border-white border-2 rounded p-2"
+          onClick={() => toggleExpansion(!isExpanded)}
+        >
+          Menu
+        </button>
+        <nav
+          className={`${
+            isExpanded ? `block` : `hidden`
+          } md:hidden md:flex md:items-center mt-4 w-full md:w-auto border-t-2 border-white`}
+        >
+          {links.map(link => (
+            <MobileLink key={link.text} route={link.route}>
+              {link.text}
+            </MobileLink>
+          ))}
+        </nav>
+      </div>
+    </header>
+  )
+}
 
 export default SiteNav

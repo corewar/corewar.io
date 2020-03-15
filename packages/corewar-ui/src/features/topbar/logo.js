@@ -6,7 +6,7 @@ import { colour, font, space } from '../common/theme'
 
 import CorewarLogo from '../../img/corewar-logo.png'
 
-const Wrapper = styled.section`
+const Wrapper = styled.a`
   display: grid;
   grid-template-columns: ${space.header} 1fr;
 `
@@ -38,8 +38,8 @@ const SiteDomain = styled.span`
   color: ${colour.white};
 `
 
-const Logo = ({ siteName, siteDomain, history }) => (
-  <Wrapper onClick={() => history.push(`/`)}>
+const Logo = ({ siteName, siteDomain }) => (
+  <Wrapper href={`/`}>
     <LogoImage src={CorewarLogo} />
     <SiteName>
       {siteName}

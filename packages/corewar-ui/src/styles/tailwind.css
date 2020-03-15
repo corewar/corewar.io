@@ -615,6 +615,12 @@ video {
   }
 }
 
+.guidance:hover > section {
+  opacity: 1;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -10854,11 +10860,11 @@ video {
 }
 
 .grid-rows-mobile-home-grid {
-  grid-template-rows: 48px 25vh repeat(8, auto) 100px;
+  grid-template-rows: minmax(48px, 1fr) 25vh repeat(8, auto) 100px;
 }
 
 .grid-rows-home-grid {
-  grid-template-rows: 48px 50vh repeat(8, auto) 100px;
+  grid-template-rows: minmax(48px, 1fr) 50vh repeat(8, auto) 100px;
 }
 
 .grid-rows-roadmap {
@@ -12742,12 +12748,6 @@ video {
 .duration-1000 {
   -webkit-transition-duration: 1000ms;
           transition-duration: 1000ms;
-}
-
-.guidance:hover > section {
-  opacity: 1;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
 }
 
 @media (min-width: 640px) {
@@ -22990,11 +22990,11 @@ video {
   }
 
   .sm\:grid-rows-mobile-home-grid {
-    grid-template-rows: 48px 25vh repeat(8, auto) 100px;
+    grid-template-rows: minmax(48px, 1fr) 25vh repeat(8, auto) 100px;
   }
 
   .sm\:grid-rows-home-grid {
-    grid-template-rows: 48px 50vh repeat(8, auto) 100px;
+    grid-template-rows: minmax(48px, 1fr) 50vh repeat(8, auto) 100px;
   }
 
   .sm\:grid-rows-roadmap {
@@ -35121,11 +35121,11 @@ video {
   }
 
   .md\:grid-rows-mobile-home-grid {
-    grid-template-rows: 48px 25vh repeat(8, auto) 100px;
+    grid-template-rows: minmax(48px, 1fr) 25vh repeat(8, auto) 100px;
   }
 
   .md\:grid-rows-home-grid {
-    grid-template-rows: 48px 50vh repeat(8, auto) 100px;
+    grid-template-rows: minmax(48px, 1fr) 50vh repeat(8, auto) 100px;
   }
 
   .md\:grid-rows-roadmap {
@@ -47252,11 +47252,11 @@ video {
   }
 
   .lg\:grid-rows-mobile-home-grid {
-    grid-template-rows: 48px 25vh repeat(8, auto) 100px;
+    grid-template-rows: minmax(48px, 1fr) 25vh repeat(8, auto) 100px;
   }
 
   .lg\:grid-rows-home-grid {
-    grid-template-rows: 48px 50vh repeat(8, auto) 100px;
+    grid-template-rows: minmax(48px, 1fr) 50vh repeat(8, auto) 100px;
   }
 
   .lg\:grid-rows-roadmap {
@@ -59383,11 +59383,11 @@ video {
   }
 
   .xl\:grid-rows-mobile-home-grid {
-    grid-template-rows: 48px 25vh repeat(8, auto) 100px;
+    grid-template-rows: minmax(48px, 1fr) 25vh repeat(8, auto) 100px;
   }
 
   .xl\:grid-rows-home-grid {
-    grid-template-rows: 48px 50vh repeat(8, auto) 100px;
+    grid-template-rows: minmax(48px, 1fr) 50vh repeat(8, auto) 100px;
   }
 
   .xl\:grid-rows-roadmap {
