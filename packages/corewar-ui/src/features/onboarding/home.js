@@ -63,7 +63,7 @@ const roadMapItems = [
 ]
 
 const Home = () => (
-  <main className="grid grid-rows-home-grid text-white bg-darkbg">
+  <main className="grid grid-rows-mobile-home-grid md:grid-rows-home-grid text-white bg-darkbg">
     <SiteNav />
     <HeroLogo />
     <div className="flex flex-row flex-wrap justify-center items-center content-center mb-16 min-h-150">
@@ -71,14 +71,14 @@ const Home = () => (
       <FeatureButton href="/learn">Learn more</FeatureButton>
     </div>
     <section className="flex items-center justify-center bg-defaultbg min-h-cta" id={`features`}>
-      <h2 className="w-2/3 md:w-3/4 lg:w-1/2 font-light text-2xl text-blue leading-10 m-4 text-center my-16">
+      <h2 className="w-3/4 lg:w-1/2 font-light text-xl md:text-2xl text-blue leading-10 m-4 md:m-16 my-16">
         This is Corewar where players test their coding skills against each other, writing warriors
         which battle for control of the core. Do you have what it takes to become the King of the
         Hill?
       </h2>
     </section>
     <section className="flex flex-row flex-wrap items-center justify-center p-8 my-4 md:my-16 mx-0">
-      <div className="text-2xl leading-10 m-16 font-light md:flex-feature">
+      <div className="text-xl md:text-2xl leading-10 m-4 md:m-16 font-light md:flex-feature">
         Our interactive Corewar Simulator provides the battle ground for your warriors. Play the
         game, inspect the core and debug your code from your web browser!
       </div>
@@ -98,7 +98,7 @@ const Home = () => (
           alt={`Animated parser usage example`}
         />
       </div>
-      <div className="text-2xl leading-10 m-16 font-light md:flex-feature">
+      <div className="text-xl md:text-2xl leading-10 m-4 md:m-16 font-light md:flex-feature">
         Our powerful Redcode editor makes it easy to write warriors and through real-time code
         analysis improve the quality of your programs. The perfect canvas on which to craft your
         masterpiece.
@@ -148,7 +148,7 @@ const Home = () => (
       {roadMapItems
         .filter(x => x.complete)
         .map(item => (
-          <RoadmapItem item={item} />
+          <RoadmapItem key={item.leftText} item={item} />
         ))}
 
       <div className="w-1/2 my-8 mx-auto border-b-2 border-lightbg text-lg p-4 text-center">
@@ -158,7 +158,7 @@ const Home = () => (
       {roadMapItems
         .filter(x => x.complete === false)
         .map(item => (
-          <RoadmapItem item={item} />
+          <RoadmapItem key={item.leftText} item={item} />
         ))}
     </section>
     <section className="flex flex-col justify-center items-center min-h-cta text-xl bg-defaultbg">

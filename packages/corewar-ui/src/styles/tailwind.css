@@ -10853,6 +10853,10 @@ video {
   grid-template-rows: none;
 }
 
+.grid-rows-mobile-home-grid {
+  grid-template-rows: 48px 25vh repeat(8, auto) 100px;
+}
+
 .grid-rows-home-grid {
   grid-template-rows: 48px 50vh repeat(8, auto) 100px;
 }
@@ -22985,6 +22989,10 @@ video {
     grid-template-rows: none;
   }
 
+  .sm\:grid-rows-mobile-home-grid {
+    grid-template-rows: 48px 25vh repeat(8, auto) 100px;
+  }
+
   .sm\:grid-rows-home-grid {
     grid-template-rows: 48px 50vh repeat(8, auto) 100px;
   }
@@ -35110,6 +35118,10 @@ video {
 
   .md\:grid-rows-none {
     grid-template-rows: none;
+  }
+
+  .md\:grid-rows-mobile-home-grid {
+    grid-template-rows: 48px 25vh repeat(8, auto) 100px;
   }
 
   .md\:grid-rows-home-grid {
@@ -47239,6 +47251,10 @@ video {
     grid-template-rows: none;
   }
 
+  .lg\:grid-rows-mobile-home-grid {
+    grid-template-rows: 48px 25vh repeat(8, auto) 100px;
+  }
+
   .lg\:grid-rows-home-grid {
     grid-template-rows: 48px 50vh repeat(8, auto) 100px;
   }
@@ -59364,6 +59380,10 @@ video {
 
   .xl\:grid-rows-none {
     grid-template-rows: none;
+  }
+
+  .xl\:grid-rows-mobile-home-grid {
+    grid-template-rows: 48px 25vh repeat(8, auto) 100px;
   }
 
   .xl\:grid-rows-home-grid {

@@ -26,7 +26,7 @@ const HeroLogo = () => (
     </div>
     <section className="hidden md:flex flex-wrap justify-center ml-16">
       {features.map(feature => (
-        <Feature>
+        <Feature key={feature.heading}>
           <Octicon name={feature.icon} className="text-2xl text-blue fill-current" />
           <h3 className="m-4 font-light text-lightgrey text-center">{feature.heading}</h3>
         </Feature>

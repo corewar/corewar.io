@@ -22,6 +22,7 @@ module.exports = {
         success: '#6FCF97'
       },
       gridTemplateRows: {
+        'mobile-home-grid': '48px 25vh repeat(8, auto) 100px',
         'home-grid': '48px 50vh repeat(8, auto) 100px',
         roadmap: '80px 1fr'
       },
