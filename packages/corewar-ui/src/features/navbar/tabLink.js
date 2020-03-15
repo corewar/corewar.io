@@ -6,9 +6,11 @@ import { colour, space } from '../common/theme'
 
 const BaseLink = styled(NavLink)`
   color: ${colour.grey};
-  padding-top: ${space.m};
-  height: calc(${space.header} - ${space.m});
+  height: 100%;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
   border-right: 1px solid ${colour.defaultbg};
   &:hover {
