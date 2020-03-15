@@ -17,8 +17,8 @@ const SiteNav = () => {
   const [isExpanded, toggleExpansion] = useState(false)
   return (
     <header className="bg-secondary font-display flex">
-      <div className="w-4/5 md:w-2/3 mx-auto py-4 flex flex-wrap items-center justify-between">
-        <Logo siteName="corewar" siteDomain=".io" />
+      <div className="w-4/5 mx-auto py-4 flex flex-wrap items-center justify-between">
+        <Logo />
         <nav className="hidden md:block">
           {links.map(link => (
             <Link key={link.route} route={link.route}>

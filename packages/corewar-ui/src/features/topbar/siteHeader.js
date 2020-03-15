@@ -18,7 +18,7 @@ const Header = styled.header`
   `}
 `
 
-const SiteHeader = ({ isAuthenticated, history }) => (
+const SiteHeader = ({ isAuthenticated }) => (
   <Header>
     <Logo siteName="corewar" siteDomain=".io" />
     {isAuthenticated ? <UserInfo /> : <Login />}
