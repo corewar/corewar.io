@@ -1,27 +1,7 @@
-import styled from 'styled-components'
+import React from 'react'
 
-import { colour, space } from '../common/theme'
-
-const FeatureButton = styled.a`
-  border: 2px solid ${colour.white};
-  border-radius: 5px;
-  margin: ${space.m};
-  padding: ${space.m};
-  background: none;
-  display: inline-block;
-  min-width: 200px;
-  color: ${colour.lightgrey};
-  font-weight: 300;
-  text-align: center;
-  text-decoration: none;
-  transition: 0.2s;
-
-  :hover {
-    background-color: ${colour.lightbg};
-    color: ${colour.white};
-    cursor: pointer;
-    transition: 0.2s;
-  }
-`
-
-export default FeatureButton
+export default ({ children }) => (
+  <button className="min-w-200 rounded-md m-4 p-4 text-lightgrey font-light text-center border-2 border-white hover:bg-lightbg hover:text-white cursor-pointer">
+    {children}
+  </button>
+)

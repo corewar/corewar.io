@@ -1,14 +1,13 @@
 import React from 'react'
-import styled from 'styled-components'
 import Octicon from 'react-octicon'
-
-import { colour, font, space } from '../common/theme'
-import { media } from '../common/mediaQuery'
 
 import SiteNav from '../common/siteNav'
 import HeroLogo from '../common/heroLogo'
 import FeatureButton from '../common/featureButton'
+import PrimaryButton from '../common/primaryButton'
 import RoadmapItem from './roadmapItem'
+import SpeechBubble from './speechBubble'
+import Guidance from './guidance'
 
 import SimulatorImage from '../../img/corewarx200.gif'
 import ParserImage from '../../img/redcode.gif'
@@ -63,60 +62,11 @@ const roadMapItems = [
   }
 ]
 
-const Feature = styled.div`
-  ${media.tablet`border-right: none;`};
-  ${media.tablet`border-bottom: 1px solid ${colour.lightbg}; padding-bottom: ${space.l};`};
-
-  :hover {
-    cursor: pointer;
-    .guidance {
-      opacity: 1;
-      transition: 0.5s;
-    }
-  }
-`
-
-const Guidance = styled.div.attrs({
-  className: 'guidance'
-})`
-  opacity: 0;
-  ${media.tablet`opacity: 1;`}
-  transition: 0.5s;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  margin: ${space.l};
-  ${media.phone`margin: ${space.m};`}
-`
-
-const SpeechBubble = styled.div`
-  border-radius: 10px;
-  background-color: ${colour.defaultbg};
-  min-height: 200px;
-  margin-right: ${space.l};
-  padding: ${space.m};
-  line-height: 1.5em;
-  text-align: center;
-  color: ${colour.white};
-  font-family: ${font.code};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`
-
-const PrimaryButton = FeatureButton.extend`
-  background: ${colour.white};
-  color: ${colour.darkbg};
-  transition: 0.2s;
-  font-weight: bold;
-`
-
 const Home = () => (
   <main className="grid grid-rows-home-grid text-white bg-darkbg">
     <SiteNav />
     <HeroLogo />
-    <div className="flex flex-row flex-wrap justify-center items-center content-center mb-16 min-h-cta">
+    <div className="flex flex-row flex-wrap justify-center items-center content-center mb-16 min-h-150">
       <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
       <FeatureButton href="/learn">Learn more</FeatureButton>
     </div>
@@ -156,35 +106,35 @@ const Home = () => (
     </section>
 
     <section className="flex flex-wrap justify-center m-4 md:mx-16 md:mt-4 md:mb-8">
-      <div className="flex flex-col items-center flex-1 min-h-200 mt-8">
+      <Guidance>
         <Octicon className="text-5xl" name="mortar-board" />
         <h3 className="m-2 md:m-4 text-xl font-light text-lightgrey">Experienced player</h3>
         <p className="text-blue font-code text-base p-4 text-center mx-8">
           I’ve played corewar before and understand the instructions and concepts
         </p>
         <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
-        <Guidance>
+        <section className="md:opacity-0 flex flex-row items-center justify-start m-4 md:m-8">
           <Octicon className="text-4xl p-8" name="hubot" />
           <SpeechBubble>
-            You should head over to the app and follow the interactive guide to explore the features
+            Head over to the app and follow the interactive guide to explore the features
           </SpeechBubble>
-        </Guidance>
-      </div>
-      <div className="flex flex-col items-center flex-1 min-h-200 mt-8">
+        </section>
+      </Guidance>
+      <Guidance>
         <Octicon className="text-5xl" name="law" />
         <h3 className="m-2 md:m-4 text-xl font-light text-lightgrey">New to the game</h3>
         <p className="text-blue font-code text-base p-4 text-center mx-8">
           I’ve done some coding before but never played corewar
         </p>
         <FeatureButton href="/learn">View Tutorial</FeatureButton>
-        <Guidance>
+        <section className="md:opacity-0 flex flex-row items-center justify-start m-4 md:m-8">
           <Octicon className="text-4xl p-8" name="hubot" />
           <SpeechBubble>
-            You should run through the tutorial to understand the basics of corewar first, then head
-            over the app to test what you've learned.
+            Run through the tutorial to understand the basics of corewar first, then head over the
+            app to test what you've learned.
           </SpeechBubble>
-        </Guidance>
-      </div>
+        </section>
+      </Guidance>
     </section>
 
     <section
