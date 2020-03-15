@@ -22,13 +22,19 @@ module.exports = {
         success: '#6FCF97'
       },
       gridTemplateRows: {
-        'home-grid': '48px 50vh repeat(8, auto) 100px',
+        'mobile-home-grid': 'minmax(48px, 1fr) 25vh repeat(8, auto) 100px',
+        'home-grid': 'minmax(48px, 1fr) 50vh repeat(8, auto) 100px',
         roadmap: '80px 1fr'
       },
       gridTemplateColumns: {
         roadmap: '1fr 80px 1fr'
       },
       minHeight: {
+        '150': '150px',
+        '200': '200px',
+        '300': '300px'
+      },
+      minWidth: {
         '150': '150px',
         '200': '200px',
         '300': '300px'
