@@ -13,8 +13,8 @@
     "type": "git",
     "url": "git+https://github.com/corewar/corewar-api.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Gareth Williams",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/corewar/corewar-api/issues"
   },
