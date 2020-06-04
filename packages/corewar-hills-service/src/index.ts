@@ -1,10 +1,11 @@
 import 'reflect-metadata'
 import { buildSchema } from 'type-graphql'
 import { ApolloServer } from 'apollo-server'
+import HillResolver from './resolvers'
 ;(async (): Promise<void> => {
     const schema = await buildSchema({
         validate: false,
-        resolvers: []
+        resolvers: [HillResolver]
     })
 
     const server = new ApolloServer({

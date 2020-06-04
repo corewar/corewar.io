@@ -12,6 +12,10 @@
   "dependencies": {
     "autoprefixer": "^9.7.4",
     "corewar": "file:../corewar",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-jest": "^23.6.0",
+    "eslint-plugin-prettier": "^3.1.2",
     "fetch-jsonp": "^1.1.3",
     "identicon.js": "^2.3.1",
     "jquery": "^3.4.1",
@@ -37,6 +41,17 @@
     "typeface-anonymous-pro": "0.0.44",
     "typeface-inter": "^3.12.0",
     "typeface-lato": "0.0.44"
+  },
+  "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-to-json": "^3.4.3",
+    "jest": "^24.9.0",
+    "jest-cli": "^24.9.0",
+    "jest-styled-components": "^4.10.0",
+    "npm-cli-login": "^0.1.1",
+    "react-dev-utils": "^5.0.2",
+    "tailwindcss": "^1.2.0"
   },
   "scripts": {
     "start": "npm run build:style && react-scripts start",
@@ -68,8 +83,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "devDependencies": {
-    "tailwindcss": "^1.2.0"
-  }
+  ]
 }

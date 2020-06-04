@@ -1,6 +1,6 @@
 import IId from '@/schema/types/IId'
 import { MongoClient, FilterQuery } from 'mongodb'
-import { MONGO_URL, DATABASE_NAME } from '@/constants'
+//import { MONGO_URL, DATABASE_NAME } from '@/constants'
 
 export interface IRepository {
     getAll<T extends IId>(): Promise<T[]>

@@ -17,8 +17,27 @@
     "graphql": "^14.6.0",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^8.6.2",
-    "tsconfig-paths": "^3.9.0",
     "type-graphql": "^0.17.6",
     "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.7",
+    "@types/core-js": "^0.9.43",
+    "@types/graphql": "^14.5.0",
+    "@types/jest": "^24.9.0",
+    "@types/mongodb": "^3.3.15",
+    "@types/sinon": "^7.5.1",
+    "@types/sinon-chai": "^3.2.3",
+    "@types/uuid": "^3.4.7",
+    "chai": "^4.1.2",
+    "jest": "^24.9.0",
+    "jest-cli": "^24.9.0",
+    "sinon": "^4.1.2",
+    "sinon-chai": "^2.14.0",
+    "ts-jest": "^24.3.0",
+    "ts-node": "^8.6.2",
+    "tsconfig-paths": "^3.9.0",
+    "tscpaths": "0.0.9",
+    "typescript": "^3.7.5"
   }
 }
