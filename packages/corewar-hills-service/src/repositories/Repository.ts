@@ -1,6 +1,7 @@
 import IId from '@/schema/types/IId'
 import { MongoClient, FilterQuery } from 'mongodb'
-//import { MONGO_URL, DATABASE_NAME } from '@/constants'
+
+const DATABASE_NAME = 'hills-db'
 
 export interface IRepository {
     getAll<T extends IId>(): Promise<T[]>
@@ -21,7 +22,12 @@ export default class Repository implements IRepository {
     }
 
     private async getClient(): Promise<MongoClient> {
-        const client = new MongoClient(MONGO_URL)
+        const connectionString = process.env.DB_CONNECTION_STRING
+        if(!connectionString) {
+            throw Error('Unable to access database')
+        }
+
+        const client = new MongoClient(connectionString)
 
         return new Promise((resolve, reject) => {
             try {

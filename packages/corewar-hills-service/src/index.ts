@@ -1,8 +1,12 @@
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
 import 'reflect-metadata'
 import { buildSchema } from 'type-graphql'
 import { ApolloServer } from 'apollo-server'
 import HillResolver from './resolvers'
-;(async (): Promise<void> => {
+
+; (async (): Promise<void> => {
     const schema = await buildSchema({
         validate: false,
         resolvers: [HillResolver]
