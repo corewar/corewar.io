@@ -7,6 +7,9 @@ import HillArgs from './HillArgs'
 import MutationResult from './MutationResult'
 import CreateHillArgs from './CreateHillArgs'
 import ChallengeHillArgs from './ChallengeHillArgs'
+import { queueMessage } from '@/bus'
+
+const HILL_CHALLENGE_QUEUE = 'hill-challenge'
 
 @Resolver(Hill)
 export default class HillResolver {
@@ -77,6 +80,11 @@ export default class HillResolver {
             await repo.upsert(hill)
 
             //TODO push message onto message bus
+            queueMessage(HILL_CHALLENGE_QUEUE, {
+                body: {
+                    ...hill
+                }
+            })
 
             return {
                 success: true
