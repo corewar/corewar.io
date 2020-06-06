@@ -16,44 +16,44 @@ on:
   release:
     types: [created]
   
-  env:
-    AZURE_WEBAPP_NAME: corewar-hills-service    # set this to your application's name
-    AZURE_WEBAPP_PACKAGE_PATH: './packages/corewar-hills-service/dist'      # set this to the path to your web app project, defaults to the repository root
-    NODE_VERSION: '12.x'                # set this to the node version to use
-  
-  jobs:
-    build-and-deploy:
-      name: Build and Deploy
-      runs-on: ubuntu-latest
-      steps:
-      - name: Code Checkout
-        uses: actions/checkout@v2
+env:
+  AZURE_WEBAPP_NAME: corewar-hills-service    # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: './packages/corewar-hills-service/dist'      # set this to the path to your web app project, defaults to the repository root
+  NODE_VERSION: '12.x'                # set this to the node version to use
 
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.HILLS_SERVICE_AZURE_CREDENTIALS }}
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Code Checkout
+      uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.HILLS_SERVICE_AZURE_CREDENTIALS }}
 
-      - name: npm install, build, and test
-        working-directory: ./packages/corewar-hills-service
-        run: |
-          # Build and test the project, then
-          # deploy to Azure Web App.
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ env.NODE_VERSION }}
 
-      - name: 'Deploy to Azure WebApp'
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+    - name: npm install, build, and test
+      working-directory: ./packages/corewar-hills-service
+      run: |
+        # Build and test the project, then
+        # deploy to Azure Web App.
+        npm install
+        npm run build --if-present
+        npm run test --if-present
 
-      - name: Azure Logout
-        run: |
-          az logout
+    - name: 'Deploy to Azure WebApp'
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
+    - name: Azure Logout
+      run: |
+        az logout
