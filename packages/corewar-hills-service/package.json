@@ -6,6 +6,7 @@
   "types": "./typings/index.d.ts",
   "scripts": {
     "start": "ts-node -r tsconfig-paths/register src/index.ts",
+    "build": "tsc -p tsconfig-build.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
     "test": "jest --verbose",
     "coverage": "jest --coverage"
   },
