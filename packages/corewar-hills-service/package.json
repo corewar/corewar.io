@@ -42,5 +42,6 @@
     "tsconfig-paths": "^3.9.0",
     "tscpaths": "0.0.9",
     "typescript": "^3.7.5"
-  }
+  },
+  "gitHead": "fb04ed7ed273f4a7bffb7eac61c026725f8ae11f"
 }
