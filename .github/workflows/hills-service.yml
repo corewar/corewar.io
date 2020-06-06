@@ -1,61 +1,38 @@
-# This workflow will build and push a node.js application to an Azure Web App when a release is created.
-#
-# This workflow assumes you have already created the target Azure App Service web app.
-# For instructions see https://docs.microsoft.com/azure/app-service/app-service-plan-manage#create-an-app-service-plan
-#
-# To configure this workflow:
-#
-# 1. Set up a secret in your repository named AZURE_WEBAPP_PUBLISH_PROFILE with the value of your Azure publish profile.
-#    For instructions on obtaining the publish profile see: https://docs.microsoft.com/azure/app-service/deploy-github-actions#configure-the-github-secret
-#
-# 2. Change the values for the AZURE_WEBAPP_NAME, AZURE_WEBAPP_PACKAGE_PATH and NODE_VERSION environment variables  (below).
-#
-# For more information on GitHub Actions for Azure, refer to https://github.com/Azure/Actions
-# For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
 on:
   release:
     types: [created]
-  
+
+name: corewar-hills-service azure docker deploy
+
 env:
-  AZURE_WEBAPP_NAME: corewar-hills-service    # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: './packages/corewar-hills-service'      # set this to the path to your web app project, defaults to the repository root
-  NODE_VERSION: '12.x'                # set this to the node version to use
+  APP_NAME: corewar-hills-service
+  REGISTRY: corewar.azurecr.io
 
 jobs:
   build-and-deploy:
-    name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: Code Checkout
-      uses: actions/checkout@v2
-
-    - name: Azure Login
+    # checkout the repo
+    - name: 'Checkout Github Action' 
+      uses: actions/checkout@master
+    
+    - name: 'Login via Azure CLI'
       uses: azure/login@v1
       with:
         creds: ${{ secrets.HILLS_SERVICE_AZURE_CREDENTIALS }}
-
-    - name: Use Node.js ${{ env.NODE_VERSION }}
-      uses: actions/setup-node@v1
+    
+    - uses: azure/docker-login@v1
       with:
-        node-version: ${{ env.NODE_VERSION }}
-
-    - name: npm install, build, and test
-      #working-directory: ./packages/corewar-hills-service
-      run: |
-        # Build and test the project, then
-        # deploy to Azure Web App.
-        pushd ./packages/corewar-hills-service
-        npm install
-        npm run build --if-present
-        npm run test --if-present
-        popd
-
-    - name: 'Deploy to Azure WebApp'
-      uses: azure/webapps-deploy@v2
+        login-server: ${{ REGISTRY }}
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+    
+    - run: |
+        pushd ./packages/${{ env.APP_NAME }}
+        docker build . -t ${{ REGISTRY }}/${{ env.APP_NAME }}:${{ github.sha }}
+        docker push ${{ REGISTRY }}/${{ env.APP_NAME }}:${{ github.sha }} 
+      
+    - uses: azure/webapps-deploy@v2
       with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-
-    - name: Azure Logout
-      run: |
-        az logout
+        app-name: '${{ env.APP_NAME }}'
+        images: '${{ REGISTRY }}/${{ env.APP_NAME }}:${{ github.sha }}'
