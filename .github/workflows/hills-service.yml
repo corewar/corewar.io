@@ -40,19 +40,22 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
 
     - name: npm install, build, and test
-      working-directory: ./packages/corewar-hills-service
+      #working-directory: ./packages/corewar-hills-service
       run: |
         # Build and test the project, then
         # deploy to Azure Web App.
+        pushd ./packages/corewar-hills-service
         npm install
         npm run build --if-present
         npm run test --if-present
+        popd
 
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
+      #working-directory: ./packages/corewar-hills-service
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        #package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
     - name: Azure Logout
       run: |
