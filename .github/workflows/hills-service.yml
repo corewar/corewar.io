@@ -22,20 +22,20 @@ jobs:
         creds: ${{ secrets.HILLS_SERVICE_AZURE_CREDENTIALS }}
     
     - name: 'Login to Azure Docker CR'
-    - uses: azure/docker-login@v1
+      uses: azure/docker-login@v1
       with:
         login-server: ${{ env.REGISTRY }}
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     
     - name: 'Build Docker Image'
-    - run: |
+      run: |
         pushd ./packages/${{ env.APP_NAME }}
         docker build . -t ${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ github.sha }}
         docker push ${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ github.sha }} 
     
     - name: 'Deploy Docker Image'
-    - uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v2
       with:
         app-name: '${{ env.APP_NAME }}'
         images: '${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ github.sha }}'
