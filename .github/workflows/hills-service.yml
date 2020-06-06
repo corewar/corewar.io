@@ -23,16 +23,16 @@ jobs:
     
     - uses: azure/docker-login@v1
       with:
-        login-server: ${{ REGISTRY }}
+        login-server: ${{ env.REGISTRY }}
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     
     - run: |
         pushd ./packages/${{ env.APP_NAME }}
-        docker build . -t ${{ REGISTRY }}/${{ env.APP_NAME }}:${{ github.sha }}
-        docker push ${{ REGISTRY }}/${{ env.APP_NAME }}:${{ github.sha }} 
+        docker build . -t ${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ github.sha }}
+        docker push ${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ github.sha }} 
       
     - uses: azure/webapps-deploy@v2
       with:
         app-name: '${{ env.APP_NAME }}'
-        images: '${{ REGISTRY }}/${{ env.APP_NAME }}:${{ github.sha }}'
+        images: '${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ github.sha }}'
