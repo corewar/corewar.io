@@ -1,6 +1,6 @@
 {
   "name": "corewar-hills-service",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Corewar API Hills Service stores hill settings and current warriors for hill",
   "main": "/.dist/index.js",
   "types": "./typings/index.d.ts",
@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "apollo-server": "^2.9.16",
-    "corewar": "^0.2.1",
+    "corewar": "^0.2.2",
     "dotenv": "^8.2.0",
     "graphql": "^14.6.0",
     "mongodb": "^3.5.2",

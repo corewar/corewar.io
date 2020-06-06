@@ -1,0 +1,9 @@
+37 error Error: Command failed: git commit -m v0.2.1
+37 error On branch micro-service
+37 error Your branch is up to date with 'origin/micro-service'.
+37 error
+37 error nothing to commit, working tree clean
+37 error
+37 error     at makeError (C:\dev\corewar\corewar.io\node_modules\execa\index.js:174:9)
+37 error     at C:\dev\corewar\corewar.io\node_modules\execa\index.js:278:16
+37 error     at processTicksAndRejections (internal/process/task_queues.js:94:5)
