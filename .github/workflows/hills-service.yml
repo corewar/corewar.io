@@ -29,8 +29,8 @@ jobs:
         password: ${{ secrets.REGISTRY_PASSWORD }}
     
     - name: 'Build Docker Image'
+      working-directory: ./packages/corewar-hills-service
       run: |
-        pushd ./packages/${{ env.APP_NAME }}
         docker build . -t ${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ github.sha }}
         docker push ${{ env.REGISTRY }}/${{ env.APP_NAME }}:${{ github.sha }} 
     
