@@ -22,8 +22,9 @@ export default class Repository implements IRepository {
     }
 
     private async getClient(): Promise<MongoClient> {
+        /* eslint-disable-next-line */
         const connectionString = process.env.DB_CONNECTION_STRING
-        if(!connectionString) {
+        if (!connectionString) {
             throw Error('Unable to access database')
         }
 

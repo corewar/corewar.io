@@ -1,5 +1,7 @@
 FROM node:12
 
+ENV DB_CONNECTION_STRING=
+
 WORKDIR /usr/src/app
 
 COPY package*.json ./
