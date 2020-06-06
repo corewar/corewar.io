@@ -4,5 +4,5 @@
     "packages/corewar-ui",
     "packages/corewar-hills-service"
   ],
-  "version": "0.2.2"
+  "version": "0.2.3-alpha.0"
 }
