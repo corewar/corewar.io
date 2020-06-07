@@ -35,11 +35,26 @@
             "type": "node",
             "request": "launch",
             "name": "Debug Hills Service",
-            "args": ["src/index.ts"],
-            "runtimeArgs": ["--nolazy", "-r", "ts-node/register", "-r", "tsconfig-paths/register"],
+            "args": [
+                "src/index.ts"
+            ],
+            "runtimeArgs": [
+                "--nolazy",
+                "-r",
+                "ts-node/register",
+                "-r",
+                "tsconfig-paths/register"
+            ],
             "sourceMaps": true,
             "cwd": "${workspaceRoot}/packages/corewar-hills-service",
             "protocol": "inspector"
+        },
+        {
+            "name": "Attach to Node Functions",
+            "type": "node",
+            "request": "attach",
+            "port": 9229,
+            "preLaunchTask": "func: host start"
         }
     ]
 }

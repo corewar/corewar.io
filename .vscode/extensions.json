@@ -1,3 +1,6 @@
 {
-    "recommendations": ["bradlc.vscode-tailwindcss"]
+  "recommendations": [
+    "ms-azuretools.vscode-azurefunctions",
+    "bradlc.vscode-tailwindcss"
+  ]
 }

@@ -1,0 +1,13 @@
+{
+  "bindings": [
+    {
+      "name": "mySbMsg",
+      "type": "serviceBusTrigger",
+      "direction": "in",
+      "topicName": "CreateHill",
+      "subscriptionName": "CreateHill",
+      "connection": "corewar_SERVICEBUS"
+    }
+  ],
+  "scriptFile": "../dist/createHill/index.js"
+}
