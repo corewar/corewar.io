@@ -2,20 +2,22 @@ import IId from './IId'
 import { MongoClient, FilterQuery } from 'mongodb'
 
 export interface IRepository {
-    getAll<T extends IId>(databaseName: string): Promise<T[]>
-    getById<T extends IId>(databaseName: string, id: string): Promise<T>
+    getAll<T extends IId>(): Promise<T[]>
+    getById<T extends IId>(id: string): Promise<T>
     /* eslint-disable-next-line */
-    getOneBy<T extends IId>(databaseName: string, filter: FilterQuery<any>): Promise<T>
+    getOneBy<T extends IId>(filter: FilterQuery<any>): Promise<T>
     /* eslint-disable-next-line */
-    getManyBy<T extends IId>(databaseName: string, filter: FilterQuery<any>): Promise<T[]>
-    upsert<T extends IId>(databaseName: string, data: T): Promise<void>
-    delete(databaseName: string, id: string): Promise<void>
+    getManyBy<T extends IId>(filter: FilterQuery<any>): Promise<T[]>
+    upsert<T extends IId>(data: T): Promise<void>
+    delete(id: string): Promise<void>
 }
 
 export default class Repository implements IRepository {
+    private databaseName: string
     private collectionName: string
 
-    constructor(collectionName: string) {
+    constructor(databaseName: string, collectionName: string) {
+        this.databaseName = databaseName
         this.collectionName = collectionName
     }
 
@@ -43,10 +45,10 @@ export default class Repository implements IRepository {
         })
     }
 
-    async getAll<T extends IId>(databaseName: string): Promise<T[]> {
+    async getAll<T extends IId>(): Promise<T[]> {
         const client = await this.getClient()
         try {
-            const database = client.db(databaseName)
+            const database = client.db(this.databaseName)
             const collection = database.collection(this.collectionName)
 
             return (await collection.find().toArray()) as T[]
@@ -55,10 +57,10 @@ export default class Repository implements IRepository {
         }
     }
 
-    async getById<T extends IId>(databaseName: string, id: string): Promise<T> {
+    async getById<T extends IId>(id: string): Promise<T> {
         const client = await this.getClient()
         try {
-            const database = client.db(databaseName)
+            const database = client.db(this.databaseName)
             const collection = database.collection(this.collectionName)
 
             return (await collection.findOne({ id })) as T
@@ -68,10 +70,10 @@ export default class Repository implements IRepository {
     }
 
     /* eslint-disable-next-line */
-    async getOneBy<T extends IId>(databaseName: string, filter: FilterQuery<any>): Promise<T> {
+    async getOneBy<T extends IId>(filter: FilterQuery<any>): Promise<T> {
         const client = await this.getClient()
         try {
-            const database = client.db(databaseName)
+            const database = client.db(this.databaseName)
             const collection = database.collection(this.collectionName)
 
             return (await collection.findOne(filter)) as T
@@ -81,10 +83,10 @@ export default class Repository implements IRepository {
     }
 
     /* eslint-disable-next-line */
-    async getManyBy<T extends IId>(databaseName: string, filter: FilterQuery<any>): Promise<T[]> {
+    async getManyBy<T extends IId>(filter: FilterQuery<any>): Promise<T[]> {
         const client = await this.getClient()
         try {
-            const database = client.db(databaseName)
+            const database = client.db(this.databaseName)
             const collection = database.collection(this.collectionName)
 
             return (await collection.find(filter).toArray()) as T[]
@@ -93,10 +95,10 @@ export default class Repository implements IRepository {
         }
     }
 
-    async upsert<T extends IId>(databaseName: string, data: T): Promise<void> {
+    async upsert<T extends IId>(data: T): Promise<void> {
         const client = await this.getClient()
         try {
-            const database = client.db(databaseName)
+            const database = client.db(this.databaseName)
             const collection = database.collection(this.collectionName)
 
             const existing = await collection.findOne({ id: data.id })
@@ -110,10 +112,10 @@ export default class Repository implements IRepository {
         }
     }
 
-    async delete(databaseName: string, id: string): Promise<void> {
+    async delete(id: string): Promise<void> {
         const client = await this.getClient()
         try {
-            const database = client.db(databaseName)
+            const database = client.db(this.databaseName)
             const collection = database.collection(this.collectionName)
 
             await collection.deleteOne({ id })
