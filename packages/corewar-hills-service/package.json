@@ -1,6 +1,6 @@
 {
   "name": "corewar-hills-service",
-  "version": "1.0.0",
+  "version": "0.2.3-alpha.1",
   "description": "",
   "scripts": {
     "build": "tsc",
@@ -9,7 +9,6 @@
     "start": "func start",
     "test": "echo \"No tests yet...\""
   },
-  "dependencies": {},
   "devDependencies": {
     "@azure/functions": "^1.0.2-beta2",
     "typescript": "^3.3.3"
