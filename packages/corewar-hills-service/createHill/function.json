@@ -1,12 +1,12 @@
 {
   "bindings": [
     {
-      "name": "mySbMsg",
+      "name": "message",
       "type": "serviceBusTrigger",
       "direction": "in",
-      "topicName": "CreateHill",
-      "subscriptionName": "CreateHill",
-      "connection": "corewar_SERVICEBUS"
+      "topicName": "hills",
+      "subscriptionName": "createhill",
+      "connection": "BUS_CONNECTION_STRING"
     }
   ],
   "scriptFile": "../dist/createHill/index.js"
