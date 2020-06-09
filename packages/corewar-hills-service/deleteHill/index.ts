@@ -1,16 +1,14 @@
 import { AzureFunction, Context } from '@azure/functions'
-import uuid from 'uuid/v1'
-import { IRules } from '../common/IRules'
 import { DATABASE_NAME, COLLECTION_NAME } from '../common/constants'
 import Repository from 'corewar-repository'
 
-interface ICreateHillMessage {
+interface IDeleteHillMessage {
     body: {
-        rules: IRules
+        id: string
     }
 }
 
-interface IHillCreatedMessage {
+interface IHillDeletedMessage {
     body: {
         id: string
     }
@@ -18,18 +16,13 @@ interface IHillCreatedMessage {
 
 const serviceBusTopicTrigger: AzureFunction = async function(
     _: Context,
-    message: ICreateHillMessage
-): Promise<IHillCreatedMessage> {
-    const { rules } = message.body
+    message: IDeleteHillMessage
+): Promise<IHillDeletedMessage> {
+    const { id } = message.body
 
     const repo = new Repository(DATABASE_NAME, COLLECTION_NAME)
 
-    const id = uuid()
-    repo.upsert({
-        id,
-        rules,
-        warriors: []
-    })
+    repo.delete(id)
 
     return {
         body: { id }

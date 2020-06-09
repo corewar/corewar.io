@@ -4,16 +4,16 @@
       "name": "message",
       "type": "serviceBusTrigger",
       "direction": "in",
-      "topicName": "create-hill",
-      "subscriptionName": "hills-service-create-hill",
+      "topicName": "delete-hill",
+      "subscriptionName": "hills-service-delete-hill",
       "connection": "BUS_CONNECTION_STRING"
     },
     {
       "name": "$return",
       "type": "serviceBus",
       "direction": "out",
-      "topicName": "hill-created",
-      "subscriptionName": "hills-service-hill-created",
+      "topicName": "hill-deleted",
+      "subscriptionName": "hills-service-hill-deleted",
       "connection": "BUS_CONNECTION_STRING"
     }
   ],

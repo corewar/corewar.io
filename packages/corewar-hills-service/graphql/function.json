@@ -13,8 +13,8 @@
     {
       "type": "http",
       "direction": "out",
-      "name": "res"
+      "name": "$return"
     }
   ],
-  "scriptFile": "../dist/getHills/index.js"
+  "scriptFile": "../dist/graphql/index.js"
 }

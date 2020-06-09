@@ -10,7 +10,9 @@
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
+    "apollo-server-azure-functions": "^2.14.3",
     "corewar-repository": "^0.2.3-alpha.3",
+    "graphql": "^15.1.0",
     "uuid": "^3.4.0"
   },
   "devDependencies": {
