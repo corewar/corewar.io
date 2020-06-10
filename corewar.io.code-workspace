@@ -23,6 +23,9 @@
 		},
 		{
 			"path": "."
+		},
+		{
+			"path": "packages\\corewar-message-types"
 		}
 	]
 }

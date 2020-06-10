@@ -19,7 +19,7 @@ export const triggerStartChallenge = async (repo: Repository, hill: IHill, redco
 
     broadcast(START_CHALLENGE_TOPIC, {
         body: {
-            hillId: hill.hillId,
+            hillId: hill.id,
             warriorRedcode: redcode
         }
     })

@@ -9,6 +9,7 @@
     "start": "func start",
     "test": "echo \"No tests yet...\""
   },
+  "private": true,
   "dependencies": {
     "apollo-server-azure-functions": "^2.14.3",
     "corewar-repository": "^0.2.3-alpha.3",
@@ -19,6 +20,7 @@
     "@azure/functions": "^1.0.2-beta2",
     "@types/uuid": "^3.4.7",
     "corewar": "^0.2.3-alpha.0",
+    "corewar-message-types": "^0.2.3-alpha.3",
     "typescript": "^3.3.3"
   },
   "gitHead": "2117362ff5a05a894fb67bb0950e546342aa94dd"

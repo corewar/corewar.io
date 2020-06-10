@@ -13,6 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/corewar/corewar-api.git"
   },
+  "private": true,
   "author": "Gareth Williams",
   "license": "MIT",
   "bugs": {

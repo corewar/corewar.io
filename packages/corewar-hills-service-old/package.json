@@ -12,6 +12,7 @@
   },
   "author": "Gareth Williams",
   "license": "MIT",
+  "private": true,
   "dependencies": {
     "@azure/service-bus": "^1.1.7",
     "apollo-server": "^2.9.16",

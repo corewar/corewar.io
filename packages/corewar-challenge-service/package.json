@@ -9,8 +9,10 @@
     "start": "func start",
     "test": "echo \"No tests yet...\""
   },
+  "private": true,
   "devDependencies": {
     "@azure/functions": "^1.2.2",
+    "corewar-message-types": "^0.2.3-alpha.3",
     "typescript": "^3.3.3"
   },
   "dependencies": {

@@ -4,20 +4,7 @@ import { IRules } from '../common/IRules'
 import { DATABASE_NAME, COLLECTION_NAME } from '../common/constants'
 import Repository from 'corewar-repository'
 
-interface ICreateHillMessage {
-    body: {
-        rules: IRules
-    }
-}
-
-interface IHillCreatedMessage {
-    body: {
-        id: string
-        rules: IRules
-    }
-}
-
-const serviceBusTopicTrigger: AzureFunction = async function(
+const createHill: AzureFunction = async function(
     _: Context,
     message: ICreateHillMessage
 ): Promise<IHillCreatedMessage> {
@@ -40,4 +27,4 @@ const serviceBusTopicTrigger: AzureFunction = async function(
     }
 }
 
-export default serviceBusTopicTrigger
+export default createHill

@@ -6,6 +6,7 @@
     "rootDir": ".",
     "sourceMap": true,
     "strict": false,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "declaration": true
   }
 }
