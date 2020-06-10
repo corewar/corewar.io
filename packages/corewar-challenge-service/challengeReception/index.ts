@@ -3,13 +3,14 @@ import Repository from 'corewar-repository'
 import { COLLECTION_NAME, DATABASE_NAME, CHALLENGE_QUEUE } from '../common/constants'
 import { enqueue } from '../serviceBus/enqueue'
 import IHill, { ChallengeStatusType } from '../common/IHill'
-import { triggerStartChallenge, IChallengeHillMessage } from '../common/triggerStartChallenge'
+import { triggerStartChallenge } from '../common/triggerStartChallenge'
+import { IChallengeHillMessage } from 'corewar-message-types'
 
 const challengeReception: AzureFunction = async function(_: Context, message: IChallengeHillMessage): Promise<void> {
-    const { hillId, warriorRedcode } = message.body
+    const { id, redcode } = message.body
 
     const repo = new Repository(DATABASE_NAME, COLLECTION_NAME)
-    const hill = await repo.getById<IHill>(hillId)
+    const hill = await repo.getById<IHill>(id)
 
     if (!hill) {
         // TODO report this? The hill isn't yet in our db?
@@ -21,7 +22,7 @@ const challengeReception: AzureFunction = async function(_: Context, message: IC
         return
     }
 
-    triggerStartChallenge(repo, hill, warriorRedcode)
+    triggerStartChallenge(repo, hill, redcode)
 }
 
 export default challengeReception

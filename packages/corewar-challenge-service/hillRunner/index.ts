@@ -9,29 +9,24 @@ import {
     CHALLENGE_RESULT_TOPIC
 } from '../common/constants'
 import IHill from '../common/IHill'
-
-interface IStartChallengeMessage {
-    body: {
-        hillId: string
-        warriorRedcode: string
-    }
-}
+import { IStartChallengeMessage, IStartChallengeFailedMessage, IChallengeResultMessage } from 'corewar-message-types'
 
 const hillRunner: AzureFunction = async function(_: Context, message: IStartChallengeMessage): Promise<void> {
-    const { hillId, warriorRedcode } = message.body
-    const parseResult = corewar.parse(warriorRedcode)
+    const { id, redcode } = message.body
+    const parseResult = corewar.parse(redcode)
 
     if (!parseResult.success) {
         broadcast(START_CHALLENGE_FAILED_TOPIC, {
             body: {
+                id,
                 message: `Failed to parse warrior '${parseResult.metaData.name}'`,
                 result: parseResult
             }
-        })
+        } as IStartChallengeFailedMessage)
     }
 
     const repo = new Repository(DATABASE_NAME, COLLECTION_NAME)
-    const hill = repo.getById<IHill>(hillId)
+    const hill = await repo.getById<IHill>(id)
 
     const warriors = hill.warriors.map(warrior => ({
         source: corewar.parse(warrior.redcode),
@@ -39,17 +34,17 @@ const hillRunner: AzureFunction = async function(_: Context, message: IStartChal
     }))
     const challenger = {
         source: parseResult,
-        data: { redcode: warriorRedcode }
+        data: { redcode }
     }
 
     const result = corewar.runHill(hill.rules, [...warriors, challenger])
 
     broadcast(CHALLENGE_RESULT_TOPIC, {
         body: {
-            hillId,
+            id,
             result
         }
-    })
+    } as IChallengeResultMessage)
 }
 
 export default hillRunner

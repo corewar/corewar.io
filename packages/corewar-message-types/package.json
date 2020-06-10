@@ -10,6 +10,7 @@
   "author": "gareththegeek",
   "license": "MIT",
   "devDependencies": {
+    "@azure/service-bus": "^1.1.7",
     "corewar": "^0.2.3-alpha.0",
     "typescript": "^3.9.5"
   }

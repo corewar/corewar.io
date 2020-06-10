@@ -1,15 +1,8 @@
 import IHill, { ChallengeStatusType } from './IHill'
 import { START_CHALLENGE_TOPIC } from './constants'
 import { broadcast } from '../serviceBus/broadcast'
-import { SendableMessageInfo } from '@azure/service-bus'
 import Repository from 'corewar-repository'
-
-export interface IChallengeHillMessage extends SendableMessageInfo {
-    body: {
-        hillId: string
-        warriorRedcode: string
-    }
-}
+import { IStartChallengeMessage } from 'corewar-message-types'
 
 export const triggerStartChallenge = async (repo: Repository, hill: IHill, redcode: string): Promise<void> => {
     await repo.upsert({
@@ -19,8 +12,8 @@ export const triggerStartChallenge = async (repo: Repository, hill: IHill, redco
 
     broadcast(START_CHALLENGE_TOPIC, {
         body: {
-            hillId: hill.id,
-            warriorRedcode: redcode
+            id: hill.id,
+            redcode
         }
-    })
+    } as IStartChallengeMessage)
 }

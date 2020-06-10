@@ -1,6 +1,7 @@
 import { AzureFunction, Context } from '@azure/functions'
 import { DATABASE_NAME, COLLECTION_NAME } from '../common/constants'
 import Repository from 'corewar-repository'
+import { IHillDeletedMessage, IDeleteHillMessage } from 'corewar-message-types'
 
 const deleteHill: AzureFunction = async function(
     _: Context,

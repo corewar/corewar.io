@@ -1,0 +1,21 @@
+{
+  "bindings": [
+    {
+      "name": "message",
+      "type": "serviceBusTrigger",
+      "direction": "in",
+      "topicName": "update-hill",
+      "subscriptionName": "hills-service-update-hill",
+      "connection": "BUS_CONNECTION_STRING"
+    },
+    {
+      "name": "$return",
+      "type": "serviceBus",
+      "direction": "out",
+      "topicName": "hill-updated",
+      "subscriptionName": "hills-service-hill-updated",
+      "connection": "BUS_CONNECTION_STRING"
+    }
+  ],
+  "scriptFile": "../dist/updateHill/index.js"
+}

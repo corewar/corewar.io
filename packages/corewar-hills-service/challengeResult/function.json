@@ -1,0 +1,21 @@
+{
+  "bindings": [
+    {
+      "name": "message",
+      "type": "serviceBusTrigger",
+      "direction": "in",
+      "topicName": "challenge-result",
+      "subscriptionName": "hills-service-challenge-result",
+      "connection": "BUS_CONNECTION_STRING"
+    },
+    {
+      "name": "$return",
+      "type": "serviceBus",
+      "direction": "out",
+      "topicName": "hill-updated",
+      "subscriptionName": "hills-service-hill-updated",
+      "connection": "BUS_CONNECTION_STRING"
+    }
+  ],
+  "scriptFile": "../dist/challengeResult/index.js"
+}
