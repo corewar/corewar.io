@@ -1,6 +1,6 @@
 {
   "name": "corewar-repository",
-  "version": "0.2.3-alpha.3",
+  "version": "0.2.3-alpha.4",
   "description": "Mongo repository implementation for corewar project",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
