@@ -1,8 +1,8 @@
 import { AzureFunction, Context } from '@azure/functions'
 import uuid from 'uuid/v1'
-import { IRules } from '../common/IRules'
 import { DATABASE_NAME, COLLECTION_NAME } from '../common/constants'
 import Repository from 'corewar-repository'
+import { ICreateHillMessage, IHillCreatedMessage } from 'corewar-message-types'
 
 const createHill: AzureFunction = async function(
     _: Context,
