@@ -1,0 +1,13 @@
+{
+  "bindings": [
+    {
+      "name": "message",
+      "type": "serviceBusTrigger",
+      "direction": "in",
+      "topicName": "hill-created",
+      "subscriptionName": "challenge-service-hill-created",
+      "connection": "BUS_CONNECTION_STRING"
+    }
+  ],
+  "scriptFile": "../dist/hillCreated/index.js"
+}

@@ -1,0 +1,13 @@
+{
+  "bindings": [
+    {
+      "name": "message",
+      "type": "serviceBusTrigger",
+      "direction": "in",
+      "topicName": "challenge-hill",
+      "subscriptionName": "challenge-service-challenge-hill",
+      "connection": "BUS_CONNECTION_STRING"
+    }
+  ],
+  "scriptFile": "../dist/challengeReception/index.js"
+}

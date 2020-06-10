@@ -1,0 +1,22 @@
+{
+  "name": "corewar-challenge-service",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prestart": "npm run build",
+    "start": "func start",
+    "test": "echo \"No tests yet...\""
+  },
+  "devDependencies": {
+    "@azure/functions": "^1.2.2",
+    "typescript": "^3.3.3"
+  },
+  "dependencies": {
+    "@azure/service-bus": "^1.1.7",
+    "corewar": "^0.2.3-alpha.0",
+    "corewar-repository": "^0.2.3-alpha.3",
+    "request": "^2.88.2"
+  }
+}

@@ -13,6 +13,7 @@ interface ICreateHillMessage {
 interface IHillCreatedMessage {
     body: {
         id: string
+        rules: IRules
     }
 }
 
@@ -32,7 +33,10 @@ const serviceBusTopicTrigger: AzureFunction = async function(
     })
 
     return {
-        body: { id }
+        body: {
+            id,
+            rules
+        }
     }
 }
 

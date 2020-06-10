@@ -1,0 +1,7 @@
+export const DATABASE_NAME = 'hills-db'
+export const COLLECTION_NAME = 'challenges'
+export const CHALLENGE_QUEUE = 'challenge-queue'
+export const START_CHALLENGE_QUEUE = 'start-challenge-queue'
+export const START_CHALLENGE_TOPIC = 'start-challenge'
+export const START_CHALLENGE_FAILED_TOPIC = 'start-challenge-failed'
+export const CHALLENGE_RESULT_TOPIC = 'challenge-result'

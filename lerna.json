@@ -2,6 +2,7 @@
   "packages": [
     "packages/corewar",
     "packages/corewar-ui",
+    "packages/corewar-challenge-service",
     "packages/corewar-hills-service",
     "packages/corewar-repository"
   ],

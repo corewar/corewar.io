@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"path": "packages\\corewar"
+		},
+		{
+			"path": "packages\\corewar-api"
+		},
+		{
+			"path": "packages\\corewar-challenge-service"
+		},
+		{
+			"path": "packages\\corewar-hills-service"
+		},
+		{
+			"path": "packages\\corewar-hills-service-old"
+		},
+		{
+			"path": "packages\\corewar-repository"
+		},
+		{
+			"path": "packages\\corewar-ui"
+		},
+		{
+			"path": "."
+		}
+	]
+}
