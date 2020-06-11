@@ -1,5 +1,7 @@
 import { IRules, IParseResult, IHillResult } from 'corewar'
-import { SendableMessageInfo } from '@azure/service-bus'
+import { SendableMessageInfo, ServiceBusMessage } from '@azure/service-bus'
+
+export type Received<T> = T & ServiceBusMessage
 
 export interface ICreateHillMessage extends SendableMessageInfo {
     body: {

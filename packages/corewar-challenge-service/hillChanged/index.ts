@@ -1,9 +1,10 @@
-import { triggerStartChallenge, IChallengeHillMessage } from '../common/triggerStartChallenge'
+import { triggerStartChallenge } from '../common/triggerStartChallenge'
 import IHill, { ChallengeStatusType } from '../common/IHill'
 import Repository from 'corewar-repository'
 import { DATABASE_NAME, COLLECTION_NAME, CHALLENGE_QUEUE } from '../common/constants'
 import { peek } from '../serviceBus/peek'
-import { IHillCreatedMessage, IHillUpdatedMessage } from 'corewar-message-types'
+import { Received, IHillCreatedMessage, IHillUpdatedMessage, IChallengeHillMessage } from 'corewar-message-types'
+import { isHillStatusReady } from '../isHillStatusReady.ts'
 
 type IHillChangedMessage = IHillCreatedMessage | IHillUpdatedMessage
 
@@ -14,14 +15,19 @@ export const hillChanged = async (message: IHillChangedMessage): Promise<void> =
     }
 
     const repo = new Repository(DATABASE_NAME, COLLECTION_NAME)
-    const promise = repo.upsert(hill)
+    await repo.upsert(hill)
 
-    const challenge = await peek<IChallengeHillMessage>(CHALLENGE_QUEUE)
+    const challenge = await peek<Received<IChallengeHillMessage>>(CHALLENGE_QUEUE)
     if (!challenge) {
         return
     }
 
-    await promise
+    const { id, redcode } = challenge.body
 
-    triggerStartChallenge(repo, hill, challenge.body.warriorRedcode)
+    if (!isHillStatusReady(id)) {
+        challenge.abandon()
+    }
+
+    triggerStartChallenge(id, redcode)
+    challenge.complete()
 }
