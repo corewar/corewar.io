@@ -1,6 +1,6 @@
 {
   "name": "corewar-hills-service",
-  "version": "0.2.3-alpha.5",
+  "version": "0.2.3-alpha.6",
   "description": "",
   "scripts": {
     "build": "tsc",
@@ -20,7 +20,7 @@
     "@azure/functions": "^1.0.2-beta2",
     "@types/uuid": "^3.4.7",
     "corewar": "^0.2.3-alpha.0",
-    "corewar-message-types": "^0.2.3-alpha.3",
+    "corewar-message-types": "^0.2.3-alpha.6",
     "typescript": "^3.3.3"
   },
   "gitHead": "2117362ff5a05a894fb67bb0950e546342aa94dd"
