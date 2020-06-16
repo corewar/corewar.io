@@ -3,7 +3,8 @@ import * as fs from 'fs'
 import * as path from 'path'
 import { getQueryFieldResolverSource } from './getQueryFieldResolverSource'
 import { getMutationFieldResolverSource } from './getMutationFieldResolverSource'
-import { getBoilerPlate } from './getBoilerPlate'
+import { getImports } from './getImports'
+import { getUsedTypes } from './getUsedTypes'
 
 const schemaFilename = path.resolve(__dirname, './schema/schema.graphql')
 console.log(`Generating API Gateway for schema file: '${schemaFilename}'`)
@@ -19,7 +20,8 @@ const mutationSource = mutationFields.map(field => getMutationFieldResolverSourc
 
 const resolvers = [...querySource, ...mutationSource]
 
-const typescriptSource = `${getBoilerPlate(schema)}\n\n${resolvers.join('\n')}`
+const types = getUsedTypes(schema)
+const typescriptSource = `${getImports(types)}\n\n${resolvers.join('\n')}`
 
 const outputFilename = path.resolve(__dirname, './generated/index.ts')
 fs.writeFileSync(outputFilename, typescriptSource)

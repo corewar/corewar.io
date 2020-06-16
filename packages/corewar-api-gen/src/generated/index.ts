@@ -1,6 +1,6 @@
 import { getApolloClient } from './getApolloClient'
 import gql from 'graphql-tag'
-import { RulesInput, WarriorInput, Hill } from './schema-typings'
+import { Hill, MutationResult, RulesInput, WarriorInput } from './schema-typings'
 import { broadcast } from './broadcast'
 
 export const hills = async (id: string): Promise<Hill[]> => {
@@ -48,15 +48,18 @@ export const hills = async (id: string): Promise<Hill[]> => {
     return result.data
 }
 
-export const createHill = async (rules: RulesInput): Promise<void> => {
+export const createHill = (rules: RulesInput): MutationResult => {
     broadcast('create-hill', {
         body: {
             rules
         }
     })
+    return {
+        success: true
+    }
 }
 
-export const updateHill = async (id: string, rules: RulesInput, warriors: WarriorInput[]): Promise<void> => {
+export const updateHill = (id: string, rules: RulesInput, warriors: WarriorInput[]): MutationResult => {
     broadcast('update-hill', {
         body: {
             id,
@@ -64,21 +67,30 @@ export const updateHill = async (id: string, rules: RulesInput, warriors: Warrio
             warriors
         }
     })
+    return {
+        success: true
+    }
 }
 
-export const deleteHill = async (id: string): Promise<void> => {
+export const deleteHill = (id: string): MutationResult => {
     broadcast('delete-hill', {
         body: {
             id
         }
     })
+    return {
+        success: true
+    }
 }
 
-export const challengeHill = async (id: string, redcode: string): Promise<void> => {
+export const challengeHill = (id: string, redcode: string): MutationResult => {
     broadcast('challenge-hill', {
         body: {
             id,
             redcode
         }
     })
+    return {
+        success: true
+    }
 }

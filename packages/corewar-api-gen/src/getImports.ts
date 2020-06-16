@@ -1,9 +1,9 @@
-import { GraphQLSchema } from 'graphql'
+import { GraphQLNamedType } from 'graphql'
 import { getAllTypesList } from './getAllTypesList'
 
-export const getBoilerPlate = (schema: GraphQLSchema): string => `
+export const getImports = (types: GraphQLNamedType[]): string => `
 import { getApolloClient } from './getApolloClient'
 import gql from 'graphql-tag'
-import { ${getAllTypesList(schema)} } from './schema-typings'
+import { ${getAllTypesList(types)} } from './schema-typings'
 import { broadcast } from './broadcast'
 `

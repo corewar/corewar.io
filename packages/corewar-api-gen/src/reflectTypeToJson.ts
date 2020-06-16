@@ -1,14 +1,8 @@
-import { GraphQLOutputType, GraphQLObjectType, GraphQLType, GraphQLField } from 'graphql'
-
-const getObjectOrScalarRecursive = (type: GraphQLType): GraphQLType => {
-    if (!('ofType' in type)) {
-        return type
-    }
-    return getObjectOrScalarRecursive(type.ofType)
-}
+import { GraphQLOutputType, GraphQLObjectType, GraphQLField } from 'graphql'
+import { getRootTypeRecursive } from './getRootTypeRecursive'
 
 const emitField = (indent: number, field: GraphQLField<any, any, any>): string => {
-    const rootType = getObjectOrScalarRecursive(field.type)
+    const rootType = getRootTypeRecursive(field.type)
     if (!('getFields' in rootType)) {
         return `${field.name}`
     }
@@ -27,7 +21,7 @@ const emitObject = (indent: number, object: GraphQLObjectType): string => {
 
 export const reflectTypeToJson = (outputType: GraphQLOutputType): string => {
     //TODO handle a scalar outputType - for now assume object type
-    const rootType = getObjectOrScalarRecursive(outputType)
+    const rootType = getRootTypeRecursive(outputType)
     const result = emitObject(1, rootType as GraphQLObjectType)
     return result
 }
