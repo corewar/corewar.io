@@ -1,0 +1,145 @@
+enum ModeType {
+    # #
+    Immediate
+    # $
+    Direct
+    # *
+    AIndirect
+    # @
+    BIndirect
+    # {
+    APreDecrement
+    # <
+    BPreDecrement
+    # }
+    APostIncrement
+    # >
+    BPostIncrement
+}
+
+type Operand {
+    mode: ModeType!
+    address: Int!
+}
+
+input OperandInput {
+    mode: ModeType!
+    address: Int!
+}
+
+enum OpcodeType {
+    DAT
+    MOV
+    ADD
+    SUB
+    MUL
+    DIV
+    MOD
+    JMP
+    JMZ
+    JMN
+    DJN
+    CMP
+    SEQ
+    SNE
+    SLT
+    SPL
+    NOP
+}
+
+enum ModifierType {
+    A
+    B
+    AB
+    BA
+    F
+    X
+    I
+}
+
+type Instruction {
+    address: Int!
+    opcode: OpcodeType!
+    modifier: ModifierType!
+    aOperand: Operand!
+    bOperand: Operand!
+}
+
+input InstructionInput {
+    address: Int!
+    opcode: OpcodeType!
+    modifier: ModifierType!
+    aOperand: OperandInput!
+    bOperand: OperandInput!
+}
+
+enum Standard {
+    ICWS86
+    ICWS88
+    ICWS94
+}
+
+type Options {
+    coresize: Int
+    maximumCycles: Int
+    initialInstruction: Instruction
+    instructionLimit: Int
+    maxTasks: Int
+    minSeparation: Int
+    standard: Standard
+}
+
+input OptionsInput {
+    coresize: Int
+    maximumCycles: Int
+    initialInstruction: InstructionInput
+    instructionLimit: Int
+    maxTasks: Int
+    minSeparation: Int
+    standard: Standard
+}
+
+type Rules {
+    rounds: Int!
+    size: Int!
+    options: Options!
+}
+
+input RulesInput {
+    rounds: Int!
+    size: Int!
+    options: OptionsInput!
+}
+
+type Warrior {
+    redcode: String!
+}
+
+input WarriorInput {
+    redcode: String!
+}
+
+type Hill {
+    id: String!
+    rules: Rules!
+    warriors: [Warrior!]!
+}
+
+type Query {
+    hills(id: String): [Hill!]!
+}
+
+scalar MutationResultData
+
+type MutationResult {
+    success: Boolean!
+    message: String
+    data: MutationResultData
+}
+
+type Mutation {
+    createHill(rules: RulesInput!): MutationResult
+    updateHill(id: String!, rules: RulesInput!, warriors: [WarriorInput!]): MutationResult
+    deleteHill(id: String!): MutationResult
+    challengeHill(id: String!, redcode: String!): MutationResult
+}

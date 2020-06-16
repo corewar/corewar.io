@@ -5,7 +5,8 @@
     "packages/corewar-challenge-service",
     "packages/corewar-hills-service",
     "packages/corewar-repository",
-    "packages/corewar-message-types"
+    "packages/corewar-message-types",
+    "packages/corewar-api-gen"
   ],
   "version": "0.2.3-alpha.6"
 }

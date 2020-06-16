@@ -1,0 +1,26 @@
+{
+  "name": "corewar-api-gen",
+  "version": "0.2.3-alpha.6",
+  "description": "GraphQL Code Generator for GraphQL API Gateway",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "codegen": "graphql-codegen --config codegen.yml && ts-node src/index.ts"
+  },
+  "author": "gareththegeek",
+  "license": "MIT",
+  "devDependencies": {
+    "@graphql-codegen/cli": "1.15.3",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5",
+    "@graphql-codegen/typescript": "1.15.3"
+  },
+  "dependencies": {
+    "@azure/service-bus": "^1.1.7",
+    "apollo-cache-inmemory": "^1.6.6",
+    "apollo-client": "^2.6.10",
+    "apollo-link-http": "^1.5.17",
+    "graphql": "^15.1.0",
+    "graphql-tag": "^2.10.3"
+  }
+}

@@ -55,6 +55,22 @@
             "request": "attach",
             "port": 9229,
             "preLaunchTask": "func: host start"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug API Codegen",
+            "args": [
+                "src/index.ts"
+            ],
+            "runtimeArgs": [
+                "--nolazy",
+                "-r",
+                "ts-node/register"
+            ],
+            "sourceMaps": true,
+            "cwd": "${workspaceRoot}/packages/corewar-api-gen",
+            "protocol": "inspector"
         }
     ]
 }

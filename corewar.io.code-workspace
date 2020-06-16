@@ -26,6 +26,9 @@
 		},
 		{
 			"path": "packages\\corewar-message-types"
+		},
+		{
+			"path": "packages\\corewar-api-gen"
 		}
 	]
 }
