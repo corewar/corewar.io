@@ -1,29 +1,21 @@
 import { buildSchema } from 'graphql'
 import * as fs from 'fs'
 import * as path from 'path'
-import { getQueryFieldResolverSource } from './getQueryFieldResolverSource'
-import { getMutationFieldResolverSource } from './getMutationFieldResolverSource'
-import { getImports } from './getImports'
-import { getUsedTypes } from './getUsedTypes'
+import { buildSource } from './buildSource'
 
-const schemaFilename = path.resolve(__dirname, './schema/schema.graphql')
-console.log(`Generating API Gateway for schema file: '${schemaFilename}'`)
-const graphQLSource = fs.readFileSync(schemaFilename, 'utf-8')
+try {
+    const schemaFilename = path.resolve(__dirname, './schema/schema.graphql')
+    const graphQLSource = fs.readFileSync(schemaFilename, 'utf-8')
 
-const schema = buildSchema(graphQLSource)
+    const schema = buildSchema(graphQLSource)
 
-const queryFields = Object.values(schema.getQueryType().getFields())
-const mutationFields = Object.values(schema.getMutationType().getFields())
+    const typescriptSource = buildSource(schema)
 
-const querySource = queryFields.map(field => getQueryFieldResolverSource(field))
-const mutationSource = mutationFields.map(field => getMutationFieldResolverSource(field))
+    const outputFilename = path.resolve(__dirname, './generated/index.ts')
+    fs.writeFileSync(outputFilename, typescriptSource)
 
-const resolvers = [...querySource, ...mutationSource]
-
-const types = getUsedTypes(schema)
-const typescriptSource = `${getImports(types)}\n\n${resolvers.join('\n')}`
-
-const outputFilename = path.resolve(__dirname, './generated/index.ts')
-fs.writeFileSync(outputFilename, typescriptSource)
-console.log(`Wrote file ${outputFilename}`)
-console.log('Done')
+    console.log('\x1b[32m%s\x1b[0m%s', '  √', ' Generate api gateway')
+} catch (e) {
+    console.log('\x1b[31m%s\x1b[0m%s', '  X', ' Generate api gateway')
+    throw e
+}

@@ -1,6 +1,9 @@
-import { getApolloClient } from './getApolloClient'
+import * as path from 'path'
+import * as fs from 'fs'
+import { ApolloServer } from 'apollo-server'
 import gql from 'graphql-tag'
 import { Hill, MutationResult, RulesInput, WarriorInput } from './schema-typings'
+import { getApolloClient } from './getApolloClient'
 import { broadcast } from './broadcast'
 
 export const hills = async (id: string): Promise<Hill[]> => {
@@ -94,3 +97,23 @@ export const challengeHill = (id: string, redcode: string): MutationResult => {
         success: true
     }
 }
+
+const typeDefs = gql`
+    ${fs.readFileSync(path.resolve(__dirname, '../schema/schema.graphql'))}
+`
+const resolvers = {
+    Query: {
+        hills
+    },
+    Mutation: {
+        createHill,
+        updateHill,
+        deleteHill,
+        challengeHill
+    }
+}
+
+const server = new ApolloServer({ typeDefs, resolvers })
+server.listen().then(({ url }) => {
+    console.log(`🚀  Server ready at ${url}`)
+})

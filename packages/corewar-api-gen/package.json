@@ -20,7 +20,9 @@
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link-http": "^1.5.17",
+    "apollo-server": "^2.15.0",
     "graphql": "^15.1.0",
-    "graphql-tag": "^2.10.3"
+    "graphql-tag": "^2.10.3",
+    "node-fetch": "^2.6.0"
   }
 }

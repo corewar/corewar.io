@@ -71,6 +71,22 @@
             "sourceMaps": true,
             "cwd": "${workspaceRoot}/packages/corewar-api-gen",
             "protocol": "inspector"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug API",
+            "args": [
+                "src/generated/index.ts"
+            ],
+            "runtimeArgs": [
+                "--nolazy",
+                "-r",
+                "ts-node/register"
+            ],
+            "sourceMaps": true,
+            "cwd": "${workspaceRoot}/packages/corewar-api-gen",
+            "protocol": "inspector"
         }
     ]
 }
