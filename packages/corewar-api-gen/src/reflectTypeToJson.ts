@@ -22,6 +22,6 @@ const emitObject = (indent: number, object: GraphQLObjectType): string => {
 export const reflectTypeToJson = (outputType: GraphQLOutputType): string => {
     //TODO handle a scalar outputType - for now assume object type
     const rootType = getRootTypeRecursive(outputType)
-    const result = emitObject(1, rootType as GraphQLObjectType)
+    const result = emitObject(5, rootType as GraphQLObjectType)
     return result
 }

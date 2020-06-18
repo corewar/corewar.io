@@ -6,7 +6,7 @@ import fetch from 'node-fetch'
 export const getApolloClient = (serviceName: string): ApolloClient<NormalizedCacheObject> => {
     const cache = new InMemoryCache()
     const link = createHttpLink({
-        uri: `http://corewar-${serviceName}-service.azurewebsites.net/graphql`,
+        uri: `https://corewar-${serviceName}-service.azurewebsites.net/graphql`,
         fetch
     })
     return new ApolloClient({

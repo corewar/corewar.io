@@ -6,6 +6,7 @@ import { formatType } from './formatType'
 import { getQuery } from './getQuery'
 import { getVariables } from './getVariables'
 import { kebabCase } from './kebabCase'
+import { getParameterTypeDictionary } from './getParameterTypeDictionary'
 
 export const buildSource = (schema: GraphQLSchema): string => {
     const queryFields = Object.values(schema.getQueryType().getFields())
@@ -19,17 +20,21 @@ import gql from 'graphql-tag'
 import { ${getAllTypesList(getUsedTypes(schema))} } from './schema-typings'
 import { getApolloClient } from './getApolloClient'
 import { broadcast } from './broadcast'
+import { getQueryParamString } from './getQueryParamString'
+import { getQueryParamUsageString } from './getQueryParamUsageString'
 
 ${queryFields
     .map(
-        field => `
-export const ${field.name} = async (${getParameterList(field.args)}): Promise<${formatType(field.type)}> => {
+        /* eslint-disable-next-line */ field => `
+const ${field.name} = async (_: unknown, args: { ${getParameterList(field.args)} }): Promise<${formatType(field.type)}> => {
+    const ${getVariables(field.args)} = args
+    const queryParams = ${getParameterTypeDictionary(field.args)}
     const client = getApolloClient('${field.name}')
     const result = await client.query({
         query: gql\`${getQuery(field)}\`,
         variables: ${getVariables(field.args)}
     })
-    return result.data
+    return result.data.${field.name}
 }
 
 `
@@ -39,7 +44,7 @@ export const ${field.name} = async (${getParameterList(field.args)}): Promise<${
 ${mutationFields
     .map(
         field => `
-export const ${field.name} = (${getParameterList(field.args)}): ${formatType(field.type)} => {
+const ${field.name} = (${getParameterList(field.args)}): ${formatType(field.type)} => {
     broadcast('${kebabCase(field.name)}', {
         body: ${getVariables(field.args)}
     })

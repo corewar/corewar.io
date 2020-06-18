@@ -5,13 +5,19 @@ import gql from 'graphql-tag'
 import { Hill, MutationResult, RulesInput, WarriorInput } from './schema-typings'
 import { getApolloClient } from './getApolloClient'
 import { broadcast } from './broadcast'
+import { getQueryParamString } from './getQueryParamString'
+import { getQueryParamUsageString } from './getQueryParamUsageString'
 
-export const hills = async (id: string): Promise<Hill[]> => {
+const hills = async (_: unknown, args: { id: string }): Promise<Hill[]> => {
+    const { id } = args
+    const queryParams = {
+        id: 'String'
+    }
     const client = getApolloClient('hills')
     const result = await client.query({
         query: gql`
-            query {
-                hills(id: string) {
+            query${getQueryParamString(args, queryParams)} {
+                hills${getQueryParamUsageString(args)} {
                     id
                     rules {
                         rounds
@@ -43,15 +49,15 @@ export const hills = async (id: string): Promise<Hill[]> => {
                     }
                 }
             }
-        `,
+`,
         variables: {
             id
         }
     })
-    return result.data
+    return result.data.hills
 }
 
-export const createHill = (rules: RulesInput): MutationResult => {
+const createHill = (rules: RulesInput): MutationResult => {
     broadcast('create-hill', {
         body: {
             rules
@@ -62,7 +68,7 @@ export const createHill = (rules: RulesInput): MutationResult => {
     }
 }
 
-export const updateHill = (id: string, rules: RulesInput, warriors: WarriorInput[]): MutationResult => {
+const updateHill = (id: string, rules: RulesInput, warriors: WarriorInput[]): MutationResult => {
     broadcast('update-hill', {
         body: {
             id,
@@ -75,7 +81,7 @@ export const updateHill = (id: string, rules: RulesInput, warriors: WarriorInput
     }
 }
 
-export const deleteHill = (id: string): MutationResult => {
+const deleteHill = (id: string): MutationResult => {
     broadcast('delete-hill', {
         body: {
             id
@@ -86,7 +92,7 @@ export const deleteHill = (id: string): MutationResult => {
     }
 }
 
-export const challengeHill = (id: string, redcode: string): MutationResult => {
+const challengeHill = (id: string, redcode: string): MutationResult => {
     broadcast('challenge-hill', {
         body: {
             id,
