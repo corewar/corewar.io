@@ -1,6 +1,6 @@
 {
   "name": "corewar-challenge-service",
-  "version": "0.2.3-alpha.8",
+  "version": "0.2.3-alpha.9",
   "description": "",
   "scripts": {
     "build": "tsc",
@@ -18,7 +18,7 @@
   "dependencies": {
     "@azure/service-bus": "^1.1.7",
     "corewar": "^0.2.3-alpha.8",
-    "corewar-infrastructure": "^0.2.3-alpha.8",
+    "corewar-infrastructure": "^0.2.3-alpha.9",
     "corewar-repository": "^0.2.3-alpha.8",
     "request": "^2.88.2"
   }

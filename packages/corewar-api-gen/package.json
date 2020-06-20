@@ -1,6 +1,6 @@
 {
   "name": "corewar-api-gen",
-  "version": "0.2.3-alpha.8",
+  "version": "0.2.3-alpha.9",
   "description": "GraphQL Code Generator for GraphQL API Gateway",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
     "apollo-client": "^2.6.10",
     "apollo-link-http": "^1.5.17",
     "apollo-server": "^2.15.0",
-    "corewar-infrastructure": "^0.2.3-alpha.8",
+    "corewar-infrastructure": "^0.2.3-alpha.9",
     "dotenv": "^8.2.0",
     "graphql": "^15.1.0",
     "graphql-tag": "^2.10.3",
