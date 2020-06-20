@@ -2,12 +2,12 @@ import { AzureFunction, Context } from '@azure/functions'
 import Repository from 'corewar-repository'
 import { corewar } from 'corewar'
 import { broadcast, createQueue, createTopic } from 'corewar-infrastructure'
-import { DATABASE_NAME, COLLECTION_NAME, Queues, Topics, SERVICE_NAME } from '../common/constants'
+import { DATABASE_NAME, COLLECTION_NAME, Queues, Topics } from '../common/constants'
 import IHill from '../common/IHill'
 import { IStartChallengeMessage, IStartChallengeFailedMessage, IChallengeResultMessage } from 'corewar-message-types'
 
-createTopic({ serviceName: SERVICE_NAME, topicName: Topics.startChallengeFailed })
-createTopic({ serviceName: SERVICE_NAME, topicName: Topics.challengeResult })
+createTopic({ topicName: Topics.startChallengeFailed })
+createTopic({ topicName: Topics.challengeResult })
 createQueue({ queueName: Queues.startChallengeQueue })
 
 const hillRunner: AzureFunction = async function(_: Context, message: IStartChallengeMessage): Promise<void> {

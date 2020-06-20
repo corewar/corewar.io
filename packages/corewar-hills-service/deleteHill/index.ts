@@ -5,7 +5,7 @@ import { IHillDeletedMessage, IDeleteHillMessage } from 'corewar-message-types'
 import { createTopic, createSubscription } from 'corewar-infrastructure'
 
 createSubscription({ serviceName: SERVICE_NAME, topicName: Topics.deleteHill })
-createTopic({ serviceName: SERVICE_NAME, topicName: Topics.hillDeleted })
+createTopic({ topicName: Topics.hillDeleted })
 
 const deleteHill: AzureFunction = async function(
     _: Context,

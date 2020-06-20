@@ -5,7 +5,7 @@ import { DATABASE_NAME, COLLECTION_NAME, SERVICE_NAME, Topics } from '../common/
 import { createTopic, createSubscription } from 'corewar-infrastructure'
 
 createSubscription({ serviceName: SERVICE_NAME, topicName: Topics.updateHill })
-createTopic({ serviceName: SERVICE_NAME, topicName: Topics.hillUpdated })
+createTopic({ topicName: Topics.hillUpdated })
 
 const updateHill: AzureFunction = async function(
     _: Context,

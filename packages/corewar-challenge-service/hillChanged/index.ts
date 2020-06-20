@@ -2,11 +2,13 @@ import { triggerStartChallenge } from '../common/triggerStartChallenge'
 import IHill, { ChallengeStatusType } from '../common/IHill'
 import Repository from 'corewar-repository'
 import { DATABASE_NAME, COLLECTION_NAME, Queues } from '../common/constants'
-import { peek } from 'corewar-infrastructure'
+import { peek, createQueue } from 'corewar-infrastructure'
 import { Received, IHillCreatedMessage, IHillUpdatedMessage, IChallengeHillMessage } from 'corewar-message-types'
 import { isHillStatusReady } from '../isHillStatusReady.ts'
 
 type IHillChangedMessage = IHillCreatedMessage | IHillUpdatedMessage
+
+createQueue({ queueName: Queues.challengeQueue })
 
 export const hillChanged = async (message: IHillChangedMessage): Promise<void> => {
     const hill: IHill = {

@@ -6,7 +6,7 @@ import Repository from 'corewar-repository'
 import { createTopic, createSubscription } from 'corewar-infrastructure'
 
 createSubscription({ serviceName: SERVICE_NAME, topicName: Topics.challengeResult })
-createTopic({ serviceName: SERVICE_NAME, topicName: Topics.hillUpdated })
+createTopic({ topicName: Topics.hillUpdated })
 
 const challengeResult: AzureFunction = async function(
     _: Context,

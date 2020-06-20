@@ -6,7 +6,7 @@ import { ICreateHillMessage, IHillCreatedMessage } from 'corewar-message-types'
 import { createTopic, createSubscription } from 'corewar-infrastructure'
 
 createSubscription({ serviceName: SERVICE_NAME, topicName: Topics.createHill })
-createTopic({ serviceName: SERVICE_NAME, topicName: Topics.hillCreated })
+createTopic({ topicName: Topics.hillCreated })
 
 const createHill: AzureFunction = async function(
     _: Context,
