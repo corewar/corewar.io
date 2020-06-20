@@ -6,7 +6,7 @@
       "direction": "in",
       "topicName": "challenge-result",
       "subscriptionName": "hills-service-challenge-result",
-      "connection": "BUS_CONNECTION_STRING"
+      "connection": "AZURE_SERVICEBUS_CONNECTION_STRING"
     },
     {
       "name": "$return",
@@ -14,7 +14,7 @@
       "direction": "out",
       "topicName": "hill-updated",
       "subscriptionName": "hills-service-hill-updated",
-      "connection": "BUS_CONNECTION_STRING"
+      "connection": "AZURE_SERVICEBUS_CONNECTION_STRING"
     }
   ],
   "scriptFile": "../dist/challengeResult/index.js"

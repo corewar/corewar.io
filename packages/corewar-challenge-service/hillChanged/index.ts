@@ -1,7 +1,7 @@
 import { triggerStartChallenge } from '../common/triggerStartChallenge'
 import IHill, { ChallengeStatusType } from '../common/IHill'
 import Repository from 'corewar-repository'
-import { DATABASE_NAME, COLLECTION_NAME, CHALLENGE_QUEUE } from '../common/constants'
+import { DATABASE_NAME, COLLECTION_NAME, Queues } from '../common/constants'
 import { peek } from 'corewar-infrastructure'
 import { Received, IHillCreatedMessage, IHillUpdatedMessage, IChallengeHillMessage } from 'corewar-message-types'
 import { isHillStatusReady } from '../isHillStatusReady.ts'
@@ -17,7 +17,7 @@ export const hillChanged = async (message: IHillChangedMessage): Promise<void> =
     const repo = new Repository(DATABASE_NAME, COLLECTION_NAME)
     await repo.upsert(hill)
 
-    const challenge = await peek<Received<IChallengeHillMessage>>(CHALLENGE_QUEUE)
+    const challenge = await peek<Received<IChallengeHillMessage>>(Queues.challengeQueue)
     if (!challenge) {
         return
     }

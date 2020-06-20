@@ -7,7 +7,7 @@ export interface IServiceBusQueueClient {
 
 export const getQueueClient = (queueName: string): IServiceBusQueueClient => {
     /* eslint-disable-next-line */
-    const serviceBusClient = ServiceBusClient.createFromConnectionString(process.env.BUS_CONNECTION_STRING)
+    const serviceBusClient = ServiceBusClient.createFromConnectionString(process.env.AZURE_SERVICEBUS_CONNECTION_STRING)
     const queueClient = serviceBusClient.createQueueClient(queueName)
 
     return {

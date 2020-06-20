@@ -1,8 +1,12 @@
 import { AzureFunction, Context } from '@azure/functions'
 import { IChallengeResultMessage, IHillUpdatedMessage } from 'corewar-message-types'
-import { DATABASE_NAME, COLLECTION_NAME } from '../common/constants'
+import { DATABASE_NAME, COLLECTION_NAME, SERVICE_NAME, Topics } from '../common/constants'
 import { IHill } from '../common/IHill'
 import Repository from 'corewar-repository'
+import { createTopic } from 'corewar-infrastructure'
+
+createTopic({ serviceName: SERVICE_NAME, topicName: Topics.challengeResult })
+createTopic({ serviceName: SERVICE_NAME, topicName: Topics.hillUpdated })
 
 const challengeResult: AzureFunction = async function(
     _: Context,

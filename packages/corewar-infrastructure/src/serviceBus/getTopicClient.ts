@@ -8,7 +8,7 @@ export interface IServiceBusTopicClient {
 
 export const getTopicClient = (topicName: string): IServiceBusTopicClient => {
     /* eslint-disable-next-line */
-    const serviceBusClient = ServiceBusClient.createFromConnectionString(process.env.BUS_CONNECTION_STRING)
+    const serviceBusClient = ServiceBusClient.createFromConnectionString(process.env.AZURE_SERVICEBUS_CONNECTION_STRING)
     const topicClient = serviceBusClient.createTopicClient(topicName)
     const sender = topicClient.createSender()
 

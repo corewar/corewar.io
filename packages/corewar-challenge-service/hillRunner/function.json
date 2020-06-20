@@ -5,7 +5,7 @@
       "type": "serviceBusTrigger",
       "direction": "in",
       "queueName": "start-challenge-queue",
-      "connection": "BUS_CONNECTION_STRING"
+      "connection": "AZURE_SERVICEBUS_CONNECTION_STRING"
     }
   ],
   "scriptFile": "../dist/hillRunner/index.js"

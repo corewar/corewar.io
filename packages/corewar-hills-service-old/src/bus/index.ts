@@ -12,7 +12,7 @@ interface ITopicBusClient {
 
 const getBusClient = (): ServiceBusClient => {
     /* eslint-disable-next-line */
-    const connectionString = process.env.BUS_CONNECTION_STRING
+    const connectionString = process.env.AZURE_SERVICEBUS_CONNECTION_STRING
     if (!connectionString) {
         throw new Error('Unable to access service bus')
     }

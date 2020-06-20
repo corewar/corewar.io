@@ -6,7 +6,7 @@
       "direction": "in",
       "topicName": "create-hill",
       "subscriptionName": "hills-service-create-hill",
-      "connection": "BUS_CONNECTION_STRING"
+      "connection": "AZURE_SERVICEBUS_CONNECTION_STRING"
     },
     {
       "name": "$return",
@@ -14,7 +14,7 @@
       "direction": "out",
       "topicName": "hill-created",
       "subscriptionName": "hills-service-hill-created",
-      "connection": "BUS_CONNECTION_STRING"
+      "connection": "AZURE_SERVICEBUS_CONNECTION_STRING"
     }
   ],
   "scriptFile": "../dist/createHill/index.js"

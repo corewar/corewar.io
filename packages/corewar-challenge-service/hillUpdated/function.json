@@ -6,7 +6,7 @@
       "direction": "in",
       "topicName": "hill-updated",
       "subscriptionName": "challenge-service-hill-updated",
-      "connection": "BUS_CONNECTION_STRING"
+      "connection": "AZURE_SERVICEBUS_CONNECTION_STRING"
     }
   ],
   "scriptFile": "../dist/hillUpdated/index.js"

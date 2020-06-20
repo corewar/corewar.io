@@ -1,22 +1,21 @@
 import { AzureFunction, Context } from '@azure/functions'
 import Repository from 'corewar-repository'
 import { corewar } from 'corewar'
-import { broadcast } from 'corewar-infrastructure'
-import {
-    START_CHALLENGE_FAILED_TOPIC,
-    DATABASE_NAME,
-    COLLECTION_NAME,
-    CHALLENGE_RESULT_TOPIC
-} from '../common/constants'
+import { broadcast, createQueue, createTopic } from 'corewar-infrastructure'
+import { DATABASE_NAME, COLLECTION_NAME, Queues, Topics, SERVICE_NAME } from '../common/constants'
 import IHill from '../common/IHill'
 import { IStartChallengeMessage, IStartChallengeFailedMessage, IChallengeResultMessage } from 'corewar-message-types'
+
+createTopic({ serviceName: SERVICE_NAME, topicName: Topics.startChallengeFailed })
+createTopic({ serviceName: SERVICE_NAME, topicName: Topics.challengeResult })
+createQueue({ queueName: Queues.startChallengeQueue })
 
 const hillRunner: AzureFunction = async function(_: Context, message: IStartChallengeMessage): Promise<void> {
     const { id, redcode } = message.body
     const parseResult = corewar.parse(redcode)
 
     if (!parseResult.success) {
-        broadcast(START_CHALLENGE_FAILED_TOPIC, {
+        broadcast(Topics.startChallengeFailed, {
             body: {
                 id,
                 message: `Failed to parse warrior '${parseResult.metaData.name}'`,
@@ -39,7 +38,7 @@ const hillRunner: AzureFunction = async function(_: Context, message: IStartChal
 
     const result = corewar.runHill(hill.rules, [...warriors, challenger])
 
-    broadcast(CHALLENGE_RESULT_TOPIC, {
+    broadcast(Topics.challengeResult, {
         body: {
             id,
             result

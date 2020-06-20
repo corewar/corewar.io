@@ -6,7 +6,7 @@
       "direction": "in",
       "topicName": "update-hill",
       "subscriptionName": "hills-service-update-hill",
-      "connection": "BUS_CONNECTION_STRING"
+      "connection": "AZURE_SERVICEBUS_CONNECTION_STRING"
     },
     {
       "name": "$return",
@@ -14,7 +14,7 @@
       "direction": "out",
       "topicName": "hill-updated",
       "subscriptionName": "hills-service-hill-updated",
-      "connection": "BUS_CONNECTION_STRING"
+      "connection": "AZURE_SERVICEBUS_CONNECTION_STRING"
     }
   ],
   "scriptFile": "../dist/updateHill/index.js"

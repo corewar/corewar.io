@@ -6,7 +6,7 @@
       "direction": "in",
       "topicName": "delete-hill",
       "subscriptionName": "hills-service-delete-hill",
-      "connection": "BUS_CONNECTION_STRING"
+      "connection": "AZURE_SERVICEBUS_CONNECTION_STRING"
     },
     {
       "name": "$return",
@@ -14,7 +14,7 @@
       "direction": "out",
       "topicName": "hill-deleted",
       "subscriptionName": "hills-service-hill-deleted",
-      "connection": "BUS_CONNECTION_STRING"
+      "connection": "AZURE_SERVICEBUS_CONNECTION_STRING"
     }
   ],
   "scriptFile": "../dist/deleteHill/index.js"

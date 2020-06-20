@@ -1,7 +1,16 @@
+export const SERVICE_NAME = 'challenge-service'
 export const DATABASE_NAME = 'hills-db'
 export const COLLECTION_NAME = 'challenges'
-export const CHALLENGE_QUEUE = 'challenge-queue'
-export const START_CHALLENGE_QUEUE = 'start-challenge-queue'
-export const START_CHALLENGE_TOPIC = 'start-challenge'
-export const START_CHALLENGE_FAILED_TOPIC = 'start-challenge-failed'
-export const CHALLENGE_RESULT_TOPIC = 'challenge-result'
+export const Topics = {
+    challengeHill: 'challenge-hill',
+    hillCreated: 'hill-created',
+    hillDeleted: 'hill-deleted',
+    hillUpdated: 'hill-updated',
+    startChallenge: 'start-challenge',
+    startChallengeFailed: 'start-challenge-failed',
+    challengeResult: 'challenge-result'
+}
+export const Queues = {
+    challengeQueue: 'challenge-queue',
+    startChallengeQueue: 'start-challenge-queue'
+}
