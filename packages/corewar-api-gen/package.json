@@ -1,12 +1,13 @@
 {
   "name": "corewar-api-gen",
-  "version": "0.2.3-alpha.7",
+  "version": "0.2.3-alpha.8",
   "description": "GraphQL Code Generator for GraphQL API Gateway",
   "main": "index.js",
   "scripts": {
     "build": "tsc",
     "codegen": "graphql-codegen --config codegen.yml && ts-node src/index.ts && eslint --fix \"src/generated/**/*.ts\""
   },
+  "private": true,
   "author": "gareththegeek",
   "license": "MIT",
   "devDependencies": {
@@ -21,7 +22,7 @@
     "apollo-client": "^2.6.10",
     "apollo-link-http": "^1.5.17",
     "apollo-server": "^2.15.0",
-    "corewar-infrastructure": "^0.2.3-alpha.7",
+    "corewar-infrastructure": "^0.2.3-alpha.8",
     "dotenv": "^8.2.0",
     "graphql": "^15.1.0",
     "graphql-tag": "^2.10.3",
