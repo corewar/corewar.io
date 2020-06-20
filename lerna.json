@@ -6,7 +6,8 @@
     "packages/corewar-hills-service",
     "packages/corewar-repository",
     "packages/corewar-message-types",
-    "packages/corewar-api-gen"
+    "packages/corewar-api-gen",
+    "packages/corewar-infrastructure"
   ],
   "version": "0.2.3-alpha.6"
 }

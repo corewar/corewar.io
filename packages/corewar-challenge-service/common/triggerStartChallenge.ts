@@ -1,6 +1,6 @@
 import IHill, { ChallengeStatusType } from './IHill'
 import { START_CHALLENGE_TOPIC, DATABASE_NAME, COLLECTION_NAME } from './constants'
-import { broadcast } from '../serviceBus/broadcast'
+import { broadcast } from 'corewar-infrastructure'
 import Repository from 'corewar-repository'
 import { IStartChallengeMessage } from 'corewar-message-types'
 

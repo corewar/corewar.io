@@ -7,7 +7,7 @@ export const getApolloClient = (serviceName: string): ApolloClient<NormalizedCac
     const cache = new InMemoryCache()
     const link = createHttpLink({
         uri: `https://corewar-${serviceName}-service.azurewebsites.net/graphql`,
-        fetch
+        fetch: (fetch as unknown) as WindowOrWorkerGlobalScope['fetch']
     })
     return new ApolloClient({
         cache,

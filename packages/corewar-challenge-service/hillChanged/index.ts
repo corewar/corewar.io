@@ -2,7 +2,7 @@ import { triggerStartChallenge } from '../common/triggerStartChallenge'
 import IHill, { ChallengeStatusType } from '../common/IHill'
 import Repository from 'corewar-repository'
 import { DATABASE_NAME, COLLECTION_NAME, CHALLENGE_QUEUE } from '../common/constants'
-import { peek } from '../serviceBus/peek'
+import { peek } from 'corewar-infrastructure'
 import { Received, IHillCreatedMessage, IHillUpdatedMessage, IChallengeHillMessage } from 'corewar-message-types'
 import { isHillStatusReady } from '../isHillStatusReady.ts'
 

@@ -1,4 +1,4 @@
-import { ServiceBusClient, QueueClient, Sender } from '@azure/service-bus'
+import { ServiceBusClient, QueueClient } from '@azure/service-bus'
 
 export interface IServiceBusQueueClient {
     serviceBusClient: ServiceBusClient

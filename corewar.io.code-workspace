@@ -29,6 +29,9 @@
 		},
 		{
 			"path": "packages\\corewar-api-gen"
+		},
+		{
+			"path": "packages\\corewar-infrastructure"
 		}
 	]
 }

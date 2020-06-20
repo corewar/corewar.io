@@ -1,7 +1,7 @@
 import { AzureFunction, Context } from '@azure/functions'
 import Repository from 'corewar-repository'
 import { corewar } from 'corewar'
-import { broadcast } from '../serviceBus/broadcast'
+import { broadcast } from 'corewar-infrastructure'
 import {
     START_CHALLENGE_FAILED_TOPIC,
     DATABASE_NAME,

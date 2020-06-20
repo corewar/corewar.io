@@ -13,13 +13,13 @@ export const buildSource = (schema: GraphQLSchema): string => {
     const mutationFields = Object.values(schema.getMutationType().getFields())
 
     return `
+require('dotenv').config()
 import * as path from 'path'
 import * as fs from 'fs'
 import { ApolloServer } from 'apollo-server'
 import gql from 'graphql-tag'
 import { ${getAllTypesList(getUsedTypes(schema))} } from './schema-typings'
-import { getApolloClient } from './getApolloClient'
-import { broadcast } from './broadcast'
+import { getApolloClient, broadcast } from 'corewar-infrastructure'
 import { getQueryParamString } from './getQueryParamString'
 import { getQueryParamUsageString } from './getQueryParamUsageString'
 

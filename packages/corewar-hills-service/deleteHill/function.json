@@ -17,5 +17,5 @@
       "connection": "BUS_CONNECTION_STRING"
     }
   ],
-  "scriptFile": "../dist/createHill/index.js"
+  "scriptFile": "../dist/deleteHill/index.js"
 }

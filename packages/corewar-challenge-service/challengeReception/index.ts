@@ -1,6 +1,6 @@
 import { AzureFunction, Context } from '@azure/functions'
 import { CHALLENGE_QUEUE } from '../common/constants'
-import { enqueue } from '../serviceBus/enqueue'
+import { enqueue } from 'corewar-infrastructure'
 import { triggerStartChallenge } from '../common/triggerStartChallenge'
 import { IChallengeHillMessage } from 'corewar-message-types'
 import { isHillStatusReady } from '../isHillStatusReady.ts'
