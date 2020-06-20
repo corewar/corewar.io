@@ -13,7 +13,6 @@
       "type": "serviceBus",
       "direction": "out",
       "topicName": "hill-deleted",
-      "subscriptionName": "hills-service-hill-deleted",
       "connection": "AZURE_SERVICEBUS_CONNECTION_STRING"
     }
   ],

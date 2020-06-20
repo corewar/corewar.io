@@ -13,7 +13,6 @@
       "type": "serviceBus",
       "direction": "out",
       "topicName": "hill-created",
-      "subscriptionName": "hills-service-hill-created",
       "connection": "AZURE_SERVICEBUS_CONNECTION_STRING"
     }
   ],

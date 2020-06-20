@@ -2,9 +2,9 @@ import { AzureFunction, Context } from '@azure/functions'
 import { DATABASE_NAME, COLLECTION_NAME, SERVICE_NAME, Topics } from '../common/constants'
 import Repository from 'corewar-repository'
 import { IHillDeletedMessage, IDeleteHillMessage } from 'corewar-message-types'
-import { createTopic } from 'corewar-infrastructure'
+import { createTopic, createSubscription } from 'corewar-infrastructure'
 
-createTopic({ serviceName: SERVICE_NAME, topicName: Topics.deleteHill })
+createSubscription({ serviceName: SERVICE_NAME, topicName: Topics.deleteHill })
 createTopic({ serviceName: SERVICE_NAME, topicName: Topics.hillDeleted })
 
 const deleteHill: AzureFunction = async function(

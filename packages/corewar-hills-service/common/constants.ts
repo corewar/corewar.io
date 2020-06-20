@@ -1,4 +1,4 @@
-export const SERVICE_NAME = 'hill-service'
+export const SERVICE_NAME = 'hills-service'
 export const DATABASE_NAME = 'hills-db'
 export const COLLECTION_NAME = 'hills'
 export const Topics = {

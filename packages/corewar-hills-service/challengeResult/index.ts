@@ -3,9 +3,9 @@ import { IChallengeResultMessage, IHillUpdatedMessage } from 'corewar-message-ty
 import { DATABASE_NAME, COLLECTION_NAME, SERVICE_NAME, Topics } from '../common/constants'
 import { IHill } from '../common/IHill'
 import Repository from 'corewar-repository'
-import { createTopic } from 'corewar-infrastructure'
+import { createTopic, createSubscription } from 'corewar-infrastructure'
 
-createTopic({ serviceName: SERVICE_NAME, topicName: Topics.challengeResult })
+createSubscription({ serviceName: SERVICE_NAME, topicName: Topics.challengeResult })
 createTopic({ serviceName: SERVICE_NAME, topicName: Topics.hillUpdated })
 
 const challengeResult: AzureFunction = async function(
