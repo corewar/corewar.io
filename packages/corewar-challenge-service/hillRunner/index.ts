@@ -15,7 +15,7 @@ const hillRunner: AzureFunction = async function(_: Context, message: IStartChal
     const parseResult = corewar.parse(redcode)
 
     if (!parseResult.success) {
-        broadcast(Topics.startChallengeFailed, {
+        return broadcast(Topics.startChallengeFailed, {
             body: {
                 id,
                 message: `Failed to parse warrior '${parseResult.metaData.name}'`,
@@ -38,7 +38,7 @@ const hillRunner: AzureFunction = async function(_: Context, message: IStartChal
 
     const result = corewar.runHill(hill.rules, [...warriors, challenger])
 
-    broadcast(Topics.challengeResult, {
+    return broadcast(Topics.challengeResult, {
         body: {
             id,
             result

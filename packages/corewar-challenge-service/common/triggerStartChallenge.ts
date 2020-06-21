@@ -15,7 +15,7 @@ export const triggerStartChallenge = async (id: string, redcode: string): Promis
         status: ChallengeStatusType.Busy
     })
 
-    broadcast(Topics.startChallenge, {
+    return broadcast(Topics.startChallenge, {
         body: {
             id: hill.id,
             redcode

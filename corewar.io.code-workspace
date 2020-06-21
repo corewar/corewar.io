@@ -1,6 +1,9 @@
 {
 	"folders": [
 		{
+			"path": "."
+		},
+		{
 			"path": "packages\\corewar"
 		},
 		{
@@ -13,25 +16,16 @@
 			"path": "packages\\corewar-hills-service"
 		},
 		{
-			"path": "packages\\corewar-hills-service-old"
+			"path": "packages\\corewar-infrastructure"
+		},
+		{
+			"path": "packages\\corewar-message-types"
 		},
 		{
 			"path": "packages\\corewar-repository"
 		},
 		{
 			"path": "packages\\corewar-ui"
-		},
-		{
-			"path": "."
-		},
-		{
-			"path": "packages\\corewar-message-types"
-		},
-		{
-			"path": "packages\\corewar-api-gen"
-		},
-		{
-			"path": "packages\\corewar-infrastructure"
 		}
 	]
 }

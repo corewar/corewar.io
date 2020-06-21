@@ -1,10 +1,10 @@
 import { getTopicClient } from './getTopicClient'
 import { SendableMessageInfo } from '@azure/service-bus'
 
-export const broadcast = <T extends SendableMessageInfo>(topicName: string, message: T): void => {
+export const broadcast = async <T extends SendableMessageInfo>(topicName: string, message: T): Promise<void> => {
     const client = getTopicClient(topicName)
     try {
-        client.sender.send(message)
+        await client.sender.send(message)
     } finally {
         client.topicClient.close()
         client.serviceBusClient.close()
