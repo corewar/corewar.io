@@ -9,5 +9,5 @@
     "packages/corewar-api",
     "packages/corewar-infrastructure"
   ],
-  "version": "0.2.3-alpha.10"
+  "version": "0.2.3-alpha.11"
 }

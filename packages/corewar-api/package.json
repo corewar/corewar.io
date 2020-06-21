@@ -1,6 +1,6 @@
 {
   "name": "corewar-api",
-  "version": "0.2.3-alpha.9",
+  "version": "0.2.3-alpha.11",
   "description": "GraphQL API Gateway",
   "scripts": {
     "build": "tsc",
@@ -15,10 +15,10 @@
   "license": "MIT",
   "dependencies": {
     "@azure/service-bus": "^1.1.7",
-    "apollo-server-azure-functions": "^2.14.3",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link-http": "^1.5.17",
+    "apollo-server-azure-functions": "^2.14.3",
     "corewar-infrastructure": "^0.2.3-alpha.10",
     "dotenv": "^8.2.0",
     "graphql": "^15.1.0",
