@@ -1,6 +1,6 @@
 {
   "name": "corewar-infrastructure",
-  "version": "0.2.3-alpha.9",
+  "version": "0.2.3-alpha.10",
   "description": "Microservice infrastructure such as service bus and graphql connectivity",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
