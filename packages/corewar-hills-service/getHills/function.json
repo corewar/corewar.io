@@ -1,0 +1,30 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "route": "hills",
+      "methods": [
+        "get"
+      ]
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "records",
+      "databaseName": "hills-db",
+      "collectionName": "hills",
+      "partitionKey": "/id",
+      "sqlQuery": "select c.id, c.rules, c.warriors from c",
+      "connectionStringSetting": "DB_CONNECTION_STRING"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    }
+  ],
+  "scriptFile": "../dist/getHills/index.js"
+}

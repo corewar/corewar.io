@@ -1,6 +1,6 @@
 {
   "name": "corewar-hills-service",
-  "version": "0.2.3-alpha.10",
+  "version": "1.0.0",
   "description": "",
   "scripts": {
     "build": "tsc",
@@ -9,21 +9,15 @@
     "start": "func start",
     "test": "echo \"No tests yet...\""
   },
-  "private": true,
   "dependencies": {
     "@azure/service-bus": "^1.1.7",
-    "apollo-server-azure-functions": "^2.14.3",
-    "corewar-repository": "^0.2.3-alpha.8",
-    "graphql": "^15.1.0",
-    "uuid": "^3.4.0"
+    "corewar": "0.2.3-alpha.8",
+    "corewar-message-types": "0.2.3-alpha.8",
+    "uuid": "^8.1.0"
   },
   "devDependencies": {
     "@azure/functions": "^1.0.2-beta2",
-    "@types/uuid": "^3.4.7",
-    "corewar": "^0.2.3-alpha.8",
-    "corewar-infrastructure": "^0.2.3-alpha.10",
-    "corewar-message-types": "^0.2.3-alpha.8",
+    "@types/uuid": "^8.0.0",
     "typescript": "^3.3.3"
-  },
-  "gitHead": "2117362ff5a05a894fb67bb0950e546342aa94dd"
+  }
 }

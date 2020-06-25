@@ -1,34 +1,52 @@
-import { AzureFunction, Context } from '@azure/functions'
-import uuid from 'uuid/v1'
-import { DATABASE_NAME, COLLECTION_NAME, SERVICE_NAME, Topics } from '../common/constants'
-import Repository from 'corewar-repository'
-import { ICreateHillMessage, IHillCreatedMessage } from 'corewar-message-types'
-import { createTopic, createSubscription } from 'corewar-infrastructure'
+import { v4 as uuidv4 } from 'uuid'
+import { ICreateHillMessage } from 'corewar-message-types'
+import { Context } from '@azure/functions'
 
-createSubscription({ serviceName: SERVICE_NAME, topicName: Topics.createHill })
-createTopic({ topicName: Topics.hillCreated })
-
-const createHill: AzureFunction = async function(
-    _: Context,
-    message: ICreateHillMessage
-): Promise<IHillCreatedMessage> {
-    const { rules } = message.body
-
-    const repo = new Repository(DATABASE_NAME, COLLECTION_NAME)
-
-    const id = uuid()
-    repo.upsert({
-        id,
-        rules,
-        warriors: []
-    })
-
-    return {
-        body: {
-            id,
-            rules
-        }
-    }
+interface IValidationResult {
+    success: boolean
+    messages?: string[]
 }
 
-export default createHill
+//TODO validation:
+// https://www.npmjs.com/package/swagger-model-validator
+// https://www.npmjs.com/package/swagger-object-validator
+const validate = (_input: ICreateHillMessage): IValidationResult => ({
+    success: true
+})
+
+export const createHill = async (context: Context, input: ICreateHillMessage): Promise<void> => {
+    const validation = validate(input)
+    if (!validation.success) {
+        context.res = {
+            status: 400,
+            body: validation.messages
+        }
+        return
+    }
+
+    const id = uuidv4()
+    const { rules } = input.body
+
+    const message = {
+        id,
+        rules
+    }
+
+    context.res = { body: message }
+
+    context.bindings.document = {
+        ...message,
+        warriors: []
+    }
+
+    context.bindings.bus = {
+        body: message
+    }
+
+    context.bindings.signalr = [
+        {
+            target: 'hillCreated',
+            arguments: [message]
+        }
+    ]
+}
