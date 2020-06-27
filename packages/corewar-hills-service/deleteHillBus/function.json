@@ -1,0 +1,37 @@
+{
+  "bindings": [
+    {
+      "type": "serviceBusTrigger",
+      "direction": "in",
+      "name": "trigger",
+      "topicName": "delete-hill",
+      "subscriptionName": "hills-service-delete-hill",
+      "connection": "AZURE_SERVICEBUS_CONNECTION_STRING"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "record",
+      "databaseName": "hills-db",
+      "collectionName": "hills",
+      "partitionKey": "/id",
+      "sqlQuery": "select c.id from c where c.id = {id}",
+      "connectionStringSetting": "DB_CONNECTION_STRING"
+    },
+    {
+      "type": "serviceBus",
+      "direction": "out",
+      "name": "bus",
+      "topicName": "hill-deleted",
+      "connection": "AZURE_SERVICEBUS_CONNECTION_STRING"
+    },
+    {
+      "type": "signalR",
+      "direction": "out",
+      "name": "signalr",
+      "hubName": "hills",
+      "connectionString": "AzureSignalRConnectionString"
+    }
+  ],
+  "scriptFile": "../dist/deleteHillBus/index.js"
+}

@@ -5,7 +5,7 @@
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
-      "route": "hills",
+      "route": "hills/{id}",
       "methods": [
         "get"
       ]
@@ -13,11 +13,11 @@
     {
       "type": "cosmosDB",
       "direction": "in",
-      "name": "records",
+      "name": "record",
       "databaseName": "hills-db",
       "collectionName": "hills",
       "partitionKey": "/id",
-      "sqlQuery": "select c.id, c.name, c.rules, c.warriors from c",
+      "sqlQuery": "select c.id, c.name, c.rules, c.warriors from c where c.id = {id}",
       "connectionStringSetting": "DB_CONNECTION_STRING"
     },
     {
@@ -26,5 +26,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/getHills/index.js"
+  "scriptFile": "../dist/getHill/index.js"
 }

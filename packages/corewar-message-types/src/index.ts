@@ -5,6 +5,7 @@ export type Received<T> = T & ServiceBusMessage
 
 export interface ICreateHillMessage extends SendableMessageInfo {
     body: {
+        name: string
         rules: IRules
     }
 }
@@ -12,6 +13,7 @@ export interface ICreateHillMessage extends SendableMessageInfo {
 export interface IHillCreatedMessage extends SendableMessageInfo {
     body: {
         id: string
+        name: string
         rules: IRules
     }
 }
@@ -19,6 +21,7 @@ export interface IHillCreatedMessage extends SendableMessageInfo {
 export interface IUpdateHillMessage extends SendableMessageInfo {
     body: {
         id: string
+        name: string
         rules: IRules
         warriors: {
             redcode: string
@@ -29,17 +32,11 @@ export interface IUpdateHillMessage extends SendableMessageInfo {
 export interface IHillUpdatedMessage extends SendableMessageInfo {
     body: {
         id: string
+        name: string
         rules: IRules
         warriors: {
             redcode: string
         }[]
-    }
-}
-
-export interface IHillCreatedMessage extends SendableMessageInfo {
-    body: {
-        id: string
-        rules: IRules
     }
 }
 

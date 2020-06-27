@@ -1,0 +1,47 @@
+{
+  "bindings": [
+    {
+      "type": "serviceBusTrigger",
+      "direction": "in",
+      "name": "trigger",
+      "topicName": "update-hill",
+      "subscriptionName": "hills-service-update-hill",
+      "connection": "AZURE_SERVICEBUS_CONNECTION_STRING"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "record",
+      "databaseName": "hills-db",
+      "collectionName": "hills",
+      "partitionKey": "/id",
+      "sqlQuery": "select * from c where c.id = {id}",
+      "connectionStringSetting": "DB_CONNECTION_STRING"
+    },
+    {
+      "type": "serviceBus",
+      "direction": "out",
+      "name": "bus",
+      "topicName": "hill-updated",
+      "connection": "AZURE_SERVICEBUS_CONNECTION_STRING"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "document",
+      "databaseName": "hills-db",
+      "collectionName": "hills",
+      "createIfNotExists": true,
+      "partitionKey": "id",
+      "connectionStringSetting": "DB_CONNECTION_STRING"
+    },
+    {
+      "type": "signalR",
+      "direction": "out",
+      "name": "signalr",
+      "hubName": "hills",
+      "connectionString": "AzureSignalRConnectionString"
+    }
+  ],
+  "scriptFile": "../dist/updateHillBus/index.js"
+}

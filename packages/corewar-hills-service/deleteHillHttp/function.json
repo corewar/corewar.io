@@ -1,0 +1,44 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "route": "hills",
+      "methods": [
+        "delete"
+      ]
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "record",
+      "databaseName": "hills-db",
+      "collectionName": "hills",
+      "partitionKey": "/id",
+      "sqlQuery": "select c.id from c where c.id = {id}",
+      "connectionStringSetting": "DB_CONNECTION_STRING"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "serviceBus",
+      "direction": "out",
+      "name": "bus",
+      "topicName": "hill-deleted",
+      "connection": "AZURE_SERVICEBUS_CONNECTION_STRING"
+    },
+    {
+      "type": "signalR",
+      "direction": "out",
+      "name": "signalr",
+      "hubName": "hills",
+      "connectionString": "AzureSignalRConnectionString"
+    }
+  ],
+  "scriptFile": "../dist/deleteHillHttp/index.js"
+}
