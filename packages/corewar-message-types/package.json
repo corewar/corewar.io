@@ -1,6 +1,6 @@
 {
   "name": "corewar-message-types",
-  "version": "0.2.3-alpha.8",
+  "version": "0.2.3-alpha.12",
   "description": "Interface declarations for Azure Service Bus messages",
   "types": "dist/index.d.ts",
   "scripts": {
