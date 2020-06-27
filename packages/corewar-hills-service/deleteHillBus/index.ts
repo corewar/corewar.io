@@ -6,7 +6,7 @@ import { IHill } from '../schema/hill'
 const deleteHillBus: AzureFunction = async (
     context: Context,
     trigger: IDeleteHillMessage,
-    record: IHill
-): Promise<void> => deleteHill(context, trigger, record)
+    records: IHill[]
+): Promise<void> => deleteHill(context, trigger, records)
 
 export default deleteHillBus

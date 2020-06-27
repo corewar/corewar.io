@@ -6,7 +6,7 @@ import { IHill } from '../schema/hill'
 const updateHillBus: AzureFunction = async (
     context: Context,
     trigger: IUpdateHillMessage,
-    record: IHill
-): Promise<void> => updateHill(context, trigger, record)
+    records: IHill[]
+): Promise<void> => updateHill(context, trigger, records)
 
 export default updateHillBus

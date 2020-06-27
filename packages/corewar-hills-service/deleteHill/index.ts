@@ -15,28 +15,29 @@ const validate = (_input: IDeleteHillMessage): IValidationResult => ({
     success: true
 })
 
-const getConnectionStringProperty = (propertyName: string): string =>
-    process.env.DB_CONNECTION_STRING.split(';')
-        .find(x => x.toLowerCase().startsWith(propertyName))
+const getConnectionStringProperty = (propertyName: string): string => {
+    return process.env.DB_CONNECTION_STRING.split(';')
+        .find(x => x.startsWith(propertyName))
         .split('=')[1]
+}
 
-const config = {
+const getConfig = () => ({
     endpoint: getConnectionStringProperty('AccountEndpoint'),
     key: getConnectionStringProperty('AccountKey'),
     databaseId: 'hills-db',
     containerId: 'hills',
     partitionKey: { kind: 'Hash', paths: ['/id'] }
-}
+})
 
 const getDbContainer = (): Container => {
-    const { endpoint, key, databaseId, containerId } = config
+    const { endpoint, key, databaseId, containerId } = getConfig()
     const client = new CosmosClient({ endpoint, key })
     const database = client.database(databaseId)
     return database.container(containerId)
 }
 
-export const deleteHill = async (context: Context, input: IDeleteHillMessage, existing: IHill): Promise<void> => {
-    if (!existing) {
+export const deleteHill = async (context: Context, input: IDeleteHillMessage, existing: IHill[]): Promise<void> => {
+    if (!existing.length) {
         context.res = {
             status: 404,
             body: 'Hill not found'
@@ -53,11 +54,11 @@ export const deleteHill = async (context: Context, input: IDeleteHillMessage, ex
         return
     }
 
-    const id = existing.id
+    const id = existing[0].id
 
     const container = getDbContainer()
 
-    await container.item(id).delete()
+    await container.item(id, id).delete()
 
     const message = { id }
 

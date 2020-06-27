@@ -13,7 +13,7 @@
     {
       "type": "cosmosDB",
       "direction": "in",
-      "name": "record",
+      "name": "records",
       "databaseName": "hills-db",
       "collectionName": "hills",
       "partitionKey": "/id",
