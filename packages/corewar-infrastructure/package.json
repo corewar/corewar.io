@@ -20,12 +20,15 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
+    "@azure/functions": "^1.2.2",
     "@azure/service-bus": "^1.1.7",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link-http": "^1.5.17",
     "azure-sb": "^0.11.1",
     "graphql": "^15.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwks-rsa": "^1.8.1",
     "node-fetch": "^2.6.0"
   }
 }

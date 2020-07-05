@@ -1,4 +1,4 @@
-import { getApolloClient } from './graphql/getApolloClient'
+import { auth } from './auth/auth'
 import { peek } from './serviceBus/peek'
 import { broadcast } from './serviceBus/broadcast'
 import { enqueue } from './serviceBus/enqueue'
@@ -7,7 +7,7 @@ import { createQueue, ICreateQueueArgs } from './serviceBus/createQueue'
 import { ICreateSubscriptionArgs, createSubscription } from './serviceBus/createSubscription'
 
 export {
-    getApolloClient,
+    auth,
     broadcast,
     enqueue,
     peek,
