@@ -2,11 +2,33 @@ import jwksClient from 'jwks-rsa'
 import * as jwt from 'jsonwebtoken'
 import { AzureFunction, HttpRequest, Context } from '@azure/functions'
 
+interface IJwtToken {
+    iss: string
+    sub: string
+    aud: string[]
+    iat: number
+    exp: number
+    azp: string
+    scope: string
+    permissions: string[]
+}
+
+export interface IAuthToken {
+    issuer: string // iss
+    userId: string // sub
+    audiences: string[] // aud
+    issuedAt: number // iat
+    expiresAt: number // exp
+    clientId: string // azp
+    scope: string
+    permissions: string[]
+}
+
 let signingKey: string
 
 const client = jwksClient({
     rateLimit: true,
-    jwksRequestsPerMinute: 10, // Default value
+    jwksRequestsPerMinute: 1,
     jwksUri: process.env.JWKS_URI
 })
 
@@ -20,11 +42,23 @@ client.getSigningKey(kid, (err, key) => {
     console.log(signingKey)
 })
 
+const mapToken = (token: IJwtToken): IAuthToken => ({
+    issuer: token.iss,
+    userId: token.sub,
+    audiences: token.aud,
+    issuedAt: token.iat,
+    expiresAt: token.exp,
+    clientId: token.azp,
+    scope: token.scope,
+    permissions: token.permissions
+})
+
 export const auth = <T>(requiredScopes: string[], handler: AzureFunction): AzureFunction => async (
     context: Context,
-    req: HttpRequest
+    req: HttpRequest,
+    ...rest: unknown[]
 ): Promise<T> => {
-    let decodedToken
+    let decodedToken: IJwtToken
     try {
         const token = req?.headers?.authorization
         decodedToken = await new Promise((resolve, reject) => {
@@ -41,7 +75,7 @@ export const auth = <T>(requiredScopes: string[], handler: AzureFunction): Azure
                     reject('Missing required scope')
                 }
 
-                resolve(decoded)
+                resolve(decoded as IJwtToken)
             })
         })
     } catch {
@@ -52,5 +86,6 @@ export const auth = <T>(requiredScopes: string[], handler: AzureFunction): Azure
         return null
     }
 
-    return handler(context, req, decodedToken)
+    const token = mapToken(decodedToken)
+    return handler(context, req, token, ...rest)
 }

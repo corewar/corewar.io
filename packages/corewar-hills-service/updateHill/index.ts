@@ -15,12 +15,19 @@ const validate = (_input: IUpdateHillMessage): IValidationResult => ({
 })
 
 export const updateHill = async (context: Context, input: IUpdateHillMessage, existing: IHill[]): Promise<void> => {
-    if (!existing.length) {
+    if (existing.length !== 1) {
         context.res = {
             status: 404,
             body: 'Hill not found'
         }
         return
+    }
+
+    if (input.body.userId !== existing[0].userId) {
+        context.res = {
+            status: 401,
+            body: 'Unauthorized'
+        }
     }
 
     const validation = validate(input)
@@ -33,10 +40,11 @@ export const updateHill = async (context: Context, input: IUpdateHillMessage, ex
     }
 
     const id = existing[0].id
-    const { name, rules, warriors } = input.body
+    const { userId, name, rules, warriors } = input.body
 
     const message = {
         id,
+        userId,
         name,
         rules,
         warriors

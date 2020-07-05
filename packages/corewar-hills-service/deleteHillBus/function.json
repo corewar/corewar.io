@@ -15,7 +15,7 @@
       "databaseName": "hills-db",
       "collectionName": "hills",
       "partitionKey": "/id",
-      "sqlQuery": "select c.id from c where c.id = {id}",
+      "sqlQuery": "select c.id, c.userId from c where c.id = {id}",
       "connectionStringSetting": "DB_CONNECTION_STRING"
     },
     {

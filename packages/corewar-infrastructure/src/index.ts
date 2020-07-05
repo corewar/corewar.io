@@ -1,4 +1,4 @@
-import { auth } from './auth/auth'
+import { auth, IAuthToken } from './auth/auth'
 import { peek } from './serviceBus/peek'
 import { broadcast } from './serviceBus/broadcast'
 import { enqueue } from './serviceBus/enqueue'
@@ -8,6 +8,7 @@ import { ICreateSubscriptionArgs, createSubscription } from './serviceBus/create
 
 export {
     auth,
+    IAuthToken,
     broadcast,
     enqueue,
     peek,

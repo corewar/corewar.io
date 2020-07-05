@@ -29,6 +29,7 @@ const getConfig = () => ({
     partitionKey: { kind: 'Hash', paths: ['/id'] }
 })
 
+//TODO this belongs in corewar-infrastructure
 const getDbContainer = (): Container => {
     const { endpoint, key, databaseId, containerId } = getConfig()
     const client = new CosmosClient({ endpoint, key })
@@ -37,12 +38,19 @@ const getDbContainer = (): Container => {
 }
 
 export const deleteHill = async (context: Context, input: IDeleteHillMessage, existing: IHill[]): Promise<void> => {
-    if (!existing.length) {
+    if (existing.length !== 1) {
         context.res = {
             status: 404,
             body: 'Hill not found'
         }
         return
+    }
+
+    if (input.body.userId !== existing[0].userId) {
+        context.res = {
+            status: 401,
+            body: 'Unauthorized'
+        }
     }
 
     const validation = validate(input)

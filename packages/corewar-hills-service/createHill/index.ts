@@ -14,7 +14,7 @@ const validate = (_input: ICreateHillMessage): IValidationResult => ({
     success: true
 })
 
-export const createHill = async (context: Context, input: ICreateHillMessage, _token: unknown): Promise<void> => {
+export const createHill = async (context: Context, input: ICreateHillMessage): Promise<void> => {
     const validation = validate(input)
     if (!validation.success) {
         context.res = {
@@ -25,10 +25,11 @@ export const createHill = async (context: Context, input: ICreateHillMessage, _t
     }
 
     const id = uuidv4()
-    const { name, rules } = input.body
+    const { userId, name, rules } = input.body
 
     const message = {
         id,
+        userId,
         name,
         rules
     }

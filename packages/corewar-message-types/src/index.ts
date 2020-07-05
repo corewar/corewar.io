@@ -5,6 +5,7 @@ export type Received<T> = T & ServiceBusMessage
 
 export interface ICreateHillMessage extends SendableMessageInfo {
     body: {
+        userId: string
         name: string
         rules: IRules
     }
@@ -13,6 +14,7 @@ export interface ICreateHillMessage extends SendableMessageInfo {
 export interface IHillCreatedMessage extends SendableMessageInfo {
     body: {
         id: string
+        userId: string
         name: string
         rules: IRules
     }
@@ -21,6 +23,7 @@ export interface IHillCreatedMessage extends SendableMessageInfo {
 export interface IUpdateHillMessage extends SendableMessageInfo {
     body: {
         id: string
+        userId: string
         name: string
         rules: IRules
         warriors: {
@@ -32,6 +35,7 @@ export interface IUpdateHillMessage extends SendableMessageInfo {
 export interface IHillUpdatedMessage extends SendableMessageInfo {
     body: {
         id: string
+        userId: string
         name: string
         rules: IRules
         warriors: {
@@ -43,6 +47,7 @@ export interface IHillUpdatedMessage extends SendableMessageInfo {
 export interface IDeleteHillMessage extends SendableMessageInfo {
     body: {
         id: string
+        userId: string
     }
 }
 
@@ -55,6 +60,7 @@ export interface IHillDeletedMessage extends SendableMessageInfo {
 export interface IChallengeHillMessage extends SendableMessageInfo {
     body: {
         id: string
+        userId: string
         redcode: string
     }
 }
@@ -62,6 +68,7 @@ export interface IChallengeHillMessage extends SendableMessageInfo {
 export interface IStartChallengeMessage extends SendableMessageInfo {
     body: {
         id: string
+        userId: string
         redcode: string
     }
 }
@@ -69,6 +76,7 @@ export interface IStartChallengeMessage extends SendableMessageInfo {
 export interface IStartChallengeFailedMessage extends SendableMessageInfo {
     body: {
         id: string
+        userId: string
         message: string
         result: IParseResult
     }
@@ -77,6 +85,7 @@ export interface IStartChallengeFailedMessage extends SendableMessageInfo {
 export interface IChallengeResultMessage extends SendableMessageInfo {
     body: {
         id: string
+        userId: string
         result: IHillResult
     }
 }
