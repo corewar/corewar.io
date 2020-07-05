@@ -14,6 +14,7 @@
     "@azure/service-bus": "^1.1.7",
     "azure-functions-auth0": "^1.0.1",
     "corewar": "0.2.3-alpha.8",
+    "corewar-infrastructure": "^0.2.3-alpha.10",
     "corewar-message-types": "^0.2.3-alpha.12",
     "jwks-rsa": "^1.8.1",
     "uuid": "^8.1.0"
