@@ -15,6 +15,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/azure-sb": "0.0.37",
+    "@types/jsonwebtoken": "^8.5.0",
     "@types/node-fetch": "^2.5.7",
     "jest": "^26.0.1",
     "typescript": "^3.9.5"
@@ -30,5 +31,6 @@
     "jsonwebtoken": "^8.5.1",
     "jwks-rsa": "^1.8.1",
     "node-fetch": "^2.6.0"
-  }
+  },
+  "gitHead": "fbd8be04636a2df60554f7c62e12f9976d31a558"
 }

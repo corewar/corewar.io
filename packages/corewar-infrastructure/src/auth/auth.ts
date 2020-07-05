@@ -65,7 +65,7 @@ export const auth = <T>(requiredScopes: string[], handler: AzureFunction): Azure
             if (!token) {
                 reject('No authentication token')
             }
-            jwt.verify(token.substr(7), signingKey, (err, decoded) => {
+            jwt.verify(token.substr(7), signingKey, (err, decoded: IJwtToken) => {
                 if (err) {
                     reject(err)
                 }
@@ -75,7 +75,7 @@ export const auth = <T>(requiredScopes: string[], handler: AzureFunction): Azure
                     reject('Missing required scope')
                 }
 
-                resolve(decoded as IJwtToken)
+                resolve(decoded)
             })
         })
     } catch {

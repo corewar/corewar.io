@@ -22,5 +22,6 @@
     "@azure/functions": "^1.0.2-beta2",
     "@types/uuid": "^8.0.0",
     "typescript": "^3.3.3"
-  }
+  },
+  "gitHead": "fbd8be04636a2df60554f7c62e12f9976d31a558"
 }
