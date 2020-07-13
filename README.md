@@ -28,7 +28,7 @@ Node 12+ is required.
 ### Prepare development environment
 
 ```bash
-npm install --global lerna eslint-cli
+npm install --global lerna eslint-cli typescript tscpaths tailwindcss
 npm run bootstrap
 ```
 
