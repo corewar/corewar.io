@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import styledProperty from 'styled-property'
 
-import { colour, space } from '../common/theme'
+import { colour } from '../common/theme'
 
 const BaseLink = styled(NavLink)`
   color: ${colour.grey};
