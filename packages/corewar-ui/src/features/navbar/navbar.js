@@ -15,7 +15,7 @@ const navigationData = {
 }
 
 const NavBar = ({ interfaceMode }) => (
-  <div className="flex row-start-2 text-center ml-12">
+  <div className="flex row-start-2 text-center ml-16">
     {navigationData[interfaceMode].map(link => (
       <TabLink key={link.url} to={link.url}>
         {link.text}

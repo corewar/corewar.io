@@ -19,7 +19,7 @@ import { step, init, run, pause, getCoreInstructions } from '../simulator/action
 const DesktopContainer = styled.section`
   display: grid;
   grid-template-columns: 5fr 0.75fr 4fr 1px;
-  grid-template-rows: ${space.header} 1fr;
+  grid-template-rows: 64px 1fr;
   grid-column-gap: ${space.m};
   position: relative;
 `

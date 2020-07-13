@@ -5,8 +5,8 @@ import CorewarLogo from '../../img/corewar-logo.png'
 
 const Logo = ({ siteName, siteDomain }) => (
   <a className="flex" href={`/`}>
-    <img className="m-4 w-12" src={CorewarLogo} alt="corewar-logo" />
-    <div className="font-body text-xl text-blue font-light leading-5 pl-4 pt-2 cursor-pointer">
+    <img className="w-8 h-8 m-2" src={CorewarLogo} alt="corewar-logo" />
+    <div className="flex font-body text-xl text-blue font-light leading-5 pl-4 cursor-pointer items-center">
       {siteName}
       <span className="font-medium text-white">{siteDomain}</span>
     </div>
