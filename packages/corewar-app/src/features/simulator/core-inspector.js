@@ -26,19 +26,19 @@ const MemoryAddress = ({ command }) => (
 )
 
 const CoreInspector = () => (
-  <div className="h-core flex flex-col">
+  <div className="h-core flex flex-col flex-initial bg-gray-800 rounded-lg">
     <SectionHeader>Core Inspector</SectionHeader>
-    <table className="w-full text-sm text-right table-fixed mt-4">
-      <thead className="font-semibold h-12">
+    <table className="text-sm text-right table-fixed mt-4">
+      <thead className="font-semibold text-xs h-12">
         <tr>
-          <td className="w-16">Address</td>
-          <td className="w-20">Instruction</td>
-          <td className="w-24">A Operand</td>
-          <td className="w-24">B Operand</td>
+          <td className="break-all lg:w-16">Address</td>
+          <td className="break-all lg:w-20">Instruction</td>
+          <td className="break-all lg:w-24">A Operand</td>
+          <td className="break-all lg:w-24">B Operand</td>
         </tr>
       </thead>
       <tbody>
-        {data.map((d) => (
+        {data.map(d => (
           <MemoryAddress command={d} key={d.address} />
         ))}
       </tbody>

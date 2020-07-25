@@ -7,13 +7,6 @@ module.exports = {
       code: ['Anonymous Pro']
     },
     extend: {
-      spacing: {
-        '72': '18rem',
-        '84': '21rem',
-        '96': '24rem',
-        '128': '32rem',
-        core: '37.5rem'
-      },
       colors: {
         gray: {
           '100': '#EEF2F7',
@@ -26,6 +19,26 @@ module.exports = {
           '800': '#20252C',
           '900': '#15191E'
         }
+      },
+      maxWidth: {
+        core: '37.5rem'
+      },
+      minWidth: {
+        '96': '24rem'
+      },
+      maxHeight: {
+        core: '37.5rem'
+      },
+      minHeight: {
+        '16': '4rem',
+        '96': '24rem'
+      },
+      spacing: {
+        '72': '18rem',
+        '84': '21rem',
+        '96': '24rem',
+        '128': '32rem',
+        core: '37.5rem'
       }
     }
   },
