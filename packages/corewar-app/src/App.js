@@ -34,13 +34,13 @@ function App() {
         </TabRow>
         <Body>
           <Switch>
-            <Route path="/">
+            <Route exact path="/">
               <Editor />
             </Route>
             <Route path="/editor">
               <Editor />
             </Route>
-            <Route exact path="/player">
+            <Route path="/player">
               <Player />
             </Route>
           </Switch>
