@@ -28,19 +28,19 @@ function App() {
       <div className="App bg-gray-900 w-full min-h-screen flex flex-col p-2 font-body text-gray-100">
         <Header></Header>
         <TabRow>
-          {routes.map((r) => (
+          {routes.map(r => (
             <Tab key={r.to} route={r} />
           ))}
         </TabRow>
         <Body>
           <Switch>
-            <Route exact path="/">
+            <Route path="/">
               <Editor />
             </Route>
             <Route path="/editor">
               <Editor />
             </Route>
-            <Route path="/player">
+            <Route exact path="/player">
               <Player />
             </Route>
           </Switch>

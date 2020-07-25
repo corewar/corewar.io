@@ -15,7 +15,7 @@ const files = [
 
 const File = ({ file }) => (
   <li
-    className={`min-h-16 flex flex-row items-center text-gray-100 rounded-l-full text-sm p-2 ${file.active &&
+    className={`min-h-16 flex flex-row items-center text-gray-100 rounded-l-full text-sm p-2 cursor-pointer hover:underline ${file.active &&
       'bg-gray-700 '}`}
   >
     <div className="w-8 h-8 mx-2">{file.icon}</div>
