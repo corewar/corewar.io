@@ -7,7 +7,7 @@ const FileManager = () => (
   <>
     <div className="w-full">
       <FileButton>New</FileButton>
-      <FileButton>Load</FileButton>
+      <FileButton>Open</FileButton>
     </div>
     <section className="flex flex-row flex-1 mt-4 pr-8">
       <FileSelector></FileSelector>
