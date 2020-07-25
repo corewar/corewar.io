@@ -8,8 +8,8 @@
         "test": "lerna run test --stream",
         "coverage": "lerna run coverage --stream",
         "build": "lerna run build --stream",
-        "lint": "eslint \"**/*.ts\"",
-        "lint:fix": "eslint --fix \"**/*.ts\""
+        "lint": "eslint \"**/*.ts\" \"**/*.js\"",
+        "lint:fix": "eslint --fix \"**/*.ts\" \"**/*.js\""
     },
     "devDependencies": {
         "@types/chai": "^4.2.7",
