@@ -2,8 +2,8 @@ import React from 'react'
 import ThreeWay from './three-way'
 
 const scores = [
-  [{ colour: 'bg-red-500' }, { colour: 'bg-blue-500' }],
-  [{ colour: 'bg-green-500' }, { colour: 'bg-purple-500' }]
+  [{ colour: 'bg-warriors-0' }, { colour: 'bg-warriors-1' }],
+  [{ colour: 'bg-warriors-2' }, { colour: 'bg-warriors-3' }]
 ]
 
 const OverallResults = () => (
