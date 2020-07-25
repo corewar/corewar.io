@@ -1,39 +1,58 @@
 {
-  "name": "corewar",
-  "version": "0.2.1",
-  "description": "HTML5 & javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)",
-  "main": "./dist/index.js",
-  "types": "./typings/index.d.ts",
-  "scripts": {
-    "test": "jest",
-    "coverage": "jest --coverage",
-    "build": "tsc -p tsconfig-build.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
-    "prepublish": "npm run build",
-    "prepublishOnly": "npm run lint && npm test"
-  },
-  "files": [
-    "dist/**/*",
-    "typings/**/*"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/corewar/corewar.git"
-  },
-  "author": "Gareth Williams",
-  "contributors": [
-    {
-      "name": "Doug McDonald"
+    "name": "corewar",
+    "version": "0.2.1",
+    "description": "HTML5 & javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)",
+    "main": "./dist/index.js",
+    "types": "./typings/index.d.ts",
+    "scripts": {
+        "test": "jest",
+        "coverage": "jest --coverage",
+        "build": "tsc -p tsconfig-build.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
+        "prepublish": "npm run build",
+        "prepublishOnly": "npm test"
+    },
+    "files": [
+        "dist/**/*",
+        "typings/**/*"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/corewar/corewar.git"
+    },
+    "author": "Gareth Williams",
+    "contributors": [
+        {
+            "name": "Doug McDonald"
+        }
+    ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/corewar/corewar/issues"
+    },
+    "homepage": "https://github.com/corewar/corewar#readme",
+    "dependencies": {
+        "clone": "^2.1.2",
+        "core-js": "^2.6.11",
+        "diff": ">=3.5.0",
+        "pubsub-js": "^1.8.0"
+    },
+    "devDependencies": {
+        "@types/chai": "^4.2.7",
+        "@types/clone": "^0.1.30",
+        "@types/core-js": "^0.9.43",
+        "@types/graphql": "^14.5.0",
+        "@types/jest": "^24.9.0",
+        "@types/sinon": "^7.5.1",
+        "@types/sinon-chai": "^3.2.3",
+        "chai": "^4.1.2",
+        "jest": "^24.9.0",
+        "jest-cli": "^24.9.0",
+        "react-dev-utils": "^5.0.2",
+        "sinon": "^4.1.2",
+        "sinon-chai": "^2.14.0",
+        "ts-jest": "^26.1.0",
+        "tsconfig-paths": "^3.9.0",
+        "tscpaths": "0.0.9",
+        "typescript": "^3.7.5"
     }
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/corewar/corewar/issues"
-  },
-  "homepage": "https://github.com/corewar/corewar#readme",
-  "dependencies": {
-    "clone": "^2.1.2",
-    "core-js": "^2.6.11",
-    "diff": ">=3.5.0",
-    "pubsub-js": "^1.8.0"
-  }
 }
