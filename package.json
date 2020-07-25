@@ -2,7 +2,7 @@
     "name": "root",
     "private": true,
     "scripts": {
-        "bootstrap": "lerna exec npm install && lerna bootstrap && lerna run prepublish --stream",
+        "bootstrap": "lerna bootstrap && lerna run prepublish --stream",
         "start": "lerna run prepublish --stream && lerna run start",
         "clean": "lerna clean",
         "test": "lerna run test --stream",
