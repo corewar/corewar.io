@@ -1,6 +1,7 @@
 {
   "packages": [
     "packages/corewar",
+    "packages/corewar-api",
     "packages/corewar-ui",
     "packages/corewar-hills-service",
     "packages/corewar-repository",

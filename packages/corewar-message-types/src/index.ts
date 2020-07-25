@@ -20,30 +20,6 @@ export interface IHillCreatedMessage extends SendableMessageInfo {
     }
 }
 
-export interface IUpdateHillMessage extends SendableMessageInfo {
-    body: {
-        id: string
-        userId: string
-        name: string
-        rules: IRules
-        warriors: {
-            redcode: string
-        }[]
-    }
-}
-
-export interface IHillUpdatedMessage extends SendableMessageInfo {
-    body: {
-        id: string
-        userId: string
-        name: string
-        rules: IRules
-        warriors: {
-            redcode: string
-        }[]
-    }
-}
-
 export interface IDeleteHillMessage extends SendableMessageInfo {
     body: {
         id: string

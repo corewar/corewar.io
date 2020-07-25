@@ -1,0 +1,385 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Corewar Hill Service API",
+        "contact": {
+            "name": "Corewar.io",
+            "url": "https://github.com/corewar/corewar.io"
+        },
+        "description": "Corewar Hill Service API - use this API to create, query and delete hills and their rules",
+        "license": {
+            "name": "MIT"
+        },
+        "version": "1.0.0"
+    },
+    "tags": [
+        {
+            "name": "hills"
+        }
+    ],
+    "servers": [
+        {
+            "description": "The Corewar API URL? - not really sure what you want from me here",
+            "url": "https://corewar-hills-service.azurewebsites.net"
+        }
+    ],
+    "components": {
+        "parameters": {
+            "IdParameter": {
+                "name": "id",
+                "in": "query",
+                "description": "Optional unique ID of a specific entity to return",
+                "required": false,
+                "schema": {
+                    "$ref": "#/components/schemas/EntityId"
+                }
+            }
+        },
+        "schemas": {
+            "EntityId": {
+                "required": [
+                    "id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                }
+            },
+            "Operand": {
+                "required": [
+                    "mode",
+                    "address"
+                ],
+                "properties": {
+                    "mode": {
+                        "type": "string",
+                        "enum": [
+                            "#",
+                            "$",
+                            "*",
+                            "@",
+                            "{",
+                            "<",
+                            "}",
+                            ">"
+                        ]
+                    },
+                    "address": {
+                        "type": "number",
+                        "format": "int32"
+                    }
+                }
+            },
+            "Instruction": {
+                "required": [
+                    "opcode",
+                    "modifier",
+                    "aOperand",
+                    "bOperand"
+                ],
+                "properties": {
+                    "opcode": {
+                        "type": "string",
+                        "enum": [
+                            "DAT",
+                            "MOV",
+                            "ADD",
+                            "SUB",
+                            "MUL",
+                            "DIV",
+                            "MOD",
+                            "JMP",
+                            "JMZ",
+                            "JMN",
+                            "DJN",
+                            "CMP",
+                            "SEQ",
+                            "SNE",
+                            "SLT",
+                            "SPL",
+                            "NOP"
+                        ]
+                    },
+                    "modifier": {
+                        "type": "string",
+                        "enum": [
+                            "A",
+                            "B",
+                            "AB",
+                            "BA",
+                            "F",
+                            "X",
+                            "I"
+                        ]
+                    },
+                    "aOperand": {
+                        "$ref": "#/components/schemas/Operand"
+                    },
+                    "bOperand": {
+                        "$ref": "#/components/schemas/Operand"
+                    }
+                }
+            },
+            "Options": {
+                "properties": {
+                    "coresize": {
+                        "type": "number",
+                        "format": "int32"
+                    },
+                    "maximumCycles": {
+                        "type": "number",
+                        "format": "int32"
+                    },
+                    "initialInstruction": {
+                        "$ref": "#/components/schemas/Instruction"
+                    },
+                    "instructionLimit": {
+                        "type": "number",
+                        "format": "int32"
+                    },
+                    "maxTasks": {
+                        "type": "number",
+                        "format": "int32"
+                    },
+                    "minSeparation": {
+                        "type": "number",
+                        "format": "int32"
+                    },
+                    "standard": {
+                        "type": "string",
+                        "enum": [
+                            "ICWS86",
+                            "ICWS88",
+                            "ICWS94"
+                        ]
+                    }
+                }
+            },
+            "Rules": {
+                "required": [
+                    "rounds",
+                    "options"
+                ],
+                "properties": {
+                    "rounds": {
+                        "type": "number",
+                        "format": "int32"
+                    },
+                    "options": {
+                        "$ref": "#/components/schemas/Options"
+                    }
+                }
+            },
+            "Hill": {
+                "required": [
+                    "name",
+                    "rules"
+                ],
+                "properties": {
+                    "userId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "rules": {
+                        "$ref": "#/components/schemas/Rules"
+                    }
+                }
+            },
+            "HillEntity": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/EntityId"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Hill"
+                    }
+                ]
+            },
+            "HillEntities": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/HillEntity"
+                }
+            },
+            "ValidationError": {
+                "type": "array",
+                "items": {
+                    "description": "Validation message",
+                    "type": "string"
+                },
+                "minItems": 1
+            },
+            "Error": {
+                "required": [
+                    "code",
+                    "message"
+                ],
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "paths": {
+        "/hills": {
+            "get": {
+                "summary": "List hills",
+                "description": "Retrieve a specific Hill or all Hills if no ID is specified",
+                "operationId": "getHills",
+                "tags": [
+                    "hills"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/IdParameter"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array containing hills",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HillEntities"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Create a new Hill",
+                "description": "Create a new Hill with the specified name and rules",
+                "operationId": "createHill",
+                "tags": [
+                    "hills"
+                ],
+                "requestBody": {
+                    "description": "Details of the Hill to be created",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Hill"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "The newly created hill",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HillEntity"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation failure",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete an existing hill",
+                "description": "Delete the Hill with the specified ID. You must be the owner of the Hill to delete it.",
+                "operationId": "deleteHill",
+                "tags": [
+                    "hills"
+                ],
+                "requestBody": {
+                    "description": "The unique ID of the Hill to delete",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EntityId"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Unique ID of the deleted hill",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EntityId"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation failure",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Hill with specified ID not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

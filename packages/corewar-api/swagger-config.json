@@ -1,0 +1,31 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Corewar API",
+        "contact": {
+            "name": "Corewar.io",
+            "url": "https://github.com/corewar/corewar.io"
+        },
+        "description": "Corewar API - The hill your warrior will die on",
+        "license": {
+            "name": "MIT"
+        },
+        "version": "1.0.0"
+    },
+    "tags": [
+        {
+            "name": "hills"
+        }
+    ],
+    "servers": [
+        {
+            "description": "The Corewar API URL? - not really sure what you want from me here",
+            "url": "https://corewar-api.azurewebsites.net"
+        }
+    ],
+    "apis": [
+        {
+            "url": "./corewar-hills-service.json"
+        }
+    ]
+}

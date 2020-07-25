@@ -1,0 +1,20 @@
+{
+  "name": "corewar-api",
+  "version": "1.0.0",
+  "description": "Corewar API provides hills for the classic game Corewar",
+  "main": "index.js",
+  "scripts": {
+    "build:swagger": "npx swagger-combine swagger-config.json -o ./generated/swagger.json",
+    "prelint": "npm run build:swagger",
+    "lint": "spectral lint ./generated/swagger.json",
+    "prebuild": "npm run build:swagger",
+    "build": "npx snc ./generated/swagger.json -o ./generated"
+  },
+  "author": "gareththegeek",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@stoplight/spectral": "^5.4.0",
+    "swagger-combine": "^1.1.2"
+  }
+}
