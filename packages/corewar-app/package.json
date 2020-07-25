@@ -1,6 +1,6 @@
 {
   "name": "corewar-app",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "private": true,
   "dependencies": {
     "@monaco-editor/react": "^3.4.2",
