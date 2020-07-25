@@ -39,7 +39,7 @@
     "typeface-lato": "0.0.44"
   },
   "scripts": {
-    "start": "npm run build:style && react-scripts start",
+    "start": "set PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "coverage": "react-scripts test --env=jsdom --coverage",
