@@ -1,0 +1,9 @@
+@tailwind base;
+
+input[type='radio']:checked + label {
+  @apply bg-gray-500;
+}
+
+@tailwind components;
+
+@tailwind utilities;
