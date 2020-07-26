@@ -48,22 +48,34 @@ npm run build
 
 ### Lint and test all packages
 
-Linting and testing are performed by `eslint` and `jest`.
+#### Linting and testing are performed by `eslint` and `jest`.
 
 ```bash
 npm run lint
 npm test
 ```
 
-Automatically fix linting errors with
+#### Automatically fix linting errors with
 
 ```bash
 npm run lint:fix
 ```
 
-Produce code coverage report with
+#### Produce code coverage report with
 
 ```bash
 npm run coverage
 ```
 
+#### Add a new dependency
+
+e.g. add typescript to corewar-api as a dev dependency
+```bash
+lerna add --scope corewar-api typescript --dev
+```
+e.g. add apollo-server to corewar-api as a dependency
+```bash
+lerna add --scope corewar-api apollo-server
+```
+
+Alternatively you can install using `npm install` in the specific package directory and then execute `lerna bootstrap` in the mono repo root.
