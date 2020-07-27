@@ -1,11 +1,11 @@
 import {
-  SET_CURRENT_WARRIOR,
+  SET_CURRENT_FILE,
   TOGGLE_CONSOLE,
   HIDE_CONSOLE,
   SHOW_CONSOLE,
   TOGGLE_FILE_MANAGER,
-  SET_WARRIORS,
-  LOAD_WARRIOR,
+  SET_FILES,
+  LOAD_FILE,
   SET_COLOURS
 } from './actions'
 
@@ -13,59 +13,59 @@ import {
 import initialState from './initialState'
 
 // selectors
-export const getParserState = state => state.parser
+export const getFileState = state => state.file
 
 // reducer
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_CURRENT_WARRIOR:
+    case SET_CURRENT_FILE:
       return {
         ...state,
         displayFileManager: false,
-        currentWarrior: action.currentWarrior
+        currentFile: action.currentFile
       }
 
-    case SET_WARRIORS:
+    case SET_FILES:
       return {
         ...state,
-        warriors: action.warriors
+        files: action.files
       }
 
-    case SET_COLOURS:
+    // case SET_COLOURS:
+    //   return {
+    //     ...state,
+    //     colours: action.colours
+    //   }
+
+    case LOAD_FILE:
       return {
         ...state,
-        colours: action.colours
+        currentFile: action.file
       }
 
-    case LOAD_WARRIOR:
-      return {
-        ...state,
-        currentWarrior: action.warrior
-      }
+    // case TOGGLE_CONSOLE:
+    //   return {
+    //     ...state,
+    //     displayConsole: !state.displayConsole
+    //   }
 
-    case TOGGLE_CONSOLE:
-      return {
-        ...state,
-        displayConsole: !state.displayConsole
-      }
+    // case HIDE_CONSOLE:
+    //   return {
+    //     ...state,
+    //     displayConsole: false
+    //   }
 
-    case HIDE_CONSOLE:
-      return {
-        ...state,
-        displayConsole: false
-      }
+    // case SHOW_CONSOLE:
+    //   return {
+    //     ...state,
+    //     displayConsole: true
+    //   }
 
-    case SHOW_CONSOLE:
-      return {
-        ...state,
-        displayConsole: true
-      }
-
-    case TOGGLE_FILE_MANAGER:
-      return {
-        ...state,
-        displayFileManager: !state.displayFileManager
-      }
+    // case TOGGLE_FILE_MANAGER:
+    //   return {
+    //     ...state,
+    //     displayFileManager: !state.displayFileManager
+    //   }
 
     default:
       return state

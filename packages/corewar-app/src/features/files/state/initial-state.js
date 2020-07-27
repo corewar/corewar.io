@@ -1,5 +1,5 @@
-import { warriorLibrary } from './warriorLibrary'
-import defaultWarrior from './defaultWarrior'
+import { warriorLibrary } from './warrior-library'
+import defaultWarrior from './default-warrior'
 
 const initialState = {
   currentFileIndex: 0,
