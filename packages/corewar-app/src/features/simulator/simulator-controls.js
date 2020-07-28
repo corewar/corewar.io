@@ -6,7 +6,7 @@ import { ReactComponent as SpeedIcon } from '../../img/icons/speedometer-outline
 import { ReactComponent as SettingsIcon } from '../../img/icons/settings-outline.svg'
 
 const SimulatorControls = () => (
-  <div className="h-16 w-core mt-2 flex justify-evenly items-center text-gray-100">
+  <div className="h-16 max-w-core mt-2 flex justify-evenly items-center text-gray-100">
     <PlayIcon className="stroke-current h-12 w-12"></PlayIcon>
     <StepIcon className="stroke-current h-6 w-6"></StepIcon>
     <ReloadIcon className="stroke-current h-6 w-6"></ReloadIcon>
