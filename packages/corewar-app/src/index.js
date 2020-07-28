@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import * as serviceWorker from './serviceWorker'
-import Root from './components/Root'
-import store from './redux/store'
+import Root from './Root'
+import store, { history } from './redux/store'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Root store={store} />
+    <Root store={store} history={history} />
   </React.StrictMode>,
   document.getElementById('root')
 )

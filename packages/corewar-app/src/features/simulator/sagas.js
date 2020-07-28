@@ -1,5 +1,5 @@
-import { channel, delay } from 'redux-saga'
-import { call, put, takeEvery, takeLatest, select, take, fork } from 'redux-saga/effects'
+import { channel } from 'redux-saga'
+import { call, put, takeEvery, takeLatest, select, take, fork, delay } from 'redux-saga/effects'
 import * as PubSub from 'pubsub-js'
 import { corewar } from 'corewar'
 
@@ -25,9 +25,9 @@ import {
   SET_CORE_OPTIONS_REQUESTED
 } from './actions'
 
-import { getParserState } from '../parser/reducer'
+import { getFileState } from '../files/reducer'
 import { getSimulatorState } from './reducer'
-import { getCoreOptions } from '../../helpers/coreOptions'
+import { getCoreOptions } from '../../services/core-options'
 
 // oddities
 const roundProgressChannel = channel()
@@ -105,7 +105,7 @@ export function* republishSaga() {
 }
 
 export function* getCoreOptionsFromState() {
-  const { standardId, warriors } = yield select(getParserState)
+  const { standardId, files } = yield select(getFileState)
   const {
     coreSize,
     maximumCycles,
@@ -117,7 +117,7 @@ export function* getCoreOptionsFromState() {
 
   const p = {
     result: roundResult,
-    warriors: warriors,
+    warriors: files,
     options: {
       standard: standardId,
       coresize: coreSize,
@@ -131,13 +131,13 @@ export function* getCoreOptionsFromState() {
   return p
 }
 
-export function* initialiseCore(options, warriors) {
+export function* initialiseCore(options, files) {
   yield call(PubSub.publishSync, 'RESET_CORE')
   console.log('resetting')
   yield call(
     [corewar, corewar.initialiseSimulator],
     options,
-    warriors.map(warrior => ({ data: warrior.data, source: warrior })),
+    files.map(file => ({ data: file.data, source: file })),
     PubSub
   )
 

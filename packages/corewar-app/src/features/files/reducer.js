@@ -10,7 +10,7 @@ import {
 } from './actions'
 
 // state
-import initialState from './initialState'
+import initialState from './state/initial-state'
 
 // selectors
 export const getFileState = state => state.file
