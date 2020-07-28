@@ -9,7 +9,7 @@ import defaultWarrior from './state/default-warrior'
 import {
   SET_CURRENT_FILE,
   PARSE_REQUESTED,
-  ADD_FILE_REQUESTED,
+  NEW_FILE_REQUESTED,
   DELETE_FILE_REQUESTED,
   SHOW_CONSOLE,
   HIDE_CONSOLE,
@@ -63,7 +63,7 @@ export function* parseFileSaga({ source }) {
   //   }
 }
 
-export function* addFileSaga() {
+export function* newFileSaga() {
   yield put({ type: PAUSE })
 
   const { files } = yield select(getFileState)
@@ -138,7 +138,7 @@ export function* loadFileSaga({ id }) {
 export function* openFileSaga({ source }) {
   //TODO: there is a delay at the end of addWarrior (1000ms)
   //which impacts on the parse speed, could improve this
-  yield call(addFileSaga)
+  yield call(newFileSaga)
   yield call(parseFileSaga, { source })
 }
 
@@ -194,7 +194,7 @@ function* releaseColour(id) {
 // watchers
 export const fileWatchers = [
   takeLatest(PARSE_REQUESTED, parseFileSaga),
-  takeEvery(ADD_FILE_REQUESTED, addFileSaga),
+  takeEvery(NEW_FILE_REQUESTED, newFileSaga),
   takeEvery(DELETE_FILE_REQUESTED, deleteFileSaga),
   takeEvery(LOAD_FILE_REQUESTED, loadFileSaga),
   takeEvery(OPEN_FILE_REQUESTED, openFileSaga),

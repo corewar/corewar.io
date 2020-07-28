@@ -3,8 +3,9 @@ import FileButton from './file-button'
 import FileSelector from './file-selector'
 import CodeEditor from './code-editor'
 import { useSelector, useDispatch } from 'react-redux'
+import { newFile, openFile, toggleFile, deleteFile } from './actions'
 
-const FileManager = ({ newFile, openFile, toggleFile, deleteFile }) => {
+const FileManager = () => {
   const shiz = useSelector(state => state.file)
   console.log(shiz)
   const files = [],
