@@ -1,11 +1,11 @@
 declare module 'mongo-repo' {
     import { FilterQuery, ObjectID } from 'mongodb'
 
-    export interface DocumentWithId {
+    interface DocumentWithId {
         _id: string
     }
 
-    export interface Repo<T> {
+    interface Repo<T> {
         get: (document: ObjectID | string | T & DocumentWithId) => Promise<T>
         project: <TProjection>(document: ObjectID | string | T & DocumentWithId, projection: unknown) => Promise<TProjection>
         add: (document: T) => Promise<T | T[]>
@@ -34,14 +34,14 @@ declare module 'mongo-repo' {
         count: (criteria?: FilterQuery<T>) => Promise<number>
     }
 
-    export interface Database {
+    interface Database {
         repo: <T>(collectionName: string) => Repo<T>
     }
 
-    export interface MongoRepo {
+    interface MongoRepo {
         connectDB: (connectionString: string) => Promise<Database>
     }
 
     const mongoRepo: MongoRepo
-    export default mongoRepo
+    export = mongoRepo
 }
