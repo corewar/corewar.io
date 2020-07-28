@@ -1,0 +1,26 @@
+type WarriorMatchResult {
+    opponent: Warrior!
+    won: Float!
+    drawn: Float!
+    lost: Float!
+    given: Float!
+    taken: Float!
+}
+
+type WarriorResult {
+    warrior: Warrior!
+    rank: Int!
+    score: Float!
+    won: Float!
+    drawn: Float!
+    lost: Float!
+    results: [WarriorMatchResult!]!
+}
+
+type Result {
+    age: Int!
+    // TODO timestamp scalar
+    timestamp: String!
+    warriorResults: [WarriorResult!]!
+    challenge: Challenge!
+}

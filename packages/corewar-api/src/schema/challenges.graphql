@@ -1,0 +1,14 @@
+enum ChallengeStatus {
+    Queued
+    Running
+    Complete
+    Failed
+}
+
+type Challenge {
+    id: String!
+    warriorId: String!
+    hillId: String!
+    status: ChallengeStatus!
+    message: String
+}

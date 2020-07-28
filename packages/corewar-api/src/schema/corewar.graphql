@@ -1,5 +1,36 @@
+type MutationResult {
+    success: Boolean!
+    message: String
+}
 
+type CreateMutationResult implements MutationResult {
+    id: String
+}
 
 type Query {
-    hills(): Hill
+    // TODO uuid scalar
+    // TODO pagination - cursors?
+    hills(id: String): [Hill!]!
+    challenges(id: String): [Challenge!]!
+}
+
+type Mutation {
+    createWarrior(redcode: String!): CreateMutationResult
+    
+    createHill(name: String!, rules: RulesInput!): CreateMutationResult
+    renameHill(name: String!): MutationResult
+    deleteHill(id: String!): MutationResult
+
+    challengeHill(warriorId: String!): CreateMutationResult
+    deleteChallenge(challengeId: String!): MutationResult
+}
+
+type Subscription {
+    hillCreated: Hill
+    hillRenamed: Hill
+    hillDeleted: String
+
+    hillChallenged(hillId: String): Challenge
+    hillChallengeStatusChange(hillId: String, challengeId: String): Challenge
+    challengeDeleted: Challenge
 }
