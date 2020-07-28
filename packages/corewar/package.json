@@ -36,5 +36,7 @@
         "diff": ">=3.5.0",
         "pubsub-js": "^1.8.0"
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "@graphql-codegen/cli": "^1.17.6"
+    }
 }

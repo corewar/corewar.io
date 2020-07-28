@@ -19,10 +19,14 @@
     "url": "https://github.com/corewar/corewar.io/issues"
   },
   "homepage": "https://corewar.io",
-  "devDependencies": {},
   "dependencies": {
     "apollo-server": "^2.16.0",
+    "dotenv": "^8.2.0",
     "graphql": "^15.3.0",
-    "graphql-tools": "^6.0.15"
+    "graphql-tools": "^6.0.15",
+    "mongo-repo": "^1.0.2"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.17.6"
   }
 }

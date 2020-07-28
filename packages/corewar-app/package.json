@@ -44,5 +44,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.17.6"
+  }
 }

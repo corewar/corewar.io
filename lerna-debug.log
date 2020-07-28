@@ -1,0 +1,14 @@
+0 silly argv {
+0 silly argv   _: [ 'add' ],
+0 silly argv   scope: 'corewar-api',
+0 silly argv   dev: true,
+0 silly argv   D: true,
+0 silly argv   globs: [],
+0 silly argv   lernaVersion: '3.22.1',
+0 silly argv   '$0': 'C:\\Users\\gareth\\AppData\\Roaming\\npm\\node_modules\\lerna\\cli.js',
+0 silly argv   pkg: '@types/mongo-repo'
+0 silly argv }
+1 notice cli v3.22.1
+2 verbose rootPath C:\dev\corewar\corewar.io
+3 error Error: 404 Not Found - GET https://registry.npmjs.org/@types%2fmongo-repo - Not found
+3 error     at C:\dev\corewar\corewar.io\node_modules\@evocateur\npm-registry-fetch\check-response.js:104:15
