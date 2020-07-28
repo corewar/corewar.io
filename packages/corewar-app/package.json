@@ -26,7 +26,8 @@
     "coverage": "npx react-scripts test --env=jsdom --coverage",
     "eject": "npx react-scripts eject",
     "build:style": "tailwind build src/global/styles.css -o src/global/tailwind.css",
-    "prepublish": "npm run build:style"
+    "prepublish": "npm run build:style",
+    "prebuild": "npm run build:style"
   },
   "eslintConfig": {
     "extends": "react-app"

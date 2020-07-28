@@ -15,9 +15,8 @@ const files = [
 
 const File = ({ file }) => (
   <li
-    className={`h-16 flex flex-row items-center text-gray-100 rounded-l-full text-sm px-2 ${
-      file.active && 'bg-gray-700 '
-    }`}
+    className={`min-h-16 flex flex-row items-center text-gray-100 rounded-l-full text-sm p-2 cursor-pointer hover:underline ${file.active &&
+      'bg-gray-700 '}`}
   >
     <div className="w-8 h-8 mx-2">{file.icon}</div>
     <span className="flex-1">{file.name}</span>
@@ -27,7 +26,7 @@ const File = ({ file }) => (
 
 const FileSelector = () => (
   <ul className="w-84">
-    {files.map((f) => (
+    {files.map(f => (
       <File file={f} key={f.name}></File>
     ))}
   </ul>

@@ -9,13 +9,17 @@ import SectionHeaderUnderlined from '../../app-chrome/section-header-underlined'
 const Configuration = () => (
   <>
     <FileButton>Open</FileButton>
-    <div className="mt-2 p-4 bg-gray-700 rounded-lg">
-      <SectionHeaderUnderlined>Configuration</SectionHeaderUnderlined>
-      <RadioToggle></RadioToggle>
-      <NumberHotStepper></NumberHotStepper>
-      <SectionHeaderUnderlined>Warriors</SectionHeaderUnderlined>
-      <ConfigurationFileSelector></ConfigurationFileSelector>
-      <BigRedButton></BigRedButton>
+    <div className="mt-8 p-4 bg-gray-700 rounded-lg">
+      <div className="mt-2 mb-8">
+        <SectionHeaderUnderlined>Configuration</SectionHeaderUnderlined>
+        <RadioToggle></RadioToggle>
+        <NumberHotStepper></NumberHotStepper>
+      </div>
+      <div className="mt-2">
+        <SectionHeaderUnderlined>Warriors</SectionHeaderUnderlined>
+        <ConfigurationFileSelector></ConfigurationFileSelector>
+        <BigRedButton></BigRedButton>
+      </div>
     </div>
   </>
 )

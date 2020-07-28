@@ -2,7 +2,7 @@ import React from 'react'
 import ThreeWay from './three-way'
 import SectionHeader from '../../app-chrome/section-header'
 
-const scores = [{ colour: 'bg-red-500' }, { colour: 'bg-blue-500' }]
+const scores = [{ colour: 'bg-warriors-0' }, { colour: 'bg-warriors-1' }]
 
 const MatchResults = () => (
   <section className="h-48">

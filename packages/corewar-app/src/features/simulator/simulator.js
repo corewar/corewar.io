@@ -5,7 +5,7 @@ import Progress from './progress'
 import SectionHeader from '../../app-chrome/section-header'
 
 const Simulator = () => (
-  <section className="w-core flex flex-col justify-between">
+  <section className="max-w-core flex flex-col flex-initial justify-between">
     <SectionHeader>Simulator</SectionHeader>
     <Progress></Progress>
     <SimulatorControls></SimulatorControls>
