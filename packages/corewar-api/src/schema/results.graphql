@@ -19,7 +19,7 @@ type WarriorResult {
 
 type Result {
     age: Int!
-    // TODO timestamp scalar
+    # TODO timestamp scalar
     timestamp: String!
     warriorResults: [WarriorResult!]!
     challenge: Challenge!

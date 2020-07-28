@@ -3,13 +3,15 @@ type MutationResult {
     message: String
 }
 
-type CreateMutationResult implements MutationResult {
+type CreateMutationResult {
     id: String
+    success: Boolean!
+    message: String
 }
 
 type Query {
-    // TODO uuid scalar
-    // TODO pagination - cursors?
+    # TODO uuid scalar
+    # TODO pagination - cursors?
     hills(id: String): [Hill!]!
     challenges(id: String): [Challenge!]!
 }

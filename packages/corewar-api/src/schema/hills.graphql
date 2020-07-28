@@ -22,7 +22,7 @@ type Operand {
     address: Int!
 }
 
-type OperandInput {
+input OperandInput {
     mode: ModeType!
     address: Int!
 }
@@ -65,7 +65,7 @@ type Instruction {
     bOperand: Operand!
 }
 
-type InstructionInput {
+input InstructionInput {
     address: Int!
     opcode: OpcodeType!
     modifier: ModifierType!
@@ -89,7 +89,7 @@ type Options {
     standard: Standard
 }
 
-type OptionsInput {
+input OptionsInput {
     coresize: Int
     maximumCycles: Int
     initialInstruction: InstructionInput
@@ -105,7 +105,7 @@ type Rules {
     options: Options!
 }
 
-type RulesInput {
+input RulesInput {
     rounds: Int!
     size: Int!
     options: OptionsInput!
