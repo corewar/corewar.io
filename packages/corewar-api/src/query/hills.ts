@@ -1,11 +1,13 @@
 import repo from 'mongo-repo'
+import { Hill } from '@/generated/graphql'
 
 export const getHills = async (id?: string): Promise<Hill[]> => {
     const db = await repo.connectDB(process.env.DB_CONNECTION_STRING)
+    const hills = db.repo<Hill>('hills')
 
     if (!!id) {
-        return [await db.repo('hills').get(id)]
+        return [await hills.get(id)]
     } else {
-        return await db.repo('hills').getAll({})
+        return await hills.getAll({})
     }
 }
