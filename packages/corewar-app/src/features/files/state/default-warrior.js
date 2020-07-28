@@ -1,10 +1,12 @@
 import { guid } from '../../../services/guid'
 
-const blankSource = ''
+const defaultSource = `;name Your Warrior's name
+;author Your name
+;add redcode here`
 
 const defaultWarrior = {
   active: true,
-  source: blankSource,
+  source: defaultSource,
   compiled: '',
   metaData: {
     name: 'Nameless',

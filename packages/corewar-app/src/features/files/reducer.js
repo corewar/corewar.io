@@ -31,11 +31,11 @@ export default (state = initialState, action) => {
         files: action.files
       }
 
-    // case SET_COLOURS:
-    //   return {
-    //     ...state,
-    //     colours: action.colours
-    //   }
+    case SET_COLOURS:
+      return {
+        ...state,
+        colours: action.colours
+      }
 
     case LOAD_FILE:
       return {
