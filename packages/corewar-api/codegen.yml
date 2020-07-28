@@ -1,0 +1,15 @@
+overwrite: true
+schema:
+  - "./packages/corewar-api/src/schema/index.graphql"
+  - "./packages/corewar-api/src/schema/warriors.graphql"
+  - "./packages/corewar-api/src/schema/challenges.graphql"
+  - "./packages/corewar-api/src/schema/results.graphql"
+  - "./packages/corewar-api/src/schema/hills.graphql"
+documents: null
+generates:
+  packages/corewar-api/src/generated/graphql.ts:
+    plugins:
+      - "typescript"
+  ./packages/corewar-api/src/generated/graphql.schema.json:
+    plugins:
+      - "introspection"

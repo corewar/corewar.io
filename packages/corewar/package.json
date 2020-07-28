@@ -37,6 +37,8 @@
         "pubsub-js": "^1.8.0"
     },
     "devDependencies": {
-        "@graphql-codegen/cli": "^1.17.6"
+        "@graphql-codegen/cli": "^1.17.6",
+        "@graphql-codegen/introspection": "^1.17.6",
+        "@graphql-codegen/typescript": "^1.17.6"
     }
 }
