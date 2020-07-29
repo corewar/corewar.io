@@ -26,7 +26,10 @@ import { PAUSE } from '../simulator/actions'
 import { getFileState } from './reducer'
 import { getCoreOptionsFromState, initialiseCore } from '../simulator/sagas'
 
-// sagas
+/**
+ * parseFileSaga - parses a file from redcode into compiled code
+ * @param {} param0
+ */
 export function* parseFileSaga({ source }) {
   yield put({ type: PAUSE })
 
@@ -95,6 +98,11 @@ export function* newFileSaga() {
   yield call(maybeInit, fileList)
 }
 
+/**
+ * deleteFileSaga - Removes a file from the system
+ * If there is another file, picks the last one and sets it to the currentFile
+ * @param {id} param0
+ */
 export function* deleteFileSaga({ id }) {
   yield put({ type: PAUSE })
 
@@ -137,6 +145,9 @@ export function* toggleFileSaga({ id }) {
   yield call(maybeInit, fileList)
 }
 
+// TODO: Pretty sure this is more "select file"
+// or is the file picking from the warrior library?
+// think the former
 export function* loadFileSaga({ id }) {
   const { files } = yield select(getFileState)
 
@@ -156,7 +167,7 @@ export function* openFileSaga({ source }) {
 
 // internal helper functions - not exported
 function* maybeInit(files) {
-  const validFiles = files.filter(x => !x.data.hasErrors && x.data.active)
+  const validFiles = files.filter(x => !x.data.hasErrors && x.data.loaded)
 
   if (validFiles.length > 0) {
     const { options } = yield call(getCoreOptionsFromState)
