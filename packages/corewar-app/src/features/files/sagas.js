@@ -76,7 +76,7 @@ export function* newFileSaga() {
 
   const currentFile = {
     ...defaultWarrior,
-    data: { ...defaultWarrior.data, id, icon, active: true }
+    data: { ...defaultWarrior.data, id, icon, loaded: true }
   }
 
   yield put({ type: SET_CURRENT_FILE, currentFile })
@@ -117,7 +117,7 @@ export function* toggleFileSaga({ id }) {
 
   const fileList = yield call(replaceById, id, files, {
     ...file,
-    data: { ...file.data, active: !file.data.active }
+    data: { ...file.data, loaded: !file.data.loaded }
   })
 
   yield put({ type: SET_FILES, files: fileList })

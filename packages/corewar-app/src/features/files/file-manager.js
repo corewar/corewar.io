@@ -11,8 +11,8 @@ const FileManager = () => {
   return (
     <>
       <div className="w-full">
-        <FileButton onClick={() => dispatch(newFile())}>New</FileButton>
-        <FileButton onClick={() => dispatch(openFile())}>Open</FileButton>
+        <FileButton clickHandler={() => dispatch(newFile())}>New</FileButton>
+        <FileButton clickHandler={() => dispatch(openFile())}>Open</FileButton>
       </div>
       <section className="flex flex-row flex-1 mt-4 pr-8">
         <FileSelector

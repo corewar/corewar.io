@@ -5,7 +5,6 @@ const defaultSource = `;name Your Warrior's name
 ;add redcode here`
 
 const defaultWarrior = {
-  active: true,
   source: defaultSource,
   compiled: '',
   metaData: {
@@ -15,9 +14,10 @@ const defaultWarrior = {
   tokens: [],
   data: {
     id: guid(),
-    hasErrors: true,
+    hasErrors: true, // this was used to prevent empty warriors getting loaded in the core I think
     hash: '',
-    icon: null
+    icon: null,
+    loaded: true // whether or not your loaded into the core
   }
 }
 
