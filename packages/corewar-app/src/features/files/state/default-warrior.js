@@ -9,8 +9,8 @@ const defaultWarrior = {
   source: defaultSource,
   compiled: '',
   metaData: {
-    name: 'Nameless',
-    author: 'Blameless'
+    name: `Your Warrior's name`,
+    author: `Your name`
   },
   tokens: [],
   data: {
