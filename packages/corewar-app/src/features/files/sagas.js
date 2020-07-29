@@ -63,6 +63,13 @@ export function* parseFileSaga({ source }) {
   //   }
 }
 
+/**
+ * newFileSaga - adds a new blank file into the system
+ * It's added to the list of files
+ * It's given a unique(isH) colour
+ * It's given an icon based on the compiled code, but this is based on the default warrior
+ * It's loaded into the core by default - TODO: may need to check for errors first
+ */
 export function* newFileSaga() {
   yield put({ type: PAUSE })
 
@@ -110,6 +117,11 @@ export function* deleteFileSaga({ id }) {
   yield call(maybeInit, fileList)
 }
 
+/**
+ * toggleFileSaga - switches a file between 'loaded' and '!loaded'
+ * This represents whether or not the file is loaded into the core
+ * @param { id } The id of the file to be toggled into or out of the core
+ */
 export function* toggleFileSaga({ id }) {
   const { files } = yield select(getFileState)
 
