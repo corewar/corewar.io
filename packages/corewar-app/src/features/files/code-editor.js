@@ -1,4 +1,6 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { parse } from './actions'
 //import Editor from '@monaco-editor/react'
 
 // const options = {
@@ -7,7 +9,8 @@ import React from 'react'
 //   }
 // }
 
-const CodeEditor = () => {
+const CodeEditor = ({ currentFile }) => {
+  const dispatch = useDispatch()
   // const [isEditorReady, setIsEditorReady] = useState(false)
   // const valueGetter = useRef()
 
@@ -36,13 +39,8 @@ const CodeEditor = () => {
         auto-correct="off"
         auto-capitalize="off"
         spellCheck="false"
-        defaultValue={`;name Transposition Stone 
-step equ 1185; 
-mod 5 inc spl #-step, 
-<step stone mov >step,
-1-step sub inc, 
-stone djn.f stone, 
-<5555`}
+        value={currentFile ? currentFile.source : ''}
+        onChange={e => dispatch(parse(e.target.value))}
       ></textarea>
     </section>
   )
