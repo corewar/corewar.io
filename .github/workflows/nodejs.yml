@@ -17,10 +17,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install lerna --no-package-lock
-    - run: npm run bootstrap
-    - run: npm run lint
-    - run: npm run build
-    - run: npm test
+    - run: npm install lerna yarn --no-package-lock
+    - run: yarn bootstrap
+    - run: yarn lint
+    - run: yarn build
+    - run: yarn test
       env:
         CI: true
