@@ -1,33 +1,33 @@
 import React from 'react'
-
-const files = [
-  {
-    name: 'Warrior 1 with a really long name',
-    icon: <img src="https://placekitten.com/32/32" alt="kitty" className="rounded-full" />,
-    active: true
-  },
-  {
-    name: 'Looping paper',
-    icon: <img src="https://placekitten.com/32/32" alt="kitty" className="rounded-full" />,
-    active: false
-  }
-]
+import { loadFile } from './actions'
 
 const File = ({ file }) => (
   <li
-    className={`min-h-16 flex flex-row items-center text-gray-100 rounded-l-full text-sm p-2 cursor-pointer hover:underline ${file.active &&
-      'bg-gray-700 '}`}
+    className={`min-h-16 flex flex-row items-center text-gray-100 rounded-l-full text-sm p-2 cursor-pointer hover:underline ${file
+      .data.active && 'bg-gray-700 '}`}
   >
-    <div className="w-8 h-8 mx-2">{file.icon}</div>
-    <span className="flex-1">{file.name}</span>
-    <input type="checkbox" className="h-4 w-4 ml-2 border border-gray-700"></input>
+    <div className="w-8 h-8 mx-2 flex items-center">
+      {file.data.icon && (
+        <img
+          onClick={() => loadFile(file.data.id)}
+          src={`data:image/svg+xml;base64,${file.data.icon}`}
+          alt={`${file.metaData.name} avatar`}
+        />
+      )}
+    </div>
+    <span className="flex-1">{file.metaData.name}</span>
+    <input
+      type="checkbox"
+      checked={file.data.active}
+      className="h-4 w-4 ml-2 border border-gray-700"
+    ></input>
   </li>
 )
 
-const FileSelector = () => (
+const FileSelector = ({ files }) => (
   <ul className="w-84">
-    {files.map(f => (
-      <File file={f} key={f.name}></File>
+    {files.map(file => (
+      <File file={file} key={file.metaData.name}></File>
     ))}
   </ul>
 )

@@ -22,14 +22,14 @@ Documentation for the project along with guidance on corewar and the redcode lan
 
 ## Scripts
 
-This project uses `lerna` in order to manage the monorepo.
+This project uses `lerna` and `yarn` workspaces in order to manage the monorepo.
 Node 12+ is required.
 
 ### Prepare development environment
 
 ```bash
-npm install --global lerna typescript
-npm run bootstrap
+npm install --global lerna yarn
+yarn bootstrap
 ```
 
 > Currently `lerna boostrap` command is not building the `corewar` library. [Documentation](https://github.com/lerna/lerna/tree/master/commands/bootstrap) says it should automatically execute `prepublish` on all bootstrapped libraries but doesn't. In order to successfully bootstrap this application it is necessary to manually execute `lerna run prepublish` following bootstrap. I don't know why. If anyone knows, please let me know!
@@ -37,13 +37,13 @@ npm run bootstrap
 ### Start API and UI
 
 ```bash
-npm start
+yarn start
 ```
 
 ### Build UI and Core library
 
 ```bash
-npm run build
+yarn build
 ```
 
 ### Lint and test all packages
@@ -51,20 +51,20 @@ npm run build
 #### Linting and testing are performed by `eslint` and `jest`.
 
 ```bash
-npm run lint
-npm test
+yarn lint
+yarn test
 ```
 
 #### Automatically fix linting errors with
 
 ```bash
-npm run lint:fix
+yarn lint:fix
 ```
 
 #### Produce code coverage report with
 
 ```bash
-npm run coverage
+yarn coverage
 ```
 
 #### Add a new dependency
