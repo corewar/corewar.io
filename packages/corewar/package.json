@@ -8,8 +8,8 @@
         "test": "jest",
         "coverage": "jest --coverage",
         "build": "tsc -p tsconfig-build.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
-        "prepublish": "npm run build",
-        "prepublishOnly": "npm test"
+        "prepublish": "yarn build",
+        "prepublishOnly": "yarn test"
     },
     "files": [
         "dist/**/*",
