@@ -7,19 +7,26 @@ const File = ({ file }) => {
   const dispatch = useDispatch()
   return (
     <li
-      className={`min-h-16 flex flex-row items-center text-gray-100 rounded-l-full text-sm p-2 cursor-pointer hover:underline ${currentFile
+      className={`min-h-16 flex flex-row items-center text-gray-100 rounded-l-full text-sm p-2 ${currentFile
         .data.id === file.data.id && 'bg-gray-700 '}`}
     >
-      <div className="w-8 h-8 mx-2 flex items-center">
+      <div
+        className="w-8 h-8 mx-2 flex items-center hover:underline cursor-pointer"
+        onClick={() => dispatch(loadFile(file.data.id))}
+      >
         {file.data.icon && (
           <img
-            onClick={() => loadFile(file.data.id)}
             src={`data:image/svg+xml;base64,${file.data.icon}`}
             alt={`${file.metaData.name} avatar`}
           />
         )}
       </div>
-      <span className="flex-1">{file.metaData.name}</span>
+      <span
+        className="flex-1 hover:underline cursor-pointer"
+        onClick={() => dispatch(loadFile(file.data.id))}
+      >
+        {file.metaData.name}
+      </span>
       <input
         type="checkbox"
         checked={file.data.loaded}
