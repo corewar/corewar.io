@@ -20,14 +20,14 @@
     "typeface-inter": "^3.12.0"
   },
   "scripts": {
-    "start": "npx react-scripts start",
-    "build": "npx react-scripts build",
-    "test": "npx react-scripts test --env=jsdom --passWithNoTests",
-    "coverage": "npx react-scripts test --env=jsdom --coverage",
-    "eject": "npx react-scripts eject",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom --passWithNoTests",
+    "coverage": "react-scripts test --env=jsdom --coverage",
+    "eject": "react-scripts eject",
     "build:style": "tailwind build src/global/styles.css -o src/global/tailwind.css",
-    "prepublish": "npm run build:style",
-    "prebuild": "npm run build:style"
+    "prepublish": "yarn build:style",
+    "prebuild": "yarn build:style"
   },
   "eslintConfig": {
     "extends": "react-app"
