@@ -1,5 +1,4 @@
 import { warriorLibrary } from './warrior-library'
-import defaultWarrior from './default-warrior'
 
 // workaround as can't import colours direct from tailwind config as it falls outside of 'src'
 const warriorColours = [
