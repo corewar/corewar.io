@@ -1,36 +1,37 @@
 import React from 'react'
-
-const files = [
-  {
-    name: 'Warrior 1 with a really long name',
-    icon: <img src="https://placekitten.com/32/32" alt="kitty" className="rounded-full" />,
-    active: true
-  },
-  {
-    name: 'Looping paper',
-    icon: <img src="https://placekitten.com/32/32" alt="kitty" className="rounded-full" />,
-    active: false
-  }
-]
+import { useSelector } from 'react-redux'
 
 const File = ({ file }) => (
   <li
-    className={`h-16 flex flex-row items-center text-gray-100 text-sm px-2 ${
-      file.active && 'bg-gray-700 '
-    }`}
+    className={`h-16 flex flex-row items-center text-gray-100 text-sm px-2 ${file.active &&
+      'bg-gray-700 '}`}
   >
-    <div className="w-8 h-8 mr-2">{file.icon}</div>
-    <span className="flex-1">{file.name}</span>
-    <input type="checkbox" className="h-4 w-4 ml-2 border border-gray-700"></input>
+    <div className="w-8 h-8 mx-2 flex items-center">
+      {file.data.icon && (
+        <img
+          src={`data:image/svg+xml;base64,${file.data.icon}`}
+          alt={`${file.metaData.name} avatar`}
+        />
+      )}
+    </div>
+    <span className="flex-1">{file.metaData.name}</span>
+    <input
+      type="checkbox"
+      checked={file.data.loaded}
+      className="h-4 w-4 ml-2 border border-gray-700"
+    ></input>
   </li>
 )
 
-const ConfigurationFileSelector = () => (
-  <ul className="mb-12">
-    {files.map((f) => (
-      <File file={f} key={f.name}></File>
-    ))}
-  </ul>
-)
+const ConfigurationFileSelector = () => {
+  const { files } = useSelector(state => state.file)
+  return (
+    <ul className="mb-12">
+      {files.map(file => (
+        <File file={file} key={file.name}></File>
+      ))}
+    </ul>
+  )
+}
 
 export default ConfigurationFileSelector
