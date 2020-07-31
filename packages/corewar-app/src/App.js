@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
 import Header from './app-chrome/header'
 import Body from './app-chrome/body'
@@ -26,8 +26,9 @@ const routes = [
 
 function App() {
   const dispatch = useDispatch()
+  const { currentFile } = useSelector(state => state.file)
   useEffect(() => {
-    dispatch(newFile())
+    !currentFile && dispatch(newFile())
   })
   return (
     <div className="App bg-gray-900 w-full min-h-screen flex flex-col p-2 font-body text-gray-100">

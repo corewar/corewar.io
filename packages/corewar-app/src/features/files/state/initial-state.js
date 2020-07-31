@@ -12,7 +12,7 @@ const warriorColours = [
 
 const initialState = {
   currentFileIndex: 0,
-  currentFile: defaultWarrior,
+  currentFile: null,
   files: [],
   warriorLibrary: warriorLibrary,
   standardId: 2, // TODO: what's the best standard to use as a default?
