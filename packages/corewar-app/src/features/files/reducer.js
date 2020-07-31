@@ -4,6 +4,7 @@ import {
   // HIDE_CONSOLE,
   // SHOW_CONSOLE,
   // TOGGLE_FILE_MANAGER,
+  TOGGLE_FILE_BROWSER,
   SET_FILES,
   LOAD_FILE,
   SET_COLOURS
@@ -17,6 +18,7 @@ export const getFileState = state => state.file
 
 // reducer
 export default (state = initialState, action) => {
+  console.log(action)
   switch (action.type) {
     case SET_CURRENT_FILE:
       return {
@@ -66,6 +68,12 @@ export default (state = initialState, action) => {
     //     ...state,
     //     displayFileManager: !state.displayFileManager
     //   }
+
+    case TOGGLE_FILE_BROWSER:
+      return {
+        ...state,
+        displayFileBrowser: !state.displayFileBrowser
+      }
 
     default:
       return state

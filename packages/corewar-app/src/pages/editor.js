@@ -1,10 +1,12 @@
 import React from 'react'
 import FileManager from '../features/files/file-manager'
+import FileBrowser from '../features/files/file-browser'
 import CoreInspector from '../features/simulator/core-inspector'
 import Simulator from '../features/simulator/simulator'
 
 const Editor = () => (
   <>
+    <FileBrowser />
     <section className="w-2/5 lg:w-1/2 flex flex-col">
       <FileManager></FileManager>
     </section>
