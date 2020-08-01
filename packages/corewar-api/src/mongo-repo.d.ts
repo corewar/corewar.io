@@ -5,7 +5,7 @@ declare module 'mongo-repo' {
         _id: string
     }
 
-    interface Repo<T> {
+    export interface Repo<T> {
         get: (document: ObjectID | string | T & DocumentWithId) => Promise<T>
         project: <TProjection>(document: ObjectID | string | T & DocumentWithId, projection: unknown) => Promise<TProjection>
         add: (document: T) => Promise<T | T[]>
@@ -34,14 +34,14 @@ declare module 'mongo-repo' {
         count: (criteria?: FilterQuery<T>) => Promise<number>
     }
 
-    interface Database {
+    export interface Database {
         repo: <T>(collectionName: string) => Repo<T>
     }
 
-    interface MongoRepo {
+    export interface MongoRepo {
         connectDB: (connectionString: string) => Promise<Database>
     }
 
     const mongoRepo: MongoRepo
-    export = mongoRepo
+    export default mongoRepo
 }

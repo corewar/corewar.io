@@ -7,7 +7,7 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "build": "tsc && tscpaths -p tsconfig.json -s ./src -o ./dist",
-    "start": "npx ts-node src/index.ts"
+    "start": "ts-node src/index.ts"
   },
   "repository": {
     "type": "git",
