@@ -4,6 +4,7 @@ import { createHill } from './createHill'
 import { createRulesInput } from '@test/createRulesInput'
 import { mockRepository } from '@test/mockRepository'
 import uuidv4 = require('uuid')
+import { Hill } from '@/generated/graphql'
 
 describe('command', () => {
     describe('hill', () => {
@@ -61,16 +62,14 @@ describe('command', () => {
                     results: [],
                     warriors: []
                 }
-                const repo = mockRepository()
-                const database = { repo: jest.fn().mockReturnValue(repo) }
+                const repo = mockRepository<Hill>()
                 uuid.mockReturnValue(expected.id)
 
                 // Act
-                const actual = await createHill(database, `\n \t  ${expected.name}  \t \n`, expected.rules)
+                const actual = await createHill(repo, `\n \t  ${expected.name}  \t \n`, expected.rules)
 
                 // Assert
-                expect(database.repo).toHaveBeenCalledWith('hills')
-                expect(repo.add).toHaveBeenCalledWith(expected)
+                expect(repo.create).toHaveBeenCalledWith(expected)
                 expect(actual).toStrictEqual({
                     id: expected.id,
                     success: true

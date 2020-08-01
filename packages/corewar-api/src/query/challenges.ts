@@ -1,12 +1,11 @@
 import { Challenge } from '@/generated/graphql'
-import { Database } from 'mongo-repo'
+import { MongoRepository } from 'mongtype'
+import sanitize from 'mongo-sanitize'
 
-export const getChallenges = async (database: Database, id?: string): Promise<Challenge[]> => {
-    const challenges = database.repo<Challenge>('challenges')
-
+export const getChallenges = async (challenges: MongoRepository<Challenge>, id?: string): Promise<Challenge[]> => {
     if (!!id) {
-        return [await challenges.get(id)]
+        return [await challenges.findById(sanitize(id))]
     } else {
-        return await challenges.getAll({})
+        return await challenges.find()
     }
 }

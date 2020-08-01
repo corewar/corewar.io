@@ -1,12 +1,11 @@
 import { Hill } from '@/generated/graphql'
-import { Database } from 'mongo-repo'
+import { MongoRepository } from 'mongtype'
+import sanitize from 'mongo-sanitize'
 
-export const getHills = async (database: Database, id?: string): Promise<Hill[]> => {
-    const hills = database.repo<Hill>('hills')
-
+export const getHills = async (hills: MongoRepository<Hill>, id?: string): Promise<Hill[]> => {
     if (!!id) {
-        return [await hills.get(id)]
+        return [await hills.findById(sanitize(id))]
     } else {
-        return await hills.getAll({})
+        return await hills.find()
     }
 }

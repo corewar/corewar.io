@@ -1,4 +1,5 @@
 require('dotenv').config()
+import 'reflect-metadata'
 import { ApolloServer } from 'apollo-server'
 import resolvers from './resolvers'
 import { readSchemas } from './readSchema'

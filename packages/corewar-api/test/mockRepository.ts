@@ -1,6 +1,9 @@
-export const mockRepository = () => ({
-    get: jest.fn(),
-    getAll: jest.fn(),
-    add: jest.fn(),
-    update: jest.fn()
-})
+import { MongoRepository } from 'mongtype'
+
+export const mockRepository = <T>(): jest.Mocked<MongoRepository<T>> =>
+    (({
+        findById: jest.fn(),
+        find: jest.fn(),
+        create: jest.fn(),
+        save: jest.fn()
+    } as unknown) as jest.Mocked<MongoRepository<T>>)

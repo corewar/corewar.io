@@ -7,7 +7,7 @@
     "test": "jest",
     "coverage": "jest --coverage",
     "build": "tsc && tscpaths -p tsconfig.json -s ./src -o ./dist",
-    "start": "ts-node src/index.ts"
+    "start": "ts-node -r tsconfig-paths/register src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -24,8 +24,10 @@
     "corewar": "^0.2.1",
     "dotenv": "^8.2.0",
     "graphql": "^15.3.0",
-    "mongo-repo": "^1.0.2",
-    "mongo-sanitize": "^1.1.0"
+    "mongo-sanitize": "^1.1.0",
+    "mongodb": "^3.6.0",
+    "mongtype": "^4.2.0",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "1.17.6",

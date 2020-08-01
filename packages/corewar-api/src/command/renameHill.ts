@@ -1,9 +1,9 @@
 import { MutationResult, Hill } from '@/generated/graphql'
-import { Database } from 'mongo-repo'
 import { validateHillName } from './validateHillName'
 import sanitize from 'mongo-sanitize'
+import { MongoRepository } from 'mongtype'
 
-export const renameHill = async (database: Database, id: string, name: string): Promise<MutationResult> => {
+export const renameHill = async (hills: MongoRepository<Hill>, id: string, name: string): Promise<MutationResult> => {
     if (!validateHillName(name)) {
         return {
             success: false,
@@ -18,8 +18,7 @@ export const renameHill = async (database: Database, id: string, name: string): 
         }
     }
 
-    const repo = database.repo<Hill>('hills')
-    const existing = await repo.get(sanitize(id))
+    const existing = await hills.findById(sanitize(id))
     if (!existing) {
         return {
             success: false,
@@ -31,7 +30,7 @@ export const renameHill = async (database: Database, id: string, name: string): 
         ...existing,
         name: name.trim()
     }
-    await repo.update(updated)
+    await hills.save(updated)
 
     return {
         success: true

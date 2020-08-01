@@ -5,6 +5,7 @@ import { createWarrior } from './createWarrior'
 import { corewar, IParseResult } from 'corewar'
 import { mockRepository } from '@test/mockRepository'
 import uuidv4 = require('uuid')
+import { Warrior } from '@/generated/graphql'
 
 describe('command', () => {
     describe('warrior', () => {
@@ -73,8 +74,7 @@ describe('command', () => {
                 }
                 uuid.mockReturnValue(expected.id)
 
-                const repo = mockRepository()
-                const database = { repo: jest.fn().mockReturnValue(repo) }
+                const repo = mockRepository<Warrior>()
 
                 parse.mockReturnValue({
                     metaData: {
@@ -87,10 +87,10 @@ describe('command', () => {
                 } as IParseResult)
 
                 // Act
-                const actual = await createWarrior(database, expected.redcode)
+                const actual = await createWarrior(repo, expected.redcode)
 
                 // Assert
-                expect(repo.add).toBeCalledWith(expected)
+                expect(repo.create).toBeCalledWith(expected)
                 expect(actual).toStrictEqual({
                     id: expected.id,
                     success: true
@@ -100,8 +100,7 @@ describe('command', () => {
             it('populates strategy on newly created warrior if present in metadata', async () => {
                 // Arrange
                 const expected = 'Extinguish all life'
-                const repo = mockRepository()
-                const database = { repo: jest.fn().mockReturnValue(repo) }
+                const repo = mockRepository<Warrior>()
 
                 parse.mockReturnValue({
                     metaData: {
@@ -115,10 +114,10 @@ describe('command', () => {
                 } as IParseResult)
 
                 // Act
-                await createWarrior(database, 'dsdsfdfs')
+                await createWarrior(repo, 'dsdsfdfs')
 
                 // Assert
-                expect(repo.add).toBeCalledWith(expect.objectContaining({ strategy: expected }))
+                expect(repo.create).toBeCalledWith(expect.objectContaining({ strategy: expected }))
             })
 
             it('returns failure if specified redcode does not contain a warrior name', async () => {

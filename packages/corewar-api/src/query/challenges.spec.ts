@@ -1,39 +1,36 @@
 import { getChallenges } from './challenges'
 import { mockRepository } from '@test/mockRepository'
+import { Challenge } from '@/generated/graphql'
 
 describe('query', () => {
     describe('challenges', () => {
         describe('getChallenges', () => {
             it('should return challenge with specified id', async () => {
                 // Arrange
-                const expected = [{ foo: 'bar' }]
+                const expected = [{ id: '123' } as Challenge]
                 const id = '1234567890abcdef'
-                const repo = mockRepository()
-                repo.get.mockResolvedValue(expected[0])
-                const database = { repo: jest.fn().mockReturnValue(repo) }
+                const repo = mockRepository<Challenge>()
+                repo.findById.mockResolvedValue(expected[0])
 
                 // Act
-                const actual = await getChallenges(database, id)
+                const actual = await getChallenges(repo, id)
 
                 // Assert
                 expect(actual).toStrictEqual(expected)
-                expect(database.repo).toBeCalledWith('challenges')
-                expect(repo.get).toBeCalledWith(id)
+                expect(repo.findById).toBeCalledWith(id)
             })
 
             it('should return all challenges if no id specified', async () => {
                 // Arrange
-                const expected = [{ foo: 'bar' }, { moo: 'mar' }]
-                const repo = mockRepository()
-                repo.getAll.mockResolvedValue(expected)
-                const database = { repo: jest.fn().mockReturnValue(repo) }
+                const expected = [{ id: '123' } as Challenge, { id: '456' } as Challenge]
+                const repo = mockRepository<Challenge>()
+                repo.find.mockResolvedValue(expected)
 
                 // Act
-                const actual = await getChallenges(database)
+                const actual = await getChallenges(repo)
 
                 // Assert
                 expect(actual).toStrictEqual(expected)
-                expect(database.repo).toBeCalledWith('challenges')
             })
         })
     })

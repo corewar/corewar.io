@@ -1,39 +1,36 @@
 import { getWarriors } from './warriors'
 import { mockRepository } from '@test/mockRepository'
+import { Warrior } from '@/generated/graphql'
 
 describe('query', () => {
     describe('warriors', () => {
         describe('getWarriors', () => {
             it('should return hill with specified id', async () => {
                 // Arrange
-                const expected = [{ foo: 'bar' }]
+                const expected = [{ id: '123' } as Warrior]
                 const id = '1234567890abcdef'
-                const repo = mockRepository()
-                repo.get.mockResolvedValue(expected[0])
-                const database = { repo: jest.fn().mockReturnValue(repo) }
+                const repo = mockRepository<Warrior>()
+                repo.findById.mockResolvedValue(expected[0])
 
                 // Act
-                const actual = await getWarriors(database, id)
+                const actual = await getWarriors(repo, id)
 
                 // Assert
                 expect(actual).toStrictEqual(expected)
-                expect(database.repo).toBeCalledWith('warriors')
-                expect(repo.get).toBeCalledWith(id)
+                expect(repo.findById).toBeCalledWith(id)
             })
 
             it('should return all warriors if no id specified', async () => {
                 // Arrange
-                const expected = [{ foo: 'bar' }, { moo: 'mar' }]
-                const repo = mockRepository()
-                repo.getAll.mockResolvedValue(expected)
-                const database = { repo: jest.fn().mockReturnValue(repo) }
+                const expected = [{ id: '123' } as Warrior, { id: '456' } as Warrior]
+                const repo = mockRepository<Warrior>()
+                repo.find.mockResolvedValue(expected)
 
                 // Act
-                const actual = await getWarriors(database)
+                const actual = await getWarriors(repo)
 
                 // Assert
                 expect(actual).toStrictEqual(expected)
-                expect(database.repo).toBeCalledWith('warriors')
             })
         })
     })

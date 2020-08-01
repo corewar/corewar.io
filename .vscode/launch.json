@@ -2,6 +2,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Debug API",
+            "request": "launch",
+            "runtimeArgs": [
+                "start"
+            ],
+            "runtimeExecutable": "yarn",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node",
+            "cwd": "${workspaceRoot}/packages/corewar-api"
+        },
+        {
             "name": "Debug API Tests",
             "request": "launch",
             "runtimeArgs": [
@@ -13,20 +26,6 @@
             ],
             "type": "pwa-node",
             "cwd": "${workspaceRoot}/packages/corewar-api"
-        },
-        {
-            "name": "Debug API",
-            "request": "launch",
-            "runtimeArgs": [
-                "run-script",
-                "start"
-            ],
-            "runtimeExecutable": "npm",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "cwd": "${workspaceRoot}/packages/corewar-api",
-            "type": "pwa-node"
         },
         {
             "name": "Debug Corewar Tests",
