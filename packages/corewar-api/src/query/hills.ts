@@ -1,9 +1,8 @@
-import { MongoRepo } from 'mongo-repo'
 import { Hill } from '@/generated/graphql'
+import { Database } from 'mongo-repo'
 
-export const getHills = async (repo: MongoRepo, id?: string): Promise<Hill[]> => {
-    const db = await repo.connectDB(process.env.DB_CONNECTION_STRING)
-    const hills = db.repo<Hill>('hills')
+export const getHills = async (database: Database, id?: string): Promise<Hill[]> => {
+    const hills = database.repo<Hill>('hills')
 
     if (!!id) {
         return [await hills.get(id)]
