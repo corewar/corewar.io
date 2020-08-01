@@ -1,15 +1,24 @@
-import { CreateMutationResult } from '@/generated/graphql'
+import { CreateMutationResult, Warrior } from '@/generated/graphql'
 import { handleError } from '@/infrastructure/handleError'
 import { createWarrior } from '@/command/createWarrior'
 import { getDatabase } from '@/infrastructure/getDatabase'
+import { getWarriors } from '@/query/warriors'
 
 export const warriors = {
+    Query: {
+        warriors: async (_: unknown, { id }: { id?: string }): Promise<Warrior[]> => {
+            try {
+                return getWarriors(await getDatabase(), id)
+            } catch (e) {
+                handleError(e)
+            }
+        }
+    },
     Mutation: {
         createWarrior: async (_: unknown, { redcode }: { redcode: string }): Promise<CreateMutationResult> => {
             try {
-                return createWarrior((await getDatabase()), redcode)
+                return createWarrior(await getDatabase(), redcode)
             } catch (e) {
-                // TODO I think I can make a middleware stack to sit between this function and graphql - is that the done thing?
                 handleError(e)
             }
         }

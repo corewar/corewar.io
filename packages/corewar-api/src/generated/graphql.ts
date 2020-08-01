@@ -159,6 +159,7 @@ export type Query = {
   __typename?: 'Query';
   hills: Array<Hill>;
   challenges: Array<Challenge>;
+  warriors: Array<Warrior>;
 };
 
 
@@ -168,6 +169,11 @@ export type QueryHillsArgs = {
 
 
 export type QueryChallengesArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryWarriorsArgs = {
   id?: Maybe<Scalars['String']>;
 };
 
@@ -265,8 +271,8 @@ export type Result = {
 export type Warrior = {
   __typename?: 'Warrior';
   id: Scalars['String'];
-  redcode: Scalars['String'];
   name: Scalars['String'];
   author: Scalars['String'];
   strategy?: Maybe<Scalars['String']>;
+  redcode?: Maybe<Scalars['String']>;
 };

@@ -1274,7 +1274,7 @@
     postcss "7.0.32"
     purgecss "^2.3.0"
 
-"@graphql-codegen/cli@1.17.6", "@graphql-codegen/cli@^1.17.6":
+"@graphql-codegen/cli@1.17.6":
   version "1.17.6"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/cli/-/cli-1.17.6.tgz#c6ff046a8aa0c29c965ed55dd937c87065a217d5"
   integrity sha512-whJYs0+4oz40rfzUHWbSl56ZAejQdEabIhyrI8KeMUt3xzQrNjnk1rIrbPca8wadjU8gTrfEfP+QJJ2g0psA/w==
@@ -1333,7 +1333,7 @@
     "@graphql-tools/utils" "^6.0.0"
     tslib "~2.0.0"
 
-"@graphql-codegen/introspection@1.17.6", "@graphql-codegen/introspection@^1.17.6":
+"@graphql-codegen/introspection@1.17.6":
   version "1.17.6"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/introspection/-/introspection-1.17.6.tgz#1c012df7dd206b096f656fd5d39414f4596dbb49"
   integrity sha512-XtkvjITzcOapL2fEFY7z6jajIlGkkf78ligCCw8C9by0kKFzzUW276GTFt7e6mrpQvZTz7YR51sHoiAa8sDgZQ==
@@ -1358,7 +1358,7 @@
     tslib "~2.0.0"
     upper-case "2.0.1"
 
-"@graphql-codegen/typescript@1.17.6", "@graphql-codegen/typescript@^1.17.6":
+"@graphql-codegen/typescript@1.17.6":
   version "1.17.6"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript/-/typescript-1.17.6.tgz#85d9e6b391747f61bbc37b8808b7c5a0f0bd84f5"
   integrity sha512-Wk/U/95zvaE12hzhJsQt9jra7ads+IzMJrENLb93Gv6I1fQQK6StcGTQVIoMvw4e5w+cUVzt7MFIbU0UMbBmag==
@@ -17103,7 +17103,7 @@ typescript-tuple@^2.2.1:
   dependencies:
     typescript-compare "^0.0.2"
 
-typescript@^3.7.5:
+typescript@^3.7.5, typescript@^3.9.7:
   version "3.9.7"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.7.tgz#98d600a5ebdc38f40cb277522f12dc800e9e25fa"
   integrity sha512-BLbiRkiBzAwsjut4x/dsibSTB6yWpwT5qWmC2OfuCg3GgVQCSgMs4vEctYPhsaGtd0AeuuHMkjZ2h2WG8MSzRw==

@@ -1,7 +1,8 @@
 type Warrior {
     id: String!
-    redcode: String!
     name: String!
     author: String!
     strategy: String
+    #TODO redcode will be private once we have auth
+    redcode: String
 }
