@@ -1,5 +1,5 @@
 import { getHills } from './hills'
-import { mockRepository } from '../../test/mockRepository'
+import { mockRepository } from '@test/mockRepository'
 
 describe('query', () => {
     describe('hills', () => {

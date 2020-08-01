@@ -1,5 +1,5 @@
 import { getChallenges } from './challenges'
-import { mockRepository } from '../../test/mockRepository'
+import { mockRepository } from '@test/mockRepository'
 
 describe('query', () => {
     describe('challenges', () => {

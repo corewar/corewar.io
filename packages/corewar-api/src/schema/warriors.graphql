@@ -1,4 +1,7 @@
 type Warrior {
     id: String!
     redcode: String!
+    name: String!
+    author: String!
+    strategy: String
 }
