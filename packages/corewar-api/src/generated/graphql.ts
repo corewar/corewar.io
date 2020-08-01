@@ -137,6 +137,7 @@ export type RulesInput = {
 export type Hill = {
   __typename?: 'Hill';
   id: Scalars['String'];
+  name: Scalars['String'];
   rules: Rules;
   warriors: Array<Warrior>;
   results: Array<Result>;
