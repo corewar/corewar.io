@@ -1,7 +1,7 @@
 jest.mock('uuid')
 
 import { createHill } from './createHill'
-import { RulesInput } from '@/generated/graphql'
+import { createRulesInput } from '@test/createRulesInput'
 import { mockRepository } from '@test/mockRepository'
 import uuidv4 = require('uuid')
 
@@ -17,12 +17,6 @@ describe('command', () => {
 
             afterEach(() => {
                 jest.restoreAllMocks()
-            })
-
-            const createRulesInput = (): RulesInput => ({
-                size: 1,
-                rounds: 1,
-                options: {}
             })
 
             it('returns an error if no name is provided', async () => {

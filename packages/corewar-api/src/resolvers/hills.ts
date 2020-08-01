@@ -1,8 +1,9 @@
 import { getHills } from '../query/hills'
-import { Hill, RulesInput, CreateMutationResult } from '@/generated/graphql'
+import { Hill, RulesInput, CreateMutationResult, MutationResult } from '@/generated/graphql'
 import { getDatabase } from '../infrastructure/getDatabase'
 import { handleError } from '@/infrastructure/handleError'
 import { createHill } from '@/command/createHill'
+import { renameHill } from '@/command/renameHill'
 
 export const hills = {
     Query: {
@@ -21,6 +22,13 @@ export const hills = {
         ): Promise<CreateMutationResult> => {
             try {
                 return createHill(await getDatabase(), name, rules)
+            } catch (e) {
+                handleError(e)
+            }
+        },
+        renameHill: async (_: unknown, { id, name }: { id: string; name: string }): Promise<MutationResult> => {
+            try {
+                return renameHill(await getDatabase(), id, name)
             } catch (e) {
                 handleError(e)
             }

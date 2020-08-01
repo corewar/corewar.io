@@ -6,20 +6,20 @@ declare module 'mongo-repo' {
     }
 
     export interface Repository<T> {
-        get: (document: ObjectID | string | T & DocumentWithId) => Promise<T>
+        get: (document: ObjectID | string | T & DocumentWithId) => Promise<T & DocumentWithId>
         project: <TProjection>(document: ObjectID | string | T & DocumentWithId, projection: unknown) => Promise<TProjection>
-        add: (document: T) => Promise<T | T[]>
+        add: (document: T) => Promise<T & DocumentWithId | (T & DocumentWithId)[]>
         addOrUpdate: (document: T) => Promise<ObjectID>
         update: (document: T & DocumentWithId) => Promise<ObjectID>
         remove: (document: ObjectID | string | T & DocumentWithId) => Promise<boolean>
 
-        getOne: (criteria: FilterQuery<T>) => Promise<T>
+        getOne: (criteria: FilterQuery<T>) => Promise<T & DocumentWithId>
         projectOne: <TProjection>(criteria: FilterQuery<T>, projection: unknown) => Promise<TProjection>
         addOrUpdateOne: (criteria: FilterQuery<T>, document: T) => Promise<ObjectID>
         updateOne: (criteria: FilterQuery<T>, document: Partial<T>) => Promise<ObjectID>
         removeOne: (criteria: FilterQuery<T>) => Promise<boolean>
 
-        getAll: (criteria: FilterQuery<T>, sort?: unknown, skip?: number, take?: number) => Promise<T[]>
+        getAll: (criteria: FilterQuery<T>, sort?: unknown, skip?: number, take?: number) => Promise<(T & DocumentWithId)[]>
         projectAll: <TProjection>(
             criteria: FilterQuery<T>,
             projection: unknown,

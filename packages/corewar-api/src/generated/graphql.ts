@@ -201,6 +201,7 @@ export type MutationCreateHillArgs = {
 
 
 export type MutationRenameHillArgs = {
+  id: Scalars['String'];
   name: Scalars['String'];
 };
 

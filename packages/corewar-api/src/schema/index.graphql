@@ -21,7 +21,7 @@ type Mutation {
     createWarrior(redcode: String!): CreateMutationResult
     
     createHill(name: String!, rules: RulesInput!): CreateMutationResult
-    renameHill(name: String!): MutationResult
+    renameHill(id: String!, name: String!): MutationResult
     deleteHill(id: String!): MutationResult
 
     challengeHill(warriorId: String!): CreateMutationResult
