@@ -24,8 +24,8 @@ type Mutation {
     renameHill(id: String!, name: String!): MutationResult
     deleteHill(id: String!): MutationResult
 
-    challengeHill(warriorId: String!): CreateMutationResult
-    deleteChallenge(challengeId: String!): MutationResult
+    challengeHill(hillId: String!, warriorId: String!): CreateMutationResult
+    deleteChallenge(id: String!): MutationResult
 }
 
 type Subscription {

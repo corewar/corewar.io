@@ -4,7 +4,8 @@ import sanitize from 'mongo-sanitize'
 
 export const getChallenges = async (challenges: MongoRepository<Challenge>, id?: string): Promise<Challenge[]> => {
     if (!!id) {
-        return [await challenges.findById(sanitize(id))]
+        const challenge = await challenges.findById(sanitize(id))
+        return !!challenge ? [challenge] : []
     } else {
         return await challenges.find()
     }

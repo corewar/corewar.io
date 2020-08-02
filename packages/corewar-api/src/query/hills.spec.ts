@@ -20,6 +20,21 @@ describe('query', () => {
                 expect(repo.findById).toBeCalledWith(id)
             })
 
+            it('should return empty array if no nill found with specified id', async () => {
+                // Arrange
+                const expected = []
+                const id = '1234567890abcdef'
+                const repo = mockRepository<Hill>()
+                repo.findById.mockResolvedValue(null)
+
+                // Act
+                const actual = await getHills(repo, id)
+
+                // Assert
+                expect(actual).toStrictEqual(expected)
+                expect(repo.findById).toBeCalledWith(id)
+            })
+
             it('should return all hills if no id specified', async () => {
                 // Arrange
                 const expected = [{ id: '123' } as Hill, { id: '456' } as Hill]
