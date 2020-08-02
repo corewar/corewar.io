@@ -108,22 +108,13 @@ export function* deleteFileSaga({ id }) {
 
   const { files } = yield select(getFileState)
 
-  // if you removed the last file, set the current file to the one prior to the last one
-  if (id === files[files.length - 1].data.id) {
-    yield put({ type: SET_CURRENT_FILE, currentFile: files[files.length - 2] })
-  } else {
-    yield put({ type: SET_CURRENT_FILE, currentFile: files[0] })
-  }
-
   const fileList = yield call(removeById, id, files)
 
   yield call(releaseColour, id)
 
-  // const newIcons = warriorList.map((warrior, i) =>
-  //   ({ ...warrior, icon: getIdenticon(warrior.compiled, i, 20) })
-  // )
-
   yield put({ type: SET_FILES, files: fileList })
+
+  yield put({ type: SET_CURRENT_FILE, currentFile: fileList[0] })
 
   yield call(maybeInit, fileList)
 }
