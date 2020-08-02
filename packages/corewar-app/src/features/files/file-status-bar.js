@@ -59,7 +59,10 @@ const ParseResult = () => {
         {currentFile.messages && currentFile.messages.length > 0 ? (
           <div className="flex flex-col p-2 text-gray-300 text-sm font-normal">
             {currentFile.messages.map(message => (
-              <span className="my-1">{`${message.position.line} , ${message.position.char} - ${message.text}`}</span>
+              <span
+                key={`${message.position.line}-${message.position.char}`}
+                className="my-1"
+              >{`${message.position.line} , ${message.position.char} - ${message.text}`}</span>
             ))}
           </div>
         ) : null}
