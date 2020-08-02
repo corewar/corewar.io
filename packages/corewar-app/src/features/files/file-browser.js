@@ -1,20 +1,25 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { openFile } from './actions'
 
 const FileBrowser = () => {
   const { warriorLibrary } = useSelector(state => state.file)
+  const dispatch = useDispatch()
 
   return (
     <div className="bg-gray-700 p-4">
-      <div className="text-center sm:mt-0 sm:text-left">
-        <h3 className="text-lg my-2" id="modal-headline">
+      <div className="">
+        <h3 className="text-lg font-bold mt-2 mb-6 text-gray-500" id="modal-headline">
           File Browser
         </h3>
         <ul>
           {warriorLibrary.map(warrior => (
             <li
               key={warrior.name}
-              className="flex items-center my-4 h-16 p-2 w-full rounded-lg border border-gray-800 cursor-pointer hover:bg-gray-800"
+              className="flex items-center my-4 p-4 w-full text-sm rounded-lg border border-gray-600 cursor-pointer hover:bg-gray-600"
+              onClick={() => {
+                dispatch(openFile(warrior.source))
+              }}
             >
               {warrior.name}
             </li>

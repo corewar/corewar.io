@@ -14,7 +14,6 @@ const getContent = ({ id }) => {
 
 const Modal = () => {
   const history = useHistory()
-  const { id } = useParams()
   const content = getContent(useParams())
   return (
     <div

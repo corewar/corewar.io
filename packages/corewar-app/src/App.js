@@ -33,11 +33,10 @@ function App({ location }) {
     !currentFile && dispatch(newFile())
   })
   useEffect(() => {
-    //const { location } = this.props;
     if (!(location.state && location.state.modal)) {
       setPreviousLocation(location)
     }
-  })
+  }, [location])
 
   const isModal = location.state && location.state.modal && previousLocation !== location
 

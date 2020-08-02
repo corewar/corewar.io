@@ -4,7 +4,6 @@ import {
   // HIDE_CONSOLE,
   // SHOW_CONSOLE,
   // TOGGLE_FILE_MANAGER,
-  TOGGLE_FILE_BROWSER,
   SET_FILES,
   LOAD_FILE,
   SET_COLOURS
@@ -62,18 +61,6 @@ export default (state = initialState, action) => {
     //     ...state,
     //     displayConsole: true
     //   }
-
-    // case TOGGLE_FILE_MANAGER:
-    //   return {
-    //     ...state,
-    //     displayFileManager: !state.displayFileManager
-    //   }
-
-    case TOGGLE_FILE_BROWSER:
-      return {
-        ...state,
-        displayFileBrowser: !state.displayFileBrowser
-      }
 
     default:
       return state
