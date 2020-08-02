@@ -13,6 +13,7 @@ import './global/tailwind.css'
 
 import 'typeface-inter'
 import 'typeface-anonymous-pro'
+import { getCurrentFile } from './features/files/reducer'
 
 const routes = [
   {
@@ -28,7 +29,7 @@ const routes = [
 function App({ location }) {
   const dispatch = useDispatch()
   const [previousLocation, setPreviousLocation] = useState(location)
-  const { currentFile } = useSelector(state => state.file)
+  const currentFile = useSelector(getCurrentFile)
   useEffect(() => {
     !currentFile && dispatch(newFile())
   })

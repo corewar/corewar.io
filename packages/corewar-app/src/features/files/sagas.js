@@ -11,8 +11,6 @@ import {
   PARSE_REQUESTED,
   NEW_FILE_REQUESTED,
   DELETE_FILE_REQUESTED,
-  // SHOW_CONSOLE,
-  // HIDE_CONSOLE,
   SET_FILES,
   OPEN_FILE_REQUESTED,
   LOAD_FILE,
@@ -58,12 +56,6 @@ export function* parseFileSaga({ source }) {
   yield put({ type: SET_FILES, files: fileList })
 
   yield call(maybeInit, fileList)
-
-  //   if (hasErrors) {
-  //     yield put({ type: SHOW_CONSOLE })
-  //   } else {
-  //     yield put({ type: HIDE_CONSOLE })
-  //   }
 }
 
 /**

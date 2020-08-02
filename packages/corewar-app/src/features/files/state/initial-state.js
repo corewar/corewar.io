@@ -14,7 +14,6 @@ const initialState = {
   files: [],
   warriorLibrary: warriorLibrary,
   standardId: 2, // TODO: what's the best standard to use as a default?
-  displayConsole: false,
   colours: warriorColours
 }
 
