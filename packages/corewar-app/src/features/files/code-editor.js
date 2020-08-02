@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { parse } from './actions'
+import FileStatusBar from './file-status-bar'
 //import Editor from '@monaco-editor/react'
 
 // const options = {
@@ -24,7 +25,8 @@ const CodeEditor = ({ currentFile }) => {
   // }
 
   return (
-    <section className="flex w-full p-2 rounded-lg rounded-tl-none bg-gray-700 text-gray-100">
+    <section className="flex flex-col w-full p-2 rounded-lg rounded-tl-none bg-gray-700 text-gray-100">
+      <FileStatusBar />
       {/* <Editor
         height="100%"
         language="javascript"
@@ -34,7 +36,7 @@ const CodeEditor = ({ currentFile }) => {
         options={options}
       /> */}
       <textarea
-        className="w-full h-full bg-transparent font-code resize-none overflow-auto whitespace-pre-wrap mx-4"
+        className="flex self-stretch h-full bg-transparent font-code resize-none overflow-auto whitespace-pre-wrap mx-4"
         auto-complete="off"
         auto-correct="off"
         auto-capitalize="off"
