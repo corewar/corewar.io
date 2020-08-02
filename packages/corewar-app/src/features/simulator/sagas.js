@@ -133,7 +133,6 @@ export function* getCoreOptionsFromState() {
 
 export function* initialiseCore(options, files) {
   yield call(PubSub.publishSync, 'RESET_CORE')
-  console.log('resetting')
   yield call(
     [corewar, corewar.initialiseSimulator],
     options,

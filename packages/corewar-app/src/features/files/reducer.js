@@ -17,7 +17,6 @@ export const getFileState = state => state.file
 
 // reducer
 export default (state = initialState, action) => {
-  console.log(action)
   switch (action.type) {
     case SET_CURRENT_FILE:
       return {
