@@ -13,7 +13,7 @@ const FileManager = () => {
     <>
       <div className="w-full">
         <FileButton clickHandler={() => dispatch(newFile())}>New</FileButton>
-        <ModalLink id={1}>Open</ModalLink>
+        <ModalLink id="file-browser">Open</ModalLink>
       </div>
       <section className="flex flex-row flex-1 mt-4 pr-8">
         <FileSelector files={files}></FileSelector>
