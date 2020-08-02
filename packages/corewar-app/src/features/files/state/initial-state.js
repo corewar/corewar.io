@@ -10,7 +10,6 @@ const warriorColours = [
 ]
 
 const initialState = {
-  currentFileIndex: 0,
   currentFile: null,
   files: [],
   warriorLibrary: warriorLibrary,
