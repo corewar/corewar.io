@@ -177,27 +177,18 @@ const CodeEditor = ({ currentFile }) => {
             }
           }
         )
-        // monaco.languages.registerDocumentRangeFormattingEditProvider(...)
-        // monaco.languages.registerOnTypeFormattingEditProvider('redcode', redcodeDefinition)
-        // monaco.editor.defineTheme('redcode', {
-        //   base: 'vs-dark',
-        //   inherit: false,
-        //   rules: [
-        //     { token: '', foreground: 'EEF2F7', background: '353E4A' },
-        //     { token: 'custom-info', foreground: '808080' },
-        //     { token: 'custom-error', foreground: 'ff0000', fontStyle: 'bold' },
-        //     { token: 'custom-notice', foreground: 'FFA500' },
-        //     { token: 'custom-date', foreground: '008800' }
-        //   ],
-        //   colors: {
-        //     editorBackground: '#353E4A',
-        //     editorForeground: '#353E4A',
-        //     editorInactiveSelection: '#353E4A',
-        //     editorIndentGuides: '#353E4A',
-        //     editorActiveIndentGuides: '#353E4A',
-        //     editorSelectionHighlight: '#353E4A'
-        //   }
-        // })
+        monaco.editor.defineTheme('redcode', {
+          base: 'vs-dark',
+          inherit: true,
+          rules: [
+            // { token: 'custom-info', foreground: '808080' },
+            // { token: 'custom-error', foreground: 'ff0000', fontStyle: 'bold' },
+          ],
+          colors: {
+            'editor.background': '#353E4A',
+            'editor.lineHighlightBackground': '#556477'
+          }
+        })
       })
       .catch(error => console.error('An error occurred during initialization of Monaco: ', error))
   })
@@ -216,7 +207,7 @@ const CodeEditor = ({ currentFile }) => {
       <FileStatusBar />
       <ControlledEditor
         language="redcode"
-        theme="vs-dark"
+        theme="redcode"
         value={currentFile ? currentFile.source : ''}
         editorDidMount={handleEditorDidMount}
         onChange={(event, value) => dispatch(parse(value))}
