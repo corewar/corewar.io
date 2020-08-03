@@ -7,7 +7,7 @@ import { getSimulatorState } from './reducer'
 
 const getWidth = (tasks, maxTasks) => {
   if (!tasks) {
-    return 0
+    return 1
   }
 
   return Math.floor((tasks / maxTasks) * 100)
@@ -64,7 +64,5 @@ const Progress = () => {
     </div>
   )
 }
-
-// colour={warrior.data.colour && warrior.data.colour.hex}
 
 export default Progress
