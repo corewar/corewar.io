@@ -11,8 +11,6 @@ import {
   PARSE_REQUESTED,
   NEW_FILE_REQUESTED,
   DELETE_FILE_REQUESTED,
-  // SHOW_CONSOLE,
-  // HIDE_CONSOLE,
   SET_FILES,
   OPEN_FILE_REQUESTED,
   LOAD_FILE,
@@ -26,7 +24,10 @@ import { PAUSE } from '../simulator/actions'
 import { getFileState } from './reducer'
 import { getCoreOptionsFromState, initialiseCore } from '../simulator/sagas'
 
-// sagas
+/**
+ * parseFileSaga - parses a file from redcode into compiled code
+ * @param {} param0
+ */
 export function* parseFileSaga({ source }) {
   yield put({ type: PAUSE })
 
@@ -55,14 +56,15 @@ export function* parseFileSaga({ source }) {
   yield put({ type: SET_FILES, files: fileList })
 
   yield call(maybeInit, fileList)
-
-  //   if (hasErrors) {
-  //     yield put({ type: SHOW_CONSOLE })
-  //   } else {
-  //     yield put({ type: HIDE_CONSOLE })
-  //   }
 }
 
+/**
+ * newFileSaga - adds a new blank file into the system
+ * It's added to the list of files
+ * It's given a unique(isH) colour
+ * It's given an icon based on the compiled code, but this is based on the default warrior
+ * It's loaded into the core by default - TODO: may need to check for errors first
+ */
 export function* newFileSaga() {
   yield put({ type: PAUSE })
 
@@ -76,7 +78,7 @@ export function* newFileSaga() {
 
   const currentFile = {
     ...defaultWarrior,
-    data: { ...defaultWarrior.data, id, icon, active: true }
+    data: { ...defaultWarrior.data, id, icon, loaded: true }
   }
 
   yield put({ type: SET_CURRENT_FILE, currentFile })
@@ -88,28 +90,32 @@ export function* newFileSaga() {
   yield call(maybeInit, fileList)
 }
 
+/**
+ * deleteFileSaga - Removes a file from the system
+ * If there is another file, picks the last one and sets it to the currentFile
+ * @param {id} param0
+ */
 export function* deleteFileSaga({ id }) {
   yield put({ type: PAUSE })
 
   const { files } = yield select(getFileState)
 
-  if (id === files[files.length - 1].data.id) {
-    yield put({ type: SET_CURRENT_FILE, currentFile: files[files.length - 2] })
-  }
-
   const fileList = yield call(removeById, id, files)
 
   yield call(releaseColour, id)
 
-  // const newIcons = warriorList.map((warrior, i) =>
-  //   ({ ...warrior, icon: getIdenticon(warrior.compiled, i, 20) })
-  // )
-
   yield put({ type: SET_FILES, files: fileList })
+
+  yield put({ type: SET_CURRENT_FILE, currentFile: fileList[0] })
 
   yield call(maybeInit, fileList)
 }
 
+/**
+ * toggleFileSaga - switches a file between 'loaded' and '!loaded'
+ * This represents whether or not the file is loaded into the core
+ * @param { id } The id of the file to be toggled into or out of the core
+ */
 export function* toggleFileSaga({ id }) {
   const { files } = yield select(getFileState)
 
@@ -117,7 +123,7 @@ export function* toggleFileSaga({ id }) {
 
   const fileList = yield call(replaceById, id, files, {
     ...file,
-    data: { ...file.data, active: !file.data.active }
+    data: { ...file.data, loaded: !file.data.loaded }
   })
 
   yield put({ type: SET_FILES, files: fileList })
@@ -125,6 +131,9 @@ export function* toggleFileSaga({ id }) {
   yield call(maybeInit, fileList)
 }
 
+// TODO: Pretty sure this is more "select file"
+// or is the file picking from the warrior library?
+// think the former
 export function* loadFileSaga({ id }) {
   const { files } = yield select(getFileState)
 
@@ -144,7 +153,7 @@ export function* openFileSaga({ source }) {
 
 // internal helper functions - not exported
 function* maybeInit(files) {
-  const validFiles = files.filter(x => !x.data.hasErrors && x.data.active)
+  const validFiles = files.filter(x => !x.data.hasErrors && x.data.loaded)
 
   if (validFiles.length > 0) {
     const { options } = yield call(getCoreOptionsFromState)

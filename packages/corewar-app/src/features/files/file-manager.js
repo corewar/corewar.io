@@ -1,9 +1,10 @@
 import React from 'react'
 import FileButton from './file-button'
+import ModalLink from '../../app-chrome/modal-link'
 import FileSelector from './file-selector'
 import CodeEditor from './code-editor'
 import { useSelector, useDispatch } from 'react-redux'
-import { newFile, openFile, toggleFile, deleteFile } from './actions'
+import { newFile } from './actions'
 
 const FileManager = () => {
   const { files, currentFile } = useSelector(state => state.file)
@@ -11,15 +12,11 @@ const FileManager = () => {
   return (
     <>
       <div className="w-full">
-        <FileButton onClick={() => dispatch(newFile())}>New</FileButton>
-        <FileButton onClick={() => dispatch(openFile())}>Open</FileButton>
+        <FileButton clickHandler={() => dispatch(newFile())}>New</FileButton>
+        <ModalLink id="file-browser">Open</ModalLink>
       </div>
       <section className="flex flex-row flex-1 mt-4 pr-8">
-        <FileSelector
-          files={files}
-          toggleFile={() => dispatch(toggleFile())}
-          deleteFile={() => dispatch(deleteFile())}
-        ></FileSelector>
+        <FileSelector files={files}></FileSelector>
         <CodeEditor currentFile={currentFile}></CodeEditor>
       </section>
     </>

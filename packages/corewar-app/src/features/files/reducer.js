@@ -1,19 +1,11 @@
-import {
-  SET_CURRENT_FILE,
-  // TOGGLE_CONSOLE,
-  // HIDE_CONSOLE,
-  // SHOW_CONSOLE,
-  // TOGGLE_FILE_MANAGER,
-  SET_FILES,
-  LOAD_FILE,
-  SET_COLOURS
-} from './actions'
+import { SET_CURRENT_FILE, SET_FILES, LOAD_FILE, SET_COLOURS } from './actions'
 
 // state
 import initialState from './state/initial-state'
 
 // selectors
 export const getFileState = state => state.file
+export const getCurrentFile = state => state.file.currentFile
 
 // reducer
 export default (state = initialState, action) => {
@@ -21,7 +13,6 @@ export default (state = initialState, action) => {
     case SET_CURRENT_FILE:
       return {
         ...state,
-        displayFileManager: false,
         currentFile: action.currentFile
       }
 
@@ -42,30 +33,6 @@ export default (state = initialState, action) => {
         ...state,
         currentFile: action.file
       }
-
-    // case TOGGLE_CONSOLE:
-    //   return {
-    //     ...state,
-    //     displayConsole: !state.displayConsole
-    //   }
-
-    // case HIDE_CONSOLE:
-    //   return {
-    //     ...state,
-    //     displayConsole: false
-    //   }
-
-    // case SHOW_CONSOLE:
-    //   return {
-    //     ...state,
-    //     displayConsole: true
-    //   }
-
-    // case TOGGLE_FILE_MANAGER:
-    //   return {
-    //     ...state,
-    //     displayFileManager: !state.displayFileManager
-    //   }
 
     default:
       return state
