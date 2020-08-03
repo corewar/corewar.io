@@ -101,7 +101,7 @@ const options = {
 const CodeEditor = ({ currentFile }) => {
   const dispatch = useDispatch()
   const [isEditorReady, setIsEditorReady] = useState(false)
-  const [value, setValue] = useState(currentFile ? currentFile.source : '')
+  //const [value, setValue] = useState(currentFile ? currentFile.source : '')
   const valueGetter = useRef()
 
   useEffect(() => {
@@ -186,7 +186,7 @@ const CodeEditor = ({ currentFile }) => {
           ],
           colors: {
             'editor.background': '#353E4A',
-            'editor.lineHighlightBackground': '#556477'
+            'editor.lineHighlightBackground': '#20252C'
           }
         })
       })
@@ -196,10 +196,6 @@ const CodeEditor = ({ currentFile }) => {
   function handleEditorDidMount(_valueGetter) {
     setIsEditorReady(true)
     valueGetter.current = _valueGetter
-  }
-
-  function handleShowValue() {
-    alert(valueGetter.current())
   }
 
   return (
@@ -213,15 +209,6 @@ const CodeEditor = ({ currentFile }) => {
         onChange={(event, value) => dispatch(parse(value))}
         options={options}
       />
-      {/* <textarea
-        className="flex self-stretch h-full bg-transparent font-code resize-none overflow-auto whitespace-pre-wrap mx-4"
-        auto-complete="off"
-        auto-correct="off"
-        auto-capitalize="off"
-        spellCheck="false"
-        value={currentFile ? currentFile.source : ''}
-        onChange={e => dispatch(parse(e.target.value))}
-      ></textarea> */}
     </section>
   )
 }
