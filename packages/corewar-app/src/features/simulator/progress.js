@@ -43,7 +43,9 @@ const Progress = () => {
   return (
     <div className="max-w-core w-full h-30 flex-initial">
       <div className="h-8 flex items-center justify-center relative">
-        <span className="absolute mx-auto z-10">{`${runProgress ? runProgress : 0}%`}</span>
+        <span className="w-full h-8 flex justify-center items-center z-10 rounded border border-gray-700">{`${
+          runProgress ? runProgress : 0
+        }%`}</span>
         <span
           className="absolute left-0 bg-gray-700 h-8 rounded"
           style={{ width: `${runProgress ? runProgress : 0}%` }}
