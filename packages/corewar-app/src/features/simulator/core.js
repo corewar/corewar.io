@@ -7,6 +7,13 @@ const Core = () => {
   const [hasLoaded, setHasLoaded] = useState(false)
   const [inspectionAddress, setInspectionAddress] = useState(null)
   const [cellSprite, setCellSprite] = useState(null)
+
+  const [cellSize, setCellSize] = useState(null)
+  const [cellsWide, setCellsWide] = useState(null)
+  const [cellsHigh, setCellsHigh] = useState(null)
+  const [containerWidth, setContainerWidth] = useState(null)
+  const [containerHeight, setContainerHeight] = useState(null)
+
   const [nextExecutionSprite, setNextExecutionSprite] = useState(null)
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
@@ -79,12 +86,12 @@ const Core = () => {
       height: height
     })
 
-    this.containerWidth = width
-    this.containerHeight = height
+    setContainerWidth(width)
+    setContainerHeight(height)
 
-    this.cellSize = calculateCellSize()
-    this.cellsWide = Math.floor(this.containerWidth / this.cellSize)
-    this.cellsHigh = Math.floor(this.containerHeight / this.cellSize)
+    setCellSize(calculateCellSize())
+    setCellsWide(Math.floor(containerWidth / cellSize))
+    setCellsHigh(Math.floor(containerHeight / cellSize))
   }
 
   const buildSprites = () => {
@@ -104,8 +111,8 @@ const Core = () => {
 
   const buildSprite = () => {
     const canvas = document.createElement('canvas')
-    canvas.width = this.cellSize
-    canvas.height = this.cellSize
+    canvas.width = cellSize
+    canvas.height = cellSize
 
     const context = canvas.getContext('2d')
     context.fillStyle = colour.defaultbg
@@ -120,9 +127,9 @@ const Core = () => {
     const context = sprite.context
     context.strokeStyle = colour.grey
     context.beginPath()
-    context.moveTo(0, this.cellSize)
+    context.moveTo(0, cellSize)
     context.lineTo(0, 0)
-    context.lineTo(this.cellSize, 0)
+    context.lineTo(cellSize, 0)
     context.stroke()
 
     return sprite
@@ -131,8 +138,8 @@ const Core = () => {
   const prerenderRead = colour => {
     const sprite = prerenderCell()
 
-    const hSize = (this.cellSize - 1) / 2
-    const radius = (this.cellSize - 1) / 8
+    const hSize = (cellSize - 1) / 2
+    const radius = (cellSize - 1) / 8
 
     const context = sprite.context
 
@@ -152,8 +159,8 @@ const Core = () => {
     const x0 = 1
     const y0 = 1
 
-    const x1 = this.cellSize
-    const y1 = this.cellSize
+    const x1 = cellSize
+    const y1 = cellSize
 
     const context = sprite.context
 
@@ -177,18 +184,18 @@ const Core = () => {
 
     context.fillStyle = colour
     context.strokeStyle = colour
-    context.fillRect(1, 1, this.cellSize - 1, this.cellSize - 1)
+    context.fillRect(1, 1, cellSize - 1, cellSize - 1)
 
     return sprite
   }
 
   const renderGrid = () => {
-    this.coreContext.clearRect(0, 0, this.containerWidth, this.containerHeight)
+    this.coreContext.clearRect(0, 0, containerWidth, containerHeight)
 
     let i = 0
-    for (let y = 0; y < this.cellsHigh * this.cellSize; y += this.cellSize) {
-      for (let x = 0; x < this.cellsWide * this.cellSize; x += this.cellSize) {
-        this.coreContext.drawImage(this.cellSprite.canvas, x, y)
+    for (let y = 0; y < cellsHigh * cellSize; y += cellSize) {
+      for (let x = 0; x < cellsWide * cellSize; x += cellSize) {
+        this.coreContext.drawImage(cellSprite.canvas, x, y)
         if (++i >= this.props.coreSize) {
           return
         }
@@ -197,17 +204,17 @@ const Core = () => {
   }
 
   const addressToScreenCoordinate = address => {
-    const ix = address % this.cellsWide
-    const iy = Math.floor(address / this.cellsWide)
+    const ix = address % cellsWide
+    const iy = Math.floor(address / cellsWide)
 
     return {
-      x: ix * this.cellSize,
-      y: iy * this.cellSize
+      x: ix * cellSize,
+      y: iy * cellSize
     }
   }
 
   const renderMessages = () => {
-    this.messages.forEach(data => {
+    messages.forEach(data => {
       renderCell(data)
     })
 
@@ -228,14 +235,14 @@ const Core = () => {
     }
 
     const coordinate = addressToScreenCoordinate(nextExecutionAddress)
-    this.interactiveContext.drawImage(this.nextExecutionSprite.canvas, coordinate.x, coordinate.y)
+    this.interactiveContext.drawImage(nextExecutionSprite.canvas, coordinate.x, coordinate.y)
   }
 
   const screenCoordinateToAddress = point => {
-    const x = Math.floor(point.x / this.cellSize)
-    const y = Math.floor(point.y / this.cellSize)
+    const x = Math.floor(point.x / cellSize)
+    const y = Math.floor(point.y / cellSize)
 
-    return y * this.cellsWide + x
+    return y * cellsWide + x
   }
 
   const getAccessTypeIndex = accessType => {
@@ -259,7 +266,7 @@ const Core = () => {
   }
 
   const calculateCellSize = () => {
-    const area = this.containerWidth * this.containerHeight
+    const area = containerWidth * containerHeight
     const n = this.props.coreSize
 
     const maxCellSize = Math.sqrt(area / n)
@@ -273,8 +280,8 @@ const Core = () => {
   }
 
   const isValidCellSize = cellSize => {
-    const cellsWide = Math.floor(this.containerWidth / cellSize)
-    const cellsHigh = Math.floor(this.containerHeight / cellSize)
+    setCellsWide(Math.floor(containerWidth / cellSize))
+    setCellsHigh(Math.floor(containerHeight / cellSize))
 
     return cellsWide * cellsHigh >= this.props.coreSize
   }
