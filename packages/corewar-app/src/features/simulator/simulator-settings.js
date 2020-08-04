@@ -17,6 +17,7 @@ const SimulatorSettings = () => {
         <ul className="absolute z-10 top-0 right-0 mt-8 p-2 text-base rounded-lg bg-gray-800 shadow-md">
           {processRates.map(rate => (
             <li
+              key={rate}
               className={`py-1 px-2 w-full cursor-pointer hover:bg-gray-700 rounded-lg font-normal text-right ${
                 processRate === rate ? 'bg-gray-700' : ''
               }`}
