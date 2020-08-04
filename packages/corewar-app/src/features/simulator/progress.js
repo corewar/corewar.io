@@ -52,6 +52,7 @@ const Progress = () => {
       <div className="flex flex-col h-20 flex-initial">
         {files.map((file, i) => (
           <div
+            key={file.data.hash}
             className={`mt-2 rounded h-${Math.round(16 / files.length)}`}
             style={{
               width: `${getWidth(tasks[i], maxTasks)}%`,
