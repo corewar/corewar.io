@@ -1,21 +1,54 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import { useSelector } from 'react-redux'
+import * as PubSub from 'pubsub-js'
+import throttle from '../../services/throttle'
+import { getCoreInstructions, republish } from './actions'
+import { getFileState } from '../files/reducer'
+import { getSimulatorState } from './reducer'
 
 const Core = () => {
+  const { colours } = useSelector(getFileState)
+  const { coreSize, isInitialised } = useSelector(getSimulatorState)
+
   const [messages, setMessages] = useState([])
   const [sprites, setSprites] = useState([])
   const [nextExecutionAddress, setNextExecutionAddress] = useState(null)
   const [hasLoaded, setHasLoaded] = useState(false)
   const [inspectionAddress, setInspectionAddress] = useState(null)
-  const [cellSprite, setCellSprite] = useState(null)
+  //const [cellSprite, setCellSprite] = useState(null)
 
-  const [cellSize, setCellSize] = useState(null)
-  const [cellsWide, setCellsWide] = useState(null)
-  const [cellsHigh, setCellsHigh] = useState(null)
-  const [containerWidth, setContainerWidth] = useState(null)
-  const [containerHeight, setContainerHeight] = useState(null)
+  // const [cellSize, setCellSize] = useState(null)
+  // const [cellsWide, setCellsWide] = useState(null)
+  // const [cellsHigh, setCellsHigh] = useState(null)
+  //const [containerWidth, setContainerWidth] = useState(null)
+  //const [containerHeight, setContainerHeight] = useState(null)
 
   const [nextExecutionSprite, setNextExecutionSprite] = useState(null)
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
+
+  const coreCanvasEl = useRef(null)
+  const interactiveCanvasEl = useRef(null)
+  const canvasContainer = useRef(null)
+
+  const containerWidth = useRef(null)
+  const containerHeight = useRef(null)
+
+  const cellSize = useRef(null)
+  const cellsWide = useRef(null)
+  const cellsHigh = useRef(null)
+
+  const cellSprite = useRef(null)
+
+  //const [coreContext, setCoreContext] = useState(null)
+  //const [interactiveContext, setInteractiveContext] = useState(null)
+
+  const coreContext = useRef(null)
+  const interactiveContext = useRef(null)
+
+  useEffect(() => {
+    coreContext.current = coreCanvasEl.current.getContext('2d')
+    interactiveContext.current = interactiveCanvasEl.current.getContext('2d')
+  })
 
   useEffect(() => {
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
@@ -47,20 +80,17 @@ const Core = () => {
 
   useEffect(() => {
     init()
-
-    this.interactiveCanvas.addEventListener('click', e => this.canvasClick(e))
-
-    window.addEventListener(
-      'resize',
-      throttle(() => init(), 200)
-    )
-
+    // interactiveContext.current.addEventListener('click', e => canvasClick(e))
+    // window.addEventListener(
+    //   'resize',
+    //   throttle(() => init(), 200)
+    // )
     window.requestAnimationFrame(() => {
       renderMessages()
       renderNextExecution()
       highlightClickPoint()
     })
-  })
+  }, [])
 
   const init = () => {
     calculateCoreDimensions()
@@ -73,8 +103,13 @@ const Core = () => {
   }
 
   const calculateCoreDimensions = () => {
-    const width = this.canvasContainer.clientWidth
-    const height = this.canvasContainer.clientHeight
+    // const coreCtx = coreCanvasEl.current
+    // const interactiveCtx = interactiveCanvasEl.current
+    // setCoreContext(coreCtx.getContext('2d'))
+    // setInteractiveContext(interactiveCtx.getContext('2d'))
+
+    const width = canvasContainer.current.clientWidth
+    const height = canvasContainer.current.clientHeight
 
     // we get a brief period of zero values when switching display mode, during unmount/mount
     if (width === 0 && height === 0) {
@@ -86,24 +121,24 @@ const Core = () => {
       height: height
     })
 
-    setContainerWidth(width)
-    setContainerHeight(height)
+    containerWidth.current = width
+    containerHeight.current = height
 
-    setCellSize(calculateCellSize())
-    setCellsWide(Math.floor(containerWidth / cellSize))
-    setCellsHigh(Math.floor(containerHeight / cellSize))
+    cellSize.current = calculateCellSize()
+    cellsWide.current = Math.floor(containerWidth.current / cellSize.current)
+    cellsHigh.current = Math.floor(containerHeight.current / cellSize.current)
   }
 
   const buildSprites = () => {
-    this.sprites = {}
-    setCellSprite(prerenderCell())
+    //this.sprites = {}
+    cellSprite.current = prerenderCell()
     setNextExecutionSprite(prerenderExecute('#fff'))
 
-    colour.warrior.forEach(c => {
+    colours.forEach(c => {
       const colouredSprites = []
-      colouredSprites.push(this.prerenderRead(c.hex))
-      colouredSprites.push(this.prerenderWrite(c.hex))
-      colouredSprites.push(this.prerenderExecute(c.hex))
+      colouredSprites.push(prerenderRead(c.hex))
+      colouredSprites.push(prerenderWrite(c.hex))
+      colouredSprites.push(prerenderExecute(c.hex))
 
       sprites[c.hex] = colouredSprites
     })
@@ -111,11 +146,11 @@ const Core = () => {
 
   const buildSprite = () => {
     const canvas = document.createElement('canvas')
-    canvas.width = cellSize
-    canvas.height = cellSize
+    canvas.width = cellSize.current
+    canvas.height = cellSize.current
 
     const context = canvas.getContext('2d')
-    context.fillStyle = colour.defaultbg
+    context.fillStyle = '#000'
     context.fillRect(0, 0, canvas.width, canvas.height)
 
     return { canvas, context }
@@ -125,11 +160,11 @@ const Core = () => {
     const sprite = buildSprite()
 
     const context = sprite.context
-    context.strokeStyle = colour.grey
+    context.strokeStyle = '#ccc'
     context.beginPath()
-    context.moveTo(0, cellSize)
+    context.moveTo(0, cellSize.current)
     context.lineTo(0, 0)
-    context.lineTo(cellSize, 0)
+    context.lineTo(cellSize.current, 0)
     context.stroke()
 
     return sprite
@@ -138,8 +173,8 @@ const Core = () => {
   const prerenderRead = colour => {
     const sprite = prerenderCell()
 
-    const hSize = (cellSize - 1) / 2
-    const radius = (cellSize - 1) / 8
+    const hSize = (cellSize.current - 1) / 2
+    const radius = (cellSize.current - 1) / 8
 
     const context = sprite.context
 
@@ -159,8 +194,8 @@ const Core = () => {
     const x0 = 1
     const y0 = 1
 
-    const x1 = cellSize
-    const y1 = cellSize
+    const x1 = cellSize.current
+    const y1 = cellSize.current
 
     const context = sprite.context
 
@@ -184,19 +219,23 @@ const Core = () => {
 
     context.fillStyle = colour
     context.strokeStyle = colour
-    context.fillRect(1, 1, cellSize - 1, cellSize - 1)
+    context.fillRect(1, 1, cellSize.current - 1, cellSize.current - 1)
 
     return sprite
   }
 
   const renderGrid = () => {
-    this.coreContext.clearRect(0, 0, containerWidth, containerHeight)
+    if (coreContext.current === null) {
+      return
+    }
+
+    coreContext.current.clearRect(0, 0, containerWidth.current, containerHeight.current)
 
     let i = 0
-    for (let y = 0; y < cellsHigh * cellSize; y += cellSize) {
-      for (let x = 0; x < cellsWide * cellSize; x += cellSize) {
-        this.coreContext.drawImage(cellSprite.canvas, x, y)
-        if (++i >= this.props.coreSize) {
+    for (let y = 0; y < cellsHigh.current * cellSize.current; y += cellSize.current) {
+      for (let x = 0; x < cellsWide.current * cellSize.current; x += cellSize.current) {
+        coreContext.current.drawImage(cellSprite.current.canvas, x, y)
+        if (++i >= coreSize) {
           return
         }
       }
@@ -204,12 +243,12 @@ const Core = () => {
   }
 
   const addressToScreenCoordinate = address => {
-    const ix = address % cellsWide
-    const iy = Math.floor(address / cellsWide)
+    const ix = address % cellsWide.current
+    const iy = Math.floor(address / cellsWide.current)
 
     return {
-      x: ix * cellSize,
-      y: iy * cellSize
+      x: ix * cellSize.current,
+      y: iy * cellSize.current
     }
   }
 
@@ -228,21 +267,21 @@ const Core = () => {
   }
 
   const renderNextExecution = () => {
-    this.interactiveContext.clearRect(0, 0, dimensions.width, dimensions.height)
+    interactiveContext.current.clearRect(0, 0, dimensions.width, dimensions.height)
 
     if (!nextExecutionAddress) {
       return
     }
 
     const coordinate = addressToScreenCoordinate(nextExecutionAddress)
-    this.interactiveContext.drawImage(nextExecutionSprite.canvas, coordinate.x, coordinate.y)
+    interactiveContext.current.drawImage(nextExecutionSprite.canvas, coordinate.x, coordinate.y)
   }
 
   const screenCoordinateToAddress = point => {
-    const x = Math.floor(point.x / cellSize)
-    const y = Math.floor(point.y / cellSize)
+    const x = Math.floor(point.x / cellSize.current)
+    const y = Math.floor(point.y / cellSize.current)
 
-    return y * cellsWide + x
+    return y * cellsWide.current + x
   }
 
   const getAccessTypeIndex = accessType => {
@@ -262,28 +301,28 @@ const Core = () => {
     const coordinate = addressToScreenCoordinate(event.address)
 
     const sprite = sprites[event.warriorData.colour.hex][getAccessTypeIndex(event.accessType)]
-    this.coreContext.drawImage(sprite.canvas, coordinate.x, coordinate.y)
+    coreContext.current.drawImage(sprite.canvas, coordinate.x, coordinate.y)
   }
 
   const calculateCellSize = () => {
-    const area = containerWidth * containerHeight
-    const n = this.props.coreSize
+    const area = containerWidth.current * containerHeight.current
+    const n = coreSize
 
     const maxCellSize = Math.sqrt(area / n)
     let possibleCellSize = Math.floor(maxCellSize)
 
-    while (!isValidCellSize(possibleCellSize)) {
+    while (!isValidCellSize(possibleCellSize) && possibleCellSize > 0) {
       possibleCellSize--
     }
 
     return possibleCellSize
   }
 
-  const isValidCellSize = cellSize => {
-    setCellsWide(Math.floor(containerWidth / cellSize))
-    setCellsHigh(Math.floor(containerHeight / cellSize))
+  const isValidCellSize = possibleCellSize => {
+    cellsWide.current = Math.floor(containerWidth.current / possibleCellSize)
+    cellsHigh.current = Math.floor(containerHeight.current / possibleCellSize)
 
-    return cellsWide * cellsHigh >= this.props.coreSize
+    return cellsWide.current * cellsHigh.current >= coreSize
   }
 
   const getRelativeCoordinates = event => {
@@ -303,7 +342,7 @@ const Core = () => {
   }
 
   const canvasClick = e => {
-    if (!this.props.isInitialised) {
+    if (!isInitialised) {
       return
     }
 
@@ -323,13 +362,43 @@ const Core = () => {
 
     const { x, y } = cell
 
-    this.interactiveContext.strokeStyle = '#ffffff'
+    interactiveContext.current.strokeStyle = '#ffffff'
 
-    this.interactiveContext.strokeRect(x, y, this.cellSize, this.cellSize)
+    interactiveContext.current.strokeRect(x, y, cellSize.current, cellSize.current)
   }
 
   return (
-    <div className="max-w-core max-h-core min-w-96 min-h-96 w-full h-full lg:w-core lg:h-core bg-gray-500 rounded flex-none"></div>
+    <div
+      className="relative max-w-core max-h-core min-w-96 min-h-96 w-full h-full lg:w-core lg:h-core bg-gray-500 rounded flex-none"
+      ref={canvasContainer}
+    >
+      <canvas
+        className="absolute top-0 left-0"
+        ref={coreCanvasEl}
+        // ref={coreCanvasEl => {
+        //   if (coreCanvasEl == null) {
+        //     return
+        //   }
+        //   this.coreContext = coreCanvasEl.getContext('2d')
+        //   this.coreCanvas = coreCanvasEl
+        // }}
+        height={dimensions.height}
+        width={dimensions.width}
+      ></canvas>
+      <canvas
+        className="absolute top-0 left-0"
+        ref={interactiveCanvasEl}
+        //  => {
+        //   if (interactiveCanvasEl == null) {
+        //     return
+        //   }
+        //   this.interactiveContext = interactiveCanvasEl.getContext('2d')
+        //   this.interactiveCanvas = interactiveCanvasEl
+        // }}
+        height={dimensions.height}
+        width={dimensions.width}
+      ></canvas>
+    </div>
   )
 }
 

@@ -1,5 +1,15 @@
 import { channel } from 'redux-saga'
-import { call, put, takeEvery, takeLatest, select, take, fork, delay } from 'redux-saga/effects'
+import {
+  call,
+  put,
+  takeEvery,
+  takeLatest,
+  select,
+  take,
+  fork,
+  delay,
+  actionChannel
+} from 'redux-saga/effects'
 import * as PubSub from 'pubsub-js'
 import { corewar } from 'corewar'
 
@@ -32,7 +42,6 @@ import { getCoreOptions } from '../../services/core-options'
 // oddities
 const roundProgressChannel = channel()
 const roundEndChannel = channel()
-const runChannel = channel()
 
 // sagas
 export function* initSaga() {
@@ -75,15 +84,19 @@ export function* runSaga() {
 
   yield put({ type: RUN })
 
-  runChannel.put({
-    type: START_REQUESTED
-  })
+  yield put({ type: START_REQUESTED })
+
+  // runChannel.put({
+  //   type: START_REQUESTED
+  // })
 }
 
 export function* renderCoreSaga() {
+  const runChannel = yield actionChannel(START_REQUESTED)
+
   while (yield take(runChannel)) {
     while (true) {
-      yield call(delay, 1000 / 60)
+      yield delay(1000 / 60)
 
       const { isRunning, processRate } = yield select(getSimulatorState)
 

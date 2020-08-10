@@ -1,7 +1,8 @@
 import { guid } from '../../../services/guid'
 
 const defaultSource = `;name Your Warrior's name
-;author Your name`
+;author Your name
+MOV 0, 1`
 
 const defaultWarrior = {
   source: defaultSource,
