@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import * as PubSub from 'pubsub-js'
 import throttle from '../../services/throttle'
-import { getCoreInstructions, republish } from './actions'
+import { getCoreInstructions, republish, setCoreOptions } from './actions'
 import { getFileState } from '../files/reducer'
 import { getSimulatorState } from './reducer'
 
@@ -10,22 +10,11 @@ const Core = () => {
   const { colours } = useSelector(getFileState)
   const { coreSize, isInitialised } = useSelector(getSimulatorState)
 
-  const [messages, setMessages] = useState([])
-  const [sprites, setSprites] = useState([])
-  const [nextExecutionAddress, setNextExecutionAddress] = useState(null)
   const [hasLoaded, setHasLoaded] = useState(false)
-  const [inspectionAddress, setInspectionAddress] = useState(null)
-  //const [cellSprite, setCellSprite] = useState(null)
-
-  // const [cellSize, setCellSize] = useState(null)
-  // const [cellsWide, setCellsWide] = useState(null)
-  // const [cellsHigh, setCellsHigh] = useState(null)
-  //const [containerWidth, setContainerWidth] = useState(null)
-  //const [containerHeight, setContainerHeight] = useState(null)
-
-  const [nextExecutionSprite, setNextExecutionSprite] = useState(null)
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
+  const coreContext = useRef(null)
+  const interactiveContext = useRef(null)
   const coreCanvasEl = useRef(null)
   const interactiveCanvasEl = useRef(null)
   const canvasContainer = useRef(null)
@@ -39,39 +28,41 @@ const Core = () => {
 
   const cellSprite = useRef(null)
 
-  //const [coreContext, setCoreContext] = useState(null)
-  //const [interactiveContext, setInteractiveContext] = useState(null)
+  const sprites = useRef([])
 
-  const coreContext = useRef(null)
-  const interactiveContext = useRef(null)
+  const messages = useRef([])
+
+  const nextExecutionAddress = useRef(null)
+  const inspectionAddress = useRef(null)
+  const nextExecutionSprite = useRef(null)
 
   useEffect(() => {
     coreContext.current = coreCanvasEl.current.getContext('2d')
     interactiveContext.current = interactiveCanvasEl.current.getContext('2d')
-  })
+  }, [])
 
   useEffect(() => {
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
-      setMessages(messages.concat(data))
+      messages.current = messages.current.concat(data)
     })
     return function cleanup() {
       PubSub.unsubscribe('CORE_ACCESS')
     }
-  })
+  }, [])
 
   useEffect(() => {
     PubSub.subscribe('RESET_CORE', (msg, data) => {
-      setMessages([])
+      messages.current = []
       init()
     })
     return function cleanup() {
       PubSub.unsubscribe('RESET_CORE')
     }
-  })
+  }, [])
 
   useEffect(() => {
     PubSub.subscribe('NEXT_EXECUTION', (msg, data) => {
-      setNextExecutionAddress(data.address)
+      nextExecutionAddress.current = data.address
     })
     return function cleanup() {
       PubSub.unsubscribe('NEXT_EXECUTION')
@@ -85,15 +76,20 @@ const Core = () => {
     //   'resize',
     //   throttle(() => init(), 200)
     // )
-    window.requestAnimationFrame(() => {
-      renderMessages()
-      renderNextExecution()
-      highlightClickPoint()
-    })
+
+    renderMessages()
+
+    // window.requestAnimationFrame(() => {
+    //   renderMessages()
+    //   renderNextExecution()
+    //   highlightClickPoint()
+    // })
   }, [])
 
   const init = () => {
     calculateCoreDimensions()
+
+    setCoreOptions()
 
     buildSprites()
 
@@ -103,11 +99,6 @@ const Core = () => {
   }
 
   const calculateCoreDimensions = () => {
-    // const coreCtx = coreCanvasEl.current
-    // const interactiveCtx = interactiveCanvasEl.current
-    // setCoreContext(coreCtx.getContext('2d'))
-    // setInteractiveContext(interactiveCtx.getContext('2d'))
-
     const width = canvasContainer.current.clientWidth
     const height = canvasContainer.current.clientHeight
 
@@ -130,17 +121,15 @@ const Core = () => {
   }
 
   const buildSprites = () => {
-    //this.sprites = {}
     cellSprite.current = prerenderCell()
-    setNextExecutionSprite(prerenderExecute('#fff'))
+    nextExecutionSprite.current = prerenderExecute('#fff')
 
     colours.forEach(c => {
       const colouredSprites = []
       colouredSprites.push(prerenderRead(c.hex))
       colouredSprites.push(prerenderWrite(c.hex))
       colouredSprites.push(prerenderExecute(c.hex))
-
-      sprites[c.hex] = colouredSprites
+      sprites.current[c.hex] = colouredSprites
     })
   }
 
@@ -150,7 +139,7 @@ const Core = () => {
     canvas.height = cellSize.current
 
     const context = canvas.getContext('2d')
-    context.fillStyle = '#000'
+    context.fillStyle = '#353E4A'
     context.fillRect(0, 0, canvas.width, canvas.height)
 
     return { canvas, context }
@@ -160,7 +149,7 @@ const Core = () => {
     const sprite = buildSprite()
 
     const context = sprite.context
-    context.strokeStyle = '#ccc'
+    context.strokeStyle = '#D4DDE8'
     context.beginPath()
     context.moveTo(0, cellSize.current)
     context.lineTo(0, 0)
@@ -225,10 +214,6 @@ const Core = () => {
   }
 
   const renderGrid = () => {
-    if (coreContext.current === null) {
-      return
-    }
-
     coreContext.current.clearRect(0, 0, containerWidth.current, containerHeight.current)
 
     let i = 0
@@ -253,11 +238,11 @@ const Core = () => {
   }
 
   const renderMessages = () => {
-    messages.forEach(data => {
+    messages.current.forEach(data => {
       renderCell(data)
     })
 
-    setMessages([])
+    messages.current = []
 
     window.requestAnimationFrame(() => {
       renderMessages()
@@ -269,12 +254,16 @@ const Core = () => {
   const renderNextExecution = () => {
     interactiveContext.current.clearRect(0, 0, dimensions.width, dimensions.height)
 
-    if (!nextExecutionAddress) {
+    if (!nextExecutionAddress.current) {
       return
     }
 
-    const coordinate = addressToScreenCoordinate(nextExecutionAddress)
-    interactiveContext.current.drawImage(nextExecutionSprite.canvas, coordinate.x, coordinate.y)
+    const coordinate = addressToScreenCoordinate(nextExecutionAddress.current)
+    interactiveContext.current.drawImage(
+      nextExecutionSprite.current.canvas,
+      coordinate.x,
+      coordinate.y
+    )
   }
 
   const screenCoordinateToAddress = point => {
@@ -300,7 +289,9 @@ const Core = () => {
   const renderCell = event => {
     const coordinate = addressToScreenCoordinate(event.address)
 
-    const sprite = sprites[event.warriorData.colour.hex][getAccessTypeIndex(event.accessType)]
+    const sprite =
+      sprites.current[event.warriorData.colour.hex][getAccessTypeIndex(event.accessType)]
+    console.log(sprite)
     coreContext.current.drawImage(sprite.canvas, coordinate.x, coordinate.y)
   }
 
@@ -350,15 +341,13 @@ const Core = () => {
 
     const address = screenCoordinateToAddress(point)
 
-    setInspectionAddress(address)
+    inspectionAddress.current = address
 
     getCoreInstructions(address)
   }
 
   const highlightClickPoint = () => {
-    const address = inspectionAddress
-
-    const cell = addressToScreenCoordinate(address)
+    const cell = addressToScreenCoordinate(inspectionAddress.current)
 
     const { x, y } = cell
 
