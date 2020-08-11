@@ -10,7 +10,10 @@ const Core = () => {
   const { colours } = useSelector(getFileState)
   const { coreSize, isInitialised } = useSelector(getSimulatorState)
 
+  const [nextExecutionAddress, setNextExecutionAddress] = useState(null)
   const [hasLoaded, setHasLoaded] = useState(false)
+  const [inspectionAddress, setInspectionAddress] = useState(null)
+  const [nextExecutionSprite, setNextExecutionSprite] = useState(null)
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   const coreContext = useRef(null)
@@ -28,13 +31,9 @@ const Core = () => {
 
   const cellSprite = useRef(null)
 
-  const sprites = useRef([])
-
   const messages = useRef([])
 
-  const nextExecutionAddress = useRef(null)
-  const inspectionAddress = useRef(null)
-  const nextExecutionSprite = useRef(null)
+  const sprites = useRef([])
 
   useEffect(() => {
     coreContext.current = coreCanvasEl.current.getContext('2d')
@@ -62,7 +61,7 @@ const Core = () => {
 
   useEffect(() => {
     PubSub.subscribe('NEXT_EXECUTION', (msg, data) => {
-      nextExecutionAddress.current = data.address
+      setNextExecutionAddress(data.address)
     })
     return function cleanup() {
       PubSub.unsubscribe('NEXT_EXECUTION')
@@ -99,6 +98,11 @@ const Core = () => {
   }
 
   const calculateCoreDimensions = () => {
+    // const coreCtx = coreCanvasEl.current
+    // const interactiveCtx = interactiveCanvasEl.current
+    // setCoreContext(coreCtx.getContext('2d'))
+    // setInteractiveContext(interactiveCtx.getContext('2d'))
+
     const width = canvasContainer.current.clientWidth
     const height = canvasContainer.current.clientHeight
 
@@ -121,14 +125,16 @@ const Core = () => {
   }
 
   const buildSprites = () => {
+    //this.sprites = {}
     cellSprite.current = prerenderCell()
-    nextExecutionSprite.current = prerenderExecute('#fff')
+    setNextExecutionSprite(prerenderExecute('#D4DDE8'))
 
     colours.forEach(c => {
       const colouredSprites = []
       colouredSprites.push(prerenderRead(c.hex))
       colouredSprites.push(prerenderWrite(c.hex))
       colouredSprites.push(prerenderExecute(c.hex))
+
       sprites.current[c.hex] = colouredSprites
     })
   }
@@ -214,6 +220,10 @@ const Core = () => {
   }
 
   const renderGrid = () => {
+    // if (coreContext.current === null) {
+    //   return
+    // }
+
     coreContext.current.clearRect(0, 0, containerWidth.current, containerHeight.current)
 
     let i = 0
@@ -238,7 +248,9 @@ const Core = () => {
   }
 
   const renderMessages = () => {
+    console.log('renderMessages')
     messages.current.forEach(data => {
+      console.log(data)
       renderCell(data)
     })
 
@@ -254,16 +266,12 @@ const Core = () => {
   const renderNextExecution = () => {
     interactiveContext.current.clearRect(0, 0, dimensions.width, dimensions.height)
 
-    if (!nextExecutionAddress.current) {
+    if (!nextExecutionAddress) {
       return
     }
 
-    const coordinate = addressToScreenCoordinate(nextExecutionAddress.current)
-    interactiveContext.current.drawImage(
-      nextExecutionSprite.current.canvas,
-      coordinate.x,
-      coordinate.y
-    )
+    const coordinate = addressToScreenCoordinate(nextExecutionAddress)
+    interactiveContext.current.drawImage(nextExecutionSprite.canvas, coordinate.x, coordinate.y)
   }
 
   const screenCoordinateToAddress = point => {
@@ -291,7 +299,6 @@ const Core = () => {
 
     const sprite =
       sprites.current[event.warriorData.colour.hex][getAccessTypeIndex(event.accessType)]
-    console.log(sprite)
     coreContext.current.drawImage(sprite.canvas, coordinate.x, coordinate.y)
   }
 
@@ -341,17 +348,19 @@ const Core = () => {
 
     const address = screenCoordinateToAddress(point)
 
-    inspectionAddress.current = address
+    setInspectionAddress(address)
 
     getCoreInstructions(address)
   }
 
   const highlightClickPoint = () => {
-    const cell = addressToScreenCoordinate(inspectionAddress.current)
+    const address = inspectionAddress
+
+    const cell = addressToScreenCoordinate(address)
 
     const { x, y } = cell
 
-    interactiveContext.current.strokeStyle = '#ffffff'
+    interactiveContext.current.strokeStyle = '#D4DDE8'
 
     interactiveContext.current.strokeRect(x, y, cellSize.current, cellSize.current)
   }
