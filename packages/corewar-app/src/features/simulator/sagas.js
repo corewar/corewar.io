@@ -93,10 +93,11 @@ export function* runSaga() {
 
 export function* renderCoreSaga() {
   const runChannel = yield actionChannel(START_REQUESTED)
+  const interval = 1000 / 60
 
   while (yield take(runChannel)) {
     while (true) {
-      yield delay(1000 / 60)
+      yield delay(interval)
 
       const { isRunning, processRate } = yield select(getSimulatorState)
 

@@ -12,8 +12,6 @@ const Core = () => {
 
   const [nextExecutionAddress, setNextExecutionAddress] = useState(null)
   const [hasLoaded, setHasLoaded] = useState(false)
-  const [inspectionAddress, setInspectionAddress] = useState(null)
-  const [nextExecutionSprite, setNextExecutionSprite] = useState(null)
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   const coreContext = useRef(null)
@@ -34,6 +32,8 @@ const Core = () => {
   const messages = useRef([])
 
   const sprites = useRef([])
+  const nextExecutionSprite = useRef(null)
+  const inspectionAddress = useRef(null)
 
   useEffect(() => {
     coreContext.current = coreCanvasEl.current.getContext('2d')
@@ -98,11 +98,6 @@ const Core = () => {
   }
 
   const calculateCoreDimensions = () => {
-    // const coreCtx = coreCanvasEl.current
-    // const interactiveCtx = interactiveCanvasEl.current
-    // setCoreContext(coreCtx.getContext('2d'))
-    // setInteractiveContext(interactiveCtx.getContext('2d'))
-
     const width = canvasContainer.current.clientWidth
     const height = canvasContainer.current.clientHeight
 
@@ -125,9 +120,8 @@ const Core = () => {
   }
 
   const buildSprites = () => {
-    //this.sprites = {}
     cellSprite.current = prerenderCell()
-    setNextExecutionSprite(prerenderExecute('#D4DDE8'))
+    nextExecutionSprite.current = prerenderExecute('#D4DDE8')
 
     colours.forEach(c => {
       const colouredSprites = []
@@ -248,9 +242,7 @@ const Core = () => {
   }
 
   const renderMessages = () => {
-    console.log('renderMessages')
     messages.current.forEach(data => {
-      console.log(data)
       renderCell(data)
     })
 
@@ -271,7 +263,11 @@ const Core = () => {
     }
 
     const coordinate = addressToScreenCoordinate(nextExecutionAddress)
-    interactiveContext.current.drawImage(nextExecutionSprite.canvas, coordinate.x, coordinate.y)
+    interactiveContext.current.drawImage(
+      nextExecutionSprite.current.canvas,
+      coordinate.x,
+      coordinate.y
+    )
   }
 
   const screenCoordinateToAddress = point => {
@@ -348,13 +344,13 @@ const Core = () => {
 
     const address = screenCoordinateToAddress(point)
 
-    setInspectionAddress(address)
+    inspectionAddress.current = address
 
     getCoreInstructions(address)
   }
 
   const highlightClickPoint = () => {
-    const address = inspectionAddress
+    const address = inspectionAddress.current
 
     const cell = addressToScreenCoordinate(address)
 
@@ -373,26 +369,12 @@ const Core = () => {
       <canvas
         className="absolute top-0 left-0"
         ref={coreCanvasEl}
-        // ref={coreCanvasEl => {
-        //   if (coreCanvasEl == null) {
-        //     return
-        //   }
-        //   this.coreContext = coreCanvasEl.getContext('2d')
-        //   this.coreCanvas = coreCanvasEl
-        // }}
         height={dimensions.height}
         width={dimensions.width}
       ></canvas>
       <canvas
         className="absolute top-0 left-0"
         ref={interactiveCanvasEl}
-        //  => {
-        //   if (interactiveCanvasEl == null) {
-        //     return
-        //   }
-        //   this.interactiveContext = interactiveCanvasEl.getContext('2d')
-        //   this.interactiveCanvas = interactiveCanvasEl
-        // }}
         height={dimensions.height}
         width={dimensions.width}
       ></canvas>
