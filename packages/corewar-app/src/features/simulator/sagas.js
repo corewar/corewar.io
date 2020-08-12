@@ -85,10 +85,6 @@ export function* runSaga() {
   yield put({ type: RUN })
 
   yield put({ type: START_REQUESTED })
-
-  // runChannel.put({
-  //   type: START_REQUESTED
-  // })
 }
 
 export function* renderCoreSaga() {
