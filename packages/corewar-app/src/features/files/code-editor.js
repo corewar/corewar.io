@@ -23,7 +23,11 @@ const CodeEditor = ({ currentFile }) => {
         monaco.editor.defineTheme('redcode', redcodeTheme)
       })
       .catch(error => console.error('An error occurred during initialization of Monaco: ', error))
-  })
+  }, [])
+
+  // useEffect(() => {
+  //   currentFile && dispatch(parse(currentFile.source))
+  // }, [])
 
   return (
     <section className="flex flex-col w-full p-2 rounded-lg rounded-tl-none bg-gray-700 text-gray-100">

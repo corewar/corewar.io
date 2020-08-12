@@ -32,7 +32,7 @@ function App({ location }) {
   const currentFile = useSelector(getCurrentFile)
   useEffect(() => {
     !currentFile && dispatch(newFile())
-  })
+  }, [])
   useEffect(() => {
     if (!(location.state && location.state.modal)) {
       setPreviousLocation(location)
