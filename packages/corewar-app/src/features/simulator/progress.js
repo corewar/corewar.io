@@ -24,7 +24,7 @@ const Progress = () => {
     return function cleanup() {
       PubSub.unsubscribe('CORE_INITIALISE')
     }
-  })
+  }, [])
   useEffect(() => {
     PubSub.subscribe('TASK_COUNT', (msg, data) => {
       let newTasks = tasks
@@ -39,7 +39,7 @@ const Progress = () => {
         PubSub.unsubscribe('TASK_COUNT')
       }
     })
-  })
+  }, [])
   return (
     <div className="max-w-core w-full h-30 flex-initial">
       <div className="h-8 flex items-center justify-center relative">

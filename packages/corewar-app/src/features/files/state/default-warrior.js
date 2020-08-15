@@ -1,15 +1,18 @@
 import { guid } from '../../../services/guid'
+import randomWords from 'random-words'
 
-const defaultSource = `;name Your Warrior's name
-;author Your name
-MOV 0, 1`
+const warriorName = randomWords({ exactly: 1, wordsPerString: 2 })
+const authorName = randomWords({ exactly: 1, wordsPerString: 2 })
+
+const defaultSource = `;name ${warriorName}
+;author ${authorName}`
 
 const defaultWarrior = {
   source: defaultSource,
   compiled: '',
   metaData: {
-    name: `Your Warrior's name`,
-    author: `Your name`
+    name: warriorName,
+    author: authorName
   },
   tokens: [],
   data: {

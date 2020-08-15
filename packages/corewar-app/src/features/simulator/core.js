@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import * as PubSub from 'pubsub-js'
 import throttle from '../../services/throttle'
-import { getCoreInstructions, republish, setCoreOptions } from './actions'
+import { getCoreInstructions, republish } from './actions'
 import { getFileState } from '../files/reducer'
 import { getSimulatorState } from './reducer'
 
@@ -11,8 +11,6 @@ const Core = () => {
   const { coreSize, isInitialised } = useSelector(getSimulatorState)
 
   const [nextExecutionAddress, setNextExecutionAddress] = useState(null)
-  const [hasLoaded, setHasLoaded] = useState(false)
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   const coreContext = useRef(null)
   const interactiveContext = useRef(null)
@@ -30,15 +28,11 @@ const Core = () => {
   const cellSprite = useRef(null)
 
   const messages = useRef([])
+  const gridRendered = useRef([])
 
   const sprites = useRef([])
   const nextExecutionSprite = useRef(null)
   const inspectionAddress = useRef(null)
-
-  useEffect(() => {
-    coreContext.current = coreCanvasEl.current.getContext('2d')
-    interactiveContext.current = interactiveCanvasEl.current.getContext('2d')
-  }, [])
 
   useEffect(() => {
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
@@ -66,60 +60,15 @@ const Core = () => {
     return function cleanup() {
       PubSub.unsubscribe('NEXT_EXECUTION')
     }
-  })
-
-  useEffect(() => {
-    init()
-    // interactiveContext.current.addEventListener('click', e => canvasClick(e))
-    // window.addEventListener(
-    //   'resize',
-    //   throttle(() => init(), 200)
-    // )
-
-    renderMessages()
-
-    // window.requestAnimationFrame(() => {
-    //   renderMessages()
-    //   renderNextExecution()
-    //   highlightClickPoint()
-    // })
   }, [])
 
-  const init = () => {
+  useLayoutEffect(() => {
+    coreContext.current = coreCanvasEl.current.getContext('2d')
+    interactiveContext.current = interactiveCanvasEl.current.getContext('2d')
     calculateCoreDimensions()
+  }, [])
 
-    setCoreOptions()
-
-    buildSprites()
-
-    renderGrid()
-
-    republish()
-  }
-
-  const calculateCoreDimensions = () => {
-    const width = canvasContainer.current.clientWidth
-    const height = canvasContainer.current.clientHeight
-
-    // we get a brief period of zero values when switching display mode, during unmount/mount
-    if (width === 0 && height === 0) {
-      return
-    }
-
-    setDimensions({
-      width: width,
-      height: height
-    })
-
-    containerWidth.current = width
-    containerHeight.current = height
-
-    cellSize.current = calculateCellSize()
-    cellsWide.current = Math.floor(containerWidth.current / cellSize.current)
-    cellsHigh.current = Math.floor(containerHeight.current / cellSize.current)
-  }
-
-  const buildSprites = () => {
+  useLayoutEffect(() => {
     cellSprite.current = prerenderCell()
     nextExecutionSprite.current = prerenderExecute('#D4DDE8')
 
@@ -131,6 +80,35 @@ const Core = () => {
 
       sprites.current[c.hex] = colouredSprites
     })
+
+    cellSprite.current = prerenderCell()
+  }, [])
+
+  useEffect(() => {
+    renderGrid()
+  })
+
+  const init = () => {
+    gridRendered.current = false
+    republish()
+    renderMessages()
+  }
+
+  const calculateCoreDimensions = () => {
+    const width = canvasContainer.current.clientWidth
+    const height = canvasContainer.current.clientHeight
+
+    // we get a brief period of zero values when switching display mode, during unmount/mount
+    if (width === 0 && height === 0) {
+      return
+    }
+
+    containerWidth.current = width
+    containerHeight.current = height
+
+    cellSize.current = calculateCellSize()
+    cellsWide.current = Math.floor(containerWidth.current / cellSize.current)
+    cellsHigh.current = Math.floor(containerHeight.current / cellSize.current)
   }
 
   const buildSprite = () => {
@@ -214,10 +192,9 @@ const Core = () => {
   }
 
   const renderGrid = () => {
-    // if (coreContext.current === null) {
-    //   return
-    // }
-
+    if (gridRendered.current) {
+      return
+    }
     coreContext.current.clearRect(0, 0, containerWidth.current, containerHeight.current)
 
     let i = 0
@@ -225,6 +202,7 @@ const Core = () => {
       for (let x = 0; x < cellsWide.current * cellSize.current; x += cellSize.current) {
         coreContext.current.drawImage(cellSprite.current.canvas, x, y)
         if (++i >= coreSize) {
+          gridRendered.current = true
           return
         }
       }
@@ -248,15 +226,22 @@ const Core = () => {
 
     messages.current = []
 
-    window.requestAnimationFrame(() => {
-      renderMessages()
-      renderNextExecution()
-      highlightClickPoint()
-    })
+    window.requestAnimationFrame(h2)
+  }
+
+  const h2 = () => {
+    renderMessages()
+    renderNextExecution()
+    highlightClickPoint()
   }
 
   const renderNextExecution = () => {
-    interactiveContext.current.clearRect(0, 0, dimensions.width, dimensions.height)
+    interactiveContext.current.clearRect(
+      0,
+      0,
+      containerWidth.current.width,
+      containerHeight.current.height
+    )
 
     if (!nextExecutionAddress) {
       return
@@ -369,14 +354,14 @@ const Core = () => {
       <canvas
         className="absolute top-0 left-0"
         ref={coreCanvasEl}
-        height={dimensions.height}
-        width={dimensions.width}
+        height={containerHeight.current}
+        width={containerWidth.current}
       ></canvas>
       <canvas
         className="absolute top-0 left-0"
         ref={interactiveCanvasEl}
-        height={dimensions.height}
-        width={dimensions.width}
+        height={containerHeight.current}
+        width={containerWidth.current}
       ></canvas>
     </div>
   )
