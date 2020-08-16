@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import throttle from '../../services/throttle'
 import { parse } from './actions'
 import FileStatusBar from './file-status-bar'
 import { ControlledEditor, monaco } from '@monaco-editor/react'
@@ -29,6 +30,8 @@ const CodeEditor = ({ currentFile }) => {
     currentFile && dispatch(parse(currentFile.source))
   }, [])
 
+  const changeHandler = (event, value) => throttle(dispatch(parse(value)), 500)
+
   return (
     <section className="flex flex-col w-full p-2 rounded-lg rounded-tl-none bg-gray-700 text-gray-100">
       <FileStatusBar />
@@ -36,7 +39,7 @@ const CodeEditor = ({ currentFile }) => {
         language="redcode"
         theme="redcode"
         value={currentFile ? currentFile.source : ''}
-        onChange={(event, value) => dispatch(parse(value))}
+        onChange={changeHandler}
         options={options}
       />
     </section>

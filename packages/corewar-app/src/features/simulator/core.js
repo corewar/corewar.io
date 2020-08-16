@@ -82,6 +82,13 @@ const Core = () => {
     })
 
     cellSprite.current = prerenderCell()
+
+    interactiveCanvasEl.current.addEventListener('click', e => canvasClick(e))
+
+    window.addEventListener(
+      'resize',
+      throttle(() => init(), 200)
+    )
   }, [])
 
   useEffect(() => {
@@ -226,13 +233,11 @@ const Core = () => {
 
     messages.current = []
 
-    window.requestAnimationFrame(h2)
-  }
-
-  const h2 = () => {
-    renderMessages()
-    renderNextExecution()
-    highlightClickPoint()
+    window.requestAnimationFrame(() => {
+      renderMessages()
+      renderNextExecution()
+      highlightClickPoint()
+    })
   }
 
   const renderNextExecution = () => {
