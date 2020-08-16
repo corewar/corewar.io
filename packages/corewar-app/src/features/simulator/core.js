@@ -353,23 +353,25 @@ const Core = () => {
   }
 
   return (
-    <div
-      className="flex flex-initial relative max-w-core max-h-core min-w-96 min-h-96 w-full h-full lg:w-core lg:h-core bg-gray-500 rounded"
-      ref={canvasContainer}
-    >
-      <canvas
-        className="absolute top-0 left-0"
-        ref={coreCanvasEl}
-        height={containerHeight.current}
-        width={containerWidth.current}
-      ></canvas>
-      <canvas
-        className="absolute top-0 left-0"
-        ref={interactiveCanvasEl}
-        height={containerHeight.current}
-        width={containerWidth.current}
-      ></canvas>
-    </div>
+    <section className="flex flex-initial items-center justify-center">
+      <div
+        className="relative max-w-core max-h-core min-w-96 min-h-96 lg:w-core lg:h-core bg-gray-500 rounded"
+        ref={canvasContainer}
+      >
+        <canvas
+          className="absolute top-0 left-0"
+          ref={coreCanvasEl}
+          height={containerHeight.current}
+          width={containerWidth.current}
+        ></canvas>
+        <canvas
+          className="absolute top-0 left-0"
+          ref={interactiveCanvasEl}
+          height={containerHeight.current}
+          width={containerWidth.current}
+        ></canvas>
+      </div>
+    </section>
   )
 }
 

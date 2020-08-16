@@ -9,7 +9,9 @@ import { redcodeLanguageDefinition, redcodeTheme } from '../../services/monaco'
 const options = {
   minimap: {
     enabled: false
-  }
+  },
+  scrollBeyondLastLine: false,
+  renderFinalNewline: false
 }
 
 const CodeEditor = ({ currentFile }) => {
@@ -36,6 +38,7 @@ const CodeEditor = ({ currentFile }) => {
     <section className="flex flex-col justify-between flex-initial w-full p-2 rounded-lg rounded-tl-none bg-gray-700 text-gray-100">
       <FileStatusBar />
       <ControlledEditor
+        className="font-code"
         height="85%"
         language="redcode"
         theme="redcode"
