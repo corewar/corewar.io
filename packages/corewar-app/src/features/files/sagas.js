@@ -171,7 +171,8 @@ function* maybeInit(files) {
 
 function* getColour(id) {
   const { colours } = yield select(getFileState)
-  return colours.find(x => x.id === id)
+  const nextColour = colours.find(x => x.id === id)
+  return nextColour ? nextColour : { id: null, hex: '#ffffff' }
 }
 
 function* takeColour(id) {

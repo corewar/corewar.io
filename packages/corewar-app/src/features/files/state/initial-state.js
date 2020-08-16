@@ -6,7 +6,13 @@ const warriorColours = [
   { id: null, hex: '#EB5757' },
   { id: null, hex: '#F2C94C' },
   { id: null, hex: '#6FCF97' },
-  { id: null, hex: '#BB6BD9' }
+  { id: null, hex: '#BB6BD9' },
+  { id: null, hex: '#FA824C' },
+  { id: null, hex: '#9FD356' },
+  { id: null, hex: '#83C5BE' },
+  { id: null, hex: '#FFDDD2' },
+  { id: null, hex: '#B74F6F' },
+  { id: null, hex: '#ADBDFF' }
 ]
 
 const initialState = {
