@@ -19,7 +19,6 @@ const SimulatorSettings = () => {
         <ul>
           {coreOptions.map(opt => {
             const options = getCoreOptions(opt.id)
-            console.log(options)
             return (
               <li
                 key={opt.id}
