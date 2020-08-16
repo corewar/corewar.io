@@ -1,6 +1,7 @@
 import { action } from '../../redux/actions/action-creator'
 
 export const INIT = 'simulator/INIT'
+export const UNINIT = 'simulator/UNINIT'
 export const STEP = 'simulator/STEP'
 export const RUN = 'simulator/RUN'
 export const PAUSE = 'simulator/PAUSE'

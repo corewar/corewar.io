@@ -33,9 +33,10 @@ const CodeEditor = ({ currentFile }) => {
   const changeHandler = (event, value) => throttle(dispatch(parse(value)), 500)
 
   return (
-    <section className="flex flex-col w-full p-2 rounded-lg rounded-tl-none bg-gray-700 text-gray-100">
+    <section className="flex flex-col flex-initial w-full p-2 rounded-lg rounded-tl-none bg-gray-700 text-gray-100 box-border">
       <FileStatusBar />
       <ControlledEditor
+        height="85%"
         language="redcode"
         theme="redcode"
         value={currentFile ? currentFile.source : ''}

@@ -19,7 +19,7 @@ import {
   SET_COLOURS
 } from './actions'
 
-import { PAUSE } from '../simulator/actions'
+import { PAUSE, UNINIT } from '../simulator/actions'
 
 import { getFileState } from './reducer'
 import { getCoreOptionsFromState, initialiseCore } from '../simulator/sagas'
@@ -153,11 +153,16 @@ export function* openFileSaga({ source }) {
 
 // internal helper functions - not exported
 function* maybeInit(files) {
+  console.log('maybe/maybenot')
   const validFiles = files.filter(x => !x.data.hasErrors && x.data.loaded)
+
+  console.log(validFiles)
 
   if (validFiles.length > 0) {
     const { options } = yield call(getCoreOptionsFromState)
     yield call(initialiseCore, options, validFiles)
+  } else {
+    yield put({ type: UNINIT })
   }
 }
 

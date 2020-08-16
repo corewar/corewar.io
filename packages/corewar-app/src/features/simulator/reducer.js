@@ -1,5 +1,6 @@
 import {
   INIT,
+  UNINIT,
   STEP,
   RUN,
   PAUSE,
@@ -25,6 +26,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isInitialised: true,
+        roundResult: {},
+        runProgress: 0
+      }
+
+    case UNINIT:
+      return {
+        ...state,
+        isInitialised: false,
         roundResult: {},
         runProgress: 0
       }
