@@ -51,7 +51,7 @@ const Core = () => {
     return function cleanup() {
       PubSub.unsubscribe('RESET_CORE')
     }
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     PubSub.subscribe('NEXT_EXECUTION', (msg, data) => {
@@ -65,7 +65,6 @@ const Core = () => {
   useLayoutEffect(() => {
     coreContext.current = coreCanvasEl.current.getContext('2d')
     interactiveContext.current = interactiveCanvasEl.current.getContext('2d')
-    calculateCoreDimensions()
   }, [])
 
   useLayoutEffect(() => {
@@ -75,7 +74,7 @@ const Core = () => {
       'resize',
       throttle(() => init(), 200)
     )
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     calculateCoreDimensions()

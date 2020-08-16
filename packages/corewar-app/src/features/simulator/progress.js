@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import * as PubSub from 'pubsub-js'
 import { getFileState } from '../files/reducer'
@@ -16,10 +16,11 @@ const getWidth = (tasks, maxTasks) => {
 const Progress = () => {
   const { files } = useSelector(getFileState)
   const { runProgress, maxTasks } = useSelector(getSimulatorState)
-  const [tasks, setTasks] = useState([])
+  //const [tasks, setTasks] = useState([])
+  const tasks = useRef([])
   useEffect(() => {
     PubSub.subscribe('CORE_INITIALISE', (msg, data) => {
-      setTasks([])
+      tasks.current = []
     })
     return function cleanup() {
       PubSub.unsubscribe('CORE_INITIALISE')
@@ -27,13 +28,13 @@ const Progress = () => {
   }, [])
   useEffect(() => {
     PubSub.subscribe('TASK_COUNT', (msg, data) => {
-      let newTasks = tasks
+      let newTasks = tasks.current
 
       data.forEach(item => {
         newTasks = replaceItem(item.warriorId, newTasks, item.taskCount)
       })
 
-      setTasks(newTasks)
+      tasks.current = newTasks
 
       return function cleanup() {
         PubSub.unsubscribe('TASK_COUNT')

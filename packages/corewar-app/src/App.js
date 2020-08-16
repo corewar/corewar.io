@@ -32,7 +32,7 @@ function App({ location }) {
   const currentFile = useSelector(getCurrentFile)
   useEffect(() => {
     !currentFile && dispatch(newFile())
-  }, [])
+  }, [currentFile, dispatch])
   useEffect(() => {
     if (currentFile && !currentFile.compiled) {
       dispatch(parse(currentFile.source))

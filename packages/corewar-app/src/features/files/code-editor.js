@@ -27,8 +27,8 @@ const CodeEditor = ({ currentFile }) => {
   }, [])
 
   useEffect(() => {
-    currentFile && dispatch(parse(currentFile.source))
-  }, [])
+    currentFile && !currentFile.compiled && dispatch(parse(currentFile.source))
+  }, [currentFile, dispatch])
 
   const changeHandler = (event, value) => throttle(dispatch(parse(value)), 500)
 
