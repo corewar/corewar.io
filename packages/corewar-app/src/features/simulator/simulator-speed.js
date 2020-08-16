@@ -9,8 +9,8 @@ const SimulatorSpeed = () => {
   const dispatch = useDispatch()
   const { processRate, processRates } = useSelector(getSimulatorState)
   return (
-    <div className="relative">
-      <button className="mr-2" onClick={() => toggleMenu(!menuOpen)}>
+    <div className="relative flex items-center hover:bg-gray-700 rounded p-2">
+      <button onClick={() => toggleMenu(!menuOpen)}>
         <SpeedIcon className="h-6 w-6" />
       </button>
       {menuOpen ? (

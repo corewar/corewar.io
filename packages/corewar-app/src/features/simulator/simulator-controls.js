@@ -13,7 +13,9 @@ import { getSimulatorState } from './reducer'
 const SimulatorButton = ({ enabled = true, visible = true, clickHandler, children }) =>
   visible ? (
     <button
-      className={`${enabled ? `cursor-pointer` : `text-gray-400 cursor-not-allowed`}`}
+      className={`${
+        enabled ? `cursor-pointer hover:bg-gray-700 rounded` : `cursor-not-allowed`
+      } p-2`}
       onClick={enabled ? clickHandler : null}
     >
       {children}
@@ -24,7 +26,7 @@ const SimulatorControls = () => {
   const dispatch = useDispatch()
   const { isRunning, isInitialised } = useSelector(getSimulatorState)
   return (
-    <div className="h-16 max-w-core mt-2 flex justify-evenly items-center text-gray-100">
+    <div className="max-w-core mb-2 flex justify-evenly items-center text-gray-100">
       <SimulatorButton
         clickHandler={() => dispatch(run())}
         visible={!isRunning}
@@ -51,7 +53,7 @@ const SimulatorControls = () => {
 
       <SimulatorSpeed />
 
-      <ModalLink id="simulator-settings">
+      <ModalLink id="simulator-settings" className="hover:bg-gray-700 rounded p-2">
         <SettingsIcon className="stroke-current h-6 w-6"></SettingsIcon>
       </ModalLink>
     </div>

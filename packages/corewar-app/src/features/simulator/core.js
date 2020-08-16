@@ -69,6 +69,17 @@ const Core = () => {
   }, [])
 
   useLayoutEffect(() => {
+    interactiveCanvasEl.current.addEventListener('click', e => canvasClick(e))
+
+    window.addEventListener(
+      'resize',
+      throttle(() => init(), 200)
+    )
+  }, [])
+
+  useEffect(() => {
+    calculateCoreDimensions()
+
     cellSprite.current = prerenderCell()
     nextExecutionSprite.current = prerenderExecute('#D4DDE8')
 
@@ -83,15 +94,6 @@ const Core = () => {
 
     cellSprite.current = prerenderCell()
 
-    interactiveCanvasEl.current.addEventListener('click', e => canvasClick(e))
-
-    window.addEventListener(
-      'resize',
-      throttle(() => init(), 200)
-    )
-  }, [])
-
-  useEffect(() => {
     renderGrid()
   })
 

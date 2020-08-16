@@ -186,8 +186,6 @@ function* setProcessRateSaga({ rate }) {
 function* setCoreOptionsSaga({ id }) {
   yield put({ type: PAUSE })
 
-  yield call(PubSub.publishSync, 'RESET_CORE')
-
   const { coreSize, maximumCycles, minSeparation, instructionLimit, maxTasks } = yield call(
     getCoreOptions,
     id
@@ -202,6 +200,8 @@ function* setCoreOptionsSaga({ id }) {
     maxTasks,
     id
   })
+
+  //yield call(PubSub.publishSync, 'RESET_CORE')
 
   yield call(initSaga)
 }
