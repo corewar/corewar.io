@@ -22,13 +22,20 @@ const SimulatorSettings = () => {
             return (
               <li
                 key={opt.id}
-                className="flex items-center my-4 p-4 w-full text-sm rounded-lg border border-gray-600 cursor-pointer hover:bg-gray-600"
+                className="flex flex-col my-2 p-2 w-full text-sm rounded-lg border border-gray-600 cursor-pointer hover:bg-gray-600"
                 onClick={() => {
                   dispatch(setCoreOptions(opt.id))
                   history.goBack()
                 }}
               >
-                {opt.name}
+                <p className="font-bold">{opt.name}</p>
+                <div className="flex flex-row flex-wrap text-sm">
+                  <span className="w-1/3">Core size {options.coreSize}</span>
+                  <span className="w-1/3">Max cycles {options.maximumCycles}</span>
+                  <span className="w-1/3">Instruction limit {options.instructionLimit}</span>
+                  <span className="w-1/3">Max tasks {options.maxTasks}</span>
+                  <span className="w-1/3">Min separation {options.minSeparation}</span>
+                </div>
               </li>
             )
           })}
