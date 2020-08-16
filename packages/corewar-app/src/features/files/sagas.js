@@ -153,10 +153,7 @@ export function* openFileSaga({ source }) {
 
 // internal helper functions - not exported
 function* maybeInit(files) {
-  console.log('maybe/maybenot')
   const validFiles = files.filter(x => !x.data.hasErrors && x.data.loaded)
-
-  console.log(validFiles)
 
   if (validFiles.length > 0) {
     const { options } = yield call(getCoreOptionsFromState)

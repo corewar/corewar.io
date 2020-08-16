@@ -41,7 +41,7 @@ const Progress = () => {
     })
   }, [])
   return (
-    <div className="max-w-core w-full h-30 flex-initial">
+    <div className="max-w-core w-full h-20 flex-initial mt-8">
       <div className="h-8 flex items-center justify-center relative">
         <span className="w-full h-8 flex justify-center items-center z-10 rounded border border-gray-700">{`${
           runProgress ? Math.round(runProgress) : 0
