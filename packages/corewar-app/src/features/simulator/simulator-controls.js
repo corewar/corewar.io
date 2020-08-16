@@ -5,7 +5,8 @@ import { ReactComponent as PauseIcon } from '../../img/icons/pause-circle-outlin
 import { ReactComponent as StepIcon } from '../../img/icons/play-skip-forward-outline.svg'
 import { ReactComponent as ReloadIcon } from '../../img/icons/refresh-outline.svg'
 import { ReactComponent as SettingsIcon } from '../../img/icons/settings-outline.svg'
-import SimulatorSettings from './simulator-settings'
+import SimulatorSpeed from './simulator-speed'
+import ModalLink from '../../app-chrome/modal-link'
 import { init, step, run, pause } from './actions'
 import { getSimulatorState } from './reducer'
 
@@ -48,8 +49,11 @@ const SimulatorControls = () => {
         <ReloadIcon className="stroke-current h-6 w-6"></ReloadIcon>
       </SimulatorButton>
 
-      <SimulatorSettings />
-      <SettingsIcon className="stroke-current h-6 w-6"></SettingsIcon>
+      <SimulatorSpeed />
+
+      <ModalLink id="simulator-settings">
+        <SettingsIcon className="stroke-current h-6 w-6"></SettingsIcon>
+      </ModalLink>
     </div>
   )
 }

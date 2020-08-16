@@ -156,7 +156,10 @@ export function* openFileSaga({ source }) {
 
 // internal helper functions - not exported
 function* maybeInit(files) {
-  const validFiles = files.filter(x => !x.data.hasErrors && x.data.loaded)
+  const validFiles = files.filter(
+    x =>
+      !x.data.hasErrors && x.data.loaded && x.tokens.filter(y => y.category === 'OPCODE').length > 0
+  )
 
   if (validFiles.length > 0) {
     const { options } = yield call(getCoreOptionsFromState)
