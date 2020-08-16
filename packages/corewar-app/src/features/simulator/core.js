@@ -79,21 +79,6 @@ const Core = () => {
 
   useEffect(() => {
     calculateCoreDimensions()
-
-    cellSprite.current = prerenderCell()
-    nextExecutionSprite.current = prerenderExecute('#D4DDE8')
-
-    colours.forEach(c => {
-      const colouredSprites = []
-      colouredSprites.push(prerenderRead(c.hex))
-      colouredSprites.push(prerenderWrite(c.hex))
-      colouredSprites.push(prerenderExecute(c.hex))
-
-      sprites.current[c.hex] = colouredSprites
-    })
-
-    cellSprite.current = prerenderCell()
-
     renderGrid()
   })
 
@@ -118,6 +103,21 @@ const Core = () => {
     cellSize.current = calculateCellSize()
     cellsWide.current = Math.floor(containerWidth.current / cellSize.current)
     cellsHigh.current = Math.floor(containerHeight.current / cellSize.current)
+
+    // moved sprite code here as sprites need to be redone when dimensions change
+    cellSprite.current = prerenderCell()
+    nextExecutionSprite.current = prerenderExecute('#D4DDE8')
+
+    colours.forEach(c => {
+      const colouredSprites = []
+      colouredSprites.push(prerenderRead(c.hex))
+      colouredSprites.push(prerenderWrite(c.hex))
+      colouredSprites.push(prerenderExecute(c.hex))
+
+      sprites.current[c.hex] = colouredSprites
+    })
+
+    cellSprite.current = prerenderCell()
   }
 
   const buildSprite = () => {
