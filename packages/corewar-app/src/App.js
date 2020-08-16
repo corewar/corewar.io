@@ -47,7 +47,7 @@ function App({ location }) {
   const isModal = location.state && location.state.modal && previousLocation !== location
 
   return (
-    <div className="App bg-gray-900 w-full min-h-screen flex flex-col p-2 font-body text-gray-100">
+    <div className="App bg-gray-900 w-full h-screen flex flex-col p-2 font-body text-gray-100 overflow-hidden">
       <Header></Header>
       <TabRow>
         {routes.map(r => (

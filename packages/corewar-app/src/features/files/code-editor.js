@@ -24,7 +24,7 @@ const CodeEditor = ({ currentFile }) => {
         monaco.editor.defineTheme('redcode', redcodeTheme)
       })
       .catch(error => console.error('An error occurred during initialization of Monaco: ', error))
-  }, [])
+  })
 
   useEffect(() => {
     currentFile && !currentFile.compiled && dispatch(parse(currentFile.source))
@@ -33,7 +33,7 @@ const CodeEditor = ({ currentFile }) => {
   const changeHandler = (event, value) => throttle(dispatch(parse(value)), 500)
 
   return (
-    <section className="flex flex-col flex-initial w-full p-2 rounded-lg rounded-tl-none bg-gray-700 text-gray-100 box-border">
+    <section className="flex flex-col justify-between flex-initial w-full p-2 rounded-lg rounded-tl-none bg-gray-700 text-gray-100">
       <FileStatusBar />
       <ControlledEditor
         height="85%"
