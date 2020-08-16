@@ -8,7 +8,7 @@ import TabRow from './app-chrome/tabrow'
 import Modal from './app-chrome/modal'
 import Player from './pages/player'
 import Editor from './pages/editor'
-import { newFile } from './features/files/actions'
+import { newFile, parse } from './features/files/actions'
 import './global/tailwind.css'
 
 import 'typeface-inter'
@@ -33,6 +33,11 @@ function App({ location }) {
   useEffect(() => {
     !currentFile && dispatch(newFile())
   }, [])
+  useEffect(() => {
+    if (currentFile && !currentFile.compiled) {
+      dispatch(parse(currentFile.source))
+    }
+  })
   useEffect(() => {
     if (!(location.state && location.state.modal)) {
       setPreviousLocation(location)

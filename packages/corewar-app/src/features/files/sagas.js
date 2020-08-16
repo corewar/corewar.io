@@ -1,10 +1,11 @@
 import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
+import randomWords from 'random-words'
 
 import { insertItem, removeById, replaceItemByKey, replaceById } from '../../services/array'
 import { createHash, getIdenticon } from '../../services/identicon'
 import { guid } from '../../services/guid'
 import { corewar } from 'corewar'
-import defaultWarrior from './state/default-warrior'
+import createDefaultWarrior from './state/default-warrior'
 
 import {
   SET_CURRENT_FILE,
@@ -71,8 +72,10 @@ export function* newFileSaga() {
   const { files } = yield select(getFileState)
 
   const id = yield call(guid)
-
   const colour = yield call(takeColour, id)
+  const names = randomWords({ exactly: 2, wordsPerString: 2 })
+
+  const defaultWarrior = createDefaultWarrior(names[0], names[1])
 
   const icon = getIdenticon(defaultWarrior.compiled, colour.hex, 20)
 
