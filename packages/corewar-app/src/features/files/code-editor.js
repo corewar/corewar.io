@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import throttle from '../../services/throttle'
 import { parse } from './actions'
 import FileStatusBar from './file-status-bar'
 import { ControlledEditor, monaco } from '@monaco-editor/react'
@@ -8,7 +9,9 @@ import { redcodeLanguageDefinition, redcodeTheme } from '../../services/monaco'
 const options = {
   minimap: {
     enabled: false
-  }
+  },
+  scrollBeyondLastLine: false,
+  renderFinalNewline: false
 }
 
 const CodeEditor = ({ currentFile }) => {
@@ -25,14 +28,22 @@ const CodeEditor = ({ currentFile }) => {
       .catch(error => console.error('An error occurred during initialization of Monaco: ', error))
   })
 
+  useEffect(() => {
+    currentFile && !currentFile.compiled && dispatch(parse(currentFile.source))
+  }, [currentFile, dispatch])
+
+  const changeHandler = (event, value) => throttle(dispatch(parse(value)), 500)
+
   return (
-    <section className="flex flex-col w-full p-2 rounded-lg rounded-tl-none bg-gray-700 text-gray-100">
+    <section className="flex flex-col justify-between flex-initial w-full p-2 rounded-lg rounded-tl-none bg-gray-700 text-gray-100">
       <FileStatusBar />
       <ControlledEditor
+        className="font-code"
+        height="85%"
         language="redcode"
         theme="redcode"
         value={currentFile ? currentFile.source : ''}
-        onChange={(event, value) => dispatch(parse(value))}
+        onChange={changeHandler}
         options={options}
       />
     </section>

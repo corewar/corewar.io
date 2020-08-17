@@ -1,23 +1,25 @@
 import { guid } from '../../../services/guid'
 
-const defaultSource = `;name Your Warrior's name
-;author Your name`
+const createDefaultWarrior = (name, author) => {
+  const defaultSource = `;name ${name}
+;author ${author}`
 
-const defaultWarrior = {
-  source: defaultSource,
-  compiled: '',
-  metaData: {
-    name: `Your Warrior's name`,
-    author: `Your name`
-  },
-  tokens: [],
-  data: {
-    id: guid(),
-    hasErrors: false, // this was used to prevent empty warriors getting loaded in the core I think
-    hash: '',
-    icon: null,
-    loaded: true // whether or not your loaded into the core
+  return {
+    source: defaultSource,
+    compiled: '',
+    metaData: {
+      name: name,
+      author: author
+    },
+    tokens: [],
+    data: {
+      id: guid(),
+      hasErrors: false, // this was used to prevent empty warriors getting loaded in the core I think
+      hash: '',
+      icon: null,
+      loaded: true // whether or not its loaded into the core
+    }
   }
 }
 
-export default defaultWarrior
+export default createDefaultWarrior

@@ -8,7 +8,7 @@ import TabRow from './app-chrome/tabrow'
 import Modal from './app-chrome/modal'
 import Player from './pages/player'
 import Editor from './pages/editor'
-import { newFile } from './features/files/actions'
+import { newFile, parse } from './features/files/actions'
 import './global/tailwind.css'
 
 import 'typeface-inter'
@@ -32,6 +32,11 @@ function App({ location }) {
   const currentFile = useSelector(getCurrentFile)
   useEffect(() => {
     !currentFile && dispatch(newFile())
+  }, [currentFile, dispatch])
+  useEffect(() => {
+    if (currentFile && !currentFile.compiled) {
+      dispatch(parse(currentFile.source))
+    }
   })
   useEffect(() => {
     if (!(location.state && location.state.modal)) {
@@ -42,7 +47,7 @@ function App({ location }) {
   const isModal = location.state && location.state.modal && previousLocation !== location
 
   return (
-    <div className="App bg-gray-900 w-full min-h-screen flex flex-col p-2 font-body text-gray-100">
+    <div className="App bg-gray-900 w-full h-screen flex flex-col p-2 font-body text-gray-100 overflow-hidden">
       <Header></Header>
       <TabRow>
         {routes.map(r => (

@@ -1,11 +1,14 @@
 import React from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import FileBrowser from '../features/files/file-browser'
+import SimulatorSettings from '../features/simulator/simulator-settings'
 
 const getContent = ({ id }) => {
   switch (id) {
     case 'file-browser':
       return <FileBrowser />
+    case 'simulator-settings':
+      return <SimulatorSettings />
     default:
       return null
   }

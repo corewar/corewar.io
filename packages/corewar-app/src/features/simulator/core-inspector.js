@@ -26,7 +26,7 @@ const MemoryAddress = ({ command }) => (
 )
 
 const CoreInspector = () => (
-  <div className="h-core flex flex-col flex-initial bg-gray-800 rounded-lg p-4 pb-0">
+  <div className="h-core flex flex-col flex-initial bg-gray-700 rounded-lg p-4 pb-0">
     <SectionHeader>Core Inspector</SectionHeader>
     <table className="text-sm text-right table-fixed mt-4">
       <thead className="font-semibold text-xs h-12">

@@ -1,10 +1,11 @@
 import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
+import randomWords from 'random-words'
 
 import { insertItem, removeById, replaceItemByKey, replaceById } from '../../services/array'
 import { createHash, getIdenticon } from '../../services/identicon'
 import { guid } from '../../services/guid'
 import { corewar } from 'corewar'
-import defaultWarrior from './state/default-warrior'
+import createDefaultWarrior from './state/default-warrior'
 
 import {
   SET_CURRENT_FILE,
@@ -19,7 +20,7 @@ import {
   SET_COLOURS
 } from './actions'
 
-import { PAUSE } from '../simulator/actions'
+import { PAUSE, UNINIT } from '../simulator/actions'
 
 import { getFileState } from './reducer'
 import { getCoreOptionsFromState, initialiseCore } from '../simulator/sagas'
@@ -71,8 +72,10 @@ export function* newFileSaga() {
   const { files } = yield select(getFileState)
 
   const id = yield call(guid)
-
   const colour = yield call(takeColour, id)
+  const names = randomWords({ exactly: 2, wordsPerString: 2 })
+
+  const defaultWarrior = createDefaultWarrior(names[0], names[1])
 
   const icon = getIdenticon(defaultWarrior.compiled, colour.hex, 20)
 
@@ -153,17 +156,23 @@ export function* openFileSaga({ source }) {
 
 // internal helper functions - not exported
 function* maybeInit(files) {
-  const validFiles = files.filter(x => !x.data.hasErrors && x.data.loaded)
+  const validFiles = files.filter(
+    x =>
+      !x.data.hasErrors && x.data.loaded && x.tokens.filter(y => y.category === 'OPCODE').length > 0
+  )
 
   if (validFiles.length > 0) {
     const { options } = yield call(getCoreOptionsFromState)
     yield call(initialiseCore, options, validFiles)
+  } else {
+    yield put({ type: UNINIT })
   }
 }
 
 function* getColour(id) {
   const { colours } = yield select(getFileState)
-  return colours.find(x => x.id === id)
+  const nextColour = colours.find(x => x.id === id)
+  return nextColour ? nextColour : { id: null, hex: '#ffffff' }
 }
 
 function* takeColour(id) {

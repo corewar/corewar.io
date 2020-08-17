@@ -1,5 +1,15 @@
 import { channel } from 'redux-saga'
-import { call, put, takeEvery, takeLatest, select, take, fork, delay } from 'redux-saga/effects'
+import {
+  call,
+  put,
+  takeEvery,
+  takeLatest,
+  select,
+  take,
+  fork,
+  delay,
+  actionChannel
+} from 'redux-saga/effects'
 import * as PubSub from 'pubsub-js'
 import { corewar } from 'corewar'
 
@@ -32,7 +42,6 @@ import { getCoreOptions } from '../../services/core-options'
 // oddities
 const roundProgressChannel = channel()
 const roundEndChannel = channel()
-const runChannel = channel()
 
 // sagas
 export function* initSaga() {
@@ -75,15 +84,16 @@ export function* runSaga() {
 
   yield put({ type: RUN })
 
-  runChannel.put({
-    type: START_REQUESTED
-  })
+  yield put({ type: START_REQUESTED })
 }
 
 export function* renderCoreSaga() {
+  const runChannel = yield actionChannel(START_REQUESTED)
+  const interval = 1000 / 60
+
   while (yield take(runChannel)) {
     while (true) {
-      yield call(delay, 1000 / 60)
+      yield delay(interval)
 
       const { isRunning, processRate } = yield select(getSimulatorState)
 
@@ -176,8 +186,6 @@ function* setProcessRateSaga({ rate }) {
 function* setCoreOptionsSaga({ id }) {
   yield put({ type: PAUSE })
 
-  yield call(PubSub.publishSync, 'RESET_CORE')
-
   const { coreSize, maximumCycles, minSeparation, instructionLimit, maxTasks } = yield call(
     getCoreOptions,
     id
@@ -192,6 +200,8 @@ function* setCoreOptionsSaga({ id }) {
     maxTasks,
     id
   })
+
+  //yield call(PubSub.publishSync, 'RESET_CORE')
 
   yield call(initSaga)
 }
