@@ -26,6 +26,7 @@ const Core = () => {
   const cellsHigh = useRef(null)
 
   const cellSprite = useRef(null)
+  const endRowCellSprite = useRef(null)
 
   const messages = useRef([])
   const gridRendered = useRef([])
@@ -105,6 +106,7 @@ const Core = () => {
 
     // moved sprite code here as sprites need to be redone when dimensions change
     cellSprite.current = prerenderCell()
+    endRowCellSprite.current = prerenderRowEndCell()
     nextExecutionSprite.current = prerenderExecute('#D4DDE8')
 
     colours.forEach(c => {
@@ -140,6 +142,21 @@ const Core = () => {
     context.moveTo(0, cellSize.current)
     context.lineTo(0, 0)
     context.lineTo(cellSize.current, 0)
+    context.stroke()
+
+    return sprite
+  }
+
+  const prerenderRowEndCell = () => {
+    const sprite = buildSprite()
+
+    const context = sprite.context
+    context.strokeStyle = '#D4DDE8'
+    context.beginPath()
+    context.moveTo(0, cellSize.current)
+    context.lineTo(0, 0)
+    context.lineTo(cellSize.current, 0)
+    context.lineTo(cellSize.current, cellSize.current)
     context.stroke()
 
     return sprite
@@ -208,7 +225,14 @@ const Core = () => {
     let i = 0
     for (let y = 0; y < cellsHigh.current * cellSize.current; y += cellSize.current) {
       for (let x = 0; x < cellsWide.current * cellSize.current; x += cellSize.current) {
-        coreContext.current.drawImage(cellSprite.current.canvas, x, y)
+        let sprite
+        if (x / cellSize.current === cellsWide.current - 1) {
+          sprite = endRowCellSprite.current
+        } else {
+          sprite = cellSprite.current
+        }
+
+        coreContext.current.drawImage(sprite.canvas, x, y)
         if (++i >= coreSize) {
           gridRendered.current = true
           return
@@ -355,7 +379,7 @@ const Core = () => {
   return (
     <section className="flex flex-initial items-center justify-center">
       <div
-        className="relative max-w-core max-h-core min-w-96 min-h-96 lg:w-core lg:h-core bg-gray-500 rounded"
+        className="relative max-w-core max-h-core min-w-96 min-h-96 lg:w-core lg:h-core bg-gray-700 rounded mx-2"
         ref={canvasContainer}
       >
         <canvas
