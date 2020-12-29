@@ -28,13 +28,13 @@ module.exports = {
         }
       },
       maxWidth: {
-        core: '37.5rem'
+        core: '42.5rem'
       },
       minWidth: {
         '96': '24rem'
       },
       maxHeight: {
-        core: '37.5rem'
+        core: '42.5rem'
       },
       minHeight: {
         '16': '4rem',
@@ -45,7 +45,7 @@ module.exports = {
         '84': '21rem',
         '96': '24rem',
         '128': '32rem',
-        core: '37.5rem'
+        core: '42.5rem'
       }
     }
   },

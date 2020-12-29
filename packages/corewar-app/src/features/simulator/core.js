@@ -377,9 +377,9 @@ const Core = () => {
   }
 
   return (
-    <section className="flex flex-initial items-center justify-center">
+    <section className="flex flex-initial items-start justify-center rounded rounded-tl-none rounded-tr-none border border-gray-700 border-t-0">
       <div
-        className="relative max-w-core max-h-core min-w-96 min-h-96 lg:w-core lg:h-core bg-gray-700 rounded mx-2"
+        className="relative max-w-core max-h-core min-w-96 min-h-96 lg:w-core lg:h-core"
         ref={canvasContainer}
       >
         <canvas
