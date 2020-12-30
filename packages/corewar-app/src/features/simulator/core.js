@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import * as PubSub from 'pubsub-js'
 import throttle from '../../services/throttle'
-import { getCoreInstructions, republish } from './actions'
+import { setCoreInstructions, republish } from './actions'
 import { getFileState } from '../files/reducer'
 import { getSimulatorState } from './reducer'
 
 const Core = () => {
+  const dispatch = useDispatch()
   const { colours } = useSelector(getFileState)
   const { coreSize, isInitialised } = useSelector(getSimulatorState)
 
@@ -68,14 +69,14 @@ const Core = () => {
     interactiveContext.current = interactiveCanvasEl.current.getContext('2d')
   }, [])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     interactiveCanvasEl.current.addEventListener('click', e => canvasClick(e))
 
     window.addEventListener(
       'resize',
       throttle(() => init(), 200)
     )
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isInitialised]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     calculateCoreDimensions()
@@ -351,17 +352,18 @@ const Core = () => {
   }
 
   const canvasClick = e => {
+    console.log('click', isInitialised)
     if (!isInitialised) {
       return
     }
-
+    console.log('initialised')
     const point = getRelativeCoordinates(e)
 
     const address = screenCoordinateToAddress(point)
 
     inspectionAddress.current = address
-
-    getCoreInstructions(address)
+    console.log('dispatch(getCoreInstructions(' + address + '))')
+    dispatch(setCoreInstructions(address))
   }
 
   const highlightClickPoint = () => {
