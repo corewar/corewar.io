@@ -17,10 +17,10 @@ const Progress = () => {
           ></span>
         </div>
       )}
-      <div className="w-8 h-8 mx-2 flex items-center">
-        {roundResult.winnerData && `${roundResult.outcome} for`}
+      <div className="mx-2 flex items-center justify-center relative">
+        {roundResult.winnerData && `${roundResult.outcome} for `}
         {roundResult.winnerData && (
-          <div>
+          <div className="ml-2 h-24 flex items-center justify-center relative">
             <img
               src={`data:image/svg+xml;base64,${roundResult.winnerData.icon}`}
               alt={`${roundResult.winnerData.name} avatar`}
