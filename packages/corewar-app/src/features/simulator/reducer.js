@@ -6,7 +6,7 @@ import {
   PAUSE,
   RUN_PROGRESS,
   RUN_ENDED,
-  GET_CORE_INSTRUCTIONS,
+  SET_CORE_INSTRUCTIONS,
   SET_CORE_FOCUS,
   SET_PROCESS_RATE,
   SET_CORE_OPTIONS,
@@ -68,10 +68,10 @@ export default (state = initialState, action) => {
         roundResult: action.data
       }
 
-    case GET_CORE_INSTRUCTIONS:
+    case SET_CORE_INSTRUCTIONS:
       return {
         ...state,
-        coreInfo: action.coreInfo
+        instructions: action.instructions
       }
 
     case SET_CORE_FOCUS:

@@ -35,7 +35,7 @@ const CodeEditor = ({ currentFile }) => {
   const changeHandler = (event, value) => throttle(dispatch(parse(value)), 500)
 
   return (
-    <section className="flex flex-col justify-between flex-initial w-full p-2 rounded-lg rounded-tl-none bg-gray-700 text-gray-100">
+    <section className="flex flex-col justify-start flex-initial w-full p-2 rounded-lg rounded-tl-none bg-gray-700 text-gray-100">
       <FileStatusBar />
       <ControlledEditor
         className="font-code"
