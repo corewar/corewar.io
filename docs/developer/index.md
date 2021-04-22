@@ -13,9 +13,9 @@ The Corewar library provides an API to access the libraries functionality. The l
 
 The Corewar API is divded into the following sections:
 
-* [Parser](./parser)
-* [Simulator](./simulator)
-* [Matches](./matches)
+* [Parser](./parser.md)
+* [Simulator](./simulator.md)
+* [Matches](./matches.md)
 
 ## Building
 
