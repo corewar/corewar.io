@@ -13,7 +13,7 @@ const MemoryAddress = ({ command }) => (
 )
 
 const CoreInspector = () => {
-  const { instructions, focus } = useSelector(getSimulatorState)
+  const { instructions } = useSelector(getSimulatorState)
 
   return (
     <div className="w-full flex flex-col flex-initial justify-start p-2 pb-0">
