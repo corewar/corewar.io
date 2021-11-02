@@ -26,8 +26,8 @@ import {
   START_REQUESTED,
   REPUBLISH,
   REPUBLISH_REQUESTED,
-  GET_CORE_INSTRUCTIONS,
-  GET_CORE_INSTRUCTIONS_REQUESTED,
+  SET_CORE_INSTRUCTIONS,
+  SET_CORE_INSTRUCTIONS_REQUESTED,
   SET_CORE_FOCUS,
   SET_PROCESS_RATE,
   SET_PROCESS_RATE_REQUESTED,
@@ -64,15 +64,15 @@ function* stepSaga() {
 
   const lowerLimit = focus - 5
   const upperLimit = focus + 5
-  const coreInfo = []
+  const instructions = []
 
   for (let index = lowerLimit; index <= upperLimit; index++) {
     const info = yield call([corewar, corewar.getWithInfoAt], index)
     info.instruction.isCurrent = index === focus
-    coreInfo.push(info)
+    instructions.push(info)
   }
 
-  yield put({ type: GET_CORE_INSTRUCTIONS, coreInfo })
+  yield put({ type: SET_CORE_INSTRUCTIONS, instructions })
 }
 
 export function* runSaga() {
@@ -163,20 +163,24 @@ export function* finishSaga() {
   yield call([corewar, corewar.run])
 }
 
-function* getCoreInstructionsSaga({ address }) {
+function* setCoreInstructionsSaga({ address }) {
   const lowerLimit = address - 5
   const upperLimit = address + 5
-  const coreInfo = []
+  const instructions = []
+
+  console.log(address)
 
   for (let index = lowerLimit; index <= upperLimit; index++) {
     const info = yield call([corewar, corewar.getWithInfoAt], index)
     info.instruction.isCurrent = index === address
-    coreInfo.push(info)
+    instructions.push(info)
   }
 
   yield put({ type: SET_CORE_FOCUS, focus: address })
 
-  yield put({ type: GET_CORE_INSTRUCTIONS, coreInfo })
+  console.log(instructions)
+
+  yield put({ type: SET_CORE_INSTRUCTIONS, instructions })
 }
 
 function* setProcessRateSaga({ rate }) {
@@ -243,7 +247,7 @@ export const simulatorWatchers = [
   takeLatest(RUN_REQUESTED, runSaga),
   takeLatest(REPUBLISH_REQUESTED, republishSaga),
   takeLatest(SET_CORE_OPTIONS_REQUESTED, setCoreOptionsSaga),
-  takeLatest(GET_CORE_INSTRUCTIONS_REQUESTED, getCoreInstructionsSaga),
+  takeLatest(SET_CORE_INSTRUCTIONS_REQUESTED, setCoreInstructionsSaga),
   takeLatest(SET_PROCESS_RATE_REQUESTED, setProcessRateSaga),
   fork(watchRoundProgressChannel),
   fork(watchRoundEndChannel),

@@ -1,69 +1,33 @@
-import React, { useRef, useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
-import * as PubSub from 'pubsub-js'
-import { getFileState } from '../files/reducer'
-import { replaceItem } from '../../services/array'
 import { getSimulatorState } from './reducer'
-
-const getWidth = (tasks, maxTasks) => {
-  if (!tasks) {
-    return 1
-  }
-
-  return Math.floor((tasks / maxTasks) * 100)
-}
+import SectionHeader from '../../app-chrome/section-header'
 
 const Progress = () => {
-  const { files } = useSelector(getFileState)
-  const { runProgress, maxTasks } = useSelector(getSimulatorState)
-  //const [tasks, setTasks] = useState([])
-  const tasks = useRef([])
-  useEffect(() => {
-    PubSub.subscribe('CORE_INITIALISE', (msg, data) => {
-      tasks.current = []
-    })
-    return function cleanup() {
-      PubSub.unsubscribe('CORE_INITIALISE')
-    }
-  }, [])
-  useEffect(() => {
-    PubSub.subscribe('TASK_COUNT', (msg, data) => {
-      let newTasks = tasks.current
-
-      data.forEach(item => {
-        newTasks = replaceItem(item.warriorId, newTasks, item.taskCount)
-      })
-
-      tasks.current = newTasks
-
-      return function cleanup() {
-        PubSub.unsubscribe('TASK_COUNT')
-      }
-    })
-  }, [])
+  const { runProgress, roundResult } = useSelector(getSimulatorState)
   return (
-    <div className="max-w-core w-full h-30 flex-initial">
-      <div className="h-8 flex items-center justify-center relative">
-        <span className="w-full h-8 flex justify-center items-center z-10 rounded border border-gray-700">{`${
-          runProgress ? Math.round(runProgress) : 0
-        }%`}</span>
-        <span
-          className="absolute left-0 bg-gray-700 h-8 rounded"
-          style={{ width: `${runProgress ? runProgress : 0}%` }}
-        ></span>
-      </div>
-      <div className="flex flex-col h-20 flex-initial">
-        {files.map((file, i) => (
-          <div
-            key={file.data.hash}
-            className={`mt-2 rounded h-${Math.round(16 / files.length)}`}
-            style={{
-              width: `${getWidth(tasks[i], maxTasks)}%`,
-              backgroundColor: `${file.data.icon &&
-                `rgba(${file.data.icon.foreground[0]},${file.data.icon.foreground[1]},${file.data.icon.foreground[2]},${file.data.icon.foreground[3]})`}`
-            }}
-          ></div>
-        ))}
+    <div className="max-w-core w-full h-30 flex-initial my-2 p-2">
+      <SectionHeader>Progress</SectionHeader>
+      {!roundResult.outcome && (
+        <div className="h-8 flex items-center justify-center relative">
+          <span className="w-full h-4 flex justify-center items-center z-10"></span>
+          <span
+            className="absolute left-0 bg-gray-700 h-4 rounded"
+            style={{ width: `${runProgress ? runProgress : 0}%` }}
+          ></span>
+        </div>
+      )}
+      <div className="mx-2 flex items-center justify-center relative">
+        {roundResult.winnerData && `${roundResult.outcome} for `}
+        {roundResult.winnerData && (
+          <div className="ml-2 h-24 flex items-center justify-center relative">
+            <img
+              src={`data:image/svg+xml;base64,${roundResult.winnerData.icon}`}
+              alt={`${roundResult.winnerData.name} avatar`}
+            />
+            <span className="flex-1 hover:underline">{roundResult.winnerData.name}</span>
+          </div>
+        )}
       </div>
     </div>
   )

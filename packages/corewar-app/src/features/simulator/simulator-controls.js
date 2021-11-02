@@ -26,7 +26,7 @@ const SimulatorControls = () => {
   const dispatch = useDispatch()
   const { isRunning, isInitialised } = useSelector(getSimulatorState)
   return (
-    <div className="max-w-core mb-2 flex justify-evenly items-center text-gray-100">
+    <div className="max-w-core flex justify-evenly items-center text-gray-100 h-24 mt-4 rounded rounded-br-none rounded-bl-none border border-gray-700 border-b-0">
       <SimulatorButton
         clickHandler={() => dispatch(run())}
         visible={!isRunning}
