@@ -21,7 +21,7 @@
   "homepage": "https://github.com/corewar/corewar-api#readme",
   "dependencies": {
     "apollo-server": "^2.9.16",
-    "corewar": "file:../corewar",
+    "corewar": "^0.2.1",
     "graphql": "^14.6.0",
     "mongodb": "^3.5.2",
     "reflect-metadata": "^0.1.13",

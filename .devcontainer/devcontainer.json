@@ -1,0 +1,11 @@
+{
+    "name": "Corewar.io Dev Container",
+    "dockerFile": "Dockerfile",
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "forwardPorts": [
+        3000,
+        4000
+    ],
+}
