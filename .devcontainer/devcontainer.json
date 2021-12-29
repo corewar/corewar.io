@@ -1,0 +1,20 @@
+{
+    "name": "Corewar.io Dev Container",
+    "dockerFile": "Dockerfile",
+    "runArgs": [
+        "--init",
+        "--network=host"
+    ],
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ],
+    "forwardPorts": [
+        3000,
+        4000
+    ],
+    "extensions": [
+        "ms-azuretools.vscode-docker",
+        "eamodio.gitlens",
+        "bradlc.vscode-tailwindcss"
+    ],
+}
