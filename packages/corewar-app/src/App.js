@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import Header from './app-chrome/header'
 import Body from './app-chrome/body'
 import Tab from './app-chrome/tab'
@@ -57,7 +57,7 @@ function App({ location }) {
       <Body>
         <Switch location={isModal ? previousLocation : location}>
           <Route exact path="/">
-            <Editor />
+            <Redirect to="/editor" />
           </Route>
           <Route path="/editor">
             <Editor />
