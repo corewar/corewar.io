@@ -35,6 +35,7 @@ const Core = () => {
   const sprites = useRef([])
   const nextExecutionSprite = useRef(null)
   const inspectionAddress = useRef(null)
+  const prevInspectionAddress = useRef(null)
 
   useEffect(() => {
     PubSub.subscribe('CORE_ACCESS', (msg, data) => {
@@ -361,6 +362,7 @@ const Core = () => {
 
     const address = screenCoordinateToAddress(point)
 
+    prevInspectionAddress.current = inspectionAddress.current
     inspectionAddress.current = address
     console.log('dispatch(getCoreInstructions(' + address + '))')
     dispatch(setCoreInstructions(address))
@@ -368,8 +370,12 @@ const Core = () => {
 
   const highlightClickPoint = () => {
     const address = inspectionAddress.current
+    const prevAddress = prevInspectionAddress.current
 
     const cell = addressToScreenCoordinate(address)
+    const prevCell = addressToScreenCoordinate(prevAddress)
+
+    interactiveContext.current.clearRect(prevCell.x-1, prevCell.y-1, cellSize.current+2, cellSize.current+2)
 
     const { x, y } = cell
 
