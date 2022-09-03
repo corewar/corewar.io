@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux'
 import SectionHeader from '../../app-chrome/section-header'
 import { getSimulatorState } from './reducer'
 
-const MemoryAddress = ({ command }) => (
-  <tr className="font-code h-8">
+const MemoryAddress = ({ command, index }) => (
+  <tr className={`font-code h-8 ${index === 5 ? 'border' : ''}`}>
     <td>{command.address}</td>
     <td>{`${command.opcode}.${command.modifier}`}</td>
     <td>{`${command.aOperand.mode}${command.aOperand.address}`}</td>
@@ -29,10 +29,11 @@ const CoreInspector = () => {
         </thead>
         <tbody>
           {instructions &&
-            instructions.map(instruction => (
+            instructions.map((instruction, i) => (
               <MemoryAddress
                 command={instruction.instruction}
                 key={instruction.instruction.address}
+                index={i}
               />
             ))}
         </tbody>
