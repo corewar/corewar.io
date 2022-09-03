@@ -28,6 +28,7 @@ const Progress = () => {
             <span className="flex-1 hover:underline">{roundResult.winnerData.name}</span>
           </div>
         )}
+        {roundResult.outcome === "DRAW" && `DRAW`}
       </div>
     </div>
   )
