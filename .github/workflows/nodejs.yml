@@ -3,24 +3,23 @@ name: Node.js CI
 on: [pull_request]
 
 jobs:
-  build:
+    build:
+        runs-on: ubuntu-latest
 
-    runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [22.x]
 
-    strategy:
-      matrix:
-        node-version: [12.x]
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install lerna yarn --no-package-lock
-    - run: yarn bootstrap
-    - run: yarn lint
-    - run: yarn build
-    - run: yarn test
-      env:
-        CI: true
+        steps:
+            - uses: actions/checkout@v2
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - run: npm install lerna yarn --no-package-lock
+            - run: yarn bootstrap
+            - run: yarn lint
+            - run: yarn build
+            - run: yarn test
+              env:
+                  CI: true
