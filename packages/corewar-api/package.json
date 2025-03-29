@@ -1,33 +1,33 @@
 {
-  "name": "corewar-api",
-  "version": "0.2.1",
-  "description": "GraphQL API for corewar.io",
-  "main": "src/index.js",
-  "scripts": {
-    "start": "ts-node -r tsconfig-paths/register src/index.ts",
-    "start:docker": "cd docker && docker-compose up",
-    "test": "jest --verbose",
-    "coverage": "jest --coverage"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/corewar/corewar-api.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/corewar/corewar-api/issues"
-  },
-  "homepage": "https://github.com/corewar/corewar-api#readme",
-  "dependencies": {
-    "apollo-server": "^2.9.16",
-    "corewar": "^0.2.1",
-    "graphql": "^14.6.0",
-    "mongodb": "^3.5.2",
-    "reflect-metadata": "^0.1.13",
-    "ts-node": "^8.6.2",
-    "tsconfig-paths": "^3.9.0",
-    "type-graphql": "^0.17.6",
-    "uuid": "^3.4.0"
-  }
+    "name": "corewar-api",
+    "version": "0.2.1",
+    "description": "GraphQL API for corewar.io",
+    "main": "src/index.js",
+    "scripts": {
+        "start": "ts-node -r tsconfig-paths/register src/index.ts",
+        "start:docker": "cd docker && docker-compose up",
+        "test": "jest --verbose",
+        "coverage": "jest --coverage"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/corewar/corewar-api.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/corewar/corewar-api/issues"
+    },
+    "homepage": "https://github.com/corewar/corewar-api#readme",
+    "dependencies": {
+        "apollo-server": "^2.9.16",
+        "corewar": "^0.2.1",
+        "graphql": "^14.6.0",
+        "mongodb": "^3.5.2",
+        "reflect-metadata": "^0.1.13",
+        "ts-node": "^8.6.2",
+        "tsconfig-paths": "^3.9.0",
+        "type-graphql": "^0.17.6",
+        "uuid": "^3.4.0"
+    }
 }

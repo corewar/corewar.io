@@ -58,7 +58,7 @@ export default class WarriorResolver {
                 success: true,
                 result: await this.getService().saveWarrior(warrior.redcode, warrior.id)
             }
-        } catch (e) {
+        } catch (e: any) {
             return {
                 success: false,
                 message: e.message
@@ -73,7 +73,7 @@ export default class WarriorResolver {
                 success: true,
                 result: await this.getService().deleteWarrior(id)
             }
-        } catch (e) {
+        } catch (e: any) {
             return {
                 success: false,
                 message: e.message

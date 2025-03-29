@@ -25,7 +25,7 @@ export default class Repository implements IRepository {
 
         return new Promise((resolve, reject) => {
             try {
-                client.connect(err => {
+                client.connect(err:any => {
                     if (err) {
                         reject(err)
                     }
