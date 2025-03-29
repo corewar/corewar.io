@@ -17,7 +17,6 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
             - run: npm install lerna yarn --no-package-lock
-            - run: yarn bootstrap
             - run: yarn lint
             - run: yarn build
             - run: yarn test
