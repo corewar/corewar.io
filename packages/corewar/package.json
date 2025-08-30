@@ -7,7 +7,7 @@
     "scripts": {
         "test": "jest --verbose",
         "coverage": "jest --coverage",
-        "build": "tsc && tscpaths -p tsconfig-build.json -s src -o dist && cp -r dist/src/* dist/ && rm -rf dist/src && find dist -name '*.js' -exec sed -i '' 's|require(\"\\.\\./|require(\"./|g' {} \\;",
+        "build": "./build.sh",
         "prepublish": "pnpm build",
         "prepublishOnly": "pnpm test",
         "lint": "echo 'Linting temporarily disabled for CI'",
