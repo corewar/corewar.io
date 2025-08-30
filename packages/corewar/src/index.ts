@@ -212,3 +212,13 @@ class Api {
 
 // exports for use in npm package
 export const corewar = new Api()
+
+// Export interfaces for use by other packages
+export type {
+    IBenchmarkRunner, ICore,
+    ICoreLocation,
+    IExecutive, IHillResult,
+    IHillRunner, IMatchResult,
+    IMatchRunner, IOptions, IParser, IParseResult, IPublisher, IPublishProvider, IRoundResult, IRules, ISerialiser, ISimulator, IToken, IWarrior
+}
+

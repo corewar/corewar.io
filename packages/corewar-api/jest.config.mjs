@@ -1,7 +1,7 @@
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
 /* eslint-disable */
-module.exports = {
+export default {
     clearMocks: true,
     coverageDirectory: 'coverage',
     coverageReporters: ['text', 'lcov'],
@@ -13,10 +13,13 @@ module.exports = {
     preset: 'ts-jest',
     testEnvironment: 'node',
     testMatch: ['**/test/**/*spec.ts'],
+    extensionsToTreatAsEsm: ['.ts'],
+    transformIgnorePatterns: ['node_modules/(?!(corewar)/)'],
     transform: {
         '^.+\\.ts$': [
             'ts-jest',
             {
+                useESM: true,
                 tsconfig: {
                     strict: false,
                     strictNullChecks: false,
