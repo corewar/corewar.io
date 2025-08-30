@@ -1,10 +1,10 @@
-﻿import { ILoader } from '@simulator/interface/ILoader'
-import { IRandom } from '@simulator/interface/IRandom'
-import { ICore } from '@simulator/interface/ICore'
-import { IWarriorLoader } from '@simulator/interface/IWarriorLoader'
-import { IWarriorInstance } from '@simulator/interface/IWarriorInstance'
-import { IOptions } from '@simulator/interface/IOptions'
-import IWarrior from '@simulator/interface/IWarrior'
+﻿import { ILoader } from './interface/ILoader'
+import { IRandom } from './interface/IRandom'
+import { ICore } from './interface/ICore'
+import { IWarriorLoader } from './interface/IWarriorLoader'
+import { IWarriorInstance } from './interface/IWarriorInstance'
+import { IOptions } from './interface/IOptions'
+import IWarrior from './interface/IWarrior'
 
 export class Loader implements ILoader {
     private random: IRandom

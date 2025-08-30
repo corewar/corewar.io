@@ -1,6 +1,6 @@
-﻿import { IToken } from '@parser/interface/IToken'
-import { IParseInstruction } from '@parser/interface/IParseInstruction'
-import { IParseResult } from '@parser/interface/IParseResult'
+﻿import { IToken } from './IToken'
+import { IParseInstruction } from './IParseInstruction'
+import { IParseResult } from './IParseResult'
 
 export interface IContext extends IParseResult {
     equs: { [label: string]: IToken[] }

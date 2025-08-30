@@ -1,4 +1,4 @@
-import IWarrior from '@simulator/interface/IWarrior'
+import IWarrior from '../../simulator/interface/IWarrior'
 
 export interface IMatchWarriorResult {
     warrior: IWarrior

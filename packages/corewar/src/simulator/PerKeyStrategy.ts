@@ -1,6 +1,6 @@
-import { IPublishStrategy } from '@simulator/interface/IPublishStrategy'
-import { IMessage } from '@simulator/interface/IMessage'
-import { MessageType } from '@simulator/interface/IMessage'
+import { IPublishStrategy } from './interface/IPublishStrategy'
+import { IMessage } from './interface/IMessage'
+import { MessageType } from './interface/IMessage'
 
 export class PerKeyStrategy implements IPublishStrategy {
     private key: (IMessage) => number

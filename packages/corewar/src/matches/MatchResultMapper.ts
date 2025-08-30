@@ -1,8 +1,8 @@
-import { IMatchResultMapper } from '@matches/interface/IMatchResultMapper'
-import { IMatchResult } from '@matches/interface/IMatchResult'
-import { IMatchWarriorResult } from '@matches/interface/IMatchWarriorResult'
-import { IRoundResult } from '@simulator/interface/IRoundResult'
-import IWarrior from '@simulator/interface/IWarrior'
+import { IMatchResultMapper } from './interface/IMatchResultMapper'
+import { IMatchResult } from './interface/IMatchResult'
+import { IMatchWarriorResult } from './interface/IMatchWarriorResult'
+import { IRoundResult } from '../simulator/interface/IRoundResult'
+import IWarrior from '../simulator/interface/IWarrior'
 
 export class MatchResultMapper implements IMatchResultMapper {
     private getWarriorResult(warrior: IWarrior, roundResults: IRoundResult[]): IMatchWarriorResult {

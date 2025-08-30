@@ -1,6 +1,6 @@
-import { IMessage } from '@simulator/interface/IMessage'
-import { IPublishProvider } from '@simulator/interface/IPublishProvider'
-import { IPublishStrategy } from '@simulator/interface/IPublishStrategy'
+import { IMessage } from './IMessage'
+import { IPublishProvider } from './IPublishProvider'
+import { IPublishStrategy } from './IPublishStrategy'
 
 export type IPublishStrategyMap = { [messageType: string]: IPublishStrategy }
 

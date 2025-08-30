@@ -1,10 +1,10 @@
-﻿import { IFetcher } from '@simulator/interface/IFetcher'
-import { IState } from '@simulator/interface/IState'
-import { ICore } from '@simulator/interface/ICore'
-import { IExecutionContext } from '@simulator/interface/IExecutionContext'
-import { IWarriorInstance } from '@simulator/interface/IWarriorInstance'
-import { ITask } from '@simulator/interface/ITask'
-import { INextExecutionContext } from '@simulator/interface/INextExecutionContext'
+﻿import { IFetcher } from './interface/IFetcher'
+import { IState } from './interface/IState'
+import { ICore } from './interface/ICore'
+import { IExecutionContext } from './interface/IExecutionContext'
+import { IWarriorInstance } from './interface/IWarriorInstance'
+import { ITask } from './interface/ITask'
+import { INextExecutionContext } from './interface/INextExecutionContext'
 
 interface IFetchContext {
     warriorIndex: number

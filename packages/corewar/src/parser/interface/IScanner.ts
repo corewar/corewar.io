@@ -1,5 +1,5 @@
-﻿import { IParseOptions } from '@parser/interface/IParseOptions'
-import { IContext } from '@parser/interface/IContext'
+﻿import { IParseOptions } from './IParseOptions'
+import { IContext } from './IContext'
 
 export interface IScanner {
     scan(document: string, options: IParseOptions): IContext

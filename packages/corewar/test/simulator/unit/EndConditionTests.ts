@@ -1,7 +1,7 @@
 ﻿import { expect } from 'chai'
 import * as sinon from 'sinon'
 import * as chai from 'chai'
-import * as sinonChai from 'sinon-chai'
+import sinonChai from 'sinon-chai'
 
 import { ITask } from '@simulator/interface/ITask'
 import { IWarriorInstance } from '@simulator/interface/IWarriorInstance'

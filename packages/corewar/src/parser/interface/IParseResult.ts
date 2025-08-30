@@ -1,6 +1,6 @@
-﻿import { IMetaData } from '@parser/interface/IMetaData'
-import { IMessage } from '@parser/interface/IMessage'
-import { IToken } from '@parser/interface/IToken'
+﻿import { IMetaData } from './IMetaData'
+import { IMessage } from './IMessage'
+import { IToken } from './IToken'
 
 export interface IParseResult {
     metaData: IMetaData

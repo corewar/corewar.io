@@ -1,10 +1,10 @@
-﻿import { IExecutive } from '@simulator/interface/IExecutive'
-import { IExecutionContext } from '@simulator/interface/IExecutionContext'
-import { ModifierType, OpcodeType } from '@simulator/interface/IInstruction'
-import { IOptions } from '@simulator/interface/IOptions'
-import { MessageType } from '@simulator/interface/IMessage'
-import { IPublisher } from '@simulator/interface/IPublisher'
-import { IWarriorInstance } from '@simulator/interface/IWarriorInstance'
+﻿import { IExecutive } from './interface/IExecutive'
+import { IExecutionContext } from './interface/IExecutionContext'
+import { ModifierType, OpcodeType } from './interface/IInstruction'
+import { IOptions } from './interface/IOptions'
+import { MessageType } from './interface/IMessage'
+import { IPublisher } from './interface/IPublisher'
+import { IWarriorInstance } from './interface/IWarriorInstance'
 
 export class Executive implements IExecutive {
     public commandTable: { [opcode: string]: (context: IExecutionContext) => void } = {

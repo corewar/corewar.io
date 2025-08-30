@@ -1,6 +1,6 @@
-﻿import { TokenCategory } from '@parser/interface/IToken'
+﻿import { TokenCategory } from './interface/IToken'
 
-import { PassBase } from '@parser/PassBase'
+import { PassBase } from './PassBase'
 
 export class Filter extends PassBase {
     /// <summary>

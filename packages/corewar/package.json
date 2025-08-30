@@ -3,11 +3,15 @@
     "version": "0.2.1",
     "description": "HTML5 & javascript implementation of the classic game [corewar](https://en.wikipedia.org/wiki/Core_War)",
     "main": "./dist/index.js",
+    "type": "module",
+    "exports": {
+        ".": "./dist/index.js"
+    },
     "types": "./typings/index.d.ts",
     "scripts": {
         "test": "jest --verbose",
         "coverage": "jest --coverage",
-        "build": "./build.sh",
+        "build": "tsup src/index.ts --format esm --dts --clean",
         "prepublish": "pnpm build",
         "prepublishOnly": "pnpm test",
         "lint": "echo 'Linting temporarily disabled for CI'",
@@ -41,6 +45,7 @@
     },
     "devDependencies": {
         "@types/chai": "^4.3.20",
+        "@types/clone": "^2.1.4",
         "@types/jest": "^30.0.0",
         "@types/node": "^20.19.11",
         "@types/sinon": "^9.0.11",
@@ -51,7 +56,7 @@
         "sinon": "^11.1.2",
         "sinon-chai": "^3.7.0",
         "ts-jest": "^29.4.1",
-        "tscpaths": "^0.0.9",
+        "tsup": "^8.5.0",
         "typescript": "^5.9.2"
     }
 }

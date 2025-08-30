@@ -1,7 +1,7 @@
-﻿import { IOptions } from '@simulator/interface/IOptions'
-import { IState } from '@simulator/interface/IState'
-import { IRoundResult } from '@simulator/interface/IRoundResult'
-import IWarrior from '@simulator/interface/IWarrior'
+﻿import { IOptions } from './IOptions'
+import { IState } from './IState'
+import { IRoundResult } from './IRoundResult'
+import IWarrior from './IWarrior'
 
 export interface ISimulator {
     initialise(options: IOptions, warriors: IWarrior[]): void

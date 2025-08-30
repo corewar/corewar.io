@@ -1,4 +1,4 @@
-﻿import { IExecutionContext } from '@simulator/interface/IExecutionContext'
+﻿import { IExecutionContext } from './IExecutionContext'
 
 export interface IDecoder {
     decode(context: IExecutionContext): IExecutionContext

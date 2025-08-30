@@ -1,4 +1,4 @@
-﻿import { IToken, TokenCategory } from '@parser/interface/IToken'
+﻿import { IToken, TokenCategory } from './interface/IToken'
 
 export class TokenHelper {
     public static categoryToString(category: TokenCategory): string {

@@ -1,4 +1,4 @@
-import { IMatchWarriorResult } from '@matches/interface/IMatchWarriorResult'
+import { IMatchWarriorResult } from './IMatchWarriorResult'
 
 export interface IMatchResult {
     rounds: number

@@ -1,8 +1,8 @@
-﻿import { IContext } from '@parser/interface/IContext'
-import { IMetaData } from '@parser/interface/IMetaData'
-import { IToken } from '@parser/interface/IToken'
-import { IMessage } from '@parser/interface/IMessage'
-import { IParseInstruction } from '@parser/interface/IParseInstruction'
+﻿import { IContext } from './interface/IContext'
+import { IMetaData } from './interface/IMetaData'
+import { IToken } from './interface/IToken'
+import { IMessage } from './interface/IMessage'
+import { IParseInstruction } from './interface/IParseInstruction'
 
 export class Context implements IContext {
     public metaData: IMetaData

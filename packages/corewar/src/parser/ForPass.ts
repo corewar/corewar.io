@@ -1,7 +1,7 @@
-﻿import { IExpression } from '@parser/interface/IExpression'
-import { IToken, TokenCategory } from '@parser/interface/IToken'
+﻿import { IExpression } from './interface/IExpression'
+import { IToken, TokenCategory } from './interface/IToken'
 
-import { PassBase } from '@parser/PassBase'
+import { PassBase } from './PassBase'
 
 export class ForPass extends PassBase {
     private expression: IExpression

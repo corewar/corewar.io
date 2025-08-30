@@ -1,7 +1,7 @@
 import * as sinon from 'sinon'
 import { expect } from 'chai'
 import * as chai from 'chai'
-import * as sinonChai from 'sinon-chai'
+import sinonChai from 'sinon-chai'
 import { IHillRunner } from '@matches/interface/IHillRunner'
 import { HillRunner } from '@matches/HillRunner'
 import TestHelper from '@simulator/tests/unit/TestHelper'

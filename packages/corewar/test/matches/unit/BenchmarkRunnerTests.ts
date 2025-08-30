@@ -1,7 +1,7 @@
 import * as sinon from 'sinon'
 import { expect } from 'chai'
 import * as chai from 'chai'
-import * as sinonChai from 'sinon-chai'
+import sinonChai from 'sinon-chai'
 import TestHelper from '@simulator/tests/unit/TestHelper'
 import { IHillResultMapper } from '@matches/interface/IHillResultMapper'
 import { IHillResult } from '@matches/interface/IHillResult'

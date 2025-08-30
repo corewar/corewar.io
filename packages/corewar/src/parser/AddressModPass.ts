@@ -1,8 +1,8 @@
-﻿import { TokenCategory } from '@parser/interface/IToken'
-import { IParseInstruction } from '@parser/interface/IParseInstruction'
-import { IParseOperand } from '@parser/interface/IParseOperand'
+﻿import { TokenCategory } from './interface/IToken'
+import { IParseInstruction } from './interface/IParseInstruction'
+import { IParseOperand } from './interface/IParseOperand'
 
-import { PassBase } from '@parser/PassBase'
+import { PassBase } from './PassBase'
 
 export class AddressModPass extends PassBase {
     public processLine(): void {

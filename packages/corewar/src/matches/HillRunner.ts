@@ -1,10 +1,10 @@
-import { IHillRunner } from '@matches/interface/IHillRunner'
-import { IHillResult } from '@matches/interface/IHillResult'
-import { IHillResultMapper } from '@matches/interface/IHillResultMapper'
-import { IPublisher } from '@simulator/interface/IPublisher'
-import { MessageType } from '@simulator/interface/IMessage'
+import { MessageType } from '../simulator/interface/IMessage'
+import { IPublisher } from '../simulator/interface/IPublisher'
+import IWarrior from '../simulator/interface/IWarrior'
+import { IHillResult } from './interface/IHillResult'
+import { IHillResultMapper } from './interface/IHillResultMapper'
+import { IHillRunner } from './interface/IHillRunner'
 import { IMatchRunner } from './interface/IMatchRunner'
-import IWarrior from '@simulator/interface/IWarrior'
 import { IRules } from './interface/IRules'
 
 export class HillRunner implements IHillRunner {

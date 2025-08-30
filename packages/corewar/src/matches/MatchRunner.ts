@@ -1,10 +1,10 @@
-import { IMatchRunner } from '@matches/interface/IMatchRunner'
-import IWarrior from '@simulator/interface/IWarrior'
-import { ISimulator } from '@simulator/interface/ISimulator'
-import { IPublisher } from '@simulator/interface/IPublisher'
-import { MessageType } from '@simulator/interface/IMessage'
-import { IMatchResultMapper } from '@matches/interface/IMatchResultMapper'
-import { IMatchResult } from '@matches/interface/IMatchResult'
+import { IMatchRunner } from './interface/IMatchRunner'
+import IWarrior from '../simulator/interface/IWarrior'
+import { ISimulator } from '../simulator/interface/ISimulator'
+import { IPublisher } from '../simulator/interface/IPublisher'
+import { MessageType } from '../simulator/interface/IMessage'
+import { IMatchResultMapper } from './interface/IMatchResultMapper'
+import { IMatchResult } from './interface/IMatchResult'
 import { IRules } from './interface/IRules'
 
 export class MatchRunner implements IMatchRunner {

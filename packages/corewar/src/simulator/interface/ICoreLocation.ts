@@ -1,5 +1,5 @@
-import { IInstruction } from '@simulator/interface/IInstruction'
-import { ICoreAccessEventArgs } from '@simulator/interface/ICore'
+import { IInstruction } from './IInstruction'
+import { ICoreAccessEventArgs } from './ICore'
 
 export interface ICoreLocation {
     instruction: IInstruction
