@@ -1,7 +1,7 @@
 
 
 > corewar@0.2.1 build /Users/dougmcdonald/dev/corewar.io/packages/corewar
-> tsc && tscpaths -p tsconfig-build.json -s src -o dist
+> tsc && tscpaths -p tsconfig-build.json -s src -o dist && cp -r dist/src/* dist/ && rm -rf dist/src && find dist -name '*.js' -exec sed -i '' 's|require("\.\./|require("./|g' {} \;
 
 tscpaths --project /Users/dougmcdonald/dev/corewar.io/packages/corewar/tsconfig-build.json --src /Users/dougmcdonald/dev/corewar.io/packages/corewar/src --out /Users/dougmcdonald/dev/corewar.io/packages/corewar/dist
 /Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/index.js: replaced 37 paths
