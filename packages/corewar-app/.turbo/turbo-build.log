@@ -12,7 +12,7 @@
   
    🚀 Building: [1m[35msrc/global/styles.css[39m[22m
   
-   ✅ Finished in [1m[36m856 ms[39m[22m
+   ✅ Finished in [1m[36m1.79 s[39m[22m
    📦 Size: [1m[36m2.14MB[39m[22m
    💾 Saved to [1m[35msrc/global/tailwind.css[39m[22m
   
@@ -20,17 +20,13 @@
 > corewar-app@0.2.1 build /Users/dougmcdonald/dev/corewar.io/packages/corewar-app
 > react-scripts build
 
-(node:59115) [DEP0176] DeprecationWarning: fs.F_OK is deprecated, use fs.constants.F_OK instead
+(node:64444) [DEP0176] DeprecationWarning: fs.F_OK is deprecated, use fs.constants.F_OK instead
 (Use `node --trace-deprecation ...` to show where the warning was created)
 Creating an optimized production build...
 
-[1m[33mwarn[39m[22m - The `purge`/`content` options have changed in Tailwind CSS v3.0.
-[1m[33mwarn[39m[22m - Update your configuration file to eliminate this warning.
-[1m[33mwarn[39m[22m - https://tailwindcss.com/docs/upgrade-guide#configure-content-sources
-
-[1m[33mwarn[39m[22m - The `content` option in your Tailwind CSS configuration is missing or empty.
-[1m[33mwarn[39m[22m - Configure your content sources or your generated CSS will be missing styles.
-[1m[33mwarn[39m[22m - https://tailwindcss.com/docs/content-configuration
+[1m[33mwarn[39m[22m - Tailwind is not purging unused styles because no template paths have been provided.
+[1m[33mwarn[39m[22m - If you have manually configured PurgeCSS outside of Tailwind or are deliberately not removing unused styles, set `purge: false` in your Tailwind config file to silence this warning.
+[1m[33mwarn[39m[22m - https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
 [32mCompiled successfully.[39m
 [32m[39m
 File sizes after gzip:

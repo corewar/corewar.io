@@ -1,21 +1,21 @@
-import chai, { expect, assert } from 'chai'
 import { IRepository } from '@/database/Repository'
-import buildRepositoryMock from '@test/mocks/Repository'
-import HillService, { IHillService } from '@/services/HillService'
-import sinon from 'sinon'
-import buildRules from '@test/mocks/HillRules'
-import sinonChai from 'sinon-chai'
 import Hill from '@/schema/Hill'
-import { IUuidFactory } from '@/services/UuidFactory'
-import buildUidFactoryMock from '@test/mocks/UuidFactory'
-import { corewar, IHillResult, IRules, IWarrior, IPublishProvider } from 'corewar'
-import buildParseResult from '@test/mocks/ParseResult'
-import { IWarriorService } from '@/services/WarriorService'
-import buildWarriorServiceMock from '@test/mocks/WarriorService'
-import buildHillWarrior from '@test/mocks/HillWarrior'
-import buildWarrior from '@test/mocks/Warrior'
-import buildHill from '@test/mocks/Hill'
 import Warrior from '@/schema/Warrior'
+import HillService, { IHillService } from '@/services/HillService'
+import { IUuidFactory } from '@/services/UuidFactory'
+import { IWarriorService } from '@/services/WarriorService'
+import buildHill from '@test/mocks/Hill'
+import buildRules from '@test/mocks/HillRules'
+import buildHillWarrior from '@test/mocks/HillWarrior'
+import buildParseResult from '@test/mocks/ParseResult'
+import buildRepositoryMock from '@test/mocks/Repository'
+import buildUidFactoryMock from '@test/mocks/UuidFactory'
+import buildWarrior from '@test/mocks/Warrior'
+import buildWarriorServiceMock from '@test/mocks/WarriorService'
+import chai, { assert, expect } from 'chai'
+import { corewar, IHillResult, IPublishProvider, IRules, IWarrior } from 'corewar'
+import sinon from 'sinon'
+import sinonChai from 'sinon-chai'
 chai.use(sinonChai)
 
 describe('HillService', () => {
@@ -217,7 +217,7 @@ describe('HillService', () => {
                 await target.challengeHill(hillId, '1')
                 assert.fail('Expected promise to fail but succeeded')
             } catch (e) {
-                expect(e.message).to.be.equal(`No hill found with id '${hillId}'`)
+                expect(e instanceof Error ? e.message : String(e)).to.be.equal(`No hill found with id '${hillId}'`)
             }
         })
 
@@ -231,7 +231,7 @@ describe('HillService', () => {
                 await target.challengeHill('1', challengerId)
                 assert.fail('Expected promise to fail but succeeded')
             } catch (e) {
-                expect(e.message).to.be.equal(`No warrior found with id '${challengerId}'`)
+                expect(e instanceof Error ? e.message : String(e)).to.be.equal(`No warrior found with id '${challengerId}'`)
             }
         })
     })
