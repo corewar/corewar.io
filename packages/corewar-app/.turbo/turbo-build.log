@@ -12,7 +12,7 @@
   
    🚀 Building: [1m[35msrc/global/styles.css[39m[22m
   
-   ✅ Finished in [1m[36m469 ms[39m[22m
+   ✅ Finished in [1m[36m643 ms[39m[22m
    📦 Size: [1m[36m2.14MB[39m[22m
    💾 Saved to [1m[35msrc/global/tailwind.css[39m[22m
   
@@ -20,122 +20,19 @@
 > corewar-app@0.2.1 build /Users/dougmcdonald/dev/corewar.io/packages/corewar-app
 > react-scripts build
 
-(node:77551) [DEP0176] DeprecationWarning: fs.F_OK is deprecated, use fs.constants.F_OK instead
+(node:40005) [DEP0176] DeprecationWarning: fs.F_OK is deprecated, use fs.constants.F_OK instead
 (Use `node --trace-deprecation ...` to show where the warning was created)
 Creating an optimized production build...
 
 [1m[33mwarn[39m[22m - Tailwind is not purging unused styles because no template paths have been provided.
 [1m[33mwarn[39m[22m - If you have manually configured PurgeCSS outside of Tailwind or are deliberately not removing unused styles, set `purge: false` in your Tailwind config file to silence this warning.
 [1m[33mwarn[39m[22m - https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
-[33mCompiled with warnings.[39m
-[33m[39m
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/index.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/index.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/matches/BenchmarkRunner.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/matches/BenchmarkRunner.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/matches/HillResultMapper.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/matches/HillResultMapper.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/matches/HillRunner.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/matches/HillRunner.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/matches/MatchResultMapper.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/matches/MatchResultMapper.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/matches/MatchRunner.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/matches/MatchRunner.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/Context.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/Context.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/DefaultPass.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/DefaultPass.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/Expression.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/Expression.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/Filter.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/Filter.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/ForPass.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/ForPass.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/IllegalCommandCheck.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/IllegalCommandCheck.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/LabelCollector.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/LabelCollector.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/LabelEmitter.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/LabelEmitter.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/LoadFileSerialiser.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/LoadFileSerialiser.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/MathsProcessor.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/MathsProcessor.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/MetaDataCollector.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/MetaDataCollector.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/MetaDataEmitter.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/MetaDataEmitter.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/OrgPass.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/OrgPass.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/Parser.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/Parser.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/PassBase.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/PassBase.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/PreprocessAnalyser.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/PreprocessAnalyser.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/PreprocessCollector.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/PreprocessCollector.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/PreprocessEmitter.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/PreprocessEmitter.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/Scanner.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/Scanner.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/SyntaxCheck.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/SyntaxCheck.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/TokenHelper.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/TokenHelper.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/TokenStream.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/TokenStream.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/interface/IMessage.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/interface/IMessage.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/interface/IParseOptions.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/interface/IParseOptions.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/interface/IToken.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/parser/interface/IToken.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/Core.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/Core.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/Decoder.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/Decoder.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/Defaults.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/Defaults.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/EndCondition.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/EndCondition.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/Executive.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/Executive.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/Fetcher.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/Fetcher.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/LatestOnlyStrategy.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/LatestOnlyStrategy.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/Loader.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/Loader.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/OptionValidator.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/OptionValidator.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/PerKeyStrategy.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/PerKeyStrategy.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/Publisher.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/Publisher.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/Random.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/Random.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/Simulator.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/Simulator.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/WarriorInstance.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/WarriorInstance.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/WarriorLoader.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/WarriorLoader.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/interface/ICore.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/interface/ICore.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/interface/IInstruction.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/interface/IInstruction.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/interface/IMessage.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/interface/IMessage.ts'
-
-Failed to parse source map from '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/interface/IOperand.ts' file: Error: ENOENT: no such file or directory, open '/Users/dougmcdonald/dev/corewar.io/packages/src/simulator/interface/IOperand.ts'
-
-Search for the [4m[33mkeywords[39m[24m to learn more about each warning.
-To ignore, add [36m// eslint-disable-next-line[39m to the line before.
-
+[32mCompiled successfully.[39m
+[32m[39m
 File sizes after gzip:
 
   189.63 kB  [2mbuild/static/css/[22m[36mmain.20d6bd46.css[39m
-  119.33 kB  [2mbuild/static/js/[22m[36mmain.12d4633e.js[39m
+  115.51 kB  [2mbuild/static/js/[22m[36mmain.6fa7f2eb.js[39m
 
 The project was built assuming it is hosted at [32m/[39m.
 You can control this with the [32mhomepage[39m field in your [36mpackage.json[39m.

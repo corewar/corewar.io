@@ -1,26 +1,26 @@
 ﻿import { expect } from 'chai'
 
-import { Standard } from '@parser/interface/IParseOptions'
+import { DefaultPass } from '@parser/DefaultPass'
 import { Expression } from '@parser/Expression'
-import { Parser } from '@parser/Parser'
-import { Scanner } from '@parser/Scanner'
 import { Filter } from '@parser/Filter'
 import { ForPass } from '@parser/ForPass'
-import { PreprocessCollector } from '@parser/PreprocessCollector'
-import { PreprocessAnalyser } from '@parser/PreprocessAnalyser'
-import { PreprocessEmitter } from '@parser/PreprocessEmitter'
+import { IllegalCommandCheck } from '@parser/IllegalCommandCheck'
 import { LabelCollector } from '@parser/LabelCollector'
 import { LabelEmitter } from '@parser/LabelEmitter'
-import { MathsProcessor } from '@parser/MathsProcessor'
-import { DefaultPass } from '@parser/DefaultPass'
-import { OrgPass } from '@parser/OrgPass'
-import { SyntaxCheck } from '@parser/SyntaxCheck'
-import { IllegalCommandCheck } from '@parser/IllegalCommandCheck'
 import { LoadFileSerialiser } from '@parser/LoadFileSerialiser'
-import { TestLoader } from '@parser/tests/integration/TestLoader'
+import { MathsProcessor } from '@parser/MathsProcessor'
 import { MetaDataCollector } from '@parser/MetaDataCollector'
 import { MetaDataEmitter } from '@parser/MetaDataEmitter'
+import { OrgPass } from '@parser/OrgPass'
+import { Parser } from '@parser/Parser'
+import { PreprocessAnalyser } from '@parser/PreprocessAnalyser'
+import { PreprocessCollector } from '@parser/PreprocessCollector'
+import { PreprocessEmitter } from '@parser/PreprocessEmitter'
+import { Scanner } from '@parser/Scanner'
+import { SyntaxCheck } from '@parser/SyntaxCheck'
+import { Standard } from '@parser/interface/IParseOptions'
 import { IParseResult } from '@parser/interface/IParseResult'
+import { TestLoader } from '@parser/tests/integration/TestLoader'
 
 export class TestHelper {
     private static failedIndex(name: string, a: string, b: string): void {
@@ -112,7 +112,7 @@ export class TestHelper {
                     }
 
                     if (--remaining == 0) {
-                        resolve()
+                        resolve(undefined)
                     }
                 })
             })

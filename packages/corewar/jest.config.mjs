@@ -10,6 +10,8 @@ export default {
     testMatch: ['**/test/**/*[tT]ests.ts'],
     extensionsToTreatAsEsm: ['.ts'],
     moduleNameMapper: {
+        '^@parser/tests/(.*)$': '<rootDir>/test/parser/$1',
+        '^@simulator/tests/(.*)$': '<rootDir>/test/simulator/$1',
         '^@parser/(.*)$': '<rootDir>/src/parser/$1',
         '^@simulator/(.*)$': '<rootDir>/src/simulator/$1',
         '^@matches/(.*)$': '<rootDir>/src/matches/$1'

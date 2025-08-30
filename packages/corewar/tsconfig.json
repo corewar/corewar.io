@@ -17,7 +17,9 @@
     "paths": {
       "@parser/*": ["./src/parser/*"],
       "@simulator/*": ["./src/simulator/*"],
-      "@matches/*": ["./src/matches/*"]
+      "@matches/*": ["./src/matches/*"],
+      "@parser/tests/*": ["./test/parser/*"],
+      "@simulator/tests/*": ["./test/simulator/*"]
     }
   },
   "include": ["./src/**/*"]

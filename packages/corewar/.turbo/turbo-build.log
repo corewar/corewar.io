@@ -1,119 +1,20 @@
 
 
 > corewar@0.2.1 build /Users/dougmcdonald/dev/corewar.io/packages/corewar
-> tsc && tscpaths -p tsconfig-build.json -s src -o dist && cp -r dist/src/* dist/ && rm -rf dist/src && find dist -name '*.js' -exec sed -i '' 's|require("\.\./|require("./|g' {} \;
+> tsup src/index.ts --format esm,cjs --dts --clean --tsconfig tsconfig.json
 
-tscpaths --project /Users/dougmcdonald/dev/corewar.io/packages/corewar/tsconfig-build.json --src /Users/dougmcdonald/dev/corewar.io/packages/corewar/src --out /Users/dougmcdonald/dev/corewar.io/packages/corewar/dist
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/index.js: replaced 37 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/matches/BenchmarkRunner.js: replaced 1 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/matches/HillRunner.js: replaced 1 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/matches/MatchRunner.js: replaced 1 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/AddressModPass.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/DefaultPass.js: replaced 3 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/Expression.js: replaced 1 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/Filter.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/ForPass.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/IllegalCommandCheck.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/LabelCollector.js: replaced 3 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/LabelEmitter.js: replaced 4 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/LoadFileSerialiser.js: replaced 1 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/LoadParser.js: replaced 3 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/MathsProcessor.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/MetaDataCollector.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/MetaDataEmitter.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/OrgPass.js: replaced 3 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/Parser.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/PassBase.js: replaced 1 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/PreprocessAnalyser.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/PreprocessCollector.js: replaced 4 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/PreprocessEmitter.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/Scanner.js: replaced 3 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/SyntaxCheck.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/TokenHelper.js: replaced 1 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/parser/TokenStream.js: replaced 3 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/simulator/Core.js: replaced 3 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/simulator/Decoder.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/simulator/Defaults.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/simulator/EndCondition.js: replaced 1 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/simulator/Executive.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/simulator/OptionValidator.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/simulator/Simulator.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/src/simulator/WarriorLoader.js: replaced 5 paths
-could not replace @simulator/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/matches/unit/BenchmarkRunnerTests.js: replaced 3 paths
-could not replace @simulator/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/matches/unit/HillResultMapperTests.js: replaced 2 paths
-could not replace @simulator/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/matches/unit/HillRunnerTests.js: replaced 3 paths
-could not replace @simulator/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/matches/unit/MatchResultMapperTests.js: replaced 2 paths
-could not replace @simulator/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/matches/unit/MatchRunnerTests.js: replaced 3 paths
-could not replace @parser/tests/integration/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/integration/ICWS-86Tests.js: replaced 2 paths
-could not replace @parser/tests/integration/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/integration/ICWS-88Tests.js: replaced 2 paths
-could not replace @parser/tests/integration/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/integration/ICWS-94Tests.js: replaced 2 paths
-could not replace @parser/tests/integration/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/integration/RegressionTests.js: replaced 3 paths
-could not replace @parser/tests/integration/TestLoader
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/integration/TestHelper.js: replaced 19 paths
-could not replace @parser/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/AddressModPassTests.js: replaced 5 paths
-could not replace @parser/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/DefaultPassTests.js: replaced 6 paths
-could not replace @parser/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/FilterTests.js: replaced 5 paths
-could not replace @parser/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/ForPassTests.js: replaced 7 paths
-could not replace @parser/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/IllegalCommandCheckTests.js: replaced 6 paths
-could not replace @parser/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/JsonSerialiserTests.js: replaced 2 paths
-could not replace @parser/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/LabelCollectorTests.js: replaced 7 paths
-could not replace @parser/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/LabelEmitterTests.js: replaced 7 paths
-could not replace @parser/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/LoadFileSerialiserTests.js: replaced 3 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/LoadParserTests.js: replaced 5 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/MathsProcessorTests.js: replaced 6 paths
-could not replace @parser/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/MetaDataCollectorTests.js: replaced 5 paths
-could not replace @parser/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/OrgPassTests.js: replaced 7 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/ParserTests.js: replaced 4 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/PassBaseTests.js: replaced 1 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/PreprocessAnalyserTests.js: replaced 5 paths
-could not replace @parser/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/PreprocessCollectorTests.js: replaced 7 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/PreprocessEmitterTests.js: replaced 4 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/ScannerTests.js: replaced 4 paths
-could not replace @parser/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/SyntaxCheckTests.js: replaced 6 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/TestHelper.js: replaced 1 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/parser/unit/TokenStreamTests.js: replaced 2 paths
-could not replace @simulator/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/simulator/integration/RegressionTests.js: replaced 8 paths
-could not replace @simulator/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/simulator/unit/CoreTests.js: replaced 7 paths
-could not replace @simulator/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/simulator/unit/DecoderTestHelper.js: replaced 1 paths
-could not replace @simulator/tests/unit/TestHelper
-could not replace @simulator/tests/unit/DecoderTestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/simulator/unit/DecoderTests.js: replaced 4 paths
-could not replace @simulator/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/simulator/unit/EndConditionTests.js: replaced 4 paths
-could not replace @simulator/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/simulator/unit/ExecutiveTestHelper.js: replaced 3 paths
-could not replace @simulator/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/simulator/unit/FetcherTests.js: replaced 5 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/simulator/unit/LatestOnlyStrategyTests.js: replaced 2 paths
-could not replace @simulator/tests/unit/TestHelper
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/simulator/unit/LoaderTests.js: replaced 4 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/simulator/unit/OptionValidatorTests.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/simulator/unit/PerKeyStrategyTests.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/simulator/unit/PublisherTests.js: replaced 2 paths
-/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/test/simulator/unit/TestHelper.js: replaced 3 paths
-Replaced 304 paths in 80 files
+[34mCLI[39m Building entry: src/index.ts
+[34mCLI[39m Using tsconfig: tsconfig.json
+[34mCLI[39m tsup v8.5.0
+[34mCLI[39m Target: es2020
+[34mCLI[39m Cleaning output folder
+[34mESM[39m Build start
+[34mCJS[39m Build start
+[32mESM[39m [1mdist/index.js [22m[32m85.22 KB[39m
+[32mESM[39m ⚡️ Build success in 19ms
+[32mCJS[39m [1mdist/index.cjs [22m[32m87.32 KB[39m
+[32mCJS[39m ⚡️ Build success in 19ms
+DTS Build start
+DTS ⚡️ Build success in 490ms
+DTS dist/index.d.ts  6.97 KB
+DTS dist/index.d.cts 6.97 KB

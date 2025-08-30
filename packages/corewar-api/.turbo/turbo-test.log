@@ -1,918 +1,780 @@
 
 
 > corewar-api@0.2.1 test /Users/dougmcdonald/dev/corewar.io/packages/corewar-api
-> jest --verbose
+> jest --verbose --config jest.config.mjs
 
 [1m[2mDetermining test suites to run...[22m[22m[999D[K
 
 [1mTest Suites: [22m0 of 6 total
 [1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        0 s, estimated 4 s
-[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
+[1mTime:[22m        0 s[K[1A[K[1A[K[1A[K[1A[K[1A
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
 [1mTest Suites: [22m0 of 6 total
 [1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        0 s, estimated 4 s
-[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
+[1mTime:[22m        0 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
 [1mTest Suites: [22m0 of 6 total
 [1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        1 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
+[1mTime:[22m        1 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
 [1mTest Suites: [22m0 of 6 total
 [1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
 [1mTest Suites: [22m0 of 6 total
 [1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  Example spec
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  Example spec
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
 [1mTest Suites: [22m0 of 6 total
 [1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    [32m✓[39m [2mshould always succeed (2 ms)[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    [32m✓[39m [2mshould always succeed (2 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
 [1mTest Suites: [22m0 of 6 total
 [1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
 [1mTest Suites: [22m0 of 6 total
 [1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
 [1mTest Suites: [22m0 of 6 total
 [1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  ParseResolver
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  WarriorResolver
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
 [1mTest Suites: [22m0 of 6 total
 [1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    parse
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    query warrior
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
 [1mTest Suites: [22m0 of 6 total
 [1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould pass specified redcode to corewar library to parse (3 ms)[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return warrior with matching id from service (6 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
 [1mTest Suites: [22m0 of 6 total
 [1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return ParseResult[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    query warriors
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
 [1mTest Suites: [22m0 of 6 total
 [1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return all warriors from service[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
 [1mTest Suites: [22m0 of 6 total
 [1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    mutation saveWarrior
+
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m0 of 6 total
+[1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould save warrior with specified redcode and id (1 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m0 of 6 total
+[1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  HillService
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return result of service saveWarrior[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m0 of 6 total
+[1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    getById
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould handle errors raised by service[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m0 of 6 total
+[1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return requested result from repository (3 ms)[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    mutation deleteWarrior
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m0 of 6 total
+[1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    getAll
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould delete warrior with specified id[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m0 of 6 total
+[1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return all results from repository[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return result of service deleteWarrior[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m0 of 6 total
+[1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    createHill
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould handle errors raised by service (1 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m0 of 6 total
+[1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould upsert hill with repository (1 ms)[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m0 of 6 total
+[1mTests:       [22m0 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould generate a uuid for the new hill[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 
 [1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTests:       [22m[1m[32m9 passed[39m[22m, 9 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    deleteHill
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 
 [1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTests:       [22m[1m[32m9 passed[39m[22m, 9 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould delete the specified hill from the repository[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  ParseResolver
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 
 [1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTests:       [22m[1m[32m9 passed[39m[22m, 9 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    challengeHill
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    parse
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 
 [1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTests:       [22m[1m[32m9 passed[39m[22m, 9 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould run hill with specified warrior (1 ms)[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould pass specified redcode to corewar library to parse (3 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 
 [1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTests:       [22m[1m[32m9 passed[39m[22m, 9 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould use the rules for the hill with the specified id (1 ms)[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return ParseResult (1 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 
 [1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTests:       [22m[1m[32m9 passed[39m[22m, 9 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould run hill with hill's existing warriors[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
 
 [1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTests:       [22m[1m[32m9 passed[39m[22m, 9 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould exclude warriors whose rank exceeds the hill size (1 ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould throw if hill does not exist (1 ms)[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould throw if challenger does not exist[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  WarriorService
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    getById
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return requested result from repository (4 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  WarriorResolver
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    getAll
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    query warrior
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return all results from repository (1 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return warrior with matching id from service (3 ms)[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    saveWarrior
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    query warriors
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould upsert warrior with repository[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return all warriors from service[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould generate a uuid if no id specified (1 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    mutation saveWarrior
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould not assign an id or persist if redcode cannot be parsed[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould save warrior with specified redcode and id (1 ms)[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      deleteWarrior
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return result of service saveWarrior[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A        [32m✓[39m [2mshould delete the specified warrior from the repository (1 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould handle errors raised by service (1 ms)[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    mutation deleteWarrior
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould delete warrior with specified id[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  HillService
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return result of service deleteWarrior[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    getById
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould handle errors raised by service (1 ms)[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return requested result from repository (5 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    getAll
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return all results from repository (1 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  WarriorService
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    createHill
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    getById
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould upsert hill with repository (1 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return requested result from repository (3 ms)[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould generate a uuid for the new hill (1 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    getAll
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    deleteHill
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return all results from repository (1 ms)[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould delete the specified hill from the repository[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    saveWarrior
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    challengeHill
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould upsert warrior with repository[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould run hill with specified warrior (1 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould generate a uuid if no id specified (1 ms)[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould use the rules for the hill with the specified id (1 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould not assign an id or persist if redcode cannot be parsed[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould run hill with hill's existing warriors (1 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      deleteWarrior
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould exclude warriors whose rank exceeds the hill size (1 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A        [32m✓[39m [2mshould delete the specified warrior from the repository (1 ms)[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould throw if hill does not exist[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould throw if challenger does not exist (1 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 6 total
+[1mTests:       [22m[1m[32m11 passed[39m[22m, 11 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  HillResolver
+[1mTime:[22m        2 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    query hill
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  HillResolver
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return hill with matching id from service (3 ms)[22m
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    query hill
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    query hills
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return hill with matching id from service (4 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return all hills from service (1 ms)[22m
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    query hills
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    mutation saveHill
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return all hills from service (1 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould save hill with specified rules[22m
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    mutation saveHill
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return result of service createHill[22m
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould save hill with specified rules (2 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould handle errors raised by service (1 ms)[22m
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return result of service createHill (2 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    mutation deleteHill
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould handle errors raised by service[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould delete hill with specified id[22m
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    mutation deleteHill
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return result of service deleteHill (1 ms)[22m
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould delete hill with specified id (1 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould handle errors raised by service[22m
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return result of service deleteHill[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    mutation challengeHill
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould handle errors raised by service (1 ms)[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould challenge specified hill with the specified warrior (1 ms)[22m
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    mutation challengeHill
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return result of service challengeHill[22m
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould challenge specified hill with the specified warrior[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould handle errors raised by service[22m
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return result of service challengeHill[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould handle errors raised by service[22m
 
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
 [0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
 
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 6 total
-[1mTests:       [22m[1m[32m3 passed[39m[22m, 3 total
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
+
+[1mTest Suites: [22m[1m[32m5 passed[39m[22m, 5 of 6 total
+[1mTests:       [22m[1m[32m28 passed[39m[22m, 28 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2 s, estimated 4 s
-[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[999D[K[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 total
+[1mTime:[22m        3 s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[999D[K[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 total
 [1mTests:       [22m[1m[32m39 passed[39m[22m, 39 total
 [1mSnapshots:   [22m0 total
-[1mTime:[22m        2.726 s, estimated 4 s
+[1mTime:[22m        3.227 s
 [2mRan all test suites[22m[2m.[22m
