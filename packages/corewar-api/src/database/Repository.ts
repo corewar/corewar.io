@@ -1,14 +1,14 @@
+import { DATABASE_NAME, MONGO_URL } from '@/constants'
 import IId from '@/schema/IId'
-import { MongoClient, FilterQuery } from 'mongodb'
-import { MONGO_URL, DATABASE_NAME } from '@/constants'
+import { Filter, MongoClient } from 'mongodb'
 
 export interface IRepository {
     getAll<T extends IId>(): Promise<T[]>
     getById<T extends IId>(id: string): Promise<T>
     /* eslint-disable-next-line */
-    getOneBy<T extends IId>(filter: FilterQuery<any>): Promise<T>
+    getOneBy<T extends IId>(filter: Filter<any>): Promise<T>
     /* eslint-disable-next-line */
-    getManyBy<T extends IId>(filter: FilterQuery<any>): Promise<T[]>
+    getManyBy<T extends IId>(filter: Filter<any>): Promise<T[]>
     upsert<T extends IId>(data: T): Promise<void>
     delete(id: string): Promise<void>
 }
@@ -22,20 +22,8 @@ export default class Repository implements IRepository {
 
     private async getClient(): Promise<MongoClient> {
         const client = new MongoClient(MONGO_URL)
-
-        return new Promise((resolve, reject) => {
-            try {
-                client.connect(err => {
-                    if (err) {
-                        reject(err)
-                    }
-
-                    resolve(client)
-                })
-            } catch (e) {
-                reject(e)
-            }
-        })
+        await client.connect()
+        return client
     }
 
     async getAll<T extends IId>(): Promise<T[]> {
@@ -63,7 +51,7 @@ export default class Repository implements IRepository {
     }
 
     /* eslint-disable-next-line */
-    async getOneBy<T extends IId>(filter: FilterQuery<any>): Promise<T> {
+    async getOneBy<T extends IId>(filter: Filter<any>): Promise<T> {
         const client = await this.getClient()
         try {
             const database = client.db(DATABASE_NAME)
@@ -76,7 +64,7 @@ export default class Repository implements IRepository {
     }
 
     /* eslint-disable-next-line */
-    async getManyBy<T extends IId>(filter: FilterQuery<any>): Promise<T[]> {
+    async getManyBy<T extends IId>(filter: Filter<any>): Promise<T[]> {
         const client = await this.getClient()
         try {
             const database = client.db(DATABASE_NAME)

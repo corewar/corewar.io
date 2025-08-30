@@ -8,8 +8,11 @@
         "test": "jest",
         "coverage": "jest --coverage",
         "build": "tsc -p tsconfig-build.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
-        "prepublish": "yarn build",
-        "prepublishOnly": "yarn test"
+        "prepublish": "pnpm build",
+        "prepublishOnly": "pnpm test",
+        "lint": "eslint src/**/*.ts",
+        "clean": "rm -rf dist coverage",
+        "dev": "echo 'Corewar package has no dev server - use build instead'"
     },
     "files": [
         "dist/**/*",

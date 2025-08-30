@@ -1,7 +1,7 @@
-import { Resolver, Mutation, ObjectType, Query, Args, Field, ArgsType, InputType } from 'type-graphql'
-import Warrior from '@/schema/Warrior'
 import MutationResult from '@/resolvers/MutationResult'
+import Warrior from '@/schema/Warrior'
 import { IWarriorService, buildWarriorService } from '@/services/WarriorService'
+import { Args, ArgsType, Field, InputType, Mutation, ObjectType, Query, Resolver } from 'type-graphql'
 
 @InputType()
 class WarriorInput {
@@ -61,7 +61,7 @@ export default class WarriorResolver {
         } catch (e) {
             return {
                 success: false,
-                message: e.message
+                message: e instanceof Error ? e.message : String(e)
             }
         }
     }
@@ -76,7 +76,7 @@ export default class WarriorResolver {
         } catch (e) {
             return {
                 success: false,
-                message: e.message
+                message: e instanceof Error ? e.message : String(e)
             }
         }
     }

@@ -22,48 +22,61 @@ Documentation for the project along with guidance on corewar and the redcode lan
 
 ## Scripts
 
-This project uses `lerna` and `yarn` workspaces in order to manage the monorepo.
-Node 12+ is required.
+This project uses **Turborepo** and **pnpm** workspaces to manage the monorepo.
+Node 18+ is required (Node 22+ requires `NODE_OPTIONS="--openssl-legacy-provider"` for builds).
 
 ### Prepare development environment
 
 ```bash
-npm install --global lerna yarn
-yarn bootstrap
+npm install --global pnpm
+pnpm install
 ```
 
-> Currently `lerna boostrap` command is not building the `corewar` library. [Documentation](https://github.com/lerna/lerna/tree/master/commands/bootstrap) says it should automatically execute `prepublish` on all bootstrapped libraries but doesn't. In order to successfully bootstrap this application it is necessary to manually execute `lerna run prepublish` following bootstrap. I don't know why. If anyone knows, please let me know!
+### Development Commands
 
-### Start API and UI
-
+Start all packages in development mode:
 ```bash
-yarn start
+pnpm dev
 ```
 
-### Build UI and Core library
-
+Build all packages:
 ```bash
-yarn build
+pnpm build
 ```
 
-### Lint and test all packages
-
-Linting and testing are performed by `eslint` and `jest`.
-
+Start all packages (after building):
 ```bash
-yarn lint
-yarn test
+pnpm start
 ```
 
-Automatically fix linting errors with
+### Testing and Quality
 
+Run tests across all packages:
 ```bash
-yarn lint:fix
+pnpm test
 ```
 
-Produce code coverage report with
-
+Run linting across all packages:
 ```bash
-yarn coverage
+pnpm lint
+```
+
+Generate coverage reports:
+```bash
+pnpm coverage
+```
+
+Clean all packages:
+```bash
+pnpm clean
+```
+
+### Package-Specific Commands
+
+Run commands for specific packages:
+```bash
+pnpm --filter corewar build
+pnpm --filter corewar-app dev
+pnpm --filter corewar-api start
 ```
 

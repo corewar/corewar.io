@@ -1,0 +1,1271 @@
+
+
+> corewar@0.2.1 test /Users/dougmcdonald/dev/corewar.io/packages/corewar
+> jest
+
+[1m[2mDetermining test suites to run...[1m[22m[999D[K
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        0s[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        0s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        3s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mSimulatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[1mTest Suites: [22m0 of 43 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 43 total
+[1mTests:       [22m[1m[32m46 passed[39m[22m, 46 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 43 total
+[1mTests:       [22m[1m[32m46 passed[39m[22m, 46 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 43 total
+[1mTests:       [22m[1m[32m46 passed[39m[22m, 46 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 43 total
+[1mTests:       [22m[1m[32m46 passed[39m[22m, 46 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 43 total
+[1mTests:       [22m[1m[32m46 passed[39m[22m, 46 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mExecutiveTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 43 total
+[1mTests:       [22m[1m[32m46 passed[39m[22m, 46 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m8 passed[39m[22m, 8 of 43 total
+[1mTests:       [22m[1m[32m292 passed[39m[22m, 292 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m8 passed[39m[22m, 8 of 43 total
+[1mTests:       [22m[1m[32m292 passed[39m[22m, 292 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m8 passed[39m[22m, 8 of 43 total
+[1mTests:       [22m[1m[32m292 passed[39m[22m, 292 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m8 passed[39m[22m, 8 of 43 total
+[1mTests:       [22m[1m[32m292 passed[39m[22m, 292 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m8 passed[39m[22m, 8 of 43 total
+[1mTests:       [22m[1m[32m292 passed[39m[22m, 292 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m8 passed[39m[22m, 8 of 43 total
+[1mTests:       [22m[1m[32m292 passed[39m[22m, 292 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m8 passed[39m[22m, 8 of 43 total
+[1mTests:       [22m[1m[32m292 passed[39m[22m, 292 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mWarriorLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m8 passed[39m[22m, 8 of 43 total
+[1mTests:       [22m[1m[32m292 passed[39m[22m, 292 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mBenchmarkRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m15 passed[39m[22m, 15 of 43 total
+[1mTests:       [22m[1m[32m443 passed[39m[22m, 443 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mBenchmarkRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m15 passed[39m[22m, 15 of 43 total
+[1mTests:       [22m[1m[32m443 passed[39m[22m, 443 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMetaDataCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mBenchmarkRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 43 total
+[1mTests:       [22m[1m[32m454 passed[39m[22m, 454 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMetaDataCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mBenchmarkRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 43 total
+[1mTests:       [22m[1m[32m454 passed[39m[22m, 454 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMetaDataCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mBenchmarkRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 43 total
+[1mTests:       [22m[1m[32m454 passed[39m[22m, 454 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMetaDataCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mBenchmarkRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 43 total
+[1mTests:       [22m[1m[32m454 passed[39m[22m, 454 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/matches/unit/[22m[1mBenchmarkRunnerTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMetaDataCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mBenchmarkRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 43 total
+[1mTests:       [22m[1m[32m454 passed[39m[22m, 454 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMetaDataCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mBenchmarkRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 43 total
+[1mTests:       [22m[1m[32m454 passed[39m[22m, 454 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMetaDataCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mBenchmarkRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 43 total
+[1mTests:       [22m[1m[32m454 passed[39m[22m, 454 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMetaDataCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mBenchmarkRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 43 total
+[1mTests:       [22m[1m[32m454 passed[39m[22m, 454 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMetaDataCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mTokenStreamTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m23 passed[39m[22m, 23 of 43 total
+[1mTests:       [22m[1m[32m495 passed[39m[22m, 495 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMetaDataCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mTokenStreamTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m23 passed[39m[22m, 23 of 43 total
+[1mTests:       [22m[1m[32m495 passed[39m[22m, 495 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mMetaDataCollectorTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMetaDataCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mTokenStreamTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m23 passed[39m[22m, 23 of 43 total
+[1mTests:       [22m[1m[32m495 passed[39m[22m, 495 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMetaDataCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mTokenStreamTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m23 passed[39m[22m, 23 of 43 total
+[1mTests:       [22m[1m[32m495 passed[39m[22m, 495 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMetaDataCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mTokenStreamTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m23 passed[39m[22m, 23 of 43 total
+[1mTests:       [22m[1m[32m495 passed[39m[22m, 495 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mTokenStreamTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMetaDataCollectorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mTokenStreamTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m23 passed[39m[22m, 23 of 43 total
+[1mTests:       [22m[1m[32m495 passed[39m[22m, 495 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPerKeyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m28 passed[39m[22m, 28 of 43 total
+[1mTests:       [22m[1m[32m524 passed[39m[22m, 524 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPerKeyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m28 passed[39m[22m, 28 of 43 total
+[1mTests:       [22m[1m[32m524 passed[39m[22m, 524 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPerKeyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m28 passed[39m[22m, 28 of 43 total
+[1mTests:       [22m[1m[32m524 passed[39m[22m, 524 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPerKeyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m28 passed[39m[22m, 28 of 43 total
+[1mTests:       [22m[1m[32m524 passed[39m[22m, 524 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPerKeyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m28 passed[39m[22m, 28 of 43 total
+[1mTests:       [22m[1m[32m524 passed[39m[22m, 524 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPerKeyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m28 passed[39m[22m, 28 of 43 total
+[1mTests:       [22m[1m[32m524 passed[39m[22m, 524 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPassBaseTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mJsonSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPerKeyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m33 passed[39m[22m, 33 of 43 total
+[1mTests:       [22m[1m[32m584 passed[39m[22m, 584 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPassBaseTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mJsonSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPerKeyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m33 passed[39m[22m, 33 of 43 total
+[1mTests:       [22m[1m[32m584 passed[39m[22m, 584 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPassBaseTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mJsonSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPerKeyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m33 passed[39m[22m, 33 of 43 total
+[1mTests:       [22m[1m[32m584 passed[39m[22m, 584 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mPerKeyStrategyTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPassBaseTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mJsonSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPerKeyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m33 passed[39m[22m, 33 of 43 total
+[1mTests:       [22m[1m[32m584 passed[39m[22m, 584 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mPassBaseTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPassBaseTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mJsonSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPerKeyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m33 passed[39m[22m, 33 of 43 total
+[1mTests:       [22m[1m[32m584 passed[39m[22m, 584 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPassBaseTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mJsonSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPerKeyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m33 passed[39m[22m, 33 of 43 total
+[1mTests:       [22m[1m[32m584 passed[39m[22m, 584 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mJsonSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m38 passed[39m[22m, 38 of 43 total
+[1mTests:       [22m[1m[32m597 passed[39m[22m, 597 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mJsonSerialiserTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mJsonSerialiserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m38 passed[39m[22m, 38 of 43 total
+[1mTests:       [22m[1m[32m597 passed[39m[22m, 597 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m39 passed[39m[22m, 39 of 43 total
+[1mTests:       [22m[1m[32m598 passed[39m[22m, 598 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m39 passed[39m[22m, 39 of 43 total
+[1mTests:       [22m[1m[32m598 passed[39m[22m, 598 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m39 passed[39m[22m, 39 of 43 total
+[1mTests:       [22m[1m[32m598 passed[39m[22m, 598 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m39 passed[39m[22m, 39 of 43 total
+[1mTests:       [22m[1m[32m598 passed[39m[22m, 598 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m39 passed[39m[22m, 39 of 43 total
+[1mTests:       [22m[1m[32m598 passed[39m[22m, 598 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[999D[K
+[1mTest Suites: [22m[1m[32m43 passed[39m[22m, 43 total
+[1mTests:       [22m[1m[32m617 passed[39m[22m, 617 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        5.416s
+[2mRan all test suites[22m[2m.[22m

@@ -1,0 +1,46 @@
+
+
+> corewar-app@0.2.1 prebuild /Users/dougmcdonald/dev/corewar.io/packages/corewar-app
+> pnpm build:style
+
+
+> corewar-app@0.2.1 build:style /Users/dougmcdonald/dev/corewar.io/packages/corewar-app
+> tailwind build src/global/styles.css -o src/global/tailwind.css
+
+  
+   [1mtailwindcss[22m [1m[36m1.9.6[39m[22m
+  
+   🚀 Building: [1m[35msrc/global/styles.css[39m[22m
+  
+   ✅ Finished in [1m[36m565 ms[39m[22m
+   📦 Size: [1m[36m2.14MB[39m[22m
+   💾 Saved to [1m[35msrc/global/tailwind.css[39m[22m
+  
+
+> corewar-app@0.2.1 build /Users/dougmcdonald/dev/corewar.io/packages/corewar-app
+> react-scripts build
+
+Creating an optimized production build...
+[32mCompiled successfully.[39m
+[32m[39m
+File sizes after gzip:
+
+  183.95 KB  [2mbuild/static/css/[22m[36mmain.e0ac4f9c.chunk.css[39m
+  93.74 KB   [2mbuild/static/js/[22m[36m2.b3978b7e.chunk.js[39m
+  27.35 KB   [2mbuild/static/js/[22m[36mmain.95c62900.chunk.js[39m
+  886 B      [2mbuild/static/css/[22m[36m2.dd7d12c2.chunk.css[39m
+  779 B      [2mbuild/static/js/[22m[36mruntime-main.4a8d1ff3.js[39m
+
+The project was built assuming it is hosted at [32m/[39m.
+You can control this with the [32mhomepage[39m field in your [36mpackage.json[39m.
+
+The [36mbuild[39m folder is ready to be deployed.
+You may serve it with a static server:
+
+  [36mnpm[39m install -g serve
+  [36mserve[39m -s build
+
+Find out more about deployment here:
+
+  [33mbit.ly/CRA-deploy[39m
+

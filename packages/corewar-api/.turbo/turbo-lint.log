@@ -1,0 +1,5 @@
+
+
+> corewar-api@0.2.1 lint /Users/dougmcdonald/dev/corewar.io/packages/corewar-api
+> eslint src/**/*.ts
+

@@ -1,0 +1,42 @@
+
+
+> corewar@0.2.1 build /Users/dougmcdonald/dev/corewar.io/packages/corewar
+> tsc -p tsconfig-build.json && tscpaths -p tsconfig.json -s ./src -o ./dist
+
+tscpaths --project /Users/dougmcdonald/dev/corewar.io/packages/corewar/tsconfig.json --src /Users/dougmcdonald/dev/corewar.io/packages/corewar/src --out /Users/dougmcdonald/dev/corewar.io/packages/corewar/dist
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/index.js: replaced 37 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/matches/BenchmarkRunner.js: replaced 1 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/matches/HillRunner.js: replaced 1 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/matches/MatchRunner.js: replaced 1 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/AddressModPass.js: replaced 2 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/DefaultPass.js: replaced 3 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/Expression.js: replaced 1 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/Filter.js: replaced 2 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/ForPass.js: replaced 2 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/IllegalCommandCheck.js: replaced 2 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/LabelCollector.js: replaced 3 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/LabelEmitter.js: replaced 4 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/LoadFileSerialiser.js: replaced 1 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/LoadParser.js: replaced 3 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/MathsProcessor.js: replaced 2 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/MetaDataCollector.js: replaced 2 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/MetaDataEmitter.js: replaced 2 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/OrgPass.js: replaced 3 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/Parser.js: replaced 2 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/PassBase.js: replaced 1 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/PreprocessAnalyser.js: replaced 2 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/PreprocessCollector.js: replaced 4 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/PreprocessEmitter.js: replaced 2 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/Scanner.js: replaced 3 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/SyntaxCheck.js: replaced 2 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/TokenHelper.js: replaced 1 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/parser/TokenStream.js: replaced 3 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/simulator/Core.js: replaced 3 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/simulator/Decoder.js: replaced 2 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/simulator/Defaults.js: replaced 2 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/simulator/EndCondition.js: replaced 1 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/simulator/Executive.js: replaced 2 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/simulator/OptionValidator.js: replaced 2 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/simulator/Simulator.js: replaced 2 paths
+/Users/dougmcdonald/dev/corewar.io/packages/corewar/dist/simulator/WarriorLoader.js: replaced 5 paths
+Replaced 111 paths in 35 files
