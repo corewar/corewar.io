@@ -9,9 +9,9 @@
     },
     "types": "./typings/index.d.ts",
     "scripts": {
-        "test": "jest --verbose",
+        "test": "jest --verbose --config jest.config.mjs",
         "coverage": "jest --coverage",
-        "build": "tsup src/index.ts --format esm --dts --clean",
+        "build": "tsup src/index.ts --format esm --dts --clean --tsconfig tsconfig.json",
         "prepublish": "pnpm build",
         "prepublishOnly": "pnpm test",
         "lint": "echo 'Linting temporarily disabled for CI'",

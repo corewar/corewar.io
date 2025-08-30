@@ -4,7 +4,7 @@ import sinonChai from 'sinon-chai'
 const expect = chai.expect
 chai.use(sinonChai)
 
-import TestHelper from '@simulator/tests/unit/TestHelper'
+import TestHelper from '../../simulator/unit/TestHelper'
 import { IMatchRunner } from '@matches/interface/IMatchRunner'
 import { MatchRunner } from '@matches/MatchRunner'
 import { ISimulator } from '@simulator/interface/ISimulator'

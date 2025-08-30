@@ -11,7 +11,7 @@ import { IWarriorLoader } from '@simulator/interface/IWarriorLoader'
 import { WarriorInstance } from '@simulator/WarriorInstance'
 import { Loader } from '@simulator/Loader'
 import Defaults from '@simulator/Defaults'
-import TestHelper from '@simulator/tests/unit/TestHelper'
+import TestHelper from '../unit/TestHelper'
 import IWarrior from '@simulator/interface/IWarrior'
 
 describe('Loader', () => {

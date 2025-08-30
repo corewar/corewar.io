@@ -8,7 +8,7 @@ import { IWarriorInstance } from '@simulator/interface/IWarriorInstance'
 import { IState } from '@simulator/interface/IState'
 import Defaults from '@simulator/Defaults'
 import { EndCondition } from '@simulator/EndCondition'
-import TestHelper from '@simulator/tests/unit/TestHelper'
+import TestHelper from '../unit/TestHelper'
 import { MessageType } from '@simulator/interface/IMessage'
 import { IPublisher } from '@simulator/interface/IPublisher'
 chai.use(sinonChai)

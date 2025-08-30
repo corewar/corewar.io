@@ -1,25 +1,29 @@
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
 
-module.exports = {
+export default {
     clearMocks: true,
     coverageDirectory: 'coverage',
     coverageReporters: ['text', 'lcov'],
-    moduleNameMapper: {
-        '@parser/(?!tests/)(.*)$': '<rootDir>/src/parser/$1',
-        '@simulator/(?!tests/)(.*)$': '<rootDir>/src/simulator/$1',
-        '@matches/(?!tests/)(.*)$': '<rootDir>/src/matches/$1',
-        '@parser/tests/(.*)$': '<rootDir>/test/parser/$1',
-        '@simulator/tests/(.*)$': '<rootDir>/test/simulator/$1',
-        '@matches/tests/(.*)$': '<rootDir>/test/matches/$1'
-    },
     preset: 'ts-jest',
     testEnvironment: 'node',
     testMatch: ['**/test/**/*[tT]ests.ts'],
+    extensionsToTreatAsEsm: ['.ts'],
+    moduleNameMapper: {
+        '^@parser/(.*)$': '<rootDir>/src/parser/$1',
+        '^@simulator/(.*)$': '<rootDir>/src/simulator/$1',
+        '^@matches/(.*)$': '<rootDir>/src/matches/$1'
+    },
+    globals: {
+        'ts-jest': {
+            useESM: true
+        }
+    },
     transform: {
         '^.+\\.ts$': [
             'ts-jest',
             {
+                useESM: true,
                 tsconfig: {
                     strict: false,
                     noUnusedLocals: false,

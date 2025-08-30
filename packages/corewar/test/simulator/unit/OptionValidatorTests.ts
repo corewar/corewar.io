@@ -6,7 +6,7 @@ chai.use(sinonChai)
 import Defaults from '@simulator/Defaults'
 import { IOptions } from '@simulator/interface/IOptions'
 import { OptionValidator } from '@simulator/OptionValidator'
-import * as clone from 'clone'
+import clone from 'clone'
 
 describe('OptionValidator', () => {
     let optionValidator

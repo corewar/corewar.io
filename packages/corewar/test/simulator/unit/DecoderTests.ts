@@ -3,8 +3,8 @@ import sinonChai from 'sinon-chai'
 const expect = chai.expect
 chai.use(sinonChai)
 
-import TestHelper from '@simulator/tests/unit/TestHelper'
-import * as Helper from '@simulator/tests/unit/DecoderTestHelper'
+import TestHelper from '../unit/TestHelper'
+import * as Helper from '../unit/DecoderTestHelper'
 
 import { OpcodeType } from '@simulator/interface/IInstruction'
 import { IExecutive } from '@simulator/interface/IExecutive'

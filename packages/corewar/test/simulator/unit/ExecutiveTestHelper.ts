@@ -1,6 +1,6 @@
 import * as sinon from 'sinon'
 
-import TestHelper from '@simulator/tests/unit/TestHelper'
+import TestHelper from '../unit/TestHelper'
 
 import { IInstruction, ModifierType } from '@simulator/interface/IInstruction'
 import { IExecutionContext, IOperandPair } from '@simulator/interface/IExecutionContext'

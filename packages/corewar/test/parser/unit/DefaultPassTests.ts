@@ -4,7 +4,7 @@ import { IToken, TokenCategory } from '@parser/interface/IToken'
 import { DefaultPass } from '@parser/DefaultPass'
 import { Parser } from '@parser/Parser'
 import { Context } from '@parser/Context'
-import { TestHelper } from '@parser/tests/unit/TestHelper'
+import { TestHelper } from '../unit/TestHelper'
 import { Standard } from '@parser/interface/IParseOptions'
 
 describe('DefaultPass', () => {
