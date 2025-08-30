@@ -32,7 +32,7 @@ export default class Repository implements IRepository {
             const database = client.db(DATABASE_NAME)
             const collection = database.collection(this.collectionName)
 
-            return (await collection.find().toArray()) as T[]
+            return (await collection.find().toArray()) as unknown as T[]
         } finally {
             client.close()
         }
@@ -44,7 +44,7 @@ export default class Repository implements IRepository {
             const database = client.db(DATABASE_NAME)
             const collection = database.collection(this.collectionName)
 
-            return (await collection.findOne({ id })) as T
+            return (await collection.findOne({ id })) as unknown as T
         } finally {
             client.close()
         }
@@ -57,7 +57,7 @@ export default class Repository implements IRepository {
             const database = client.db(DATABASE_NAME)
             const collection = database.collection(this.collectionName)
 
-            return (await collection.findOne(filter)) as T
+            return (await collection.findOne(filter)) as unknown as T
         } finally {
             client.close()
         }
@@ -70,7 +70,7 @@ export default class Repository implements IRepository {
             const database = client.db(DATABASE_NAME)
             const collection = database.collection(this.collectionName)
 
-            return (await collection.find(filter).toArray()) as T[]
+            return (await collection.find(filter).toArray()) as unknown as T[]
         } finally {
             client.close()
         }

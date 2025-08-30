@@ -3,1184 +3,5 @@
 > corewar-api@0.2.1 test /Users/dougmcdonald/dev/corewar.io/packages/corewar-api
 > jest --verbose
 
-[1m[2mDetermining test suites to run...[1m[22m[999D[K
-
-[1mTest Suites: [22m0 of 7 total
-[1mTests:       [22m0 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        0s[K[1A[K[1A[K[1A[K[1A[K[1A
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
-
-[1mTest Suites: [22m0 of 7 total
-[1mTests:       [22m0 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        0s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
-
-[1mTest Suites: [22m0 of 7 total
-[1mTests:       [22m0 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
-
-[1mTest Suites: [22m0 of 7 total
-[1mTests:       [22m0 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
-
-[1mTest Suites: [22m0 of 7 total
-[1mTests:       [22m0 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
-
-[1mTest Suites: [22m0 of 7 total
-[1mTests:       [22m0 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
-
-[1mTest Suites: [22m0 of 7 total
-[1mTests:       [22m0 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
-
-[1mTest Suites: [22m0 of 7 total
-[1mTests:       [22m0 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
-
-[1mTest Suites: [22m0 of 7 total
-[1mTests:       [22m0 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1Ats-jest[config] (WARN) Unable to find the root of the project where ts-jest has been installed.
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
-
-[1mTest Suites: [22m0 of 7 total
-[1mTests:       [22m0 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        1s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
-
-[1mTest Suites: [22m0 of 7 total
-[1mTests:       [22m0 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        2s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
-
-[1mTest Suites: [22m0 of 7 total
-[1mTests:       [22m0 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        3s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
-
-[1mTest Suites: [22m0 of 7 total
-[1mTests:       [22m0 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        3s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  Example spec
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
-
-[1mTest Suites: [22m0 of 7 total
-[1mTests:       [22m0 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        3s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    [32m✓[39m [2mshould always succeed (1ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
-
-[1mTest Suites: [22m0 of 7 total
-[1mTests:       [22m0 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        3s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
-
-[1mTest Suites: [22m0 of 7 total
-[1mTests:       [22m0 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        3s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/[22m[1mexample.spec.ts[22m
-
-[1mTest Suites: [22m0 of 7 total
-[1mTests:       [22m0 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        3s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        3s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  Repository
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    getAll
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould open an close the connection (3ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould handle connection error (2ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould handle other connect error (2ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return the result of collection.find (1ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    getById
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return the result of collection.findOne (2ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    getOneBy
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return result of collection.findOne (2ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould filter collection using specified parameter (1ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    getManyBy
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return the result of collection.find (7ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould filter collection.find by specified filter parameter (2ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    upsert
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould insert data if it does not exist (2ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould update data if it does exist (1ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould open an close the connection once only (2ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    delete
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould delete specified id from collection (2ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/database/[22m[1mRepository.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 7 total
-[1mTests:       [22m[1m[32m1 passed[39m[22m, 1 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        4s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m ([0m[1m[41m5.375s[49m[22m[0m)
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  WarriorService
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    getById
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return requested result from repository (1ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    getAll
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return all results from repository (1ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    saveWarrior
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould upsert warrior with repository[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould generate a uuid if no id specified[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould not assign an id or persist if redcode cannot be parsed (1ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      deleteWarrior
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A        [32m✓[39m [2mshould delete the specified warrior from the repository[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m ([0m[1m[41m5.379s[49m[22m[0m)
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  ParseResolver
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    parse
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould pass specified redcode to corewar library to parse (2ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return ParseResult[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mWarriorService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mParseResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m2 passed[39m[22m, 2 of 7 total
-[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m ([0m[1m[41m5.453s[49m[22m[0m)
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  WarriorResolver
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    query warrior
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return warrior with matching id from service (1ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    query warriors
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return all warriors from service (1ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    mutation saveWarrior
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould save warrior with specified redcode and id[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return result of service saveWarrior[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould handle errors raised by service (1ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    mutation deleteWarrior
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould delete warrior with specified id[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return result of service deleteWarrior[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould handle errors raised by service[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m ([0m[1m[41m5.536s[49m[22m[0m)
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  HillService
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    getById
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return requested result from repository (3ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    getAll
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return all results from repository[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    createHill
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould upsert hill with repository (1ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould generate a uuid for the new hill[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    deleteHill
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould delete the specified hill from the repository[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    challengeHill
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould run hill with specified warrior (1ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould use the rules for the hill with the specified id[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould run hill with hill's existing warriors[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould exclude warriors whose rank exceeds the hill size (1ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould throw if hill does not exist[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould throw if challenger does not exist[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/services/[22m[1mHillService.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mWarriorResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m4 passed[39m[22m, 4 of 7 total
-[1mTests:       [22m[1m[32m22 passed[39m[22m, 22 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        5s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m ([0m[1m[41m5.64s[49m[22m[0m)
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A  HillResolver
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    query hill
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return hill with matching id from service (2ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    query hills
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return all hills from service[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    mutation saveHill
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould save hill with specified rules[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return result of service createHill (1ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould handle errors raised by service[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    mutation deleteHill
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould delete hill with specified id[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return result of service deleteHill[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould handle errors raised by service (1ms)[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A    mutation challengeHill
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould challenge specified hill with the specified warrior[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould return result of service challengeHill[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A      [32m✓[39m [2mshould handle errors raised by service[22m
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
-
-[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/resolvers/[22m[1mHillResolver.spec.ts[22m
-
-[1mTest Suites: [22m[1m[32m6 passed[39m[22m, 6 of 7 total
-[1mTests:       [22m[1m[32m41 passed[39m[22m, 41 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6s[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[999D[K[1mTest Suites: [22m[1m[32m7 passed[39m[22m, 7 total
-[1mTests:       [22m[1m[32m52 passed[39m[22m, 52 total
-[1mSnapshots:   [22m0 total
-[1mTime:[22m        6.118s
-[2mRan all test suites[22m[2m.[22m
+sh: jest: command not found
+[41m[30m ELIFECYCLE [39m[49m [31mTest failed. See above for more details.[39m
