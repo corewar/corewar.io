@@ -17,7 +17,7 @@ describe('Executive', () => {
     beforeEach(() => {
         publisher = TestHelper.buildPublisher()
 
-        this.executive = new Executive(publisher)
+        this!.executive = new Executive(publisher)
     })
 
     Helper.runTest(
@@ -39,7 +39,7 @@ describe('Executive', () => {
                         taskCount: expectation.taskCount
                     }
 
-                    this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context])
+                    this!.executive.commandTable[context.instruction.opcode].apply(this!.executive, [context])
 
                     expect(context.instance.tasks.length).to.be.equal(expectation.taskCount)
                     expect(context.instance.taskIndex).to.be.equal(expectation.taskIndex)
@@ -70,7 +70,7 @@ describe('Executive', () => {
                     taskCount: 0
                 }
 
-                this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context])
+                this!.executive.commandTable[context.instruction.opcode].apply(this!.executive, [context])
 
                 expect(publisher.queue).to.have.been.calledWith({
                     type: MessageType.WarriorDead,
@@ -136,7 +136,7 @@ describe('Executive', () => {
         ],
         (context: IExecutionContext, expectation: string) => {
             it('correctly executes ' + TestHelper.instructionToString(context.instruction), () => {
-                this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context])
+                this!.executive.commandTable[context.instruction.opcode].apply(this!.executive, [context])
 
                 const expected = TestHelper.parseInstruction(0, expectation)
 
@@ -151,7 +151,7 @@ describe('Executive', () => {
 
     //     it("maintains correct address for b instruction when executing MOV.I", () => {
 
-    //         this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context]);
+    //         this!.executive.commandTable[context.instruction.opcode].apply(this!.executive, [context]);
 
     //         const expected = TestHelper.parseInstruction(0, expectation);
 
@@ -207,7 +207,7 @@ describe('Executive', () => {
             /* eslint-disable-next-line */
     ], (context: IExecutionContext, expectation: any) => {
             it('correctly executes ' + TestHelper.instructionToString(context.instruction), () => {
-                this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context])
+                this!.executive.commandTable[context.instruction.opcode].apply(this!.executive, [context])
 
                 expect(context.task.instructionPointer).to.be.equal(expectation.ip)
             })
@@ -236,7 +236,7 @@ describe('Executive', () => {
             /* eslint-disable-next-line */
     ], (context: IExecutionContext, expectation: any) => {
             it('correctly executes ' + TestHelper.instructionToString(context.instruction), () => {
-                this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context])
+                this!.executive.commandTable[context.instruction.opcode].apply(this!.executive, [context])
 
                 const expected = TestHelper.parseInstruction(0, expectation.i)
 
@@ -327,7 +327,7 @@ describe('Executive', () => {
             /* eslint-disable-next-line */
     ], (context: IExecutionContext, expectation: any) => {
             it('correctly executes ' + TestHelper.instructionToString(context.instruction), () => {
-                this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context])
+                this!.executive.commandTable[context.instruction.opcode].apply(this!.executive, [context])
 
                 expect(context.task.instructionPointer).to.be.equal(expectation.ip)
             })
@@ -395,8 +395,8 @@ describe('Executive', () => {
             /* eslint-disable-next-line */
     ], (context: IExecutionContext, expectation: any) => {
             it('correctly executes ' + TestHelper.instructionToString(context.instruction), () => {
-                this.executive.initialise(expectation)
-                this.executive.commandTable[context.instruction.opcode].apply(this.executive, [context])
+                this!.executive.initialise(expectation)
+                this!.executive.commandTable[context.instruction.opcode].apply(this!.executive, [context])
 
                 expect(context.instance.tasks.length).to.be.equal(expectation.taskCount)
                 expect(context.instance.taskIndex).to.be.equal(expectation.taskIndex)
@@ -426,7 +426,7 @@ describe('Executive', () => {
             /* eslint-disable-next-line */
     ], (context: IExecutionContext, _: any) => {
             it('NOP instruction does not modify core or warrior tasks', () => {
-                this.executive.commandTable[OpcodeType.NOP].apply(this.executive, [context])
+                this!.executive.commandTable[OpcodeType.NOP].apply(this!.executive, [context])
 
                 expect(context.core.setAt).not.to.have.been.called
                 expect(context.instance.tasks.length).to.be.equal(3)

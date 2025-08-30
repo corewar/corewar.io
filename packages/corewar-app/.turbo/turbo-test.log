@@ -3,7 +3,7 @@
 > corewar-app@0.2.1 test /Users/dougmcdonald/dev/corewar.io/packages/corewar-app
 > react-scripts test --env=jsdom --passWithNoTests
 
-[2J[3J[H[1m[2mDetermining test suites to run...[1m[22m[999D[K[1mNo tests found related to files changed since last commit.[22m[2m[22m
+[2J[3J[H[1m[2mDetermining test suites to run...[22m[22m[999D[K[1mNo tests found related to files changed since last commit.[22m[2m[22m
 [2mPress `a` to run all tests, or run Jest with `--watchAll`.[22m
 [999D[K
 [K[1A

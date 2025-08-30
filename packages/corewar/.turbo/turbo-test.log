@@ -3,5 +3,925 @@
 > corewar@0.2.1 test /Users/dougmcdonald/dev/corewar.io/packages/corewar
 > jest
 
-sh: jest: command not found
-[41m[30m ELIFECYCLE [39m[49m [31mTest failed. See above for more details.[39m
+[1m[2mDetermining test suites to run...[22m[22m[?2026h[999D[K
+
+[1mTest Suites: [22m0 of 40 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        0 s, estimated 3 s
+[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPerKeyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+
+[1mTest Suites: [22m0 of 40 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        0 s, estimated 3 s
+[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPerKeyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+
+[1mTest Suites: [22m0 of 40 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mPerKeyStrategyTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPerKeyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+
+[1mTest Suites: [22m0 of 40 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPerKeyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+
+[1mTest Suites: [22m0 of 40 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 40 total
+[1mTests:       [22m[1m[32m5 passed[39m[22m, 5 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 40 total
+[1mTests:       [22m[1m[32m5 passed[39m[22m, 5 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mOptionValidatorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLatestOnlyStrategyTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 of 40 total
+[1mTests:       [22m[1m[32m5 passed[39m[22m, 5 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        1 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 40 total
+[1mTests:       [22m[1m[32m23 passed[39m[22m, 23 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 40 total
+[1mTests:       [22m[1m[32m23 passed[39m[22m, 23 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 40 total
+[1mTests:       [22m[1m[32m23 passed[39m[22m, 23 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 40 total
+[1mTests:       [22m[1m[32m23 passed[39m[22m, 23 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 40 total
+[1mTests:       [22m[1m[32m23 passed[39m[22m, 23 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 40 total
+[1mTests:       [22m[1m[32m23 passed[39m[22m, 23 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/matches/unit/[22m[1mBenchmarkRunnerTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mCoreTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mEndConditionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessEmitterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mFetcherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mLoaderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m3 passed[39m[22m, 3 of 40 total
+[1mTests:       [22m[1m[32m23 passed[39m[22m, 23 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m9 passed[39m[22m, 9 of 40 total
+[1mTests:       [22m[1m[32m84 passed[39m[22m, 84 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m9 passed[39m[22m, 9 of 40 total
+[1mTests:       [22m[1m[32m84 passed[39m[22m, 84 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m9 passed[39m[22m, 9 of 40 total
+[1mTests:       [22m[1m[32m84 passed[39m[22m, 84 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m9 passed[39m[22m, 9 of 40 total
+[1mTests:       [22m[1m[32m84 passed[39m[22m, 84 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mMetaDataCollectorTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m9 passed[39m[22m, 9 of 40 total
+[1mTests:       [22m[1m[32m84 passed[39m[22m, 84 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m9 passed[39m[22m, 9 of 40 total
+[1mTests:       [22m[1m[32m84 passed[39m[22m, 84 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mPassBaseTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m9 passed[39m[22m, 9 of 40 total
+[1mTests:       [22m[1m[32m84 passed[39m[22m, 84 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mJsonSerialiserTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mPublisherTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mAddressModPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-88Tests.ts[22m
+
+[1mTest Suites: [22m[1m[32m9 passed[39m[22m, 9 of 40 total
+[1mTests:       [22m[1m[32m84 passed[39m[22m, 84 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 40 total
+[1mTests:       [22m[1m[32m119 passed[39m[22m, 119 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 40 total
+[1mTests:       [22m[1m[32m119 passed[39m[22m, 119 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 40 total
+[1mTests:       [22m[1m[32m119 passed[39m[22m, 119 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 40 total
+[1mTests:       [22m[1m[32m119 passed[39m[22m, 119 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 40 total
+[1mTests:       [22m[1m[32m119 passed[39m[22m, 119 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 40 total
+[1mTests:       [22m[1m[32m119 passed[39m[22m, 119 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 40 total
+[1mTests:       [22m[1m[32m119 passed[39m[22m, 119 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 40 total
+[1mTests:       [22m[1m[32m119 passed[39m[22m, 119 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 40 total
+[1mTests:       [22m[1m[32m119 passed[39m[22m, 119 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mLabelCollectorTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 40 total
+[1mTests:       [22m[1m[32m119 passed[39m[22m, 119 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mTokenStreamTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 40 total
+[1mTests:       [22m[1m[32m119 passed[39m[22m, 119 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 40 total
+[1mTests:       [22m[1m[32m119 passed[39m[22m, 119 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 40 total
+[1mTests:       [22m[1m[32m119 passed[39m[22m, 119 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mLabelEmitterTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 40 total
+[1mTests:       [22m[1m[32m119 passed[39m[22m, 119 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessAnalyserTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 40 total
+[1mTests:       [22m[1m[32m119 passed[39m[22m, 119 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mIllegalCommandCheckTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 40 total
+[1mTests:       [22m[1m[32m119 passed[39m[22m, 119 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 40 total
+[1mTests:       [22m[1m[32m119 passed[39m[22m, 119 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mMathsProcessorTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-86Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mFilterTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mScannerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadParserTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mSyntaxCheckTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mForPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mICWS-94Tests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/integration/[22m[1mRegressionTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mLoadFileSerialiserTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m16 passed[39m[22m, 16 of 40 total
+[1mTests:       [22m[1m[32m119 passed[39m[22m, 119 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m33 passed[39m[22m, 33 of 40 total
+[1mTests:       [22m[1m[32m316 passed[39m[22m, 316 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m33 passed[39m[22m, 33 of 40 total
+[1mTests:       [22m[1m[32m316 passed[39m[22m, 316 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m33 passed[39m[22m, 33 of 40 total
+[1mTests:       [22m[1m[32m316 passed[39m[22m, 316 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m33 passed[39m[22m, 33 of 40 total
+[1mTests:       [22m[1m[32m316 passed[39m[22m, 316 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m33 passed[39m[22m, 33 of 40 total
+[1mTests:       [22m[1m[32m316 passed[39m[22m, 316 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m33 passed[39m[22m, 33 of 40 total
+[1mTests:       [22m[1m[32m316 passed[39m[22m, 316 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m33 passed[39m[22m, 33 of 40 total
+[1mTests:       [22m[1m[32m316 passed[39m[22m, 316 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/simulator/unit/[22m[1mDecoderTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchRunnerTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mHillResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mOrgPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/matches/unit/[22m[1mMatchResultMapperTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mDefaultPassTests.ts[22m
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mtest/parser/unit/[22m[1mPreprocessCollectorTests.ts[22m
+
+[1mTest Suites: [22m[1m[32m33 passed[39m[22m, 33 of 40 total
+[1mTests:       [22m[1m[32m316 passed[39m[22m, 316 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A
+
+[1mTest Suites: [22m[1m[32m40 passed[39m[22m, 40 total
+[1mTests:       [22m[1m[32m382 passed[39m[22m, 382 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2 s, estimated 3 s
+[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[32m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[37m█[39m[?2026l[?2026h[K[1A[K[1A[K[1A[K[1A[K[1A[K[1A[?2026l[999D[K
+[1mTest Suites: [22m[1m[32m40 passed[39m[22m, 40 total
+[1mTests:       [22m[1m[32m382 passed[39m[22m, 382 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        2.491 s, estimated 3 s
+[2mRan all test suites[22m[2m.[22m

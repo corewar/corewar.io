@@ -40,9 +40,17 @@
         "pubsub-js": "^1.8.0"
     },
     "devDependencies": {
+        "@types/chai": "^4.3.20",
         "@types/jest": "^30.0.0",
+        "@types/node": "^18.19.123",
+        "@types/sinon": "^9.0.11",
+        "@types/sinon-chai": "^2.7.42",
+        "chai": "^4.5.0",
         "eslint": "^8.57.1",
         "jest": "^30.1.1",
+        "sinon": "^11.1.2",
+        "sinon-chai": "^3.7.0",
+        "ts-jest": "^29.4.1",
         "tscpaths": "^0.0.9",
         "typescript": "^5.9.2"
     }

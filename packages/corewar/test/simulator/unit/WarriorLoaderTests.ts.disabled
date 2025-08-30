@@ -4,17 +4,16 @@ import * as sinonChai from 'sinon-chai'
 const expect = chai.expect
 chai.use(sinonChai)
 
-import { ICore } from '@simulator/interface/ICore'
-import { IOptions } from '@simulator/interface/IOptions'
-import { ITask } from '@simulator/interface/ITask'
-import { IInstruction } from '@simulator/interface/IInstruction'
-import { OpcodeType, ModifierType } from '@simulator/interface/IInstruction'
-import { ModeType } from '@simulator/interface/IOperand'
 import { IToken, TokenCategory } from '@parser/interface/IToken'
 import { WarriorLoader } from '@simulator/WarriorLoader'
-import TestHelper from '@simulator/tests/unit/TestHelper'
+import { ICore } from '@simulator/interface/ICore'
+import { IInstruction, ModifierType, OpcodeType } from '@simulator/interface/IInstruction'
 import { MessageType } from '@simulator/interface/IMessage'
+import { ModeType } from '@simulator/interface/IOperand'
+import { IOptions } from '@simulator/interface/IOptions'
+import { ITask } from '@simulator/interface/ITask'
 import IWarrior from '@simulator/interface/IWarrior'
+import TestHelper from '@simulator/tests/unit/TestHelper'
 
 describe('WarriorLoader', () => {
     const CORESIZE = 8000
@@ -40,7 +39,7 @@ describe('WarriorLoader', () => {
         .concat(instruction('NOP', '.B', '#', 0, '#', 0))
 
     beforeEach(() => {
-        this.publisher = {
+        this!.publisher = {
             queue: sinon.stub(),
             publish: sinon.stub()
         }
@@ -110,7 +109,7 @@ describe('WarriorLoader', () => {
 
         const core = buildCore(0)
 
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
         const actual = loader.load(0, warrior, 0)
 
         expect(actual.name).to.be.equal('johnSmith')
@@ -122,7 +121,7 @@ describe('WarriorLoader', () => {
         const warrior = TestHelper.buildWarrior()
         const core = buildCore(0)
 
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
         const actual = loader.load(0, warrior, 0)
 
         expect(actual.taskIndex).to.be.equal(0)
@@ -152,7 +151,7 @@ describe('WarriorLoader', () => {
 
         const core = buildCore(10)
 
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
         const actual = loader.load(3, warrior, 0)
 
         expect(actual.tasks[0].instructionPointer).to.be.equal(7)
@@ -162,7 +161,7 @@ describe('WarriorLoader', () => {
         const warrior = { source: TestHelper.buildParseResult(instruction('MOV', '.I', '$', 0, '$', 1)) }
         const core = buildCore(30)
 
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
         loader.load(21, warrior, 0)
 
         for (let i = 0; i < 30; i++) {
@@ -181,7 +180,7 @@ describe('WarriorLoader', () => {
         const warrior = { source: TestHelper.buildParseResult(instruction('MOV', '.I', '$', -1, '$', 8001)) }
         const core = buildCore(30)
 
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
 
         loader.load(21, warrior, 0)
 
@@ -195,7 +194,7 @@ describe('WarriorLoader', () => {
         const core = buildCore(20)
         const warrior = { source: TestHelper.buildParseResult(testTokens) }
 
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
         loader.load(0, warrior, 0)
 
         expect(core.readAt(null, 0).opcode).to.be.equal(OpcodeType.DAT)
@@ -221,7 +220,7 @@ describe('WarriorLoader', () => {
         const core = buildCore(20)
         const warrior = { source: TestHelper.buildParseResult(testTokens) }
 
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
         loader.load(0, warrior, 0)
 
         expect(core.readAt(null, 0).modifier).to.be.equal(ModifierType.A)
@@ -247,7 +246,7 @@ describe('WarriorLoader', () => {
         const core = buildCore(20)
         const warrior = { source: TestHelper.buildParseResult(testTokens) }
 
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
         loader.load(0, warrior, 0)
 
         expect(core.readAt(null, 0).aOperand.mode).to.be.equal(ModeType.Direct)
@@ -273,7 +272,7 @@ describe('WarriorLoader', () => {
         const core = buildCore(20)
         const warrior = { source: TestHelper.buildParseResult(testTokens) }
 
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
         loader.load(0, warrior, 0)
 
         expect(core.readAt(null, 0).aOperand.address).to.be.equal(0)
@@ -299,7 +298,7 @@ describe('WarriorLoader', () => {
         const core = buildCore(20)
         const warrior = { source: TestHelper.buildParseResult(testTokens) }
 
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
         loader.load(0, warrior, 0)
 
         expect(core.readAt(null, 0).bOperand.mode).to.be.equal(ModeType.Direct)
@@ -325,7 +324,7 @@ describe('WarriorLoader', () => {
         const core = buildCore(20)
         const warrior = { source: TestHelper.buildParseResult(testTokens) }
 
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
         loader.load(0, warrior, 0)
 
         expect(core.readAt(null, 0).bOperand.address).to.be.equal(1)
@@ -353,7 +352,7 @@ describe('WarriorLoader', () => {
 
         const core = buildCore(5)
 
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
         const actual = loader.load(3, warrior, 0)
 
         expect(actual.startAddress).to.be.equal(3)
@@ -367,7 +366,7 @@ describe('WarriorLoader', () => {
 
         const core = buildCore(5)
 
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
         const actual = loader.load(3, warrior, expected)
 
         expect(actual.warrior.internalId).to.be.equal(expected)
@@ -382,7 +381,7 @@ describe('WarriorLoader', () => {
 
         const core = buildCore(5)
 
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
         const actual = loader.load(3, warrior, unexpected)
 
         expect(actual.warrior.internalId).to.be.equal(expected)
@@ -393,7 +392,7 @@ describe('WarriorLoader', () => {
         const warrior = { source: tokens }
         const core = buildCore(0)
 
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
         const actual = loader.load(0, warrior, 0)
 
         expect(core.setAt).to.be.calledWith(actual.tasks[0], sinon.match.any, sinon.match.any)
@@ -406,7 +405,7 @@ describe('WarriorLoader', () => {
         const warrior = { source: tokens }
         const core = buildCore(0)
 
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
 
         let actual = null
         ;(core.setAt as sinon.SinonStub).callsFake((task: ITask, _, __) => {
@@ -423,11 +422,11 @@ describe('WarriorLoader', () => {
         const core = buildCore(0)
         const tokens = TestHelper.buildParseResult(instruction('MOV', '.I', '$', 0, '$', 1))
         const warrior = { source: tokens }
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
 
         loader.load(0, warrior, expectedId)
 
-        expect(this.publisher.queue).to.have.been.calledWith({
+        expect(this!.publisher.queue).to.have.been.calledWith({
             type: MessageType.TaskCount,
             payload: {
                 warriorId: expectedId,
@@ -445,11 +444,11 @@ describe('WarriorLoader', () => {
         const core = buildCore(0)
         const tokens = TestHelper.buildParseResult(instruction('MOV', '.I', '$', 0, '$', 1))
         const warrior = { source: tokens, data: expectedData }
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
 
         loader.load(0, warrior, expectedId)
 
-        expect(this.publisher.queue).to.have.been.calledWith({
+        expect(this!.publisher.queue).to.have.been.calledWith({
             type: MessageType.TaskCount,
             payload: {
                 warriorId: expectedId,
@@ -472,7 +471,7 @@ describe('WarriorLoader', () => {
         const warrior = { source: tokens, data: expected }
         const core = buildCore(0)
 
-        const loader = new WarriorLoader(core, this.publisher)
+        const loader = new WarriorLoader(core, this!.publisher)
 
         const actual = loader.load(0, warrior, 0)
 

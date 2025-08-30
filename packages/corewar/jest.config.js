@@ -15,5 +15,19 @@ module.exports = {
     },
     preset: 'ts-jest',
     testEnvironment: 'node',
-    testMatch: ['**/test/**/*[tT]ests.ts']
+    testMatch: ['**/test/**/*[tT]ests.ts'],
+    transform: {
+        '^.+\\.ts$': [
+            'ts-jest',
+            {
+                tsconfig: {
+                    strict: false,
+                    noUnusedLocals: false,
+                    noUnusedParameters: false,
+                    strictNullChecks: false,
+                    noImplicitThis: false
+                }
+            }
+        ]
+    }
 }

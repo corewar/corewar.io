@@ -12,7 +12,7 @@
   
    🚀 Building: [1m[35msrc/global/styles.css[39m[22m
   
-   ✅ Finished in [1m[36m475 ms[39m[22m
+   ✅ Finished in [1m[36m856 ms[39m[22m
    📦 Size: [1m[36m2.14MB[39m[22m
    💾 Saved to [1m[35msrc/global/tailwind.css[39m[22m
   
@@ -20,7 +20,7 @@
 > corewar-app@0.2.1 build /Users/dougmcdonald/dev/corewar.io/packages/corewar-app
 > react-scripts build
 
-(node:30995) [DEP0176] DeprecationWarning: fs.F_OK is deprecated, use fs.constants.F_OK instead
+(node:59115) [DEP0176] DeprecationWarning: fs.F_OK is deprecated, use fs.constants.F_OK instead
 (Use `node --trace-deprecation ...` to show where the warning was created)
 Creating an optimized production build...
 
