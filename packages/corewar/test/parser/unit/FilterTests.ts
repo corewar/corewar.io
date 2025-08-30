@@ -4,7 +4,7 @@ import { IToken, TokenCategory } from '@parser/interface/IToken'
 import { Context } from '@parser/Context'
 import { Parser } from '@parser/Parser'
 import { Filter } from '@parser/Filter'
-import { TestHelper } from '@parser/tests/unit/TestHelper'
+import { TestHelper } from '../unit/TestHelper'
 
 'use strict'
 

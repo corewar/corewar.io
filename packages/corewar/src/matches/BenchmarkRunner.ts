@@ -1,11 +1,11 @@
-import { IHillResult } from '@matches/interface/IHillResult'
-import { IHillResultMapper } from '@matches/interface/IHillResultMapper'
-import { IPublisher } from '@simulator/interface/IPublisher'
-import { MessageType } from '@simulator/interface/IMessage'
-import { IBenchmarkRunner } from '@matches/interface/IBenchmarkRunner'
-import { IMatchRunner } from '@matches/interface/IMatchRunner'
-import IWarrior from '@simulator/interface/IWarrior'
-import { IRules } from '@matches/interface/IRules'
+import { MessageType } from '../simulator/interface/IMessage'
+import { IPublisher } from '../simulator/interface/IPublisher'
+import IWarrior from '../simulator/interface/IWarrior'
+import { IBenchmarkRunner } from './interface/IBenchmarkRunner'
+import { IHillResult } from './interface/IHillResult'
+import { IHillResultMapper } from './interface/IHillResultMapper'
+import { IMatchRunner } from './interface/IMatchRunner'
+import { IRules } from './interface/IRules'
 
 export class BenchmarkRunner implements IBenchmarkRunner {
     private matchRunner: IMatchRunner

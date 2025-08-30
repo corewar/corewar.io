@@ -1,4 +1,4 @@
-﻿import { IRandom } from '@simulator/interface/IRandom'
+﻿import { IRandom } from './interface/IRandom'
 
 export class Random implements IRandom {
     public get(max: number): number {

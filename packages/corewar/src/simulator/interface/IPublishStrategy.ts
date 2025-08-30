@@ -1,4 +1,4 @@
-import { IMessage } from '@simulator/interface/IMessage'
+import { IMessage } from './IMessage'
 
 export interface IPublishStrategy {
     queue(message: IMessage): void

@@ -1,11 +1,11 @@
-﻿import { IDecoder } from '@simulator/interface/IDecoder'
-import { IExecutive } from '@simulator/interface/IExecutive'
-import { IOperand, ModeType } from '@simulator/interface/IOperand'
-import { ITask } from '@simulator/interface/ITask'
-import { ICore } from '@simulator/interface/ICore'
-import { IExecutionContext, IOperandPair } from '@simulator/interface/IExecutionContext'
-import { IInstruction, ModifierType } from '@simulator/interface/IInstruction'
-import * as clone from 'clone'
+﻿import { IDecoder } from './interface/IDecoder'
+import { IExecutive } from './interface/IExecutive'
+import { IOperand, ModeType } from './interface/IOperand'
+import { ITask } from './interface/ITask'
+import { ICore } from './interface/ICore'
+import { IExecutionContext, IOperandPair } from './interface/IExecutionContext'
+import { IInstruction, ModifierType } from './interface/IInstruction'
+import clone from 'clone'
 
 export class Decoder implements IDecoder {
     private executive: IExecutive

@@ -1,11 +1,11 @@
-﻿import { ICore, CoreAccessType } from '@simulator/interface/ICore'
-import { IOptions } from '@simulator/interface/IOptions'
-import { ICoreLocation } from '@simulator/interface/ICoreLocation'
-import { IInstruction, OpcodeType } from '@simulator/interface/IInstruction'
-import { ITask } from '@simulator/interface/ITask'
-import { MessageType } from '@simulator/interface/IMessage'
-import { IPublisher } from '@simulator/interface/IPublisher'
-import * as clone from 'clone'
+﻿import { ICore, CoreAccessType } from './interface/ICore'
+import { IOptions } from './interface/IOptions'
+import { ICoreLocation } from './interface/ICoreLocation'
+import { IInstruction, OpcodeType } from './interface/IInstruction'
+import { ITask } from './interface/ITask'
+import { MessageType } from './interface/IMessage'
+import { IPublisher } from './interface/IPublisher'
+import clone from 'clone'
 
 export class Core implements ICore {
     private publisher: IPublisher

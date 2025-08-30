@@ -13,6 +13,31 @@ dist
 bundle.js
 tailwind.css
 
+# Turborepo
+.turbo/
+**/.turbo/
+
+# pnpm
+.pnpm-store/
+pnpm-lock.yaml
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
 # misc
 .vs
 .ts-node
@@ -25,3 +50,4 @@ tailwind.css
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*

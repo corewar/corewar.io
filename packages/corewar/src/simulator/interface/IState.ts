@@ -1,5 +1,5 @@
-﻿import { IOptions } from '@simulator/interface/IOptions'
-import { IWarriorInstance } from '@simulator/interface/IWarriorInstance'
+﻿import { IOptions } from './IOptions'
+import { IWarriorInstance } from './IWarriorInstance'
 
 export interface IState {
     options: IOptions

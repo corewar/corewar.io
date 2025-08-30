@@ -1,4 +1,4 @@
-﻿import { IOperand } from '@simulator/interface/IOperand'
+﻿import { IOperand } from './IOperand'
 
 export enum OpcodeType {
     DAT = 'DAT',

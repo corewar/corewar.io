@@ -1,4 +1,4 @@
-﻿import { IPosition } from '@parser/interface/IToken'
+﻿import { IPosition } from './IToken'
 
 export enum MessageType {
     Error = 'ERROR',

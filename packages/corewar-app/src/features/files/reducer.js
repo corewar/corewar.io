@@ -8,7 +8,7 @@ export const getFileState = state => state.file
 export const getCurrentFile = state => state.file.currentFile
 
 // reducer
-export default (state = initialState, action) => {
+const filesReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CURRENT_FILE:
       return {
@@ -38,3 +38,5 @@ export default (state = initialState, action) => {
       return state
   }
 }
+
+export default filesReducer

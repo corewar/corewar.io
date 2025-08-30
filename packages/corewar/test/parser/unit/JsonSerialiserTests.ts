@@ -2,7 +2,7 @@
 
 import { IToken } from '@parser/interface/IToken'
 import { JsonSerialiser } from '@parser/JsonSerialiser'
-import { TestHelper } from '@parser/tests/unit/TestHelper'
+import { TestHelper } from '../unit/TestHelper'
 'use strict'
 
 describe('JsonSerialiser', () => {

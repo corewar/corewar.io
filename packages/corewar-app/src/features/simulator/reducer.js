@@ -20,7 +20,7 @@ import initialState from './state/initial-state'
 export const getSimulatorState = state => state.simulator
 
 // reducer
-export default (state = initialState, action) => {
+const simulatorReducer = (state = initialState, action) => {
   switch (action.type) {
     case INIT:
       return {
@@ -109,3 +109,5 @@ export default (state = initialState, action) => {
       }
   }
 }
+
+export default simulatorReducer

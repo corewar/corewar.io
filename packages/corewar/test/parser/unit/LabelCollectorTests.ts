@@ -5,7 +5,7 @@ import { Context } from '@parser/Context'
 import { Parser } from '@parser/Parser'
 import { LabelCollector } from '@parser/LabelCollector'
 import { MessageType } from '@parser/interface/IMessage'
-import { TestHelper } from '@parser/tests/unit/TestHelper'
+import { TestHelper } from '../unit/TestHelper'
 import { Standard } from '@parser/interface/IParseOptions'
 
 describe('LabelCollector', () => {

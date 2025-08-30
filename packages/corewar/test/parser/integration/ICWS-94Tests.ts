@@ -1,4 +1,4 @@
-﻿import { TestHelper } from '@parser/tests/integration/TestHelper'
+﻿import { TestHelper } from '../integration/TestHelper'
 import { Standard } from '@parser/interface/IParseOptions'
 'use strict'
 

@@ -1,19 +1,19 @@
-﻿import { IWarriorLoader } from '@simulator/interface/IWarriorLoader'
-import { IWarriorInstance } from '@simulator/interface/IWarriorInstance'
-import { ICore } from '@simulator/interface/ICore'
-import { IInstruction, OpcodeType, ModifierType } from '@simulator/interface/IInstruction'
-import { IOperand, ModeType } from '@simulator/interface/IOperand'
+﻿import { IWarriorLoader } from './interface/IWarriorLoader'
+import { IWarriorInstance } from './interface/IWarriorInstance'
+import { ICore } from './interface/ICore'
+import { IInstruction, OpcodeType, ModifierType } from './interface/IInstruction'
+import { IOperand, ModeType } from './interface/IOperand'
 
-import { ITokenStream } from '@parser/interface/ITokenStream'
-import { TokenCategory } from '@parser/interface/IToken'
-import { IParseInstruction } from '@parser/interface/IParseInstruction'
-import { IParseOperand } from '@parser/interface/IParseOperand'
+import { ITokenStream } from '../parser/interface/ITokenStream'
+import { TokenCategory } from '../parser/interface/IToken'
+import { IParseInstruction } from '../parser/interface/IParseInstruction'
+import { IParseOperand } from '../parser/interface/IParseOperand'
 
-import { TokenStream } from '@parser/TokenStream'
-import { WarriorInstance } from '@simulator/WarriorInstance'
-import IWarrior from '@simulator/interface/IWarrior'
-import { IPublisher } from '@simulator/interface/IPublisher'
-import { MessageType } from '@simulator/interface/IMessage'
+import { TokenStream } from '../parser/TokenStream'
+import { WarriorInstance } from './WarriorInstance'
+import IWarrior from './interface/IWarrior'
+import { IPublisher } from './interface/IPublisher'
+import { MessageType } from './interface/IMessage'
 
 export class WarriorLoader implements IWarriorLoader {
     private address: number

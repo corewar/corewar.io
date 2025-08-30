@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:0-12
+FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:0-24
 
 # Install Docker CE CLI
 RUN apt-get update \
@@ -20,4 +20,5 @@ RUN wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key 
     && sudo apt-get update \
     && sudo apt-get install -y mongodb-mongosh
 
-RUN npm install --global lerna yarn
+# Install pnpm
+RUN npm install --global pnpm@10.15.0

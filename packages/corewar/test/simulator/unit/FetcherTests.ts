@@ -9,7 +9,7 @@ import Defaults from '@simulator/Defaults'
 import { IOptions } from '@simulator/interface/IOptions'
 import { ITask } from '@simulator/interface/ITask'
 import { Fetcher } from '@simulator/Fetcher'
-import TestHelper from '@simulator/tests/unit/TestHelper'
+import TestHelper from '../unit/TestHelper'
 
 describe('Fetcher', () => {
     const imp = TestHelper.buildInstruction(3, OpcodeType.MOV, ModifierType.I, ModeType.Direct, 0, ModeType.Direct, 1)

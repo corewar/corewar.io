@@ -1,6 +1,6 @@
 ﻿import * as chai from 'chai'
 import * as sinon from 'sinon'
-import * as sinonChai from 'sinon-chai'
+import sinonChai from 'sinon-chai'
 const expect = chai.expect
 chai.use(sinonChai)
 
@@ -11,7 +11,7 @@ import { IWarriorLoader } from '@simulator/interface/IWarriorLoader'
 import { WarriorInstance } from '@simulator/WarriorInstance'
 import { Loader } from '@simulator/Loader'
 import Defaults from '@simulator/Defaults'
-import TestHelper from '@simulator/tests/unit/TestHelper'
+import TestHelper from '../unit/TestHelper'
 import IWarrior from '@simulator/interface/IWarrior'
 
 describe('Loader', () => {

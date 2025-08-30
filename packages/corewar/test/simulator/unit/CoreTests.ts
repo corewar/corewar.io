@@ -1,5 +1,5 @@
 ﻿import * as chai from 'chai'
-import * as sinonChai from 'sinon-chai'
+import sinonChai from 'sinon-chai'
 const expect = chai.expect
 chai.use(sinonChai)
 
@@ -12,7 +12,7 @@ import { CoreAccessType } from '@simulator/interface/ICore'
 import Defaults from '@simulator/Defaults'
 import { MessageType } from '@simulator/interface/IMessage'
 import { IPublisher } from '@simulator/interface/IPublisher'
-import TestHelper from '@simulator/tests/unit/TestHelper'
+import TestHelper from '../unit/TestHelper'
 
 describe('Core', () => {
     function buildInstruction(): IInstruction {

@@ -1,5 +1,5 @@
-﻿import { IWarriorInstance } from '@simulator/interface/IWarriorInstance'
-import { ITask } from '@simulator/interface/ITask'
+﻿import { IWarriorInstance } from './interface/IWarriorInstance'
+import { ITask } from './interface/ITask'
 import IWarrior from './interface/IWarrior'
 
 export class WarriorInstance implements IWarriorInstance {

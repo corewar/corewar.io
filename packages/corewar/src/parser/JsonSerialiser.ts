@@ -1,5 +1,5 @@
-﻿import { ISerialiser } from '@parser/interface/ISerialiser'
-import { IToken } from '@parser/interface/IToken'
+﻿import { ISerialiser } from './interface/ISerialiser'
+import { IToken } from './interface/IToken'
 
 export class JsonSerialiser implements ISerialiser {
     public serialise(tokens: IToken[]): string {

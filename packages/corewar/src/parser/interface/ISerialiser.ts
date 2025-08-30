@@ -1,4 +1,4 @@
-﻿import { IToken } from '@parser/interface/IToken'
+﻿import { IToken } from './IToken'
 
 export interface ISerialiser {
     serialise(tokens: IToken[]): string

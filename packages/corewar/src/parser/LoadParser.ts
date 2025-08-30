@@ -1,12 +1,12 @@
-﻿import { IParser } from '@parser/interface/IParser'
-import { IPass } from '@parser/interface/IPass'
-import { IScanner } from '@parser/interface/IScanner'
-import { IContext } from '@parser/interface/IContext'
-import { IMessage, MessageType } from '@parser/interface/IMessage'
-import { IParseOptions, Standard } from '@parser/interface/IParseOptions'
-import { IParseResult } from '@parser/interface/IParseResult'
+﻿import { IParser } from './interface/IParser'
+import { IPass } from './interface/IPass'
+import { IScanner } from './interface/IScanner'
+import { IContext } from './interface/IContext'
+import { IMessage, MessageType } from './interface/IMessage'
+import { IParseOptions, Standard } from './interface/IParseOptions'
+import { IParseResult } from './interface/IParseResult'
 
-import { Parser } from '@parser/Parser'
+import { Parser } from './Parser'
 
 export class LoadParser implements IParser {
     private scanner: IScanner

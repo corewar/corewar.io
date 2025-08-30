@@ -1,6 +1,6 @@
-﻿import { IParseInstruction } from '@parser/interface/IParseInstruction'
-import { TokenCategory } from '@parser/interface/IToken'
-import { PassBase } from '@parser/PassBase'
+﻿import { IParseInstruction } from './interface/IParseInstruction'
+import { TokenCategory } from './interface/IToken'
+import { PassBase } from './PassBase'
 
 export class IllegalCommandCheck extends PassBase {
     public processLine(): void {

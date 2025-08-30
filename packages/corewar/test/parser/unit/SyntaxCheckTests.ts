@@ -3,7 +3,7 @@
 import { IToken, TokenCategory } from '@parser/interface/IToken'
 import { IContext } from '@parser/interface/IContext'
 import { Context } from '@parser/Context'
-import { TestHelper } from '@parser/tests/unit/TestHelper'
+import { TestHelper } from '../unit/TestHelper'
 import { Parser } from '@parser/Parser'
 import { SyntaxCheck } from '@parser/SyntaxCheck'
 import { MessageType, IMessage } from '@parser/interface/IMessage'

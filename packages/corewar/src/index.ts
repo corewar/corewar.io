@@ -1,70 +1,70 @@
-﻿import { IParser } from '@parser/interface/IParser'
-import { IToken } from '@parser/interface/IToken'
-import { IParseResult } from '@parser/interface/IParseResult'
+﻿import { IParseResult } from '@parser/interface/IParseResult'
+import { IParser } from '@parser/interface/IParser'
 import { ISerialiser } from '@parser/interface/ISerialiser'
+import { IToken } from '@parser/interface/IToken'
 
-import { ISimulator } from '@simulator/interface/ISimulator'
 import { ICore } from '@simulator/interface/ICore'
+import { ICoreLocation } from '@simulator/interface/ICoreLocation'
 import { IExecutive } from '@simulator/interface/IExecutive'
-import { IPublisher } from '@simulator/interface/IPublisher'
+import { MessageType } from '@simulator/interface/IMessage'
 import { IOptions } from '@simulator/interface/IOptions'
 import { IPublishProvider } from '@simulator/interface/IPublishProvider'
-import { ICoreLocation } from '@simulator/interface/ICoreLocation'
+import { IPublisher } from '@simulator/interface/IPublisher'
+import { ISimulator } from '@simulator/interface/ISimulator'
 import IWarrior from '@simulator/interface/IWarrior'
-import { MessageType } from '@simulator/interface/IMessage'
 
-import { IRules } from '@matches/interface/IRules'
 import { IMatchResult } from '@matches/interface/IMatchResult'
 import { IMatchRunner } from '@matches/interface/IMatchRunner'
+import { IRules } from '@matches/interface/IRules'
 
-import { IHillRunner } from '@matches/interface/IHillRunner'
 import { IHillResult } from '@matches/interface/IHillResult'
+import { IHillRunner } from '@matches/interface/IHillRunner'
 
 import { IBenchmarkRunner } from '@matches/interface/IBenchmarkRunner'
 
-import { Parser } from '@parser/Parser'
-import { Scanner } from '@parser/Scanner'
-import { ForPass } from '@parser/ForPass'
-import { PreprocessCollector } from '@parser/PreprocessCollector'
-import { PreprocessAnalyser } from '@parser/PreprocessAnalyser'
-import { PreprocessEmitter } from '@parser/PreprocessEmitter'
-import { LabelCollector } from '@parser/LabelCollector'
-import { LabelEmitter } from '@parser/LabelEmitter'
-import { MathsProcessor } from '@parser/MathsProcessor'
+import { DefaultPass } from '@parser/DefaultPass'
 import { Expression } from '@parser/Expression'
 import { Filter } from '@parser/Filter'
-import { MetaDataCollector } from '@parser/MetaDataCollector'
-import { DefaultPass } from '@parser/DefaultPass'
-import { OrgPass } from '@parser/OrgPass'
-import { SyntaxCheck } from '@parser/SyntaxCheck'
-import { LoadFileSerialiser } from '@parser/LoadFileSerialiser'
+import { ForPass } from '@parser/ForPass'
 import { IllegalCommandCheck } from '@parser/IllegalCommandCheck'
+import { LabelCollector } from '@parser/LabelCollector'
+import { LabelEmitter } from '@parser/LabelEmitter'
+import { LoadFileSerialiser } from '@parser/LoadFileSerialiser'
+import { MathsProcessor } from '@parser/MathsProcessor'
+import { MetaDataCollector } from '@parser/MetaDataCollector'
 import { MetaDataEmitter } from '@parser/MetaDataEmitter'
+import { OrgPass } from '@parser/OrgPass'
+import { Parser } from '@parser/Parser'
+import { PreprocessAnalyser } from '@parser/PreprocessAnalyser'
+import { PreprocessCollector } from '@parser/PreprocessCollector'
+import { PreprocessEmitter } from '@parser/PreprocessEmitter'
+import { Scanner } from '@parser/Scanner'
+import { SyntaxCheck } from '@parser/SyntaxCheck'
 
-import { Random } from '@simulator/Random'
-import { Executive } from '@simulator/Executive'
-import { Decoder } from '@simulator/Decoder'
 import { Core } from '@simulator/Core'
-import { Loader } from '@simulator/Loader'
-import { WarriorLoader } from '@simulator/WarriorLoader'
-import { Fetcher } from '@simulator/Fetcher'
-import { Simulator } from '@simulator/Simulator'
+import { Decoder } from '@simulator/Decoder'
 import { EndCondition } from '@simulator/EndCondition'
-import { OptionValidator } from '@simulator/OptionValidator'
-import { Publisher } from '@simulator/Publisher'
+import { Executive } from '@simulator/Executive'
+import { Fetcher } from '@simulator/Fetcher'
 import { LatestOnlyStrategy } from '@simulator/LatestOnlyStrategy'
+import { Loader } from '@simulator/Loader'
+import { OptionValidator } from '@simulator/OptionValidator'
 import { PerKeyStrategy } from '@simulator/PerKeyStrategy'
+import { Publisher } from '@simulator/Publisher'
+import { Random } from '@simulator/Random'
+import { Simulator } from '@simulator/Simulator'
+import { WarriorLoader } from '@simulator/WarriorLoader'
 import { IRoundResult } from '@simulator/interface/IRoundResult'
 
-import { MatchRunner } from '@matches/MatchRunner'
 import { MatchResultMapper } from '@matches/MatchResultMapper'
+import { MatchRunner } from '@matches/MatchRunner'
 
-import { HillRunner } from '@matches/HillRunner'
 import { HillResultMapper } from '@matches/HillResultMapper'
+import { HillRunner } from '@matches/HillRunner'
 
 import { BenchmarkRunner } from '@matches/BenchmarkRunner'
 
-import * as clone from 'clone'
+import clone from 'clone'
 
 class Api {
     private parser: IParser
@@ -212,3 +212,13 @@ class Api {
 
 // exports for use in npm package
 export const corewar = new Api()
+
+// Export interfaces for use by other packages
+export type {
+    IBenchmarkRunner, ICore,
+    ICoreLocation,
+    IExecutive, IHillResult,
+    IHillRunner, IMatchResult,
+    IMatchRunner, IOptions, IParser, IParseResult, IPublisher, IPublishProvider, IRoundResult, IRules, ISerialiser, ISimulator, IToken, IWarrior
+}
+

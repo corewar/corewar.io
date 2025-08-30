@@ -30,12 +30,17 @@ The pages are responsible for pulling in `features` and composing them into a si
 ## Getting started
 
 - Clone the project
-- `npm i` the dependencies
-- `npm start` to run the webserver and visit `localhost:3000` to see the output
+- `pnpm install` to install dependencies
+- `pnpm dev` to start the development server and visit `localhost:3000` to see the output
 
-## Testing
+## Development
 
-Run `npm test` to execute the UI tests
+This package is part of the corewar.io monorepo managed by Turborepo.
+
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server (after building)
+- `pnpm test` - Run tests
 
 ## Contribution
 

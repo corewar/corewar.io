@@ -1,8 +1,8 @@
-import { IHillResultMapper } from '@matches/interface/IHillResultMapper'
-import { IHillResult } from '@matches/interface/IHillResult'
-import { IMatchResult } from '@matches/interface/IMatchResult'
-import { IHillWarriorResult } from '@matches/interface/IHillWarriorResult'
-import IWarrior from '@simulator/interface/IWarrior'
+import IWarrior from '../simulator/interface/IWarrior'
+import { IHillResult } from './interface/IHillResult'
+import { IHillResultMapper } from './interface/IHillResultMapper'
+import { IHillWarriorResult } from './interface/IHillWarriorResult'
+import { IMatchResult } from './interface/IMatchResult'
 
 export class HillResultMapper implements IHillResultMapper {
     private mapMatchResultsToWarriors(warrior: IWarrior, allResults: IMatchResult[]): IHillWarriorResult {

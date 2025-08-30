@@ -1,6 +1,6 @@
-﻿import { IExpression } from '@parser/interface/IExpression'
-import { TokenCategory } from '@parser/interface/IToken'
-import { PassBase } from '@parser/PassBase'
+﻿import { IExpression } from './interface/IExpression'
+import { TokenCategory } from './interface/IToken'
+import { PassBase } from './PassBase'
 
 export class MathsProcessor extends PassBase {
     private expression: IExpression

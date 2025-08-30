@@ -1,4 +1,4 @@
-﻿import { IWarriorInstance } from '@simulator/interface/IWarriorInstance'
+﻿import { IWarriorInstance } from './IWarriorInstance'
 
 export interface ITask {
     instance: IWarriorInstance

@@ -5,7 +5,7 @@ import { IToken, TokenCategory } from '@parser/interface/IToken'
 import { Parser } from '@parser/Parser'
 import { PreprocessCollector } from '@parser/PreprocessCollector'
 import { MessageType } from '@parser/interface/IMessage'
-import { TestHelper } from '@parser/tests/unit/TestHelper'
+import { TestHelper } from '../unit/TestHelper'
 import { Standard } from '@parser/interface/IParseOptions'
 
 describe('PreprocessCollector', () => {

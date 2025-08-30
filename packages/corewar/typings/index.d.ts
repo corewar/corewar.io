@@ -98,14 +98,14 @@ declare module 'corewar' {
 
     interface IMessage {
         type: MessageType
+        message: string
         position: IPosition
-        text: string
     }
 
     interface IToken {
-        position: IPosition
-        lexeme: string
         category: TokenCategory
+        value: string
+        position: IPosition
     }
 
     interface IParseResult {
@@ -189,21 +189,23 @@ declare module 'corewar' {
         warriors: IHillWarriorResult[]
     }
 
-    export namespace corewar {
-        function initialiseSimulator(options: IOptions, warriors: IWarrior[], messageProvider?: IPublishProvider): void
-        function step(steps?: number): IRoundResult | null
-        function run(): IRoundResult
-        function parse(redcode: string): IParseResult
-        function serialise(tokens: IToken[]): string
-        function getWithInfoAt(address: number): ICoreLocation
-        function republish(): void
-        function runMatch(rules: IRules, warriors: IWarrior[], messageProvider?: IPublishProvider): IMatchResult
-        function runHill(rules: IRules, warriors: IWarrior[], messageProvider?: IPublishProvider): IHillResult
-        function runBenchmark(
+    interface IApi {
+        initialiseSimulator(options: IOptions, warriors: IWarrior[], messageProvider?: IPublishProvider): void
+        step(steps?: number): IRoundResult | null
+        run(): IRoundResult
+        parse(redcode: string): IParseResult
+        serialise(tokens: IToken[]): string
+        getWithInfoAt(address: number): ICoreLocation
+        republish(): void
+        runMatch(rules: IRules, warriors: IWarrior[], messageProvider?: IPublishProvider): IMatchResult
+        runHill(rules: IRules, warriors: IWarrior[], messageProvider?: IPublishProvider): IHillResult
+        runBenchmark(
             warrior: IWarrior,
             rules: IRules,
             warriors: IWarrior[],
             messageProvider: IPublishProvider
         ): IHillResult
     }
+
+    export const corewar: IApi
 }

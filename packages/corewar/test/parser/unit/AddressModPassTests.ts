@@ -1,6 +1,6 @@
 ﻿import { expect } from 'chai'
 
-import { TestHelper } from '@parser/tests/unit/TestHelper'
+import { TestHelper } from '../unit/TestHelper'
 import { Context } from '@parser/Context'
 import { AddressModPass } from '@parser/AddressModPass'
 import { Parser } from '@parser/Parser'

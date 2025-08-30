@@ -3,7 +3,7 @@ const expect = chai.expect
 
 import { IMatchResultMapper } from '@matches/interface/IMatchResultMapper'
 import { MatchResultMapper } from '@matches/MatchResultMapper'
-import TestHelper from '@simulator/tests/unit/TestHelper'
+import TestHelper from '../../simulator/unit/TestHelper'
 import IWarrior from '@simulator/interface/IWarrior'
 import { IRoundResult } from '@simulator/interface/IRoundResult'
 

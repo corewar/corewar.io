@@ -1,12 +1,12 @@
 import * as chai from 'chai'
-import * as sinonChai from 'sinon-chai'
+import sinonChai from 'sinon-chai'
 const expect = chai.expect
 chai.use(sinonChai)
 
 import Defaults from '@simulator/Defaults'
 import { IOptions } from '@simulator/interface/IOptions'
 import { OptionValidator } from '@simulator/OptionValidator'
-import * as clone from 'clone'
+import clone from 'clone'
 
 describe('OptionValidator', () => {
     let optionValidator

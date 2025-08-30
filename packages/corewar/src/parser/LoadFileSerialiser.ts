@@ -1,5 +1,5 @@
-﻿import { IToken, TokenCategory } from '@parser/interface/IToken'
-import { ISerialiser } from '@parser/interface/ISerialiser'
+﻿import { IToken, TokenCategory } from './interface/IToken'
+import { ISerialiser } from './interface/ISerialiser'
 
 export class LoadFileSerialiser implements ISerialiser {
     private previous: TokenCategory

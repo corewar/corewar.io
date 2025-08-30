@@ -1,7 +1,7 @@
-import { IPass } from '@parser/interface/IPass'
-import { IContext } from '@parser/interface/IContext'
-import { IParseOptions, Standard } from '@parser/interface/IParseOptions'
-import { IToken, TokenCategory } from '@parser/interface/IToken'
+import { IPass } from './interface/IPass'
+import { IContext } from './interface/IContext'
+import { IParseOptions, Standard } from './interface/IParseOptions'
+import { IToken, TokenCategory } from './interface/IToken'
 
 export class MetaDataEmitter implements IPass {
     private tokens: IToken[]

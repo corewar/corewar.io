@@ -1,7 +1,7 @@
-import { IMessage } from '@simulator/interface/IMessage'
-import { IPublisher, IPublishStrategyMap } from '@simulator/interface/IPublisher'
-import { IPublishProvider } from '@simulator/interface/IPublishProvider'
-import * as clone from 'clone'
+import { IMessage } from './interface/IMessage'
+import { IPublisher, IPublishStrategyMap } from './interface/IPublisher'
+import { IPublishProvider } from './interface/IPublishProvider'
+import clone from 'clone'
 
 export class Publisher implements IPublisher {
     private publishProvider: IPublishProvider

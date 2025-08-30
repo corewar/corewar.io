@@ -1,4 +1,4 @@
-﻿import { IToken, TokenCategory } from '@parser/interface/IToken'
+﻿import { IToken, TokenCategory } from './IToken'
 
 export interface ITokenStream {
     position: number

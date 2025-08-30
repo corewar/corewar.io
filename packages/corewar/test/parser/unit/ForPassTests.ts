@@ -7,7 +7,7 @@ import { Parser } from '@parser/Parser'
 import { ForPass } from '@parser/ForPass'
 import { Expression } from '@parser/Expression'
 import { MessageType } from '@parser/interface/IMessage'
-import { TestHelper } from '@parser/tests/unit/TestHelper'
+import { TestHelper } from '../unit/TestHelper'
 'use strict'
 
 describe('ForPass', () => {

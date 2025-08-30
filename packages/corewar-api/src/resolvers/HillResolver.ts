@@ -1,12 +1,12 @@
-import { Resolver, Mutation, ObjectType, Args, ArgsType, Field, Query, InputType } from 'type-graphql'
-import Hill from '@/schema/Hill'
 import MutationResult from '@/resolvers/MutationResult'
+import Hill from '@/schema/Hill'
 import Rules from '@/schema/HillRules'
-import Operand from '@/schema/Operand'
-import { ModeType, OpcodeType, ModifierType } from 'corewar'
 import Instruction from '@/schema/Instruction'
+import Operand from '@/schema/Operand'
 import Options from '@/schema/Options'
 import { IHillService, buildHillService } from '@/services/HillService'
+import { ModeType, ModifierType, OpcodeType } from 'corewar'
+import { Args, ArgsType, Field, InputType, Mutation, ObjectType, Query, Resolver } from 'type-graphql'
 
 @InputType()
 export class OperandInput implements Partial<Operand> {
@@ -122,7 +122,7 @@ export default class HillResolver {
         } catch (e) {
             return {
                 success: false,
-                message: e.message
+                message: e instanceof Error ? e.message : String(e)
             }
         }
     }
@@ -137,7 +137,7 @@ export default class HillResolver {
         } catch (e) {
             return {
                 success: false,
-                message: e.message
+                message: e instanceof Error ? e.message : String(e)
             }
         }
     }
@@ -152,7 +152,7 @@ export default class HillResolver {
         } catch (e) {
             return {
                 success: false,
-                message: e.message
+                message: e instanceof Error ? e.message : String(e)
             }
         }
     }

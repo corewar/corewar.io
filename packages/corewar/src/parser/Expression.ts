@@ -1,6 +1,6 @@
-﻿import { IExpression } from '@parser/interface/IExpression'
-import { IToken, TokenCategory } from '@parser/interface/IToken'
-import { ITokenStream } from '@parser/interface/ITokenStream'
+﻿import { IExpression } from './interface/IExpression'
+import { IToken, TokenCategory } from './interface/IToken'
+import { ITokenStream } from './interface/ITokenStream'
 
 export class Expression implements IExpression {
     private stream: ITokenStream

@@ -2,7 +2,7 @@
 
 import { IToken, TokenCategory } from '@parser/interface/IToken'
 import { LoadFileSerialiser } from '@parser/LoadFileSerialiser'
-import { TestHelper } from '@parser/tests/unit/TestHelper'
+import { TestHelper } from '../unit/TestHelper'
 
 describe('LoadFileSerialiser', () => {
     it('serialises tokens to a valid load file format', () => {

@@ -3,7 +3,7 @@
 import { Context } from '@parser/Context'
 import { MetaDataCollector } from '@parser/MetaDataCollector'
 import { Parser } from '@parser/Parser'
-import { TestHelper } from '@parser/tests/unit/TestHelper'
+import { TestHelper } from '../unit/TestHelper'
 import { MessageType } from '@parser/interface/IMessage'
 'use strict'
 
