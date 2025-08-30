@@ -13,13 +13,11 @@ export default {
     preset: 'ts-jest',
     testEnvironment: 'node',
     testMatch: ['**/test/**/*spec.ts'],
-    extensionsToTreatAsEsm: ['.ts'],
     transformIgnorePatterns: ['node_modules/(?!(corewar)/)'],
     transform: {
         '^.+\\.ts$': [
             'ts-jest',
             {
-                useESM: true,
                 tsconfig: {
                     strict: false,
                     strictNullChecks: false,

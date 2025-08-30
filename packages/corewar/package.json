@@ -10,7 +10,7 @@
             "require": "./dist/index.cjs"
         }
     },
-    "types": "./typings/index.d.ts",
+    "types": "./dist/index.d.ts",
     "scripts": {
         "test": "jest --verbose --config jest.config.mjs",
         "coverage": "jest --coverage",
