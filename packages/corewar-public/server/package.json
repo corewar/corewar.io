@@ -1,0 +1,24 @@
+{
+  "name": "corewar-ui-server",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Gareth Williams",
+  "contributors": [
+    {
+      "name": "Doug McDonald"
+    }
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.5.1",
+    "koa-body": "^1.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa-static": "^4.0.3",
+    "@sendgrid/mail": "^6.2.1"
+  },
+  "scripts": {
+    "start": "node server",
+    "build": "react-scripts build"
+  }
+}
