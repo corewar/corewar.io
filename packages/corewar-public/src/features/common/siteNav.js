@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { colour, space } from '../common/theme'
 import { media } from '../common/mediaQuery'
+import { colour, space } from '../common/theme'
 
 const Header = styled.header`
   display: flex;
@@ -43,7 +43,7 @@ const Nav = styled.nav`
 const SiteNav = () => (
   <Header>
     <Nav>
-      <a href={`/app/editor/src`}>play</a>
+      <a href={`/app`}>play</a>
       <a href={`/learn`}>learn</a>
       <a href={`/#features`}>features</a>
       <a href={`/sign-up`}>sign up</a>

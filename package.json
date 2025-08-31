@@ -2,18 +2,24 @@
     "name": "root",
     "private": true,
     "packageManager": "pnpm@10.15.0",
-    "engines": {
-        "node": ">=24.0.0"
-    },
+      "engines": {
+    "node": ">=22.0.0"
+  },
     "scripts": {
-        "dev": "turbo run dev",
         "build": "turbo run build",
+        "build:unified": "pnpm clean && pnpm build:public && pnpm build:app && pnpm copy:public && pnpm copy:app",
+        "build:public": "cd packages/corewar-public && pnpm build",
+        "build:app": "cd packages/corewar-app && pnpm build",
+        "copy:public": "mkdir -p build && cp -r packages/corewar-public/build/* build/",
+        "copy:app": "mkdir -p build/app && cp -r packages/corewar-app/build/* build/app/",
+        "deploy:build": "pnpm run build:unified",
+        "dev": "turbo run dev",
         "start": "turbo run start",
         "test": "turbo run test",
         "coverage": "turbo run coverage",
         "lint": "turbo run lint",
         "lint:fix": "eslint --fix \"**/*.{ts,js}\"",
-        "clean": "turbo run clean",
+        "clean": "rm -rf build && rm -rf packages/*/build",
         "bootstrap": "pnpm install"
     },
     "devDependencies": {
