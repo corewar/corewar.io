@@ -374,7 +374,7 @@ const Home = () => (
     <SiteNav />
     <HeroLogo />
     <CallToAction>
-      <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
+      <PrimaryButton href="/app">Play Now</PrimaryButton>
       <FeatureButton href="/learn">Learn more</FeatureButton>
     </CallToAction>
     <Tagline id={`features`}>
@@ -408,7 +408,7 @@ const Home = () => (
         <Octicon name='rocket' />
         <h3>Play corewar</h3>
         <p>Enjoy a slice of coding history by playing and learning the classic game corewar</p>
-        <PrimaryButton href='/app/src'>Play Now</PrimaryButton>
+        <PrimaryButton href='/app'>Play Now</PrimaryButton>
       </Feature>
       <Feature>
         <Octicon name='device-mobile' />
@@ -432,7 +432,7 @@ const Home = () => (
         <Octicon name="mortar-board" />
         <h3>Experienced player</h3>
         <p>I’ve played corewar before and understand the instructions and concepts</p>
-        <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
+        <PrimaryButton href="/app">Play Now</PrimaryButton>
         <Guidance>
           <Octicon name="hubot" />
           <SpeechArrow />
@@ -550,7 +550,7 @@ const Home = () => (
     <Prospect>
       <h2>Check out the app</h2>
       <Octicon name="beaker" />
-      <PrimaryButton href="/app/editor/src">Play Now</PrimaryButton>
+      <PrimaryButton href="/app">Play Now</PrimaryButton>
     </Prospect>
     <Footer>
       &copy; 2018 <a href="http://www.corewar.io">www.corewar.io</a> - crafted with love by{' '}
