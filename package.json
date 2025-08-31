@@ -7,9 +7,10 @@
   },
     "scripts": {
         "build": "turbo run build",
-        "build:unified": "pnpm clean && pnpm build:public && pnpm build:app && pnpm copy:public && pnpm copy:app",
-        "build:public": "cd packages/corewar-public && pnpm build",
-        "build:app": "cd packages/corewar-app && pnpm build",
+            "build:unified": "pnpm clean && pnpm build:corewar && pnpm build:public && pnpm build:app && pnpm copy:public && pnpm copy:app",
+    "build:corewar": "cd packages/corewar && pnpm build",
+    "build:public": "cd packages/corewar-public && pnpm build",
+    "build:app": "cd packages/corewar-app && pnpm build",
         "copy:public": "mkdir -p build && cp -r packages/corewar-public/build/* build/",
         "copy:app": "mkdir -p build/app && cp -r packages/corewar-app/build/* build/app/",
         "deploy:build": "pnpm run build:unified",
