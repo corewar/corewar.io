@@ -15,7 +15,7 @@
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.3",
-    "@sendgrid/mail": "^6.2.1"
+    "@sendgrid/mail": "^8.1.5"
   },
   "scripts": {
     "start": "node server",
