@@ -1,0 +1,77 @@
+{
+  "name": "corewar-public",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Gareth Williams",
+  "contributors": [
+    {
+      "name": "Doug McDonald"
+    }
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "corewar": "workspace:*",
+    "fetch-jsonp": "^1.1.3",
+    "identicon.js": "^2.3.1",
+    "jquery": "^3.7.1",
+    "jssha": "^2.3.1",
+    "prop-types": "^15.8.1",
+    "pubsub-js": "^1.9.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-fontawesome": "^1.7.1",
+    "react-media": "^1.10.0",
+    "react-octicon": "^3.0.1",
+    "react-redux": "^8.1.3",
+    "react-router-dom": "^6.20.1",
+    "react-scripts": "5.0.1",
+    "react-scroll-to-component": "^1.0.2",
+    "react-test-renderer": "^18.2.0",
+    "redux": "^4.2.1",
+    "redux-saga": "^1.2.3",
+    "styled-components": "^6.1.1",
+    "styled-property": "^1.0.2",
+    "typeface-anonymous-pro": "0.0.44",
+    "typeface-inter": "^3.11.2",
+    "typeface-lato": "0.0.44"
+  },
+  "scripts": {
+    "dev": "PORT=3001 react-scripts start",
+    "start": "PORT=3001 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "coverage": "react-scripts test --env=jsdom --coverage",
+    "eject": "react-scripts eject",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "clean": "rm -rf build coverage"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@types/jest": "^29.5.8",
+    "eslint": "^8.57.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "typescript": "^5.3.3"
+  }
+}

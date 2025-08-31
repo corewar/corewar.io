@@ -12,7 +12,7 @@
   
    🚀 Building: [1m[35msrc/global/styles.css[39m[22m
   
-   ✅ Finished in [1m[36m643 ms[39m[22m
+   ✅ Finished in [1m[36m1.03 s[39m[22m
    📦 Size: [1m[36m2.14MB[39m[22m
    💾 Saved to [1m[35msrc/global/tailwind.css[39m[22m
   
@@ -20,30 +20,6 @@
 > corewar-app@0.2.1 build /Users/dougmcdonald/dev/corewar.io/packages/corewar-app
 > react-scripts build
 
-(node:40005) [DEP0176] DeprecationWarning: fs.F_OK is deprecated, use fs.constants.F_OK instead
+(node:51824) [DEP0176] DeprecationWarning: fs.F_OK is deprecated, use fs.constants.F_OK instead
 (Use `node --trace-deprecation ...` to show where the warning was created)
 Creating an optimized production build...
-
-[1m[33mwarn[39m[22m - Tailwind is not purging unused styles because no template paths have been provided.
-[1m[33mwarn[39m[22m - If you have manually configured PurgeCSS outside of Tailwind or are deliberately not removing unused styles, set `purge: false` in your Tailwind config file to silence this warning.
-[1m[33mwarn[39m[22m - https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
-[32mCompiled successfully.[39m
-[32m[39m
-File sizes after gzip:
-
-  189.63 kB  [2mbuild/static/css/[22m[36mmain.20d6bd46.css[39m
-  115.51 kB  [2mbuild/static/js/[22m[36mmain.6fa7f2eb.js[39m
-
-The project was built assuming it is hosted at [32m/[39m.
-You can control this with the [32mhomepage[39m field in your [36mpackage.json[39m.
-
-The [36mbuild[39m folder is ready to be deployed.
-You may serve it with a static server:
-
-  [36mnpm[39m install -g serve
-  [36mserve[39m -s build
-
-Find out more about deployment here:
-
-  [33mhttps://cra.link/deployment[39m
-
