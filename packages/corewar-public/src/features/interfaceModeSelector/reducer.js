@@ -4,10 +4,10 @@ import { SET_INTERFACE_MODE } from './actions'
 import initialState from './initialState'
 
 // selectors
-export const getInterfaceState = state => state.interface
+export const getInterfaceState = (state) => state.interface
 
 // reducer
-export default (state = initialState, action) => {
+const interfaceModeReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_INTERFACE_MODE:
       return {
@@ -19,3 +19,5 @@ export default (state = initialState, action) => {
       return state
   }
 }
+
+export default interfaceModeReducer

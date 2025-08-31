@@ -1,22 +1,22 @@
 import {
-  SET_CURRENT_WARRIOR,
-  TOGGLE_CONSOLE,
   HIDE_CONSOLE,
-  SHOW_CONSOLE,
-  TOGGLE_FILE_MANAGER,
-  SET_WARRIORS,
   LOAD_WARRIOR,
-  SET_COLOURS
+  SET_COLOURS,
+  SET_CURRENT_WARRIOR,
+  SET_WARRIORS,
+  SHOW_CONSOLE,
+  TOGGLE_CONSOLE,
+  TOGGLE_FILE_MANAGER
 } from './actions'
 
 // state
 import initialState from './initialState'
 
 // selectors
-export const getParserState = state => state.parser
+export const getParserState = (state) => state.parser
 
 // reducer
-export default (state = initialState, action) => {
+const parserReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CURRENT_WARRIOR:
       return {
@@ -71,3 +71,5 @@ export default (state = initialState, action) => {
       return state
   }
 }
+
+export default parserReducer

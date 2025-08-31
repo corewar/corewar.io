@@ -1,14 +1,14 @@
 import {
-  INIT,
-  STEP,
-  RUN,
-  PAUSE,
-  RUN_PROGRESS,
-  RUN_ENDED,
   GET_CORE_INSTRUCTIONS,
+  INIT,
+  PAUSE,
+  RUN,
+  RUN_ENDED,
+  RUN_PROGRESS,
   SET_CORE_FOCUS,
-  SET_PROCESS_RATE,
   SET_CORE_OPTIONS,
+  SET_PROCESS_RATE,
+  STEP,
   TOGGLE_SETTINGS
 } from './actions'
 
@@ -16,10 +16,10 @@ import {
 import initialState from './initialState'
 
 // selectors
-export const getSimulatorState = state => state.simulator
+export const getSimulatorState = (state) => state.simulator
 
 // reducer
-export default (state = initialState, action) => {
+const simulatorReducer = (state = initialState, action) => {
   switch (action.type) {
     case INIT:
       return {
@@ -100,3 +100,5 @@ export default (state = initialState, action) => {
       }
   }
 }
+
+export default simulatorReducer

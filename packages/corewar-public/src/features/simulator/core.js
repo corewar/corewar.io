@@ -1,15 +1,14 @@
-import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import * as PubSub from 'pubsub-js'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import throttle from '../../helpers/throttle'
 
+import { media } from '../common/mediaQuery'
 import { colour, space } from '../common/theme'
-import { media } from  '../common/mediaQuery'
 
 const CanvasWrapper = styled.section`
-
   position: relative;
 
   ${media.desktop`min-height: 500px;`}
@@ -29,9 +28,7 @@ const CanvasWrapper = styled.section`
 `
 
 class CanvasCore extends Component {
-
   constructor(props) {
-
     super(props)
 
     this.getCoreInstructions = props.getCoreInstructions
@@ -70,11 +67,9 @@ class CanvasCore extends Component {
     PubSub.subscribe('NEXT_EXECUTION', (msg, data) => {
       this.nextExecutionAddress = data.address
     })
-
   }
 
   init() {
-
     this.calculateCoreDimensions()
 
     this.buildSprites()
@@ -82,7 +77,6 @@ class CanvasCore extends Component {
     this.renderGrid()
 
     this.republish()
-
   }
 
   calculateCoreDimensions() {
@@ -108,19 +102,20 @@ class CanvasCore extends Component {
   }
 
   componentDidMount() {
-
     this.init()
 
-    this.interactiveCanvas.addEventListener("click", e => this.canvasClick(e))
+    this.interactiveCanvas.addEventListener('click', (e) => this.canvasClick(e))
 
-    window.addEventListener('resize', throttle(() => this.init(), 200))
+    window.addEventListener(
+      'resize',
+      throttle(() => this.init(), 200)
+    )
 
     window.requestAnimationFrame(() => {
       this.renderMessages()
       this.renderNextExecution()
       this.highlightClickPoint()
     })
-
   }
 
   componentDidUpdate(prevProps) {
@@ -133,13 +128,11 @@ class CanvasCore extends Component {
   }
 
   buildSprites() {
-
-    this.sprites = {};
+    this.sprites = {}
     this.cellSprite = this.prerenderCell()
-    this.nextExecutionSprite = this.prerenderExecute("#fff")
+    this.nextExecutionSprite = this.prerenderExecute('#fff')
 
-    colour.warrior.forEach(c => {
-
+    colour.warrior.forEach((c) => {
       const colouredSprites = []
       colouredSprites.push(this.prerenderRead(c.hex))
       colouredSprites.push(this.prerenderWrite(c.hex))
@@ -147,11 +140,9 @@ class CanvasCore extends Component {
 
       this.sprites[c.hex] = colouredSprites
     })
-
   }
 
   buildSprite() {
-
     const canvas = document.createElement('canvas')
     canvas.width = this.cellSize
     canvas.height = this.cellSize
@@ -164,7 +155,6 @@ class CanvasCore extends Component {
   }
 
   prerenderCell() {
-
     const sprite = this.buildSprite()
 
     const context = sprite.context
@@ -175,11 +165,10 @@ class CanvasCore extends Component {
     context.lineTo(this.cellSize, 0)
     context.stroke()
 
-    return sprite;
+    return sprite
   }
 
   prerenderRead(colour) {
-
     const sprite = this.prerenderCell()
 
     const hSize = (this.cellSize - 1) / 2
@@ -198,7 +187,6 @@ class CanvasCore extends Component {
   }
 
   prerenderWrite(colour) {
-
     const sprite = this.prerenderCell()
 
     const x0 = 1
@@ -223,7 +211,6 @@ class CanvasCore extends Component {
   }
 
   prerenderExecute(colour) {
-
     const sprite = this.prerenderCell()
 
     const context = sprite.context
@@ -236,22 +223,20 @@ class CanvasCore extends Component {
   }
 
   renderGrid() {
-
     this.coreContext.clearRect(0, 0, this.containerWidth, this.containerHeight)
 
-    let i = 0;
+    let i = 0
     for (let y = 0; y < this.cellsHigh * this.cellSize; y += this.cellSize) {
       for (let x = 0; x < this.cellsWide * this.cellSize; x += this.cellSize) {
         this.coreContext.drawImage(this.cellSprite.canvas, x, y)
         if (++i >= this.props.coreSize) {
-          return;
+          return
         }
       }
     }
   }
 
   addressToScreenCoordinate(address) {
-
     const ix = address % this.cellsWide
     const iy = Math.floor(address / this.cellsWide)
 
@@ -262,7 +247,6 @@ class CanvasCore extends Component {
   }
 
   renderMessages() {
-
     this.messages.forEach((data) => {
       this.renderCell(data)
     })
@@ -277,7 +261,6 @@ class CanvasCore extends Component {
   }
 
   renderNextExecution() {
-
     this.interactiveContext.clearRect(0, 0, this.state.width, this.state.height)
 
     if (!this.nextExecutionAddress) {
@@ -289,7 +272,6 @@ class CanvasCore extends Component {
   }
 
   screenCoordinateToAddress(point) {
-
     const x = Math.floor(point.x / this.cellSize)
     const y = Math.floor(point.y / this.cellSize)
 
@@ -297,7 +279,6 @@ class CanvasCore extends Component {
   }
 
   renderCell(event) {
-
     const coordinate = this.addressToScreenCoordinate(event.address)
 
     const sprite = this.sprites[event.warriorData.colour.hex][event.accessType]
@@ -305,7 +286,6 @@ class CanvasCore extends Component {
   }
 
   calculateCellSize() {
-
     const area = this.containerWidth * this.containerHeight
     const n = this.props.coreSize
 
@@ -313,7 +293,6 @@ class CanvasCore extends Component {
     let possibleCellSize = Math.floor(maxCellSize)
 
     while (!this.isValidCellSize(possibleCellSize)) {
-
       possibleCellSize--
     }
 
@@ -328,7 +307,6 @@ class CanvasCore extends Component {
   }
 
   getRelativeCoordinates(event) {
-
     let totalOffsetX = 0
     let totalOffsetY = 0
     let currentElement = event.target
@@ -336,17 +314,15 @@ class CanvasCore extends Component {
     do {
       totalOffsetX += currentElement.offsetLeft - currentElement.scrollLeft
       totalOffsetY += currentElement.offsetTop - currentElement.scrollTop
-    }
-    while (currentElement = currentElement.offsetParent)
+    } while ((currentElement = currentElement.offsetParent))
 
-    const canvasX = (event.pageX - totalOffsetX) - 2
-    const canvasY = (event.pageY - totalOffsetY) - 2
+    const canvasX = event.pageX - totalOffsetX - 2
+    const canvasY = event.pageY - totalOffsetY - 2
 
     return { x: canvasX, y: canvasY }
   }
 
   canvasClick(e) {
-
     if (!this.props.isInitialised) {
       return
     }
@@ -361,7 +337,6 @@ class CanvasCore extends Component {
   }
 
   highlightClickPoint() {
-
     const address = this.inspectionAddress
 
     const cell = this.addressToScreenCoordinate(address)
@@ -374,33 +349,40 @@ class CanvasCore extends Component {
   }
 
   render() {
-
-    return <CanvasWrapper
-      innerRef={(canvasContainer) => {
-        if (canvasContainer == null) { return }
-        this.canvasContainer = canvasContainer
-      }}>
-      <canvas
-        ref={(coreCanvasEl) => {
-          if (coreCanvasEl == null) { return }
-          this.coreContext = coreCanvasEl.getContext("2d")
-          this.coreCanvas = coreCanvasEl
+    return (
+      <CanvasWrapper
+        innerRef={(canvasContainer) => {
+          if (canvasContainer == null) {
+            return
+          }
+          this.canvasContainer = canvasContainer
         }}
-        height={this.state.height}
-        width={this.state.width}
-      ></canvas>
-      <canvas
-        ref={(interactiveCanvasEl) => {
-          if (interactiveCanvasEl == null) { return }
-          this.interactiveContext = interactiveCanvasEl.getContext("2d")
-          this.interactiveCanvas = interactiveCanvasEl
-        }}
-        height={this.state.height}
-        width={this.state.width}
-      ></canvas>
-    </CanvasWrapper>
+      >
+        <canvas
+          ref={(coreCanvasEl) => {
+            if (coreCanvasEl == null) {
+              return
+            }
+            this.coreContext = coreCanvasEl.getContext('2d')
+            this.coreCanvas = coreCanvasEl
+          }}
+          height={this.state.height}
+          width={this.state.width}
+        ></canvas>
+        <canvas
+          ref={(interactiveCanvasEl) => {
+            if (interactiveCanvasEl == null) {
+              return
+            }
+            this.interactiveContext = interactiveCanvasEl.getContext('2d')
+            this.interactiveCanvas = interactiveCanvasEl
+          }}
+          height={this.state.height}
+          width={this.state.width}
+        ></canvas>
+      </CanvasWrapper>
+    )
   }
-
 }
 
 CanvasCore.propTypes = {

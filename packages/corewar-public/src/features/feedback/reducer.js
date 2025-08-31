@@ -1,17 +1,14 @@
-import {
-  FEEDBACK_RESPONSE
-} from './actions'
+import { FEEDBACK_RESPONSE } from './actions'
 
 // state
 import initialState from './initialState'
 
 // selectors
-export const getFeedbackState = state => state.feedback
+export const getFeedbackState = (state) => state.feedback
 
 // reducer
-export default (state = initialState, action) => {
+const feedbackReducer = (state = initialState, action) => {
   switch (action.type) {
-
     case FEEDBACK_RESPONSE:
       return {
         ...state,
@@ -23,3 +20,4 @@ export default (state = initialState, action) => {
   }
 }
 
+export default feedbackReducer
