@@ -376,32 +376,6 @@ const Core = () => {
     }
   }
 
-  const redrawGrid = () => {
-    // Always redraw the grid without checking the flag
-    if (!cellSprite.current || !endRowCellSprite.current) {
-      return
-    }
-
-    coreContext.current.clearRect(0, 0, containerWidth.current, containerHeight.current)
-
-    let i = 0
-    for (let y = 0; y < cellsHigh.current * cellSize.current; y += cellSize.current) {
-      for (let x = 0; x < cellsWide.current * cellSize.current; x += cellSize.current) {
-        let sprite
-        if (x / cellSize.current === cellsWide.current - 1) {
-          sprite = endRowCellSprite.current
-        } else {
-          sprite = cellSprite.current
-        }
-
-        coreContext.current.drawImage(sprite.canvas, x, y)
-        if (++i >= coreSize) {
-          return
-        }
-      }
-    }
-  }
-
   const addressToScreenCoordinate = (address) => {
     // Ensure we have valid grid dimensions
     if (
