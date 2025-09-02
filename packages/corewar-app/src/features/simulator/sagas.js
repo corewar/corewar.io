@@ -1,43 +1,43 @@
+import { corewar } from 'corewar'
+import * as PubSub from 'pubsub-js'
 import { channel } from 'redux-saga'
 import {
+  actionChannel,
   call,
+  delay,
+  fork,
   put,
-  takeEvery,
-  takeLatest,
   select,
   take,
-  fork,
-  delay,
-  actionChannel
+  takeEvery,
+  takeLatest
 } from 'redux-saga/effects'
-import * as PubSub from 'pubsub-js'
-import { corewar } from 'corewar'
 
 import {
+  FINISH_REQUESTED,
   INIT,
   INIT_REQUESTED,
-  STEP_REQUESTED,
-  RUN,
-  RUN_REQUESTED,
   PAUSE,
-  RUN_PROGRESS,
-  RUN_ENDED,
-  FINISH_REQUESTED,
-  START_REQUESTED,
   REPUBLISH,
   REPUBLISH_REQUESTED,
+  RUN,
+  RUN_ENDED,
+  RUN_PROGRESS,
+  RUN_REQUESTED,
+  SET_CORE_FOCUS,
   SET_CORE_INSTRUCTIONS,
   SET_CORE_INSTRUCTIONS_REQUESTED,
-  SET_CORE_FOCUS,
+  SET_CORE_OPTIONS,
+  SET_CORE_OPTIONS_REQUESTED,
   SET_PROCESS_RATE,
   SET_PROCESS_RATE_REQUESTED,
-  SET_CORE_OPTIONS,
-  SET_CORE_OPTIONS_REQUESTED
+  START_REQUESTED,
+  STEP_REQUESTED
 } from './actions'
 
+import { getCoreOptions } from '../../services/core-options'
 import { getFileState } from '../files/reducer'
 import { getSimulatorState } from './reducer'
-import { getCoreOptions } from '../../services/core-options'
 
 // oddities
 const roundProgressChannel = channel()
@@ -116,14 +116,8 @@ export function* republishSaga() {
 
 export function* getCoreOptionsFromState() {
   const { standardId, files } = yield select(getFileState)
-  const {
-    coreSize,
-    maximumCycles,
-    minSeparation,
-    instructionLimit,
-    maxTasks,
-    roundResult
-  } = yield select(getSimulatorState)
+  const { coreSize, maximumCycles, minSeparation, instructionLimit, maxTasks, roundResult } =
+    yield select(getSimulatorState)
 
   const p = {
     result: roundResult,
@@ -146,7 +140,7 @@ export function* initialiseCore(options, files) {
   yield call(
     [corewar, corewar.initialiseSimulator],
     options,
-    files.map(file => ({ data: file.data, source: file })),
+    files.map((file) => ({ data: file.data, source: file })),
     PubSub
   )
 

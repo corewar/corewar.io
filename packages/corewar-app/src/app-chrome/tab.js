@@ -5,8 +5,11 @@ const Tab = ({ route }) => {
   return (
     <NavLink
       to={route.to}
-      activeClassName="bg-gray-800"
-      className={`flex items-center justify-center w-32 h-12 border border-b-0 border-gray-700 rounded-lg rounded-b-none text-sm font-semibold text-gray-100`}
+      className={({ isActive }) =>
+        `flex items-center justify-center w-32 h-12 border border-b-0 border-gray-700 rounded-lg rounded-b-none text-sm font-semibold text-gray-100 ${
+          isActive ? 'bg-gray-800' : ''
+        }`
+      }
     >
       {route.name}
     </NavLink>

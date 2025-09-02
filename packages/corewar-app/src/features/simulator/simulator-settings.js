@@ -1,14 +1,14 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { getSimulatorState } from './reducer'
-import { setCoreOptions } from './actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { getCoreOptions } from '../../services/core-options'
+import { setCoreOptions } from './actions'
+import { getSimulatorState } from './reducer'
 
 const SimulatorSettings = () => {
   const { coreOptions } = useSelector(getSimulatorState)
   const dispatch = useDispatch()
-  const history = useHistory()
+  const navigate = useNavigate()
 
   return (
     <div className="bg-gray-700 p-4">
@@ -17,7 +17,7 @@ const SimulatorSettings = () => {
           Simulator settings
         </h3>
         <ul>
-          {coreOptions.map(opt => {
+          {coreOptions.map((opt) => {
             const options = getCoreOptions(opt.id)
             return (
               <li
@@ -25,7 +25,7 @@ const SimulatorSettings = () => {
                 className="flex flex-col my-2 p-2 w-full text-sm rounded-lg border border-gray-600 cursor-pointer hover:bg-gray-600"
                 onClick={() => {
                   dispatch(setCoreOptions(opt.id))
-                  history.goBack()
+                  navigate(-1)
                 }}
               >
                 <p className="font-bold">{opt.name}</p>

@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux'
-import { connectRouter } from 'connected-react-router'
 
 import file from '../../features/files/reducer'
 import simulator from '../../features/simulator/reducer'
 
-const createRootReducer = history =>
+const createRootReducer = () =>
   combineReducers({
-    router: connectRouter(history),
     file,
     simulator
   })

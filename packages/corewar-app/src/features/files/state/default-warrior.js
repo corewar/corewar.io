@@ -2,7 +2,10 @@ import { guid } from '../../../services/guid'
 
 const createDefaultWarrior = (name, author) => {
   const defaultSource = `;name ${name}
-;author ${author}`
+;author ${author}
+;comment A simple default warrior
+
+        MOV 0, 1`
 
   return {
     source: defaultSource,
