@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import Body from './app-chrome/body'
@@ -31,15 +31,17 @@ function App() {
   const location = useLocation()
   const [previousLocation, setPreviousLocation] = useState(location)
   const [hasInitialized, setHasInitialized] = useState(false)
+  const initializationRef = useRef(false)
   const currentFile = useSelector(getCurrentFile)
   const files = useSelector((state) => state.file.files)
 
   useEffect(() => {
     // Only create a new file if we haven't initialized yet and there are no files at all
-    if (!hasInitialized && files.length === 0) {
+    if (!initializationRef.current && files.length === 0) {
+      initializationRef.current = true
       dispatch(newFile())
       setHasInitialized(true)
-    } else if (files.length > 0) {
+    } else if (files.length > 0 && !hasInitialized) {
       // If files exist, mark as initialized to prevent creating more
       setHasInitialized(true)
     }

@@ -1,10 +1,10 @@
 import React from 'react'
-import SimulatorControls from './simulator-controls'
-import Core from './core'
 import SectionHeader from '../../app-chrome/section-header'
+import Core from './core'
+import SimulatorControls from './simulator-controls'
 
 const Simulator = () => (
-  <section className="max-w-core flex flex-col flex-initial justify-start mt-4">
+  <section className="w-full max-w-none flex flex-col flex-1 justify-start mt-4 min-h-0">
     <SectionHeader>Simulator</SectionHeader>
     <SimulatorControls></SimulatorControls>
     <Core></Core>

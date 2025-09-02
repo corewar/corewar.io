@@ -20,7 +20,7 @@ import {
   TOGGLE_FILE_REQUESTED
 } from './actions'
 
-import { PAUSE, UNINIT } from '../simulator/actions'
+import { INIT_REQUESTED, PAUSE, UNINIT } from '../simulator/actions'
 
 import { getCoreOptionsFromState, initialiseCore } from '../simulator/sagas'
 import { getFileState } from './reducer'
@@ -57,6 +57,9 @@ export function* parseFileSaga({ source }) {
   yield put({ type: SET_FILES, files: fileList })
 
   yield call(maybeInit, fileList)
+
+  // Dispatch init() action like the reload button does to ensure grid redraws
+  yield put({ type: INIT_REQUESTED })
 }
 
 /**
