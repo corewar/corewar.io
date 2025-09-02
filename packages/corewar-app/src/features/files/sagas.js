@@ -1,29 +1,29 @@
-import { call, put, takeEvery, takeLatest, select } from 'redux-saga/effects'
 import randomWords from 'random-words'
+import { call, put, select, takeEvery, takeLatest } from 'redux-saga/effects'
 
-import { insertItem, removeById, replaceItemByKey, replaceById } from '../../services/array'
-import { createHash, getIdenticon } from '../../services/identicon'
-import { guid } from '../../services/guid'
 import { corewar } from 'corewar'
+import { insertItem, removeById, replaceById, replaceItemByKey } from '../../services/array'
+import { guid } from '../../services/guid'
+import { createHash, getIdenticon } from '../../services/identicon'
 import createDefaultWarrior from './state/default-warrior'
 
 import {
-  SET_CURRENT_FILE,
-  PARSE_REQUESTED,
-  NEW_FILE_REQUESTED,
   DELETE_FILE_REQUESTED,
-  SET_FILES,
-  OPEN_FILE_REQUESTED,
   LOAD_FILE,
   LOAD_FILE_REQUESTED,
-  TOGGLE_FILE_REQUESTED,
-  SET_COLOURS
+  NEW_FILE_REQUESTED,
+  OPEN_FILE_REQUESTED,
+  PARSE_REQUESTED,
+  SET_COLOURS,
+  SET_CURRENT_FILE,
+  SET_FILES,
+  TOGGLE_FILE_REQUESTED
 } from './actions'
 
 import { PAUSE, UNINIT } from '../simulator/actions'
 
-import { getFileState } from './reducer'
 import { getCoreOptionsFromState, initialiseCore } from '../simulator/sagas'
+import { getFileState } from './reducer'
 
 /**
  * parseFileSaga - parses a file from redcode into compiled code
@@ -122,7 +122,7 @@ export function* deleteFileSaga({ id }) {
 export function* toggleFileSaga({ id }) {
   const { files } = yield select(getFileState)
 
-  const file = files.find(x => x.data.id === id)
+  const file = files.find((x) => x.data.id === id)
 
   const fileList = yield call(replaceById, id, files, {
     ...file,
@@ -140,7 +140,7 @@ export function* toggleFileSaga({ id }) {
 export function* loadFileSaga({ id }) {
   const { files } = yield select(getFileState)
 
-  const file = files.find(x => x.data.id === id)
+  const file = files.find((x) => x.data.id === id)
 
   yield put({ type: SET_CURRENT_FILE, currentFile: file })
 
@@ -157,8 +157,10 @@ export function* openFileSaga({ source }) {
 // internal helper functions - not exported
 function* maybeInit(files) {
   const validFiles = files.filter(
-    x =>
-      !x.data.hasErrors && x.data.loaded && x.tokens.filter(y => y.category === 'OPCODE').length > 0
+    (x) =>
+      !x.data.hasErrors &&
+      x.data.loaded &&
+      x.tokens.filter((y) => y.category === 'OPCODE').length > 0
   )
 
   if (validFiles.length > 0) {
@@ -171,14 +173,14 @@ function* maybeInit(files) {
 
 function* getColour(id) {
   const { colours } = yield select(getFileState)
-  const nextColour = colours.find(x => x.id === id)
+  const nextColour = colours.find((x) => x.id === id)
   return nextColour ? nextColour : { id: null, hex: '#ffffff' }
 }
 
 function* takeColour(id) {
   const { colours } = yield select(getFileState)
 
-  const nextAvailable = colours.filter(x => x.id === null)[0]
+  const nextAvailable = colours.filter((x) => x.id === null)[0]
 
   if (!nextAvailable) {
     return { hex: '#FFFFFF' }

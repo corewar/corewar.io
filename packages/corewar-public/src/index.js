@@ -5,7 +5,6 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import styled from 'styled-components'
 import store from './store'
 
-import App from './features/app/app'
 import Documentation from './features/documentation/documentation'
 import FeedbackContainer from './features/feedback/feedbackContainer'
 import Home from './features/onboarding/home'
@@ -43,7 +42,6 @@ root.render(
           <Route path="/sign-up" element={<SignUpContainer />} />
           <Route path="/contact-us" element={<FeedbackContainer />} />
           <Route path="/learn/*" element={<Documentation />} />
-          <Route path="/app/*" element={<App />} />
         </Routes>
       </Wrapper>
     </Router>
