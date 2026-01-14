@@ -43,7 +43,7 @@
     "dependencies": {
         "clone": "^2.1.2",
         "core-js": "^2.6.11",
-        "diff": ">=3.5.0",
+        "diff": ">=8.0.3",
         "pubsub-js": "^1.8.0"
     },
     "devDependencies": {
